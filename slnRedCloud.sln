@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedCloud.Infrastructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedCloud.Persistenence", "RedCloud.Persistenence\RedCloud.Persistenence.csproj", "{AC33D780-B6C2-491E-BD74-175740933115}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mvc", "Mvc", "{9F09D962-E944-434F-9D65-78E17A262546}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MvcSevices", "MvcSevices", "{9F09D962-E944-434F-9D65-78E17A262546}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApiCallingService", "MvcApiCallingService\MvcApiCallingService.csproj", "{24C0174B-AE6A-4867-BAA6-766809D85906}"
 EndProject
