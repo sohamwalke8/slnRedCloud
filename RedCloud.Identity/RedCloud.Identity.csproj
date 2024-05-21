@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
-    <Folder Include="Seed\" />
+    <Compile Remove="Models\RefreshTocken.cs" />
   </ItemGroup>
 
 </Project>
