@@ -1,7 +1,14 @@
+using MvcApiCallingService.Helpers.ApiHelper;
+using RedCloud.Interface;
+using RedCloud.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IAdminUserService, AdminUserService>();
+builder.Services.AddScoped(typeof(IApiClient<>), typeof(ApiClient<>));
 
 var app = builder.Build();
 
@@ -22,6 +29,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=RedCloudUserAdmin}/{action=AddAdmin}/{id?}");
 
 app.Run();

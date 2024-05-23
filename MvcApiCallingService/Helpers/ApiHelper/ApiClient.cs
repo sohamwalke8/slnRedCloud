@@ -45,11 +45,13 @@ namespace MvcApiCallingService.Helpers.ApiHelper
             return await ValidateResponse(responseMessage);
         }
 
-        public async Task<Response<T>> PostAsync<TEntity>(string apiUrl, TEntity entity)
+        public async Task<Response<int>> PostAsync<TEntity>(string apiUrl, TEntity entity)
         {
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage responseMessage = await _httpClient.PostAsync(apiUrl, stringContent);
-            return await ValidateResponse(responseMessage);
+            if (responseMessage.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<Response<int>>(await responseMessage.Content.ReadAsStringAsync());
+            return default;
         }
         // For Account
         public async Task<T?> PostAuthAsync<TEntity>(string apiUrl, TEntity entity)
