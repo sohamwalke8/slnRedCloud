@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
-using MvcApiCallingService.Helpers.ApiHelper;
-using NuGet.Protocol.Plugins;
+﻿using MvcApiCallingService.Helpers.ApiHelper;
 using RedCloud.Domain.Comman;
 using RedCloud.Interface;
 using RedCloud.Models.Account;

@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Responses
 {
-        public class Response<T>
+        public class BaseResponse<T>
         {
-            public Response()
+            public BaseResponse()
             {
             }
-            public Response(T data, string message = null)
+            public BaseResponse(T data, string message = null)
             {
                 Succeeded = true;
                 Message = message;
                 Data = data;
             }
-            public Response(string message)
+            public BaseResponse(string message)
             {
                 Succeeded = false;
                 Message = message;

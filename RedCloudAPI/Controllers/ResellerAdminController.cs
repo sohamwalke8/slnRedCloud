@@ -27,9 +27,9 @@ namespace RedCloudAPI.Controllers
         }
 
         [HttpPut( "UpdateResellerAdmin")]
-        public async Task<ActionResult> Update([FromBody] UpdateResellerAdminCommand updateOrganizationAdmin)
+        public async Task<ActionResult> Update([FromBody] UpdateResellerAdminCommand updateResellerAdmin)
         {
-            var response = await _mediator.Send(updateOrganizationAdmin);
+            var response = await _mediator.Send(updateResellerAdmin);
             return Ok(response);
         }
 
