@@ -8,6 +8,7 @@ namespace RedCloud.Application.Responses
 {
     public class BaseResponse<T>
     {
+
         public BaseResponse()
         {
         }

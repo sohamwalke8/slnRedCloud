@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using RedCloud.Application.Features.OrganizationsAdmin.Command;
+using RedCloud.Application.Features.AdminUsers.Command;
 using RedCloud.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,10 +13,8 @@ namespace RedCloud.Application.profile
     {
         public MappingProfile()
         {
-            CreateMap<CreateOrganizationAdmin, OrganizationAdmin>();
-            CreateMap<UpdateOrganizationAdmin, OrganizationAdmin>();
-            CreateMap<UpdateOrganizationAdmin, ResellerAdmin>();
-
+            CreateMap<CreateAdminUserCommand, AdminUser>();
+            CreateMap<EditAdminUserCommand, AdminUser>();
         }
     }
 }

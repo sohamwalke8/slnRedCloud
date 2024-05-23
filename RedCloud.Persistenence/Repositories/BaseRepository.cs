@@ -11,21 +11,19 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Persistenence.Repositories
 {
-
-    [ExcludeFromCodeCoverage]
     public class BaseRepository<T> : IAsyncRepository<T> where T : class
     {
         protected readonly ApplicationDbContext _dbContext;
-        private readonly ILogger<BaseRepository<T>> _logger;
-        public BaseRepository(ApplicationDbContext dbContext, ILogger<BaseRepository<T>> logger)
+        private readonly ILogger _logger;
+        public BaseRepository(ApplicationDbContext dbContext, ILogger<T> logger)
         {
-            _dbContext = dbContext; 
-            _logger = logger;
+            _dbContext = dbContext; logger = logger;
         }
 
         public virtual async Task<T> GetByIdAsync(Guid id)
         {
-            return await _dbContext.Set<T>().FindAsync(id);
+            return await _dbContext.Set<T>().FindAsync(id)
+;
         }
 
         public async Task<IReadOnlyList<T>> ListAllAsync()
@@ -83,4 +81,5 @@ namespace RedCloud.Persistenence.Repositories
             return parameterNames;
         }
     }
+
 }
