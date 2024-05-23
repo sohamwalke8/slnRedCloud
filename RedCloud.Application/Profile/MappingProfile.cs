@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using RedCloud.Application.Features.AdminUsers.Command;
+using RedCloud.Application.Features.ResellerAdmins.Command;
 using RedCloud.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace RedCloud.Application.profile
         {
             CreateMap<CreateAdminUserCommand, AdminUser>();
             CreateMap<EditAdminUserCommand, AdminUser>();
+            CreateMap<CreateResellerAdminCommand, ResellerAdmin>();
+            CreateMap<UpdateResellerAdminCommand, ResellerAdmin>();
         }
     }
 }
