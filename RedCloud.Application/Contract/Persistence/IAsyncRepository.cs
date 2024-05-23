@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Contract.Persistence
 {
-    internal interface IAsyncRepository
+    public interface IAsyncRepository
     {
     }
 }
