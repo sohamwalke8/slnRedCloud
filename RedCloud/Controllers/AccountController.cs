@@ -2,11 +2,22 @@
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using NuGet.Protocol.Plugins;
+using RedCloud.Interface;
+using RedCloud.Models.Account;
 namespace RedCloud.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IAccountService _accountService;
         // Action method to display the login page
+
+               
+public AccountController(IAccountService accountService)
+        {
+            _accountService = accountService;
+        }
+
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -16,12 +27,13 @@ namespace RedCloud.Controllers
 
         // Action method to handle login POST requests
         [HttpPost]
-        public async Task<IActionResult> Login(Login model)
+        public async Task<IActionResult> Login(LoginVM model)
         {
             if (ModelState.IsValid)
             {
-               
-                if (true)
+                var result =await _accountService.Login(model);
+
+                if (result.Roles != null)
                 {
                     // Here you would call your API to validate the credentials
                     return RedirectToAction("Index", "Home");
@@ -33,6 +45,9 @@ namespace RedCloud.Controllers
             }
             return View(model);
         }
+
+
+
 
         //[HttpPost]
         //public async Task<IActionResult> LoginAsync(Login login)

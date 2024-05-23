@@ -28,20 +28,26 @@ namespace RedCloud.Persistenence.Repositories
         {
             var user = _dbContex.User.Where(x => x.Email == Email && x.Password==Password).FirstOrDefault();
 
-            var roles = _dbContex.RoleMapper.Where(x =>x.UserId==user.UserId).Select(x => new Role
+            if (user!=null)
             {
-                RoleName = x.Role.RoleName,
-                RoleId = x.Role.RoleId,
-            }).ToList();
+                var roles = _dbContex.RoleMapper.Where(x => x.UserId == user.UserId).Select(x => new Role
+                {
+                    RoleName = x.Role.RoleName,
+                    RoleId = x.Role.RoleId,
+                }).ToList();
 
-            var loginDetailes = new UserVM
-            {
-                UserId = user.UserId,
-                Email = user.Email,
-                Password = user.Password,
-                Roles = roles,
-            };
+                var loginDetailes = new UserVM
+                {
+                    UserId = user.UserId,
+                    Email = user.Email,
+                    Password = user.Password,
+                    Roles = roles,
+                };
+
                 return loginDetailes;
+            }
+            throw new UnauthorizedAccessException();
+                
         }
     }
 }

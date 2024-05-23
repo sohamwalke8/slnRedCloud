@@ -22,18 +22,18 @@ namespace RedCloud.Service
         }
 
 
-        public async Task<UserVM> Login(Models.Account.Login login)
+        public async Task<UserVM> Login(LoginVM login)
         {
             _logger.LogInformation("LoginAccount Service initiated");
             var response = await _apiClientLogin.PostAuthAsync("Account", login);
             if (response == null)
             {
                 _logger.LogInformation("LoginAccount Service conpleted");
-                return response;
+                return response.Data;
             }
 
             _logger.LogInformation("LoginAccount Service conpleted");
-            return response;
+            return response.Data;
         }
 
 
