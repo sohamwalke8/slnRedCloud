@@ -11,14 +11,13 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Persistenence.Repositories
 {
-    [ExcludeFromCodeCoverage]
     public class BaseRepository<T> : IAsyncRepository<T> where T : class
     {
         protected readonly ApplicationDbContext _dbContext;
-        private readonly ILogger<BaseRepository<T>> _logger;
-        public BaseRepository(ApplicationDbContext dbContext, ILogger<BaseRepository<T>> logger)
+        private readonly ILogger _logger;
+        public BaseRepository(ApplicationDbContext dbContext, ILogger<T> logger)
         {
-            _dbContext = dbContext; _logger = logger;
+            _dbContext = dbContext; logger = logger;
         }
 
         public virtual async Task<T> GetByIdAsync(Guid id)
@@ -38,13 +37,6 @@ namespace RedCloud.Persistenence.Repositories
             return await _dbContext.Set<T>().Skip((page - 1) * size).Take(size).AsNoTracking().ToListAsync();
         }
 
-        //public async Task<T> UpdateAsync(T entity)
-        //{
-        //    await _dbContext.Set<T>().AddAsync(entity);
-        //    await _dbContext.SaveChangesAsync();
-
-        //    return entity;
-        //}
         public async Task<T> AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
@@ -52,6 +44,7 @@ namespace RedCloud.Persistenence.Repositories
 
             return entity;
         }
+
         public async Task UpdateAsync(T entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
@@ -88,4 +81,5 @@ namespace RedCloud.Persistenence.Repositories
             return parameterNames;
         }
     }
+
 }

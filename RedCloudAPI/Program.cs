@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using RedCloud.Application.Contract.Persistence;
-using RedCloud.Application.Features.ResellerAdmins.Command;
 using RedCloud.Persistenence;
 using RedCloud.Persistenence.Repositories;
+using System;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 builder.Services.AddControllers();
+
+//builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
