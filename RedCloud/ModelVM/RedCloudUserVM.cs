@@ -4,7 +4,7 @@ namespace RedCloud.Models
 {
     public class RedCloudUserVM
     {
-        
+        public int ID { get; set; }
 
         [Required(ErrorMessage = "Please enter First Name")]
         public string FirstName { get; set; }

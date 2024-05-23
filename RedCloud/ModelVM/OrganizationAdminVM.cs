@@ -25,5 +25,7 @@
 
         public string OrgURL { get; set; }
 
+        public string ResellerName { get; set; } = "Test";
+
     }
 }

@@ -11,5 +11,7 @@ namespace RedCloud.Interface
     {
         Task<int> CreateAdminUser(AdminUser adminUser);
 
+        Task EditAdminUser(AdminUser adminUser);
+
     }
 }

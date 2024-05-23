@@ -32,7 +32,7 @@ namespace RedCloudAPI.Controllers
         }
 
 
-        [HttpPut("{id}")]
+        [HttpPut("EditAdminUser")]
         public async Task<ActionResult> Update([FromBody] EditAdminUserCommand EditAdminUserCommand)
         {
             var response = await _mediator.Send(EditAdminUserCommand);

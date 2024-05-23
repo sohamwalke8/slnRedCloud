@@ -29,5 +29,11 @@ namespace RedCloud.Service
             //_logger.LogInformation("CreateCategory Service conpleted");
             return users.Data;
         }
+
+        public async Task EditAdminUser(AdminUser adminUser)
+        {
+            var users = _client.PutAsync("AdminUser/EditAdminUser", adminUser);
+            //return users.Data;
+        }
     }
 }

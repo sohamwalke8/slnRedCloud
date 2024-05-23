@@ -73,11 +73,18 @@ namespace MvcApiCallingService.Helpers.ApiHelper
             return default;
         }
 
-        public async Task<Response<T>> PutAsync<TEntity>(string apiUrl, TEntity entity)
+        //public async Task<Response<T>> PutAsync<TEntity>(string apiUrl, TEntity entity)
+        //{
+        //    StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
+        //    HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
+        //    return await ValidateResponse(responseMessage);
+        //}
+
+        public async Task PutAsync<TEntity>(string apiUrl, TEntity entity)
         {
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
-            return await ValidateResponse(responseMessage);
+            //return await ValidateResponse(responseMessage);
         }
 
         public async Task<string> DeleteAsync(string apiUrl)
@@ -109,5 +116,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
             response.Content?.Dispose();
             throw new HttpRequestException($"{response.StatusCode}:{content}");
         }
+
+      
     }
 }

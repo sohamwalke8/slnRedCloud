@@ -40,5 +40,15 @@ namespace RedCloud.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> EditAdmin(AdminUser request)
+        {
+            // _logger.LogInformation("CreateCategory Action initiated");
+            var response = _adminUserService.EditAdminUser(request);
+
+            //_logger.LogInformation("CreateCategory Action initiated");
+            return RedirectToAction("EditAdmin");
+        }
     }
 }

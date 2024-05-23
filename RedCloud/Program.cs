@@ -1,6 +1,7 @@
 using MvcApiCallingService.Helpers.ApiHelper;
 using RedCloud.Interface;
 using RedCloud.Service;
+using RedCloud.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IAdminUserService, AdminUserService>();
+builder.Services.AddScoped<IOrganizationAdminService, OrganizationAdminService>();
 builder.Services.AddScoped(typeof(IApiClient<>), typeof(ApiClient<>));
 
 var app = builder.Build();

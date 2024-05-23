@@ -1,4 +1,4 @@
-﻿@* @model RedCloud.Models.RedCloudUserVM
+﻿@model RedCloud.Models.RedCloudUserVM
 
 @{
     ViewData["Title"] = "Edit Admin User Form";
@@ -18,23 +18,30 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="custom-border">
-                <form asp-action="SubmitForm" method="post">
+                <form asp-action="EditAdmin" asp-controller="RedCloudUserAdmin" method="post">
+                    <input type="hidden" asp-for="ID" value="5" />
                     <div class="form-group">
-                        <label asp-for="firstName"></label>
-                        <input asp-for="firstName" class="form-control" />
-                        <span asp-validation-for="firstName" class="text-danger"></span>
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="lastName"></label>
-                        <input asp-for="lastName" class="form-control" />
-                        <span asp-validation-for="lastName" class="text-danger"></span>
+                        <label asp-for="LastName"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="email"></label>
-                        <input asp-for="email" class="form-control" placeholder="abcxyz@redcloud.com" />
-                        <span asp-validation-for="email" class="text-danger"></span>
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" placeholder="abcxyz@redcloud.com" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="MobileNumber"></label>
+                        <input asp-for="MobileNumber" class="form-control" placeholder="abcxyz@redcloud.com" />
+                        <span asp-validation-for="MobileNumber" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
@@ -51,4 +58,3 @@
         </div>
     </div>
 </div>
- *@
