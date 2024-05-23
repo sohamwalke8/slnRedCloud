@@ -22,7 +22,8 @@ namespace RedCloud.Domain.Entities
 
         public string CompanyURL { get; set; }
         public string CompanySupportEmail { get; set; }
-     //   public string RedCloudAdmin { get; set; }
+     
+        public string? RedCloudAdmin { get; set; }
 
         public string? Password { get; set; }
 

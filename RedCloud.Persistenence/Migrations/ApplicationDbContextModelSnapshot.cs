@@ -77,6 +77,9 @@ namespace RedCloud.Persistenence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("OrgAdminEmail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -153,6 +156,9 @@ namespace RedCloud.Persistenence.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RedCloudAdmin")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ResellerName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -169,7 +175,7 @@ namespace RedCloud.Persistenence.Migrations
 
                     b.HasIndex("OrganizationAdminId");
 
-                    b.ToTable("ReSellerAdmins");
+                    b.ToTable("ResellerAdmin");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.ResellerAdmin", b =>
