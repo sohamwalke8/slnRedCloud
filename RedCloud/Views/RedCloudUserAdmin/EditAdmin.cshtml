@@ -1,0 +1,54 @@
+﻿@* @model RedCloud.Models.RedCloudUserVM
+
+@{
+    ViewData["Title"] = "Edit Admin User Form";
+}
+
+<style>
+    .custom-border {
+        border: 2px solid #007bff;
+        padding: 20px;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="container">
+    <h2 class="text-center">@ViewData["Title"]</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="custom-border">
+                <form asp-action="SubmitForm" method="post">
+                    <div class="form-group">
+                        <label asp-for="firstName"></label>
+                        <input asp-for="firstName" class="form-control" />
+                        <span asp-validation-for="firstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="lastName"></label>
+                        <input asp-for="lastName" class="form-control" />
+                        <span asp-validation-for="lastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="email"></label>
+                        <input asp-for="email" class="form-control" placeholder="abcxyz@redcloud.com" />
+                        <span asp-validation-for="email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="IsActive"></label>
+                        <input asp-for="IsActive" type="checkbox" class="form-check-input" />
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary mr-2">Save</button>
+                        <button type="button" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+ *@
