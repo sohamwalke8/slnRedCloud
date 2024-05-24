@@ -5,6 +5,7 @@ using NuGet.Protocol.Plugins;
 using RedCloud.Interface;
 using RedCloud.Models.Account;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 namespace RedCloud.Controllers
 {
     public class AccountController : Controller
@@ -36,22 +37,35 @@ namespace RedCloud.Controllers
             {
                 // Here you would call your API to validate the credentials
                 var result =await _accountService.Login(model);
+                if (!result.Succeeded)
+                {
+                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return View(model);
+
+                }
                 if (result.Data.Roles != null)
                 {
                     // Set session data
-                    HttpContext.Session.SetString("Email",result.Data.Email);
-                    HttpContext.Session.SetString("UserRoles", JsonConvert.SerializeObject(result.Data.Roles));
+                    var roles = result.Data.Roles.Select(r => new {
+                        RoleName = r.RoleName.Trim(),
+                        // Include other properties if needed
+                    });
+                    HttpContext.Session.SetString("Email", result.Data.Email);
+                    HttpContext.Session.SetString("UserRoles", JsonConvert.SerializeObject(roles));
 
-                    var MainRoleId = result.Data.Roles[0].RoleId;
+                    var RoleName = result.Data.Roles[0].RoleName;
 
-                    if(MainRoleId == 1)
-                        return RedirectToAction("Index", "Home");
-                    else if(MainRoleId == 2)
-                        return RedirectToAction("Index", "Home");
-                    else if(MainRoleId == 3)
-                        return RedirectToAction("Index", "Home");
-                    else
-                        return RedirectToAction("Index", "Home");
+                    HttpContext.Session.SetString("Role", RoleName);
+
+                    //if(MainRoleId == 1)
+                    //    return RedirectToAction("Index", "Home");
+                    //else if(MainRoleId == 2)
+                    //    return RedirectToAction("Index", "Home");
+                    //else if(MainRoleId == 3)
+                    //    return RedirectToAction("Index", "Home");
+                    //else
+                    
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -61,6 +75,14 @@ namespace RedCloud.Controllers
             return View(model);
         }
 
+        public IActionResult SetRole(string roleName)
+        {
+            // Set the session variable to the provided role name
+            HttpContext.Session.SetString("Role", roleName);
+
+            // Optionally, you can return a response indicating success
+            return Ok(); // 200 OK status code
+        }
 
 
 
@@ -76,7 +98,7 @@ namespace RedCloud.Controllers
         //        {
         //            //HttpContext.Session.SetString("UserName", loginResponse.UserName);
         //            //_notyf.Success("Logged In Successfully");
-                    
+
         //            return RedirectToAction("Index", "Home");
         //        }
         //        else
