@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using MvcApiCallingService.Helpers.ApiHelper;
 
 using RedCloud.Domain.Entities;
