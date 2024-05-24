@@ -30,4 +30,8 @@
     <ProjectReference Include="..\RedCloud.Domain\RedCloud.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\jquery\dist\" />
+  </ItemGroup>
+
 </Project>
