@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using RedCloud.Models;
 using System.Diagnostics;
 
@@ -13,8 +14,11 @@ namespace RedCloud.Controllers
             _logger = logger;
         }
 
+
         public IActionResult Index()
         {
+            var session = HttpContext.Session.GetString("Email");
+            var sessionId = HttpContext.Session.GetInt32("RoleID");
             return View();
         }
 

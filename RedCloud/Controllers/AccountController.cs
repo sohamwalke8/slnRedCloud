@@ -4,26 +4,29 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pag
 using NuGet.Protocol.Plugins;
 using RedCloud.Interface;
 using RedCloud.Models.Account;
+using Newtonsoft.Json;
 namespace RedCloud.Controllers
 {
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
-        // Action method to display the login page
 
-               
-public AccountController(IAccountService accountService)
+        //public const string SessionName = "_Name";
+        //public const string SessionId = "_RoleId";
+
+
+        public AccountController(IAccountService accountService)
         {
             _accountService = accountService;
         }
 
 
+        // Action method to display the login page
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
-
 
         // Action method to handle login POST requests
         [HttpPost]
@@ -31,12 +34,24 @@ public AccountController(IAccountService accountService)
         {
             if (ModelState.IsValid)
             {
+                // Here you would call your API to validate the credentials
                 var result =await _accountService.Login(model);
-
-                if (result.Roles != null)
+                if (result.Data.Roles != null)
                 {
-                    // Here you would call your API to validate the credentials
-                    return RedirectToAction("Index", "Home");
+                    // Set session data
+                    HttpContext.Session.SetString("Email",result.Data.Email);
+                    HttpContext.Session.SetString("UserRoles", JsonConvert.SerializeObject(result.Data.Roles));
+
+                    var MainRoleId = result.Data.Roles[0].RoleId;
+
+                    if(MainRoleId == 1)
+                        return RedirectToAction("Index", "Home");
+                    else if(MainRoleId == 2)
+                        return RedirectToAction("Index", "Home");
+                    else if(MainRoleId == 3)
+                        return RedirectToAction("Index", "Home");
+                    else
+                        return RedirectToAction("Index", "Home");
                 }
                 else
                 {

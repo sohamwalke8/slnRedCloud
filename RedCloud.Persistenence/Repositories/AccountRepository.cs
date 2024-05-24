@@ -34,7 +34,7 @@ namespace RedCloud.Persistenence.Repositories
                 {
                     RoleName = x.Role.RoleName,
                     RoleId = x.Role.RoleId,
-                }).ToList();
+                }).OrderBy(x => x.RoleId).ToList();
 
                 var loginDetailes = new UserVM
                 {

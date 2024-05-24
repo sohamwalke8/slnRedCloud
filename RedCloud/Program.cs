@@ -9,9 +9,23 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 
-
 // Add services to the container.
 IConfiguration Configuration = builder.Configuration;
+builder.Services.AddControllersWithViews();
+
+// Add distributed memory cache for session
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(60);
+});
+
+
+//logger setup
+Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
+builder.Host.UseSerilog(((ctx, lc) => lc
+.ReadFrom.Configuration(ctx.Configuration)));
 
 
 // Add services to the container.
@@ -45,12 +59,15 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseSerilogRequestLogging();
+app.UseSession();
 app.UseRouting();
+
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

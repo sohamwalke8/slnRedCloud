@@ -63,13 +63,11 @@ namespace MvcApiCallingService.Helpers.ApiHelper
                 var res = JsonConvert.DeserializeObject<Response<T>>(result);
                 if (responseMessage.IsSuccessStatusCode)
                     return JsonConvert.DeserializeObject<Response<T>>(await responseMessage.Content.ReadAsStringAsync());
-
-
             }
             catch (Exception ex)
             {
                 Console.Error.WriteLine(ex.Message);
-                throw new AuthenticationException($"{ex.Message}");
+                return new Response<T>(" Invalid login credentials ");
             }
 
             return default;
