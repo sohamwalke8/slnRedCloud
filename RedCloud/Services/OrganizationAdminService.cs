@@ -22,5 +22,15 @@ namespace RedCloud.Services
             //_logger.LogInformation("CreateCategory Service conpleted");
             return users.Data;
         }
+
+        public async Task EditOrganizationAdmin(OrganizationAdmin organizationAdmin)
+        {
+
+            var users = _client.PutAsync("OrganizationAdmin/UpdateOrganizationAdmin", organizationAdmin);
+            //return users.Data;
+
+        }
+
+      
     }
 }

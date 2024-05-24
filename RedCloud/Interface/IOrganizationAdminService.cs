@@ -5,5 +5,7 @@ namespace RedCloud.Interface
     public interface IOrganizationAdminService
     {
         Task<int> CreateOrganizationAdmin(OrganizationAdmin organizationAdmin);
+
+        Task EditOrganizationAdmin(OrganizationAdmin organizationAdmin);
     }
 }

@@ -29,8 +29,22 @@ namespace RedCloud.Controllers
             var response = await _organizationAdminService.CreateOrganizationAdmin(request);
 
             //_logger.LogInformation("CreateCategory Action initiated");
-            return RedirectToAction("Index");
+            return RedirectToAction("AddOrganizationAdmin");
         }
 
+        public IActionResult UpdateOrganizationAdmin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateOrganizationAdmin(OrganizationAdmin request)
+        {
+            // _logger.LogInformation("CreateCategory Action initiated");
+            var response =  _organizationAdminService.EditOrganizationAdmin(request);
+
+            //_logger.LogInformation("CreateCategory Action initiated");
+            return RedirectToAction("UpdateOrganizationAdmin");
+        }
     }
 }
