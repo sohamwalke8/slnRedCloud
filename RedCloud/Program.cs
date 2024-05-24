@@ -1,9 +1,19 @@
+using MvcApiCallingService.Helpers.ApiHelper;
+using RedCloud.Application.Contract.Persistence;
+using RedCloud.Controllers;
+using RedCloud.Interface;
+using RedCloud.Persistenence.Repositories;
+using RedCloud.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped(typeof(IApiClient<>), typeof(ApiClient<>));
+builder.Services.AddScoped<IReSellerAdminService, ReSellerAdminService>();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

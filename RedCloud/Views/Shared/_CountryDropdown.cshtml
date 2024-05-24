@@ -1,0 +1,23 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+
+
+
+
+
+@model IEnumerable<RedCloud.Models.CountryVM>
+<label for="countryDropDown" class="form-label">Country</label>
+<select id="countryDropDown" name="CountryId" class="form-control">
+    <option value="">Select a country</option>
+ @foreach (var country in Model)
+    {
+        <option value="@country.CountryId">@country.Name</option>
+    }
+
+</select>
+
+

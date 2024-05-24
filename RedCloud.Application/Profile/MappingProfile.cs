@@ -1,12 +1,22 @@
-﻿using System;
+﻿using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
+using RedCloud.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 
-namespace RedCloud.Application.Profile
+
+namespace RedCloud.Application.profile
 {
-    internal class MappingProfile
+    public class MapperProfile : Profile
     {
+        public MapperProfile()
+        {
+            CreateMap<ReSellerAdminVM, ResellerAdmin >().ReverseMap();
+
+        }
     }
+
 }
