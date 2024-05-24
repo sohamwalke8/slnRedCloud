@@ -7,12 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped(typeof(IApiClient<>), typeof(ApiClient<>));
+builder.Services.AddScoped<IReSellerAdminService, ReSellerAdminService>();
 
 builder.Services.AddScoped<IAdminUserService, AdminUserService>();
 builder.Services.AddScoped<IOrganizationAdminService, OrganizationAdminService>();
 builder.Services.AddScoped(typeof(IApiClient<>), typeof(ApiClient<>));
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

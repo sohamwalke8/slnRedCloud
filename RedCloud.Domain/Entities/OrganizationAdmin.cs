@@ -9,7 +9,7 @@ namespace RedCloud.Domain.Entities
 {
     public class OrganizationAdmin
     {
-        [Key] 
+        [Key]
         public int OrgID { get; set; }
         public string OrgName { get; set; }
 

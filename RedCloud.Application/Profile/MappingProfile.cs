@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace RedCloud.Application.profile
 {
@@ -23,6 +24,7 @@ namespace RedCloud.Application.profile
 
             CreateMap<CreateResellerAdminCommand, ResellerAdmin>();
             CreateMap<UpdateResellerAdminCommand, ResellerAdmin>();
+
         }
     }
 }

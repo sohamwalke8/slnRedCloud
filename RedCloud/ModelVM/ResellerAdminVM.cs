@@ -39,6 +39,6 @@ namespace RedCloud.Models
         public string RedCloudAdmin { get; set; }
 
 
-        
-    }
+
+     }
 }

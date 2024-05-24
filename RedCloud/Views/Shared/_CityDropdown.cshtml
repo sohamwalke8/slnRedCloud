@@ -1,0 +1,30 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+
+
+@model List<RedCloud.Models.CityVM>
+
+@* <select id="cityDropdown" name="CityId" class="form-control">
+    <option value="">Select a city</option>
+    @foreach (var city in Model)
+    {
+        <option value="@city.CityId">@city.Name</option>
+    }
+
+</select> *@
+
+<div class="form-group">
+    <label for="cityDropdown" class="form-label">City</label>
+    <select id="cityDropdown" name="CityId" class="form-control custom-select">
+        <option value="">Select a city</option>
+        @foreach (var city in Model)
+        {
+            <option value="@city.CityId">@city.Name</option>
+        }
+    </select>
+</div>
+
