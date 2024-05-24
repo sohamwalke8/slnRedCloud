@@ -38,7 +38,6 @@ namespace RedCloud.Application.Features.ReSellerAdmin.Command.DeleteReSellerAdmi
                 throw new Exception();
             }
             AdminToDelete.IsActive = false;
-            AdminToDelete.IsDeleted = true;
             await _asyncRepository.UpdateAsync(AdminToDelete);
             return Unit.Value;
         }

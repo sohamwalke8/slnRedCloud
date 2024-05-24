@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Mono.TextTemplating;
-using RedCloud.Application.Contract.Persistence;
 using RedCloud.Domain.Entities;
 using RedCloud.Models;
 using System.Diagnostics;

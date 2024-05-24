@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using RedCloud.Domain.Entities;
 using RedCloud.Interface;
 using RedCloud.Service;
@@ -8,12 +9,16 @@ namespace RedCloud.Controllers
     public class OrganizationAdminController : Controller
     {
         private readonly IOrganizationAdminService _organizationAdminService;
-        private readonly ILogger<OrganizationAdmin> _logger;
+        private readonly IReSellerAdminService _reSellerAdminService;
+
+        private readonly ILogger<OrganizationAdminController> _logger;
 
 
-        public OrganizationAdminController(IOrganizationAdminService organizationAdminService, ILogger<OrganizationAdmin> logger)
+        public OrganizationAdminController(IOrganizationAdminService organizationAdminService, ILogger<OrganizationAdminController> logger,
+            IReSellerAdminService reSellerAdminService)
         {
             _organizationAdminService = organizationAdminService;
+            _reSellerAdminService = reSellerAdminService;
             _logger = logger;
 
         }
@@ -34,6 +39,7 @@ namespace RedCloud.Controllers
 
         public IActionResult UpdateOrganizationAdmin()
         {
+            ViewBag.ResellerList = _reSellerAdminService.GetallResellerAdmin();
             return View();
         }
 

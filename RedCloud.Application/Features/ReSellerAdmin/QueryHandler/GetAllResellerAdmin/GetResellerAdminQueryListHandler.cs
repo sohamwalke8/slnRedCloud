@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using RedCloud.Application.Contract.Persistence;
-using RedCloud.Application.Features.CountryFolder.Query.GetCountryList;
 using RedCloud.Application.Responses;
 using RedCloud.Domain.Entities;
 using System;
@@ -14,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin
 {
-    public class GetResellerAdminQueryListHandler : IRequestHandler<GetReSellerAdminListQuery, Response<IEnumerable<ReSellerAdminVM>>>
+    public class GetResellerAdminQueryListHandler : IRequestHandler<GetReSellerAdminListQuery, BaseResponse<IEnumerable<ReSellerAdminVM>>>
     {
            private readonly ILogger<GetResellerAdminQueryListHandler> _logger;
            private readonly IAsyncRepository<ResellerAdmin> _asyncRepository;
@@ -29,13 +28,13 @@ namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllReselle
         }
 
       
-        public async Task<Response<IEnumerable<ReSellerAdminVM>>> Handle(GetReSellerAdminListQuery request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<IEnumerable<ReSellerAdminVM>>> Handle(GetReSellerAdminListQuery request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Handle Initiated");
-            var allReSellerAdmin = (await _asyncRepository.ListAllAsync()).Where(x => x.IsDeleted==false);
+            //_logger.LogInformation("Handle Initiated");
+            var allReSellerAdmin = (await _asyncRepository.ListAllAsync()).Where(x => x.IsActive==true);
             var resellerAdmin = _mapper.Map<IEnumerable<ReSellerAdminVM>>(allReSellerAdmin);
-            _logger.LogInformation("Hanlde Completed");
-            return new Response<IEnumerable<ReSellerAdminVM>>(resellerAdmin, "success");
+            //_logger.LogInformation("Hanlde Completed");
+            return new BaseResponse<IEnumerable<ReSellerAdminVM>>(resellerAdmin, "success");
         }
     }
     }

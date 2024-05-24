@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RedCloud.Application.Features.OrganizationsAdmin.Command;
+using RedCloud.Application.Features.OrganizationsAdmin.Query;
+using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetResellerAdminWithEvent;
 
 namespace RedCloudAPI.Controllers
 {
@@ -29,6 +31,19 @@ namespace RedCloudAPI.Controllers
         {
             var response = await _mediator.Send(updateOrganizationAdmin);
             return Ok(response);
+        }
+
+        [HttpGet("{id}", Name = "GetOrganizationAdminById")]
+        public async Task<ActionResult> FetchOrganizationAdminById(int id)
+        {
+            //_logger.LogInformation($"GetResellerAdminById Initiated for ID: {id}");
+            var dto = await _mediator.Send(new OrganizationAdminQuery(id));
+            if (dto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(dto);
         }
     }
 }

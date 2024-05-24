@@ -6,7 +6,6 @@ using System.Data;
 
 namespace RedCloud.Persistenence
 {
-    public class ApplicationDbContext : DbContext
     public class ApplicationDbContext: DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -22,7 +21,7 @@ namespace RedCloud.Persistenence
         // public DbSet<ResellerAdmin1> ReSellerAdmins { get; set; }
         
          public DbSet<ResellerAdmin> ReSellerAdmin { get; set; }
-        public DbSet<OrganizationAdmin> OrganizationAdmin { get; set; }
+        public DbSet<OrganizationAdmin> OrganizationAdmins { get; set; }
         // public DbSet<OrganizationAdmin1> OrganizationAdmins { get; set; }
 
         // public DbSet<User> User { get; set; }
@@ -37,16 +36,7 @@ namespace RedCloud.Persistenence
         //    return SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
         //    _loggedInUserService = loggedInUserService;
         //}
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-           : base(options)
-        {
-        }
 
-        public DbSet<ResellerAdmin> ReSellerAdmins { get; set; }
-
-        public DbSet<OrganizationAdmin> OrganizationAdmins { get; set; }
-
-        public DbSet<ResellerAdmin> ResellerAdmins { get; set; }
 
 
         public DbSet<AdminUser> AdminUsers { get; set; }

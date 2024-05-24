@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RedCloud.Application.Features.CountryFolder.Query.GetCountryList;
 using RedCloud.Application.Features.ReSellerAdmin.Command.DeleteReSellerAdmin;
 using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
 using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetResellerAdminWithEvent;
@@ -26,7 +25,7 @@ namespace RedCloudAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAllResellerAdminList()
         {
-            _logger.LogInformation("GetAllResellerAdmin Initiated");
+            //_logger.LogInformation("GetAllResellerAdmin Initiated");
             var dtos = await _mediator.Send(new GetReSellerAdminListQuery());
             return Ok(dtos);
         }
@@ -36,7 +35,7 @@ namespace RedCloudAPI.Controllers
         [HttpDelete ("{id}",Name = "DeleteResellerAdmin")]
         public async Task<ActionResult> DeleteResellerAdmin(int id)
         {
-            _logger.LogInformation("DeleteResellerAdmin Initiated");
+            //_logger.LogInformation("DeleteResellerAdmin Initiated");
             var deletereselleradmin=new DeleteReSellerAdminCommand() { Id = id };
             await _mediator.Send(deletereselleradmin);
           
@@ -49,7 +48,7 @@ namespace RedCloudAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetResellerAdminById(int id)
         {
-            _logger.LogInformation($"GetResellerAdminById Initiated for ID: {id}");
+            //_logger.LogInformation($"GetResellerAdminById Initiated for ID: {id}");
             var dto = await _mediator.Send(new GetReSellerAdminByIdQuery(id));
             if (dto == null)
             {

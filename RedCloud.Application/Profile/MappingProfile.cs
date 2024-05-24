@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
 
 namespace RedCloud.Application.profile
 {
@@ -21,9 +22,9 @@ namespace RedCloud.Application.profile
             CreateMap<CreateOrganizationAdmin, OrganizationAdmin>();
             CreateMap<UpdateOrganizationAdmin, OrganizationAdmin>();
             CreateMap<UpdateOrganizationAdmin, ResellerAdmin>();
-
             CreateMap<CreateResellerAdminCommand, ResellerAdmin>();
             CreateMap<UpdateResellerAdminCommand, ResellerAdmin>();
+            CreateMap<ResellerAdmin, ReSellerAdminVM>().ReverseMap();
 
         }
     }

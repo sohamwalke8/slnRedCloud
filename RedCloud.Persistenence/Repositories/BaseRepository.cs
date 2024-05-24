@@ -20,7 +20,7 @@ namespace RedCloud.Persistenence.Repositories
             _dbContext = dbContext; logger = logger;
         }
 
-        public virtual async Task<T> GetByIdAsync(Guid id)
+        public virtual async Task<T> GetByIdAsync(int id)
         {
             return await _dbContext.Set<T>().FindAsync(id)
 ;
@@ -28,7 +28,7 @@ namespace RedCloud.Persistenence.Repositories
 
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
-            _logger.LogInformation("ListAllAsync Initiated");
+            //_logger.LogInformation("ListAllAsync Initiated");
             return await _dbContext.Set<T>().ToListAsync();
         }
 

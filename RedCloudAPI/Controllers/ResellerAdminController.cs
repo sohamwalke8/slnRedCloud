@@ -1,37 +1,61 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RedCloud.Application.Features.ResellerAdmins.Command;
+using RedCloud.Application.Features.ReSellerAdmin.Command.DeleteReSellerAdmin;
+using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
+using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetResellerAdminWithEvent;
 
 namespace RedCloudAPI.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]   
-    public class ResellerAdminController : ControllerBase
+    [ApiController]
+    public class ReSellerAdminController : ControllerBase
     {
-
         private readonly IMediator _mediator;
         private readonly ILogger _logger;
-
-        public ResellerAdminController(IMediator mediator, ILogger<ResellerAdminController> logger)
+        public ReSellerAdminController(IMediator mediator, ILogger<ReSellerAdminController> logger)
         {
-            _mediator = mediator;
             _logger = logger;
+            _mediator = mediator;
+
         }
 
-        [HttpPost(Name = "AddResellerAdmin")]
-        public async Task<ActionResult> Create([FromBody] CreateResellerAdminCommand CreateResellerAdminCommand)
+        [HttpGet("all", Name = "GetAllResellerAdminList")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> GetAllResellerAdminList()
         {
-            var response = await _mediator.Send(CreateResellerAdminCommand);
-            return Ok(response);
+            //_logger.LogInformation("GetAllResellerAdmin Initiated");
+            var dtos = await _mediator.Send(new GetReSellerAdminListQuery());
+            return Ok(dtos);
         }
 
-        [HttpPut( "UpdateResellerAdmin")]
-        public async Task<ActionResult> Update([FromBody] UpdateResellerAdminCommand updateResellerAdmin)
+
+
+        [HttpDelete ("{id}",Name = "DeleteResellerAdmin")]
+        public async Task<ActionResult> DeleteResellerAdmin(int id)
         {
-            var response = await _mediator.Send(updateResellerAdmin);
-            return Ok(response);
+            //_logger.LogInformation("DeleteResellerAdmin Initiated");
+            var deletereselleradmin=new DeleteReSellerAdminCommand() { Id = id };
+            await _mediator.Send(deletereselleradmin);
+          
+          return Ok("ReSeller Admin Deleted SuccessFully");
         }
 
+
+        [HttpGet("{id}", Name = "GetResellerAdminById")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> GetResellerAdminById(int id)
+        {
+            //_logger.LogInformation($"GetResellerAdminById Initiated for ID: {id}");
+            var dto = await _mediator.Send(new GetReSellerAdminByIdQuery(id));
+            if (dto == null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(dto);
+        }
     }
 }

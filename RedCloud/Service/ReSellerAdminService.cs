@@ -2,9 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MvcApiCallingService.Helpers.ApiHelper;
-using MvcApiCallingService.Response;
 using Newtonsoft.Json;
-using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
 using RedCloud.Controllers;
 using RedCloud.Domain.Entities;
 using RedCloud.Interface;
@@ -27,18 +25,18 @@ namespace RedCloud.Service
         [HttpGet]
         public  async Task<IEnumerable<ResellerAdminVM>> GetallResellerAdmin()
         {
-            _logger.LogInformation("GetAllCategories Service initiated");
+            //_logger.LogInformation("GetAllCategories Service initiated");
             var reSelleradmin = await _client.GetAllAsync("ReSellerAdmin/all");
-            _logger.LogInformation("GetAllCategories Service conpleted");
+            //_logger.LogInformation("GetAllCategories Service conpleted");
             return reSelleradmin.Data;
         }
         public async Task SoftDeleteResellerAdmin(int id)
         {
-            _logger.LogInformation($"Soft delete initiated for ResellerAdmin with ID: {id}");
+            //_logger.LogInformation($"Soft delete initiated for ResellerAdmin with ID: {id}");
 
             await _client.DeleteAsync($"ReSellerAdmin/{id}");
 
-            _logger.LogInformation($"Soft delete completed for ResellerAdmin with ID: {id}");
+            //_logger.LogInformation($"Soft delete completed for ResellerAdmin with ID: {id}");
         }
 
 

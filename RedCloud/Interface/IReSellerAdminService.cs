@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
-using RedCloud.Application.Responses;
 using RedCloud.Controllers;
 using RedCloud.Domain.Entities;
 using RedCloud.Models;

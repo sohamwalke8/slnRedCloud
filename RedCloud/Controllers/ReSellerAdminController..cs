@@ -48,7 +48,7 @@ namespace RedCloud.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error occurred while soft deleting ResellerAdmin with ID {id}: {ex.Message}");
+               // _logger.LogError($"Error occurred while soft deleting ResellerAdmin with ID {id}: {ex.Message}");
                 return StatusCode(500, "An error occurred while processing your request.");
             }
         }
