@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RedCloud.Domain.Entities;
 using RedCloud.Interface;
+using RedCloud.ModelVM;
 using RedCloud.Service;
 
 namespace RedCloud.Controllers
@@ -22,13 +23,18 @@ namespace RedCloud.Controllers
             _logger = logger;
 
         }
-        public IActionResult AddOrganizationAdmin()
+        public async Task<IActionResult> AddOrganizationAdmin()
         {
+            //ViewBag.ResellerList = (await _reSellerAdminService.GetallResellerAdmin()).Select(r => r.ResellerName).ToList();
+            //return View();
+
+            var resellerList = await _reSellerAdminService.GetallResellerAdmin();
+            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ResellerName");
             return View();
         }
 
         [HttpPost("AddOrganizationAdmin")]
-        public async Task<IActionResult> AddOrganizationAdmin(OrganizationAdmin request)
+        public async Task<IActionResult> AddOrganizationAdmin(OrganizationAdminVM request)
         {
             // _logger.LogInformation("CreateCategory Action initiated");
             var response = await _organizationAdminService.CreateOrganizationAdmin(request);
@@ -37,14 +43,16 @@ namespace RedCloud.Controllers
             return RedirectToAction("AddOrganizationAdmin");
         }
 
-        public IActionResult UpdateOrganizationAdmin()
+        public async Task<IActionResult> UpdateOrganizationAdmin(int Id)
         {
-            ViewBag.ResellerList = _reSellerAdminService.GetallResellerAdmin();
-            return View();
+            var response = await _organizationAdminService.GetOrganizationAdminById(Id);
+            var resellerList = await _reSellerAdminService.GetallResellerAdmin();
+            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ResellerName");          
+            return View(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateOrganizationAdmin(OrganizationAdmin request)
+        public async Task<IActionResult> UpdateOrganizationAdmin(OrganizationAdminVM request)
         {
             // _logger.LogInformation("CreateCategory Action initiated");
             var response =  _organizationAdminService.EditOrganizationAdmin(request);
@@ -52,5 +60,7 @@ namespace RedCloud.Controllers
             //_logger.LogInformation("CreateCategory Action initiated");
             return RedirectToAction("UpdateOrganizationAdmin");
         }
+
+
     }
 }

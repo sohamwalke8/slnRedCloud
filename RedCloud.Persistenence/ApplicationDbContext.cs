@@ -20,7 +20,7 @@ namespace RedCloud.Persistenence
         public DbSet<City> Cities { get; set; }
         // public DbSet<ResellerAdmin1> ReSellerAdmins { get; set; }
         
-         public DbSet<ResellerAdmin> ReSellerAdmin { get; set; }
+         public DbSet<ResellerAdmin> ReSellerAdmins { get; set; }
         public DbSet<OrganizationAdmin> OrganizationAdmins { get; set; }
         // public DbSet<OrganizationAdmin1> OrganizationAdmins { get; set; }
 

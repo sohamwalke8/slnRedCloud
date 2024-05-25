@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.OrganizationsAdmin.Query
 {
-    public class OrganizationAdminQuery : IRequest<OrganizationAdminVM>
+    public class OrganizationAdminQuery : IRequest<BaseResponse<OrganizationAdminVM>>
     {
 
         public int Id { get; set; }

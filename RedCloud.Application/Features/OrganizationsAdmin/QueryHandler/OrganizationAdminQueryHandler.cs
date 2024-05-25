@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.OrganizationsAdmin.QueryHandler
 {
-    public class OrganizationAdminQueryHandler : IRequestHandler<OrganizationAdminQuery, OrganizationAdminVM>
+    public class OrganizationAdminQueryHandler : IRequestHandler<OrganizationAdminQuery, BaseResponse<OrganizationAdminVM>>
     {
         private readonly IAsyncRepository<OrganizationAdmin> _asyncRepository;
         private readonly IMapper _mapper;
@@ -29,7 +29,7 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.QueryHandler
 
 
 
-        public async Task<OrganizationAdminVM> Handle(OrganizationAdminQuery request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<OrganizationAdminVM>> Handle(OrganizationAdminQuery request, CancellationToken cancellationToken)
         {
             var admin = await _asyncRepository.GetByIdAsync(request.Id);
 
@@ -56,7 +56,7 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.QueryHandler
 
             };
 
-            return dto;
+            return new BaseResponse<OrganizationAdminVM>(dto, "Successful");
         }
     }
 }

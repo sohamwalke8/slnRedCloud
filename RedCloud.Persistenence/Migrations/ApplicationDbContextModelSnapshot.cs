@@ -116,6 +116,9 @@ namespace RedCloud.Persistenence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -151,7 +154,7 @@ namespace RedCloud.Persistenence.Migrations
 
                     b.HasKey("OrgID");
 
-                    b.ToTable("OrganizationAdmin");
+                    b.ToTable("OrganizationAdmins");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.ResellerAdmin", b =>
@@ -182,27 +185,12 @@ namespace RedCloud.Persistenence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("EIN")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("LastModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int?>("OrganizationAdminId")
                         .HasColumnType("int");
@@ -229,7 +217,7 @@ namespace RedCloud.Persistenence.Migrations
 
                     b.HasIndex("OrganizationAdminId");
 
-                    b.ToTable("ReSellerAdmin");
+                    b.ToTable("ReSellerAdmins");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.State", b =>

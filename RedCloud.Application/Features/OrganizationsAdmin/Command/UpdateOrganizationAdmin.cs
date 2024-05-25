@@ -32,5 +32,8 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.Command
         public int ZipCode { get; set; }
 
         public string OrgURL { get; set; }
+
+        public int Id { get; set; }
+
     }
 }

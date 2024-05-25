@@ -34,5 +34,8 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.Command
 
         public string OrgURL { get; set; }
 
+        public int Id { get; set; }
+
+
     }
 }

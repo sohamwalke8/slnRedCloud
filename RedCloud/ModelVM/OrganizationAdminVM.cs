@@ -49,5 +49,8 @@ namespace RedCloud.ModelVM
         [Required(ErrorMessage = "Please Select Reseller Admin")]
         public string ResellerName { get; set; } = "Test";
 
+        public int Id { get; set; }
+
+
     }
 }

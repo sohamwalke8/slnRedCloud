@@ -33,10 +33,13 @@ namespace RedCloud.Domain.Entities
 
         public string OrgURL { get; set; }
 
+        public int Id { get; set; }
+
+        public virtual ICollection<ResellerAdmin> ResellerAdmins { get; set; } = new List<ResellerAdmin>();
+
         public bool IsActive { get; set; } = true;
 
 
-        public virtual ICollection<ResellerAdmin> ResellerAdmins { get; set; } = new List<ResellerAdmin>();
 
     }
 }
