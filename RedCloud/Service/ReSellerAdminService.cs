@@ -51,14 +51,13 @@ namespace RedCloud.Service
             //_logger.LogInformation($"Soft delete completed for ResellerAdmin with ID: {id}");
         }
 
-        public async Task<ResellerAdminVM>  Block(int Id)
+        public async Task  Block(int Id)
         {
             var apiUrl = $"ReSellerAdmin/{Id}";
             var response = await _client.GetByIdAsync(apiUrl);
             var data = response.Data;
             data.IsActive = false;
-            var updated=await _client.PutAsync(apiUrl, data);
-            return updated.Data;
+            await _client.PutAsync(apiUrl, data);
                  
         }
 

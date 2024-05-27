@@ -26,10 +26,10 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> AddOrganizationAdmin()
         {
             //ViewBag.ResellerList = (await _reSellerAdminService.GetallResellerAdmin()).Select(r => r.ResellerName).ToList();
-            //return View();
-
+            //return View(); 
+             
             var resellerList = await _reSellerAdminService.GetallResellerAdmin();
-            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ResellerName");
+            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ReSellerName");
             return View();
         }
 
@@ -47,7 +47,7 @@ namespace RedCloud.Controllers
         {
             var response = await _organizationAdminService.GetOrganizationAdminById(Id);
             var resellerList = await _reSellerAdminService.GetallResellerAdmin();
-            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ResellerName");   
+            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ReSellerName");   
             
             return View(response);
         }

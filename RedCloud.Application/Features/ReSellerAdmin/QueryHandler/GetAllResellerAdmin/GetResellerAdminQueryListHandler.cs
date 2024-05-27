@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin
 {
-    public class GetResellerAdminQueryListHandler : IRequestHandler<GetReSellerAdminListQuery, BaseResponse<IEnumerable<ReSellerAdminVM>>>
+    public class GetResellerAdminQueryListHandler : IRequestHandler<GetReSellerAdminListQuery, Response<IEnumerable<ReSellerAdminVM>>>
     {
            private readonly ILogger<GetResellerAdminQueryListHandler> _logger;
            private readonly IAsyncRepository<ResellerAdmin> _asyncRepository;
@@ -28,13 +28,13 @@ namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllReselle
         }
 
       
-        public async Task<BaseResponse<IEnumerable<ReSellerAdminVM>>> Handle(GetReSellerAdminListQuery request, CancellationToken cancellationToken)
+        public async Task<Response<IEnumerable<ReSellerAdminVM>>> Handle(GetReSellerAdminListQuery request, CancellationToken cancellationToken)
         {
             //_logger.LogInformation("Handle Initiated");
             var allReSellerAdmin = (await _asyncRepository.ListAllAsync()).Where(x => x.IsActive==true);
             var resellerAdmin = _mapper.Map<IEnumerable<ReSellerAdminVM>>(allReSellerAdmin);
             //_logger.LogInformation("Hanlde Completed");
-            return new BaseResponse<IEnumerable<ReSellerAdminVM>>(resellerAdmin, "success");
+            return new Response<IEnumerable<ReSellerAdminVM>>(resellerAdmin, "success");
         }
     }
     }

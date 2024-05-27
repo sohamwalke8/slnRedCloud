@@ -1,5 +1,4 @@
-﻿using Azure;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using MvcApiCallingService.Models.Responses;
 using Newtonsoft.Json;
 using System;
@@ -50,22 +49,23 @@ namespace MvcApiCallingService.Helpers.ApiHelper
 
         public async Task<Response<int>> PostAsync<TEntity>(string apiUrl, TEntity entity)
         {
-            HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
-            if (!responseMessage.IsSuccessStatusCode)
-                await RaiseException(responseMessage);
-            return JsonConvert.DeserializeObject<MvcApiCallingService.Response.Response<List<T>>>(await responseMessage.Content.ReadAsStringAsync());
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
+            HttpResponseMessage responseMessage = await _httpClient.PostAsync(apiUrl, stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<Response<int>>(await responseMessage.Content.ReadAsStringAsync());
+            return default;
         }
 
-        public async Task<MvcApiCallingService.Response.Response<int>> PostAsync<TEntity>(string apiUrl, TEntity entity)
-            {
-                StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
-                HttpResponseMessage responseMessage = await _httpClient.PostAsync(apiUrl, stringContent);
-                if (responseMessage.IsSuccessStatusCode)
-                return JsonConvert.DeserializeObject<Response<int>>(await responseMessage.Content.ReadAsStringAsync());
-                return default;
-            }
-            // For Account
-            public async Task<T?> PostAuthAsync<TEntity>(string apiUrl, TEntity entity)
+        //public async Task<MvcApiCallingService.Response.Response<int>> PostAsync<TEntity>(string apiUrl, TEntity entity)
+        //    {
+        //        StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
+        //        HttpResponseMessage responseMessage = await _httpClient.PostAsync(apiUrl, stringContent);
+        //        if (responseMessage.IsSuccessStatusCode)
+        //        return JsonConvert.DeserializeObject<Response<int>>(await responseMessage.Content.ReadAsStringAsync());
+        //        return default;
+        //    }
+        // For Account
+        public async Task<T?> PostAuthAsync<TEntity>(string apiUrl, TEntity entity)
             {
                 StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
                 try
@@ -128,12 +128,13 @@ namespace MvcApiCallingService.Helpers.ApiHelper
                 throw new HttpRequestException($"{response.StatusCode}:{content}");
             }
 
-            Task<Response.Response<int>> IApiClient<T>.PostAsync<TEntity>(string apiUrl, TEntity entity)
-            {
-                throw new NotImplementedException();
-            }
-
-
+        public async Task<Response<List<T>>> GetListByIdAsync(string apiUrl)
+        {
+            HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
+            if (!responseMessage.IsSuccessStatusCode)
+                await RaiseException(responseMessage);
+            return JsonConvert.DeserializeObject<Response<List<T>>>(await responseMessage.Content.ReadAsStringAsync());
+        }
 
         public void Dispose()
             {

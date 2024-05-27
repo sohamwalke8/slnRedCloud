@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Azure;
 using MediatR;
 using RedCloud.Application.Contract.Persistence;
 using RedCloud.Application.Features.OrganizationsAdmin.Command;
@@ -14,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.OrganizationsAdmin.CommandHandler
 {
-    public class CreateOrganizationAdminCommandHandler : IRequestHandler<CreateOrganizationAdmin, BaseResponse<int>>
+    public class CreateOrganizationAdminCommandHandler : IRequestHandler<CreateOrganizationAdmin, Response<int>>
     {
         private readonly IAsyncRepository<OrganizationAdmin> _asyncRepository;
         private readonly IMapper _mapper;
@@ -25,11 +24,11 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.CommandHandler
             _asyncRepository = asyncRepository;
             _mapper = mapper;
         }
-        public async Task<BaseResponse<int>> Handle(CreateOrganizationAdmin request, CancellationToken cancellationToken)
+        public async Task<Response<int>> Handle(CreateOrganizationAdmin request, CancellationToken cancellationToken)
         {
             var org = _mapper.Map<OrganizationAdmin>(request);
            var result = await _asyncRepository.AddAsync(org);
-            var response = new BaseResponse<int>(result.OrgID, "Inserted successfully ");
+            var response = new Response<int>(result.OrgID, "Inserted successfully ");
             return response;
         }
     }

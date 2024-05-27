@@ -1,5 +1,4 @@
-﻿using Azure;
-using MediatR;
+﻿using MediatR;
 using RedCloud.Application.Responses;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.OrganizationsAdmin.Command
 {
-    public class CreateOrganizationAdmin : IRequest<BaseResponse<int>>
+    public class CreateOrganizationAdmin : IRequest<Response<int>>
     {
         public int OrgID { get; set; } 
         public string OrgName { get; set; }

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using RedCloud.Application.Features.CountryFolder.Query.GetCountryList;
 using RedCloud.Application.Features.CountryFolder.Query.GetCityList;
+using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
 
 namespace RedCloud.Application.profile
 {

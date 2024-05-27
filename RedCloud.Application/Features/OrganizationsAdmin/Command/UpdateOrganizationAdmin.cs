@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.OrganizationsAdmin.Command
 {
-    public class UpdateOrganizationAdmin : IRequest<BaseResponse<Unit>>
+    public class UpdateOrganizationAdmin : IRequest<Response<Unit>>
     {
         public int OrgID { get; set; }
         public string OrgName { get; set; }

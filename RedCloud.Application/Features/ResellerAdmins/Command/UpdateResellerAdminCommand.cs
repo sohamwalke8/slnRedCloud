@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.ResellerAdmins.Command
 {
-    public class UpdateResellerAdminCommand : IRequest<BaseResponse<Unit>>
+    public class UpdateResellerAdminCommand : IRequest<Response<Unit>>
     {
         public int Id { get; set; }
 
