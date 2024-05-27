@@ -30,4 +30,15 @@
     <ProjectReference Include="..\RedCloud.Domain\RedCloud.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MvcApiCallingService\MvcApiCallingService.csproj" />
+    <ProjectReference Include="..\RedCloud.Domain\RedCloud.Domain.csproj" />
+    <ProjectReference Include="..\RedCloud.Persistenence\RedCloud.Persistenence.csproj" />
+  </ItemGroup>
+
 </Project>
