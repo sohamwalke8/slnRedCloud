@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RedCloud.Application.Contract.Persistence;
+using RedCloud.Domain.Entities;
+using RedCloud.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -80,6 +82,14 @@ namespace RedCloud.Persistenence.Repositories
             }
             return parameterNames;
         }
+
+
+
+        public async Task<AdminUser> GetByIdAsync(int id)
+        {
+            return await _dbContext.Set<AdminUser>().FindAsync(id);
+        }
+
     }
 
 }

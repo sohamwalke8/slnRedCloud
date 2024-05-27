@@ -22,7 +22,9 @@ namespace RedCloud.Application.Features.AdminUsers.Command
         public string Email { get; set; }
 
         //[Required(ErrorMessage = "Please enter mobile number")]
-        public int MobileNumber { get; set; }
+        public string MobileNumber { get; set; }
+
+        public string? Password { get; set; }
 
         public bool IsActive { get; set; }
     }

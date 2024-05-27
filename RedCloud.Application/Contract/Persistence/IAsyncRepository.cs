@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RedCloud.Domain.Entities;
+using RedCloud.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +16,6 @@ namespace RedCloud.Application.Contract.Persistence
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
         Task<IReadOnlyList<T>> GetPagedReponseAsync(int page, int size);
+        Task<AdminUser> GetByIdAsync(int id);
     }
 }

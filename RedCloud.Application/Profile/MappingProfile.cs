@@ -3,6 +3,7 @@ using RedCloud.Application.Features.AdminUsers.Command;
 using RedCloud.Application.Features.OrganizationsAdmin.Command;
 using RedCloud.Application.Features.ResellerAdmins.Command;
 using RedCloud.Domain.Entities;
+using RedCloud.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace RedCloud.Application.profile
     {
         public MappingProfile()
         {
+            CreateMap<AdminUser, RedCloudUserVM>();
             CreateMap<CreateAdminUserCommand, AdminUser>();
             CreateMap<EditAdminUserCommand, AdminUser>();
             CreateMap<CreateOrganizationAdmin, OrganizationAdmin>();
@@ -23,6 +25,7 @@ namespace RedCloud.Application.profile
 
             CreateMap<CreateResellerAdminCommand, ResellerAdmin>();
             CreateMap<UpdateResellerAdminCommand, ResellerAdmin>();
+            //CreateMap<GetAdminUserByIdQuery, AdminUser>();
         }
     }
 }

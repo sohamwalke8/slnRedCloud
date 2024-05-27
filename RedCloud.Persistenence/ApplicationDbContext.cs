@@ -8,24 +8,7 @@ namespace RedCloud.Persistenence
 {
     public class ApplicationDbContext: DbContext
     {
-        //public ApplicationDbContex(DbContextOptions options) : base(options)
-        //{
-        //}
-
-        // public DbSet<ResellerAdmin1> ReSellerAdmins { get; set; }
-
-        // public DbSet<OrganizationAdmin1> OrganizationAdmins { get; set; }
-
-        // public DbSet<User> User { get; set; }
-
-
-
-        //private readonly ILoggedInUserService _loggedInUserService;
-        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ILoggedInUserService loggedInUserService)
-        //    : base(options)
-        //{
-        //    _loggedInUserService = loggedInUserService;
-        //}
+       
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
            : base(options)
         {
@@ -35,9 +18,18 @@ namespace RedCloud.Persistenence
 
         public DbSet<OrganizationAdmin> OrganizationAdmins { get; set; }
 
-        public DbSet<ResellerAdmin> ResellerAdmins { get; set; }
-
-        
         public DbSet<AdminUser> AdminUsers { get; set; }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+
+            
+        //    modelBuilder.Entity<AdminUser>().Property(a => a.CreatedDate).IsRequired();
+        //    modelBuilder.Entity<AdminUser>().Property(a => a.CreatedBy).IsRequired(false); 
+        //    modelBuilder.Entity<AdminUser>().Property(a => a.ModifiedDate).IsRequired(false);
+        //    modelBuilder.Entity<AdminUser>().Property(a => a.LastModifiedBy).IsRequired(false); 
+        //    modelBuilder.Entity<AdminUser>().Property(a => a.IsDeleted).HasDefaultValue(false);
+        //}
     }
 }

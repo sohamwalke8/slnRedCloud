@@ -17,6 +17,7 @@ namespace RedCloud.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter mobile number")]
+        [RegularExpression(@"^\d{10}$", ErrorMessage = "Mobile number must be 10 digits")]
         public string MobileNumber { get; set; }
 
         public bool IsActive { get; set; }

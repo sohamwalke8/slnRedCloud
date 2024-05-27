@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using RedCloud.Domain.Entities;
+using RedCloud.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace RedCloud.Interface
         Task<int> CreateAdminUser(AdminUser adminUser);
         Task EditAdminUser(AdminUser adminUser);
 
-       
+        Task<RedCloudUserVM> GetAdminUserById(int id);
+
 
     }
 }

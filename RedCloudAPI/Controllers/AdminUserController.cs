@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RedCloud.Application.Features.AdminUsers.Command;
+using RedCloud.Domain.Entities;
+using RedCloud.Models;
 
 namespace RedCloudAPI.Controllers
 {
@@ -21,6 +23,7 @@ namespace RedCloudAPI.Controllers
         {
             try
             {
+                
                 var response = await _mediator.Send(CreateAdminUserCommand);
                 return Ok(response);
             }
@@ -37,6 +40,22 @@ namespace RedCloudAPI.Controllers
         {
             var response = await _mediator.Send(EditAdminUserCommand);
             return Ok(response);
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetAdminUserById(int id)
+        {
+            try
+            {
+                var response = await _mediator.Send(new GetAdminUserByIdQuery { ID = id });
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching admin user by ID");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
         }
 
     }

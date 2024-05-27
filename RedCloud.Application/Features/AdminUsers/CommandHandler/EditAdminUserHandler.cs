@@ -25,12 +25,17 @@ namespace RedCloud.Application.Features.AdminUsers.CommandHandler
 
         public async Task<BaseResponse<Unit>> Handle(EditAdminUserCommand request, CancellationToken cancellationToken)
         {
-            var adminuser=_mapper.Map<AdminUser>(request);
+            var adminuser = _mapper.Map<AdminUser>(request);
+
+
+            
+            //adminuser.ModifiedDate = DateTime.UtcNow;
+            //adminuser.LastModifiedBy = null;
+
+
             await _repository.UpdateAsync(adminuser);
             var response = new BaseResponse<Unit>("Updated Successfully");
             return response;
         }
     }
 }
-
-

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RedCloud.Domain.Comman;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Domain.Entities
 {
-    public class AdminUser
+    public class AdminUser /*: AuditableEntity*/
     {
         [Key]
         public int ID { get; set; }
@@ -24,8 +25,15 @@ namespace RedCloud.Domain.Entities
 
         public string MobileNumber { get; set; }
 
+
         public string? Password { get; set; }
 
+        
+
         public bool IsActive { get; set; }
+
+        
     }
+
+    
 }
