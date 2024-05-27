@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RedCloud.Interface;
 using RedCloud.Service;
 
@@ -36,6 +37,11 @@ namespace RedCloud.Controllers
 
 
 
+        public async Task<IActionResult> GetResellerAdminById(int id)
+        {
+            var response = await _reSellerAdminService.GetResellerAdminById(id);
+            return View(response);
+        }
 
 
         [HttpGet]
@@ -50,6 +56,26 @@ namespace RedCloud.Controllers
             {
                 _logger.LogError($"Error occurred while soft deleting ResellerAdmin with ID {id}: {ex.Message}");
                 return StatusCode(500, "An error occurred while processing your request.");
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Block(int id)
+        {
+            try
+            {
+                var response = await _reSellerAdminService.GetResellerAdminById(id);
+
+                response.IsActive = false;
+               await _reSellerAdminService.Block(id);
+
+                return Json(new { success = true, message = "Reseller blocked successfully." });
+               
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "An error occurred while blocking the reseller." });
             }
         }
     }

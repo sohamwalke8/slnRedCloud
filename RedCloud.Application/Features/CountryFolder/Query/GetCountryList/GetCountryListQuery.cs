@@ -9,7 +9,7 @@ using RedCloud.Application.Responses;
 
 namespace RedCloud.Application.Features.CountryFolder.Query.GetCountryList
 {
-    public class GetCountryListQuery:IRequest<Response<IEnumerable<CountryListVM>>>
+    public class GetCountryList : IRequest<Response<IEnumerable<CountryListVM>>>
     {
     }
 }

@@ -14,7 +14,7 @@ using RedCloud.Domain.Entities;
 
 namespace RedCloud.Application.Features.CountryFolder.Query.GetCountryList
 {
-    public class GetCountryListQueryHandler : IRequestHandler<GetCountryListQuery, Response<IEnumerable<CountryListVM>>>
+    public class GetCountryListQueryHandler : IRequestHandler<GetCountryList, Response<IEnumerable<CountryListVM>>>
     {
         private readonly ILogger<GetCountryListQueryHandler> _logger;
         private readonly IAsyncRepository<Country> _asyncRepository;
@@ -25,7 +25,7 @@ namespace RedCloud.Application.Features.CountryFolder.Query.GetCountryList
             _mapper = mapper;   
             _logger = logger;   
         }
-        public async Task<Response<IEnumerable<CountryListVM>>> Handle(GetCountryListQuery request, CancellationToken cancellationToken)
+        public async Task<Response<IEnumerable<CountryListVM>>> Handle(GetCountryList request, CancellationToken cancellationToken)
         {
 
             _logger.LogInformation("Handle Initiated");
@@ -34,5 +34,7 @@ namespace RedCloud.Application.Features.CountryFolder.Query.GetCountryList
             _logger.LogInformation("Hanlde Completed");
             return new Response<IEnumerable<CountryListVM>>(country,"success");
         }
+
+
     }
 }

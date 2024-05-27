@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using RedCloud.Application.Features.CountryFolder.Query.GetCountryList;
+using RedCloud.Application.Features.CountryFolder.Query.GetCityList;
 
 
 namespace RedCloud.Application.profile
@@ -15,6 +17,8 @@ namespace RedCloud.Application.profile
         public MapperProfile()
         {
             CreateMap<ReSellerAdminVM, ResellerAdmin >().ReverseMap();
+            CreateMap<Country, CountryListVM>().ReverseMap();
+            CreateMap<CityListVM, City>().ReverseMap();
 
         }
     }
