@@ -96,9 +96,19 @@
                                     </div>
                                     <label for="ResellerName">Reseller Name</label>
                                     @* <select asp-items="@(new SelectList(ViewBag.ResellerList))"></select> *@
-                                    <select asp-for="Id" class="form-control" asp-items="@ViewBag.ResellerList">
-                                        <option value="">Select Reseller</option>
+                                    @*  <select asp-for="Id" class="form-control" asp-items="@ViewBag.ResellerList">
+                                    <option value="">Select Reseller</option>
+                                    </select> *@
+                                    <select asp-for="Id" class="form-control">
+                                        @{
+                                            foreach (var item in ViewBag.ResellerList)
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        }
                                     </select>
+
+
                                     @* <input asp-for="ResellerName" class="form-control" id="ResellerName" placeholder="Enter reseller name" > *@
                                     <span asp-validation-for="ResellerName" class="text-danger"></span>
                                 </div>

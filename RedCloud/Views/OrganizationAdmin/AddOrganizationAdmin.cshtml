@@ -113,10 +113,9 @@
                                         <select asp-for="Id" class="form-control" asp-items="@ViewBag.ResellerList">
                                             <option value="">Select Reseller</option>
                                         </select>
-
+                                        <span asp-validation-for="ResellerName" class="text-danger"></span>
 
                                         @* <input asp-for="ResellerName" class="form-control" id="ResellerName" placeholder="Enter reseller name" > *@
-                                        <span asp-validation-for="ResellerName" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>

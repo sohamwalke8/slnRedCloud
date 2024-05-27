@@ -47,7 +47,8 @@ namespace RedCloud.Controllers
         {
             var response = await _organizationAdminService.GetOrganizationAdminById(Id);
             var resellerList = await _reSellerAdminService.GetallResellerAdmin();
-            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ResellerName");          
+            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ResellerName");   
+            
             return View(response);
         }
 

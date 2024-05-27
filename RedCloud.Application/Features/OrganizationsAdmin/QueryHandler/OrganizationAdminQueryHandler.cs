@@ -52,6 +52,7 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.QueryHandler
                 AddressLineOne = admin.AddressLineOne,
                 AddressLineTwo = admin.AddressLineTwo,
                 OrgURL = admin.OrgURL,
+                Id = admin.Id,
                 
 
             };
