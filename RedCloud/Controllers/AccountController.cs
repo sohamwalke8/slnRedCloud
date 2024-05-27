@@ -6,14 +6,12 @@ using RedCloud.Interface;
 using RedCloud.Models.Account;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 namespace RedCloud.Controllers
 {
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
-
-        //public const string SessionName = "_Name";
-        //public const string SessionId = "_RoleId";
 
 
         public AccountController(IAccountService accountService)
@@ -57,14 +55,6 @@ namespace RedCloud.Controllers
 
                     HttpContext.Session.SetString("Role", RoleName);
 
-                    //if(MainRoleId == 1)
-                    //    return RedirectToAction("Index", "Home");
-                    //else if(MainRoleId == 2)
-                    //    return RedirectToAction("Index", "Home");
-                    //else if(MainRoleId == 3)
-                    //    return RedirectToAction("Index", "Home");
-                    //else
-                    
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -80,8 +70,26 @@ namespace RedCloud.Controllers
             // Set the session variable to the provided role name
             HttpContext.Session.SetString("Role", roleName);
 
-            // Optionally, you can return a response indicating success
-            return Ok(); // 200 OK status code
+            ViewBag.role = HttpContext.Session.GetString("Role");
+
+            if (HttpContext.Session.GetString("Role") == "SubAdminAdministrartor")
+            {
+                return PartialView("_SubAdmin", ViewBag.role);
+            }
+            else if (HttpContext.Session.GetString("Role") == "ResellerAdmin")
+            {
+                return PartialView("_ResellerAdmin", ViewBag.role);
+            }
+            else if (HttpContext.Session.GetString("Role") == "OrganizationAdmin")
+            {
+               return PartialView("_OrganizationAdmin", ViewBag.role);
+            }
+            else if (HttpContext.Session.GetString("Role") == "MessagingUsers")
+            {
+                return PartialView("_MessagingUsers", ViewBag.role);
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
 

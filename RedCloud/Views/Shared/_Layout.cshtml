@@ -19,9 +19,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Red Cloud</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -42,13 +42,14 @@
     <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="~/plugins/summernote/summernote-bs4.min.css">
+   
 </head>
 <body>
     <div class="wrapper">
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="~/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
         </div>
 
         <!-- Navbar -->
@@ -58,21 +59,15 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                @*  <li class="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
-                </li> *@
             </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
 
-                <div class="dropdown">
+               @*  <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i> <!-- Font Awesome user icon -->
+                        @ViewContext.HttpContext.Session.GetString("Role") <i class="fa-solid fa-user"></i> <!-- Font Awesome user icon -->
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <!-- Dropdown items -->
@@ -83,17 +78,26 @@
                                 <button id="roleButton-@role.RoleId" class="dropdown-item" onclick="setRole('@role.RoleName')"> @role.RoleName </button>
 
                             }
-                        }
-                        @*
-                        <a class="dropdown-item" href="#">Super Admin</a>
-                        <a class="dropdown-item" href="#">Switch As Reseller Admin</a>
-                        <a class="dropdown-item" href="#">Switch As Organization Admin</a>*@
+                        }                       
                         <a class="dropdown-item" href="#">Sign out</a>
                     </div>
-                </div>
+                </div> *@
 
 
-
+                <select name="roles" id="roles" class="dropdown" onchange="setRole(this.value) ">
+                    @if (userRoles != null && userRoles.Count > 0)
+                    {
+                        @foreach (var role in userRoles)
+                        {
+                            <option value="@role.RoleName" id="roleButton-@role.RoleId" class="dropdown-item">@role.RoleName</option>
+                        }
+                    }
+                </select>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" role="button">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
@@ -115,293 +119,26 @@
                 <span class="brand-text font-weight-light">Red Cloud</span>
             </a>
 
-                                                                                                                                                                    <!-- /.sidebar for Admin  -->
-             <!-- Sidebar -->
-            @if (ViewContext.HttpContext.Session.GetString("Role") == "RedCloudAdministrator")
-            {
-                <div class="sidebar">
-                    <!-- Sidebar Menu -->
-            <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-            with font-awesome or any other icon font library -->
-            <li class="nav-item" style="border-bottom:2px solid white">
-            <a href="/index3.html" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Dashboard</p>
-            </a>
-            </li>
-            <li class="nav-item menu-open" style="border-bottom:2px solid white">
-            <a href="#" class="nav-link active">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-            Manage User
-            <i class="right fas fa-angle-left"></i>
-            </p>
-            </a>
-            <ul class="nav nav-treeview">
-            <li class="nav-item">
-            <a href="#" class="nav-link ">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Manage Red Cloud Admin</p>
-            </a>
-            </li>
-            <li class="nav-item">
-            <a href="#" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Manage Reseller</p>
-            </a>
-            </li>
-            <li class="nav-item">
-            <a href="#" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Manage Organization</p>
-            </a>
-            </li>
-            </ul>
-            </li>
-            <li class="nav-item" style="border-bottom:2px solid white">
-            <a href="#" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Manage Rate</p>
-            </a>
-            </li>
-            <li class="nav-item" style="border-bottom:2px solid white">
-            <a href="#" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Manage Mobile Number</p>
-            </a>
-            </li>
+            <div id="addPartialView">
 
-            <li class="nav-item" style="border-bottom:2px solid white">
-            <a href="#" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Campaign Registry Management</p>
-            </a>
-            </li>
-
-            <li class="nav-item" style="border-bottom:2px solid white">
-            <a href="#" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Audit Log</p>
-            </a>
-            </li>
-            <li class="nav-item" style="border-bottom:2px solid white">
-            <a href="#" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Reports</p>
-            </a>
-            </li>
-            </ul>
-            </nav>
-            <!-- /.sidebar-menu -->
-            }
-            </div>
-            }
-            <!-- /.sidebar --> 
-
-
-                                                                                                                                                                 <!-- /.sidebar for Reseller  -->
-             <!-- Sidebar -->
-            @if (ViewContext.HttpContext.Session.GetString("Role") == "ResellerAdmin")
-            {
-                <div class="sidebar">
-                    <!-- Sidebar Menu -->
-            <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-            with font-awesome or any other icon font library -->
-            <li class="nav-item" style="border-bottom:2px solid white">
-            <a href="#" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Dashboard</p>
-            </a>
-            </li>
-            <li class="nav-item" style="border-bottom:2px solid white">
-            <a href="#" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Manage Organization</p>
-            </a>
-            </li>
-            <li class="nav-item" style="border-bottom:2px solid white">
-            <a href="#" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Manage Reseller User</p>
-            </a>
-            </li>
-            <li class="nav-item" style="border-bottom:2px solid white">
-            <a href="#" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Assign Credit</p>
-            </a>
-            </li>
-            <li class="nav-item" style="border-bottom:2px solid white">
-            <a href="#" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Manage Reports</p>
-            </a>
-            </li>
-            </ul>
-            </nav>
-            <!-- /.sidebar-menu -->
-            }
-            </div>
-            }
-            <!-- /.sidebar --> 
-
-
-                                                                                                                                                            <!-- /.sidebar for Organization  -->
-             <!-- Sidebar -->
-            @if (ViewContext.HttpContext.Session.GetString("Role") == "OrganizationAdmin")
-            {
-                <div class="sidebar">
-                    <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
-                        <li class="nav-item" style="border-bottom:2px solid white">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="border-bottom:2px solid white">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Manage Messaging Users</p>
-                            </a>
-                        </li>
-                        <li class="nav-item menu-open" style="border-bottom:2px solid white">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Contacts & Groups
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link ">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Manage Contacts</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Manage Groups</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item" style="border-bottom:2px solid white">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Credit Usage</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="border-bottom:2px solid white">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Manage Template</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="border-bottom:2px solid white">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Assign Numbers</p>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
+                @if (ViewContext.HttpContext.Session.GetString("Role") == "SubAdminAdministrartor")
+                {
+                    @Html.Partial("_SubAdmin")
+                }                                                                                                                                                      <!-- /.sidebar for Admin  -->
+                @if (ViewContext.HttpContext.Session.GetString("Role") == "ResellerAdmin")
+                {
+                    @Html.Partial("_ResellerAdmin")
                 }
+                @if (ViewContext.HttpContext.Session.GetString("Role") == "OrganizationAdmin")
+                {
+                    @Html.Partial("_OrganizationAdmin")
+                }
+                @if (ViewContext.HttpContext.Session.GetString("Role") == "MessagingUsers")
+                {
+                    @Html.Partial("_MessagingUsers")
+                }                                                                                                                        <!-- /.sidebar for Messaging Users  -->
             </div>
-            }
-            <!-- /.sidebar -->
-                                                                                                                                                            <!-- /.sidebar for Messaging Users  -->
-            <!-- Sidebar -->
-            @if (ViewContext.HttpContext.Session.GetString("Role") == "MessagingUsers")
-            {
-                <div class="sidebar">
-                    <!-- Sidebar Menu -->
-                    <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class
-                            with font-awesome or any other icon font library -->
-                            <li class="nav-item" style="border-bottom:2px solid white">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard</p>
-                                </a>
-                            </li>
-                            <li class="nav-item" style="border-bottom:2px solid white">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Inbox</p>
-                                </a>
-                            </li>
-                            <li class="nav-item" style="border-bottom:2px solid white">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Message Blast</p>
-                                </a>
-                            </li>
-                            <li class="nav-item" style="border-bottom:2px solid white">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Automations</p>
-                                </a>
-                            </li>
-                            <li class="nav-item menu-open" style="border-bottom:2px solid white">
-                                <a href="#" class="nav-link active">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>
-                                        Contacts
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link ">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Organization Contacts</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Organization Groups</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Personal Contacts</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item" style="border-bottom:2px solid white">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Template</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- /.sidebar-menu -->
-                    }
-                </div>
-            }
-            <!-- /.sidebar -->
-
-
         </aside>
-
-
 
         <div class="content-wrapper">
             @RenderBody()
@@ -424,15 +161,18 @@
 
     <script>
         function setRole(roleName) {
-            //debugger
+            debugger
             $.ajax({
                 type: 'POST',
                 url: '/Account/SetRole',
                 data: { roleName: roleName },
                 success: function (data) {
                     // Optionally, you can handle success response here
+                    $('#addPartialView').empty();;
+                    // Append the new data to the element
+                    $('#addPartialView').append(data);
                     console.log('Role set successfully');
-                    location.reload();
+                    // location.reload();
                 },
                 error: function (xhr, status, error) {
                     // Optionally, you can handle error response here
