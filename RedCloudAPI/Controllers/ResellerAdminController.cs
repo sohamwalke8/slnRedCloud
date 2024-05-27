@@ -1,16 +1,14 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RedCloud.Application.Features.AdminUsers.Queries;
 using RedCloud.Application.Features.ResellerAdmins.Command;
+using RedCloud.Application.Features.ResellerAdmins.Queries;
 
 namespace RedCloudAPI.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]   
-    public class ResellerAdminController : ControllerBase
+    [ApiController]
+    public class ResellerAdminController : Controller
     {
-
         private readonly IMediator _mediator;
         private readonly ILogger _logger;
 
@@ -27,7 +25,7 @@ namespace RedCloudAPI.Controllers
             return Ok(response);
         }
 
-        [HttpPut( "UpdateResellerAdmin")]
+        [HttpPut("UpdateResellerAdmin")]
         public async Task<ActionResult> Update([FromBody] UpdateResellerAdminCommand updateResellerAdmin)
         {
             var response = await _mediator.Send(updateResellerAdmin);
@@ -46,7 +44,5 @@ namespace RedCloudAPI.Controllers
 
             return Ok(dto);
         }
-
-
     }
 }
