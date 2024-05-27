@@ -1,33 +1,32 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using RedCloud.Application.Contract.Persistence;
 using RedCloud.Application.Features.ResellerAdmins.Command;
 using RedCloud.Persistenence;
 using RedCloud.Persistenence.Repositories;
+using RedCloudAPI.Controllers;
 using System;
-using System.Reflection;
+using RedCloud.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
-
+var connectionString = builder.Configuration.GetConnectionString("MyDefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 builder.Services.AddControllers();
 
-//builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+// Add MediatR
+builder.Services.AddApplicationServices();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CreateResellerAdminCommand>());
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -41,6 +40,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+
 
 app.MapControllers();
 

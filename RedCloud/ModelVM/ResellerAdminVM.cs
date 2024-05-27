@@ -4,7 +4,7 @@ namespace RedCloud.Models
 {
     public class ResellerAdminVM
     {
-        public int Id { get; set; }
+        public int Id { get; set; } 
 
           [Required(ErrorMessage = "Reseller name is required")]
         public string ResellerName { get; set; }
@@ -44,5 +44,5 @@ namespace RedCloud.Models
 
 
 
-    }
+     }
 }

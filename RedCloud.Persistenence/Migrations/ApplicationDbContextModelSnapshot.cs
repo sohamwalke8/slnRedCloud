@@ -22,39 +22,43 @@ namespace RedCloud.Persistenence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("RedCloud.Domain.Entities.AdminUser", b =>
+            modelBuilder.Entity("RedCloud.Domain.Entities.City", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("CityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"));
 
-                    b.Property<string>("Email")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirstName")
+                    b.Property<int>("StateId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CityId");
+
+                    b.HasIndex("StateId");
+
+                    b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("RedCloud.Domain.Entities.Country", b =>
+                {
+                    b.Property<int>("CountryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"));
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                    b.HasKey("CountryId");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MobileNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("AdminUsers");
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.OrganizationAdmin", b =>
@@ -112,7 +116,7 @@ namespace RedCloud.Persistenence.Migrations
 
                     b.HasKey("OrgID");
 
-                    b.ToTable("OrganizationAdmins");
+                    b.ToTable("OrganizationAdmin");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.ResellerAdmin", b =>
@@ -150,13 +154,20 @@ namespace RedCloud.Persistenence.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("OrganizationAdminId")
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("OrgID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrganizationAdminsOrgID")
                         .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RedCloudAdmin")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ResellerName")
@@ -173,23 +184,79 @@ namespace RedCloud.Persistenence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrganizationAdminId");
+                    b.HasIndex("OrganizationAdminsOrgID");
 
-                    b.ToTable("ResellerAdmin");
+                    b.ToTable("ReSellerAdmin");
+                });
+
+            modelBuilder.Entity("RedCloud.Domain.Entities.State", b =>
+                {
+                    b.Property<int>("StateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StateId"));
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StateId");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("States");
+                });
+
+            modelBuilder.Entity("RedCloud.Domain.Entities.City", b =>
+                {
+                    b.HasOne("RedCloud.Domain.Entities.State", "State")
+                        .WithMany("Cities")
+                        .HasForeignKey("StateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("State");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.ResellerAdmin", b =>
                 {
-                    b.HasOne("RedCloud.Domain.Entities.OrganizationAdmin", "OrganizationAdmin")
+                    b.HasOne("RedCloud.Domain.Entities.OrganizationAdmin", "OrganizationAdmins")
                         .WithMany("ResellerAdmins")
-                        .HasForeignKey("OrganizationAdminId");
+                        .HasForeignKey("OrganizationAdminsOrgID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("OrganizationAdmin");
+                    b.Navigation("OrganizationAdmins");
+                });
+
+            modelBuilder.Entity("RedCloud.Domain.Entities.State", b =>
+                {
+                    b.HasOne("RedCloud.Domain.Entities.Country", "Countries")
+                        .WithMany("States")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Countries");
+                });
+
+            modelBuilder.Entity("RedCloud.Domain.Entities.Country", b =>
+                {
+                    b.Navigation("States");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.OrganizationAdmin", b =>
                 {
                     b.Navigation("ResellerAdmins");
+                });
+
+            modelBuilder.Entity("RedCloud.Domain.Entities.State", b =>
+                {
+                    b.Navigation("Cities");
                 });
 #pragma warning restore 612, 618
         }

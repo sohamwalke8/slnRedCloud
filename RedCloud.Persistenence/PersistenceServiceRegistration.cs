@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Persistenence
 {
-    internal class PersistenceServiceRegistration
+    public class PersistenceServiceRegistration
     {
     }
 }

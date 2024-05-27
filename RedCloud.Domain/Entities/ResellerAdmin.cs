@@ -29,10 +29,10 @@ namespace RedCloud.Domain.Entities
 
         public bool IsActive { get; set; } = true;
 
+        public bool IsDeleted { get; set; } = false;
         public int? OrganizationAdminId { get; set; }
 
 
-
-        public virtual OrganizationAdmin OrganizationAdmin { get; set; }
+        public virtual OrganizationAdmin OrganizationAdmins { get; set; }
     }
 }

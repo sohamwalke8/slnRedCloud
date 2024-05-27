@@ -1,8 +1,84 @@
-﻿@{
+﻿@* @{
     ViewData["Title"] = "Home Page";
+    IEnumerable<CountryVM> countries = (IEnumerable<CountryVM>)ViewBag.Country;
 }
 
-<div class="text-center">
-    <h1 class="display-4"></h1>
-    <p> <a href="https://learn.microsoft.com/aspnet/core"></a>.</p>
+
+
+@Html.Partial("_CountryDropDown", countries)
+
+<div id="states">
+    @* the options will be appended in this div 
 </div>
+
+
+
+<div id="cities">
+
+the options will be appended in this div 
+</div>
+
+
+@* @section Scripts
+
+  {
+    <script>
+
+        $(document).ready(function () {
+            $('#countryDropDown').change(function () {
+                var countryId = $('#countryDropDown').val();
+                $.ajax({
+                    url: '@Url.Action("GetStateByCountryId", "Home")',
+                    data: { countryId : countryId},
+                    type: 'GET',
+                    success: function (data) {
+                        $('#states').empty();
+                        $('#cities').empty();
+                        $('#states').append(data);
+                    }
+                });
+            });
+
+           
+
+        });
+
+        function getallCitys() {
+            alert("METHOD CALLED")
+            var stateId = $('#stateDropDown').val();
+
+            $.ajax({
+
+                url: '@Url.Action("GetCityByStateId", "Home")',
+                data: { stateId: stateId },
+                type: 'GET',
+                success: function (data) {
+                    $('#cities').empty();
+                    $('#cities').append(data);
+
+                }
+            });
+        } *@
+
+     @*    // $(document).ready(function () {
+        //     $('#stateDropDown').change(function () {
+        //         debugger
+        //         var stateId = $('#stateDropDown').val();
+        //         $.ajax({
+                  
+        //             url: '@Url.Action("GetCityByStateId","Home")',
+        //             data: { stateId: stateId },
+        //             type: 'GET',
+        //             success: function (data) {
+        //                 $('#cities').append(data);
+        //             }
+        //         });
+        //     });
+        // });
+
+ *@
+
+       
+
+   @*  </script>
+}  *@
