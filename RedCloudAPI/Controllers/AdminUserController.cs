@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RedCloud.Application.Features.AdminUsers.Command;
+using RedCloud.Application.Features.AdminUsers.Queries;
 
 namespace RedCloudAPI.Controllers
 {
@@ -37,6 +38,18 @@ namespace RedCloudAPI.Controllers
         {
             var response = await _mediator.Send(EditAdminUserCommand);
             return Ok(response);
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult> FetchAdminUserById(int id)//changes the code
+        {
+            //_logger.LogInformation($"GetResellerAdminById Initiated for ID: {id}");
+            var dto = await _mediator.Send(new AdminUserGetById(id));
+            if (dto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(dto);
         }
 
     }

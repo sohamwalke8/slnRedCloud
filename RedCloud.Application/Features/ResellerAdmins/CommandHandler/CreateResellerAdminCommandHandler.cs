@@ -28,13 +28,27 @@ namespace RedCloud.Application.Features.ResellerAdmins.CommandHandler
         }
 
         public async Task<BaseResponse<int>> Handle(CreateResellerAdminCommand request, CancellationToken cancellationToken)
-        {
+            {
+            request.Password = GenerateRandomPassword();//create for random passaword generation new adition
+
             var AdminRese = _mapper.Map<ResellerAdmin>(request);
+
+            
             var result = await _repository.AddAsync(AdminRese);
             //var response = new Response<BlogVM>(_mapper.Map<BlogVM>(blog), "Inserted successfully ");
             var response = new BaseResponse<int>(result.Id, "Inserted successfully ");
             return response;
 
+        }
+
+        private string GenerateRandomPassword()
+        {
+            const int passwordLength = 12;
+            const string allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()";
+
+            var random = new Random();
+            return new string(Enumerable.Repeat(allowedChars, passwordLength)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }

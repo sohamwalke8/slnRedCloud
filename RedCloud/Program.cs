@@ -1,6 +1,7 @@
 using MvcApiCallingService.Helpers.ApiHelper;
 using RedCloud.Interface;
 using RedCloud.Service;
+using RedCloud.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IAdminUserService, AdminUserService>();
 builder.Services.AddScoped(typeof(IApiClient<>), typeof(ApiClient<>));
-
+builder.Services.AddScoped<IAdminReseller, AdminResellerService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

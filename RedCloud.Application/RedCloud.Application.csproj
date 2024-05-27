@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RedCloud.Domain\RedCloud.Domain.csproj" />
+    <ProjectReference Include="..\RedCloud\RedCloud.csproj" />
   </ItemGroup>
 
 </Project>

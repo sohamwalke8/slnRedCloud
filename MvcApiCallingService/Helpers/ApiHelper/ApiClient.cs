@@ -77,7 +77,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         {
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
-            return await ValidateResponse(responseMessage);
+                return await ValidateResponse(responseMessage);
         }
 
         public async Task<string> DeleteAsync(string apiUrl)

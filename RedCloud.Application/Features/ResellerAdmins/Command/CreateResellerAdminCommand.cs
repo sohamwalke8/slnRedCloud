@@ -42,9 +42,9 @@ namespace RedCloud.Application.Features.ResellerAdmins.Command
         public string CompanySupportEmail { get; set; }
 
         //      [Required(ErrorMessage = "Red Cloud Admin is required")]
-      //  public string RedCloudAdmin { get; set; }
+       public string? RedCloudAdmin { get; set; }
 
-        public string? Password { get; set; }
+        public string? Password { get; set; }   //new adition
 
 
 

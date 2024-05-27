@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RedCloud.Application.Features.AdminUsers.Queries;
 using RedCloud.Application.Features.ResellerAdmins.Command;
 
 namespace RedCloudAPI.Controllers
@@ -32,6 +33,20 @@ namespace RedCloudAPI.Controllers
             var response = await _mediator.Send(updateResellerAdmin);
             return Ok(response);
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult> FetchResellerAdminUserById(int id)//changes the code
+        {
+            //_logger.LogInformation($"GetResellerAdminById Initiated for ID: {id}");
+            var dto = await _mediator.Send(new ReselleAdminGetById(id));
+            if (dto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(dto);
+        }
+
 
     }
 }
