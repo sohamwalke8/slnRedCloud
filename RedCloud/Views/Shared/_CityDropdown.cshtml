@@ -1,5 +1,4 @@
-﻿
-@*
+﻿@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
@@ -18,12 +17,15 @@
 </select> *@
 
 <div class="form-group">
-    <label for="cityDropdown" class="form-label">City</label>
-    <select id="cityDropdown" name="CityId" class="form-control custom-select">
+    <label for="cityDropdown" class="dropdown">City</label>
+    <select id="cityDropdown" name="CityId" class="dropdown">
         <option value="">Select a city</option>
-        @foreach (var city in Model)
+        @if (Model.Count > 0)
         {
-            <option value="@city.CityId">@city.Name</option>
+            @foreach (var city in Model)
+            {
+                <option value="@city.CityId">@city.Name</option>
+            }
         }
     </select>
 </div>

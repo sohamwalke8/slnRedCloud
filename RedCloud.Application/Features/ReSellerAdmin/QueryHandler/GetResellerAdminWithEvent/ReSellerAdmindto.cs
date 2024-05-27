@@ -8,6 +8,7 @@ namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetResellerAd
 {
     public class ReSellerAdmindto
     {
+        public int Id { get; set; }
         public string ResellerName { get; set; }
         public string EIN { get; set; }
         public string AddressLine1 { get; set; }

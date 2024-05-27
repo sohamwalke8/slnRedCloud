@@ -1,4 +1,4 @@
-﻿@{
+﻿@* @{
     ViewData["Title"] = "Home Page";
     IEnumerable<CountryVM> countries = (IEnumerable<CountryVM>)ViewBag.Country;
 }
@@ -8,18 +8,18 @@
 @Html.Partial("_CountryDropDown", countries)
 
 <div id="states">
-    @* the options will be appended in this div *@
+    @* the options will be appended in this div 
 </div>
 
 
 
 <div id="cities">
 
-@* the options will be appended in this div *@
+the options will be appended in this div 
 </div>
 
 
-@section Scripts
+@* @section Scripts
 
   {
     <script>
@@ -58,9 +58,9 @@
 
                 }
             });
-        }
+        } *@
 
-        // $(document).ready(function () {
+     @*    // $(document).ready(function () {
         //     $('#stateDropDown').change(function () {
         //         debugger
         //         var stateId = $('#stateDropDown').val();
@@ -76,9 +76,9 @@
         //     });
         // });
 
-
+ *@
 
        
 
-    </script>
-}
+   @*  </script>
+}  *@

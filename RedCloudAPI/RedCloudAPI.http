@@ -1,4 +1,4 @@
-@RedCloudAPI_HostAddress = http://localhost:5197
+@RedCloudAPI_HostAddress = http://localhost:5195
 
 GET {{RedCloudAPI_HostAddress}}/weatherforecast/
 Accept: application/json

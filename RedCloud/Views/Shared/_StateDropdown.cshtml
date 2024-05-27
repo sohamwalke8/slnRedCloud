@@ -5,15 +5,18 @@
 
 
 @model List<RedCloud.Models.StateVM>
-<label for="stateDropDown" class="form-label">State</label>
-<select id="stateDropDown" name="StateId" class="form-control" onchange="getallCitys();">
+<label for="stateDropDown" class="dropdown">State</label>
+<select id="stateDropDown" name="StateId" class="dropdown" onchange="getallCitys();">
     <option value="">Select a state</option>
-    @foreach (var state in Model)
+    @if (Model.Count > 0)
     {
-        <option value="@state.StateId">@state.Name</option>
+        @foreach (var state in Model)
+        {
+            <option value="@state.StateId">@state.Name</option>
+        }       
     }
 
-</select> 
+</select>
 
 
 
@@ -26,7 +29,7 @@
 {
     <script>
         function getallCitys() {
-            alert("METHOD CALLED")
+
             var stateId = $('#stateDropDown').val();
 
             $.ajax({

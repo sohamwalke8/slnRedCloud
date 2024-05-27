@@ -192,6 +192,9 @@ namespace RedCloud.Persistenence.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("OrganizationAdminId")
                         .HasColumnType("int");
 
@@ -199,6 +202,7 @@ namespace RedCloud.Persistenence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RedCloudAdmin")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ResellerName")

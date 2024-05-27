@@ -19,36 +19,36 @@ namespace RedCloud.Controllers
 
         public IActionResult Index()
         {
-           var countries = new List<CountryVM>
-        {
-           new CountryVM { CountryId = 2, Name = "India" },
-           new CountryVM { CountryId = 3, Name = "Korea" }
+        //   var countries = new List<CountryVM>
+        //{
+        //   new CountryVM { CountryId = 2, Name = "India" },
+        //   new CountryVM { CountryId = 3, Name = "Korea" }
 
-        };
-           ViewBag.Country = countries;
-           return View();
+        
+        //   ViewBag.Country = countries;
+          return View();
         }
 
-        public IActionResult GetStateByCountryId(int  countryId)
-        {
-            List<StateVM> states = new List<StateVM>
-            {
-            new StateVM {StateId=1, CountryId = 2, Name = "Maharashtra" },
-            new StateVM {StateId=2, CountryId = 3, Name = "Seoul" }
-            };
-            states=states.Where (x=>x.CountryId== countryId).ToList();
-            return PartialView("_StateDropdown",states); 
-        }
-        public IActionResult GetCityByStateId(int stateId)
-        {
-            List<CityVM> city = new List<CityVM>
-            {
-            new CityVM {StateId=1, CityId = 2, Name = "Mumbai" },
-            new CityVM {StateId=4, CityId = 3, Name = "Hamnisa" }
-            };
-          city = city.Where(x => x.StateId == stateId).ToList();
-            return PartialView("_CityDropdown", city);
-        }
+        //public IActionResult GetStateByCountryId(int  countryId)
+        //{
+        //    List<StateVM> states = new List<StateVM>
+        //    {
+        //    new StateVM {StateId=1, CountryId = 2, Name = "Maharashtra" },
+        //    new StateVM {StateId=2, CountryId = 3, Name = "Seoul" }
+        //    };
+        //    states=states.Where (x=>x.CountryId== countryId).ToList();
+        //    return PartialView("_StateDropdown",states); 
+        //}
+        //public IActionResult GetCityByStateId(int stateId)
+        //{
+        //    List<CityVM> city = new List<CityVM>
+        //    {
+        //    new CityVM {StateId=1, CityId = 2, Name = "Mumbai" },
+        //    new CityVM {StateId=4, CityId = 3, Name = "Hamnisa" }
+        //    };
+        //  city = city.Where(x => x.StateId == stateId).ToList();
+        //    return PartialView("_CityDropdown", city);
+        //}
 
 
         public IActionResult Privacy()

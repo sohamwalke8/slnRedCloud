@@ -10,8 +10,8 @@
 
 
 @model IEnumerable<RedCloud.Models.CountryVM>
-<label for="countryDropDown" class="form-label">Country</label>
-<select id="countryDropDown" name="CountryId" class="form-control">
+<label for="countryDropDown" class="dropdown">Country</label>
+<select id="countryDropDown" name="CountryId" class="dropdown">
     <option value="">Select a country</option>
  @foreach (var country in Model)
     {
@@ -19,5 +19,7 @@
     }
 
 </select>
+
+
 
 

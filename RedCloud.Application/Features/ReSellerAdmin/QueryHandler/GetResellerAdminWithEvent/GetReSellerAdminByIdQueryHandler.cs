@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using RedCloud.Application.Contract.Persistence;
+using RedCloud.Application.Responses;
 using RedCloud.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetResellerAdminWithEvent
 {
-    public class GetReSellerAdminByIdQueryHandler : IRequestHandler<GetReSellerAdminByIdQuery, ReSellerAdmindto>
+    public class GetReSellerAdminByIdQueryHandler : IRequestHandler<GetReSellerAdminByIdQuery, Response<ReSellerAdmindto>>
     {
         private readonly IAsyncRepository<ResellerAdmin> _asyncRepository;
         public GetReSellerAdminByIdQueryHandler(IAsyncRepository<ResellerAdmin> asyncRepository)
@@ -43,7 +44,7 @@ namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetResellerAd
         //}
 
 
-        public async Task<ReSellerAdmindto> Handle(GetReSellerAdminByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Response<ReSellerAdmindto>> Handle(GetReSellerAdminByIdQuery request, CancellationToken cancellationToken)
         {
             var admin = await _asyncRepository.GetByIdAsync(request.Id);
 
@@ -54,6 +55,7 @@ namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetResellerAd
 
             var dto = new ReSellerAdmindto()
             {
+                Id = admin.Id,
                 ResellerName = admin.ResellerName,
                 EIN = admin.EIN,
                 AddressLine1 = admin.AddressLine1,
@@ -66,11 +68,8 @@ namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetResellerAd
                 RedCloudAdmin = admin.RedCloudAdmin,
             };
 
-            return dto;
+            return new Response<ReSellerAdmindto>(dto, "success");
         }
-
-       
-
     }
 }
 
