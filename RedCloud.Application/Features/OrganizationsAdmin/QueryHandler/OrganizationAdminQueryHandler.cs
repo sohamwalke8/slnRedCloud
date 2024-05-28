@@ -44,7 +44,7 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.QueryHandler
                 OrgName = admin.OrgName,
                 OrgAdminName = admin.OrgAdminName,
                 OrgAdminEmail = admin.OrgAdminEmail,
-                OrgAdminPassword = admin.OrgAdminPassword,
+                //OrgAdminPassword = admin.OrgAdminPassword,
                 City = admin.City,
                 State = admin.State,
                 ZipCode = admin.ZipCode,

@@ -28,6 +28,6 @@ namespace RedCloud.Service
             _logger.LogInformation("GetStatesByCountryId Service completed");
 
             return cities.Data;
-        }
+        }   
     }
 }

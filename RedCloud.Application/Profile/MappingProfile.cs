@@ -12,6 +12,7 @@ using AutoMapper;
 using RedCloud.Application.Features.CountryFolder.Query.GetCountryList;
 using RedCloud.Application.Features.CountryFolder.Query.GetCityList;
 using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
+using RedCloud.Models;
 
 namespace RedCloud.Application.profile
 {
@@ -29,6 +30,7 @@ namespace RedCloud.Application.profile
             CreateMap<ResellerAdmin, ReSellerAdminVM>().ReverseMap();
             CreateMap<ReSellerAdminVM, ResellerAdmin >().ReverseMap();
             CreateMap<Country, CountryListVM>().ReverseMap();
+            CreateMap<State, StateVM>().ReverseMap();
             CreateMap<CityListVM, City>().ReverseMap();
 
         }

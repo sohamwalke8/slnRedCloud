@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RedCloud.Domain.Entities;
 using RedCloud.Interface;
+using RedCloud.Models;
 using RedCloud.ModelVM;
 using RedCloud.Service;
 
@@ -13,21 +14,27 @@ namespace RedCloud.Controllers
         private readonly IReSellerAdminService _reSellerAdminService;
 
         private readonly ILogger<OrganizationAdminController> _logger;
+        private readonly IDropDownService<CountryVM> _dropDownService;
+        private readonly IStateService<StateVM> _stateService;
+        private readonly ICityService<CityVM> _cityService;
 
 
         public OrganizationAdminController(IOrganizationAdminService organizationAdminService, ILogger<OrganizationAdminController> logger,
-            IReSellerAdminService reSellerAdminService)
+            IReSellerAdminService reSellerAdminService, IDropDownService<CountryVM> dropDownService, IStateService<StateVM> stateService, ICityService<CityVM> cityService)
         {
             _organizationAdminService = organizationAdminService;
             _reSellerAdminService = reSellerAdminService;
             _logger = logger;
-
+            _dropDownService = dropDownService;
+            _stateService = stateService;
+            _cityService = cityService;
         }
         public async Task<IActionResult> AddOrganizationAdmin()
         {
             //ViewBag.ResellerList = (await _reSellerAdminService.GetallResellerAdmin()).Select(r => r.ResellerName).ToList();
             //return View(); 
-             
+            var countries = await _dropDownService.GetAllCountryList();
+            ViewBag.Country = countries;
             var resellerList = await _reSellerAdminService.GetallResellerAdmin();
             ViewBag.ResellerList = new SelectList(resellerList, "Id", "ReSellerName");
             return View();
@@ -38,7 +45,7 @@ namespace RedCloud.Controllers
         {
             // _logger.LogInformation("CreateCategory Action initiated");
             var response = await _organizationAdminService.CreateOrganizationAdmin(request);
-
+            
             //_logger.LogInformation("CreateCategory Action initiated");
             return RedirectToAction("AddOrganizationAdmin");
         }
@@ -62,6 +69,51 @@ namespace RedCloud.Controllers
             return RedirectToAction("UpdateOrganizationAdmin");
         }
 
+        public async Task<IActionResult> GetCountry()
+        {
+
+            _logger.LogInformation("GetCountry method initiated");
+
+
+            var countries = await _dropDownService.GetAllCountryList();
+
+
+            _logger.LogInformation("GetCountry method completed");
+
+            ViewBag.Country = countries;
+            return View();
+
+        }
+
+
+
+
+        public async Task<IActionResult> GetStateByCountryId(int countryId)
+        {
+
+
+            _logger.LogInformation("GetStateByCountryId initiated");
+
+            var states = await _stateService.GetStatesByCountryId(countryId);
+
+            _logger.LogInformation("GetStateByCountryId completed");
+
+            return PartialView("_StateDropdown", states);
+
+
+
+        }
+
+
+
+
+
+        public async Task<IActionResult> GetCityByStateId(int stateId)
+        {
+
+            var city = await _cityService.GetCityByStateId(stateId);
+            return PartialView("_CityDropdown", city);
+        }
 
     }
 }

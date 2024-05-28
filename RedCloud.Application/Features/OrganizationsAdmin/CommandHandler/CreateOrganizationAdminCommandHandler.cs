@@ -18,14 +18,27 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.CommandHandler
         private readonly IAsyncRepository<OrganizationAdmin> _asyncRepository;
         private readonly IMapper _mapper;
 
+        
 
         public CreateOrganizationAdminCommandHandler(IAsyncRepository<OrganizationAdmin> asyncRepository, IMapper mapper)
         {
             _asyncRepository = asyncRepository;
             _mapper = mapper;
         }
+
+        private string GenerateRandomPassword()
+        {
+            const int passwordLength = 12;
+            const string allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()";
+
+            var random = new Random();
+            return new string(Enumerable.Repeat(allowedChars, passwordLength)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
         public async Task<Response<int>> Handle(CreateOrganizationAdmin request, CancellationToken cancellationToken)
         {
+            request.OrgAdminPassword = GenerateRandomPassword();
             var org = _mapper.Map<OrganizationAdmin>(request);
            var result = await _asyncRepository.AddAsync(org);
             var response = new Response<int>(result.OrgID, "Inserted successfully ");

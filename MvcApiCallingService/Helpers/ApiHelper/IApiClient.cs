@@ -17,6 +17,6 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         Task<T> PostAuthAsync<TEntity>(string apiUrl, TEntity entity);
         Task PutAsync<TEntity>(string apiUrl, TEntity entity);
         Task<string> DeleteAsync(string apiUrl);
-        Task<MvcApiCallingService.Response.Response<List<T>>> GetListByIdAsync(string apiUrl);
+        Task<Response<List<T>>> GetListByIdAsync(string apiUrl);
     }
 }
