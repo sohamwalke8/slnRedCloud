@@ -244,7 +244,7 @@
                     <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
                         <thead>
                             <tr>
-                                <th>Id</th>
+                                <th hidden>Id</th>
                                 <th>CompanyName</th>
                                 <th>EIN</th>
                                 <th>Email</th>
@@ -257,7 +257,7 @@
                                     @foreach (var admins in Model)
                                     {
                                         <tr>
-                                            <td>@admins.Id</td>
+                                            <td hidden>@admins.Id</td>
                                             <td>@admins.ReSellerName</td>
                                             <td>@admins.EIN</td>
                                             <td>@admins.CompanySupportEmail</td>
