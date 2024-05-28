@@ -228,6 +228,7 @@
     ViewData["Title"] = "Index";
 }
 
+
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Admin Reseller</h3>
@@ -235,8 +236,11 @@
     <!-- /.card-header -->
     <div class="card-body">
         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+           
             <div class="row">
+               
                 <div class="col-sm-12">
+                    <div class="dt-search"> <a asp-action="" asp-controller=""></a><button type="button" class="btn btn-primary">Add ReSeller</button></div>
                     <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
                         <thead>
                             <tr>
@@ -263,7 +267,7 @@
                                             <i class="fa-solid fa-eye" style="color: #050505;"></i>
 
                                 </a>
-                                        <a asp-action="" asp-controller=""><i class="fa-solid fa-plus" style="color: #000000;"></i></a>
+                                      
                                         <a asp-action="" asp-controller=""><i class="fa-regular fa-pen-to-square" style="color: #131111;"></i></a>
                                         <a class="delete-btn" data-id="@admins.Id" data-name="@admins.ReSellerName" href="#"><i class="fa-solid fa-trash" style="color: #cb1010;"></i></a>
                                             </td>
@@ -338,6 +342,7 @@
                 layout: {
                     topStart: {
                         buttons: [ 'excelHtml5'/*  'csvHtml5', 'pdfHtml5' */]
+
                     }
                 }
             });
