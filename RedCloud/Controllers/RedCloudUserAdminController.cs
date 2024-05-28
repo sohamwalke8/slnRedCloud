@@ -45,9 +45,9 @@ namespace RedCloud.Controllers
                     Email = request.Email,
                     MobileNumber = request.MobileNumber,
                     IsActive = request.IsActive,
-                    CreatedDate = DateTime.UtcNow,
-                    CreatedBy = null,
-                    IsDeleted = false
+                    //CreatedDate = DateTime.UtcNow,
+                    //CreatedBy = null, 
+                    //IsDeleted = false
                 };
 
                 var response = await _adminUserService.CreateAdminUser(adminUser);
@@ -145,8 +145,8 @@ namespace RedCloud.Controllers
                     Email = request.Email,
                     MobileNumber = request.MobileNumber,
                     IsActive = request.IsActive,
-                    ModifiedDate = DateTime.UtcNow,
-                    LastModifiedBy = null
+                    //ModifiedDate = DateTime.UtcNow,
+                    //LastModifiedBy = null
 
                 };
 

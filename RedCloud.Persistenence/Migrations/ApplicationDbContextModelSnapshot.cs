@@ -30,12 +30,6 @@ namespace RedCloud.Persistenence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -47,14 +41,6 @@ namespace RedCloud.Persistenence.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<int?>("LastModifiedBy")
-                        .HasColumnType("int");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -62,9 +48,6 @@ namespace RedCloud.Persistenence.Migrations
                     b.Property<string>("MobileNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
@@ -192,7 +175,7 @@ namespace RedCloud.Persistenence.Migrations
 
                     b.HasIndex("OrganizationAdminId");
 
-                    b.ToTable("ReSellerAdmins");
+                    b.ToTable("ResellerAdmin");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.ResellerAdmin", b =>

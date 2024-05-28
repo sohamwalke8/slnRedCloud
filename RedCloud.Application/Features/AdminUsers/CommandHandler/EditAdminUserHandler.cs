@@ -28,9 +28,9 @@ namespace RedCloud.Application.Features.AdminUsers.CommandHandler
             var adminuser = _mapper.Map<AdminUser>(request);
 
 
-
-            adminuser.ModifiedDate = DateTime.UtcNow;
-            adminuser.LastModifiedBy = null;
+            
+            //adminuser.ModifiedDate = DateTime.UtcNow;
+            //adminuser.LastModifiedBy = null;
 
 
             await _repository.UpdateAsync(adminuser);
