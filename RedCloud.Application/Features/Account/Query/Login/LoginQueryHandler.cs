@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using RedCloud.Application.Contract.Persistence;
+using RedCloud.Application.Helper;
 using RedCloud.Application.Responses;
 using RedCloud.Domain.Comman;
 using RedCloud.Models.Account;
@@ -28,7 +29,9 @@ namespace RedCloud.Application.Features.Account.Query.Login
 
         public async Task<Response<UserVM>> Handle(LoginQuery request, CancellationToken cancellationToken)
         {
-            var user = (await _accountRepository.Get(request.Email,request.Password));
+            var Encryptedpass = EncryptionDecryption.EncryptString(request.Password);
+
+            var user = (await _accountRepository.Get(request.Email, Encryptedpass));
 
             if (user == null)
             {

@@ -7,6 +7,7 @@ using RedCloud.Models.Account;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using RedCloud.Application.Helper;
 namespace RedCloud.Controllers
 {
     public class AccountController : Controller
@@ -33,7 +34,19 @@ namespace RedCloud.Controllers
         {
             if (ModelState.IsValid)
             {
+                LoginVM loginData = new LoginVM()
+                {
+                    Email = model.Email,
+                    Password = EncryptionDecryption.EncryptString(model.Password)
+                };
+
+
+                var data = loginData;
+
                 // Here you would call your API to validate the credentials
+                //var result =await _accountService.Login(loginData);
+
+                //correct code below 
                 var result =await _accountService.Login(model);
                 if (!result.Succeeded)
                 {
