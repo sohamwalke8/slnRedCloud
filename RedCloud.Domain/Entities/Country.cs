@@ -15,5 +15,6 @@ namespace RedCloud.Domain.Entities
 
         public virtual ICollection<State> States { get; set; } = new List<State>();
 
+
     }
 }
