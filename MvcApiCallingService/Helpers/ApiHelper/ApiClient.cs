@@ -109,5 +109,13 @@ namespace MvcApiCallingService.Helpers.ApiHelper
             response.Content?.Dispose();
             throw new HttpRequestException($"{response.StatusCode}:{content}");
         }
+
+        public async Task<Response<List<T>>> GetListByIdAsync(string apiUrl)
+        {
+            HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
+            if (!responseMessage.IsSuccessStatusCode)
+                await RaiseException(responseMessage);
+            return JsonConvert.DeserializeObject<Response<List<T>>>(await responseMessage.Content.ReadAsStringAsync());
+        }
     }
 }

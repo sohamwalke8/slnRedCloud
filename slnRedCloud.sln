@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MvcSevices", "MvcSevices", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcApiCallingService", "MvcApiCallingService\MvcApiCallingService.csproj", "{24C0174B-AE6A-4867-BAA6-766809D85906}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedCloud.Api", "RedCloud.Api\RedCloud.Api.csproj", "{D4AC6649-DDF2-4F3F-81ED-75487ED9CCA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedCloudAPI", "RedCloud.Api\RedCloudAPI.csproj", "{D4AC6649-DDF2-4F3F-81ED-75487ED9CCA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Profile
 {
-    internal class MappingProfile
+    public class MappingProfile
     {
     }
 }
