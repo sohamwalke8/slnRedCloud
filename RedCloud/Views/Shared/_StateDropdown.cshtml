@@ -3,17 +3,16 @@
 *@
 
 
-
 @model List<RedCloud.Models.StateVM>
 <label for="stateDropDown" class="dropdown">State</label>
-<select id="stateDropDown" name="StateId" class="dropdown" onchange="getallCitys();">
+<select id="stateDropDown" name="StateId" class="form-control" onchange="getallCitys();">
     <option value="">Select a state</option>
     @if (Model.Count > 0)
     {
         @foreach (var state in Model)
         {
             <option value="@state.StateId">@state.Name</option>
-        }       
+        }
     }
 
 </select>

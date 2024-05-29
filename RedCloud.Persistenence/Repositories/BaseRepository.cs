@@ -81,6 +81,12 @@ namespace RedCloud.Persistenence.Repositories
             }
             return parameterNames;
         }
+
+
+        public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _dbContext.Set<T>().FirstOrDefaultAsync(predicate);
+        }
     }
 
 }

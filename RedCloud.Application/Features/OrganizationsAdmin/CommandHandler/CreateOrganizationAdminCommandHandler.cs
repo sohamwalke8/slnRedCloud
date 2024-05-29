@@ -40,6 +40,9 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.CommandHandler
         {
             request.OrgAdminPassword = GenerateRandomPassword();
             var org = _mapper.Map<OrganizationAdmin>(request);
+            org.CreatedBy = 1;
+            org.CreatedDate = DateTime.Now;
+            org.IsDeleted = false;
            var result = await _asyncRepository.AddAsync(org);
             var response = new Response<int>(result.OrgID, "Inserted successfully ");
             return response;

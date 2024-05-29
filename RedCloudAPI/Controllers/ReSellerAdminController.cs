@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RedCloud.Application.Features.ReSellerAdmin.Command.BlockReSellerAdmin;
 using RedCloud.Application.Features.ReSellerAdmin.Command.DeleteReSellerAdmin;
 using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
 using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetResellerAdminWithEvent;
@@ -56,6 +57,19 @@ namespace RedCloudAPI.Controllers
             }
             
             return Ok(dto);
+        }
+
+
+        [HttpPut("{id}", Name = "BlockReSeller")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> BlockReSeller(int id)
+        {
+            _logger.LogInformation("BlockReSeller Initiated");
+            var blockeselleradmin = new BlockReSellerAdminCommand() { Id = id };
+            await _mediator.Send(blockeselleradmin);
+
+            return Ok("ReSeller Admin Blocked SuccessFully");
         }
     }
 }

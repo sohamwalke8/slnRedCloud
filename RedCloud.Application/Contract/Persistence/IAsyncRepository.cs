@@ -15,5 +15,8 @@ namespace RedCloud.Application.Contract.Persistence
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
         Task<IReadOnlyList<T>> GetPagedReponseAsync(int page, int size);
+
+
+        Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
     }
 }

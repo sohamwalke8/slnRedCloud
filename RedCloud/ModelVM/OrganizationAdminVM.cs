@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RedCloud.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace RedCloud.ModelVM
 {
@@ -9,6 +10,10 @@ namespace RedCloud.ModelVM
 
         [Required(ErrorMessage = "Please Enter Organization Name")]
         public string OrgName { get; set; }
+
+        [Required(ErrorMessage = "Please Enter EIN Number")]
+        public string EIN { get; set; }
+
 
         [Required(ErrorMessage = "Please Enter Admin Name Number")]
         public string OrgAdminName { get; set; }
@@ -33,11 +38,6 @@ namespace RedCloud.ModelVM
         [Required(ErrorMessage = "Please Enter Address Line Two")]
         public string AddressLineTwo { get; set; }
 
-        [Required(ErrorMessage = "Please Enter City")]
-        public string City { get; set; }
-
-        [Required(ErrorMessage = "Please Select State")]
-        public string State { get; set; }
 
         [Required(ErrorMessage = "Please Enter Zip Code")]
         public int ZipCode { get; set; }
@@ -49,6 +49,14 @@ namespace RedCloud.ModelVM
         public string ResellerName { get; set; } = "Test";
 
         public int Id { get; set; }
+
+        public int CountryId { get; set; }
+
+        public int StateId { get; set; }
+
+
+        public int? CityId { get; set; }
+
 
 
     }

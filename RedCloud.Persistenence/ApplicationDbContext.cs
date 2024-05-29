@@ -39,6 +39,6 @@ namespace RedCloud.Persistenence
 
 
 
-        public DbSet<AdminUser> AdminUsers { get; set; }
+     
     }
 }

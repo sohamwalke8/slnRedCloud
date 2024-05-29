@@ -20,8 +20,8 @@ namespace RedCloud.Application.profile
     {
         public MappingProfile()
         {
-            CreateMap<CreateAdminUserCommand, AdminUser>();
-            CreateMap<EditAdminUserCommand, AdminUser>();
+            //CreateMap<CreateAdminUserCommand, AdminUser>();
+            //CreateMap<EditAdminUserCommand, AdminUser>();
             CreateMap<CreateOrganizationAdmin, OrganizationAdmin>();
             CreateMap<UpdateOrganizationAdmin, OrganizationAdmin>();
             CreateMap<UpdateOrganizationAdmin, ResellerAdmin>();

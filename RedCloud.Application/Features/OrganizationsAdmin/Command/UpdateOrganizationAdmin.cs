@@ -13,6 +13,8 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.Command
         public int OrgID { get; set; }
         public string OrgName { get; set; }
 
+        public string EIN { get; set; }
+
         public string OrgAdminName { get; set; }
 
         public string OrgAdminEmail { get; set; }
@@ -25,15 +27,32 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.Command
 
         public string AddressLineTwo { get; set; }
 
-        public string City { get; set; }
+        //public string Country { get; set; }
 
-        public string State { get; set; }
+        //public string City {  get; set; }
+
+        //public string State {  get; set; }
+
+        //public string Country { get; set; }
 
         public int ZipCode { get; set; }
 
         public string OrgURL { get; set; }
 
+        public bool IsActive { get; set; } = true;
+
         public int Id { get; set; }
+
+
+
+        public int CountryId { get; set; }
+
+
+
+        public int StateId { get; set; }
+
+
+        public int? CityId { get; set; }
 
     }
 }

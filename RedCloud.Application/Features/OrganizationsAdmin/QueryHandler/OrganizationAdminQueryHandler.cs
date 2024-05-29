@@ -44,17 +44,17 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.QueryHandler
                 OrgName = admin.OrgName,
                 OrgAdminName = admin.OrgAdminName,
                 OrgAdminEmail = admin.OrgAdminEmail,
+                EIN = admin.EIN,
                 //OrgAdminPassword = admin.OrgAdminPassword,
-                City = admin.City,
-                State = admin.State,
+                CountryId = admin.CountryId,
+                CityId = admin.CityId,
+                StateId = admin.StateId,
                 ZipCode = admin.ZipCode,
                 OrgAdminMobNo = admin.OrgAdminMobNo,
                 AddressLineOne = admin.AddressLineOne,
                 AddressLineTwo = admin.AddressLineTwo,
                 OrgURL = admin.OrgURL,
-                Id = admin.Id,
                 
-
             };
 
             return new Response<OrganizationAdminVM>(dto, "Successful");

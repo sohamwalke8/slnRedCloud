@@ -50,6 +50,12 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="EIN">EIN Number</label>
+                                        <input asp-for="EIN" class="form-control" id="EIN" placeholder="Enter EIN Number" >
+                                        <span asp-validation-for="EIN" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="OrgAdminEmail">Admin Email</label>
                                         <input asp-for="OrgAdminEmail" class="form-control" id="OrgAdminEmail" placeholder="Enter admin email" >
                                         <span asp-validation-for="OrgAdminEmail" class="text-danger"></span>
@@ -81,9 +87,10 @@
                                 </div>
                                 <div class="col-md-6">
 
-                                    @Html.Partial("_CountryDropDown", countries)
 
-                                    <div id="states">
+                                    @Html.Partial("_CountryDropDown", countries)
+                                    <br />
+                                    <div id="states" >
                                         @* the options will be appended in this div *@
 
                                         @Html.Partial("_StateDropDown", stateList)
@@ -93,7 +100,7 @@
 
 
 
-                                    <div id="cities">
+                                    <div id="cities" >
 
                                         @* the options will be appended in this div *@
                                         @Html.Partial("_CityDropDown", cityList)
@@ -168,8 +175,7 @@
         $(document).ready(function () {
             $('#countryDropDown').change(function () {
                 var countryId = $('#countryDropDown').val();
-                //@Model.CountryId = countryId
-                $('#CountryId').val($(this).val());
+       
 
                 $.ajax({
                     url: '@Url.Action("GetStateByCountryId", "Dropdown")',
@@ -190,10 +196,10 @@
         });
 
         function getallCitys() {
-            alert("METHOD CALLED")
+            //alert("METHOD CALLED")
             var stateId = $('#stateDropDown').val();
-            //@Model.StateId = stateId
-            $('#StateId').val($(this).val());
+       
+
             $.ajax({
 
                 url: '@Url.Action("GetCityByStateId", "Dropdown")',
@@ -206,10 +212,6 @@
                 }
             });
         }
-
-        $('#cities').change(function () {
-            $('#CityId').val($(this).val());
-        });
 
         // $(document).ready(function () {
         //     $('#stateDropDown').change(function () {

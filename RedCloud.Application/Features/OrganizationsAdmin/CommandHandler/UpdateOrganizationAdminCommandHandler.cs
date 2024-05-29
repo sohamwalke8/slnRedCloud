@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using RedCloud.Application.Contract.Persistence;
 using RedCloud.Application.Features.OrganizationsAdmin.Command;
 using RedCloud.Application.Responses;
@@ -25,10 +26,26 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.CommandHandler
             _mapper = mapper;
         }
 
+        private string GenerateRandomPassword()
+        {
+            const int passwordLength = 12;
+            const string allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()";
+
+            var random = new Random();
+            return new string(Enumerable.Repeat(allowedChars, passwordLength)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
         public async Task<Response<Unit>> Handle(UpdateOrganizationAdmin request, CancellationToken cancellationToken)
         {
-            var adminuser = _mapper.Map<OrganizationAdmin>(request);
-            await _repository.UpdateAsync(adminuser);
+            
+            var model = await _repository.GetByIdAsync(request.Id);
+            request.OrgAdminPassword = model.OrgAdminPassword;
+            _mapper.Map(request, model, typeof(UpdateOrganizationAdmin), typeof(OrganizationAdmin));
+
+            model.LastModifiedBy = 1;
+            model.ModifiedDate = DateTime.Now;
+            await _repository.UpdateAsync(model);
             var response = new Response<Unit>("Inserted successfully");
             return response;
         }

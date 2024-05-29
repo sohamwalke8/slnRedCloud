@@ -60,18 +60,16 @@ namespace RedCloud.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> Block(int id)
         {
             try
             {
-                var response = await _reSellerAdminService.GetResellerAdminById(id);
+         
+                var response = await _reSellerAdminService.Block(id)
+          ;
+                return View(response);
 
-                response.IsActive = false;
-               await _reSellerAdminService.Block(id);
-
-                return Json(new { success = true, message = "Reseller blocked successfully." });
-               
             }
             catch (Exception ex)
             {

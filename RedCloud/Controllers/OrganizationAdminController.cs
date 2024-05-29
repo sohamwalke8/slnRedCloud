@@ -12,7 +12,6 @@ namespace RedCloud.Controllers
     {
         private readonly IOrganizationAdminService _organizationAdminService;
         private readonly IReSellerAdminService _reSellerAdminService;
-
         private readonly ILogger<OrganizationAdminController> _logger;
         private readonly IDropDownService<CountryVM> _dropDownService;
         private readonly IStateService<StateVM> _stateService;
@@ -37,7 +36,7 @@ namespace RedCloud.Controllers
             ViewBag.Country = countries;
             var resellerList = await _reSellerAdminService.GetallResellerAdmin();
             ViewBag.ResellerList = new SelectList(resellerList, "Id", "ReSellerName");
-            return View();
+            return View(new OrganizationAdminVM());
         }
 
         [HttpPost("AddOrganizationAdmin")]
@@ -52,6 +51,9 @@ namespace RedCloud.Controllers
 
         public async Task<IActionResult> UpdateOrganizationAdmin(int Id)
         {
+
+            var countries = await _dropDownService.GetAllCountryList();
+            ViewBag.Country = countries;
             var response = await _organizationAdminService.GetOrganizationAdminById(Id);
             var resellerList = await _reSellerAdminService.GetallResellerAdmin();
             ViewBag.ResellerList = new SelectList(resellerList, "Id", "ReSellerName");   

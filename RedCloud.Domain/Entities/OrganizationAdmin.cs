@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Domain.Entities
 {
-    public class OrganizationAdmin 
+    public class OrganizationAdmin : AuditableEntity
     {
         [Key]
         public int OrgID { get; set; }
         public string OrgName { get; set; }
+
+        public string EIN { get; set; }
 
         public string OrgAdminName { get; set; }
 
@@ -28,19 +30,34 @@ namespace RedCloud.Domain.Entities
 
         //public string Country { get; set; }
 
-        public string City { get; set; }
+        //public string City {  get; set; }
 
-        public string State { get; set; }
+        //public string State {  get; set; }
+
+        //public string Country { get; set; }
 
         public int ZipCode { get; set; }
 
         public string OrgURL { get; set; }
 
-        public int Id { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public virtual ICollection<ResellerAdmin> ResellerAdmins { get; set; } = new List<ResellerAdmin>();
 
-        public bool IsActive { get; set; } = true;
+        public int CountryId { get; set; }
+
+        public Country Country { get; set; }
+
+        public int StateId { get; set; }
+
+        public State State { get; set; }
+        public int? CityId { get; set; }
+
+        public City City { get; set; }
+
+
+
+
 
 
 

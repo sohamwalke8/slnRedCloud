@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RedCloud.Interface;
 using RedCloud.Models;
 
@@ -43,13 +44,14 @@ namespace RedCloud.Controllers
 
 
 
-        public async Task<IActionResult> GetStateByCountryId(int countryId)
+        public async Task<IActionResult> GetStateByCountryId(int countryId, int stateId)
         {
 
 
             _logger.LogInformation("GetStateByCountryId initiated");
 
             var states = await _stateService.GetStatesByCountryId(countryId);
+            ViewBag.SelectedStateId = stateId; 
 
             _logger.LogInformation("GetStateByCountryId completed");
 
