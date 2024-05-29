@@ -52,12 +52,18 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> UpdateOrganizationAdmin(int Id)
         {
 
+            
+            var response = await _organizationAdminService.GetOrganizationAdminById(Id);
             var countries = await _dropDownService.GetAllCountryList();
             ViewBag.Country = countries;
-            var response = await _organizationAdminService.GetOrganizationAdminById(Id);
+            ViewBag.State = await _stateService.GetStatesByCountryId(response.CountryId); 
+            ViewBag.City = await _cityService.GetCityByStateId(response.StateId);
+
+
             var resellerList = await _reSellerAdminService.GetallResellerAdmin();
-            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ReSellerName");   
-            
+            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ReSellerName");
+
+
             return View(response);
         }
 

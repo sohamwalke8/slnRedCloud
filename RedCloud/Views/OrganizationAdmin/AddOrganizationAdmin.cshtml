@@ -3,24 +3,19 @@
 *@
 @{
     IEnumerable<CountryVM> countries = (IEnumerable<CountryVM>)ViewBag.Country;
-    List<StateVM> stateList = new List<StateVM>();
-    List<CityVM> cityList = new List<CityVM>();
+    IEnumerable<SelectListItem> countrySelectList = countries.Select(c => new SelectListItem
+            {
+                Value = c.CountryId.ToString(),
+                Text = c.Name,
+            });
+    List<SelectListItem> stateList = new List<SelectListItem>();
+    List<SelectListItem> cityList = new List<SelectListItem>();
 }
 
 
 @model RedCloud.ModelVM.OrganizationAdminVM;
 
 
-@* <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Organization Admin</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
-</head> *@
 <body>
 
     <div class="container mt-5">
@@ -38,59 +33,54 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="OrgName">Organization Name</label>
-                                        <input asp-for="OrgName" class="form-control" id="OrgName" placeholder="Enter organization name" >
+                                        <input asp-for="OrgName" class="form-control" id="OrgName" placeholder="Enter organization name">
                                         <span asp-validation-for="OrgName" class="text-danger"></span>
                                     </div>
 
 
                                     <div class="form-group">
                                         <label for="OrgAdminName">Admin Name</label>
-                                        <input asp-for="OrgAdminName" class="form-control" id="OrgAdminName" placeholder="Enter admin name" >
+                                        <input asp-for="OrgAdminName" class="form-control" id="OrgAdminName" placeholder="Enter admin name">
                                         <span asp-validation-for="OrgAdminName" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="EIN">EIN Number</label>
-                                        <input asp-for="EIN" class="form-control" id="EIN" placeholder="Enter EIN Number" >
+                                        <input asp-for="EIN" class="form-control" id="EIN" placeholder="Enter EIN Number">
                                         <span asp-validation-for="EIN" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="OrgAdminEmail">Admin Email</label>
-                                        <input asp-for="OrgAdminEmail" class="form-control" id="OrgAdminEmail" placeholder="Enter admin email" >
+                                        <input asp-for="OrgAdminEmail" class="form-control" id="OrgAdminEmail" placeholder="Enter admin email">
                                         <span asp-validation-for="OrgAdminEmail" class="text-danger"></span>
                                     </div>
-@* 
-                                    <div class="form-group">
-                                        <label for="OrgAdminPassword">Admin Password</label>
-                                        <input asp-for="OrgAdminPassword" class="form-control" id="OrgAdminPassword" placeholder="Enter admin password">
-                                        <span asp-validation-for="OrgAdminPassword" class="text-danger"></span>
-                                    </div> *@
+                                
 
                                     <div class="form-group">
                                         <label for="OrgAdminMobNo">Admin Mobile Number</label>
-                                        <input asp-for="OrgAdminMobNo" class="form-control" id="OrgAdminMobNo" placeholder="Enter admin mobile number" >
+                                        <input asp-for="OrgAdminMobNo" class="form-control" id="OrgAdminMobNo" placeholder="Enter admin mobile number">
                                         <span asp-validation-for="OrgAdminMobNo" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="AddressLineOne">Address Line 1</label>
-                                        <input asp-for="AddressLineOne" class="form-control" id="AddressLineOne" placeholder="Enter address line 1" >
+                                        <input asp-for="AddressLineOne" class="form-control" id="AddressLineOne" placeholder="Enter address line 1">
                                         <span asp-validation-for="AddressLineOne" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">
                                         <label asp-for="AddressLineTwo">Address Line 2</label>
-                                        <input asp-for="AddressLineTwo" class="form-control" id="AddressLineTwo" placeholder="Enter address line 2" >
+                                        <input asp-for="AddressLineTwo" class="form-control" id="AddressLineTwo" placeholder="Enter address line 2">
                                         <span asp-validation-for="AddressLineTwo" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
 
-
-                                    @Html.Partial("_CountryDropDown", countries)
-                                    <br />
-                                    <div id="states" >
+                                    <div class="form-group">
+                                        @Html.Partial("_CountryDropDown", countrySelectList)
+                                    </div>
+                                    <div id="states" class="form-group">
                                         @* the options will be appended in this div *@
 
                                         @Html.Partial("_StateDropDown", stateList)
@@ -100,7 +90,7 @@
 
 
 
-                                    <div id="cities" >
+                                    <div id="cities" class="form-group">
 
                                         @* the options will be appended in this div *@
                                         @Html.Partial("_CityDropDown", cityList)
@@ -111,32 +101,16 @@
 
                                     </div>
 
-                                   @*  <div class="form-group">
-                                        <label for="City">City</label>
-                                        <input asp-for="City" class="form-control" id="City" placeholder="Enter city" >
-                                        <span asp-validation-for="City" class="text-danger"></span>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="State">State</label>
-                                        <select asp-for="State" class="form-control" id="State" >
-                                            <option value="">Select State</option>
-                                            <option value="Alabama">Alabama</option>
-                                            <option value="Alaska">Alaska</option>
-                                            <!-- Add more states as needed -->
-                                        </select>
-                                        <span asp-validation-for="State" class="text-danger"></span>
-                                    </div> *@
 
                                     <div class="form-group">
                                         <label for="ZipCode">Zip Code</label>
-                                        <input asp-for="ZipCode" class="form-control" id="ZipCode" placeholder="Enter zip code" >
+                                        <input asp-for="ZipCode" class="form-control" id="ZipCode" placeholder="Enter zip code">
                                         <span asp-validation-for="ZipCode" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="OrgURL">Organization URL</label>
-                                        <input asp-for="OrgURL" class="form-control" id="OrgURL" placeholder="Enter organization URL" >
+                                        <input asp-for="OrgURL" class="form-control" id="OrgURL" placeholder="Enter organization URL">
                                         <span asp-validation-for="OrgURL" class="text-danger"></span>
                                     </div>
 
@@ -175,7 +149,7 @@
         $(document).ready(function () {
             $('#countryDropDown').change(function () {
                 var countryId = $('#countryDropDown').val();
-       
+
 
                 $.ajax({
                     url: '@Url.Action("GetStateByCountryId", "Dropdown")',
@@ -198,7 +172,7 @@
         function getallCitys() {
             //alert("METHOD CALLED")
             var stateId = $('#stateDropDown').val();
-       
+
 
             $.ajax({
 
@@ -213,26 +187,11 @@
             });
         }
 
-        // $(document).ready(function () {
-        //     $('#stateDropDown').change(function () {
-        //         debugger
-        //         var stateId = $('#stateDropDown').val();
-        //         $.ajax({
 
-        //             url: '@Url.Action("GetCityByStateId", "Home")',
-        //             data: { stateId: stateId },
-        //             type: 'GET',
-        //             success: function (data) {
-        //                 $('#cities').append(data);
-        //             }
-        //         });
-        //     });
-        // });
-
-
-
-
+       
 
     </script>
+
+    
 }
 @* </html> *@
