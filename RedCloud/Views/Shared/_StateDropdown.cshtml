@@ -18,22 +18,13 @@
 
 </select>
 
-
-
-
-
-
-
-
 @section Scripts
 {
     <script>
         function getallCitys() {
 
             var stateId = $('#stateDropDown').val();
-
             $.ajax({
-
                 url: '@Url.Action("GetCityByStateId", "Home")',
                 data: { stateId: stateId },
                 type: 'GET',
