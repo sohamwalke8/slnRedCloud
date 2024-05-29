@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MvcApiCallingService.Helpers.ApiHelper;
-using MvcApiCallingService.Response;
+using MvcApiCallingService.Models.Responses;
 using Newtonsoft.Json;
 using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
 using RedCloud.Controllers;
@@ -59,7 +59,7 @@ namespace RedCloud.Service
             var response = await _client.GetByIdAsync(apiUrl);
             var data = response.Data;
             data.IsActive = false;
-            var updated=await _client.PutAsync(apiUrl, data);
+            var updated=await _client.PutAsyncc(apiUrl, data);
             return updated.Data;
                  
         }

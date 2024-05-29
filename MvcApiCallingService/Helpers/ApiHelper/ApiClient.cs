@@ -1,6 +1,6 @@
 ﻿//using Azure;
 using Microsoft.Extensions.Configuration;
-using MvcApiCallingService.Response;
+using MvcApiCallingService.Models.Responses;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -42,7 +42,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
                 return JsonConvert.DeserializeObject<Response<IEnumerable<T>>>(await responseMessage.Content.ReadAsStringAsync());
             }
 
-            public async Task<Response.Response<T>> GetByIdAsync(string apiUrl)
+            public async Task<Response<T>> GetByIdAsync(string apiUrl)
             {
                 HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
                 return await ValidateResponse(responseMessage);
@@ -84,13 +84,30 @@ namespace MvcApiCallingService.Helpers.ApiHelper
                 return default;
             }
 
-            public async Task<Response<T>> PutAsync<TEntity>(string apiUrl, TEntity entity)
-            {
+        public async Task<Response<T>> PutAsyncc<TEntity>(string apiUrl, TEntity entity)
+        {
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
             return await ValidateResponse(responseMessage);
         }
 
+
+
+        public async Task PutAsync<TEntity>(string apiUrl, TEntity entity)
+        {
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
+            try
+            {
+                HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
+                //return await ValidateResponse(responseMessage);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                throw new AuthenticationException($"{ex.Message}");
+
+            }
+        }
         public async Task<string> DeleteAsync(string apiUrl)
             {
                 HttpResponseMessage responseMessage = await _httpClient.DeleteAsync(apiUrl);
