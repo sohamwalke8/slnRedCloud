@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.ResellerAdmins.Command
 {
-    public class CreateResellerAdminCommand : IRequest<BaseResponse<int>>
+    public class CreateResellerAdminCommand : IRequest<Response<int>>
     {
         public int Id { get; set; }
         //  [Required(ErrorMessage = "Reseller name is required")]

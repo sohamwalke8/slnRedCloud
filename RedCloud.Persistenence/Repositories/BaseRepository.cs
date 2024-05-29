@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -79,6 +80,12 @@ namespace RedCloud.Persistenence.Repositories
                 parameterNames[i] = parameters[i].ParameterName;
             }
             return parameterNames;
+        }
+
+
+        public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _dbContext.Set<T>().FirstOrDefaultAsync(predicate);
         }
     }
 

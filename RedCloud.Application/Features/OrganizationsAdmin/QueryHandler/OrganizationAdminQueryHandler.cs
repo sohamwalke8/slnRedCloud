@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.OrganizationsAdmin.QueryHandler
 {
-    public class OrganizationAdminQueryHandler : IRequestHandler<OrganizationAdminQuery, BaseResponse<OrganizationAdminVM>>
+    public class OrganizationAdminQueryHandler : IRequestHandler<OrganizationAdminQuery, Response<OrganizationAdminVM>>
     {
         private readonly IAsyncRepository<OrganizationAdmin> _asyncRepository;
         private readonly IMapper _mapper;
@@ -29,7 +29,7 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.QueryHandler
 
 
 
-        public async Task<BaseResponse<OrganizationAdminVM>> Handle(OrganizationAdminQuery request, CancellationToken cancellationToken)
+        public async Task<Response<OrganizationAdminVM>> Handle(OrganizationAdminQuery request, CancellationToken cancellationToken)
         {
             var admin = await _asyncRepository.GetByIdAsync(request.Id);
 
@@ -44,19 +44,20 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.QueryHandler
                 OrgName = admin.OrgName,
                 OrgAdminName = admin.OrgAdminName,
                 OrgAdminEmail = admin.OrgAdminEmail,
-                OrgAdminPassword = admin.OrgAdminPassword,
-                City = admin.City,
-                State = admin.State,
+                EIN = admin.EIN,
+                //OrgAdminPassword = admin.OrgAdminPassword,
+                CountryId = admin.CountryId,
+                CityId = admin.CityId,
+                StateId = admin.StateId,
                 ZipCode = admin.ZipCode,
                 OrgAdminMobNo = admin.OrgAdminMobNo,
                 AddressLineOne = admin.AddressLineOne,
                 AddressLineTwo = admin.AddressLineTwo,
                 OrgURL = admin.OrgURL,
                 
-
             };
 
-            return new BaseResponse<OrganizationAdminVM>(dto, "Successful");
+            return new Response<OrganizationAdminVM>(dto, "Successful");
         }
     }
 }

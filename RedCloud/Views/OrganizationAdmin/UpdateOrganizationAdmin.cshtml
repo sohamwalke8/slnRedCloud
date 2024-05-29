@@ -1,5 +1,26 @@
 ﻿@model RedCloud.ModelVM.OrganizationAdminVM;
 
+@{
+    // var selectedCountryId = Model.CountryId;
+    // var selectedStateId = Model.StateId;
+    // var selectedCityId = Model.CityId;
+    // IEnumerable<CountryVM> countries = (IEnumerable<CountryVM>)ViewBag.Country;
+    // IEnumerable<SelectListItem> countrySelectList = countries.Select(c => new SelectListItem
+    //         {
+    //             Value = c.CountryId.ToString(),
+    //             Text = c.Name,
+    //             Selected = c.CountryId == selectedCountryId
+
+    //         });
+
+    // List<StateVM> stateList = new List<StateVM>();
+    // List<CityVM> cityList = new List<CityVM>();
+
+    IEnumerable<CountryVM> countries = (IEnumerable<CountryVM>)ViewBag.Country;
+    List<StateVM> stateList = new List<StateVM>();
+    List<CityVM> cityList = new List<CityVM>();
+}
+
 @* <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,11 +45,21 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <input type="hidden" asp-for="Id" />
                                         <input type="hidden" asp-for="OrgID" />
+
                                         <label for="OrgName">Organization Name</label>
                                         <input asp-for="OrgName" class="form-control" id="OrgName" placeholder="Enter organization name">
                                         <span asp-validation-for="OrgName" class="text-danger"></span>
                                     </div>
+
+
+                                    <div class="form-group">
+                                        <label for="EIN">EIN Number</label>
+                                        <input asp-for="EIN" class="form-control" id="EIN" placeholder="Enter EIN Number">
+                                        <span asp-validation-for="EIN" class="text-danger"></span>
+                                    </div>
+
                                     <div class="form-group">
                                         <label asp-for="OrgAdminName"></label>
                                         <input asp-for="OrgAdminName" class="form-control" />
@@ -41,11 +72,11 @@
                                         <span asp-validation-for="OrgAdminEmail" class="text-danger"></span>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label asp-for="OrgAdminPassword"></label>
-                                        <input asp-for="OrgAdminPassword" class="form-control" />
-                                        <span asp-validation-for="OrgAdminPassword" class="text-danger"></span>
-                                    </div>
+                                    @*  <div class="form-group">
+                                    <label asp-for="OrgAdminPassword"></label>
+                                    <input asp-for="OrgAdminPassword" class="form-control" />
+                                    <span asp-validation-for="OrgAdminPassword" class="text-danger"></span>
+                                    </div> *@
 
                                     <div class="form-group">
                                         <label asp-for="OrgAdminMobNo"></label>
@@ -67,21 +98,112 @@
 
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="City">City</label>
-                                        <input asp-for="City" class="form-control" id="City" placeholder="Enter city">
-                                        <span asp-validation-for="City" class="text-danger"></span>
+
+
+
+                                    @Html.Partial("_CountryDropDown", countries)
+
+                                    <div id="states">
+                                        @* the options will be appended in this div *@
+
+                                        @Html.Partial("_StateDropDown", stateList)
+
+
+                                    </div>
+
+
+
+                                    <div id="cities">
+
+                                        @* the options will be appended in this div *@
+                                        @Html.Partial("_CityDropDown", cityList)
+
+                                        <input type="hidden" id="CountryId" name="CountryId" />
+                                        <input type="hidden" id="StateId" name="StateId" />
+                                        <input type="hidden" id="CityId" name="CityId" />
+
+                                    </div>
+
+
+                                    @* @Html.Partial("_CountryDropDown", countrySelectList) *@
+
+                                    @* <div id="states">
+                                      
+
+                                        @Html.Partial("_StateDropDown", stateList)
+
+
+                                    </div>
+ *@
+
+
+                                  @*   <div id="cities">
+
+                                        
+                                        @Html.Partial("_CityDropDown", cityList)
+
+                                        <input type="hidden" id="CountryId" name="CountryId" />
+                                        <input type="hidden" id="StateId" name="StateId" />
+                                        <input type="hidden" id="CityId" name="CityId" />
+
+                                    </div> *@
+
+                                    @*   <div class="form-group">
+                                    <label for="City">City</label>
+                                    <input asp-for="CityId" class="form-control" id="City" placeholder="Enter city">
+                                    <span asp-validation-for="CityId" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label asp-for="State"></label>
-                                        <select asp-for="State" class="form-control">
-                                            <option value="">Select State</option>
-                                            <option value="Alabama">Alabama</option>
-                                            <option value="Alaska">Alaska</option>
-                                            <!-- Add more states as needed -->
-                                        </select>
-                                        <span asp-validation-for="State" class="text-danger"></span>
-                                    </div>
+                                    <label for="Country">Country</label>
+                                    <input asp-for="CountryId" class="form-control" id="City" placeholder="Enter city">
+                                    <span asp-validation-for="CountryId" class="text-danger"></span>
+                                    </div> *@
+                                    @*                                     <label for="ResellerName">Reseller Name</label>
+                                    <select asp-for="CountryId" class="form-control">
+                                    @{
+                                    foreach (var item in ViewBag.CountryList)
+                                    {
+                                    <option value="@item.Value">@item.Text</option>
+                                    }
+                                    }
+                                    </select>
+                                    *@
+                                    @*     <label for="State">State Name</label>
+                                    <select asp-for="StateId" class="form-control">
+                                    @{
+                                    foreach (var item in ViewBag.StateList)
+                                    {
+                                    <option value="@item.Value">@item.Text</option>
+                                    }
+                                    }
+                                    </select>
+
+                                    <label for="City">City Name</label>
+                                    <select asp-for="CityId" class="form-control">
+                                    @{
+                                    foreach (var item in ViewBag.CityList)
+                                    {
+                                    <option value="@item.Value">@item.Text</option>
+                                    }
+                                    }
+                                    </select> *@
+
+                                    @*  <div class="form-group">
+                                    <label for="State">State</label>
+                                    <input asp-for="StateId" class="form-control" id="City" placeholder="Enter city">
+                                    <span asp-validation-for="StateId" class="text-danger"></span>
+                                    </div> *@
+
+                                    @*       <div class="form-group">
+                                    <label for="State">State</label>
+                                    <select asp-for="StateId" class="form-control" id="State">
+                                    <option value="">Select State</option>
+                                    <option value="Alabama">Alabama</option>
+                                    <option value="Alaska">Alaska</option>
+                                    <!-- Add more states as needed -->
+                                    </select>
+                                    <span asp-validation-for="StateId" class="text-danger"></span>
+                                    </div> *@
 
                                     <div class="form-group">
                                         <label asp-for="ZipCode"></label>
@@ -96,11 +218,21 @@
                                     </div>
                                     <label for="ResellerName">Reseller Name</label>
                                     @* <select asp-items="@(new SelectList(ViewBag.ResellerList))"></select> *@
-                                    <select asp-for="Id" class="form-control" asp-items="@ViewBag.ResellerList">
-                                        <option value="">Select Reseller</option>
+                                    @*  <select asp-for="Id" class="form-control" asp-items="@ViewBag.ResellerList">
+                                    <option value="">Select Reseller</option>
+                                    </select> *@
+                                    <select asp-for="Id" class="form-control">
+                                        @{
+                                            foreach (var item in ViewBag.ResellerList)
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        }
                                     </select>
-                                    @* <input asp-for="ResellerName" class="form-control" id="ResellerName" placeholder="Enter reseller name" > *@
                                     <span asp-validation-for="ResellerName" class="text-danger"></span>
+
+                                    @* <input asp-for="ResellerName" class="form-control" id="ResellerName" placeholder="Enter reseller name" > *@
+
                                 </div>
                             </div>
                         </div>
@@ -115,6 +247,98 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
+        <script>
+
+
+            // $(document).ready(function () {
+            //     $('#countryDropDown').change(function () {
+            //         var countryId = $('#countryDropDown').val();
+
+            //         $.ajax({
+            //             url: '@Url.Action("GetStateByCountryId", "Dropdown")',
+            //             data: { countryId: countryId },
+            //             type: 'GET',
+            //             success: function (data) {
+            //                 $('#states').empty();
+            //                 $('#cityDropdown').empty();
+            //                 $('#cityDropdown').append("<option>Select a city</option>");
+
+            //                 // Assuming data is an array of objects containing state id and name
+            //                 data.forEach(function (state) {
+            //                     $('#states').append($('<option>', {
+            //                         value: state.id,
+            //                         text: state.name
+            //                     }));
+            //                 });
+            //             }
+            //         });
+            //     });
+
+            //     $('#stateDropDown').change(function () {
+            //         var stateId = $('#stateDropDown').val();
+
+            //         $.ajax({
+            //             url: '@Url.Action("GetCityByStateId", "Dropdown")',
+            //             data: { stateId: stateId },
+            //             type: 'GET',
+            //             success: function (data) {
+            //                 $('#cities').empty();
+
+            //                 // Assuming data is an array of objects containing city id and name
+            //                 data.forEach(function (city) {
+            //                     $('#cities').append($('<option>', {
+            //                         value: city.id,
+            //                         text: city.name
+            //                     }));
+            //                 });
+            //             }
+            //         });
+            //     });
+            // });
+
+            $(document).ready(function () {
+                $('#countryDropDown').change(function () {
+                    var countryId = $('#countryDropDown').val();
+                    $.ajax({
+                        url: '@Url.Action("GetStateByCountryId", "Dropdown")',
+                        data: { countryId: countryId },
+                        type: 'GET',
+                        success: function (data) {
+                            $('#states').empty();
+                            $('#cityDropdown').empty();
+                            $('#cityDropdown').append("<option>Select a city</option>");
+
+                            $('#states').append(data);
+                        }
+                    });
+                });
+
+
+
+            });
+
+            function getallCitys() {
+                alert("METHOD CALLED")
+                var stateId = $('#stateDropDown').val();
+
+                $.ajax({
+
+                    url: '@Url.Action("GetCityByStateId", "Dropdown")',
+                    data: { stateId: stateId },
+                    type: 'GET',
+                    success: function (data) {
+                        $('#cities').empty();
+                        $('#cities').append(data);
+
+                    }
+                });
+            }
+
+
+           
+     
+
+            </script>
     }
 </body>
 @* </html> *@

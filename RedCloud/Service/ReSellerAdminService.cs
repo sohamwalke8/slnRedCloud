@@ -30,6 +30,18 @@ namespace RedCloud.Service
             //_logger.LogInformation("GetAllCategories Service conpleted");
             return reSelleradmin.Data;
         }
+
+
+
+
+        public async Task<ResellerAdminVM> GetResellerAdminById(int id)
+        {
+            // Ensure the id is properly inserted into the URL
+            var apiUrl = $"ReSellerAdmin/{id}";
+            var response = await _client.GetByIdAsync(apiUrl);
+            return response.Data;
+        }
+
         public async Task SoftDeleteResellerAdmin(int id)
         {
             //_logger.LogInformation($"Soft delete initiated for ResellerAdmin with ID: {id}");
@@ -37,6 +49,18 @@ namespace RedCloud.Service
             await _client.DeleteAsync($"ReSellerAdmin/{id}");
 
             //_logger.LogInformation($"Soft delete completed for ResellerAdmin with ID: {id}");
+        }
+
+       
+        public async Task<ResellerAdminVM> Block(int Id)
+        {
+            var apiUrl = $"ReSellerAdmin/{Id}";
+            var response = await _client.GetByIdAsync(apiUrl);
+            var data = response.Data;
+            data.IsActive = false;
+            var updated = await _client.PutAsync(apiUrl, data);
+            return updated.Data;
+
         }
 
 

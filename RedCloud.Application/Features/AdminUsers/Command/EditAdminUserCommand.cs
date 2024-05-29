@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.AdminUsers.Command
 {
-    public class EditAdminUserCommand : IRequest<BaseResponse<Unit>>
+    public class EditAdminUserCommand : IRequest<Response<Unit>>
     {
         public int ID { get; set; }
         //[Required(ErrorMessage = "Please enter First Name")]

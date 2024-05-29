@@ -9,7 +9,7 @@ using RedCloud.Application.Responses;
 
 namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin
 {
-    public class GetReSellerAdminListQuery: IRequest<BaseResponse<IEnumerable<ReSellerAdminVM>>>
+    public class GetReSellerAdminListQuery: IRequest<Response<IEnumerable<ReSellerAdminVM>>>
     {
     }
 }

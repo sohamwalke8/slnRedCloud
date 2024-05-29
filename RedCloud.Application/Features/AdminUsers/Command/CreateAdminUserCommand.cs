@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.AdminUsers.Command
 {
-    public class CreateAdminUserCommand:IRequest<BaseResponse<int>>
+    public class CreateAdminUserCommand:IRequest<Response<int>>
     {
 
 

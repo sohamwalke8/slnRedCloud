@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RedCloud.Domain.Comman;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Domain.Entities
 {
-    public class OrganizationAdmin
+    public class OrganizationAdmin : AuditableEntity
     {
         [Key]
         public int OrgID { get; set; }
@@ -27,6 +28,10 @@ namespace RedCloud.Domain.Entities
 
         public string AddressLineTwo { get; set; }
 
+        public string City { get; set; }
+
+        public string State { get; set; }
+
         public int ZipCode { get; set; }
 
         public string OrgURL { get; set; }
@@ -45,6 +50,10 @@ namespace RedCloud.Domain.Entities
         public int? CityId { get; set; }
 
         public City City { get; set; }
+
+
+
+
 
 
 

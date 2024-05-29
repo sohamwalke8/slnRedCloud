@@ -1,18 +1,22 @@
-﻿using Azure;
-using MediatR;
+﻿using MediatR;
 using RedCloud.Application.Responses;
+using RedCloud.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.OrganizationsAdmin.Command
 {
-    public class CreateOrganizationAdmin : IRequest<BaseResponse<int>>
+    public class CreateOrganizationAdmin : IRequest<Response<int>>
     {
-        public int OrgID { get; set; } 
+        [Key]
+        public int OrgID { get; set; }
         public string OrgName { get; set; }
+
+        public string EIN { get; set; }
 
         public string OrgAdminName { get; set; }
 
@@ -26,15 +30,35 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.Command
 
         public string AddressLineTwo { get; set; }
 
-        public string City { get; set; }
+        //public string Country { get; set; }
 
-        public string State { get; set; }
+        //public string City {  get; set; }
+
+        //public string State {  get; set; }
+
+        //public string Country { get; set; }
 
         public int ZipCode { get; set; }
 
         public string OrgURL { get; set; }
 
+        public bool IsActive { get; set; } = true;
+
         public int Id { get; set; }
+
+  
+
+        public int CountryId { get; set; }
+
+
+
+        public int StateId { get; set; }
+
+ 
+        public int? CityId { get; set; }
+
+    
+
 
 
     }

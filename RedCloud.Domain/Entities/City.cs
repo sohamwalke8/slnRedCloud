@@ -15,5 +15,6 @@ namespace RedCloud.Domain.Entities
 
         public int StateId { get; set; }
         public virtual State State { get; set; }
+
     }
 }
