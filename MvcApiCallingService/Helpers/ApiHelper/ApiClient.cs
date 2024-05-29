@@ -1,4 +1,4 @@
-﻿using Azure;
+﻿//using Azure;
 using Microsoft.Extensions.Configuration;
 using MvcApiCallingService.Response;
 using Newtonsoft.Json;
@@ -33,35 +33,35 @@ namespace MvcApiCallingService.Helpers.ApiHelper
                 return JsonConvert.DeserializeObject<PagedResponse<IEnumerable<T>>>(await responseMessage.Content.ReadAsStringAsync());
             }
 
-            public async Task<MvcApiCallingService.Response.Responses<IEnumerable<T>>> GetAllAsync(string apiUrl)
+            public async Task<Response<IEnumerable<T>>> GetAllAsync(string apiUrl)
             {
                 HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
 
                 if (!responseMessage.IsSuccessStatusCode)
                     await RaiseException(responseMessage);
-                return JsonConvert.DeserializeObject<MvcApiCallingService.Response.Responses<IEnumerable<T>>>(await responseMessage.Content.ReadAsStringAsync());
+                return JsonConvert.DeserializeObject<Response<IEnumerable<T>>>(await responseMessage.Content.ReadAsStringAsync());
             }
 
-            public async Task<MvcApiCallingService.Response.Responses<T>> GetByIdAsync(string apiUrl)
+            public async Task<Response.Response<T>> GetByIdAsync(string apiUrl)
             {
                 HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
                 return await ValidateResponse(responseMessage);
             }
 
-        public async Task<MvcApiCallingService.Response.Responses<List<T>>> GetListByIdAsync(string apiUrl)
+        public async Task<Response<List<T>>> GetListByIdAsync(string apiUrl)
         {
             HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
             if (!responseMessage.IsSuccessStatusCode)
                 await RaiseException(responseMessage);
-            return JsonConvert.DeserializeObject<MvcApiCallingService.Response.Responses<List<T>>>(await responseMessage.Content.ReadAsStringAsync());
+            return JsonConvert.DeserializeObject<Response<List<T>>>(await responseMessage.Content.ReadAsStringAsync());
         }
 
-        public async Task<MvcApiCallingService.Response.Responses<int>> PostAsync<TEntity>(string apiUrl, TEntity entity)
+        public async Task<Response<int>> PostAsync<TEntity>(string apiUrl, TEntity entity)
             {
                 StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
                 HttpResponseMessage responseMessage = await _httpClient.PostAsync(apiUrl, stringContent);
                 if (responseMessage.IsSuccessStatusCode)
-                    return JsonConvert.DeserializeObject<MvcApiCallingService.Response.Responses<int>>(await responseMessage.Content.ReadAsStringAsync());
+                    return JsonConvert.DeserializeObject<Response<int>>(await responseMessage.Content.ReadAsStringAsync());
                 return default;
             }
             // For Account
@@ -84,7 +84,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
                 return default;
             }
 
-            public async Task<MvcApiCallingService.Response.Responses<T>> PutAsync<TEntity>(string apiUrl, TEntity entity)
+            public async Task<Response<T>> PutAsync<TEntity>(string apiUrl, TEntity entity)
             {
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
@@ -107,11 +107,11 @@ namespace MvcApiCallingService.Helpers.ApiHelper
                     _httpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
             }
 
-            async Task<MvcApiCallingService.Response.Responses<T>> ValidateResponse(HttpResponseMessage response)
+            async Task<Response<T>> ValidateResponse(HttpResponseMessage response)
             {
                 if (!response.IsSuccessStatusCode)
                     await RaiseException(response);
-                return JsonConvert.DeserializeObject<MvcApiCallingService.Response.Responses<T>>(await response.Content.ReadAsStringAsync());
+                return JsonConvert.DeserializeObject<Response<T>>(await response.Content.ReadAsStringAsync());
             }
 
             async Task RaiseException(HttpResponseMessage response)
@@ -121,7 +121,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
                 throw new HttpRequestException($"{response.StatusCode}:{content}");
             }
 
-            Task<Response.Responses<int>> IApiClient<T>.PostAsync<TEntity>(string apiUrl, TEntity entity)
+            Task<Response<int>> IApiClient<T>.PostAsync<TEntity>(string apiUrl, TEntity entity)
             {
                 throw new NotImplementedException();
             }

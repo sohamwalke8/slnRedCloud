@@ -29,6 +29,8 @@ namespace RedCloud.Domain.Entities
 
         public int? OrgID { get; set; }
 
+        // public int? OrganizationAdminId { get; set; }
+
         public virtual OrganizationAdmin OrganizationAdmins { get; set; }
     }
 }

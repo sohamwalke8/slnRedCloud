@@ -8,18 +8,18 @@ namespace MvcApiCallingService.Response
 {
    
 
-        public class Responses<T>
+        public class Response<T>
         {
-            public Responses()
+            public Response()
             {
             }
-            public Responses(T data, string message = null)
+            public Response(T data, string message = null)
             {
                 Succeeded = true;
                 Message = message;
                 Data = data;
             }
-            public Responses(string message)
+            public Response(string message)
             {
                 Succeeded = false;
                 Message = message;
@@ -30,7 +30,7 @@ namespace MvcApiCallingService.Response
             public T Data { get; set; }
         }
 
-        public class PagedResponse<T> : Responses<T>
+        public class PagedResponse<T> : Response<T>
         {
             public int TotalCount { get; set; }
             public int Page { get; set; }
