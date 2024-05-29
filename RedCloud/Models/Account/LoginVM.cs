@@ -2,7 +2,7 @@
 
 namespace RedCloud.Models.Account
 {
-    public class Login
+    public class LoginVM
     {
         [Required(ErrorMessage = "Please enter Email")]
         [EmailAddress]

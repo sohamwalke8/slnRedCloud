@@ -11,7 +11,7 @@ using RedCloud.Persistenence;
 
 namespace RedCloud.Persistenence.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(ApplicationDbContex))]
     [Migration("20240523150022_RedCloudAddkry")]
     partial class RedCloudAddkry
     {

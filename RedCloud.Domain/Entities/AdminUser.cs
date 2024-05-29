@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Domain.Entities
 {
-    public class AdminUser : AuditableEntity
+    public class AdminUser /*: AuditableEntity*/
     {
         [Key]
         public int ID { get; set; }

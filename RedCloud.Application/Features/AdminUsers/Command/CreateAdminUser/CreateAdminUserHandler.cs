@@ -31,9 +31,9 @@ namespace RedCloud.Application.Features.AdminUsers.Command.CreateAdminUser
             var adminuser = _mapper.Map<AdminUser>(request);
 
 
-
-            adminuser.CreatedDate = DateTime.UtcNow;
-            adminuser.CreatedBy = null;
+            
+            //adminuser.CreatedDate = DateTime.UtcNow;
+            //adminuser.CreatedBy = null;
 
 
 

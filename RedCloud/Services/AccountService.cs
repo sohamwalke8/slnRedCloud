@@ -1,4 +1,6 @@
 ﻿using MvcApiCallingService.Helpers.ApiHelper;
+using MvcApiCallingService.Models.Responses;
+using NuGet.Protocol.Plugins;
 using RedCloud.Domain.Comman;
 using RedCloud.Interface;
 using RedCloud.Models.Account;
@@ -20,14 +22,14 @@ namespace RedCloud.Service
         }
 
 
-        public async Task<UserVM> Login(Models.Account.Login login)
+        public async Task<Response<UserVM>> Login(LoginVM login)
         {
             _logger.LogInformation("LoginAccount Service initiated");
             var response = await _apiClientLogin.PostAuthAsync("Account", login);
             if (response == null)
             {
-                _logger.LogInformation("LoginAccount Service conpleted");
-                return response;
+                _logger.LogInformation("LoginAccount Service completed with failure");
+                return new Response<UserVM> ( null, "Invalid login credentials" );
             }
 
             _logger.LogInformation("LoginAccount Service conpleted");
