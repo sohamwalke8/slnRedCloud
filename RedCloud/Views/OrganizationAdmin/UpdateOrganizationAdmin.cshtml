@@ -99,13 +99,17 @@
                                 <div class="col-md-6">
 
 
-
+                                    <div id="country">
                                     @Html.Partial("_CountryDropDown", countrySelectList)
+                                        <span asp-validation-for="CountryId" class="text-danger"></span>
+
+                                    </div>
 
                                     <div id="states">
                                         @* the options will be appended in this div *@
 
                                         @Html.Partial("_StateDropDown", stateSelectList)
+                                        <span asp-validation-for="StateId" class="text-danger"></span>
 
 
                                     </div>
@@ -116,6 +120,7 @@
 
                                         @* the options will be appended in this div *@
                                         @Html.Partial("_CityDropDown", citySelectList)
+                                        <span asp-validation-for="CityId" class="text-danger"></span>
 
 
 

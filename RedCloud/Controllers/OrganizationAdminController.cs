@@ -39,7 +39,7 @@ namespace RedCloud.Controllers
             return View(new OrganizationAdminVM());
         }
 
-        [HttpPost("AddOrganizationAdmin")]
+        [HttpPost]
         public async Task<IActionResult> AddOrganizationAdmin(OrganizationAdminVM request)
         {
             // _logger.LogInformation("CreateCategory Action initiated");

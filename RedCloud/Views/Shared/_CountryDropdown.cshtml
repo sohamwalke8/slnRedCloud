@@ -12,7 +12,7 @@
 @model IEnumerable<SelectListItem>
 
 <label for="countryDropDown" class="dropdown">Country</label>
-<select id="countryDropDown" name="CountryId" class="form-control">
+<select id="countryDropDown" name="CountryId" class="form-control" required>
     <option value="">Select a country</option>
  @foreach (var country in Model)
     {
@@ -20,7 +20,7 @@
     }
 
 </select>
-
+<span class="text-danger" id="countryValidationMsg" style="display: none;">Please select a country</span>
 
 @* 
 @model IEnumerable<CountryVM>
