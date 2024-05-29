@@ -1,21 +1,17 @@
 ﻿using AutoMapper;
-using Azure;
 using MediatR;
 using RedCloud.Application.Contract.Persistence;
-using RedCloud.Application.Features.AdminUsers.Command;
 using RedCloud.Application.Helper;
 using RedCloud.Application.Responses;
 using RedCloud.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCloud.Application.Features.AdminUsers.CommandHandler
+namespace RedCloud.Application.Features.AdminUsers.Command.CreateAdminUser
 {
-    
     public class CreateAdminUserHandler : IRequestHandler<CreateAdminUserCommand, BaseResponse<int>>
     {
         private readonly IAsyncRepository<AdminUser> _repository;

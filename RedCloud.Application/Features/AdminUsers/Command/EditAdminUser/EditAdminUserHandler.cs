@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using RedCloud.Application.Contract.Persistence;
-using RedCloud.Application.Features.AdminUsers.Command;
 using RedCloud.Application.Responses;
 using RedCloud.Domain.Entities;
 using System;
@@ -10,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCloud.Application.Features.AdminUsers.CommandHandler
+namespace RedCloud.Application.Features.AdminUsers.Command.EditAdminUser
 {
     public class EditAdminUserHandler : IRequestHandler<EditAdminUserCommand, BaseResponse<Unit>>
     {

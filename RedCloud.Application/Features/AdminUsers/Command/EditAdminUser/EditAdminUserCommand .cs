@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCloud.Application.Features.AdminUsers.Command
+namespace RedCloud.Application.Features.AdminUsers.Command.EditAdminUser
 {
     public class EditAdminUserCommand : IRequest<BaseResponse<Unit>>
     {

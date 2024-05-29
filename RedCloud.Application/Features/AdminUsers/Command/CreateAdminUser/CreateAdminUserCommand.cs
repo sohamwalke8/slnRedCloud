@@ -7,9 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCloud.Application.Features.AdminUsers.Command
+namespace RedCloud.Application.Features.AdminUsers.Command.CreateAdminUser
 {
-    
     public class CreateAdminUserCommand : IRequest<BaseResponse<int>>
     {
         [Required(ErrorMessage = "Please enter First Name")]

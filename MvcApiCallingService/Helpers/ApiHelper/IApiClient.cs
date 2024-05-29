@@ -10,6 +10,8 @@ namespace MvcApiCallingService.Helpers.ApiHelper
     public interface IApiClient<T>
     {
         Task<Response<IEnumerable<T>>> GetAllAsync(string apiUrl);
+
+        Task<Response<List<T>>> GetListByIdAsync(string apiUrl);
         Task<PagedResponse<IEnumerable<T>>> GetPagedAsync(string apiUrl);
         Task<Response<T>> GetByIdAsync(string apiUrl);
         Task<Response<int>> PostAsync<TEntity>(string apiUrl, TEntity entity);

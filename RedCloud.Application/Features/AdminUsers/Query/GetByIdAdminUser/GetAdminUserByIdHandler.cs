@@ -1,17 +1,15 @@
 ﻿using AutoMapper;
 using MediatR;
 using RedCloud.Application.Contract.Persistence;
-using RedCloud.Application.Features.AdminUsers.Command;
 using RedCloud.Application.Responses;
 using RedCloud.Domain.Entities;
-using RedCloud.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCloud.Application.Features.AdminUsers.CommandHandler
+namespace RedCloud.Application.Features.AdminUsers.Query.GetByIdAdminUser
 {
     public class GetAdminUserByIdHandler : IRequestHandler<GetAdminUserByIdQuery, BaseResponse<AdminUser>>
     {
@@ -32,5 +30,3 @@ namespace RedCloud.Application.Features.AdminUsers.CommandHandler
 
     }
 }
-    
-

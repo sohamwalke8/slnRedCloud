@@ -75,7 +75,7 @@
 
 
 
-@model RedCloud.Models.RedCloudUserVM
+ @model RedCloud.Models.RedCloudUserVM
 
 @{
     ViewData["Title"] = "Edit Admin User";
@@ -98,6 +98,11 @@
 
 <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh">
     <div class="col-md-12">
+        <div class="mb-3">
+            <a asp-action="Index" asp-controller="RedCloudUserAdmin" class="btn btn-secondary">Back</a>
+            <a asp-action="AssignReseller" asp-controller="RedCloudUserAdmin" class="btn btn-warning">Assign Reseller</a>
+
+        </div>
         <div class="card card-primary">
             <div class="card-header bg-primary">
                 <h3 class="card-title">Edit Admin User</h3>
@@ -106,7 +111,7 @@
                 * marked fields are mandatory.
             </div>
             <form asp-action="EditAdmin" asp-controller="RedCloudUserAdmin" method="post">
-                <input type="hidden" asp-for="ID" value="1029" /> <!-- Dynamically bind the ID -->
+                <input type="hidden" asp-for="ID" />
                 <div class="card-body">
                     <div class="form-group">
                         <label for="FirstName" class="required">First Name</label>
@@ -138,7 +143,7 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="#" class="btn btn-secondary">Cancel</a> 
+                    <a href="#" class="btn btn-secondary">Cancel</a>
                 </div>
             </form>
         </div>
@@ -148,3 +153,4 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
