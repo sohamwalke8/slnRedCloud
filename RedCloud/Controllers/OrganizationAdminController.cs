@@ -77,51 +77,6 @@ namespace RedCloud.Controllers
             return RedirectToAction("UpdateOrganizationAdmin");
         }
 
-        public async Task<IActionResult> GetCountry()
-        {
-
-            _logger.LogInformation("GetCountry method initiated");
-
-
-            var countries = await _dropDownService.GetAllCountryList();
-
-
-            _logger.LogInformation("GetCountry method completed");
-
-            ViewBag.Country = countries;
-            return View();
-
-        }
-
-
-
-
-        public async Task<IActionResult> GetStateByCountryId(int countryId)
-        {
-
-
-            _logger.LogInformation("GetStateByCountryId initiated");
-
-            var states = await _stateService.GetStatesByCountryId(countryId);
-
-            _logger.LogInformation("GetStateByCountryId completed");
-
-            return PartialView("_StateDropdown", states);
-
-
-
-        }
-
-
-
-
-
-        public async Task<IActionResult> GetCityByStateId(int stateId)
-        {
-
-            var city = await _cityService.GetCityByStateId(stateId);
-            return PartialView("_CityDropdown", city);
-        }
 
     }
 }
