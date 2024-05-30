@@ -34,14 +34,16 @@ namespace RedCloud.Controllers
         {
             if (ModelState.IsValid)
             {
-                LoginVM loginData = new LoginVM()
-                {
-                    Email = model.Email,
-                    Password = EncryptionDecryption.EncryptString(model.Password)
-                };
+
+                //to convert the plain text into encrypted password 
+                //LoginVM loginData = new LoginVM()
+                //{
+                //    Email = model.Email,
+                //    Password = EncryptionDecryption.EncryptString(model.Password)
+                //};
 
 
-                var data = loginData;
+                //var data = loginData;
 
                 // Here you would call your API to validate the credentials
                 //var result =await _accountService.Login(loginData);
