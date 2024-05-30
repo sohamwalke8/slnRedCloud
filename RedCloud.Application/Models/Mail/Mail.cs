@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Models.Mail
 {
-    internal class Mail
+    public class Mail
     {
+        public string To { get; set; }
+        public string Subject { get; set; }
+        public string Body { get; set; }
+
     }
 }

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Models.Cache
 {
-    internal class CacheConfiguration
+    public class CacheConfiguration
     {
+        public int AbsoluteExpirationInHours { get; set; }
+        public int SlidingExpirationInMinutes { get; set; }
+
     }
 }

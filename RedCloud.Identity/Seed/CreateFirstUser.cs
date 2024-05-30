@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Identity.Seed
 {
-    internal class CreateFirstUser
+    public class CreateFirstUser
     {
     }
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Models.Authentication
 {
-    internal class RefreshTokenRequest
+    public class RefreshTokenRequest
     {
+        public string Token { get; set; }
     }
 }
