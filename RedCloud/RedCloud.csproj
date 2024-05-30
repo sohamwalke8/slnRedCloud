@@ -7,25 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.5">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
-    <PackageReference Include="ToastNotifications" Version="2.5.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MvcApiCallingService\MvcApiCallingService.csproj" />
-    <ProjectReference Include="..\RedCloud.Application\RedCloud.Application.csproj" />
     <ProjectReference Include="..\RedCloud.Domain\RedCloud.Domain.csproj" />
     <ProjectReference Include="..\RedCloud.Persistenence\RedCloud.Persistenence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ModelVM\" />
   </ItemGroup>
 
 </Project>

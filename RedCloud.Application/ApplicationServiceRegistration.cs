@@ -14,5 +14,4 @@ namespace RedCloud.Application
             return services;
         }
 
-    }
 }

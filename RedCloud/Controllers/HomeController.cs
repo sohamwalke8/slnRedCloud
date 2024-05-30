@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Mono.TextTemplating;
 using RedCloud.Application.Contract.Persistence;
 using RedCloud.Domain.Entities;
@@ -19,16 +20,12 @@ namespace RedCloud.Controllers
     //        _repo = repo;
     //    }
 
+
         public IActionResult Index()
         {
-        //   var countries = new List<CountryVM>
-        //{
-        //   new CountryVM { CountryId = 2, Name = "India" },
-        //   new CountryVM { CountryId = 3, Name = "Korea" }
-
-        
-        //   ViewBag.Country = countries;
-          return View();
+            var session = HttpContext.Session.GetString("Email");
+            var sessionId = HttpContext.Session.GetInt32("RoleID");
+            return View();
         }
 
         //public IActionResult GetStateByCountryId(int  countryId)
