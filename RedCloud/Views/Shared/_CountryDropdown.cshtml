@@ -9,19 +9,20 @@
 
 
 
-@* @model IEnumerable<SelectListItem>
+@model IEnumerable<SelectListItem>
 
 <label for="countryDropDown" class="dropdown">Country</label>
-<select id="countryDropDown" name="CountryId" class="form-control">
+<select id="countryDropDown" name="CountryId" class="form-control" required>
     <option value="">Select a country</option>
  @foreach (var country in Model)
     {
         <option value="@country.Value" selected="@country.Selected">@country.Text</option>
     }
 
-</select> *@
+</select>
+<span class="text-danger" id="countryValidationMsg" style="display: none;">Please select a country</span>
 
-
+@* 
 @model IEnumerable<CountryVM>
 
 <label for="countryDropDown" class="dropdown">Country</label>
@@ -32,5 +33,8 @@
         <option value="@country.CountryId">@country.Name</option>
     }
 
-</select>
+</select> *@
+
+
+
 

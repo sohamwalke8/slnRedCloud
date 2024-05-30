@@ -39,7 +39,7 @@ namespace RedCloud.Controllers
             return View(new OrganizationAdminVM());
         }
 
-        [HttpPost("AddOrganizationAdmin")]
+        [HttpPost]
         public async Task<IActionResult> AddOrganizationAdmin(OrganizationAdminVM request)
         {
             // _logger.LogInformation("CreateCategory Action initiated");
@@ -52,11 +52,17 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> UpdateOrganizationAdmin(int Id)
         {
 
+            
+            var response = await _organizationAdminService.GetOrganizationAdminById(Id);
             var countries = await _dropDownService.GetAllCountryList();
             ViewBag.Country = countries;
-            var response = await _organizationAdminService.GetOrganizationAdminById(Id);
+            ViewBag.State = await _stateService.GetStatesByCountryId(response.CountryId); 
+            ViewBag.City = await _cityService.GetCityByStateId(response.StateId);
+
+
             var resellerList = await _reSellerAdminService.GetallResellerAdmin();
             ViewBag.ResellerList = new SelectList(resellerList, "Id", "ReSellerName");
+
 
             return View(response);
         }
@@ -70,28 +76,6 @@ namespace RedCloud.Controllers
             //_logger.LogInformation("CreateCategory Action initiated");
             return RedirectToAction("UpdateOrganizationAdmin");
         }
-
-
-
-
-
-        public async Task<IActionResult> GetCountry()
-        {
-
-            _logger.LogInformation("GetCountry method initiated");
-
-
-            var countries = await _dropDownService.GetAllCountryList();
-
-
-            _logger.LogInformation("GetCountry method completed");
-
-            ViewBag.Country = countries;
-            return View();
-
-        }
-
-
 
 
         public async Task<IActionResult> GetStateByCountryId(int countryId)

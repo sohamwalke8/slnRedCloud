@@ -42,19 +42,24 @@ namespace RedCloud.ModelVM
         [Required(ErrorMessage = "Please Enter Zip Code")]
         public int ZipCode { get; set; }
 
+        [Url(ErrorMessage = "Invalid URL format")]
         [Required(ErrorMessage = "Please Enter Org URL")]
         public string OrgURL { get; set; }
 
         [Required(ErrorMessage = "Please Select Reseller Name")]
         public string ResellerName { get; set; } = "Test";
 
+
+        [Required(ErrorMessage = "Please Select Reseller Name")]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Please Select Reseller Name")]
         public int CountryId { get; set; }
 
+        [Required(ErrorMessage = "Please Select Reseller Name")]
         public int StateId { get; set; }
 
-
+        [Required(ErrorMessage = "Please Select Reseller Name")]
         public int? CityId { get; set; }
 
 

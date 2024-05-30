@@ -44,14 +44,18 @@ namespace RedCloud.Controllers
 
 
 
-        public async Task<IActionResult> GetStateByCountryId(int countryId, int stateId)
+        public async Task<IActionResult> GetStateByCountryId(int countryId)
         {
 
 
             _logger.LogInformation("GetStateByCountryId initiated");
 
-            var states = await _stateService.GetStatesByCountryId(countryId);
-            ViewBag.SelectedStateId = stateId; 
+            var states = (await _stateService.GetStatesByCountryId(countryId)).Select(s => new SelectListItem()
+            {
+                Value = s.StateId.ToString(),
+                Text = s.Name
+            });
+
 
             _logger.LogInformation("GetStateByCountryId completed");
 
@@ -68,7 +72,11 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> GetCityByStateId(int stateId)
         {
 
-            var city = await _cityService.GetCityByStateId(stateId);
+            var city = (await _cityService.GetCityByStateId(stateId)).Select(s => new SelectListItem()
+            {
+                Value = s.CityId.ToString(),
+                Text = s.Name
+            }); 
             return PartialView("_CityDropdown", city);
         }
 

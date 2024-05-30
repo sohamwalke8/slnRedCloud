@@ -2,7 +2,21 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
+@model IEnumerable<SelectListItem>
+<label for="stateDropDown" class="dropdown">State</label>
+<select id="stateDropDown" name="StateId" class="form-control" onchange="getallCitys();" required>
+    <option value="">Select a state</option>
+    @if (Model.Count() > 0)
+    {
+        @foreach (var state in Model)
+        {
+            <option value="@state.Value" selected="@state.Selected">@state.Text</option>
+        }
+    }
 
+</select>
+
+@* 
 @model List<RedCloud.Models.StateVM>
 <label for="stateDropDown" class="dropdown">State</label>
 <select id="stateDropDown" name="StateId" class="form-control" onchange="getallCitys();">
@@ -15,7 +29,7 @@
         }
     }
 
-</select>
+</select> *@
 
 
 
@@ -30,7 +44,7 @@
         function getallCitys() {
 
             var stateId = $('#stateDropDown').val();
-
+            debugger
             $.ajax({
 
                 url: '@Url.Action("GetCityByStateId", "Home")',
