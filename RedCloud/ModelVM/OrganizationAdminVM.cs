@@ -42,6 +42,7 @@ namespace RedCloud.ModelVM
         [Required(ErrorMessage = "Please Enter Zip Code")]
         public int ZipCode { get; set; }
 
+        [Url(ErrorMessage = "Invalid URL format")]
         [Required(ErrorMessage = "Please Enter Org URL")]
         public string OrgURL { get; set; }
 
