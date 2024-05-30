@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using NuGet.ContentModel;
 using RedCloud.Application.Contract.Persistence;
 using System;
 using System.Collections.Generic;
@@ -87,6 +88,22 @@ namespace RedCloud.Persistenence.Repositories
         {
             return await _dbContext.Set<T>().FirstOrDefaultAsync(predicate);
         }
+
+
+        //for include other properties---------------------------------------------------------------------------------------------------------
+
+        public async Task<IEnumerable<T>> GetAllAsync(string includeProperties = "")
+        {
+            IQueryable<T> query = _dbContext.Set<T>();
+
+            foreach (var property in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(property);
+            }
+
+            return await query.ToListAsync();
+        }
+
     }
 
 }

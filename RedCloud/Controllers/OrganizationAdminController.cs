@@ -44,7 +44,7 @@ namespace RedCloud.Controllers
         {
             // _logger.LogInformation("CreateCategory Action initiated");
             var response = await _organizationAdminService.CreateOrganizationAdmin(request);
-            
+
             //_logger.LogInformation("CreateCategory Action initiated");
             return RedirectToAction("AddOrganizationAdmin");
         }
@@ -56,8 +56,8 @@ namespace RedCloud.Controllers
             ViewBag.Country = countries;
             var response = await _organizationAdminService.GetOrganizationAdminById(Id);
             var resellerList = await _reSellerAdminService.GetallResellerAdmin();
-            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ReSellerName");   
-            
+            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ReSellerName");
+
             return View(response);
         }
 
@@ -70,6 +70,52 @@ namespace RedCloud.Controllers
             //_logger.LogInformation("CreateCategory Action initiated");
             return RedirectToAction("UpdateOrganizationAdmin");
         }
+
+
+
+
+
+        public async Task<IActionResult> GetCountry()
+        {
+
+            _logger.LogInformation("GetCountry method initiated");
+
+
+            var countries = await _dropDownService.GetAllCountryList();
+
+
+            _logger.LogInformation("GetCountry method completed");
+
+            ViewBag.Country = countries;
+            return View();
+
+        }
+
+
+
+
+        public async Task<IActionResult> GetStateByCountryId(int countryId)
+        {
+
+            _logger.LogInformation("GetStateByCountryId initiated");
+
+            var states = await _stateService.GetStatesByCountryId(countryId);
+
+            _logger.LogInformation("GetStateByCountryId completed");
+
+            return PartialView("_StateDropdown", states);
+
+        }
+
+        public async Task<IActionResult> GetCityByStateId(int stateId)
+        {
+
+            var city = await _cityService.GetCityByStateId(stateId);
+            return PartialView("_CityDropdown", city);
+        }
+
+                                                         //-----------------------------------------------------------------------------------------------------
+
 
         public async Task<IActionResult> ViewOrganizationAdmin()
         {
@@ -103,76 +149,32 @@ namespace RedCloud.Controllers
             return View(model);
         }
 
+
         public async Task<IActionResult> ViewOrganizationDetails()
         {
-            var dummyData = new OrganizationAdmin
-            {
-                OrgID = 1,
-                OrgName = "Sample Organization",
-                EIN = "123456789",
-                OrgAdminName = "John Doe",
-                OrgAdminEmail = "john.doe@example.com",
-                OrgAdminMobNo = "123-456-7890",
-                AddressLineOne = "123 Main St",
-                AddressLineTwo = "Suite 400",
-                ZipCode = 12345,
-                OrgURL = "http://www.sampleorg.com",
-                IsActive = true,
-                Country = new Country { CountryId = 1, Name = "USA" },
-                State = new State { StateId = 1, Name = "California" },
-                City = new City { CityId = 1, Name = "Los Angeles" },
-                CountryId = 1,
-                StateId = 1,
-                CityId = 1
-            };
+            //var dummyData = new OrganizationAdmin
+            //{
+            //    OrgID = 1,
+            //    OrgName = "Sample Organization",
+            //    EIN = "123456789",
+            //    OrgAdminName = "John Doe",
+            //    OrgAdminEmail = "john.doe@example.com",
+            //    OrgAdminMobNo = "123-456-7890",
+            //    AddressLineOne = "123 Main St",
+            //    AddressLineTwo = "Suite 400",
+            //    ZipCode = 12345,
+            //    OrgURL = "http://www.sampleorg.com",
+            //    IsActive = true,
+            //    Country = new Country { CountryId = 1, Name = "USA" },
+            //    State = new State { StateId = 1, Name = "California" },
+            //    City = new City { CityId = 1, Name = "Los Angeles" },
+            //    CountryId = 1,
+            //    StateId = 1,
+            //    CityId = 1
+            //};
 
-            return View(dummyData);
-        }
-
-        public async Task<IActionResult> GetCountry()
-        {
-
-            _logger.LogInformation("GetCountry method initiated");
-
-
-            var countries = await _dropDownService.GetAllCountryList();
-
-
-            _logger.LogInformation("GetCountry method completed");
-
-            ViewBag.Country = countries;
+            //return View(dummyData);
             return View();
-
-        }
-
-
-
-
-        public async Task<IActionResult> GetStateByCountryId(int countryId)
-        {
-
-
-            _logger.LogInformation("GetStateByCountryId initiated");
-
-            var states = await _stateService.GetStatesByCountryId(countryId);
-
-            _logger.LogInformation("GetStateByCountryId completed");
-
-            return PartialView("_StateDropdown", states);
-
-
-
-        }
-
-
-
-
-
-        public async Task<IActionResult> GetCityByStateId(int stateId)
-        {
-
-            var city = await _cityService.GetCityByStateId(stateId);
-            return PartialView("_CityDropdown", city);
         }
 
     }

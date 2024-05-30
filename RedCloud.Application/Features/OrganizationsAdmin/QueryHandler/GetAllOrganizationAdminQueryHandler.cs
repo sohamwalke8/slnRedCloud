@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using RedCloud.Application.Contract.Persistence;
 using RedCloud.Application.Features.OrganizationsAdmin.Query;
+//using RedCloud.Application.Features.OrganizationsAdmin.Query.GetAllOrganizationAdminQuery;
 using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
 using RedCloud.Application.Responses;
 using RedCloud.Domain.Entities;
@@ -10,12 +11,13 @@ using RedCloud.ModelVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.OrganizationsAdmin.QueryHandler
 {
-    public class GetAllOrganizationAdminQueryHandler : IRequestHandler<GetAllOrganizationAdminQuery, BaseResponse<IEnumerable<AllOrganizationAdminVM>>>
+    public class GetAllOrganizationAdminQueryHandler : IRequestHandler<GetAllOrganizationAdminQuery, Response<IEnumerable<AllOrganizationAdminVM>>>
     {
 
         private readonly ILogger<GetAllOrganizationAdminQueryHandler> _logger;
@@ -31,17 +33,22 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.QueryHandler
 
 
 
-        public async Task<BaseResponse<IEnumerable<AllOrganizationAdminVM>>> Handle(GetAllOrganizationAdminQuery request, CancellationToken cancellationToken)
+        public async Task<Response<IEnumerable<AllOrganizationAdminVM>>> Handle(GetAllOrganizationAdminQuery request, CancellationToken cancellationToken)
         {
+            //  _logger.LogInformation("Handle Initiated");
+            //for include All Data(State,)
+            //var OrganizatinAdmins = (await _asyncRepository.GetAllAsync("State,City")).Where(x => x.IsDeleted == false);
+            var OrganizatinAdmins = (await _asyncRepository.ListAllAsync()).Where(x => x.IsDeleted == false);
 
-            var OrganizatinAdmin = (await _asyncRepository.ListAllAsync()).Where(x => x.IsActive == true);
-
-            //var resellers = AllOrganizatinAdmin.ResellerAdmins;                  // List of ResellerAdmin associated with the OrganizationAdmin
-
-            var AllOrganizatinAdminData = _mapper.Map<IEnumerable<AllOrganizationAdminVM>>(OrganizatinAdmin);
-
-            return new BaseResponse<List<AllOrganizationAdminVM>>(AllOrganizatinAdminData, "success");
-
+            var model = OrganizatinAdmins.Select(x => new AllOrganizationAdminVM()
+            {
+                OrgID = x.OrgID,
+                OrgName = x.OrgName,
+                EIN = x.EIN,
+                OrgAdminEmail = x.OrgAdminEmail,
+                IsActive = x.IsActive,
+            });
+            return new Response<IEnumerable<AllOrganizationAdminVM>>(model, "success");
         }
     }
 }

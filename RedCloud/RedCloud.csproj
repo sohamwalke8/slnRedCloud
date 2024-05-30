@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\OrganizationAdmin\ViewOrganizationDetails.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Controllers\RedCloudUserAdminController.cs~RF15e4930e.TMP" />
   </ItemGroup>
 

@@ -13,8 +13,10 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         Task<PagedResponse<IEnumerable<T>>> GetPagedAsync(string apiUrl);
         Task<Response<T>> GetByIdAsync(string apiUrl);
         Task<Response<int>> PostAsync<TEntity>(string apiUrl, TEntity entity);
+        
         // for Account
         Task<T> PostAuthAsync<TEntity>(string apiUrl, TEntity entity);
+
         //Task PutAsync<TEntity>(string apiUrl, TEntity entity);
         Task<string> DeleteAsync(string apiUrl);
         Task<Response<List<T>>> GetListByIdAsync(string apiUrl);

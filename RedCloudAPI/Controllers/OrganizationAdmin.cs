@@ -16,22 +16,24 @@ namespace RedCloudAPI.Controllers
         public OrganizationAdmin(IMediator mediator)
         {
             _mediator = mediator;
-         
+
         }
 
-        [HttpPost( "AddOrganizationAdmin")]
+        [HttpPost("AddOrganizationAdmin")]
         public async Task<ActionResult> Create([FromBody] CreateOrganizationAdmin createOrganizationAdmin)
         {
             var response = await _mediator.Send(createOrganizationAdmin);
             return Ok(response);
         }
 
-        [HttpPut( "UpdateOrganizationAdmin")]
+
+        [HttpPut("UpdateOrganizationAdmin")]
         public async Task<ActionResult> Update([FromBody] UpdateOrganizationAdmin updateOrganizationAdmin)
         {
             var response = await _mediator.Send(updateOrganizationAdmin);
             return Ok(response);
         }
+
 
         [HttpGet("{id}", Name = "GetOrganizationAdminById")]
         public async Task<ActionResult> FetchOrganizationAdminById(int id)
@@ -45,5 +47,17 @@ namespace RedCloudAPI.Controllers
 
             return Ok(dto);
         }
+        [HttpGet("")]
+        public async Task<ActionResult> GetAllOrganizationAdmin()
+        {
+
+
+            return Ok();
+        }
+
+
+
+
+
     }
 }

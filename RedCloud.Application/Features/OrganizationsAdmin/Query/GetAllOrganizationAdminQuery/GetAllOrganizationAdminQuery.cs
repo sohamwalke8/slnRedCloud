@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.OrganizationsAdmin.Query
 {
-    public class GetAllOrganizationAdminQuery : IRequest<BaseResponse<IEnumerable<AllOrganizationAdminVM>>>
+    public class GetAllOrganizationAdminQuery : IRequest<Response<IEnumerable<AllOrganizationAdminVM>>>
     {
 
     }
