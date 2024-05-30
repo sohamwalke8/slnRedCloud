@@ -59,7 +59,7 @@ namespace RedCloud.Controllers
             //_logger.LogInformation("CreateCategory Action initiated");
             return RedirectToAction("Index");
         }
-
+         
 
         //public IActionResult UpdateResellerAdmin(int Id)
         //{

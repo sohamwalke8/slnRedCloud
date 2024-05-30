@@ -27,7 +27,7 @@ namespace RedCloud.Models
 
         [Required(ErrorMessage = "Zip Code is required")]
       //  [RegularExpression(@"^\d{5}(?:[-\s]\d{4})?$", ErrorMessage = "Please enter a valid Zip Code")]
-        public string ZipCode { get; set; }
+        public int ZipCode { get; set; }
 
        [Required(ErrorMessage = "Company URL is required")]
       //  [Url(ErrorMessage = "Please enter a valid URL")]

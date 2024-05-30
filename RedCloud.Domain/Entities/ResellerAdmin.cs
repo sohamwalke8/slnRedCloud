@@ -19,7 +19,7 @@ namespace RedCloud.Domain.Entities
         public string AddressLine2 { get; set; }
       //  public string City { get; set; }
        // public string State { get; set; }
-        public string ZipCode { get; set; }
+        public int ZipCode { get; set; }
 
         public string CompanyURL { get; set; }
         public string CompanySupportEmail { get; set; }

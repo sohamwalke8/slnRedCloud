@@ -15,7 +15,7 @@ namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetResellerAd
         public string AddressLine2 { get; set; }
         public int? City { get; set; }//c
         public int? State { get; set; }//c
-        public string ZipCode { get; set; }
+        public int ZipCode { get; set; }
 
         public string CompanyURL { get; set; }
         public string CompanySupportEmail { get; set; }
