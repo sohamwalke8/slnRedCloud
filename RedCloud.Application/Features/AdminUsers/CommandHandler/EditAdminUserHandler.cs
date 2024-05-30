@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.AdminUsers.CommandHandler
 {
-    public class EditAdminUserHandler : IRequestHandler<EditAdminUserCommand, BaseResponse<Unit>>
+    public class EditAdminUserHandler : IRequestHandler<EditAdminUserCommand, Response<Unit>>
     {
         private readonly IAsyncRepository<AdminUser> _repository;
         private readonly IMapper _mapper;
@@ -23,11 +23,11 @@ namespace RedCloud.Application.Features.AdminUsers.CommandHandler
             _mapper = mapper;
         }
 
-        public async Task<BaseResponse<Unit>> Handle(EditAdminUserCommand request, CancellationToken cancellationToken)
+        public async Task<Response<Unit>> Handle(EditAdminUserCommand request, CancellationToken cancellationToken)
         {
             var adminuser=_mapper.Map<AdminUser>(request);
             await _repository.UpdateAsync(adminuser);
-            var response = new BaseResponse<Unit>("Updated Successfully");
+            var response = new Response<Unit>("Updated Successfully");
             return response;
         }
     }

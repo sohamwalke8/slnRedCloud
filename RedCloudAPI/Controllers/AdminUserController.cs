@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RedCloud.Application.Features.AdminUsers.Command;
 using RedCloud.Application.Features.AdminUsers.Queries;
+using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
 
 namespace RedCloudAPI.Controllers
 {
@@ -52,5 +53,16 @@ namespace RedCloudAPI.Controllers
             return Ok(dto);
         }
 
+
+        [HttpGet("all", Name = "GetAllRedAdminList")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> GetAllRedAdminList()
+        {
+            _logger.LogInformation("GetAllResellerAdmin Initiated");
+            var dtos = await _mediator.Send(new GetAllRedCloudAdminList());//make changes here
+            return Ok(dtos);
+        }
+
     }
 }
+ 

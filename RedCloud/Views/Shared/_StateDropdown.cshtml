@@ -4,7 +4,7 @@
 
 
 
-@model List<RedCloud.Models.StateVM>
+@* @model List<RedCloud.Models.StateVM>
 <label for="stateDropDown" class="dropdown">State</label>
 <select id="stateDropDown" name="StateId" class="dropdown" onchange="getallCitys();">
     <option value="">Select a state</option>
@@ -16,10 +16,22 @@
         }       
     }
 
+</select> *@
+
+
+@model IEnumerable<SelectListItem>
+<label for="stateDropDown" class="dropdown">State</label>
+<select id="stateDropDown" name="StateId" class="form-control" onchange="getallCitys();" required>
+    <option value="">Select a state</option>
+    @if (Model.Count() > 0)
+    {
+        @foreach (var state in Model)
+        {
+            <option value="@state.Value" selected="@state.Selected">@state.Text</option>
+        }
+    }
+
 </select>
-
-
-
 
 
 

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Azure;
 using MediatR;
 using RedCloud.Application.Contract.Persistence;
 using RedCloud.Application.Features.AdminUsers.Command;
@@ -14,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.AdminUsers.CommandHandler
 {
-    public class CreateAdminUserHandler : IRequestHandler<CreateAdminUserCommand, BaseResponse<int>>
+    public class CreateAdminUserHandler : IRequestHandler<CreateAdminUserCommand, Response<int>>
     {
         private readonly IAsyncRepository<AdminUser> _repository;
         private readonly IMapper _mapper;
@@ -26,11 +25,11 @@ namespace RedCloud.Application.Features.AdminUsers.CommandHandler
         }
 
         
-        public async Task<BaseResponse<int>> Handle(CreateAdminUserCommand request, CancellationToken cancellationToken)
+        public async Task<Response<int>> Handle(CreateAdminUserCommand request, CancellationToken cancellationToken)
         {
             var adminuser = _mapper.Map<AdminUser>(request);
             var result = await _repository.AddAsync(adminuser);
-            var response = new BaseResponse<int>(result.ID, "Inserted successfully");
+            var response = new Response<int>(result.ID, "Inserted successfully");
             return response;
         }
 

@@ -9,12 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using RedCloud.Domain.Entities;
 using AutoMapper;
-using Azure;
 using RedCloud.Application.Responses;
 
 namespace RedCloud.Application.Features.ResellerAdmins.CommandHandler
 {
-    public class CreateResellerAdminCommandHandler : IRequestHandler<CreateResellerAdminCommand, BaseResponse<int>>
+    public class CreateResellerAdminCommandHandler : IRequestHandler<CreateResellerAdminCommand, Response<int>>
     {
 
         private readonly IAsyncRepository<ResellerAdmin> _repository;
@@ -27,16 +26,24 @@ namespace RedCloud.Application.Features.ResellerAdmins.CommandHandler
             _mapper = mapper;
         }
 
-        public async Task<BaseResponse<int>> Handle(CreateResellerAdminCommand request, CancellationToken cancellationToken)
+        public async Task<Response<int>> Handle(CreateResellerAdminCommand request, CancellationToken cancellationToken)
             {
             request.Password = GenerateRandomPassword();//create for random passaword generation new adition
 
             var AdminRese = _mapper.Map<ResellerAdmin>(request);
 
-            
+
+            //  ResellerName = request.ResellerName,
+            AdminRese.IsActive = true;
+            AdminRese.CreatedBy = 1;//c.n
+            AdminRese.CreatedDate = DateTime.Now;
+            AdminRese.IsDeleted = false;
+
+
+
             var result = await _repository.AddAsync(AdminRese);
             //var response = new Response<BlogVM>(_mapper.Map<BlogVM>(blog), "Inserted successfully ");
-            var response = new BaseResponse<int>(result.Id, "Inserted successfully ");
+            var response = new Response<int>(result.Id, "Inserted successfully ");
             return response;
 
         }

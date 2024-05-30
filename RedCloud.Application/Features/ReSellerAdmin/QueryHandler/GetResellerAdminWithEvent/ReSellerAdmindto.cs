@@ -13,8 +13,8 @@ namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetResellerAd
         public string EIN { get; set; }
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
+        public int? City { get; set; }//c
+        public int? State { get; set; }//c
         public string ZipCode { get; set; }
 
         public string CompanyURL { get; set; }

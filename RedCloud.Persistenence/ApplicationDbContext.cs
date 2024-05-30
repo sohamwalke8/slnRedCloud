@@ -16,19 +16,6 @@ namespace RedCloud.Persistenence
         public DbSet<State> States { get; set; }
         public DbSet<City> Cities { get; set; }
         
-         public DbSet<ResellerAdmin> ReSellerAdmin { get; set; }
-        public DbSet<OrganizationAdmin> OrganizationAdmin { get; set; }
-
-
-        //{
-        //}
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-           : base(options)
-        {
-        }
-
-        public DbSet<ResellerAdmin> ReSellerAdmins { get; set; }
-
         public DbSet<OrganizationAdmin> OrganizationAdmins { get; set; }
 
         public DbSet<ResellerAdmin> ResellerAdmins { get; set; }

@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using MvcApiCallingService.Helpers.ApiHelper;
 using MvcApiCallingService.Response;
 using Newtonsoft.Json;
-using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
 using RedCloud.Controllers;
 using RedCloud.Domain.Entities;
 using RedCloud.Interface;

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.ResellerAdmins.CommandHandler
 {
-    public class UpdateResellerAdminCommandHandler : IRequestHandler<UpdateResellerAdminCommand, BaseResponse<Unit>>
+    public class UpdateResellerAdminCommandHandler : IRequestHandler<UpdateResellerAdminCommand, Response<Unit>>
     {
         private readonly IAsyncRepository<ResellerAdmin> _repository;
         private readonly IMapper _mapper;
@@ -24,11 +24,14 @@ namespace RedCloud.Application.Features.ResellerAdmins.CommandHandler
             _mapper = mapper;
         }
 
-        public async Task<BaseResponse<Unit>> Handle(UpdateResellerAdminCommand request, CancellationToken cancellationToken)
+        public async Task<Response<Unit>> Handle(UpdateResellerAdminCommand request, CancellationToken cancellationToken)
         {
             var adminuser = _mapper.Map<ResellerAdmin>(request);
+            adminuser.IsDeleted = false;
+            adminuser.LastModifiedBy = 1;
+            adminuser.ModifiedDate = DateTime.Now;
             await _repository.UpdateAsync(adminuser);
-            var response = new BaseResponse<Unit>( "Inserted successfully");
+            var response = new Response<Unit>( "Inserted successfully");
             return response;
         }
     }

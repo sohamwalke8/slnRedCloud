@@ -20,10 +20,10 @@ namespace RedCloud.Models
         public string AddressLine2 { get; set; }
 
         [Required(ErrorMessage = "City is required")]
-        public string City { get; set; }
+        public int CityId { get; set; }//c
 
         [Required(ErrorMessage = "State is required")]
-        public string State { get; set; }
+        public int StateId { get; set; }//c
 
         [Required(ErrorMessage = "Zip Code is required")]
       //  [RegularExpression(@"^\d{5}(?:[-\s]\d{4})?$", ErrorMessage = "Please enter a valid Zip Code")]
@@ -42,7 +42,13 @@ namespace RedCloud.Models
 
         public string Password { get; set; }
 
+        public bool IsActive { get; set; }
+
+        public int CountryId { get; set; }//c
+
+        public int ResellerAdminId { get; set; }
 
 
-     }
+
+    }
 }

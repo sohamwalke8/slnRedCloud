@@ -9,15 +9,8 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.AdminUsers.Queries
 {
-    public class ReselleAdminGetById : IRequest<Response<ResellerAdminVM>>
+    public  class GetAllRedCloudAdminList : IRequest<Response<IEnumerable<RedCloudUserVM>>>//u have to change vm name
     {
-
-        public int Id { get; set; }
-
-        public ReselleAdminGetById(int id)
-        {
-            Id = id;
-        }
-
+      
     }
 }

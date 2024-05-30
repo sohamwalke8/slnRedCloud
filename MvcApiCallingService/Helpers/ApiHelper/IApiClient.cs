@@ -10,8 +10,8 @@ namespace MvcApiCallingService.Helpers.ApiHelper
     public interface IApiClient<T>
     {
 
-        Task<MvcApiCallingService.Response.Response<IEnumerable<T>>> GetAllAsync(string apiUrl);
-        Task<MvcApiCallingService.Response.Response<List<T>>> GetListByIdAsync(string apiUrl);
+        Task<Response<IEnumerable<T>>> GetAllAsync(string apiUrl);
+        Task<Response<List<T>>> GetListByIdAsync(string apiUrl);
         Task<PagedResponse<IEnumerable<T>>> GetPagedAsync(string apiUrl);
         Task<Response<T>> GetByIdAsync(string apiUrl);
         Task<Response<int>> PostAsync<TEntity>(string apiUrl, TEntity entity);
@@ -19,5 +19,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         Task<T> PostAuthAsync<TEntity>(string apiUrl, TEntity entity);
         Task<Response<T>> PutAsync<TEntity>(string apiUrl, TEntity entity);
         Task<string> DeleteAsync(string apiUrl);
+
+       // Task<Response<List<T>>> GetListByIdAsync(string apiUrl);
     }
 }

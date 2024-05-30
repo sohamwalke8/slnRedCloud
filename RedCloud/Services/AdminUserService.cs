@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using MvcApiCallingService.Helpers.ApiHelper;
 
 using RedCloud.Domain.Entities;
 using RedCloud.Interface;
+using RedCloud.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +31,16 @@ namespace RedCloud.Service
             //_logger.LogInformation("CreateCategory Service conpleted");
             return users.Data;
         }
+
+
+      //  [HttpGet]
+        //public async Task<IEnumerable<AdminUser>> GetAllRedCloudAdmin()
+        //{
+        //    _logger.LogInformation("GetAllRedCloudAdmin Service initiated");
+        //    var reSelleradmin = await _client.GetAllAsync("");//add api link hehe
+        //    _logger.LogInformation("GetAllRedCloudAdmin Service conpleted");
+        //    return reSelleradmin.Data;
+        //}
+       
     }
 }

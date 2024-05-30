@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace RedCloud.Application.Features.AdminUsers.QueriesHndler
 {
 
-    public class ReselleAdminGetByIdHandler : IRequestHandler<ReselleAdminGetById, BaseResponse<ResellerAdminVM>>
+    public class ReselleAdminGetByIdHandler : IRequestHandler<ReselleAdminGetById, Response<ResellerAdminVM>>
     {
         private readonly IAsyncRepository<ResellerAdmin> _asyncRepository;
         private readonly IMapper _mapper;
@@ -27,7 +27,7 @@ namespace RedCloud.Application.Features.AdminUsers.QueriesHndler
             _mapper = mapper;
         }
 
-        public async Task<BaseResponse<ResellerAdminVM>> Handle(ReselleAdminGetById request, CancellationToken cancellationToken)
+        public async Task<Response<ResellerAdminVM>> Handle(ReselleAdminGetById request, CancellationToken cancellationToken)
         {
 
             var admin = await _asyncRepository.GetByIdAsync(request.Id);
@@ -55,7 +55,7 @@ namespace RedCloud.Application.Features.AdminUsers.QueriesHndler
 
             };
 
-               return new BaseResponse<ResellerAdminVM>(dto, "Successful"); ;
+               return new Response<ResellerAdminVM>(dto, "Successful"); ;
 
 
         }

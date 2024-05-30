@@ -46,8 +46,7 @@ namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetResellerAd
 
         public async Task<Response<ReSellerAdmindto>> Handle(GetReSellerAdminByIdQuery request, CancellationToken cancellationToken)
         {
-            var admin = await _asyncRepository.FirstOrDefaultAsync(
-                x => x.Id == request.Id &&  x.IsActive ==true);
+            var admin = await _asyncRepository.GetByIdAsync(request.Id);
 
             if (admin == null)
             {
@@ -61,8 +60,8 @@ namespace RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetResellerAd
                 EIN = admin.EIN,
                 AddressLine1 = admin.AddressLine1,
                 AddressLine2 = admin.AddressLine2,
-                City = admin.City,
-                State = admin.State,
+                City = admin.CityId,//c
+                State = admin.StateId,//c
                 ZipCode = admin.ZipCode,
                 CompanyURL = admin.CompanyURL,
                 CompanySupportEmail = admin.CompanySupportEmail,

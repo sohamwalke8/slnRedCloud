@@ -10,6 +10,7 @@ namespace RedCloud.Controllers
 
         private readonly IAdminUserService _adminUserService;
         private readonly ILogger<AdminUserService> _logger;
+        private readonly IAdminReseller _adminReseller;
        
 
         public RedCloudUserAdminController(IAdminUserService adminUserService, ILogger<AdminUserService> logger)
@@ -39,6 +40,16 @@ namespace RedCloud.Controllers
         public IActionResult EditAdmin()
         {
             return View();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ViewResellerAdmin()
+        {
+            //_logger.LogInformation("ViewResellerAdmin Action initiated");
+            var response = await _adminReseller.GetallResellerAdmin();
+            //_logger.LogInformation("ViewResellerAdmin Action completed");
+            return View(response);
         }
     }
 }

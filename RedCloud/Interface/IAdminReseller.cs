@@ -11,5 +11,7 @@ namespace RedCloud.Interface
 
 
         Task<ResellerAdminVM> GetResellerAdminById(int eventId);
+
+        Task<IEnumerable<AdminUser>> GetallResellerAdmin();
     }
 }

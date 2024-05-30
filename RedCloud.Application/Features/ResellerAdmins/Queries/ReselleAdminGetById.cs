@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.ResellerAdmins.Queries
 {
-    public class ReselleAdminGetById : IRequest<BaseResponse<ResellerAdminVM>>
+    public class ReselleAdminGetById : IRequest<Response<ResellerAdminVM>>
     {
 
         public int Id { get; set; }

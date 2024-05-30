@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.OrganizationsAdmin.CommandHandler
 {
-    public class UpdateOrganizationAdminCommandHandler : IRequestHandler<UpdateOrganizationAdmin, BaseResponse<Unit>>
+    public class UpdateOrganizationAdminCommandHandler : IRequestHandler<UpdateOrganizationAdmin, Response<Unit>>
     {
 
         private readonly IAsyncRepository<OrganizationAdmin> _repository;
@@ -25,11 +25,11 @@ namespace RedCloud.Application.Features.OrganizationsAdmin.CommandHandler
             _mapper = mapper;
         }
 
-        public async Task<BaseResponse<Unit>> Handle(UpdateOrganizationAdmin request, CancellationToken cancellationToken)
+        public async Task<Response<Unit>> Handle(UpdateOrganizationAdmin request, CancellationToken cancellationToken)
         {
             var adminuser = _mapper.Map<OrganizationAdmin>(request);
             await _repository.UpdateAsync(adminuser);
-            var response = new BaseResponse<Unit>("Inserted successfully");
+            var response = new Response<Unit>("Inserted successfully");
             return response;
         }
 

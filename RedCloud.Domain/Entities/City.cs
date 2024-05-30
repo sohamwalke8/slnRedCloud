@@ -15,5 +15,8 @@ namespace RedCloud.Domain.Entities
 
         public int StateId { get; set; }
         public virtual State State { get; set; }
+
+
+      //  public virtual ICollection<ResellerAdmin> ResellerAdmins { get; set; } = new List<ResellerAdmin>();
     }
 }

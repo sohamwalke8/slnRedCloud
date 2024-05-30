@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RedCloud.Interface;
 using RedCloud.Models;
 
@@ -24,29 +25,87 @@ namespace RedCloud.Controllers
         }
 
 
+        //public async Task<IActionResult> GetCountry()
+        //{
+
+        //    //    var countries = new List<CountryVM>
+        //    //{
+        //    //   new CountryVM { CountryId = 2, Name = "India" },
+        //    //   new CountryVM { CountryId = 3, Name = "Korea" }
+
+        //    //};
+        //    //    ViewBag.Country = countries;
+        //    // Log the initiation of the GetCountry method
+        //    _logger.LogInformation("GetCountry method initiated");
+
+        //    // Fetch the list of countries asynchronously
+        //    var countries = await _dropDownService.GetAllCountryList();
+
+        //    // Log the completion of the GetCountry method
+        //    _logger.LogInformation("GetCountry method completed");
+
+        //    // Pass the fetched countries to the view via ViewBag
+        //    ViewBag.Country = countries;
+
+        //    // Return the view
+        //    return View();
+
+        //}
+
+
+
+
+        //public async Task<IActionResult> GetStateByCountryId(int countryId)
+        //{
+
+
+        //    _logger.LogInformation("GetStateByCountryId initiated");
+
+        //    // Call the service method to fetch states based on country ID
+        //    var states = await _stateService.GetStatesByCountryId(countryId);
+
+        //    _logger.LogInformation("GetStateByCountryId completed");
+
+        //    // Check if states data is not null and return the partial view
+
+        //    return PartialView("_StateDropdown", states);
+
+
+
+        //}
+
+
+
+
+
+        //public async Task<IActionResult> GetCityByStateId(int stateId)
+        //{
+
+        //    var city = await _cityService.GetCityByStateId(stateId);
+        //    //List<CityVM> city = new List<CityVM>
+        //    //{
+        //    //new CityVM {StateId=1, CityId = 2, Name = "Mumbai" },
+        //    //new CityVM {StateId=4, CityId = 3, Name = "Hamnisa" }
+        //    //};
+        //   // city = city.Where(x => x.StateId == stateId).ToList();
+        //    return PartialView("_CityDropdown", city);
+        //}
+
+
+
+
         public async Task<IActionResult> GetCountry()
         {
 
-            //    var countries = new List<CountryVM>
-            //{
-            //   new CountryVM { CountryId = 2, Name = "India" },
-            //   new CountryVM { CountryId = 3, Name = "Korea" }
-
-            //};
-            //    ViewBag.Country = countries;
-            // Log the initiation of the GetCountry method
             _logger.LogInformation("GetCountry method initiated");
 
-            // Fetch the list of countries asynchronously
+
             var countries = await _dropDownService.GetAllCountryList();
 
-            // Log the completion of the GetCountry method
+
             _logger.LogInformation("GetCountry method completed");
 
-            // Pass the fetched countries to the view via ViewBag
             ViewBag.Country = countries;
-
-            // Return the view
             return View();
 
         }
@@ -60,12 +119,14 @@ namespace RedCloud.Controllers
 
             _logger.LogInformation("GetStateByCountryId initiated");
 
-            // Call the service method to fetch states based on country ID
-            var states = await _stateService.GetStatesByCountryId(countryId);
+            var states = (await _stateService.GetStatesByCountryId(countryId)).Select(s => new SelectListItem()
+            {
+                Value = s.StateId.ToString(),
+                Text = s.Name
+            });
+
 
             _logger.LogInformation("GetStateByCountryId completed");
-
-            // Check if states data is not null and return the partial view
 
             return PartialView("_StateDropdown", states);
 
@@ -80,16 +141,13 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> GetCityByStateId(int stateId)
         {
 
-            var city = await _cityService.GetCityByStateId(stateId);
-            //List<CityVM> city = new List<CityVM>
-            //{
-            //new CityVM {StateId=1, CityId = 2, Name = "Mumbai" },
-            //new CityVM {StateId=4, CityId = 3, Name = "Hamnisa" }
-            //};
-           // city = city.Where(x => x.StateId == stateId).ToList();
+            var city = (await _cityService.GetCityByStateId(stateId)).Select(s => new SelectListItem()
+            {
+                Value = s.CityId.ToString(),
+                Text = s.Name
+            });
             return PartialView("_CityDropdown", city);
         }
-
 
     }
 }

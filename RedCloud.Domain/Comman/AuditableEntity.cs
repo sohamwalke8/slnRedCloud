@@ -8,11 +8,11 @@ namespace RedCloud.Domain.Comman
 {
     public class AuditableEntity
     {
-        public int? CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public int? LastModifiedBy { get; set; }
+        public int? CreatedBy { get; set; }//c.n
+        public DateTime? CreatedDate { get; set; } = DateTime.Now;
+        public int? LastModifiedBy { get; set; }//c.n
         public DateTime? ModifiedDate { get; set; }
 
-        public bool IsDeleted { get; set; } 
+        public bool? IsDeleted { get; set; } = false; 
     }
 }

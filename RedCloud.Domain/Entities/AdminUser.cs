@@ -26,6 +26,16 @@ namespace RedCloud.Domain.Entities
 
         public string? Password { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; } = true;
+
+        //  public virtual ICollection<ResellerAdmin> ResellerAdmins { get; set; } = new List<ResellerAdmin>();
+
+         public int? ResellerAdminId { get; set; }
+
+        public bool IsDeleted { get; set; }=false;
+
+
+         public virtual ResellerAdmin ResellerAdmins { get; set; }
+
     }
 }

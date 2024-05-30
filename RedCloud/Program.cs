@@ -1,10 +1,9 @@
 using MvcApiCallingService.Helpers.ApiHelper;
-using RedCloud.Application.Contract.Persistence;
 using RedCloud.Controllers;
 using RedCloud.Interface;
 using RedCloud.Models;
-using RedCloud.Persistenence.Repositories;
 using RedCloud.Service;
+using RedCloud.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

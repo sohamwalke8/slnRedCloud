@@ -1,5 +1,4 @@
-﻿using RedCloud.Application.Features.CountryFolder.Query.GetCountryList;
-using RedCloud.Models;
+﻿using RedCloud.Models;
 
 namespace RedCloud.Interface
 {

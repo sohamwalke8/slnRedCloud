@@ -6,17 +6,17 @@ namespace RedCloud.Models
     {
         public int ID { get; set; }
 
-        [Required(ErrorMessage = "Please enter First Name")]
+       // [Required(ErrorMessage = "Please enter First Name")]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Please enter Last Name")]
+      //  [Required(ErrorMessage = "Please enter Last Name")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Please enter a valid email address")]
-        [EmailAddress(ErrorMessage = "Please enter a valid email address")]
+      //  [Required(ErrorMessage = "Please enter a valid email address")]
+      //  [EmailAddress(ErrorMessage = "Please enter a valid email address")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Please enter mobile number")]
+       // [Required(ErrorMessage = "Please enter mobile number")]
         public string MobileNumber { get; set; }
 
         public bool IsActive { get; set; }
