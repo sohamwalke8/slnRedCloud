@@ -53,11 +53,42 @@ namespace MvcApiCallingService.Helpers.ApiHelper
             return await ValidateResponse(responseMessage);
         }
         // For Account
+
+        public async Task<Response<T>> PostAuthAsync<TEntity>(string apiUrl, TEntity entity)
+        {
+            apiUrl = _httpClient.BaseAddress+ apiUrl;
+            //Change by Akash
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
+            try
+            {
+
+                //var BaseUrl = "https://localhost:7253/api/Account/Login";
+                HttpResponseMessage responseMessage = await _httpClient.PostAsync(apiUrl, stringContent);
+                var result = responseMessage.Content.ReadAsStringAsync().Result;
+                var res = JsonConvert.DeserializeObject<Response<T>>(result);
+                if (responseMessage.IsSuccessStatusCode)
+                    return JsonConvert.DeserializeObject<Response<T>>(await responseMessage.Content.ReadAsStringAsync());
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                return new Response<T>(" Invalid login credentials ");
+            }
+
+            return default;
+        }
+
+        // Below Code Original
+
+        /*
         public async Task<T?> PostAuthAsync<TEntity>(string apiUrl, TEntity entity)
         {
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
             try
             {
+
+
+                // Below Code Original
 
                 HttpResponseMessage responseMessage = await _httpClient.PostAsync(apiUrl, stringContent);
                 if (responseMessage.IsSuccessStatusCode)
@@ -73,7 +104,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
 
             return default;
         }
-
+        */
         public async Task<Response<T>> PutAsync<TEntity>(string apiUrl, TEntity entity)
         {
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");

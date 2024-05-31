@@ -1,0 +1,58 @@
+﻿@model RedCloud.Application.Features.Account.Queries.LoginQuery.LoginVM
+
+@{
+    ViewData["Title"] = "Login";
+    // Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    Layout = "_LoginLayout";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card" style="width: 22rem;">
+        <div class="card-body">
+
+            <u> <h1 class="card-title text-center">Red Cloud</h1></u>
+            <h4 class="card-title ">Login</h4>
+            <hr />
+            <form asp-action="Login" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2">
+                    <label asp-for="Password" class="control-label"></label>
+                    <div class="input-group">
+                        <input asp-for="Password" class="form-control" type="password" id="password" />
+                        <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                            <i class="fa fa-eye" id="toggleIcon"></i>
+                        </button>
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" value="Sign In" class="btn btn-primary form-control" />
+                </div>
+            </form>
+            <div class="text-center mt-2">
+                <a asp-action="#">Forget Password</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            var passwordInput = document.getElementById('password');
+            var toggleIcon = document.getElementById('toggleIcon');
+            var type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            toggleIcon.classList.toggle('fa-eye');
+            toggleIcon.classList.toggle('fa-eye-slash');
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

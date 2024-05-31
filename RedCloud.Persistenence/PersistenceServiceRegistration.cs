@@ -1,5 +1,9 @@
-﻿using RedCloud.Application.Contract.Persistence;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using RedCloud.Application.Contract.Persistence;
 using RedCloud.Application.Contracts.Persistence;
+using RedCloud.Persistenence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +12,19 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Persistenence
 {
+    public static class PersistenceServiceRegistration
+    {
+        public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                            options.UseSqlServer(configuration.GetConnectionString("RedCloudPortal")));
+
+            services.AddScoped(typeof(IAccountRepository), typeof(AccountRepository));
+
+            return services;
+        }
+    }
+
     //public static class PersistenceServiceRegistration
     //{
     //    public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
