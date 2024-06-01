@@ -6,7 +6,7 @@ namespace RedCloud.Models
     {
         public int Id { get; set; } 
 
-          [Required(ErrorMessage = "Reseller name is required")]
+         [Required(ErrorMessage = "Reseller name is required")]
         public string ResellerName { get; set; }
 
         [Required(ErrorMessage = "EIN is required")]
@@ -26,18 +26,18 @@ namespace RedCloud.Models
         public int StateId { get; set; }//c
 
         [Required(ErrorMessage = "Zip Code is required")]
-      //  [RegularExpression(@"^\d{5}(?:[-\s]\d{4})?$", ErrorMessage = "Please enter a valid Zip Code")]
+        [RegularExpression(@"^\d{5}(?:[-\s]\d{4})?$", ErrorMessage = "Please enter a valid Zip Code")]
         public int ZipCode { get; set; }
 
        [Required(ErrorMessage = "Company URL is required")]
-      //  [Url(ErrorMessage = "Please enter a valid URL")]
+       [Url(ErrorMessage = "Please enter a valid URL")]
         public string CompanyURL { get; set; }
 
         [Required(ErrorMessage = "Company Support Email is required")]
-      //  [EmailAddress(ErrorMessage = "Please enter a valid email address")]
+       [EmailAddress(ErrorMessage = "Please enter a valid email address")]
         public string CompanySupportEmail { get; set; }
 
-      //      [Required(ErrorMessage = "Red Cloud Admin is required")]
+          [Required(ErrorMessage = "Red Cloud Admin is required")]
         public string? RedCloudAdmin { get; set; }
 
         public string Password { get; set; }

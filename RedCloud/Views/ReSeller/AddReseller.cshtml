@@ -314,6 +314,7 @@
                                     <div class="form-group">
                                         <label for="AddressLine2">Address Line 2</label>
                                         <input asp-for="AddressLine2" class="form-control" id="AddressLine2" placeholder="Enter address line 2">
+                                        <span asp-validation-for="AddressLine2" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -384,7 +385,7 @@
 
                                     <div class="form-group">
                                         <label for="ZipCode">Zip Code</label>
-                                        <input asp-for="ZipCode" class="form-control" id="ZipCode" placeholder="Enter zip code">
+                                        <input type="text" asp-for="ZipCode" class="form-control" id="ZipCode" placeholder="Enter zip code">
                                         <span asp-validation-for="ZipCode" class="text-danger"></span>
                                     </div>
 
@@ -402,8 +403,10 @@
 
                                     <div class="form-group">
                                         <label for="RedCloudAdmin">RedCloud Admin</label>
-                                        <select asp-for="ResellerAdminId" class="form-control">
+                                        <select asp-for="RedCloudAdmin" class="form-control">
+                                             <option value="">Select Admin</option>
                                             @{
+                                               
                                                 foreach (var item in ViewBag.AdminList)
                                                 {
                                                     <option value="@item.Value">@item.Text</option>

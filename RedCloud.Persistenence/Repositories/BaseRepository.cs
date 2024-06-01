@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RedCloud.Persistenence.Repositories
+
 {
     public class BaseRepository<T> : IAsyncRepository<T> where T : class
     {
