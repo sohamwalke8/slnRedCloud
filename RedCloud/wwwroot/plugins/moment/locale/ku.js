@@ -69,11 +69,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd, D MMMM YYYY HH:mm',
         },
-        meridiemParse: /ئێواره‌|به‌یانی/,
+        merIdiemParse: /ئێواره‌|به‌یانی/,
         isPM: function (input) {
             return /ئێواره‌/.test(input);
         },
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'به‌یانی';
             } else {

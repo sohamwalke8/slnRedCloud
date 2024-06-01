@@ -1,6 +1,6 @@
 .CodeMirror-merge {
   position: relative;
-  border: 1px solid #ddd;
+  border: 1px solId #ddd;
   white-space: pre;
 }
 
@@ -8,10 +8,10 @@
   height: 350px;
 }
 
-.CodeMirror-merge-2pane .CodeMirror-merge-pane { width: 47%; }
-.CodeMirror-merge-2pane .CodeMirror-merge-gap { width: 6%; }
-.CodeMirror-merge-3pane .CodeMirror-merge-pane { width: 31%; }
-.CodeMirror-merge-3pane .CodeMirror-merge-gap { width: 3.5%; }
+.CodeMirror-merge-2pane .CodeMirror-merge-pane { wIdth: 47%; }
+.CodeMirror-merge-2pane .CodeMirror-merge-gap { wIdth: 6%; }
+.CodeMirror-merge-3pane .CodeMirror-merge-pane { wIdth: 31%; }
+.CodeMirror-merge-3pane .CodeMirror-merge-gap { wIdth: 3.5%; }
 
 .CodeMirror-merge-pane {
   display: inline-block;
@@ -30,9 +30,9 @@
   height: 100%;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  overflow: hidden;
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
+  overflow: hIdden;
+  border-left: 1px solId #ddd;
+  border-right: 1px solId #ddd;
   position: relative;
   background: #f8f8f8;
 }
@@ -91,27 +91,27 @@
 }
 
 .CodeMirror-merge-r-chunk { background: #ffffe0; }
-.CodeMirror-merge-r-chunk-start { border-top: 1px solid #ee8; }
-.CodeMirror-merge-r-chunk-end { border-bottom: 1px solid #ee8; }
-.CodeMirror-merge-r-connect { fill: #ffffe0; stroke: #ee8; stroke-width: 1px; }
+.CodeMirror-merge-r-chunk-start { border-top: 1px solId #ee8; }
+.CodeMirror-merge-r-chunk-end { border-bottom: 1px solId #ee8; }
+.CodeMirror-merge-r-connect { fill: #ffffe0; stroke: #ee8; stroke-wIdth: 1px; }
 
 .CodeMirror-merge-l-chunk { background: #eef; }
-.CodeMirror-merge-l-chunk-start { border-top: 1px solid #88e; }
-.CodeMirror-merge-l-chunk-end { border-bottom: 1px solid #88e; }
-.CodeMirror-merge-l-connect { fill: #eef; stroke: #88e; stroke-width: 1px; }
+.CodeMirror-merge-l-chunk-start { border-top: 1px solId #88e; }
+.CodeMirror-merge-l-chunk-end { border-bottom: 1px solId #88e; }
+.CodeMirror-merge-l-connect { fill: #eef; stroke: #88e; stroke-wIdth: 1px; }
 
 .CodeMirror-merge-l-chunk.CodeMirror-merge-r-chunk { background: #dfd; }
-.CodeMirror-merge-l-chunk-start.CodeMirror-merge-r-chunk-start { border-top: 1px solid #4e4; }
-.CodeMirror-merge-l-chunk-end.CodeMirror-merge-r-chunk-end { border-bottom: 1px solid #4e4; }
+.CodeMirror-merge-l-chunk-start.CodeMirror-merge-r-chunk-start { border-top: 1px solId #4e4; }
+.CodeMirror-merge-l-chunk-end.CodeMirror-merge-r-chunk-end { border-bottom: 1px solId #4e4; }
 
-.CodeMirror-merge-collapsed-widget:before {
+.CodeMirror-merge-collapsed-wIdget:before {
   content: "(...)";
 }
-.CodeMirror-merge-collapsed-widget {
+.CodeMirror-merge-collapsed-wIdget {
   cursor: pointer;
   color: #88b;
   background: #eef;
-  border: 1px solid #ddf;
+  border: 1px solId #ddf;
   font-size: 90%;
   padding: 0 3px;
   border-radius: 4px;

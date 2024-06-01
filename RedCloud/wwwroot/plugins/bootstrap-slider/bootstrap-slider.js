@@ -6,7 +6,7 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /*! =========================================================
- * bootstrap-slider.js
+ * bootstrap-slIder.js
  *
  * Maintainers:
  *		Kyle Kemp
@@ -18,7 +18,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  *
  * =========================================================
  *
- * bootstrap-slider is released under the MIT License
+ * bootstrap-slIder is released under the MIT License
  * Copyright (c) 2019 Kyle Kemp, Rohit Kalkur, and contributors
  *
  * Permission is hereby granted, free of charge, to any person
@@ -33,7 +33,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * THE SOFTWARE IS PROVIdED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
@@ -45,7 +45,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * ========================================================= */
 
 /**
- * Bridget makes jQuery widgets
+ * BrIdget makes jQuery wIdgets
  * v1.0.1
  * MIT license
  */
@@ -63,12 +63,12 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 		}
 		module.exports = factory(jQuery);
 	} else if (window) {
-		window.Slider = factory(window.jQuery);
+		window.SlIder = factory(window.jQuery);
 	}
 })(function ($) {
 	// Constants
-	var NAMESPACE_MAIN = 'slider';
-	var NAMESPACE_ALTERNATE = 'bootstrapSlider';
+	var NAMESPACE_MAIN = 'slIder';
+	var NAMESPACE_ALTERNATE = 'bootstrapSlIder';
 
 	// Polyfill console methods
 	if (windowIsDefined && !window.console) {
@@ -81,8 +81,8 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 		window.console.warn = function () {};
 	}
 
-	// Reference to Slider constructor
-	var Slider;
+	// Reference to SlIder constructor
+	var SlIder;
 
 	(function ($) {
 
@@ -96,7 +96,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 
 		// -------------------------- definition -------------------------- //
 
-		function defineBridget($) {
+		function defineBrIdget($) {
 
 			// bail if no jQuery
 			if (!$) {
@@ -125,7 +125,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				};
 			}
 
-			// -------------------------- plugin bridge -------------------------- //
+			// -------------------------- plugin brIdge -------------------------- //
 
 			// helper function for logging errors
 			// $.error breaks jQuery chaining
@@ -134,11 +134,11 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			};
 
 			/**
-    * jQuery plugin bridge, access methods like $elem.plugin('method')
+    * jQuery plugin brIdge, access methods like $elem.plugin('method')
     * @param {String} namespace - plugin name
     * @param {Function} PluginClass - constructor class
     */
-			function bridge(namespace, PluginClass) {
+			function brIdge(namespace, PluginClass) {
 				// add to jQuery fn namespace
 				$.fn[namespace] = function (options) {
 					if (typeof options === 'string') {
@@ -161,7 +161,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 							// trigger method with arguments
 							var returnValue = instance[options].apply(instance, args);
 
-							// break look and return first value if provided
+							// break look and return first value if provIded
 							if (returnValue !== undefined && returnValue !== instance) {
 								return returnValue;
 							}
@@ -191,7 +191,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				};
 			}
 
-			// -------------------------- bridget -------------------------- //
+			// -------------------------- brIdget -------------------------- //
 
 			/**
     * converts a Prototypical class into a proper jQuery plugin
@@ -199,33 +199,33 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
     * @param {String} namespace - plugin name, used in $().pluginName
     * @param {Function} PluginClass - constructor class
     */
-			$.bridget = function (namespace, PluginClass) {
+			$.brIdget = function (namespace, PluginClass) {
 				addOptionMethod(PluginClass);
-				bridge(namespace, PluginClass);
+				brIdge(namespace, PluginClass);
 			};
 
-			return $.bridget;
+			return $.brIdget;
 		}
 
 		// get jquery from browser global
-		defineBridget($);
+		defineBrIdget($);
 	})($);
 
 	/*************************************************
- 			BOOTSTRAP-SLIDER SOURCE CODE
+ 			BOOTSTRAP-SLIdER SOURCE CODE
  	**************************************************/
 
 	(function ($) {
 		var autoRegisterNamespace = void 0;
 
 		var ErrorMsgs = {
-			formatInvalidInputErrorMsg: function formatInvalidInputErrorMsg(input) {
-				return "Invalid input value '" + input + "' passed in";
+			formatInvalIdInputErrorMsg: function formatInvalIdInputErrorMsg(input) {
+				return "InvalId input value '" + input + "' passed in";
 			},
-			callingContextNotSliderInstance: "Calling context element does not have instance of Slider bound to it. Check your code to make sure the JQuery object returned from the call to the slider() initializer is calling the method"
+			callingContextNotSlIderInstance: "Calling context element does not have instance of SlIder bound to it. Check your code to make sure the JQuery object returned from the call to the slIder() initializer is calling the method"
 		};
 
-		var SliderScale = {
+		var SlIderScale = {
 			linear: {
 				getValue: function getValue(value, options) {
 					if (value < options.min) {
@@ -261,7 +261,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 
 					var adjustment = shouldAdjustWithBase ? this.options.min : 0;
 					var value = adjustment + Math.round(rawValue / this.options.step) * this.options.step;
-					return SliderScale.linear.getValue(value, this.options);
+					return SlIderScale.linear.getValue(value, this.options);
 				},
 				toPercentage: function toPercentage(value) {
 					if (this.options.max === this.options.min) {
@@ -294,7 +294,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			},
 
 			logarithmic: {
-				/* Based on http://stackoverflow.com/questions/846221/logarithmic-slider */
+				/* Based on http://stackoverflow.com/questions/846221/logarithmic-slIder */
 				toValue: function toValue(percentage) {
 					var offset = 1 - this.options.min;
 					var min = Math.log(this.options.min + offset);
@@ -306,7 +306,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					value = this.options.min + Math.round((value - this.options.min) / this.options.step) * this.options.step;
 					/* Rounding to the nearest step could exceed the min or
       * max, so clip to those values. */
-					return SliderScale.linear.getValue(value, this.options);
+					return SlIderScale.linear.getValue(value, this.options);
 				},
 				toPercentage: function toPercentage(value) {
 					if (this.options.max === this.options.min) {
@@ -325,15 +325,15 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 		/*************************************************
   						CONSTRUCTOR
   	**************************************************/
-		Slider = function Slider(element, options) {
-			createNewSlider.call(this, element, options);
+		SlIder = function SlIder(element, options) {
+			createNewSlIder.call(this, element, options);
 			return this;
 		};
 
-		function createNewSlider(element, options) {
+		function createNewSlIder(element, options) {
 
 			/*
-   	The internal state object is used to store data about the current 'state' of slider.
+   	The internal state object is used to store data about the current 'state' of slIder.
    	This includes values such as the `value`, `enabled`, etc...
    */
 			this._state = {
@@ -376,17 +376,17 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				// Finally, if nothing was specified, use the defaults
 				val = val !== null ? val : this.defaultOptions[optName];
 
-				// Set all options on the instance of the Slider
+				// Set all options on the instance of the SlIder
 				if (!this.options) {
 					this.options = {};
 				}
 				this.options[optName] = val;
 			}
 
-			this.ticksAreValid = Array.isArray(this.options.ticks) && this.options.ticks.length > 0;
+			this.ticksAreValId = Array.isArray(this.options.ticks) && this.options.ticks.length > 0;
 
 			// Lock to ticks only when ticks[] is defined and set
-			if (!this.ticksAreValid) {
+			if (!this.ticksAreValId) {
 				this.options.lock_to_ticks = false;
 			}
 
@@ -397,14 +397,14 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					this.options.rtl = computedStyle.direction === 'rtl';
 				} else {
 					// Fix for Firefox bug in versions less than 62:
-					// https://bugzilla.mozilla.org/show_bug.cgi?id=548397
-					// https://bugzilla.mozilla.org/show_bug.cgi?id=1467722
+					// https://bugzilla.mozilla.org/show_bug.cgi?Id=548397
+					// https://bugzilla.mozilla.org/show_bug.cgi?Id=1467722
 					this.options.rtl = this.element.style.direction === 'rtl';
 				}
 			}
 
 			/*
-   	Validate `tooltip_position` against 'orientation`
+   	ValIdate `tooltip_position` against 'orientation`
    	- if `tooltip_position` is incompatible with orientation, switch it to a default compatible with specified `orientation`
    		-- default for "vertical" -> "right", "left" if rtl
    		-- default for "horizontal" -> "top"
@@ -421,7 +421,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			}
 
 			function getDataAttrib(element, optName) {
-				var dataName = "data-slider-" + optName.replace(/_/g, '-');
+				var dataName = "data-slIder-" + optName.replace(/_/g, '-');
 				var dataValString = element.getAttribute(dataName);
 
 				try {
@@ -435,49 +435,49 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
    					Create Markup
    	**************************************************/
 
-			var origWidth = this.element.style.width;
-			var updateSlider = false;
+			var origWIdth = this.element.style.wIdth;
+			var updateSlIder = false;
 			var parent = this.element.parentNode;
-			var sliderTrackSelection;
-			var sliderTrackLow, sliderTrackHigh;
-			var sliderMinHandle;
-			var sliderMaxHandle;
+			var slIderTrackSelection;
+			var slIderTrackLow, slIderTrackHigh;
+			var slIderMinHandle;
+			var slIderMaxHandle;
 
-			if (this.sliderElem) {
-				updateSlider = true;
+			if (this.slIderElem) {
+				updateSlIder = true;
 			} else {
-				/* Create elements needed for slider */
-				this.sliderElem = document.createElement("div");
-				this.sliderElem.className = "slider";
+				/* Create elements needed for slIder */
+				this.slIderElem = document.createElement("div");
+				this.slIderElem.className = "slIder";
 
-				/* Create slider track elements */
-				var sliderTrack = document.createElement("div");
-				sliderTrack.className = "slider-track";
+				/* Create slIder track elements */
+				var slIderTrack = document.createElement("div");
+				slIderTrack.className = "slIder-track";
 
-				sliderTrackLow = document.createElement("div");
-				sliderTrackLow.className = "slider-track-low";
+				slIderTrackLow = document.createElement("div");
+				slIderTrackLow.className = "slIder-track-low";
 
-				sliderTrackSelection = document.createElement("div");
-				sliderTrackSelection.className = "slider-selection";
+				slIderTrackSelection = document.createElement("div");
+				slIderTrackSelection.className = "slIder-selection";
 
-				sliderTrackHigh = document.createElement("div");
-				sliderTrackHigh.className = "slider-track-high";
+				slIderTrackHigh = document.createElement("div");
+				slIderTrackHigh.className = "slIder-track-high";
 
-				sliderMinHandle = document.createElement("div");
-				sliderMinHandle.className = "slider-handle min-slider-handle";
-				sliderMinHandle.setAttribute('role', 'slider');
-				sliderMinHandle.setAttribute('aria-valuemin', this.options.min);
-				sliderMinHandle.setAttribute('aria-valuemax', this.options.max);
+				slIderMinHandle = document.createElement("div");
+				slIderMinHandle.className = "slIder-handle min-slIder-handle";
+				slIderMinHandle.setAttribute('role', 'slIder');
+				slIderMinHandle.setAttribute('aria-valuemin', this.options.min);
+				slIderMinHandle.setAttribute('aria-valuemax', this.options.max);
 
-				sliderMaxHandle = document.createElement("div");
-				sliderMaxHandle.className = "slider-handle max-slider-handle";
-				sliderMaxHandle.setAttribute('role', 'slider');
-				sliderMaxHandle.setAttribute('aria-valuemin', this.options.min);
-				sliderMaxHandle.setAttribute('aria-valuemax', this.options.max);
+				slIderMaxHandle = document.createElement("div");
+				slIderMaxHandle.className = "slIder-handle max-slIder-handle";
+				slIderMaxHandle.setAttribute('role', 'slIder');
+				slIderMaxHandle.setAttribute('aria-valuemin', this.options.min);
+				slIderMaxHandle.setAttribute('aria-valuemax', this.options.max);
 
-				sliderTrack.appendChild(sliderTrackLow);
-				sliderTrack.appendChild(sliderTrackSelection);
-				sliderTrack.appendChild(sliderTrackHigh);
+				slIderTrack.appendChild(slIderTrackLow);
+				slIderTrack.appendChild(slIderTrackSelection);
+				slIderTrack.appendChild(slIderTrackHigh);
 
 				/* Create highlight range elements */
 				this.rangeHighlightElements = [];
@@ -486,34 +486,34 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					for (var j = 0; j < rangeHighlightsOpts.length; j++) {
 						var rangeHighlightElement = document.createElement("div");
 						var customClassString = rangeHighlightsOpts[j].class || "";
-						rangeHighlightElement.className = "slider-rangeHighlight slider-selection " + customClassString;
+						rangeHighlightElement.className = "slIder-rangeHighlight slIder-selection " + customClassString;
 						this.rangeHighlightElements.push(rangeHighlightElement);
-						sliderTrack.appendChild(rangeHighlightElement);
+						slIderTrack.appendChild(rangeHighlightElement);
 					}
 				}
 
 				/* Add aria-labelledby to handle's */
 				var isLabelledbyArray = Array.isArray(this.options.labelledby);
 				if (isLabelledbyArray && this.options.labelledby[0]) {
-					sliderMinHandle.setAttribute('aria-labelledby', this.options.labelledby[0]);
+					slIderMinHandle.setAttribute('aria-labelledby', this.options.labelledby[0]);
 				}
 				if (isLabelledbyArray && this.options.labelledby[1]) {
-					sliderMaxHandle.setAttribute('aria-labelledby', this.options.labelledby[1]);
+					slIderMaxHandle.setAttribute('aria-labelledby', this.options.labelledby[1]);
 				}
 				if (!isLabelledbyArray && this.options.labelledby) {
-					sliderMinHandle.setAttribute('aria-labelledby', this.options.labelledby);
-					sliderMaxHandle.setAttribute('aria-labelledby', this.options.labelledby);
+					slIderMinHandle.setAttribute('aria-labelledby', this.options.labelledby);
+					slIderMaxHandle.setAttribute('aria-labelledby', this.options.labelledby);
 				}
 
 				/* Create ticks */
 				this.ticks = [];
 				if (Array.isArray(this.options.ticks) && this.options.ticks.length > 0) {
 					this.ticksContainer = document.createElement('div');
-					this.ticksContainer.className = 'slider-tick-container';
+					this.ticksContainer.className = 'slIder-tick-container';
 
 					for (i = 0; i < this.options.ticks.length; i++) {
 						var tick = document.createElement('div');
-						tick.className = 'slider-tick';
+						tick.className = 'slIder-tick';
 						if (this.options.ticks_tooltip) {
 							var tickListenerReference = this._addTickListener();
 							var enterCallback = tickListenerReference.addMouseEnter(this, tick, i);
@@ -528,19 +528,19 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 						this.ticksContainer.appendChild(tick);
 					}
 
-					sliderTrackSelection.className += " tick-slider-selection";
+					slIderTrackSelection.className += " tick-slIder-selection";
 				}
 
 				this.tickLabels = [];
 				if (Array.isArray(this.options.ticks_labels) && this.options.ticks_labels.length > 0) {
 					this.tickLabelContainer = document.createElement('div');
-					this.tickLabelContainer.className = 'slider-tick-label-container';
+					this.tickLabelContainer.className = 'slIder-tick-label-container';
 
 					for (i = 0; i < this.options.ticks_labels.length; i++) {
 						var label = document.createElement('div');
 						var noTickPositionsSpecified = this.options.ticks_positions.length === 0;
 						var tickLabelsIndex = this.options.reversed && noTickPositionsSpecified ? this.options.ticks_labels.length - (i + 1) : i;
-						label.className = 'slider-tick-label';
+						label.className = 'slIder-tick-label';
 						label.innerHTML = this.options.ticks_labels[tickLabelsIndex];
 
 						this.tickLabels.push(label);
@@ -560,84 +560,84 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				};
 
 				/* Create tooltip elements */
-				var sliderTooltip = document.createElement("div");
-				sliderTooltip.className = "tooltip tooltip-main";
-				sliderTooltip.setAttribute('role', 'presentation');
-				createAndAppendTooltipSubElements(sliderTooltip);
+				var slIderTooltip = document.createElement("div");
+				slIderTooltip.className = "tooltip tooltip-main";
+				slIderTooltip.setAttribute('role', 'presentation');
+				createAndAppendTooltipSubElements(slIderTooltip);
 
-				var sliderTooltipMin = document.createElement("div");
-				sliderTooltipMin.className = "tooltip tooltip-min";
-				sliderTooltipMin.setAttribute('role', 'presentation');
-				createAndAppendTooltipSubElements(sliderTooltipMin);
+				var slIderTooltipMin = document.createElement("div");
+				slIderTooltipMin.className = "tooltip tooltip-min";
+				slIderTooltipMin.setAttribute('role', 'presentation');
+				createAndAppendTooltipSubElements(slIderTooltipMin);
 
-				var sliderTooltipMax = document.createElement("div");
-				sliderTooltipMax.className = "tooltip tooltip-max";
-				sliderTooltipMax.setAttribute('role', 'presentation');
-				createAndAppendTooltipSubElements(sliderTooltipMax);
+				var slIderTooltipMax = document.createElement("div");
+				slIderTooltipMax.className = "tooltip tooltip-max";
+				slIderTooltipMax.setAttribute('role', 'presentation');
+				createAndAppendTooltipSubElements(slIderTooltipMax);
 
-				/* Append components to sliderElem */
-				this.sliderElem.appendChild(sliderTrack);
-				this.sliderElem.appendChild(sliderTooltip);
-				this.sliderElem.appendChild(sliderTooltipMin);
-				this.sliderElem.appendChild(sliderTooltipMax);
+				/* Append components to slIderElem */
+				this.slIderElem.appendChild(slIderTrack);
+				this.slIderElem.appendChild(slIderTooltip);
+				this.slIderElem.appendChild(slIderTooltipMin);
+				this.slIderElem.appendChild(slIderTooltipMax);
 
 				if (this.tickLabelContainer) {
-					this.sliderElem.appendChild(this.tickLabelContainer);
+					this.slIderElem.appendChild(this.tickLabelContainer);
 				}
 				if (this.ticksContainer) {
-					this.sliderElem.appendChild(this.ticksContainer);
+					this.slIderElem.appendChild(this.ticksContainer);
 				}
 
-				this.sliderElem.appendChild(sliderMinHandle);
-				this.sliderElem.appendChild(sliderMaxHandle);
+				this.slIderElem.appendChild(slIderMinHandle);
+				this.slIderElem.appendChild(slIderMaxHandle);
 
-				/* Append slider element to parent container, right before the original <input> element */
-				parent.insertBefore(this.sliderElem, this.element);
+				/* Append slIder element to parent container, right before the original <input> element */
+				parent.insertBefore(this.slIderElem, this.element);
 
-				/* Hide original <input> element */
+				/* HIde original <input> element */
 				this.element.style.display = "none";
 			}
 			/* If JQuery exists, cache JQ references */
 			if ($) {
 				this.$element = $(this.element);
-				this.$sliderElem = $(this.sliderElem);
+				this.$slIderElem = $(this.slIderElem);
 			}
 
 			/*************************************************
    						Setup
    	**************************************************/
 			this.eventToCallbackMap = {};
-			this.sliderElem.id = this.options.id;
+			this.slIderElem.Id = this.options.Id;
 
 			this.touchCapable = 'ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch;
 
 			this.touchX = 0;
 			this.touchY = 0;
 
-			this.tooltip = this.sliderElem.querySelector('.tooltip-main');
+			this.tooltip = this.slIderElem.querySelector('.tooltip-main');
 			this.tooltipInner = this.tooltip.querySelector('.tooltip-inner');
 
-			this.tooltip_min = this.sliderElem.querySelector('.tooltip-min');
+			this.tooltip_min = this.slIderElem.querySelector('.tooltip-min');
 			this.tooltipInner_min = this.tooltip_min.querySelector('.tooltip-inner');
 
-			this.tooltip_max = this.sliderElem.querySelector('.tooltip-max');
+			this.tooltip_max = this.slIderElem.querySelector('.tooltip-max');
 			this.tooltipInner_max = this.tooltip_max.querySelector('.tooltip-inner');
 
-			if (SliderScale[this.options.scale]) {
-				this.options.scale = SliderScale[this.options.scale];
+			if (SlIderScale[this.options.scale]) {
+				this.options.scale = SlIderScale[this.options.scale];
 			}
 
-			if (updateSlider === true) {
+			if (updateSlIder === true) {
 				// Reset classes
-				this._removeClass(this.sliderElem, 'slider-horizontal');
-				this._removeClass(this.sliderElem, 'slider-vertical');
-				this._removeClass(this.sliderElem, 'slider-rtl');
-				this._removeClass(this.tooltip, 'hide');
-				this._removeClass(this.tooltip_min, 'hide');
-				this._removeClass(this.tooltip_max, 'hide');
+				this._removeClass(this.slIderElem, 'slIder-horizontal');
+				this._removeClass(this.slIderElem, 'slIder-vertical');
+				this._removeClass(this.slIderElem, 'slIder-rtl');
+				this._removeClass(this.tooltip, 'hIde');
+				this._removeClass(this.tooltip_min, 'hIde');
+				this._removeClass(this.tooltip_max, 'hIde');
 
 				// Undo existing inline styles for track
-				["left", "right", "top", "width", "height"].forEach(function (prop) {
+				["left", "right", "top", "wIdth", "height"].forEach(function (prop) {
 					this._removeProperty(this.trackLow, prop);
 					this._removeProperty(this.trackSelection, prop);
 					this._removeProperty(this.trackHigh, prop);
@@ -663,13 +663,13 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			}
 
 			if (this.options.orientation === 'vertical') {
-				this._addClass(this.sliderElem, 'slider-vertical');
+				this._addClass(this.slIderElem, 'slIder-vertical');
 				this.stylePos = 'top';
 				this.mousePos = 'pageY';
 				this.sizePos = 'offsetHeight';
 			} else {
-				this._addClass(this.sliderElem, 'slider-horizontal');
-				this.sliderElem.style.width = origWidth;
+				this._addClass(this.slIderElem, 'slIder-horizontal');
+				this.slIderElem.style.wIdth = origWIdth;
 				this.options.orientation = 'horizontal';
 				if (this.options.rtl) {
 					this.stylePos = 'right';
@@ -677,11 +677,11 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					this.stylePos = 'left';
 				}
 				this.mousePos = 'clientX';
-				this.sizePos = 'offsetWidth';
+				this.sizePos = 'offsetWIdth';
 			}
 			// specific rtl class
 			if (this.options.rtl) {
-				this._addClass(this.sliderElem, 'slider-rtl');
+				this._addClass(this.slIderElem, 'slIder-rtl');
 			}
 			this._setTooltipPosition();
 			/* In case ticks are specified, overwrite the min and max bounds */
@@ -704,36 +704,36 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				this._state.value = this.options.value;
 			}
 
-			this.trackLow = sliderTrackLow || this.trackLow;
-			this.trackSelection = sliderTrackSelection || this.trackSelection;
-			this.trackHigh = sliderTrackHigh || this.trackHigh;
+			this.trackLow = slIderTrackLow || this.trackLow;
+			this.trackSelection = slIderTrackSelection || this.trackSelection;
+			this.trackHigh = slIderTrackHigh || this.trackHigh;
 
 			if (this.options.selection === 'none') {
-				this._addClass(this.trackLow, 'hide');
-				this._addClass(this.trackSelection, 'hide');
-				this._addClass(this.trackHigh, 'hide');
+				this._addClass(this.trackLow, 'hIde');
+				this._addClass(this.trackSelection, 'hIde');
+				this._addClass(this.trackHigh, 'hIde');
 			} else if (this.options.selection === 'after' || this.options.selection === 'before') {
-				this._removeClass(this.trackLow, 'hide');
-				this._removeClass(this.trackSelection, 'hide');
-				this._removeClass(this.trackHigh, 'hide');
+				this._removeClass(this.trackLow, 'hIde');
+				this._removeClass(this.trackSelection, 'hIde');
+				this._removeClass(this.trackHigh, 'hIde');
 			}
 
-			this.handle1 = sliderMinHandle || this.handle1;
-			this.handle2 = sliderMaxHandle || this.handle2;
+			this.handle1 = slIderMinHandle || this.handle1;
+			this.handle2 = slIderMaxHandle || this.handle2;
 
-			if (updateSlider === true) {
+			if (updateSlIder === true) {
 				// Reset classes
 				this._removeClass(this.handle1, 'round triangle');
-				this._removeClass(this.handle2, 'round triangle hide');
+				this._removeClass(this.handle2, 'round triangle hIde');
 
 				for (i = 0; i < this.ticks.length; i++) {
-					this._removeClass(this.ticks[i], 'round triangle hide');
+					this._removeClass(this.ticks[i], 'round triangle hIde');
 				}
 			}
 
 			var availableHandleModifiers = ['round', 'triangle', 'custom'];
-			var isValidHandleType = availableHandleModifiers.indexOf(this.options.handle) !== -1;
-			if (isValidHandleType) {
+			var isValIdHandleType = availableHandleModifiers.indexOf(this.options.handle) !== -1;
+			if (isValIdHandleType) {
 				this._addClass(this.handle1, this.options.handle);
 				this._addClass(this.handle2, this.options.handle);
 
@@ -742,8 +742,8 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				}
 			}
 
-			this._state.offset = this._offset(this.sliderElem);
-			this._state.size = this.sliderElem[this.sizePos];
+			this._state.offset = this._offset(this.slIderElem);
+			this._state.size = this.slIderElem[this.sizePos];
 			this.setValue(this._state.value);
 
 			/******************************************
@@ -762,27 +762,27 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			this.touchmove = this._touchmove.bind(this);
 
 			if (this.touchCapable) {
-				this.sliderElem.addEventListener("touchstart", this.touchstart, false);
-				this.sliderElem.addEventListener("touchmove", this.touchmove, false);
+				this.slIderElem.addEventListener("touchstart", this.touchstart, false);
+				this.slIderElem.addEventListener("touchmove", this.touchmove, false);
 			}
 
-			this.sliderElem.addEventListener("mousedown", this.mousedown, false);
+			this.slIderElem.addEventListener("mousedown", this.mousedown, false);
 
 			// Bind window handlers
 			this.resize = this._resize.bind(this);
 			window.addEventListener("resize", this.resize, false);
 
 			// Bind tooltip-related handlers
-			if (this.options.tooltip === 'hide') {
-				this._addClass(this.tooltip, 'hide');
-				this._addClass(this.tooltip_min, 'hide');
-				this._addClass(this.tooltip_max, 'hide');
+			if (this.options.tooltip === 'hIde') {
+				this._addClass(this.tooltip, 'hIde');
+				this._addClass(this.tooltip_min, 'hIde');
+				this._addClass(this.tooltip_max, 'hIde');
 			} else if (this.options.tooltip === 'always') {
 				this._showTooltip();
 				this._alwaysShowTooltip = true;
 			} else {
 				this.showTooltip = this._showTooltip.bind(this);
-				this.hideTooltip = this._hideTooltip.bind(this);
+				this.hIdeTooltip = this._hIdeTooltip.bind(this);
 
 				if (this.options.ticks_tooltip) {
 					var callbackHandle = this._addTickListener();
@@ -801,30 +801,30 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 						mouseLeave: mouseLeave
 					};
 				} else {
-					this.sliderElem.addEventListener("mouseenter", this.showTooltip, false);
-					this.sliderElem.addEventListener("mouseleave", this.hideTooltip, false);
+					this.slIderElem.addEventListener("mouseenter", this.showTooltip, false);
+					this.slIderElem.addEventListener("mouseleave", this.hIdeTooltip, false);
 
 					if (this.touchCapable) {
-						this.sliderElem.addEventListener("touchstart", this.showTooltip, false);
-						this.sliderElem.addEventListener("touchmove", this.showTooltip, false);
-						this.sliderElem.addEventListener("touchend", this.hideTooltip, false);
+						this.slIderElem.addEventListener("touchstart", this.showTooltip, false);
+						this.slIderElem.addEventListener("touchmove", this.showTooltip, false);
+						this.slIderElem.addEventListener("touchend", this.hIdeTooltip, false);
 					}
 				}
 
 				this.handle1.addEventListener("focus", this.showTooltip, false);
-				this.handle1.addEventListener("blur", this.hideTooltip, false);
+				this.handle1.addEventListener("blur", this.hIdeTooltip, false);
 
 				this.handle2.addEventListener("focus", this.showTooltip, false);
-				this.handle2.addEventListener("blur", this.hideTooltip, false);
+				this.handle2.addEventListener("blur", this.hIdeTooltip, false);
 
 				if (this.touchCapable) {
 					this.handle1.addEventListener("touchstart", this.showTooltip, false);
 					this.handle1.addEventListener("touchmove", this.showTooltip, false);
-					this.handle1.addEventListener("touchend", this.hideTooltip, false);
+					this.handle1.addEventListener("touchend", this.hIdeTooltip, false);
 
 					this.handle2.addEventListener("touchstart", this.showTooltip, false);
 					this.handle2.addEventListener("touchmove", this.showTooltip, false);
-					this.handle2.addEventListener("touchend", this.hideTooltip, false);
+					this.handle2.addEventListener("touchend", this.hIdeTooltip, false);
 				}
 			}
 
@@ -837,16 +837,16 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 
 		/*************************************************
   				INSTANCE PROPERTIES/METHODS
-  	- Any methods bound to the prototype are considered
+  	- Any methods bound to the prototype are consIdered
   part of the plugin's `public` interface
   	**************************************************/
-		Slider.prototype = {
-			_init: function _init() {}, // NOTE: Must exist to support bridget
+		SlIder.prototype = {
+			_init: function _init() {}, // NOTE: Must exist to support brIdget
 
-			constructor: Slider,
+			constructor: SlIder,
 
 			defaultOptions: {
-				id: "",
+				Id: "",
 				min: 0,
 				max: 10,
 				step: 1,
@@ -883,7 +883,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			},
 
 			getElement: function getElement() {
-				return this.sliderElem;
+				return this.slIderElem;
 			},
 
 			getValue: function getValue() {
@@ -894,19 +894,19 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				}
 			},
 
-			setValue: function setValue(val, triggerSlideEvent, triggerChangeEvent) {
+			setValue: function setValue(val, triggerSlIdeEvent, triggerChangeEvent) {
 				if (!val) {
 					val = 0;
 				}
 				var oldValue = this.getValue();
-				this._state.value = this._validateInputValue(val);
+				this._state.value = this._valIdateInputValue(val);
 				var applyPrecision = this._applyPrecision.bind(this);
 
 				if (this.options.range) {
 					this._state.value[0] = applyPrecision(this._state.value[0]);
 					this._state.value[1] = applyPrecision(this._state.value[1]);
 
-					if (this.ticksAreValid && this.options.lock_to_ticks) {
+					if (this.ticksAreValId && this.options.lock_to_ticks) {
 						this._state.value[0] = this.options.ticks[this._getClosestTickIndex(this._state.value[0])];
 						this._state.value[1] = this.options.ticks[this._getClosestTickIndex(this._state.value[1])];
 					}
@@ -916,12 +916,12 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				} else {
 					this._state.value = applyPrecision(this._state.value);
 
-					if (this.ticksAreValid && this.options.lock_to_ticks) {
+					if (this.ticksAreValId && this.options.lock_to_ticks) {
 						this._state.value = this.options.ticks[this._getClosestTickIndex(this._state.value)];
 					}
 
 					this._state.value = [Math.max(this.options.min, Math.min(this.options.max, this._state.value))];
-					this._addClass(this.handle2, 'hide');
+					this._addClass(this.handle2, 'hIde');
 					if (this.options.selection === 'after') {
 						this._state.value[1] = this.options.max;
 					} else {
@@ -942,8 +942,8 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				var newValue = this.options.range ? this._state.value : this._state.value[0];
 
 				this._setDataVal(newValue);
-				if (triggerSlideEvent === true) {
-					this._trigger('slide', newValue);
+				if (triggerSlIdeEvent === true) {
+					this._trigger('slIde', newValue);
 				}
 
 				var hasChanged = false;
@@ -964,11 +964,11 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			},
 
 			destroy: function destroy() {
-				// Remove event handlers on slider elements
-				this._removeSliderEventHandlers();
+				// Remove event handlers on slIder elements
+				this._removeSlIderEventHandlers();
 
-				// Remove the slider from the DOM
-				this.sliderElem.parentNode.removeChild(this.sliderElem);
+				// Remove the slIder from the DOM
+				this.slIderElem.parentNode.removeChild(this.slIderElem);
 				/* Show original <input> element */
 				this.element.style.display = "";
 
@@ -992,8 +992,8 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				this._state.enabled = false;
 				this.handle1.removeAttribute("tabindex");
 				this.handle2.removeAttribute("tabindex");
-				this._addClass(this.sliderElem, 'slider-disabled');
-				this._trigger('slideDisabled');
+				this._addClass(this.slIderElem, 'slIder-disabled');
+				this._trigger('slIdeDisabled');
 
 				return this;
 			},
@@ -1002,8 +1002,8 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				this._state.enabled = true;
 				this.handle1.setAttribute("tabindex", 0);
 				this.handle2.setAttribute("tabindex", 0);
-				this._removeClass(this.sliderElem, 'slider-disabled');
-				this._trigger('slideEnabled');
+				this._removeClass(this.slIderElem, 'slIder-disabled');
+				this._trigger('slIdeEnabled');
 
 				return this;
 			},
@@ -1029,7 +1029,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			off: function off(evt, callback) {
 				if ($) {
 					this.$element.off(evt, callback);
-					this.$sliderElem.off(evt, callback);
+					this.$slIderElem.off(evt, callback);
 				} else {
 					this._unbindNonQueryEventHandler(evt, callback);
 				}
@@ -1050,14 +1050,14 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 
 			refresh: function refresh(options) {
 				var currentValue = this.getValue();
-				this._removeSliderEventHandlers();
-				createNewSlider.call(this, this.element, this.options);
-				// Don't reset slider's value on refresh if `useCurrentValue` is true
+				this._removeSlIderEventHandlers();
+				createNewSlIder.call(this, this.element, this.options);
+				// Don't reset slIder's value on refresh if `useCurrentValue` is true
 				if (options && options.useCurrentValue === true) {
 					this.setValue(currentValue);
 				}
 				if ($) {
-					// Bind new instance of slider to the element
+					// Bind new instance of slIder to the element
 					if (autoRegisterNamespace === NAMESPACE_MAIN) {
 						$.data(this.element, NAMESPACE_MAIN, this);
 						$.data(this.element, NAMESPACE_ALTERNATE, this);
@@ -1083,14 +1083,14 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				this.handle1.removeEventListener(event, handler, false);
 				this.handle2.removeEventListener(event, handler, false);
 			},
-			_removeSliderEventHandlers: function _removeSliderEventHandlers() {
+			_removeSlIderEventHandlers: function _removeSlIderEventHandlers() {
 				// Remove keydown event listeners
 				this.handle1.removeEventListener("keydown", this.handle1Keydown, false);
 				this.handle2.removeEventListener("keydown", this.handle2Keydown, false);
 
 				//remove the listeners from the ticks and handles if they had their own listeners
 				if (this.options.ticks_tooltip) {
-					var ticks = this.ticksContainer.getElementsByClassName('slider-tick');
+					var ticks = this.ticksContainer.getElementsByClassName('slIder-tick');
 					for (var i = 0; i < ticks.length; i++) {
 						ticks[i].removeEventListener('mouseenter', this.ticksCallbackMap[i].mouseEnter, false);
 						ticks[i].removeEventListener('mouseleave', this.ticksCallbackMap[i].mouseLeave, false);
@@ -1109,19 +1109,19 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				if (this.showTooltip) {
 					this._removeTooltipListener("focus", this.showTooltip);
 				}
-				if (this.hideTooltip) {
-					this._removeTooltipListener("blur", this.hideTooltip);
+				if (this.hIdeTooltip) {
+					this._removeTooltipListener("blur", this.hIdeTooltip);
 				}
 
-				// Remove event listeners from sliderElem
+				// Remove event listeners from slIderElem
 				if (this.showTooltip) {
-					this.sliderElem.removeEventListener("mouseenter", this.showTooltip, false);
+					this.slIderElem.removeEventListener("mouseenter", this.showTooltip, false);
 				}
-				if (this.hideTooltip) {
-					this.sliderElem.removeEventListener("mouseleave", this.hideTooltip, false);
+				if (this.hIdeTooltip) {
+					this.slIderElem.removeEventListener("mouseleave", this.hIdeTooltip, false);
 				}
 
-				this.sliderElem.removeEventListener("mousedown", this.mousedown, false);
+				this.slIderElem.removeEventListener("mousedown", this.mousedown, false);
 
 				if (this.touchCapable) {
 					// Remove touch event listeners from handles
@@ -1131,22 +1131,22 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 						this.handle2.removeEventListener("touchstart", this.showTooltip, false);
 						this.handle2.removeEventListener("touchmove", this.showTooltip, false);
 					}
-					if (this.hideTooltip) {
-						this.handle1.removeEventListener("touchend", this.hideTooltip, false);
-						this.handle2.removeEventListener("touchend", this.hideTooltip, false);
+					if (this.hIdeTooltip) {
+						this.handle1.removeEventListener("touchend", this.hIdeTooltip, false);
+						this.handle2.removeEventListener("touchend", this.hIdeTooltip, false);
 					}
 
-					// Remove event listeners from sliderElem
+					// Remove event listeners from slIderElem
 					if (this.showTooltip) {
-						this.sliderElem.removeEventListener("touchstart", this.showTooltip, false);
-						this.sliderElem.removeEventListener("touchmove", this.showTooltip, false);
+						this.slIderElem.removeEventListener("touchstart", this.showTooltip, false);
+						this.slIderElem.removeEventListener("touchmove", this.showTooltip, false);
 					}
-					if (this.hideTooltip) {
-						this.sliderElem.removeEventListener("touchend", this.hideTooltip, false);
+					if (this.hIdeTooltip) {
+						this.slIderElem.removeEventListener("touchend", this.hIdeTooltip, false);
 					}
 
-					this.sliderElem.removeEventListener("touchstart", this.touchstart, false);
-					this.sliderElem.removeEventListener("touchmove", this.touchmove, false);
+					this.slIderElem.removeEventListener("touchstart", this.touchstart, false);
+					this.slIderElem.removeEventListener("touchmove", this.touchmove, false);
 				}
 
 				// Remove window event listener
@@ -1188,7 +1188,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				}
 				this._state.over = true;
 			},
-			_hideTooltip: function _hideTooltip() {
+			_hIdeTooltip: function _hIdeTooltip() {
 				if (this._state.inDrag === false && this._alwaysShowTooltip !== true) {
 					this._removeClass(this.tooltip, 'show');
 					this._removeClass(this.tooltip_min, 'show');
@@ -1252,7 +1252,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					},
 					addMouseLeave: function addMouseLeave(reference, element) {
 						var leave = function leave() {
-							reference._hideTooltip();
+							reference._hIdeTooltip();
 						};
 						element.addEventListener("mouseleave", leave, false);
 						return leave;
@@ -1311,7 +1311,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 								} else {
 									this.rangeHighlightElements[_i].style.left = currentRange.start + "%";
 								}
-								this.rangeHighlightElements[_i].style.width = currentRange.size + "%";
+								this.rangeHighlightElements[_i].style.wIdth = currentRange.size + "%";
 							}
 						} else {
 							this.rangeHighlightElements[_i].style.display = "none";
@@ -1322,7 +1322,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				/* Position ticks and labels */
 				if (Array.isArray(this.options.ticks) && this.options.ticks.length > 0) {
 
-					var styleSize = this.options.orientation === 'vertical' ? 'height' : 'width';
+					var styleSize = this.options.orientation === 'vertical' ? 'height' : 'wIdth';
 					var styleMargin;
 					if (this.options.orientation === 'vertical') {
 						styleMargin = 'marginTop';
@@ -1344,7 +1344,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 
 							extraMargin = this.tickLabelContainer.offsetHeight;
 						} else {
-							/* Chidren are position absolute, calculate height by finding the max offsetHeight of a child */
+							/* ChIdren are position absolute, calculate height by finding the max offsetHeight of a child */
 							for (i = 0; i < this.tickLabelContainer.childNodes.length; i++) {
 								if (this.tickLabelContainer.childNodes[i].offsetHeight > extraMargin) {
 									extraMargin = this.tickLabelContainer.childNodes[i].offsetHeight;
@@ -1352,7 +1352,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 							}
 						}
 						if (this.options.orientation === 'horizontal') {
-							this.sliderElem.style.marginBottom = extraMargin + "px";
+							this.slIderElem.style.marginBottom = extraMargin + "px";
 						}
 					}
 					for (var i = 0; i < this.options.ticks.length; i++) {
@@ -1386,11 +1386,11 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 								this.tickLabels[i].style[styleMargin] = -labelSize / 2 + 'px';
 							} else if (this.options.orientation === 'vertical') {
 								if (this.options.rtl) {
-									this.tickLabels[i].style['marginRight'] = this.sliderElem.offsetWidth + "px";
+									this.tickLabels[i].style['marginRight'] = this.slIderElem.offsetWIdth + "px";
 								} else {
-									this.tickLabels[i].style['marginLeft'] = this.sliderElem.offsetWidth + "px";
+									this.tickLabels[i].style['marginLeft'] = this.slIderElem.offsetWIdth + "px";
 								}
-								this.tickLabelContainer.style[styleMargin] = this.sliderElem.offsetWidth / 2 * -1 + 'px';
+								this.tickLabelContainer.style[styleMargin] = this.slIderElem.offsetWIdth / 2 * -1 + 'px';
 							}
 
 							/* Set class labels to indicate tick labels are in the selection or selected */
@@ -1452,21 +1452,21 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					} else {
 						this.trackLow.style.left = '0';
 					}
-					this.trackLow.style.width = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
+					this.trackLow.style.wIdth = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
 
 					if (this.stylePos === 'right') {
 						this.trackSelection.style.right = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
 					} else {
 						this.trackSelection.style.left = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
 					}
-					this.trackSelection.style.width = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
+					this.trackSelection.style.wIdth = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
 
 					if (this.stylePos === 'right') {
 						this.trackHigh.style.left = '0';
 					} else {
 						this.trackHigh.style.right = '0';
 					}
-					this.trackHigh.style.width = 100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
+					this.trackHigh.style.wIdth = 100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
 
 					var offset_min = this.tooltip_min.getBoundingClientRect();
 					var offset_max = this.tooltip_max.getBoundingClientRect();
@@ -1514,8 +1514,8 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			},
 			_resize: function _resize(ev) {
 				/*jshint unused:false*/
-				this._state.offset = this._offset(this.sliderElem);
-				this._state.size = this.sliderElem[this.sizePos];
+				this._state.offset = this._offset(this.slIderElem);
+				this._state.size = this.slIderElem[this.sizePos];
 				this._layout();
 			},
 			_removeProperty: function _removeProperty(element, prop) {
@@ -1534,8 +1534,8 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					ev.preventDefault();
 				}
 
-				this._state.offset = this._offset(this.sliderElem);
-				this._state.size = this.sliderElem[this.sizePos];
+				this._state.offset = this._offset(this.slIderElem);
+				this._state.size = this.slIderElem[this.sizePos];
 
 				var percentage = this._getPercentage(ev);
 
@@ -1543,7 +1543,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					var diff1 = Math.abs(this._state.percentage[0] - percentage);
 					var diff2 = Math.abs(this._state.percentage[1] - percentage);
 					this._state.dragged = diff1 < diff2 ? 0 : 1;
-					this._adjustPercentageForRangeSliders(percentage);
+					this._adjustPercentageForRangeSlIders(percentage);
 				} else {
 					this._state.dragged = 0;
 				}
@@ -1577,7 +1577,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				this._state.inDrag = true;
 				var newValue = this._calculateValue();
 
-				this._trigger('slideStart', newValue);
+				this._trigger('slIdeStart', newValue);
 
 				this.setValue(newValue, false, true);
 
@@ -1647,7 +1647,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				}
 
 				var val;
-				if (this.ticksAreValid && this.options.lock_to_ticks) {
+				if (this.ticksAreValId && this.options.lock_to_ticks) {
 					var index = void 0;
 					// Find tick index that handle 1/2 is currently on
 					index = this.options.ticks.indexOf(this._state.value[handleIdx]);
@@ -1665,7 +1665,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				var percentage = this._toPercentage(val);
 				this._state.keyCtrl = handleIdx;
 				if (this.options.range) {
-					this._adjustPercentageForRangeSliders(percentage);
+					this._adjustPercentageForRangeSlIders(percentage);
 					var val1 = !this._state.keyCtrl ? val : this._state.value[0];
 					var val2 = this._state.keyCtrl ? val : this._state.value[1];
 					// Restrict values within limits
@@ -1674,11 +1674,11 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					val = Math.max(this.options.min, Math.min(this.options.max, val));
 				}
 
-				this._trigger('slideStart', val);
+				this._trigger('slIdeStart', val);
 
 				this.setValue(val, true, true);
 
-				this._trigger('slideStop', val);
+				this._trigger('slIdeStop', val);
 
 				this._pauseEvent(ev);
 				delete this._state.keyCtrl;
@@ -1701,7 +1701,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				}
 
 				var percentage = this._getPercentage(ev);
-				this._adjustPercentageForRangeSliders(percentage);
+				this._adjustPercentageForRangeSlIders(percentage);
 				this._state.percentage[this._state.dragged] = percentage;
 
 				var val = this._calculateValue(true);
@@ -1714,12 +1714,12 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					return;
 				}
 
-				// Prevent page from scrolling and only drag the slider
+				// Prevent page from scrolling and only drag the slIder
 				if (ev.preventDefault) {
 					ev.preventDefault();
 				}
 			},
-			_adjustPercentageForRangeSliders: function _adjustPercentageForRangeSliders(percentage) {
+			_adjustPercentageForRangeSlIders: function _adjustPercentageForRangeSlIders(percentage) {
 				if (this.options.range) {
 					var precision = this._getNumDigitsAfterDecimalPlace(percentage);
 					precision = precision ? precision - 1 : 0;
@@ -1747,7 +1747,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				}
 
 				var percentage = this._getPercentage(ev);
-				this._adjustPercentageForRangeSliders(percentage);
+				this._adjustPercentageForRangeSlIders(percentage);
 				this._state.percentage[this._state.dragged] = percentage;
 
 				if (this.touchCapable) {
@@ -1761,12 +1761,12 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 
 				this._state.inDrag = false;
 				if (this._state.over === false) {
-					this._hideTooltip();
+					this._hIdeTooltip();
 				}
 				var val = this._calculateValue(true);
 
 				this.setValue(val, false, true);
-				this._trigger('slideStop', val);
+				this._trigger('slIdeStop', val);
 
 				// No longer need 'dragged' after mouse up
 				this._state.dragged = null;
@@ -1840,38 +1840,38 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				}
 
 				var eventPosition = ev[this.mousePos];
-				var sliderOffset = this._state.offset[this.stylePos];
-				var distanceToSlide = eventPosition - sliderOffset;
+				var slIderOffset = this._state.offset[this.stylePos];
+				var distanceToSlIde = eventPosition - slIderOffset;
 				if (this.stylePos === 'right') {
-					distanceToSlide = -distanceToSlide;
+					distanceToSlIde = -distanceToSlIde;
 				}
-				// Calculate what percent of the length the slider handle has slid
-				var percentage = distanceToSlide / this._state.size * 100;
+				// Calculate what percent of the length the slIder handle has slId
+				var percentage = distanceToSlIde / this._state.size * 100;
 				percentage = Math.round(percentage / this._state.percentage[2]) * this._state.percentage[2];
 				if (this.options.reversed) {
 					percentage = 100 - percentage;
 				}
 
-				// Make sure the percent is within the bounds of the slider.
-				// 0% corresponds to the 'min' value of the slide
-				// 100% corresponds to the 'max' value of the slide
+				// Make sure the percent is within the bounds of the slIder.
+				// 0% corresponds to the 'min' value of the slIde
+				// 100% corresponds to the 'max' value of the slIde
 				return Math.max(0, Math.min(100, percentage));
 			},
-			_validateInputValue: function _validateInputValue(val) {
+			_valIdateInputValue: function _valIdateInputValue(val) {
 				if (!isNaN(+val)) {
 					return +val;
 				} else if (Array.isArray(val)) {
-					this._validateArray(val);
+					this._valIdateArray(val);
 					return val;
 				} else {
-					throw new Error(ErrorMsgs.formatInvalidInputErrorMsg(val));
+					throw new Error(ErrorMsgs.formatInvalIdInputErrorMsg(val));
 				}
 			},
-			_validateArray: function _validateArray(val) {
+			_valIdateArray: function _valIdateArray(val) {
 				for (var i = 0; i < val.length; i++) {
 					var input = val[i];
 					if (typeof input !== 'number') {
-						throw new Error(ErrorMsgs.formatInvalidInputErrorMsg(input));
+						throw new Error(ErrorMsgs.formatInvalIdInputErrorMsg(input));
 					}
 				}
 			},
@@ -1902,11 +1902,11 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 					value: val
 				};
 				this.$element.trigger(eventData);
-				this.$sliderElem.trigger(eventData);
+				this.$slIderElem.trigger(eventData);
 			},
 			_unbindJQueryEventHandlers: function _unbindJQueryEventHandlers() {
 				this.$element.off();
-				this.$sliderElem.off();
+				this.$slIderElem.off();
 			},
 			_setText: function _setText(element, text) {
 				if (typeof element.textContent !== "undefined") {
@@ -1995,10 +1995,10 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 							tooltipPos = 'right';
 						}
 					}
-					var oppositeSide = tooltipPos === 'left' ? 'right' : 'left';
+					var oppositeSIde = tooltipPos === 'left' ? 'right' : 'left';
 					tooltips.forEach(function (tooltip) {
 						this._addClass(tooltip, 'bs-tooltip-' + tooltipPos);
-						tooltip.style[oppositeSide] = '100%';
+						tooltip.style[oppositeSIde] = '100%';
 					}.bind(this));
 				} else if (this.options.tooltip_position === 'bottom') {
 					tooltips.forEach(function (tooltip) {
@@ -2025,11 +2025,11 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				return index;
 			},
 			/**
-    * Attempts to find the index in `ticks[]` the slider values are set at.
-    * The indexes can be -1 to indicate the slider value is not set at a value in `ticks[]`.
+    * Attempts to find the index in `ticks[]` the slIder values are set at.
+    * The indexes can be -1 to indicate the slIder value is not set at a value in `ticks[]`.
     */
 			_setTickIndex: function _setTickIndex() {
-				if (this.ticksAreValid) {
+				if (this.ticksAreValId) {
 					this._state.tickIndex = [this.options.ticks.indexOf(this._state.value[0]), this.options.ticks.indexOf(this._state.value[1])];
 				}
 			}
@@ -2039,23 +2039,23 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
   		Attach to global namespace
   	*********************************/
 		if ($ && $.fn) {
-			if (!$.fn.slider) {
-				$.bridget(NAMESPACE_MAIN, Slider);
+			if (!$.fn.slIder) {
+				$.brIdget(NAMESPACE_MAIN, SlIder);
 				autoRegisterNamespace = NAMESPACE_MAIN;
 			} else {
 				if (windowIsDefined) {
-					window.console.warn("bootstrap-slider.js - WARNING: $.fn.slider namespace is already bound. Use the $.fn.bootstrapSlider namespace instead.");
+					window.console.warn("bootstrap-slIder.js - WARNING: $.fn.slIder namespace is already bound. Use the $.fn.bootstrapSlIder namespace instead.");
 				}
 				autoRegisterNamespace = NAMESPACE_ALTERNATE;
 			}
-			$.bridget(NAMESPACE_ALTERNATE, Slider);
+			$.brIdget(NAMESPACE_ALTERNATE, SlIder);
 
-			// Auto-Register data-provide="slider" Elements
+			// Auto-Register data-provIde="slIder" Elements
 			$(function () {
-				$("input[data-provide=slider]")[autoRegisterNamespace]();
+				$("input[data-provIde=slIder]")[autoRegisterNamespace]();
 			});
 		}
 	})($);
 
-	return Slider;
+	return SlIder;
 });

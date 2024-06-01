@@ -22,7 +22,7 @@ export type Placement =
 export type Offset = {
   top: number,
   left: number,
-  width: number,
+  wIdth: number,
   height: number,
   position: Position,
 };
@@ -36,7 +36,7 @@ export type Data = {
   placement: Placement,
   originalPlacement: Placement,
   flipped: boolean,
-  hide: boolean,
+  hIde: boolean,
   arrowElement: Element,
   styles: CSSStyleDeclaration,
   arrowStyles: CSSStyleDeclaration,
@@ -89,7 +89,7 @@ export type Modifiers = {
     flipVariationsByContent?: boolean,
   },
   inner?: BaseModifier,
-  hide?: BaseModifier,
+  hIde?: BaseModifier,
   applyStyle?: BaseModifier & {
     onLoad?: Function,
     gpuAcceleration?: boolean,
@@ -117,13 +117,13 @@ export type Options = {
 
 export type ReferenceObject = {
   +clientHeight: number,
-  +clientWidth: number,
+  +clientWIdth: number,
   +referenceNode?: Node,
 
   getBoundingClientRect():
     | ClientRect
     | {
-        width: number,
+        wIdth: number,
         height: number,
         top: number,
         right: number,

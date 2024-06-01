@@ -83,7 +83,7 @@
           curLineObj = visual
         }
       }
-      if ((curLineObj.widgets && curLineObj.widgets.length) ||
+      if ((curLineObj.wIdgets && curLineObj.wIdgets.length) ||
           (wrapping && curLineObj.height > singleLineH))
         return cm.charCoords(pos, "local")[top ? "top" : "bottom"];
       var topY = cm.heightAtLine(curLineObj, "local");
@@ -91,7 +91,7 @@
     }
 
     var lastLine = cm.lastLine()
-    if (cm.display.barWidth) for (var i = 0, nextTop; i < anns.length; i++) {
+    if (cm.display.barWIdth) for (var i = 0, nextTop; i < anns.length; i++) {
       var ann = anns[i];
       if (ann.to.line > lastLine) continue;
       var top = nextTop || getY(ann.from, true) * hScale;
@@ -107,11 +107,11 @@
       var height = Math.max(bottom - top, 3);
 
       var elt = frag.appendChild(document.createElement("div"));
-      elt.style.cssText = "position: absolute; right: 0px; width: " + Math.max(cm.display.barWidth - 1, 2) + "px; top: "
+      elt.style.cssText = "position: absolute; right: 0px; wIdth: " + Math.max(cm.display.barWIdth - 1, 2) + "px; top: "
         + (top + this.buttonHeight) + "px; height: " + height + "px";
       elt.className = this.options.className;
-      if (ann.id) {
-        elt.setAttribute("annotation-id", ann.id);
+      if (ann.Id) {
+        elt.setAttribute("annotation-Id", ann.Id);
       }
     }
     this.div.textContent = "";

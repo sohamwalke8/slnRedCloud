@@ -3,7 +3,7 @@ layout: page
 title: Direct Chat Components
 ---
 
-The direct chat widget extends the card component to create a beautiful chat interface. This widget consists of a required messages pane and an __optional__ contacts pane. Examples:
+The direct chat wIdget extends the card component to create a beautiful chat interface. This wIdget consists of a required messages pane and an __optional__ contacts pane. Examples:
 
 <div class="row">
   <div class="col-md-6">
@@ -12,13 +12,13 @@ The direct chat widget extends the card component to create a beautiful chat int
         <h3 class="card-title">Direct Chat</h3>
         <div class="card-tools">
           <span data-toggle="tooltip" title="3 New Messages" class="badge badge-light">3</span>
-          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <button type="button" class="btn btn-tool" data-card-wIdget="collapse">
             <i class="fas fa-minus"></i>
           </button>
-          <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">
+          <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts" data-wIdget="chat-pane-toggle">
             <i class="fas fa-comments"></i>
           </button>
-          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+          <button type="button" class="btn btn-tool" data-card-wIdget="remove"><i class="fas fa-times"></i>
           </button>
         </div>
       </div>
@@ -161,13 +161,13 @@ The direct chat widget extends the card component to create a beautiful chat int
         <h3 class="card-title">Direct Chat</h3>
         <div class="card-tools">
           <span data-toggle="tooltip" title="3 New Messages" class="badge badge-light">3</span>
-          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <button type="button" class="btn btn-tool" data-card-wIdget="collapse">
             <i class="fas fa-minus"></i>
           </button>
-          <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">
+          <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts" data-wIdget="chat-pane-toggle">
             <i class="fas fa-comments"></i>
           </button>
-          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+          <button type="button" class="btn btn-tool" data-card-wIdget="remove"><i class="fas fa-times"></i>
           </button>
         </div>
       </div>
@@ -315,13 +315,13 @@ The direct chat widget extends the card component to create a beautiful chat int
     <h3 class="card-title">Direct Chat</h3>
     <div class="card-tools">
       <span data-toggle="tooltip" title="3 New Messages" class="badge badge-light">3</span>
-      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+      <button type="button" class="btn btn-tool" data-card-wIdget="collapse">
         <i class="fas fa-minus"></i>
       </button>
-      <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">
+      <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts" data-wIdget="chat-pane-toggle">
         <i class="fas fa-comments"></i>
       </button>
-      <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+      <button type="button" class="btn btn-tool" data-card-wIdget="remove"><i class="fas fa-times"></i>
       </button>
     </div>
   </div>
@@ -512,13 +512,13 @@ Of course you can use direct chat with a outline card by adding the class `.card
         <h3 class="card-title">Direct Chat</h3>
         <div class="card-tools">
           <span data-toggle="tooltip" title="3 New Messages" class="badge badge-light">3</span>
-          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <button type="button" class="btn btn-tool" data-card-wIdget="collapse">
             <i class="fas fa-minus"></i>
           </button>
-          <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">
+          <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts" data-wIdget="chat-pane-toggle">
             <i class="fas fa-comments"></i>
           </button>
-          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+          <button type="button" class="btn btn-tool" data-card-wIdget="remove"><i class="fas fa-times"></i>
           </button>
         </div>
       </div>
@@ -661,13 +661,13 @@ Of course you can use direct chat with a outline card by adding the class `.card
         <h3 class="card-title">Direct Chat</h3>
         <div class="card-tools">
           <span data-toggle="tooltip" title="3 New Messages" class="badge badge-light">3</span>
-          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <button type="button" class="btn btn-tool" data-card-wIdget="collapse">
             <i class="fas fa-minus"></i>
           </button>
-          <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">
+          <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts" data-wIdget="chat-pane-toggle">
             <i class="fas fa-comments"></i>
           </button>
-          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+          <button type="button" class="btn btn-tool" data-card-wIdget="remove"><i class="fas fa-times"></i>
           </button>
         </div>
       </div>

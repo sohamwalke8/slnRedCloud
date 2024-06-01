@@ -54,7 +54,7 @@ CodeMirror.defineMode('powershell', function() {
 
   var numbers = /^((0x[\da-f]+)|((\d+\.\d+|\d\.|\.\d+|\d+)(e[\+\-]?\d+)?))[ld]?([kmgtp]b)?/i;
 
-  var identifiers = /^[A-Za-z\_][A-Za-z\-\_\d]*\b/;
+  var Identifiers = /^[A-Za-z\_][A-Za-z\-\_\d]*\b/;
 
   var symbolBuiltins = /[A-Z]:|%|\?/i;
   var namedBuiltins = buildRegexp([
@@ -75,10 +75,10 @@ CodeMirror.defineMode('powershell', function() {
     /(Enter|Exit)-PSSession/,
     /Export-(Alias|Clixml|Console|Counter|Csv|FormatData|ModuleMember|PSSession)/,
     /ForEach-Object/,
-    /Format-(Custom|List|Table|Wide)/,
+    /Format-(Custom|List|Table|WIde)/,
     new RegExp('Get-(Acl|Alias|AuthenticodeSignature|ChildItem|Command|ComputerRestorePoint|Content|ControlPanelItem|Counter|Credential'
       + '|Culture|Date|Event|EventLog|EventSubscriber|ExecutionPolicy|FormatData|Help|History|Host|HotFix|Item|ItemProperty|Job'
-      + '|Location|Member|Module|PfxCertificate|Process|PSBreakpoint|PSCallStack|PSDrive|PSProvider|PSSession|PSSessionConfiguration'
+      + '|Location|Member|Module|PfxCertificate|Process|PSBreakpoint|PSCallStack|PSDrive|PSProvIder|PSSession|PSSessionConfiguration'
       + '|PSSnapin|Random|Service|TraceSource|Transaction|TypeData|UICulture|Unique|Variable|Verb|WinEvent|WmiObject)'),
     /Group-Object/,
     /Import-(Alias|Clixml|Counter|Csv|LocalizedData|Module|PSSession)/,
@@ -90,7 +90,7 @@ CodeMirror.defineMode('powershell', function() {
     /Move-Item(Property)?/,
     new RegExp('New-(Alias|Event|EventLog|Item(Property)?|Module|ModuleManifest|Object|PSDrive|PSSession|PSSessionConfigurationFile'
       + '|PSSessionOption|PSTransportOption|Service|TimeSpan|Variable|WebServiceProxy|WinEvent)'),
-    /Out-(Default|File|GridView|Host|Null|Printer|String)/,
+    /Out-(Default|File|GrIdView|Host|Null|Printer|String)/,
     /Pause/,
     /(Pop|Push)-Location/,
     /Read-Host/,
@@ -137,7 +137,7 @@ CodeMirror.defineMode('powershell', function() {
   var variableBuiltins = buildRegexp([
     /[$?^_]|Args|ConfirmPreference|ConsoleFileName|DebugPreference|Error|ErrorActionPreference|ErrorView|ExecutionContext/,
     /FormatEnumerationLimit|Home|Host|Input|MaximumAliasCount|MaximumDriveCount|MaximumErrorCount|MaximumFunctionCount/,
-    /MaximumHistoryCount|MaximumVariableCount|MyInvocation|NestedPromptLevel|OutputEncoding|Pid|Profile|ProgressPreference/,
+    /MaximumHistoryCount|MaximumVariableCount|MyInvocation|NestedPromptLevel|OutputEncoding|PId|Profile|ProgressPreference/,
     /PSBoundParameters|PSCommandPath|PSCulture|PSDefaultParameterValues|PSEmailServer|PSHome|PSScriptRoot|PSSessionApplicationName/,
     /PSSessionConfigurationName|PSSessionOption|PSUICulture|PSVersionTable|Pwd|ShellId|StackTrace|VerbosePreference/,
     /WarningPreference|WhatIfPreference/,
@@ -155,7 +155,7 @@ CodeMirror.defineMode('powershell', function() {
     operator: operators,
     builtin: builtins,
     punctuation: punctuation,
-    identifier: identifiers
+    Identifier: Identifiers
   };
 
   // tokenizers

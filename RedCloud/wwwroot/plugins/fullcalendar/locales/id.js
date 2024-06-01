@@ -1,8 +1,8 @@
 FullCalendar.globalLocales.push(function () {
   'use strict';
 
-  var id = {
-    code: 'id',
+  var Id = {
+    code: 'Id',
     week: {
       dow: 1, // Monday is the first day of the week.
       doy: 7, // The week that contains Jan 1st is the first week of the year.
@@ -19,9 +19,9 @@ FullCalendar.globalLocales.push(function () {
     weekText: 'Mg',
     allDayText: 'Sehari penuh',
     moreLinkText: 'lebih',
-    noEventsText: 'Tidak ada acara untuk ditampilkan',
+    noEventsText: 'TIdak ada acara untuk ditampilkan',
   };
 
-  return id;
+  return Id;
 
 }());

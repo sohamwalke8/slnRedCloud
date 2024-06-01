@@ -1,7 +1,7 @@
-(function(jsGrid) {
+(function(jsGrId) {
 
-    jsGrid.locales["pt-br"] = {
-        grid: {
+    jsGrId.locales["pt-br"] = {
+        grId: {
             noDataContent: "Não encontrado",
             deleteConfirm: "Você tem certeza que deseja remover este item?",
             pagerFormat: "Páginas: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} de {pageCount}",
@@ -10,7 +10,7 @@
             pageFirstText: "Primeira",
             pageLastText: "Última",
             loadMessage: "Por favor, espere...",
-            invalidMessage: "Dados inválidos!"
+            invalIdMessage: "Dados inválIdos!"
         },
 
         loadIndicator: {
@@ -31,16 +31,16 @@
             }
         },
 
-        validators: {
+        valIdators: {
             required: { message: "Campo obrigatório" },
-            rangeLength: { message: "O valor esta fora do intervaldo definido" },
+            rangeLength: { message: "O valor esta fora do intervaldo definIdo" },
             minLength: { message: "O comprimento do valor é muito curto" },
             maxLength: { message: "O comprimento valor é muito longo" },
             pattern: { message: "O valor informado não é compatível com o padrão" },
-            range: { message: "O valor informado esta fora do limite definido" },
+            range: { message: "O valor informado esta fora do limite definIdo" },
             min: { message: "O valor é muito curto" },
             max: { message: "O valor é muito longo" }
         }
     };
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));

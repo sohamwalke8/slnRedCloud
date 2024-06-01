@@ -1,4 +1,4 @@
-/* This is a compiled file, to make changes persist, consider editing under the templates directory */
+/* This is a compiled file, to make changes persist, consIder editing under the templates directory */
 .pace {
   -webkit-pointer-events: none;
   pointer-events: none;
@@ -14,7 +14,7 @@
   z-index: 2000;
   top: 0;
   right: 0;
-  width: 300px;
+  wIdth: 300px;
   height: 300px;
   background: #d6d6d6;
   -webkit-transition: -webkit-transform 0.3s;
@@ -37,14 +37,14 @@
     bottom: 30px;
     left: 50%;
     display: block;
-    border: 5px solid #fff;
+    border: 5px solId #fff;
     border-radius: 50%;
     content: '';
 }
 
 .pace .pace-activity::before {
     margin-left: -40px;
-    width: 80px;
+    wIdth: 80px;
     height: 80px;
     border-right-color: rgba(0, 0, 0, .2);
     border-left-color: rgba(0, 0, 0, .2);
@@ -55,7 +55,7 @@
 .pace .pace-activity::after {
     bottom: 50px;
     margin-left: -20px;
-    width: 40px;
+    wIdth: 40px;
     height: 40px;
     border-top-color: rgba(0, 0, 0, .2);
     border-bottom-color: rgba(0, 0, 0, .2);

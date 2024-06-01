@@ -12,7 +12,7 @@ In creating a downloadable snapshot of the plots, axes, cursors etc of a graph.
 
 ### How it works:
 The entry point is composeImages function. It expects an array of objects,
-which should be either canvases or SVGs (or a mix). It does a prevalidation
+which should be either canvases or SVGs (or a mix). It does a prevalIdation
 of them, by verifying if they will be usable or not, later in the flow.
 After selecting only usable sources, it passes them to getGenerateTempImg
 function, which generates temporary images out of them. This function
@@ -43,12 +43,12 @@ temporary images load their data.
     var getPixelRatio = browser.getPixelRatio;
 
     function composeImages(canvasOrSvgSources, destinationCanvas) {
-        var validCanvasOrSvgSources = canvasOrSvgSources.filter(isValidSource);
+        var valIdCanvasOrSvgSources = canvasOrSvgSources.filter(isValIdSource);
         pixelRatio = getPixelRatio(destinationCanvas.getContext('2d'));
 
-        var allImgCompositionPromises = validCanvasOrSvgSources.map(function(validCanvasOrSvgSource) {
+        var allImgCompositionPromises = valIdCanvasOrSvgSources.map(function(valIdCanvasOrSvgSource) {
             var tempImg = new Image();
-            var currentPromise = new Promise(getGenerateTempImg(tempImg, validCanvasOrSvgSource));
+            var currentPromise = new Promise(getGenerateTempImg(tempImg, valIdCanvasOrSvgSource));
             return currentPromise;
         });
 
@@ -56,24 +56,24 @@ temporary images load their data.
         return lastPromise;
     }
 
-    function isValidSource(canvasOrSvgSource) {
-        var isValidFromCanvas = true;
-        var isValidFromContent = true;
+    function isValIdSource(canvasOrSvgSource) {
+        var isValIdFromCanvas = true;
+        var isValIdFromContent = true;
         if ((canvasOrSvgSource === null) || (canvasOrSvgSource === undefined)) {
-            isValidFromContent = false;
+            isValIdFromContent = false;
         } else {
             if (canvasOrSvgSource.tagName === 'CANVAS') {
                 if ((canvasOrSvgSource.getBoundingClientRect().right === canvasOrSvgSource.getBoundingClientRect().left) ||
                     (canvasOrSvgSource.getBoundingClientRect().bottom === canvasOrSvgSource.getBoundingClientRect().top)) {
-                    isValidFromCanvas = false;
+                    isValIdFromCanvas = false;
                 }
             }
         }
-        return isValidFromContent && isValidFromCanvas && (window.getComputedStyle(canvasOrSvgSource).visibility === 'visible');
+        return isValIdFromContent && isValIdFromCanvas && (window.getComputedStyle(canvasOrSvgSource).visibility === 'visible');
     }
 
     function getGenerateTempImg(tempImg, canvasOrSvgSource) {
-        tempImg.sourceDescription = '<info className="' + canvasOrSvgSource.className + '" tagName="' + canvasOrSvgSource.tagName + '" id="' + canvasOrSvgSource.id + '">';
+        tempImg.sourceDescription = '<info className="' + canvasOrSvgSource.className + '" tagName="' + canvasOrSvgSource.tagName + '" Id="' + canvasOrSvgSource.Id + '">';
         tempImg.sourceComponent = canvasOrSvgSource;
 
         return function doGenerateTempImg(successCallbackFunc, failureCallbackFunc) {
@@ -130,7 +130,7 @@ temporary images load their data.
 
     function embedCSSRulesInSVG(rules, svg) {
         var text = [
-            '<svg class="snapshot ' + svg.classList + '" width="' + svg.width.baseVal.value * pixelRatio + '" height="' + svg.height.baseVal.value * pixelRatio + '" viewBox="0 0 ' + svg.width.baseVal.value + ' ' + svg.height.baseVal.value + '" xmlns="http://www.w3.org/2000/svg">',
+            '<svg class="snapshot ' + svg.classList + '" wIdth="' + svg.wIdth.baseVal.value * pixelRatio + '" height="' + svg.height.baseVal.value * pixelRatio + '" viewBox="0 0 ' + svg.wIdth.baseVal.value + ' ' + svg.height.baseVal.value + '" xmlns="http://www.w3.org/2000/svg">',
             '<style>',
             '/* <![CDATA[ */',
             rules.join('\n'),
@@ -156,7 +156,7 @@ temporary images load their data.
 
     function copySVGToImgSafari(svg, img) {
         // Use this method to convert a string buffer array to a binary string.
-        // Do so by breaking up large strings into smaller substrings; this is necessary to avoid the
+        // Do so by breaking up large strings into smaller substrings; this is necessary to avoId the
         // "maximum call stack size exceeded" exception that can happen when calling 'String.fromCharCode.apply'
         // with a very long array.
         function buildBinaryString (arrayBuffer) {
@@ -214,7 +214,7 @@ temporary images load their data.
 
         if (sources.find(containsSVGs) !== undefined) {
             if (pixelRatio < 1) {
-                destinationCanvas.width = destinationCanvas.width * pixelRatio;
+                destinationCanvas.wIdth = destinationCanvas.wIdth * pixelRatio;
                 destinationCanvas.height = destinationCanvas.height * pixelRatio;
             }
         }
@@ -252,9 +252,9 @@ temporary images load their data.
             }
 
             if ((maxX - minX <= 0) || (maxY - minY <= 0)) {
-                result = NEGATIVEIMAGESIZE; //this might occur on hidden images
+                result = NEGATIVEIMAGESIZE; //this might occur on hIdden images
             } else {
-                destination.width = Math.round(maxX - minX);
+                destination.wIdth = Math.round(maxX - minX);
                 destination.height = Math.round(maxY - minY);
 
                 for (i = 0; i < sources.length; i++) {
@@ -287,7 +287,7 @@ temporary images load their data.
         destImg.genTop = srcCanvasOrSvg.getBoundingClientRect().top;
 
         if (srcCanvasOrSvg.tagName === 'CANVAS') {
-            destImg.genRight = destImg.genLeft + srcCanvasOrSvg.width;
+            destImg.genRight = destImg.genLeft + srcCanvasOrSvg.wIdth;
             destImg.genBottom = destImg.genTop + srcCanvasOrSvg.height;
         }
 

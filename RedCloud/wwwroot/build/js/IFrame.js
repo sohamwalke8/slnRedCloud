@@ -16,11 +16,11 @@ const NAME = 'IFrame'
 const DATA_KEY = 'lte.iframe'
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const SELECTOR_DATA_TOGGLE = '[data-widget="iframe"]'
-const SELECTOR_DATA_TOGGLE_CLOSE = '[data-widget="iframe-close"]'
-const SELECTOR_DATA_TOGGLE_SCROLL_LEFT = '[data-widget="iframe-scrollleft"]'
-const SELECTOR_DATA_TOGGLE_SCROLL_RIGHT = '[data-widget="iframe-scrollright"]'
-const SELECTOR_DATA_TOGGLE_FULLSCREEN = '[data-widget="iframe-fullscreen"]'
+const SELECTOR_DATA_TOGGLE = '[data-wIdget="iframe"]'
+const SELECTOR_DATA_TOGGLE_CLOSE = '[data-wIdget="iframe-close"]'
+const SELECTOR_DATA_TOGGLE_SCROLL_LEFT = '[data-wIdget="iframe-scrollleft"]'
+const SELECTOR_DATA_TOGGLE_SCROLL_RIGHT = '[data-wIdget="iframe-scrollright"]'
+const SELECTOR_DATA_TOGGLE_FULLSCREEN = '[data-wIdget="iframe-fullscreen"]'
 const SELECTOR_CONTENT_WRAPPER = '.content-wrapper'
 const SELECTOR_CONTENT_IFRAME = `${SELECTOR_CONTENT_WRAPPER} iframe`
 const SELECTOR_TAB_NAV = `${SELECTOR_CONTENT_WRAPPER}.iframe-mode .nav`
@@ -31,8 +31,8 @@ const SELECTOR_TAB_CONTENT = `${SELECTOR_CONTENT_WRAPPER}.iframe-mode .tab-conte
 const SELECTOR_TAB_EMPTY = `${SELECTOR_TAB_CONTENT} .tab-empty`
 const SELECTOR_TAB_LOADING = `${SELECTOR_TAB_CONTENT} .tab-loading`
 const SELECTOR_TAB_PANE = `${SELECTOR_TAB_CONTENT} .tab-pane`
-const SELECTOR_SIDEBAR_MENU_ITEM = '.main-sidebar .nav-item > a.nav-link'
-const SELECTOR_SIDEBAR_SEARCH_ITEM = '.sidebar-search-results .list-group-item'
+const SELECTOR_SIdEBAR_MENU_ITEM = '.main-sIdebar .nav-item > a.nav-link'
+const SELECTOR_SIdEBAR_SEARCH_ITEM = '.sIdebar-search-results .list-group-item'
 const SELECTOR_HEADER_MENU_ITEM = '.main-header .nav-item a.nav-link'
 const SELECTOR_HEADER_DROPDOWN_ITEM = '.main-header a.dropdown-item'
 const CLASS_NAME_IFRAME_MODE = 'iframe-mode'
@@ -97,10 +97,10 @@ class IFrame {
       navId += `-${Math.floor(Math.random() * 1000)}`
     }
 
-    const newNavItem = `<li class="nav-item" role="presentation"><a href="#" class="btn-iframe-close" data-widget="iframe-close" data-type="only-this"><i class="fas fa-times"></i></a><a class="nav-link" data-toggle="row" id="${navId}" href="#${tabId}" role="tab" aria-controls="${tabId}" aria-selected="false">${title}</a></li>`
+    const newNavItem = `<li class="nav-item" role="presentation"><a href="#" class="btn-iframe-close" data-wIdget="iframe-close" data-type="only-this"><i class="fas fa-times"></i></a><a class="nav-link" data-toggle="row" Id="${navId}" href="#${tabId}" role="tab" aria-controls="${tabId}" aria-selected="false">${title}</a></li>`
     $(SELECTOR_TAB_NAVBAR_NAV).append(unescape(escape(newNavItem)))
 
-    const newTabItem = `<div class="tab-pane fade" id="${tabId}" role="tabpanel" aria-labelledby="${navId}"><iframe src="${link}"></iframe></div>`
+    const newTabItem = `<div class="tab-pane fade" Id="${tabId}" role="tabpanel" aria-labelledby="${navId}"><iframe src="${link}"></iframe></div>`
     $(SELECTOR_TAB_CONTENT).append(unescape(escape(newTabItem)))
 
     if (autoOpen) {
@@ -126,7 +126,7 @@ class IFrame {
     this.onTabCreated($(`#${navId}`))
   }
 
-  openTabSidebar(item, autoOpen = this._config.autoShowNewTab) {
+  openTabSIdebar(item, autoOpen = this._config.autoShowNewTab) {
     let $item = $(item).clone()
     if ($item.attr('href') === undefined) {
       $item = $(item).parent('a').clone()
@@ -159,7 +159,7 @@ class IFrame {
     const $item = $(item)
     const tabId = $item.attr('href')
 
-    $(SELECTOR_TAB_EMPTY).hide()
+    $(SELECTOR_TAB_EMPTY).hIde()
 
     if (reload) {
       const $loadingScreen = $(SELECTOR_TAB_LOADING)
@@ -260,7 +260,7 @@ class IFrame {
       const $el = $(`${SELECTOR_TAB_PANE}`).first()
       // eslint-disable-next-line no-console
       console.log($el)
-      const uniqueName = $el.attr('id').replace('panel-', '')
+      const uniqueName = $el.attr('Id').replace('panel-', '')
       const navId = `#tab-${uniqueName}`
 
       this.switchTab(navId, true)
@@ -290,14 +290,14 @@ class IFrame {
       }, 1)
     })
     if ($(SELECTOR_CONTENT_WRAPPER).hasClass(CLASS_NAME_IFRAME_MODE)) {
-      $(document).on('click', `${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_SIDEBAR_SEARCH_ITEM}`, e => {
+      $(document).on('click', `${SELECTOR_SIdEBAR_MENU_ITEM}, ${SELECTOR_SIdEBAR_SEARCH_ITEM}`, e => {
         e.preventDefault()
-        this.openTabSidebar(e.target)
+        this.openTabSIdebar(e.target)
       })
       if (this._config.useNavbarItems) {
         $(document).on('click', `${SELECTOR_HEADER_MENU_ITEM}, ${SELECTOR_HEADER_DROPDOWN_ITEM}`, e => {
           e.preventDefault()
-          this.openTabSidebar(e.target)
+          this.openTabSIdebar(e.target)
         })
       }
     }
@@ -372,12 +372,12 @@ class IFrame {
   }
 
   _setItemActive(href) {
-    $(`${SELECTOR_SIDEBAR_MENU_ITEM}, ${SELECTOR_HEADER_DROPDOWN_ITEM}`).removeClass('active')
+    $(`${SELECTOR_SIdEBAR_MENU_ITEM}, ${SELECTOR_HEADER_DROPDOWN_ITEM}`).removeClass('active')
     $(SELECTOR_HEADER_MENU_ITEM).parent().removeClass('active')
 
     const $headerMenuItem = $(`${SELECTOR_HEADER_MENU_ITEM}[href$="${href}"]`)
     const $headerDropdownItem = $(`${SELECTOR_HEADER_DROPDOWN_ITEM}[href$="${href}"]`)
-    const $sidebarMenuItem = $(`${SELECTOR_SIDEBAR_MENU_ITEM}[href$="${href}"]`)
+    const $sIdebarMenuItem = $(`${SELECTOR_SIdEBAR_MENU_ITEM}[href$="${href}"]`)
 
     $headerMenuItem.each((i, e) => {
       $(e).parent().addClass('active')
@@ -385,7 +385,7 @@ class IFrame {
     $headerDropdownItem.each((i, e) => {
       $(e).addClass('active')
     })
-    $sidebarMenuItem.each((i, e) => {
+    $sIdebarMenuItem.each((i, e) => {
       $(e).addClass('active')
       $(e).parents('.nav-treeview').prevAll('.nav-link').addClass('active')
     })
@@ -427,7 +427,7 @@ class IFrame {
 
       $(this).data(DATA_KEY, typeof config === 'object' ? config : data)
 
-      if (typeof config === 'string' && /createTab|openTabSidebar|switchTab|removeActiveTab/.test(config)) {
+      if (typeof config === 'string' && /createTab|openTabSIdebar|switchTab|removeActiveTab/.test(config)) {
         plugin[config]()
       }
     } else {

@@ -1,7 +1,7 @@
-(function(jsGrid) {
+(function(jsGrId) {
 
-    jsGrid.locales["zh-tw"] = {
-        grid: {
+    jsGrId.locales["zh-tw"] = {
+        grId: {
             noDataContent: "暫無資料",
             deleteConfirm: "確認刪除？",
             pagerFormat: "頁碼: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} / {pageCount}",
@@ -10,7 +10,7 @@
             pageFirstText: "第一頁",
             pageLastText: "最後一頁",
             loadMessage: "請稍候...",
-            invalidMessage: "輸入資料不正確"
+            invalIdMessage: "輸入資料不正確"
         },
 
         loadIndicator: {
@@ -31,7 +31,7 @@
             }
         },
 
-        validators: {
+        valIdators: {
             required: { message: "欄位必填" },
             rangeLength: { message: "欄位字串長度超出範圍" },
             minLength: { message: "欄位字串長度太短" },
@@ -43,4 +43,4 @@
         }
     };
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));

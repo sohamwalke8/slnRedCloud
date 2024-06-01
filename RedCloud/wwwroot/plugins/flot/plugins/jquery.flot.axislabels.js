@@ -20,7 +20,7 @@ the following conditions:
 The above copyright notice and this permission notice shall be
 included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+THE SOFTWARE IS PROVIdED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
@@ -45,7 +45,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         this.placeholder = placeholder;
         this.axisLabel = axisLabel;
         this.surface = surface;
-        this.width = 0;
+        this.wIdth = 0;
         this.height = 0;
         this.elem = null;
     }
@@ -56,14 +56,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             className = axisId + ' axisLabels';
 
         var info = this.surface.getTextInfo(layerId, this.axisLabel, className);
-        this.labelWidth = info.width;
+        this.labelWIdth = info.wIdth;
         this.labelHeight = info.height;
 
         if (this.position === 'left' || this.position === 'right') {
-            this.width = this.labelHeight + this.padding;
+            this.wIdth = this.labelHeight + this.padding;
             this.height = 0;
         } else {
-            this.width = 0;
+            this.wIdth = 0;
             this.height = this.labelHeight + this.padding;
         }
     };
@@ -77,7 +77,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         }
         if (degrees !== 0) {
             rotate = svgLayer.createSVGTransform();
-            var centerX = Math.round(this.labelWidth / 2),
+            var centerX = Math.round(this.labelWIdth / 2),
                 centerY = 0;
             rotate.setRotate(degrees, centerX, centerY);
             transforms.push(rotate);
@@ -93,18 +93,18 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             degrees: 0
         };
         if (this.position === 'bottom') {
-            offsets.x = box.left + box.width / 2 - this.labelWidth / 2;
+            offsets.x = box.left + box.wIdth / 2 - this.labelWIdth / 2;
             offsets.y = box.top + box.height - this.labelHeight;
         } else if (this.position === 'top') {
-            offsets.x = box.left + box.width / 2 - this.labelWidth / 2;
+            offsets.x = box.left + box.wIdth / 2 - this.labelWIdth / 2;
             offsets.y = box.top;
         } else if (this.position === 'left') {
             offsets.degrees = -90;
-            offsets.x = box.left - this.labelWidth / 2;
+            offsets.x = box.left - this.labelWIdth / 2;
             offsets.y = box.height / 2 + box.top;
         } else if (this.position === 'right') {
             offsets.degrees = 90;
-            offsets.x = box.left + box.width - this.labelWidth / 2;
+            offsets.x = box.left + box.wIdth - this.labelWIdth / 2;
             offsets.y = box.height / 2 + box.top;
         }
         offsets.x = Math.round(offsets.x);
@@ -157,7 +157,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 var axisName = axis.direction + axis.n;
 
                 axis.labelHeight += axis.boxPosition.centerY;
-                axis.labelWidth += axis.boxPosition.centerX;
+                axis.labelWIdth += axis.boxPosition.centerX;
 
                 if (!opts || !opts.axisLabel || !axis.show) {
                     return;
@@ -179,7 +179,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                 // Incrementing the sizes of the tick labels.
                 axis.labelHeight += axisLabel.height;
-                axis.labelWidth += axisLabel.width;
+                axis.labelWIdth += axisLabel.wIdth;
             });
 
             // TODO - use the drawAxis hook

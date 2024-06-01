@@ -30,6 +30,16 @@ namespace RedCloud.Persistenence
 
         public DbSet<User> User { get; set; }
 
+        public DbSet<RedCloudAdmin> RedCloudAdmins { get; set; }
+
+        public DbSet<ResellerAdminUser> ResellerAdminUsers { get; set; }
+        public DbSet<Country> Countries { get; set; }
+
+        public DbSet<State> States { get; set; }
+
+        public DbSet<City> Cities { get; set; }
+
+
 
 
         //        private readonly ILoggedInUserService _loggedInUserService;
@@ -49,36 +59,36 @@ namespace RedCloud.Persistenence
         //        public DbSet<Order> Orders { get; set; }
         //        public DbSet<Message> Messages { get; set; }
 
-        //        private IDbContextTransaction _transaction;
+        //        private IdbContextTransaction _transaction;
 
         //        protected override void OnModelCreating(ModelBuilder modelBuilder)
         //        {
         //            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
         //            //seed data, added through migrations
-        //            var concertGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
-        //            var musicalGuid = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}");
-        //            var playGuid = Guid.Parse("{BF3F3002-7E53-441E-8B76-F6280BE284AA}");
-        //            var conferenceGuid = Guid.Parse("{FE98F549-E790-4E9F-AA16-18C2292A2EE9}");
+        //            var concertGuId = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
+        //            var musicalGuId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}");
+        //            var playGuId = Guid.Parse("{BF3F3002-7E53-441E-8B76-F6280BE284AA}");
+        //            var conferenceGuId = Guid.Parse("{FE98F549-E790-4E9F-AA16-18C2292A2EE9}");
 
         //            modelBuilder.Entity<Category>().HasData(new Category
         //            {
-        //                CategoryId = concertGuid,
+        //                CategoryId = concertGuId,
         //                Name = "Concerts"
         //            });
         //            modelBuilder.Entity<Category>().HasData(new Category
         //            {
-        //                CategoryId = musicalGuid,
+        //                CategoryId = musicalGuId,
         //                Name = "Musicals"
         //            });
         //            modelBuilder.Entity<Category>().HasData(new Category
         //            {
-        //                CategoryId = playGuid,
+        //                CategoryId = playGuId,
         //                Name = "Plays"
         //            });
         //            modelBuilder.Entity<Category>().HasData(new Category
         //            {
-        //                CategoryId = conferenceGuid,
+        //                CategoryId = conferenceGuId,
         //                Name = "Conferences"
         //            });
 
@@ -91,7 +101,7 @@ namespace RedCloud.Persistenence
         //                Date = DateTime.UtcNow.AddMonths(6),
         //                Description = "Join John for his farwell tour across 15 continents. John really needs no introduction since he has already mesmerized the world with his banjo.",
         //                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
-        //                CategoryId = concertGuid
+        //                CategoryId = concertGuId
         //            });
 
         //            modelBuilder.Entity<Event>().HasData(new Event
@@ -103,7 +113,7 @@ namespace RedCloud.Persistenence
         //                Date = DateTime.UtcNow.AddMonths(9),
         //                Description = "Michael Johnson doesn't need an introduction. His 25 concert across the globe last year were seen by thousands. Can we add you to the list?",
         //                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/michael.jpg",
-        //                CategoryId = concertGuid
+        //                CategoryId = concertGuId
         //            });
 
         //            modelBuilder.Entity<Event>().HasData(new Event
@@ -115,7 +125,7 @@ namespace RedCloud.Persistenence
         //                Date = DateTime.UtcNow.AddMonths(4),
         //                Description = "DJs from all over the world will compete in this epic battle for eternal fame.",
         //                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/dj.jpg",
-        //                CategoryId = concertGuid
+        //                CategoryId = concertGuId
         //            });
 
         //            modelBuilder.Entity<Event>().HasData(new Event
@@ -127,7 +137,7 @@ namespace RedCloud.Persistenence
         //                Date = DateTime.UtcNow.AddMonths(4),
         //                Description = "Get on the hype of Spanish Guitar concerts with Manuel.",
         //                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/guitar.jpg",
-        //                CategoryId = concertGuid
+        //                CategoryId = concertGuId
         //            });
 
         //            modelBuilder.Entity<Event>().HasData(new Event
@@ -139,7 +149,7 @@ namespace RedCloud.Persistenence
         //                Date = DateTime.UtcNow.AddMonths(10),
         //                Description = "The best tech conference in the world",
         //                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/conf.jpg",
-        //                CategoryId = conferenceGuid
+        //                CategoryId = conferenceGuId
         //            });
 
         //            modelBuilder.Entity<Event>().HasData(new Event
@@ -151,14 +161,14 @@ namespace RedCloud.Persistenence
         //                Date = DateTime.UtcNow.AddMonths(8),
         //                Description = "The critics are over the moon and so will you after you've watched this sing and dance extravaganza written by Nick Sailor, the man from 'My dad and sister'.",
         //                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-        //                CategoryId = musicalGuid
+        //                CategoryId = musicalGuId
         //            });
 
         //            modelBuilder.Entity<Order>().HasData(new Order
         //            {
         //                Id = Guid.Parse("{7E94BC5B-71A5-4C8C-BC3B-71BB7976237E}"),
         //                OrderTotal = 400,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{A441EB40-9636-4EE6-BE49-A66C5EC1330B}")
         //            });
@@ -167,7 +177,7 @@ namespace RedCloud.Persistenence
         //            {
         //                Id = Guid.Parse("{86D3A045-B42D-4854-8150-D6A374948B6E}"),
         //                OrderTotal = 135,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{AC3CFAF5-34FD-4E4D-BC04-AD1083DDC340}")
         //            });
@@ -176,7 +186,7 @@ namespace RedCloud.Persistenence
         //            {
         //                Id = Guid.Parse("{771CCA4B-066C-4AC7-B3DF-4D12837FE7E0}"),
         //                OrderTotal = 85,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{D97A15FC-0D32-41C6-9DDF-62F0735C4C1C}")
         //            });
@@ -185,7 +195,7 @@ namespace RedCloud.Persistenence
         //            {
         //                Id = Guid.Parse("{3DCB3EA0-80B1-4781-B5C0-4D85C41E55A6}"),
         //                OrderTotal = 245,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{4AD901BE-F447-46DD-BCF7-DBE401AFA203}")
         //            });
@@ -194,7 +204,7 @@ namespace RedCloud.Persistenence
         //            {
         //                Id = Guid.Parse("{E6A2679C-79A3-4EF1-A478-6F4C91B405B6}"),
         //                OrderTotal = 142,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{7AEB2C01-FE8E-4B84-A5BA-330BDF950F5C}")
         //            });
@@ -203,7 +213,7 @@ namespace RedCloud.Persistenence
         //            {
         //                Id = Guid.Parse("{F5A6A3A0-4227-4973-ABB5-A63FBE725923}"),
         //                OrderTotal = 40,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{F5A6A3A0-4227-4973-ABB5-A63FBE725923}")
         //            });
@@ -212,7 +222,7 @@ namespace RedCloud.Persistenence
         //            {
         //                Id = Guid.Parse("{BA0EB0EF-B69B-46FD-B8E2-41B4178AE7CB}"),
         //                OrderTotal = 116,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{7AEB2C01-FE8E-4B84-A5BA-330BDF950F5C}")
         //            });
@@ -317,36 +327,36 @@ namespace RedCloud.Persistenence
         //        public DbSet<Order> Orders { get; set; }
         //        public DbSet<Message> Messages { get; set; }
 
-        //        private IDbContextTransaction _transaction;
+        //        private IdbContextTransaction _transaction;
 
         //        protected override void OnModelCreating(ModelBuilder modelBuilder)
         //        {
         //            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
         //            //seed data, added through migrations
-        //            var concertGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
-        //            var musicalGuid = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}");
-        //            var playGuid = Guid.Parse("{BF3F3002-7E53-441E-8B76-F6280BE284AA}");
-        //            var conferenceGuid = Guid.Parse("{FE98F549-E790-4E9F-AA16-18C2292A2EE9}");
+        //            var concertGuId = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
+        //            var musicalGuId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}");
+        //            var playGuId = Guid.Parse("{BF3F3002-7E53-441E-8B76-F6280BE284AA}");
+        //            var conferenceGuId = Guid.Parse("{FE98F549-E790-4E9F-AA16-18C2292A2EE9}");
 
         //            modelBuilder.Entity<Category>().HasData(new Category
         //            {
-        //                CategoryId = concertGuid,
+        //                CategoryId = concertGuId,
         //                Name = "Concerts"
         //            });
         //            modelBuilder.Entity<Category>().HasData(new Category
         //            {
-        //                CategoryId = musicalGuid,
+        //                CategoryId = musicalGuId,
         //                Name = "Musicals"
         //            });
         //            modelBuilder.Entity<Category>().HasData(new Category
         //            {
-        //                CategoryId = playGuid,
+        //                CategoryId = playGuId,
         //                Name = "Plays"
         //            });
         //            modelBuilder.Entity<Category>().HasData(new Category
         //            {
-        //                CategoryId = conferenceGuid,
+        //                CategoryId = conferenceGuId,
         //                Name = "Conferences"
         //            });
 
@@ -359,7 +369,7 @@ namespace RedCloud.Persistenence
         //                Date = DateTime.UtcNow.AddMonths(6),
         //                Description = "Join John for his farwell tour across 15 continents. John really needs no introduction since he has already mesmerized the world with his banjo.",
         //                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
-        //                CategoryId = concertGuid
+        //                CategoryId = concertGuId
         //            });
 
         //            modelBuilder.Entity<Event>().HasData(new Event
@@ -371,7 +381,7 @@ namespace RedCloud.Persistenence
         //                Date = DateTime.UtcNow.AddMonths(9),
         //                Description = "Michael Johnson doesn't need an introduction. His 25 concert across the globe last year were seen by thousands. Can we add you to the list?",
         //                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/michael.jpg",
-        //                CategoryId = concertGuid
+        //                CategoryId = concertGuId
         //            });
 
         //            modelBuilder.Entity<Event>().HasData(new Event
@@ -383,7 +393,7 @@ namespace RedCloud.Persistenence
         //                Date = DateTime.UtcNow.AddMonths(4),
         //                Description = "DJs from all over the world will compete in this epic battle for eternal fame.",
         //                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/dj.jpg",
-        //                CategoryId = concertGuid
+        //                CategoryId = concertGuId
         //            });
 
         //            modelBuilder.Entity<Event>().HasData(new Event
@@ -395,7 +405,7 @@ namespace RedCloud.Persistenence
         //                Date = DateTime.UtcNow.AddMonths(4),
         //                Description = "Get on the hype of Spanish Guitar concerts with Manuel.",
         //                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/guitar.jpg",
-        //                CategoryId = concertGuid
+        //                CategoryId = concertGuId
         //            });
 
         //            modelBuilder.Entity<Event>().HasData(new Event
@@ -407,7 +417,7 @@ namespace RedCloud.Persistenence
         //                Date = DateTime.UtcNow.AddMonths(10),
         //                Description = "The best tech conference in the world",
         //                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/conf.jpg",
-        //                CategoryId = conferenceGuid
+        //                CategoryId = conferenceGuId
         //            });
 
         //            modelBuilder.Entity<Event>().HasData(new Event
@@ -419,14 +429,14 @@ namespace RedCloud.Persistenence
         //                Date = DateTime.UtcNow.AddMonths(8),
         //                Description = "The critics are over the moon and so will you after you've watched this sing and dance extravaganza written by Nick Sailor, the man from 'My dad and sister'.",
         //                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-        //                CategoryId = musicalGuid
+        //                CategoryId = musicalGuId
         //            });
 
         //            modelBuilder.Entity<Order>().HasData(new Order
         //            {
         //                Id = Guid.Parse("{7E94BC5B-71A5-4C8C-BC3B-71BB7976237E}"),
         //                OrderTotal = 400,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{A441EB40-9636-4EE6-BE49-A66C5EC1330B}")
         //            });
@@ -435,7 +445,7 @@ namespace RedCloud.Persistenence
         //            {
         //                Id = Guid.Parse("{86D3A045-B42D-4854-8150-D6A374948B6E}"),
         //                OrderTotal = 135,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{AC3CFAF5-34FD-4E4D-BC04-AD1083DDC340}")
         //            });
@@ -444,7 +454,7 @@ namespace RedCloud.Persistenence
         //            {
         //                Id = Guid.Parse("{771CCA4B-066C-4AC7-B3DF-4D12837FE7E0}"),
         //                OrderTotal = 85,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{D97A15FC-0D32-41C6-9DDF-62F0735C4C1C}")
         //            });
@@ -453,7 +463,7 @@ namespace RedCloud.Persistenence
         //            {
         //                Id = Guid.Parse("{3DCB3EA0-80B1-4781-B5C0-4D85C41E55A6}"),
         //                OrderTotal = 245,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{4AD901BE-F447-46DD-BCF7-DBE401AFA203}")
         //            });
@@ -462,7 +472,7 @@ namespace RedCloud.Persistenence
         //            {
         //                Id = Guid.Parse("{E6A2679C-79A3-4EF1-A478-6F4C91B405B6}"),
         //                OrderTotal = 142,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{7AEB2C01-FE8E-4B84-A5BA-330BDF950F5C}")
         //            });
@@ -471,7 +481,7 @@ namespace RedCloud.Persistenence
         //            {
         //                Id = Guid.Parse("{F5A6A3A0-4227-4973-ABB5-A63FBE725923}"),
         //                OrderTotal = 40,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{F5A6A3A0-4227-4973-ABB5-A63FBE725923}")
         //            });
@@ -480,7 +490,7 @@ namespace RedCloud.Persistenence
         //            {
         //                Id = Guid.Parse("{BA0EB0EF-B69B-46FD-B8E2-41B4178AE7CB}"),
         //                OrderTotal = 116,
-        //                OrderPaid = true,
+        //                OrderPaId = true,
         //                OrderPlaced = DateTime.UtcNow,
         //                UserId = Guid.Parse("{7AEB2C01-FE8E-4B84-A5BA-330BDF950F5C}")
         //            });

@@ -7,7 +7,7 @@
  * @builddate 2016/06/02
  */
 
-var VectorCanvas = function (width, height, params) {
+var VectorCanvas = function (wIdth, height, params) {
   this.mode = window.SVGAngle ? 'svg' : 'vml';
   this.params = params;
 
@@ -39,13 +39,13 @@ var VectorCanvas = function (width, height, params) {
     this.canvas.style.position = 'absolute';
   }
 
-  this.setSize(width, height);
+  this.setSize(wIdth, height);
 };
 
 VectorCanvas.prototype = {
   svgns: 'http://www.w3.org/2000/svg',
   mode: 'svg',
-  width: 0,
+  wIdth: 0,
   height: 0,
   canvas: null
 };
@@ -76,7 +76,7 @@ var JQVMap = function (params) {
   var mapPins;
 
   if( !mapData){
-    throw new Error('Invalid "' + params.map + '" map parameter. Please make sure you have loaded this map file in your HTML.');
+    throw new Error('InvalId "' + params.map + '" map parameter. Please make sure you have loaded this map file in your HTML.');
   }
 
   this.selectedRegions = [];
@@ -84,7 +84,7 @@ var JQVMap = function (params) {
 
   this.container = params.container;
 
-  this.defaultWidth = mapData.width;
+  this.defaultWIdth = mapData.wIdth;
   this.defaultHeight = mapData.height;
 
   this.color = params.color;
@@ -94,24 +94,24 @@ var JQVMap = function (params) {
   this.hoverOpacity = params.hoverOpacity;
   this.setBackgroundColor(params.backgroundColor);
 
-  this.width = params.container.width();
+  this.wIdth = params.container.wIdth();
   this.height = params.container.height();
 
   this.resize();
 
   jQuery(window).resize(function () {
-    var newWidth = params.container.width();
+    var newWIdth = params.container.wIdth();
     var newHeight = params.container.height();
 
-    if(newWidth && newHeight){
-      map.width = newWidth;
+    if(newWIdth && newHeight){
+      map.wIdth = newWIdth;
       map.height = newHeight;
       map.resize();
-      map.canvas.setSize(map.width, map.height);
+      map.canvas.setSize(map.wIdth, map.height);
       map.applyTransform();
 
       var resizeEvent = jQuery.Event('resize.jqvmap');
-      jQuery(params.container).trigger(resizeEvent, [newWidth, newHeight]);
+      jQuery(params.container).trigger(resizeEvent, [newWIdth, newHeight]);
 
       if(mapPins){
         jQuery('.jqvmap-pin').remove();
@@ -121,7 +121,7 @@ var JQVMap = function (params) {
     }
   });
 
-  this.canvas = new VectorCanvas(this.width, this.height, params);
+  this.canvas = new VectorCanvas(this.wIdth, this.height, params);
   params.container.append(this.canvas.canvas);
 
   this.makeDraggable();
@@ -129,7 +129,7 @@ var JQVMap = function (params) {
   this.rootGroup = this.canvas.createGroup(true);
 
   this.index = JQVMap.mapIndex;
-  this.label = jQuery('<div/>').addClass('jqvmap-label').appendTo(jQuery('body')).hide();
+  this.label = jQuery('<div/>').addClass('jqvmap-label').appendTo(jQuery('body')).hIde();
 
   if (params.enableZoom) {
     jQuery('<div/>').addClass('jqvmap-zoomin').text('+').appendTo(params.container);
@@ -144,7 +144,7 @@ var JQVMap = function (params) {
     });
 
     path.setFill(this.color);
-    path.id = map.getCountryId(key);
+    path.Id = map.getCountryId(key);
     map.countries[key] = path;
 
     if (this.canvas.mode === 'svg') {
@@ -158,7 +158,7 @@ var JQVMap = function (params) {
 
   jQuery(params.container).delegate(this.canvas.mode === 'svg' ? 'path' : 'shape', 'mouseover mouseout', function (e) {
     var containerPath = e.target,
-      code = e.target.id.split('_').pop(),
+      code = e.target.Id.split('_').pop(),
       labelShowEvent = jQuery.Event('labelShow.jqvmap'),
       regionMouseOverEvent = jQuery.Event('regionMouseOver.jqvmap');
 
@@ -175,14 +175,14 @@ var JQVMap = function (params) {
 
         if (!labelShowEvent.isDefaultPrevented()) {
           map.label.show();
-          map.labelWidth = map.label.width();
+          map.labelWIdth = map.label.wIdth();
           map.labelHeight = map.label.height();
         }
       }
     } else {
       map.unhighlight(code, containerPath);
 
-      map.label.hide();
+      map.label.hIde();
       jQuery(params.container).trigger('regionMouseOut.jqvmap', [code, mapData.paths[code].name]);
     }
   });
@@ -190,7 +190,7 @@ var JQVMap = function (params) {
   jQuery(params.container).delegate(this.canvas.mode === 'svg' ? 'path' : 'shape', 'click', function (regionClickEvent) {
 
     var targetPath = regionClickEvent.target;
-    var code = regionClickEvent.target.id.split('_').pop();
+    var code = regionClickEvent.target.Id.split('_').pop();
     var mapClickEvent = jQuery.Event('regionClick.jqvmap');
 
     code = code.toLowerCase();
@@ -216,7 +216,7 @@ var JQVMap = function (params) {
   if (params.showTooltip) {
     params.container.mousemove(function (e) {
       if (map.label.is(':visible')) {
-        var left = e.pageX - 15 - map.labelWidth;
+        var left = e.pageX - 15 - map.labelWIdth;
         var top = e.pageY - 15 - map.labelHeight;
 
         if(left < 0) {
@@ -299,7 +299,7 @@ JQVMap.prototype = {
   baseTransX: 0,
   baseTransY: 0,
   baseScale: 1,
-  width: 0,
+  wIdth: 0,
   height: 0,
   countries: {},
   countriesColors: {},
@@ -324,7 +324,7 @@ JQVMap.maps = {};
     enableZoom: 1,
     showTooltip: 1,
     borderColor: 1,
-    borderWidth: 1,
+    borderWIdth: 1,
     borderOpacity: 1,
     selectedRegions: 1,
     multiSelectRegion: 1
@@ -355,7 +355,7 @@ JQVMap.maps = {};
       enableZoom: true,
       showTooltip: true,
       borderColor: '#818181',
-      borderWidth: 1,
+      borderWIdth: 1,
       borderOpacity: 0.25,
       selectedRegions: null,
       multiSelectRegion: false
@@ -371,7 +371,7 @@ JQVMap.maps = {};
     } else {
       jQuery.extend(defaultParams, options);
       defaultParams.container = this;
-      this.css({ position: 'relative', overflow: 'hidden' });
+      this.css({ position: 'relative', overflow: 'hIdden' });
 
       map = new JQVMap(defaultParams);
 
@@ -533,12 +533,12 @@ ColorScale.prototype.vectorToNum = function (vector) {
 
 JQVMap.prototype.applyTransform = function () {
   var maxTransX, maxTransY, minTransX, minTransY;
-  if (this.defaultWidth * this.scale <= this.width) {
-    maxTransX = (this.width - this.defaultWidth * this.scale) / (2 * this.scale);
-    minTransX = (this.width - this.defaultWidth * this.scale) / (2 * this.scale);
+  if (this.defaultWIdth * this.scale <= this.wIdth) {
+    maxTransX = (this.wIdth - this.defaultWIdth * this.scale) / (2 * this.scale);
+    minTransX = (this.wIdth - this.defaultWIdth * this.scale) / (2 * this.scale);
   } else {
     maxTransX = 0;
-    minTransX = (this.width - this.defaultWidth * this.scale) / this.scale;
+    minTransX = (this.wIdth - this.defaultWIdth * this.scale) / this.scale;
   }
 
   if (this.defaultHeight * this.scale <= this.height) {
@@ -797,7 +797,7 @@ JQVMap.prototype.makeDraggable = function () {
 JQVMap.prototype.placePins = function(pins, pinMode){
   var map = this;
 
-  if(!pinMode || (pinMode !== 'content' && pinMode !== 'id')) {
+  if(!pinMode || (pinMode !== 'content' && pinMode !== 'Id')) {
     pinMode = 'content';
   }
 
@@ -812,9 +812,9 @@ JQVMap.prototype.placePins = function(pins, pinMode){
       if($pin.length > 0){
         $pin.remove();
       }
-      map.container.append('<div id="' + pinIndex + '" for="' + index + '" class="jqvmap-pin" style="position:absolute">' + pin + '</div>');
+      map.container.append('<div Id="' + pinIndex + '" for="' + index + '" class="jqvmap-pin" style="position:absolute">' + pin + '</div>');
     });
-  } else { //treat pin as id of an html content
+  } else { //treat pin as Id of an html content
     jQuery.each(pins, function(index, pin){
       if(jQuery('#' + map.getCountryId(index)).length === 0){
         return;
@@ -824,7 +824,7 @@ JQVMap.prototype.placePins = function(pins, pinMode){
       if($pin.length > 0){
         $pin.remove();
       }
-      map.container.append('<div id="' + pinIndex + '" for="' + index + '" class="jqvmap-pin" style="position:absolute"></div>');
+      map.container.append('<div Id="' + pinIndex + '" for="' + index + '" class="jqvmap-pin" style="position:absolute"></div>');
       $pin.append(jQuery('#' + pin));
     });
   }
@@ -858,12 +858,12 @@ JQVMap.prototype.positionPins = function(){
       top: rootCoords.top - mapCoords.top
     };
 
-    var middleX = (bbox.x * scale) + ((bbox.width * scale) / 2);
-    var middleY = (bbox.y * scale) + ((bbox.height * scale) / 2);
+    var mIddleX = (bbox.x * scale) + ((bbox.wIdth * scale) / 2);
+    var mIddleY = (bbox.y * scale) + ((bbox.height * scale) / 2);
 
     pinObj.css({
-      left: coords.left + middleX - (pinObj.width() / 2),
-      top: coords.top + middleY - (pinObj.height() / 2)
+      left: coords.left + mIddleX - (pinObj.wIdth() / 2),
+      top: coords.top + mIddleY - (pinObj.height() / 2)
     });
   });
 };
@@ -890,11 +890,11 @@ JQVMap.prototype.reset = function () {
 
 JQVMap.prototype.resize = function () {
   var curBaseScale = this.baseScale;
-  if (this.width / this.height > this.defaultWidth / this.defaultHeight) {
+  if (this.wIdth / this.height > this.defaultWIdth / this.defaultHeight) {
     this.baseScale = this.height / this.defaultHeight;
-    this.baseTransX = Math.abs(this.width - this.defaultWidth * this.baseScale) / (2 * this.baseScale);
+    this.baseTransX = Math.abs(this.wIdth - this.defaultWIdth * this.baseScale) / (2 * this.baseScale);
   } else {
-    this.baseScale = this.width / this.defaultWidth;
+    this.baseScale = this.wIdth / this.defaultWIdth;
     this.baseTransY = Math.abs(this.height - this.defaultHeight * this.baseScale) / (2 * this.baseScale);
   }
   this.scale *= this.baseScale / curBaseScale;
@@ -1020,17 +1020,17 @@ JQVMap.prototype.unhighlight = function (cc, path) {
 
 JQVMap.prototype.zoomIn = function () {
   var map = this;
-  var sliderDelta = (jQuery('#zoom').innerHeight() - 6 * 2 - 15 * 2 - 3 * 2 - 7 - 6) / (this.zoomMaxStep - this.zoomCurStep);
+  var slIderDelta = (jQuery('#zoom').innerHeight() - 6 * 2 - 15 * 2 - 3 * 2 - 7 - 6) / (this.zoomMaxStep - this.zoomCurStep);
 
   if (map.zoomCurStep < map.zoomMaxStep) {
-    map.transX -= (map.width / map.scale - map.width / (map.scale * map.zoomStep)) / 2;
+    map.transX -= (map.wIdth / map.scale - map.wIdth / (map.scale * map.zoomStep)) / 2;
     map.transY -= (map.height / map.scale - map.height / (map.scale * map.zoomStep)) / 2;
     map.setScale(map.scale * map.zoomStep);
     map.zoomCurStep++;
 
-    var $slider = jQuery('#zoomSlider');
+    var $slIder = jQuery('#zoomSlIder');
 
-    $slider.css('top', parseInt($slider.css('top'), 10) - sliderDelta);
+    $slIder.css('top', parseInt($slIder.css('top'), 10) - slIderDelta);
 
     map.container.trigger('zoomIn');
   }
@@ -1038,17 +1038,17 @@ JQVMap.prototype.zoomIn = function () {
 
 JQVMap.prototype.zoomOut = function () {
   var map = this;
-  var sliderDelta = (jQuery('#zoom').innerHeight() - 6 * 2 - 15 * 2 - 3 * 2 - 7 - 6) / (this.zoomMaxStep - this.zoomCurStep);
+  var slIderDelta = (jQuery('#zoom').innerHeight() - 6 * 2 - 15 * 2 - 3 * 2 - 7 - 6) / (this.zoomMaxStep - this.zoomCurStep);
 
   if (map.zoomCurStep > 1) {
-    map.transX += (map.width / (map.scale / map.zoomStep) - map.width / map.scale) / 2;
+    map.transX += (map.wIdth / (map.scale / map.zoomStep) - map.wIdth / map.scale) / 2;
     map.transY += (map.height / (map.scale / map.zoomStep) - map.height / map.scale) / 2;
     map.setScale(map.scale / map.zoomStep);
     map.zoomCurStep--;
 
-    var $slider = jQuery('#zoomSlider');
+    var $slIder = jQuery('#zoomSlIder');
 
-    $slider.css('top', parseInt($slider.css('top'), 10) + sliderDelta);
+    $slIder.css('top', parseInt($slIder.css('top'), 10) + slIderDelta);
 
     map.container.trigger('zoomOut');
   }
@@ -1058,8 +1058,8 @@ VectorCanvas.prototype.applyTransformParams = function (scale, transX, transY) {
   if (this.mode === 'svg') {
     this.rootGroup.setAttribute('transform', 'scale(' + scale + ') translate(' + transX + ', ' + transY + ')');
   } else {
-    this.rootGroup.coordorigin = (this.width - transX) + ',' + (this.height - transY);
-    this.rootGroup.coordsize = this.width / scale + ',' + this.height / scale;
+    this.rootGroup.coordorigin = (this.wIdth - transX) + ',' + (this.height - transY);
+    this.rootGroup.coordsize = this.wIdth / scale + ',' + this.height / scale;
   }
 };
 
@@ -1069,12 +1069,12 @@ VectorCanvas.prototype.createGroup = function (isRoot) {
     node = this.createSvgNode('g');
   } else {
     node = this.createVmlNode('group');
-    node.style.width = this.width + 'px';
+    node.style.wIdth = this.wIdth + 'px';
     node.style.height = this.height + 'px';
     node.style.left = '0px';
     node.style.top = '0px';
     node.coordorigin = '0 0';
-    node.coordsize = this.width + ' ' + this.height;
+    node.coordsize = this.wIdth + ' ' + this.height;
   }
 
   if (isRoot) {
@@ -1092,8 +1092,8 @@ VectorCanvas.prototype.createPath = function (config) {
     if (this.params.borderColor !== null) {
       node.setAttribute('stroke', this.params.borderColor);
     }
-    if (this.params.borderWidth > 0) {
-      node.setAttribute('stroke-width', this.params.borderWidth);
+    if (this.params.borderWIdth > 0) {
+      node.setAttribute('stroke-wIdth', this.params.borderWIdth);
       node.setAttribute('stroke-linecap', 'round');
       node.setAttribute('stroke-linejoin', 'round');
     }
@@ -1122,8 +1122,8 @@ VectorCanvas.prototype.createPath = function (config) {
   } else {
     node = this.createVmlNode('shape');
     node.coordorigin = '0 0';
-    node.coordsize = this.width + ' ' + this.height;
-    node.style.width = this.width + 'px';
+    node.coordsize = this.wIdth + ' ' + this.height;
+    node.style.wIdth = this.wIdth + 'px';
     node.style.height = this.height + 'px';
     node.fillcolor = JQVMap.defaultFillColor;
     node.stroked = false;
@@ -1263,27 +1263,27 @@ VectorCanvas.prototype.pathSvgToVml = function (path) {
   }).replace(/z/g, '');
 };
 
-VectorCanvas.prototype.setSize = function (width, height) {
+VectorCanvas.prototype.setSize = function (wIdth, height) {
   if (this.mode === 'svg') {
-    this.canvas.setAttribute('width', width);
+    this.canvas.setAttribute('wIdth', wIdth);
     this.canvas.setAttribute('height', height);
   } else {
-    this.canvas.style.width = width + 'px';
+    this.canvas.style.wIdth = wIdth + 'px';
     this.canvas.style.height = height + 'px';
-    this.canvas.coordsize = width + ' ' + height;
+    this.canvas.coordsize = wIdth + ' ' + height;
     this.canvas.coordorigin = '0 0';
     if (this.rootGroup) {
       var paths = this.rootGroup.getElementsByTagName('shape');
       for (var i = 0, l = paths.length; i < l; i++) {
-        paths[i].coordsize = width + ' ' + height;
-        paths[i].style.width = width + 'px';
+        paths[i].coordsize = wIdth + ' ' + height;
+        paths[i].style.wIdth = wIdth + 'px';
         paths[i].style.height = height + 'px';
       }
-      this.rootGroup.coordsize = width + ' ' + height;
-      this.rootGroup.style.width = width + 'px';
+      this.rootGroup.coordsize = wIdth + ' ' + height;
+      this.rootGroup.style.wIdth = wIdth + 'px';
       this.rootGroup.style.height = height + 'px';
     }
   }
-  this.width = width;
+  this.wIdth = wIdth;
   this.height = height;
 };

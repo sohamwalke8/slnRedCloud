@@ -1,7 +1,7 @@
 //! moment.js locale configuration
 //! locale : Luxembourgish [lb]
 //! author : mweimerskirch : https://github.com/mweimerskirch
-//! author : David Raison : https://github.com/kwisatz
+//! author : DavId Raison : https://github.com/kwisatz
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'
@@ -86,7 +86,7 @@
             '_'
         ),
         monthsParseExact: true,
-        weekdays: 'Sonndeg_Méindeg_Dënschdeg_Mëttwoch_Donneschdeg_Freideg_Samschdeg'.split(
+        weekdays: 'Sonndeg_Méindeg_Dënschdeg_Mëttwoch_Donneschdeg_FreIdeg_Samschdeg'.split(
             '_'
         ),
         weekdaysShort: 'So._Mé._Dë._Më._Do._Fr._Sa.'.split('_'),

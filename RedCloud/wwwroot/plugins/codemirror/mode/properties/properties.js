@@ -65,7 +65,7 @@ CodeMirror.defineMode("properties", function() {
         position : "def",       // Current position, "def", "quote" or "comment"
         nextMultiline : false,  // Is the next line multiline value
         inMultiline : false,    // Is the current line a multiline value
-        afterSection : false    // Did we just open a section
+        afterSection : false    // DId we just open a section
       };
     }
 

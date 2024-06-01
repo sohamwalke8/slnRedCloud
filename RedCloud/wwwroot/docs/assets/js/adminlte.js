@@ -33,7 +33,7 @@
   var EVENT_OVERLAY_REMOVED = "overlay.removed" + EVENT_KEY$7;
   var CLASS_NAME_CARD$1 = 'card';
   var SELECTOR_CARD$1 = "." + CLASS_NAME_CARD$1;
-  var SELECTOR_DATA_REFRESH = '[data-card-widget="card-refresh"]';
+  var SELECTOR_DATA_REFRESH = '[data-card-wIdget="card-refresh"]';
   var Default$c = {
     source: '',
     sourceSelector: '',
@@ -182,7 +182,7 @@
 
   /**
    * --------------------------------------------
-   * AdminLTE CardWidget.js
+   * AdminLTE CardWIdget.js
    * License MIT
    * --------------------------------------------
    */
@@ -191,8 +191,8 @@
    * ====================================================
    */
 
-  var NAME$d = 'CardWidget';
-  var DATA_KEY$d = 'lte.cardwidget';
+  var NAME$d = 'CardWIdget';
+  var DATA_KEY$d = 'lte.cardwIdget';
   var EVENT_KEY$6 = "." + DATA_KEY$d;
   var JQUERY_NO_CONFLICT$d = $__default["default"].fn[NAME$d];
   var EVENT_EXPANDED$3 = "expanded" + EVENT_KEY$6;
@@ -206,9 +206,9 @@
   var CLASS_NAME_EXPANDING = 'expanding-card';
   var CLASS_NAME_WAS_COLLAPSED = 'was-collapsed';
   var CLASS_NAME_MAXIMIZED = 'maximized-card';
-  var SELECTOR_DATA_REMOVE = '[data-card-widget="remove"]';
-  var SELECTOR_DATA_COLLAPSE = '[data-card-widget="collapse"]';
-  var SELECTOR_DATA_MAXIMIZE = '[data-card-widget="maximize"]';
+  var SELECTOR_DATA_REMOVE = '[data-card-wIdget="remove"]';
+  var SELECTOR_DATA_COLLAPSE = '[data-card-wIdget="collapse"]';
+  var SELECTOR_DATA_MAXIMIZE = '[data-card-wIdget="maximize"]';
   var SELECTOR_CARD = "." + CLASS_NAME_CARD;
   var SELECTOR_CARD_HEADER = '.card-header';
   var SELECTOR_CARD_BODY = '.card-body';
@@ -224,8 +224,8 @@
     minimizeIcon: 'fa-compress'
   };
 
-  var CardWidget = /*#__PURE__*/function () {
-    function CardWidget(element, settings) {
+  var CardWIdget = /*#__PURE__*/function () {
+    function CardWIdget(element, settings) {
       this._element = element;
       this._parent = element.parents(SELECTOR_CARD).first();
 
@@ -236,12 +236,12 @@
       this._settings = $__default["default"].extend({}, Default$b, settings);
     }
 
-    var _proto = CardWidget.prototype;
+    var _proto = CardWIdget.prototype;
 
     _proto.collapse = function collapse() {
       var _this = this;
 
-      this._parent.addClass(CLASS_NAME_COLLAPSING).children(SELECTOR_CARD_BODY + ", " + SELECTOR_CARD_FOOTER).slideUp(this._settings.animationSpeed, function () {
+      this._parent.addClass(CLASS_NAME_COLLAPSING).children(SELECTOR_CARD_BODY + ", " + SELECTOR_CARD_FOOTER).slIdeUp(this._settings.animationSpeed, function () {
         _this._parent.addClass(CLASS_NAME_COLLAPSED$1).removeClass(CLASS_NAME_COLLAPSING);
       });
 
@@ -253,7 +253,7 @@
     _proto.expand = function expand() {
       var _this2 = this;
 
-      this._parent.addClass(CLASS_NAME_EXPANDING).children(SELECTOR_CARD_BODY + ", " + SELECTOR_CARD_FOOTER).slideDown(this._settings.animationSpeed, function () {
+      this._parent.addClass(CLASS_NAME_EXPANDING).children(SELECTOR_CARD_BODY + ", " + SELECTOR_CARD_FOOTER).slIdeDown(this._settings.animationSpeed, function () {
         _this2._parent.removeClass(CLASS_NAME_COLLAPSED$1).removeClass(CLASS_NAME_EXPANDING);
       });
 
@@ -263,7 +263,7 @@
     };
 
     _proto.remove = function remove() {
-      this._parent.slideUp();
+      this._parent.slIdeUp();
 
       this._element.trigger($__default["default"].Event(EVENT_REMOVED$1), this._parent);
     };
@@ -282,7 +282,7 @@
 
       this._parent.css({
         height: this._parent.height(),
-        width: this._parent.width(),
+        wIdth: this._parent.wIdth(),
         transition: 'all .15s'
       }).delay(150).queue(function () {
         var $element = $__default["default"](this);
@@ -302,13 +302,13 @@
     _proto.minimize = function minimize() {
       this._parent.find(this._settings.maximizeTrigger + " ." + this._settings.minimizeIcon).addClass(this._settings.maximizeIcon).removeClass(this._settings.minimizeIcon);
 
-      this._parent.css('cssText', "height: " + this._parent[0].style.height + " !important; width: " + this._parent[0].style.width + " !important; transition: all .15s;").delay(10).queue(function () {
+      this._parent.css('cssText', "height: " + this._parent[0].style.height + " !important; wIdth: " + this._parent[0].style.wIdth + " !important; transition: all .15s;").delay(10).queue(function () {
         var $element = $__default["default"](this);
         $element.removeClass(CLASS_NAME_MAXIMIZED);
         $__default["default"]('html').removeClass(CLASS_NAME_MAXIMIZED);
         $element.css({
           height: 'inherit',
-          width: 'inherit'
+          wIdth: 'inherit'
         });
 
         if ($element.hasClass(CLASS_NAME_WAS_COLLAPSED)) {
@@ -347,13 +347,13 @@
     } // Static
     ;
 
-    CardWidget._jQueryInterface = function _jQueryInterface(config) {
+    CardWIdget._jQueryInterface = function _jQueryInterface(config) {
       var data = $__default["default"](this).data(DATA_KEY$d);
 
       var _options = $__default["default"].extend({}, Default$b, $__default["default"](this).data());
 
       if (!data) {
-        data = new CardWidget($__default["default"](this), _options);
+        data = new CardWIdget($__default["default"](this), _options);
         $__default["default"](this).data(DATA_KEY$d, typeof config === 'string' ? data : config);
       }
 
@@ -364,7 +364,7 @@
       }
     };
 
-    return CardWidget;
+    return CardWIdget;
   }();
   /**
    * Data API
@@ -377,38 +377,38 @@
       event.preventDefault();
     }
 
-    CardWidget._jQueryInterface.call($__default["default"](this), 'toggle');
+    CardWIdget._jQueryInterface.call($__default["default"](this), 'toggle');
   });
   $__default["default"](document).on('click', SELECTOR_DATA_REMOVE, function (event) {
     if (event) {
       event.preventDefault();
     }
 
-    CardWidget._jQueryInterface.call($__default["default"](this), 'remove');
+    CardWIdget._jQueryInterface.call($__default["default"](this), 'remove');
   });
   $__default["default"](document).on('click', SELECTOR_DATA_MAXIMIZE, function (event) {
     if (event) {
       event.preventDefault();
     }
 
-    CardWidget._jQueryInterface.call($__default["default"](this), 'toggleMaximize');
+    CardWIdget._jQueryInterface.call($__default["default"](this), 'toggleMaximize');
   });
   /**
    * jQuery API
    * ====================================================
    */
 
-  $__default["default"].fn[NAME$d] = CardWidget._jQueryInterface;
-  $__default["default"].fn[NAME$d].Constructor = CardWidget;
+  $__default["default"].fn[NAME$d] = CardWIdget._jQueryInterface;
+  $__default["default"].fn[NAME$d].Constructor = CardWIdget;
 
   $__default["default"].fn[NAME$d].noConflict = function () {
     $__default["default"].fn[NAME$d] = JQUERY_NO_CONFLICT$d;
-    return CardWidget._jQueryInterface;
+    return CardWIdget._jQueryInterface;
   };
 
   /**
    * --------------------------------------------
-   * AdminLTE ControlSidebar.js
+   * AdminLTE ControlSIdebar.js
    * License MIT
    * --------------------------------------------
    */
@@ -417,21 +417,21 @@
    * ====================================================
    */
 
-  var NAME$c = 'ControlSidebar';
-  var DATA_KEY$c = 'lte.controlsidebar';
+  var NAME$c = 'ControlSIdebar';
+  var DATA_KEY$c = 'lte.controlsIdebar';
   var EVENT_KEY$5 = "." + DATA_KEY$c;
   var JQUERY_NO_CONFLICT$c = $__default["default"].fn[NAME$c];
   var EVENT_COLLAPSED$3 = "collapsed" + EVENT_KEY$5;
   var EVENT_COLLAPSED_DONE$1 = "collapsed-done" + EVENT_KEY$5;
   var EVENT_EXPANDED$2 = "expanded" + EVENT_KEY$5;
-  var SELECTOR_CONTROL_SIDEBAR = '.control-sidebar';
-  var SELECTOR_CONTROL_SIDEBAR_CONTENT$1 = '.control-sidebar-content';
-  var SELECTOR_DATA_TOGGLE$4 = '[data-widget="control-sidebar"]';
+  var SELECTOR_CONTROL_SIdEBAR = '.control-sIdebar';
+  var SELECTOR_CONTROL_SIdEBAR_CONTENT$1 = '.control-sIdebar-content';
+  var SELECTOR_DATA_TOGGLE$4 = '[data-wIdget="control-sIdebar"]';
   var SELECTOR_HEADER$1 = '.main-header';
   var SELECTOR_FOOTER$1 = '.main-footer';
-  var CLASS_NAME_CONTROL_SIDEBAR_ANIMATE = 'control-sidebar-animate';
-  var CLASS_NAME_CONTROL_SIDEBAR_OPEN$1 = 'control-sidebar-open';
-  var CLASS_NAME_CONTROL_SIDEBAR_SLIDE = 'control-sidebar-slide-open';
+  var CLASS_NAME_CONTROL_SIdEBAR_ANIMATE = 'control-sIdebar-animate';
+  var CLASS_NAME_CONTROL_SIdEBAR_OPEN$1 = 'control-sIdebar-open';
+  var CLASS_NAME_CONTROL_SIdEBAR_SLIdE = 'control-sIdebar-slIde-open';
   var CLASS_NAME_LAYOUT_FIXED$1 = 'layout-fixed';
   var CLASS_NAME_NAVBAR_FIXED = 'layout-navbar-fixed';
   var CLASS_NAME_NAVBAR_SM_FIXED = 'layout-sm-navbar-fixed';
@@ -444,10 +444,10 @@
   var CLASS_NAME_FOOTER_LG_FIXED = 'layout-lg-footer-fixed';
   var CLASS_NAME_FOOTER_XL_FIXED = 'layout-xl-footer-fixed';
   var Default$a = {
-    controlsidebarSlide: true,
+    controlsIdebarSlIde: true,
     scrollbarTheme: 'os-theme-light',
-    scrollbarAutoHide: 'l',
-    target: SELECTOR_CONTROL_SIDEBAR,
+    scrollbarAutoHIde: 'l',
+    target: SELECTOR_CONTROL_SIdEBAR,
     animationSpeed: 300
   };
   /**
@@ -455,30 +455,30 @@
    * ====================================================
    */
 
-  var ControlSidebar = /*#__PURE__*/function () {
-    function ControlSidebar(element, config) {
+  var ControlSIdebar = /*#__PURE__*/function () {
+    function ControlSIdebar(element, config) {
       this._element = element;
       this._config = config;
     } // Public
 
 
-    var _proto = ControlSidebar.prototype;
+    var _proto = ControlSIdebar.prototype;
 
     _proto.collapse = function collapse() {
       var _this = this;
 
       var $body = $__default["default"]('body');
-      var $html = $__default["default"]('html'); // Show the control sidebar
+      var $html = $__default["default"]('html'); // Show the control sIdebar
 
-      if (this._config.controlsidebarSlide) {
-        $html.addClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE);
-        $body.removeClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
-          $__default["default"](SELECTOR_CONTROL_SIDEBAR).hide();
-          $html.removeClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE);
+      if (this._config.controlsIdebarSlIde) {
+        $html.addClass(CLASS_NAME_CONTROL_SIdEBAR_ANIMATE);
+        $body.removeClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE).delay(300).queue(function () {
+          $__default["default"](SELECTOR_CONTROL_SIdEBAR).hIde();
+          $html.removeClass(CLASS_NAME_CONTROL_SIdEBAR_ANIMATE);
           $__default["default"](this).dequeue();
         });
       } else {
-        $body.removeClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN$1);
+        $body.removeClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN$1);
       }
 
       $__default["default"](this._element).trigger($__default["default"].Event(EVENT_COLLAPSED$3));
@@ -496,21 +496,21 @@
       var $html = $__default["default"]('html');
 
       if (toggle) {
-        $__default["default"](SELECTOR_CONTROL_SIDEBAR).hide();
-      } // Collapse the control sidebar
+        $__default["default"](SELECTOR_CONTROL_SIdEBAR).hIde();
+      } // Collapse the control sIdebar
 
 
-      if (this._config.controlsidebarSlide) {
-        $html.addClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE);
+      if (this._config.controlsIdebarSlIde) {
+        $html.addClass(CLASS_NAME_CONTROL_SIdEBAR_ANIMATE);
         $__default["default"](this._config.target).show().delay(10).queue(function () {
-          $body.addClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
-            $html.removeClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE);
+          $body.addClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE).delay(300).queue(function () {
+            $html.removeClass(CLASS_NAME_CONTROL_SIdEBAR_ANIMATE);
             $__default["default"](this).dequeue();
           });
           $__default["default"](this).dequeue();
         });
       } else {
-        $body.addClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN$1);
+        $body.addClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN$1);
       }
 
       this._fixHeight();
@@ -524,14 +524,14 @@
       var $body = $__default["default"]('body');
       var target = this._config.target;
       var notVisible = !$__default["default"](target).is(':visible');
-      var shouldClose = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN$1) || $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE);
-      var shouldToggle = notVisible && ($body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN$1) || $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE));
+      var shouldClose = $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN$1) || $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE);
+      var shouldToggle = notVisible && ($body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN$1) || $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE));
 
       if (notVisible || shouldToggle) {
-        // Open the control sidebar
+        // Open the control sIdebar
         this.show(notVisible);
       } else if (shouldClose) {
-        // Close the control sidebar
+        // Close the control sIdebar
         this.collapse();
       }
     } // Private
@@ -541,13 +541,13 @@
       var _this2 = this;
 
       var $body = $__default["default"]('body');
-      var shouldNotHideAll = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN$1) || $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE);
+      var shouldNotHIdeAll = $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN$1) || $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE);
 
-      if (shouldNotHideAll) {
-        $__default["default"](SELECTOR_CONTROL_SIDEBAR).not(this._config.target).hide();
+      if (shouldNotHIdeAll) {
+        $__default["default"](SELECTOR_CONTROL_SIdEBAR).not(this._config.target).hIde();
         $__default["default"](this._config.target).css('display', 'block');
       } else {
-        $__default["default"](SELECTOR_CONTROL_SIDEBAR).hide();
+        $__default["default"](SELECTOR_CONTROL_SIdEBAR).hIde();
       }
 
       this._fixHeight();
@@ -561,7 +561,7 @@
       });
       $__default["default"](window).scroll(function () {
         var $body = $__default["default"]('body');
-        var shouldFixHeight = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN$1) || $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE);
+        var shouldFixHeight = $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN$1) || $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE);
 
         if (shouldFixHeight) {
           _this2._fixScrollHeight();
@@ -581,7 +581,7 @@
 
     _proto._fixScrollHeight = function _fixScrollHeight() {
       var $body = $__default["default"]('body');
-      var $controlSidebar = $__default["default"](this._config.target);
+      var $controlSIdebar = $__default["default"](this._config.target);
 
       if (!$body.hasClass(CLASS_NAME_LAYOUT_FIXED$1)) {
         return;
@@ -599,51 +599,51 @@
       };
       var navbarFixed = this._isNavbarFixed() && $__default["default"](SELECTOR_HEADER$1).css('position') === 'fixed';
       var footerFixed = this._isFooterFixed() && $__default["default"](SELECTOR_FOOTER$1).css('position') === 'fixed';
-      var $controlsidebarContent = $__default["default"](this._config.target + ", " + this._config.target + " " + SELECTOR_CONTROL_SIDEBAR_CONTENT$1);
+      var $controlsIdebarContent = $__default["default"](this._config.target + ", " + this._config.target + " " + SELECTOR_CONTROL_SIdEBAR_CONTENT$1);
 
       if (positions.top === 0 && positions.bottom === 0) {
-        $controlSidebar.css({
+        $controlSIdebar.css({
           bottom: heights.footer,
           top: heights.header
         });
-        $controlsidebarContent.css('height', heights.window - (heights.header + heights.footer));
+        $controlsIdebarContent.css('height', heights.window - (heights.header + heights.footer));
       } else if (positions.bottom <= heights.footer) {
         if (footerFixed === false) {
           var top = heights.header - positions.top;
-          $controlSidebar.css('bottom', heights.footer - positions.bottom).css('top', top >= 0 ? top : 0);
-          $controlsidebarContent.css('height', heights.window - (heights.footer - positions.bottom));
+          $controlSIdebar.css('bottom', heights.footer - positions.bottom).css('top', top >= 0 ? top : 0);
+          $controlsIdebarContent.css('height', heights.window - (heights.footer - positions.bottom));
         } else {
-          $controlSidebar.css('bottom', heights.footer);
+          $controlSIdebar.css('bottom', heights.footer);
         }
       } else if (positions.top <= heights.header) {
         if (navbarFixed === false) {
-          $controlSidebar.css('top', heights.header - positions.top);
-          $controlsidebarContent.css('height', heights.window - (heights.header - positions.top));
+          $controlSIdebar.css('top', heights.header - positions.top);
+          $controlsIdebarContent.css('height', heights.window - (heights.header - positions.top));
         } else {
-          $controlSidebar.css('top', heights.header);
+          $controlSIdebar.css('top', heights.header);
         }
       } else if (navbarFixed === false) {
-        $controlSidebar.css('top', 0);
-        $controlsidebarContent.css('height', heights.window);
+        $controlSIdebar.css('top', 0);
+        $controlsIdebarContent.css('height', heights.window);
       } else {
-        $controlSidebar.css('top', heights.header);
+        $controlSIdebar.css('top', heights.header);
       }
 
       if (footerFixed && navbarFixed) {
-        $controlsidebarContent.css('height', '100%');
-        $controlSidebar.css('height', '');
+        $controlsIdebarContent.css('height', '100%');
+        $controlSIdebar.css('height', '');
       } else if (footerFixed || navbarFixed) {
-        $controlsidebarContent.css('height', '100%');
-        $controlsidebarContent.css('height', '');
+        $controlsIdebarContent.css('height', '100%');
+        $controlsIdebarContent.css('height', '');
       }
     };
 
     _proto._fixHeight = function _fixHeight() {
       var $body = $__default["default"]('body');
-      var $controlSidebar = $__default["default"](this._config.target + " " + SELECTOR_CONTROL_SIDEBAR_CONTENT$1);
+      var $controlSIdebar = $__default["default"](this._config.target + " " + SELECTOR_CONTROL_SIdEBAR_CONTENT$1);
 
       if (!$body.hasClass(CLASS_NAME_LAYOUT_FIXED$1)) {
-        $controlSidebar.attr('style', '');
+        $controlSIdebar.attr('style', '');
         return;
       }
 
@@ -652,20 +652,20 @@
         header: $__default["default"](SELECTOR_HEADER$1).outerHeight(),
         footer: $__default["default"](SELECTOR_FOOTER$1).outerHeight()
       };
-      var sidebarHeight = heights.window - heights.header;
+      var sIdebarHeight = heights.window - heights.header;
 
       if (this._isFooterFixed() && $__default["default"](SELECTOR_FOOTER$1).css('position') === 'fixed') {
-        sidebarHeight = heights.window - heights.header - heights.footer;
+        sIdebarHeight = heights.window - heights.header - heights.footer;
       }
 
-      $controlSidebar.css('height', sidebarHeight);
+      $controlSIdebar.css('height', sIdebarHeight);
 
       if (typeof $__default["default"].fn.overlayScrollbars !== 'undefined') {
-        $controlSidebar.overlayScrollbars({
+        $controlSIdebar.overlayScrollbars({
           className: this._config.scrollbarTheme,
           sizeAutoCapable: true,
           scrollbars: {
-            autoHide: this._config.scrollbarAutoHide,
+            autoHIde: this._config.scrollbarAutoHIde,
             clickScrolling: true
           }
         });
@@ -673,14 +673,14 @@
     } // Static
     ;
 
-    ControlSidebar._jQueryInterface = function _jQueryInterface(operation) {
+    ControlSIdebar._jQueryInterface = function _jQueryInterface(operation) {
       return this.each(function () {
         var data = $__default["default"](this).data(DATA_KEY$c);
 
         var _options = $__default["default"].extend({}, Default$a, $__default["default"](this).data());
 
         if (!data) {
-          data = new ControlSidebar(this, _options);
+          data = new ControlSIdebar(this, _options);
           $__default["default"](this).data(DATA_KEY$c, data);
         }
 
@@ -692,7 +692,7 @@
       });
     };
 
-    return ControlSidebar;
+    return ControlSIdebar;
   }();
   /**
    *
@@ -704,22 +704,22 @@
   $__default["default"](document).on('click', SELECTOR_DATA_TOGGLE$4, function (event) {
     event.preventDefault();
 
-    ControlSidebar._jQueryInterface.call($__default["default"](this), 'toggle');
+    ControlSIdebar._jQueryInterface.call($__default["default"](this), 'toggle');
   });
   $__default["default"](document).ready(function () {
-    ControlSidebar._jQueryInterface.call($__default["default"](SELECTOR_DATA_TOGGLE$4), '_init');
+    ControlSIdebar._jQueryInterface.call($__default["default"](SELECTOR_DATA_TOGGLE$4), '_init');
   });
   /**
    * jQuery API
    * ====================================================
    */
 
-  $__default["default"].fn[NAME$c] = ControlSidebar._jQueryInterface;
-  $__default["default"].fn[NAME$c].Constructor = ControlSidebar;
+  $__default["default"].fn[NAME$c] = ControlSIdebar._jQueryInterface;
+  $__default["default"].fn[NAME$c].Constructor = ControlSIdebar;
 
   $__default["default"].fn[NAME$c].noConflict = function () {
     $__default["default"].fn[NAME$c] = JQUERY_NO_CONFLICT$c;
-    return ControlSidebar._jQueryInterface;
+    return ControlSIdebar._jQueryInterface;
   };
 
   /**
@@ -738,7 +738,7 @@
   var EVENT_KEY$4 = "." + DATA_KEY$b;
   var JQUERY_NO_CONFLICT$b = $__default["default"].fn[NAME$b];
   var EVENT_TOGGLED = "toggled" + EVENT_KEY$4;
-  var SELECTOR_DATA_TOGGLE$3 = '[data-widget="chat-pane-toggle"]';
+  var SELECTOR_DATA_TOGGLE$3 = '[data-wIdget="chat-pane-toggle"]';
   var SELECTOR_DIRECT_CHAT = '.direct-chat';
   var CLASS_NAME_DIRECT_CHAT_OPEN = 'direct-chat-contacts-open';
   /**
@@ -841,11 +841,11 @@
       this._element.siblings().show().toggleClass('show');
 
       if (!this._element.next().hasClass('show')) {
-        this._element.parents(SELECTOR_DROPDOWN_MENU).first().find('.show').removeClass('show').hide();
+        this._element.parents(SELECTOR_DROPDOWN_MENU).first().find('.show').removeClass('show').hIde();
       }
 
-      this._element.parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function () {
-        $__default["default"]('.dropdown-submenu .show').removeClass('show').hide();
+      this._element.parents('li.nav-item.dropdown.show').on('hIdden.bs.dropdown', function () {
+        $__default["default"]('.dropdown-submenu .show').removeClass('show').hIde();
       });
     };
 
@@ -869,15 +869,15 @@
       }
 
       var offset = $element.offset();
-      var width = $element.width();
-      var visiblePart = $__default["default"](window).width() - offset.left;
+      var wIdth = $element.wIdth();
+      var visiblePart = $__default["default"](window).wIdth() - offset.left;
 
       if (offset.left < 0) {
         $element.css({
           left: 'inherit',
           right: offset.left - 5
         });
-      } else if (visiblePart < width) {
+      } else if (visiblePart < wIdth) {
         $element.css({
           left: 'inherit',
           right: 0
@@ -960,7 +960,7 @@
   var EVENT_COLLAPSED$2 = "collapsed" + EVENT_KEY$3;
   var SELECTOR_TABLE = '.expandable-table';
   var SELECTOR_EXPANDABLE_BODY = '.expandable-body';
-  var SELECTOR_DATA_TOGGLE$2 = '[data-widget="expandable-table"]';
+  var SELECTOR_DATA_TOGGLE$2 = '[data-wIdget="expandable-table"]';
   var SELECTOR_ARIA_ATTR = 'aria-expanded';
   /**
     * Class Definition
@@ -984,7 +984,7 @@
         if ($type === 'true') {
           $body.show();
         } else if ($type === 'false') {
-          $body.hide();
+          $body.hIde();
           $body.parent().parent().addClass('d-none');
         }
       });
@@ -1007,14 +1007,14 @@
       $body.stop();
 
       if ($type === 'true') {
-        $body.slideUp(time, function () {
+        $body.slIdeUp(time, function () {
           $element.next(SELECTOR_EXPANDABLE_BODY).addClass('d-none');
         });
         $element.attr(SELECTOR_ARIA_ATTR, 'false');
         $element.trigger($__default["default"].Event(EVENT_COLLAPSED$2));
       } else if ($type === 'false') {
         $element.next(SELECTOR_EXPANDABLE_BODY).removeClass('d-none');
-        $body.slideDown(time);
+        $body.slIdeDown(time);
         $element.attr(SELECTOR_ARIA_ATTR, 'true');
         $element.trigger($__default["default"].Event(EVENT_EXPANDED$1));
       }
@@ -1077,8 +1077,8 @@
   var NAME$8 = 'Fullscreen';
   var DATA_KEY$8 = 'lte.fullscreen';
   var JQUERY_NO_CONFLICT$8 = $__default["default"].fn[NAME$8];
-  var SELECTOR_DATA_WIDGET$2 = '[data-widget="fullscreen"]';
-  var SELECTOR_ICON = SELECTOR_DATA_WIDGET$2 + " i";
+  var SELECTOR_DATA_WIdGET$2 = '[data-wIdget="fullscreen"]';
+  var SELECTOR_ICON = SELECTOR_DATA_WIdGET$2 + " i";
   var EVENT_FULLSCREEN_CHANGE = 'webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange';
   var Default$8 = {
     minimizeIcon: 'fa-compress-arrows-alt',
@@ -1162,11 +1162,11 @@
     */
 
 
-  $__default["default"](document).on('click', SELECTOR_DATA_WIDGET$2, function () {
+  $__default["default"](document).on('click', SELECTOR_DATA_WIdGET$2, function () {
     Fullscreen._jQueryInterface.call($__default["default"](this), 'toggle');
   });
   $__default["default"](document).on(EVENT_FULLSCREEN_CHANGE, function () {
-    Fullscreen._jQueryInterface.call($__default["default"](SELECTOR_DATA_WIDGET$2), 'toggleIcon');
+    Fullscreen._jQueryInterface.call($__default["default"](SELECTOR_DATA_WIdGET$2), 'toggleIcon');
   });
   /**
    * jQuery API
@@ -1195,11 +1195,11 @@
   var NAME$7 = 'IFrame';
   var DATA_KEY$7 = 'lte.iframe';
   var JQUERY_NO_CONFLICT$7 = $__default["default"].fn[NAME$7];
-  var SELECTOR_DATA_TOGGLE$1 = '[data-widget="iframe"]';
-  var SELECTOR_DATA_TOGGLE_CLOSE = '[data-widget="iframe-close"]';
-  var SELECTOR_DATA_TOGGLE_SCROLL_LEFT = '[data-widget="iframe-scrollleft"]';
-  var SELECTOR_DATA_TOGGLE_SCROLL_RIGHT = '[data-widget="iframe-scrollright"]';
-  var SELECTOR_DATA_TOGGLE_FULLSCREEN = '[data-widget="iframe-fullscreen"]';
+  var SELECTOR_DATA_TOGGLE$1 = '[data-wIdget="iframe"]';
+  var SELECTOR_DATA_TOGGLE_CLOSE = '[data-wIdget="iframe-close"]';
+  var SELECTOR_DATA_TOGGLE_SCROLL_LEFT = '[data-wIdget="iframe-scrollleft"]';
+  var SELECTOR_DATA_TOGGLE_SCROLL_RIGHT = '[data-wIdget="iframe-scrollright"]';
+  var SELECTOR_DATA_TOGGLE_FULLSCREEN = '[data-wIdget="iframe-fullscreen"]';
   var SELECTOR_CONTENT_WRAPPER = '.content-wrapper';
   var SELECTOR_CONTENT_IFRAME = SELECTOR_CONTENT_WRAPPER + " iframe";
   var SELECTOR_TAB_NAV = SELECTOR_CONTENT_WRAPPER + ".iframe-mode .nav";
@@ -1210,8 +1210,8 @@
   var SELECTOR_TAB_EMPTY = SELECTOR_TAB_CONTENT + " .tab-empty";
   var SELECTOR_TAB_LOADING = SELECTOR_TAB_CONTENT + " .tab-loading";
   var SELECTOR_TAB_PANE = SELECTOR_TAB_CONTENT + " .tab-pane";
-  var SELECTOR_SIDEBAR_MENU_ITEM = '.main-sidebar .nav-item > a.nav-link';
-  var SELECTOR_SIDEBAR_SEARCH_ITEM = '.sidebar-search-results .list-group-item';
+  var SELECTOR_SIdEBAR_MENU_ITEM = '.main-sIdebar .nav-item > a.nav-link';
+  var SELECTOR_SIdEBAR_SEARCH_ITEM = '.sIdebar-search-results .list-group-item';
   var SELECTOR_HEADER_MENU_ITEM = '.main-header .nav-item a.nav-link';
   var SELECTOR_HEADER_DROPDOWN_ITEM = '.main-header a.dropdown-item';
   var CLASS_NAME_IFRAME_MODE$1 = 'iframe-mode';
@@ -1278,9 +1278,9 @@
         navId += "-" + Math.floor(Math.random() * 1000);
       }
 
-      var newNavItem = "<li class=\"nav-item\" role=\"presentation\"><a href=\"#\" class=\"btn-iframe-close\" data-widget=\"iframe-close\" data-type=\"only-this\"><i class=\"fas fa-times\"></i></a><a class=\"nav-link\" data-toggle=\"row\" id=\"" + navId + "\" href=\"#" + tabId + "\" role=\"tab\" aria-controls=\"" + tabId + "\" aria-selected=\"false\">" + title + "</a></li>";
+      var newNavItem = "<li class=\"nav-item\" role=\"presentation\"><a href=\"#\" class=\"btn-iframe-close\" data-wIdget=\"iframe-close\" data-type=\"only-this\"><i class=\"fas fa-times\"></i></a><a class=\"nav-link\" data-toggle=\"row\" Id=\"" + navId + "\" href=\"#" + tabId + "\" role=\"tab\" aria-controls=\"" + tabId + "\" aria-selected=\"false\">" + title + "</a></li>";
       $__default["default"](SELECTOR_TAB_NAVBAR_NAV).append(unescape(escape(newNavItem)));
-      var newTabItem = "<div class=\"tab-pane fade\" id=\"" + tabId + "\" role=\"tabpanel\" aria-labelledby=\"" + navId + "\"><iframe src=\"" + link + "\"></iframe></div>";
+      var newTabItem = "<div class=\"tab-pane fade\" Id=\"" + tabId + "\" role=\"tabpanel\" aria-labelledby=\"" + navId + "\"><iframe src=\"" + link + "\"></iframe></div>";
       $__default["default"](SELECTOR_TAB_CONTENT).append(unescape(escape(newTabItem)));
 
       if (autoOpen) {
@@ -1308,7 +1308,7 @@
       this.onTabCreated($__default["default"]("#" + navId));
     };
 
-    _proto.openTabSidebar = function openTabSidebar(item, autoOpen) {
+    _proto.openTabSIdebar = function openTabSIdebar(item, autoOpen) {
       if (autoOpen === void 0) {
         autoOpen = this._config.autoShowNewTab;
       }
@@ -1353,7 +1353,7 @@
 
       var $item = $__default["default"](item);
       var tabId = $item.attr('href');
-      $__default["default"](SELECTOR_TAB_EMPTY).hide();
+      $__default["default"](SELECTOR_TAB_EMPTY).hIde();
 
       if (reload) {
         var $loadingScreen = $__default["default"](SELECTOR_TAB_LOADING);
@@ -1463,7 +1463,7 @@
         var $el = $__default["default"]("" + SELECTOR_TAB_PANE).first(); // eslint-disable-next-line no-console
 
         console.log($el);
-        var uniqueName = $el.attr('id').replace('panel-', '');
+        var uniqueName = $el.attr('Id').replace('panel-', '');
         var navId = "#tab-" + uniqueName;
         this.switchTab(navId, true);
       }
@@ -1497,17 +1497,17 @@
       });
 
       if ($__default["default"](SELECTOR_CONTENT_WRAPPER).hasClass(CLASS_NAME_IFRAME_MODE$1)) {
-        $__default["default"](document).on('click', SELECTOR_SIDEBAR_MENU_ITEM + ", " + SELECTOR_SIDEBAR_SEARCH_ITEM, function (e) {
+        $__default["default"](document).on('click', SELECTOR_SIdEBAR_MENU_ITEM + ", " + SELECTOR_SIdEBAR_SEARCH_ITEM, function (e) {
           e.preventDefault();
 
-          _this3.openTabSidebar(e.target);
+          _this3.openTabSIdebar(e.target);
         });
 
         if (this._config.useNavbarItems) {
           $__default["default"](document).on('click', SELECTOR_HEADER_MENU_ITEM + ", " + SELECTOR_HEADER_DROPDOWN_ITEM, function (e) {
             e.preventDefault();
 
-            _this3.openTabSidebar(e.target);
+            _this3.openTabSIdebar(e.target);
           });
         }
       }
@@ -1587,18 +1587,18 @@
     };
 
     _proto._setItemActive = function _setItemActive(href) {
-      $__default["default"](SELECTOR_SIDEBAR_MENU_ITEM + ", " + SELECTOR_HEADER_DROPDOWN_ITEM).removeClass('active');
+      $__default["default"](SELECTOR_SIdEBAR_MENU_ITEM + ", " + SELECTOR_HEADER_DROPDOWN_ITEM).removeClass('active');
       $__default["default"](SELECTOR_HEADER_MENU_ITEM).parent().removeClass('active');
       var $headerMenuItem = $__default["default"](SELECTOR_HEADER_MENU_ITEM + "[href$=\"" + href + "\"]");
       var $headerDropdownItem = $__default["default"](SELECTOR_HEADER_DROPDOWN_ITEM + "[href$=\"" + href + "\"]");
-      var $sidebarMenuItem = $__default["default"](SELECTOR_SIDEBAR_MENU_ITEM + "[href$=\"" + href + "\"]");
+      var $sIdebarMenuItem = $__default["default"](SELECTOR_SIdEBAR_MENU_ITEM + "[href$=\"" + href + "\"]");
       $headerMenuItem.each(function (i, e) {
         $__default["default"](e).parent().addClass('active');
       });
       $headerDropdownItem.each(function (i, e) {
         $__default["default"](e).addClass('active');
       });
-      $sidebarMenuItem.each(function (i, e) {
+      $sIdebarMenuItem.each(function (i, e) {
         $__default["default"](e).addClass('active');
         $__default["default"](e).parents('.nav-treeview').prevAll('.nav-link').addClass('active');
       });
@@ -1644,7 +1644,7 @@
         var plugin = new IFrame($__default["default"](this), _options);
         $__default["default"](this).data(DATA_KEY$7, typeof config === 'object' ? config : data);
 
-        if (typeof config === 'string' && /createTab|openTabSidebar|switchTab|removeActiveTab/.test(config)) {
+        if (typeof config === 'string' && /createTab|openTabSIdebar|switchTab|removeActiveTab/.test(config)) {
           plugin[config]();
         }
       } else {
@@ -1691,25 +1691,25 @@
   var DATA_KEY$6 = 'lte.layout';
   var JQUERY_NO_CONFLICT$6 = $__default["default"].fn[NAME$6];
   var SELECTOR_HEADER = '.main-header';
-  var SELECTOR_MAIN_SIDEBAR = '.main-sidebar';
-  var SELECTOR_SIDEBAR$1 = '.main-sidebar .sidebar';
+  var SELECTOR_MAIN_SIdEBAR = '.main-sIdebar';
+  var SELECTOR_SIdEBAR$1 = '.main-sIdebar .sIdebar';
   var SELECTOR_CONTENT = '.content-wrapper';
-  var SELECTOR_CONTROL_SIDEBAR_CONTENT = '.control-sidebar-content';
-  var SELECTOR_CONTROL_SIDEBAR_BTN = '[data-widget="control-sidebar"]';
+  var SELECTOR_CONTROL_SIdEBAR_CONTENT = '.control-sIdebar-content';
+  var SELECTOR_CONTROL_SIdEBAR_BTN = '[data-wIdget="control-sIdebar"]';
   var SELECTOR_FOOTER = '.main-footer';
-  var SELECTOR_PUSHMENU_BTN = '[data-widget="pushmenu"]';
+  var SELECTOR_PUSHMENU_BTN = '[data-wIdget="pushmenu"]';
   var SELECTOR_LOGIN_BOX = '.login-box';
   var SELECTOR_REGISTER_BOX = '.register-box';
   var SELECTOR_PRELOADER = '.preloader';
-  var CLASS_NAME_SIDEBAR_COLLAPSED$1 = 'sidebar-collapse';
-  var CLASS_NAME_SIDEBAR_FOCUSED = 'sidebar-focused';
+  var CLASS_NAME_SIdEBAR_COLLAPSED$1 = 'sIdebar-collapse';
+  var CLASS_NAME_SIdEBAR_FOCUSED = 'sIdebar-focused';
   var CLASS_NAME_LAYOUT_FIXED = 'layout-fixed';
-  var CLASS_NAME_CONTROL_SIDEBAR_SLIDE_OPEN = 'control-sidebar-slide-open';
-  var CLASS_NAME_CONTROL_SIDEBAR_OPEN = 'control-sidebar-open';
+  var CLASS_NAME_CONTROL_SIdEBAR_SLIdE_OPEN = 'control-sIdebar-slIde-open';
+  var CLASS_NAME_CONTROL_SIdEBAR_OPEN = 'control-sIdebar-open';
   var CLASS_NAME_IFRAME_MODE = 'iframe-mode';
   var Default$6 = {
     scrollbarTheme: 'os-theme-light',
-    scrollbarAutoHide: 'l',
+    scrollbarAutoHIde: 'l',
     panelAutoHeight: true,
     panelAutoHeightMode: 'min-height',
     preloadDuration: 200,
@@ -1735,18 +1735,18 @@
       }
 
       var $body = $__default["default"]('body');
-      var controlSidebar = 0;
+      var controlSIdebar = 0;
 
-      if ($body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE_OPEN) || $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) || extra === 'control_sidebar') {
-        controlSidebar = $__default["default"](SELECTOR_CONTROL_SIDEBAR_CONTENT).outerHeight();
+      if ($body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE_OPEN) || $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN) || extra === 'control_sIdebar') {
+        controlSIdebar = $__default["default"](SELECTOR_CONTROL_SIdEBAR_CONTENT).outerHeight();
       }
 
       var heights = {
         window: $__default["default"](window).height(),
         header: $__default["default"](SELECTOR_HEADER).length > 0 ? $__default["default"](SELECTOR_HEADER).outerHeight() : 0,
         footer: $__default["default"](SELECTOR_FOOTER).length > 0 ? $__default["default"](SELECTOR_FOOTER).outerHeight() : 0,
-        sidebar: $__default["default"](SELECTOR_SIDEBAR$1).length > 0 ? $__default["default"](SELECTOR_SIDEBAR$1).height() : 0,
-        controlSidebar: controlSidebar
+        sIdebar: $__default["default"](SELECTOR_SIdEBAR$1).length > 0 ? $__default["default"](SELECTOR_SIdEBAR$1).height() : 0,
+        controlSIdebar: controlSIdebar
       };
 
       var max = this._max(heights);
@@ -1760,7 +1760,7 @@
       var $contentSelector = $__default["default"](SELECTOR_CONTENT);
 
       if (offset !== false) {
-        if (max === heights.controlSidebar) {
+        if (max === heights.controlSIdebar) {
           $contentSelector.css(this._config.panelAutoHeightMode, max + offset);
         } else if (max === heights.window) {
           $contentSelector.css(this._config.panelAutoHeightMode, max + offset - heights.header - heights.footer);
@@ -1778,16 +1778,16 @@
       }
 
       if (typeof $__default["default"].fn.overlayScrollbars !== 'undefined') {
-        $__default["default"](SELECTOR_SIDEBAR$1).overlayScrollbars({
+        $__default["default"](SELECTOR_SIdEBAR$1).overlayScrollbars({
           className: this._config.scrollbarTheme,
           sizeAutoCapable: true,
           scrollbars: {
-            autoHide: this._config.scrollbarAutoHide,
+            autoHIde: this._config.scrollbarAutoHIde,
             clickScrolling: true
           }
         });
       } else {
-        $__default["default"](SELECTOR_SIDEBAR$1).css('overflow-y', 'auto');
+        $__default["default"](SELECTOR_SIdEBAR$1).css('overflow-y', 'auto');
       }
     };
 
@@ -1824,11 +1824,11 @@
         setInterval(this.fixLoginRegisterHeight, this._config.loginRegisterAutoHeight);
       }
 
-      $__default["default"](SELECTOR_SIDEBAR$1).on('collapsed.lte.treeview expanded.lte.treeview', function () {
+      $__default["default"](SELECTOR_SIdEBAR$1).on('collapsed.lte.treeview expanded.lte.treeview', function () {
         _this.fixLayoutHeight();
       });
-      $__default["default"](SELECTOR_MAIN_SIDEBAR).on('mouseenter mouseleave', function () {
-        if ($__default["default"]('body').hasClass(CLASS_NAME_SIDEBAR_COLLAPSED$1)) {
+      $__default["default"](SELECTOR_MAIN_SIdEBAR).on('mouseenter mouseleave', function () {
+        if ($__default["default"]('body').hasClass(CLASS_NAME_SIdEBAR_COLLAPSED$1)) {
           _this.fixLayoutHeight();
         }
       });
@@ -1837,10 +1837,10 @@
           _this.fixLayoutHeight();
         }, 300);
       });
-      $__default["default"](SELECTOR_CONTROL_SIDEBAR_BTN).on('collapsed.lte.controlsidebar', function () {
+      $__default["default"](SELECTOR_CONTROL_SIdEBAR_BTN).on('collapsed.lte.controlsIdebar', function () {
         _this.fixLayoutHeight();
-      }).on('expanded.lte.controlsidebar', function () {
-        _this.fixLayoutHeight('control_sidebar');
+      }).on('expanded.lte.controlsIdebar', function () {
+        _this.fixLayoutHeight('control_sIdebar');
       });
       $__default["default"](window).resize(function () {
         _this.fixLayoutHeight();
@@ -1854,7 +1854,7 @@
         if ($preloader) {
           $preloader.css('height', 0);
           setTimeout(function () {
-            $preloader.children().hide();
+            $preloader.children().hIde();
           }, 200);
         }
       }, this._config.preloadDuration);
@@ -1910,10 +1910,10 @@
   $__default["default"](window).on('load', function () {
     Layout._jQueryInterface.call($__default["default"]('body'));
   });
-  $__default["default"](SELECTOR_SIDEBAR$1 + " a").on('focusin', function () {
-    $__default["default"](SELECTOR_MAIN_SIDEBAR).addClass(CLASS_NAME_SIDEBAR_FOCUSED);
+  $__default["default"](SELECTOR_SIdEBAR$1 + " a").on('focusin', function () {
+    $__default["default"](SELECTOR_MAIN_SIdEBAR).addClass(CLASS_NAME_SIdEBAR_FOCUSED);
   }).on('focusout', function () {
-    $__default["default"](SELECTOR_MAIN_SIDEBAR).removeClass(CLASS_NAME_SIDEBAR_FOCUSED);
+    $__default["default"](SELECTOR_MAIN_SIdEBAR).removeClass(CLASS_NAME_SIdEBAR_FOCUSED);
   });
   /**
    * jQuery API
@@ -1946,14 +1946,14 @@
   var EVENT_COLLAPSED$1 = "collapsed" + EVENT_KEY$2;
   var EVENT_COLLAPSED_DONE = "collapsed-done" + EVENT_KEY$2;
   var EVENT_SHOWN = "shown" + EVENT_KEY$2;
-  var SELECTOR_TOGGLE_BUTTON$1 = '[data-widget="pushmenu"]';
+  var SELECTOR_TOGGLE_BUTTON$1 = '[data-wIdget="pushmenu"]';
   var SELECTOR_BODY = 'body';
-  var SELECTOR_OVERLAY = '#sidebar-overlay';
+  var SELECTOR_OVERLAY = '#sIdebar-overlay';
   var SELECTOR_WRAPPER = '.wrapper';
-  var CLASS_NAME_COLLAPSED = 'sidebar-collapse';
-  var CLASS_NAME_OPEN$3 = 'sidebar-open';
-  var CLASS_NAME_IS_OPENING$1 = 'sidebar-is-opening';
-  var CLASS_NAME_CLOSED = 'sidebar-closed';
+  var CLASS_NAME_COLLAPSED = 'sIdebar-collapse';
+  var CLASS_NAME_OPEN$3 = 'sIdebar-open';
+  var CLASS_NAME_IS_OPENING$1 = 'sIdebar-is-opening';
+  var CLASS_NAME_CLOSED = 'sIdebar-closed';
   var Default$5 = {
     autoCollapseSize: 992,
     enableRemember: false,
@@ -1983,7 +1983,7 @@
     _proto.expand = function expand() {
       var $bodySelector = $__default["default"](SELECTOR_BODY);
 
-      if (this._options.autoCollapseSize && $__default["default"](window).width() <= this._options.autoCollapseSize) {
+      if (this._options.autoCollapseSize && $__default["default"](window).wIdth() <= this._options.autoCollapseSize) {
         $bodySelector.addClass(CLASS_NAME_OPEN$3);
       }
 
@@ -2004,7 +2004,7 @@
 
       var $bodySelector = $__default["default"](SELECTOR_BODY);
 
-      if (this._options.autoCollapseSize && $__default["default"](window).width() <= this._options.autoCollapseSize) {
+      if (this._options.autoCollapseSize && $__default["default"](window).wIdth() <= this._options.autoCollapseSize) {
         $bodySelector.removeClass(CLASS_NAME_OPEN$3).addClass(CLASS_NAME_CLOSED);
       }
 
@@ -2039,7 +2039,7 @@
 
       var $bodySelector = $__default["default"](SELECTOR_BODY);
 
-      if ($__default["default"](window).width() <= this._options.autoCollapseSize) {
+      if ($__default["default"](window).wIdth() <= this._options.autoCollapseSize) {
         if (!$bodySelector.hasClass(CLASS_NAME_OPEN$3)) {
           this.collapse();
         }
@@ -2094,7 +2094,7 @@
       var _this3 = this;
 
       var overlay = $__default["default"]('<div />', {
-        id: 'sidebar-overlay'
+        Id: 'sIdebar-overlay'
       });
       overlay.on('click', function () {
         _this3.collapse();
@@ -2132,7 +2132,7 @@
     event.preventDefault();
     var button = event.currentTarget;
 
-    if ($__default["default"](button).data('widget') !== 'pushmenu') {
+    if ($__default["default"](button).data('wIdget') !== 'pushmenu') {
       button = $__default["default"](button).closest(SELECTOR_TOGGLE_BUTTON$1);
     }
 
@@ -2156,7 +2156,7 @@
 
   /**
    * --------------------------------------------
-   * AdminLTE SidebarSearch.js
+   * AdminLTE SIdebarSearch.js
    * License MIT
    * --------------------------------------------
    */
@@ -2165,21 +2165,21 @@
    * ====================================================
    */
 
-  var NAME$4 = 'SidebarSearch';
-  var DATA_KEY$4 = 'lte.sidebar-search';
+  var NAME$4 = 'SIdebarSearch';
+  var DATA_KEY$4 = 'lte.sIdebar-search';
   var JQUERY_NO_CONFLICT$4 = $__default["default"].fn[NAME$4];
-  var CLASS_NAME_OPEN$2 = 'sidebar-search-open';
+  var CLASS_NAME_OPEN$2 = 'sIdebar-search-open';
   var CLASS_NAME_ICON_SEARCH = 'fa-search';
   var CLASS_NAME_ICON_CLOSE = 'fa-times';
   var CLASS_NAME_HEADER = 'nav-header';
-  var CLASS_NAME_SEARCH_RESULTS = 'sidebar-search-results';
+  var CLASS_NAME_SEARCH_RESULTS = 'sIdebar-search-results';
   var CLASS_NAME_LIST_GROUP = 'list-group';
-  var SELECTOR_DATA_WIDGET$1 = '[data-widget="sidebar-search"]';
-  var SELECTOR_SIDEBAR = '.main-sidebar .nav-sidebar';
+  var SELECTOR_DATA_WIdGET$1 = '[data-wIdget="sIdebar-search"]';
+  var SELECTOR_SIdEBAR = '.main-sIdebar .nav-sIdebar';
   var SELECTOR_NAV_LINK = '.nav-link';
   var SELECTOR_NAV_TREEVIEW = '.nav-treeview';
-  var SELECTOR_SEARCH_INPUT$1 = SELECTOR_DATA_WIDGET$1 + " .form-control";
-  var SELECTOR_SEARCH_BUTTON = SELECTOR_DATA_WIDGET$1 + " .btn";
+  var SELECTOR_SEARCH_INPUT$1 = SELECTOR_DATA_WIdGET$1 + " .form-control";
+  var SELECTOR_SEARCH_BUTTON = SELECTOR_DATA_WIdGET$1 + " .btn";
   var SELECTOR_SEARCH_ICON = SELECTOR_SEARCH_BUTTON + " i";
   var SELECTOR_SEARCH_LIST_GROUP = "." + CLASS_NAME_LIST_GROUP;
   var SELECTOR_SEARCH_RESULTS = "." + CLASS_NAME_SEARCH_RESULTS;
@@ -2199,25 +2199,25 @@
    * ====================================================
    */
 
-  var SidebarSearch = /*#__PURE__*/function () {
-    function SidebarSearch(_element, _options) {
+  var SIdebarSearch = /*#__PURE__*/function () {
+    function SIdebarSearch(_element, _options) {
       this.element = _element;
       this.options = $__default["default"].extend({}, Default$4, _options);
       this.items = [];
     } // Public
 
 
-    var _proto = SidebarSearch.prototype;
+    var _proto = SIdebarSearch.prototype;
 
     _proto.init = function init() {
       var _this = this;
 
-      if ($__default["default"](SELECTOR_DATA_WIDGET$1).length === 0) {
+      if ($__default["default"](SELECTOR_DATA_WIdGET$1).length === 0) {
         return;
       }
 
-      if ($__default["default"](SELECTOR_DATA_WIDGET$1).next(SELECTOR_SEARCH_RESULTS).length === 0) {
-        $__default["default"](SELECTOR_DATA_WIDGET$1).after($__default["default"]('<div />', {
+      if ($__default["default"](SELECTOR_DATA_WIdGET$1).next(SELECTOR_SEARCH_RESULTS).length === 0) {
+        $__default["default"](SELECTOR_DATA_WIdGET$1).after($__default["default"]('<div />', {
           class: CLASS_NAME_SEARCH_RESULTS
         }));
       }
@@ -2230,7 +2230,7 @@
 
       this._addNotFound();
 
-      $__default["default"](SELECTOR_SIDEBAR).children().each(function (i, child) {
+      $__default["default"](SELECTOR_SIdEBAR).children().each(function (i, child) {
         _this._parseItem(child);
       });
     };
@@ -2267,17 +2267,17 @@
     };
 
     _proto.open = function open() {
-      $__default["default"](SELECTOR_DATA_WIDGET$1).parent().addClass(CLASS_NAME_OPEN$2);
+      $__default["default"](SELECTOR_DATA_WIdGET$1).parent().addClass(CLASS_NAME_OPEN$2);
       $__default["default"](SELECTOR_SEARCH_ICON).removeClass(CLASS_NAME_ICON_SEARCH).addClass(CLASS_NAME_ICON_CLOSE);
     };
 
     _proto.close = function close() {
-      $__default["default"](SELECTOR_DATA_WIDGET$1).parent().removeClass(CLASS_NAME_OPEN$2);
+      $__default["default"](SELECTOR_DATA_WIdGET$1).parent().removeClass(CLASS_NAME_OPEN$2);
       $__default["default"](SELECTOR_SEARCH_ICON).removeClass(CLASS_NAME_ICON_CLOSE).addClass(CLASS_NAME_ICON_SEARCH);
     };
 
     _proto.toggle = function toggle() {
-      if ($__default["default"](SELECTOR_DATA_WIDGET$1).parent().hasClass(CLASS_NAME_OPEN$2)) {
+      if ($__default["default"](SELECTOR_DATA_WIdGET$1).parent().hasClass(CLASS_NAME_OPEN$2)) {
         this.close();
       } else {
         this.open();
@@ -2362,7 +2362,7 @@
     } // Static
     ;
 
-    SidebarSearch._jQueryInterface = function _jQueryInterface(config) {
+    SIdebarSearch._jQueryInterface = function _jQueryInterface(config) {
       var data = $__default["default"](this).data(DATA_KEY$4);
 
       if (!data) {
@@ -2371,7 +2371,7 @@
 
       var _options = $__default["default"].extend({}, Default$4, typeof config === 'object' ? config : data);
 
-      var plugin = new SidebarSearch($__default["default"](this), _options);
+      var plugin = new SIdebarSearch($__default["default"](this), _options);
       $__default["default"](this).data(DATA_KEY$4, typeof config === 'object' ? config : data);
 
       if (typeof config === 'string' && /init|toggle|close|open|search/.test(config)) {
@@ -2381,7 +2381,7 @@
       }
     };
 
-    return SidebarSearch;
+    return SIdebarSearch;
   }();
   /**
    * Data API
@@ -2392,7 +2392,7 @@
   $__default["default"](document).on('click', SELECTOR_SEARCH_BUTTON, function (event) {
     event.preventDefault();
 
-    SidebarSearch._jQueryInterface.call($__default["default"](SELECTOR_DATA_WIDGET$1), 'toggle');
+    SIdebarSearch._jQueryInterface.call($__default["default"](SELECTOR_DATA_WIdGET$1), 'toggle');
   });
   $__default["default"](document).on('keyup', SELECTOR_SEARCH_INPUT$1, function (event) {
     if (event.keyCode == 38) {
@@ -2408,7 +2408,7 @@
     }
 
     setTimeout(function () {
-      SidebarSearch._jQueryInterface.call($__default["default"](SELECTOR_DATA_WIDGET$1), 'search');
+      SIdebarSearch._jQueryInterface.call($__default["default"](SELECTOR_DATA_WIdGET$1), 'search');
     }, 100);
   });
   $__default["default"](document).on('keydown', SELECTOR_SEARCH_RESULTS_GROUP, function (event) {
@@ -2435,19 +2435,19 @@
     }
   });
   $__default["default"](window).on('load', function () {
-    SidebarSearch._jQueryInterface.call($__default["default"](SELECTOR_DATA_WIDGET$1), 'init');
+    SIdebarSearch._jQueryInterface.call($__default["default"](SELECTOR_DATA_WIdGET$1), 'init');
   });
   /**
    * jQuery API
    * ====================================================
    */
 
-  $__default["default"].fn[NAME$4] = SidebarSearch._jQueryInterface;
-  $__default["default"].fn[NAME$4].Constructor = SidebarSearch;
+  $__default["default"].fn[NAME$4] = SIdebarSearch._jQueryInterface;
+  $__default["default"].fn[NAME$4].Constructor = SIdebarSearch;
 
   $__default["default"].fn[NAME$4].noConflict = function () {
     $__default["default"].fn[NAME$4] = JQUERY_NO_CONFLICT$4;
-    return SidebarSearch._jQueryInterface;
+    return SIdebarSearch._jQueryInterface;
   };
 
   /**
@@ -2464,7 +2464,7 @@
   var NAME$3 = 'NavbarSearch';
   var DATA_KEY$3 = 'lte.navbar-search';
   var JQUERY_NO_CONFLICT$3 = $__default["default"].fn[NAME$3];
-  var SELECTOR_TOGGLE_BUTTON = '[data-widget="navbar-search"]';
+  var SELECTOR_TOGGLE_BUTTON = '[data-wIdget="navbar-search"]';
   var SELECTOR_SEARCH_BLOCK = '.navbar-search-block';
   var SELECTOR_SEARCH_INPUT = '.form-control';
   var CLASS_NAME_OPEN$1 = 'navbar-search-open';
@@ -2487,7 +2487,7 @@
     var _proto = NavbarSearch.prototype;
 
     _proto.open = function open() {
-      $__default["default"](this._config.target).css('display', 'flex').hide().fadeIn().addClass(CLASS_NAME_OPEN$1);
+      $__default["default"](this._config.target).css('display', 'flex').hIde().fadeIn().addClass(CLASS_NAME_OPEN$1);
       $__default["default"](this._config.target + " " + SELECTOR_SEARCH_INPUT).focus();
     };
 
@@ -2539,7 +2539,7 @@
     event.preventDefault();
     var button = $__default["default"](event.currentTarget);
 
-    if (button.data('widget') !== 'navbar-search') {
+    if (button.data('wIdget') !== 'navbar-search') {
       button = button.closest(SELECTOR_TOGGLE_BUTTON);
     }
 
@@ -2591,7 +2591,7 @@
   var Default$2 = {
     position: POSITION_TOP_RIGHT,
     fixed: true,
-    autohide: false,
+    autohIde: false,
     autoremove: true,
     delay: 1000,
     fade: true,
@@ -2624,7 +2624,7 @@
 
     _proto.create = function create() {
       var toast = $__default["default"]('<div class="toast" role="alert" aria-live="assertive" aria-atomic="true"/>');
-      toast.data('autohide', this._config.autohide);
+      toast.data('autohIde', this._config.autohIde);
       toast.data('animation', this._config.fade);
 
       if (this._config.class) {
@@ -2641,7 +2641,7 @@
         var toastImage = $__default["default"]('<img />').addClass('rounded mr-2').attr('src', this._config.image).attr('alt', this._config.imageAlt);
 
         if (this._config.imageHeight != null) {
-          toastImage.height(this._config.imageHeight).width('auto');
+          toastImage.height(this._config.imageHeight).wIdth('auto');
         }
 
         toastHeader.append(toastImage);
@@ -2660,7 +2660,7 @@
       }
 
       if (this._config.close == true) {
-        var toastClose = $__default["default"]('<button data-dismiss="toast" />').attr('type', 'button').addClass('ml-2 mb-1 close').attr('aria-label', 'Close').append('<span aria-hidden="true">&times;</span>');
+        var toastClose = $__default["default"]('<button data-dismiss="toast" />').attr('type', 'button').addClass('ml-2 mb-1 close').attr('aria-label', 'Close').append('<span aria-hIdden="true">&times;</span>');
 
         if (this._config.title == null) {
           toastClose.toggleClass('ml-2 ml-auto');
@@ -2681,7 +2681,7 @@
       toast.toast('show');
 
       if (this._config.autoremove) {
-        toast.on('hidden.bs.toast', function () {
+        toast.on('hIdden.bs.toast', function () {
           $__default["default"](this).delay(200).remove();
           $body.trigger($__default["default"].Event(EVENT_REMOVED));
         });
@@ -2709,7 +2709,7 @@
 
     _proto._prepareContainer = function _prepareContainer() {
       if ($__default["default"](this._getContainerId()).length === 0) {
-        var container = $__default["default"]('<div />').attr('id', this._getContainerId().replace('#', ''));
+        var container = $__default["default"]('<div />').attr('Id', this._getContainerId().replace('#', ''));
 
         if (this._config.position == POSITION_TOP_RIGHT) {
           container.addClass(CLASS_NAME_TOP_RIGHT);
@@ -2774,7 +2774,7 @@
   var NAME$1 = 'TodoList';
   var DATA_KEY$1 = 'lte.todolist';
   var JQUERY_NO_CONFLICT$1 = $__default["default"].fn[NAME$1];
-  var SELECTOR_DATA_TOGGLE = '[data-widget="todo-list"]';
+  var SELECTOR_DATA_TOGGLE = '[data-wIdget="todo-list"]';
   var CLASS_NAME_TODO_LIST_DONE = 'done';
   var Default$1 = {
     onCheck: function onCheck(item) {
@@ -2896,16 +2896,16 @@
   var SELECTOR_LINK = '.nav-link';
   var SELECTOR_TREEVIEW_MENU = '.nav-treeview';
   var SELECTOR_OPEN = '.menu-open';
-  var SELECTOR_DATA_WIDGET = '[data-widget="treeview"]';
+  var SELECTOR_DATA_WIdGET = '[data-wIdget="treeview"]';
   var CLASS_NAME_OPEN = 'menu-open';
   var CLASS_NAME_IS_OPENING = 'menu-is-opening';
-  var CLASS_NAME_SIDEBAR_COLLAPSED = 'sidebar-collapse';
+  var CLASS_NAME_SIdEBAR_COLLAPSED = 'sIdebar-collapse';
   var Default = {
-    trigger: SELECTOR_DATA_WIDGET + " " + SELECTOR_LINK,
+    trigger: SELECTOR_DATA_WIdGET + " " + SELECTOR_LINK,
     animationSpeed: 300,
     accordion: true,
-    expandSidebar: false,
-    sidebarButtonSelector: '[data-widget="pushmenu"]'
+    expandSIdebar: false,
+    sIdebarButtonSelector: '[data-wIdget="pushmenu"]'
   };
   /**
    * Class Definition
@@ -2939,13 +2939,13 @@
       }
 
       parentLi.addClass(CLASS_NAME_IS_OPENING);
-      treeviewMenu.stop().slideDown(this._config.animationSpeed, function () {
+      treeviewMenu.stop().slIdeDown(this._config.animationSpeed, function () {
         parentLi.addClass(CLASS_NAME_OPEN);
         $__default["default"](_this._element).trigger(expandedEvent);
       });
 
-      if (this._config.expandSidebar) {
-        this._expandSidebar();
+      if (this._config.expandSIdebar) {
+        this._expandSIdebar();
       }
     };
 
@@ -2954,9 +2954,9 @@
 
       var collapsedEvent = $__default["default"].Event(EVENT_COLLAPSED);
       parentLi.removeClass(CLASS_NAME_IS_OPENING + " " + CLASS_NAME_OPEN);
-      treeviewMenu.stop().slideUp(this._config.animationSpeed, function () {
+      treeviewMenu.stop().slIdeUp(this._config.animationSpeed, function () {
         $__default["default"](_this2._element).trigger(collapsedEvent);
-        treeviewMenu.find(SELECTOR_OPEN + " > " + SELECTOR_TREEVIEW_MENU).slideUp();
+        treeviewMenu.find(SELECTOR_OPEN + " > " + SELECTOR_TREEVIEW_MENU).slIdeUp();
         treeviewMenu.find(SELECTOR_OPEN).removeClass(CLASS_NAME_IS_OPENING + " " + CLASS_NAME_OPEN);
       });
     };
@@ -2991,15 +2991,15 @@
     _proto._setupListeners = function _setupListeners() {
       var _this3 = this;
 
-      var elementId = this._element.attr('id') !== undefined ? "#" + this._element.attr('id') : '';
+      var elementId = this._element.attr('Id') !== undefined ? "#" + this._element.attr('Id') : '';
       $__default["default"](document).on('click', "" + elementId + this._config.trigger, function (event) {
         _this3.toggle(event);
       });
     };
 
-    _proto._expandSidebar = function _expandSidebar() {
-      if ($__default["default"]('body').hasClass(CLASS_NAME_SIDEBAR_COLLAPSED)) {
-        $__default["default"](this._config.sidebarButtonSelector).PushMenu('expand');
+    _proto._expandSIdebar = function _expandSIdebar() {
+      if ($__default["default"]('body').hasClass(CLASS_NAME_SIdEBAR_COLLAPSED)) {
+        $__default["default"](this._config.sIdebarButtonSelector).PushMenu('expand');
       }
     } // Static
     ;
@@ -3030,7 +3030,7 @@
 
 
   $__default["default"](window).on(EVENT_LOAD_DATA_API, function () {
-    $__default["default"](SELECTOR_DATA_WIDGET).each(function () {
+    $__default["default"](SELECTOR_DATA_WIdGET).each(function () {
       Treeview._jQueryInterface.call($__default["default"](this), 'init');
     });
   });
@@ -3048,8 +3048,8 @@
   };
 
   exports.CardRefresh = CardRefresh;
-  exports.CardWidget = CardWidget;
-  exports.ControlSidebar = ControlSidebar;
+  exports.CardWIdget = CardWIdget;
+  exports.ControlSIdebar = ControlSIdebar;
   exports.DirectChat = DirectChat;
   exports.Dropdown = Dropdown;
   exports.ExpandableTable = ExpandableTable;
@@ -3058,7 +3058,7 @@
   exports.Layout = Layout;
   exports.NavbarSearch = NavbarSearch;
   exports.PushMenu = PushMenu;
-  exports.SidebarSearch = SidebarSearch;
+  exports.SIdebarSearch = SIdebarSearch;
   exports.Toasts = Toasts;
   exports.TodoList = TodoList;
   exports.Treeview = Treeview;

@@ -54,7 +54,7 @@ var DataTable = $.fn.dataTable;
 /**
  * Scroller is a virtual rendering plug-in for DataTables which allows large
  * datasets to be drawn on screen every quickly. What the virtual rendering means
- * is that only the visible portion of the table (and a bit to either side to make
+ * is that only the visible portion of the table (and a bit to either sIde to make
  * the scrolling smooth) is drawn, while the scrolling container gives the
  * visual impression that the whole table is visible. This is done by making use
  * of the pagination abilities of DataTables and moving the table around in the
@@ -190,7 +190,7 @@ var Scroller = function ( dt, opts ) {
 		stateSaveThrottle: function () {},
 
 		/**
-		 * setTimeout reference for the redraw, used when server-side processing is enabled in the
+		 * setTimeout reference for the redraw, used when server-sIde processing is enabled in the
 		 * DataTables in order to prevent DoSing the server
 		 *  @type     int
 		 *  @default  null
@@ -274,7 +274,7 @@ $.extend( Scroller.prototype, {
 	 * Calculate and store information about how many rows are to be displayed
 	 * in the scrolling viewport, based on current dimensions in the browser's
 	 * rendering. This can be particularly useful if the table is initially
-	 * drawn in a hidden element - for example in a tab.
+	 * drawn in a hIdden element - for example in a tab.
 	 *  @param {bool} [redraw=true] Redraw the table automatically after the recalculation, with
 	 *    the new dimensions forming the basis for the draw.
 	 *  @returns {void}
@@ -292,7 +292,7 @@ $.extend( Scroller.prototype, {
 			heights.viewport = this._parseHeight($(this.dom.scroller).css('max-height'));
 
 			this.s.viewportRows = parseInt( heights.viewport / heights.row, 10 )+1;
-			this.s.dt._iDisplayLength = this.s.viewportRows * this.s.displayBuffer;
+			this.s.dt._IdisplayLength = this.s.viewportRows * this.s.displayBuffer;
 		}
 
 		var label = this.dom.label.outerHeight();
@@ -404,12 +404,12 @@ $.extend( Scroller.prototype, {
 			drawRow = 0;
 		}
 
-		if ( (px > this.s.redrawBottom || px < this.s.redrawTop) && this.s.dt._iDisplayStart !== drawRow ) {
+		if ( (px > this.s.redrawBottom || px < this.s.redrawTop) && this.s.dt._IdisplayStart !== drawRow ) {
 			ani = true;
 			px = this._domain( 'virtualToPhysical', row * this.s.heights.row );
 
-			// If we need records outside the current draw region, but the new
-			// scrolling position is inside that (due to the non-linear nature
+			// If we need records outsIde the current draw region, but the new
+			// scrolling position is insIde that (due to the non-linear nature
 			// for larger numbers of records), we need to force position update.
 			if ( this.s.redrawTop < px && px < this.s.redrawBottom ) {
 				this.s.forceReposition = true;
@@ -463,7 +463,7 @@ $.extend( Scroller.prototype, {
 		this.dom.force.style.position = "relative";
 		this.dom.force.style.top = "0px";
 		this.dom.force.style.left = "0px";
-		this.dom.force.style.width = "1px";
+		this.dom.force.style.wIdth = "1px";
 
 		this.dom.scroller = $('div.'+this.s.dt.oClasses.sScrollBody, this.s.dt.nTableWrapper)[0];
 		this.dom.scroller.appendChild( this.dom.force );
@@ -620,7 +620,7 @@ $.extend( Scroller.prototype, {
 		);
 
 		// Want 3 rows in the sizing table so :first-child and :last-child
-		// CSS styles don't come into play - take the size of the middle row
+		// CSS styles don't come into play - take the size of the mIddle row
 		$('tbody tr:lt(4)', origTable).clone().appendTo( tbody );
         var rowsCount = $('tr', tbody).length;
 
@@ -666,8 +666,8 @@ $.extend( Scroller.prototype, {
 			heights = this.s.heights,
 			iScrollTop = this.dom.scroller.scrollTop,
 			iTableHeight = $(this.s.dt.nTable).height(),
-			displayStart = this.s.dt._iDisplayStart,
-			displayLen = this.s.dt._iDisplayLength,
+			displayStart = this.s.dt._IdisplayStart,
+			displayLen = this.s.dt._IdisplayLength,
 			displayEnd = this.s.dt.fnRecordsDisplay();
 
 		// Disable the scroll event listener while we are updating the DOM
@@ -719,13 +719,13 @@ $.extend( Scroller.prototype, {
 			 typeof this.s.dt.oLoadedState.scroller != 'undefined' )
 		{
 			// A quirk of DataTables is that the draw callback will occur on an
-			// empty set if Ajax sourced, but not if server-side processing.
-			var ajaxSourced = (this.s.dt.sAjaxSource || that.s.dt.ajax) && ! this.s.dt.oFeatures.bServerSide ?
+			// empty set if Ajax sourced, but not if server-sIde processing.
+			var ajaxSourced = (this.s.dt.sAjaxSource || that.s.dt.ajax) && ! this.s.dt.oFeatures.bServerSIde ?
 				true :
 				false;
 
-			if ( ( ajaxSourced && this.s.dt.iDraw == 2) ||
-			     (!ajaxSourced && this.s.dt.iDraw == 1) )
+			if ( ( ajaxSourced && this.s.dt.Idraw == 2) ||
+			     (!ajaxSourced && this.s.dt.Idraw == 1) )
 			{
 				setTimeout( function () {
 					$(that.dom.scroller).scrollTop( that.s.dt.oLoadedState.scroller.scrollTop );
@@ -753,7 +753,7 @@ $.extend( Scroller.prototype, {
 
 		$(this.s.dt.nTable).triggerHandler('position.dts.dt', tableTop);
 
-		// Hide the loading indicator
+		// HIde the loading indicator
 		if ( this.dom.loader && this.s.loaderVisible ) {
 			this.dom.loader.css( 'display', 'none' );
 			this.s.loaderVisible = false;
@@ -1000,7 +1000,7 @@ $.extend( Scroller.prototype, {
 			this.s.topRowFloat = 0;
 		}
 
-		/* Check if the scroll point is outside the trigger boundary which would required
+		/* Check if the scroll point is outsIde the trigger boundary which would required
 		 * a DataTables redraw
 		 */
 		if ( this.s.forceReposition || iScrollTop < this.s.redrawTop || iScrollTop > this.s.redrawBottom ) {
@@ -1013,9 +1013,9 @@ $.extend( Scroller.prototype, {
 				/* At the start of the table */
 				iTopRow = 0;
 			}
-			else if ( iTopRow + this.s.dt._iDisplayLength > this.s.dt.fnRecordsDisplay() ) {
+			else if ( iTopRow + this.s.dt._IdisplayLength > this.s.dt.fnRecordsDisplay() ) {
 				/* At the end of the table */
-				iTopRow = this.s.dt.fnRecordsDisplay() - this.s.dt._iDisplayLength;
+				iTopRow = this.s.dt.fnRecordsDisplay() - this.s.dt._IdisplayLength;
 				if ( iTopRow < 0 ) {
 					iTopRow = 0;
 				}
@@ -1031,20 +1031,20 @@ $.extend( Scroller.prototype, {
 			// that the draw function will still use it.
 			this.s.targetTop = iTopRow;
 
-			if ( iTopRow != this.s.dt._iDisplayStart ) {
+			if ( iTopRow != this.s.dt._IdisplayStart ) {
 				/* Cache the new table position for quick lookups */
 				this.s.tableTop = $(this.s.dt.nTable).offset().top;
 				this.s.tableBottom = $(this.s.dt.nTable).height() + this.s.tableTop;
 
 				var draw = function () {
-					that.s.dt._iDisplayStart = that.s.targetTop;
+					that.s.dt._IdisplayStart = that.s.targetTop;
 					that.s.dt.oApi._fnDraw( that.s.dt );
 				};
 
 				/* Do the DataTables redraw based on the calculated start point - note that when
-				 * using server-side processing we introduce a small delay to not DoS the server...
+				 * using server-sIde processing we introduce a small delay to not DoS the server...
 				 */
-				if ( this.s.dt.oFeatures.bServerSide ) {
+				if ( this.s.dt.oFeatures.bServerSIde ) {
 					this.s.forceReposition = true;
 
 					clearTimeout( this.s.drawTO );
@@ -1126,12 +1126,12 @@ $.extend( Scroller.prototype, {
  */
 Scroller.defaults = {
 	/**
-	 * Scroller uses the boundary scaling factor to decide when to redraw the table - which it
+	 * Scroller uses the boundary scaling factor to decIde when to redraw the table - which it
 	 * typically does before you reach the end of the currently loaded data set (in order to
 	 * allow the data to look continuous to a user scrolling through the data). If given as 0
 	 * then the table will be redrawn whenever the viewport is scrolled, while 1 would not
 	 * redraw the table until the currently loaded data has all been shown. You will want
-	 * something in the middle - the default factor of 0.5 is usually suitable.
+	 * something in the mIddle - the default factor of 0.5 is usually suitable.
 	 *  @type     float
 	 *  @default  0.5
 	 *  @static
@@ -1165,7 +1165,7 @@ Scroller.defaults = {
 
 	/**
 	 * Scroller will attempt to automatically calculate the height of rows for it's internal
-	 * calculations. However the height that is used can be overridden using this parameter.
+	 * calculations. However the height that is used can be overrIdden using this parameter.
 	 *  @type     int|string
 	 *  @default  auto
 	 *  @static
@@ -1173,7 +1173,7 @@ Scroller.defaults = {
 	rowHeight: "auto",
 
 	/**
-	 * When using server-side processing, Scroller will wait a small amount of time to allow
+	 * When using server-sIde processing, Scroller will wait a small amount of time to allow
 	 * the scrolling to finish before requesting more data from the server. This prevents
 	 * you from DoSing your own server! The wait time can be configured by this parameter.
 	 *  @type     int
@@ -1259,10 +1259,10 @@ Api.register( 'scroller().pixelsToRow()', function ( pixels, intParse, virtual )
 } );
 
 // `scroller().scrollToRow()` is undocumented and deprecated. Use `scroller.toPosition()
-Api.register( ['scroller().scrollToRow()', 'scroller.toPosition()'], function ( idx, ani ) {
+Api.register( ['scroller().scrollToRow()', 'scroller.toPosition()'], function ( Idx, ani ) {
 	this.iterator( 'table', function ( ctx ) {
 		if ( ctx.oScroller ) {
-			ctx.oScroller.scrollToRow( idx, ani );
+			ctx.oScroller.scrollToRow( Idx, ani );
 		}
 	} );
 

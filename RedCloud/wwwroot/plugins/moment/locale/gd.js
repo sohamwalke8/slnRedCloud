@@ -40,7 +40,7 @@
             'Dùbh',
         ],
         weekdays = [
-            'Didòmhnaich',
+            'DIdòmhnaich',
             'Diluain',
             'Dimàirt',
             'Diciadain',
@@ -48,7 +48,7 @@
             'Dihaoine',
             'Disathairne',
         ],
-        weekdaysShort = ['Did', 'Dil', 'Dim', 'Dic', 'Dia', 'Dih', 'Dis'],
+        weekdaysShort = ['DId', 'Dil', 'Dim', 'Dic', 'Dia', 'Dih', 'Dis'],
         weekdaysMin = ['Dò', 'Lu', 'Mà', 'Ci', 'Ar', 'Ha', 'Sa'];
 
     var gd = moment.defineLocale('gd', {
@@ -71,7 +71,7 @@
             nextDay: '[A-màireach aig] LT',
             nextWeek: 'dddd [aig] LT',
             lastDay: '[An-dè aig] LT',
-            lastWeek: 'dddd [seo chaidh] [aig] LT',
+            lastWeek: 'dddd [seo chaIdh] [aig] LT',
             sameElse: 'L',
         },
         relativeTime: {
@@ -79,8 +79,8 @@
             past: 'bho chionn %s',
             s: 'beagan diogan',
             ss: '%d diogan',
-            m: 'mionaid',
-            mm: '%d mionaidean',
+            m: 'mionaId',
+            mm: '%d mionaIdean',
             h: 'uair',
             hh: '%d uairean',
             d: 'latha',

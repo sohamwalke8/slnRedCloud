@@ -1,4 +1,4 @@
-/* This is a compiled file, to make changes persist, consider editing under the templates directory */
+/* This is a compiled file, to make changes persist, consIder editing under the templates directory */
 .pace {
   -webkit-pointer-events: none;
   pointer-events: none;
@@ -10,7 +10,7 @@
   z-index: 2000;
   position: fixed;
   height: 90px;
-  width: 90px;
+  wIdth: 90px;
   margin: auto;
   top: 0;
   left: 0;
@@ -30,9 +30,9 @@
   left: -30px;
   top: -30px;
   height: 90px;
-  width: 90px;
+  wIdth: 90px;
   display: block;
-  border-width: 30px;
+  border-wIdth: 30px;
   border-style: double;
   border-color: #22df80 transparent transparent;
   border-radius: 50%;
@@ -53,10 +53,10 @@
   top: 10px;
   left: 10px;
   height: 50px;
-  width: 50px;
+  wIdth: 50px;
   display: block;
-  border-width: 10px;
-  border-style: solid;
+  border-wIdth: 10px;
+  border-style: solId;
   border-color: #22df80 transparent transparent;
   border-radius: 50%;
 

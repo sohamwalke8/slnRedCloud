@@ -1,6 +1,7 @@
 using MvcApiCallingService.Helpers.ApiHelper;
 using RedCloud.Interfaces;
 using RedCloud.Services;
+using RedCloud.ViewModel;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,7 +23,12 @@ builder.Services.AddSession(options =>
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddScoped(typeof(IApiClient<>), typeof(ApiClient<>));
 builder.Services.AddScoped<IAccountService, AccountService>();
-
+builder.Services.AddScoped<IRedCloudAdminService, RedCloudAdminService>();  // Added by Atharva
+builder.Services.AddScoped<IAdminResellerUser, AdminResellerUserService>();
+builder.Services.AddScoped<IAdminResellerUser, AdminResellerUserService>();
+builder.Services.AddScoped(typeof(IDropDownService<CountryVM>), typeof(DropDownService<CountryVM>));
+builder.Services.AddScoped(typeof(IStateService<StateVM>), typeof(StateService<StateVM>));
+builder.Services.AddScoped(typeof(ICityService<CityVM>), typeof(CityService<CityVM>));
 
 //logger setup
 Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
@@ -51,7 +57,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    //pattern: "{controller=Home}/{action=Index}/{id?}");
-    pattern: "{controller=Account}/{action=Login}/{id?}");
+    //pattern: "{controller=Home}/{action=Index}/{Id?}");
+    pattern: "{controller=Account}/{action=Login}/{Id?}");
 
 app.Run();

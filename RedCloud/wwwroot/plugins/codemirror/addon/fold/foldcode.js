@@ -44,13 +44,13 @@
     }
     if (!range || range.cleared || force === "unfold") return;
 
-    var myWidget = makeWidget(cm, options, range);
-    CodeMirror.on(myWidget, "mousedown", function(e) {
+    var myWIdget = makeWIdget(cm, options, range);
+    CodeMirror.on(myWIdget, "mousedown", function(e) {
       myRange.clear();
       CodeMirror.e_preventDefault(e);
     });
     var myRange = cm.markText(range.from, range.to, {
-      replacedWith: myWidget,
+      replacedWith: myWIdget,
       clearOnEnter: getOption(cm, options, "clearOnEnter"),
       __isFold: true
     });
@@ -60,27 +60,27 @@
     CodeMirror.signal(cm, "fold", cm, range.from, range.to);
   }
 
-  function makeWidget(cm, options, range) {
-    var widget = getOption(cm, options, "widget");
+  function makeWIdget(cm, options, range) {
+    var wIdget = getOption(cm, options, "wIdget");
 
-    if (typeof widget == "function") {
-      widget = widget(range.from, range.to);
+    if (typeof wIdget == "function") {
+      wIdget = wIdget(range.from, range.to);
     }
 
-    if (typeof widget == "string") {
-      var text = document.createTextNode(widget);
-      widget = document.createElement("span");
-      widget.appendChild(text);
-      widget.className = "CodeMirror-foldmarker";
-    } else if (widget) {
-      widget = widget.cloneNode(true)
+    if (typeof wIdget == "string") {
+      var text = document.createTextNode(wIdget);
+      wIdget = document.createElement("span");
+      wIdget.appendChild(text);
+      wIdget.className = "CodeMirror-foldmarker";
+    } else if (wIdget) {
+      wIdget = wIdget.cloneNode(true)
     }
-    return widget;
+    return wIdget;
   }
 
   // Clumsy backwards-compatible interface
-  CodeMirror.newFoldFunction = function(rangeFinder, widget) {
-    return function(cm, pos) { doFold(cm, pos, {rangeFinder: rangeFinder, widget: widget}); };
+  CodeMirror.newFoldFunction = function(rangeFinder, wIdget) {
+    return function(cm, pos) { doFold(cm, pos, {rangeFinder: rangeFinder, wIdget: wIdget}); };
   };
 
   // New-style interface
@@ -136,7 +136,7 @@
 
   var defaultOptions = {
     rangeFinder: CodeMirror.fold.auto,
-    widget: "\u2194",
+    wIdget: "\u2194",
     minFoldSize: 0,
     scanUp: false,
     clearOnEnter: true

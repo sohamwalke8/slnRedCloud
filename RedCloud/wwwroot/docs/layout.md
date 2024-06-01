@@ -11,7 +11,7 @@ The layout consists of four major parts:
 
 - Wrapper `.wrapper`. A div that wraps the whole site.
 - Main Header `.main-header`. Contains the logo and navbar.
-- Main Sidebar `.main-sidebar`. Contains the sidebar user panel, search form and menu.
+- Main SIdebar `.main-sIdebar`. Contains the sIdebar user panel, search form and menu.
 - Content `.content-wrapper`. Contains the page header and content.
 
 #### Layout Options
@@ -21,14 +21,14 @@ The layout consists of four major parts:
 > You cannot use both layout-boxed and layout-navbar-fixed or layout-footer-fixed at the same time. Anything else can be mixed together.
 {: .quote-danger}
 
-AdminLTE 3.2 provides a set of options to apply to your main layout. Each one of these classes can be added to the body tag to get the desired goal.
+AdminLTE 3.2 provIdes a set of options to apply to your main layout. Each one of these classes can be added to the body tag to get the desired goal.
 
-- Fixed Sidebar: use the class `.layout-fixed` to get a fixed sidebar.
+- Fixed SIdebar: use the class `.layout-fixed` to get a fixed sIdebar.
 - Fixed Navbar: use the class `.layout-navbar-fixed` to get a fixed navbar.
 - Fixed Footer: use the class `.layout-footer-fixed` to get a fixed footer.
-- Collapsed Sidebar: use the class `.sidebar-collapse` to have a collapsed sidebar upon loading.
+- Collapsed SIdebar: use the class `.sIdebar-collapse` to have a collapsed sIdebar upon loading.
 - Boxed Layout: use the class `.layout-boxed` to get a boxed layout that stretches only to 1250px.
-- Top Navigation: use the class `.layout-top-nav` to remove the sidebar and have your links at the top navbar.
+- Top Navigation: use the class `.layout-top-nav` to remove the sIdebar and have your links at the top navbar.
 
 
 ##### Responsive Variations
@@ -43,7 +43,7 @@ You can also use the following classes for responsive changes with placing
   - use the class `.layout-*-footer-not-fixed` to get a not fixed footer.
 
 > ##### Tip!
-> If you want to use anchors with a fixed navbar, you need to add `.anchor` to you hidden anchor, e.g. `<a id="testAnchor" class="anchor"></a>`. 
+> If you want to use anchors with a fixed navbar, you need to add `.anchor` to you hIdden anchor, e.g. `<a Id="testAnchor" class="anchor"></a>`. 
 > 
 > To get a smooth scrolling to the anchor you need to add `.scroll-smooth` to your HTML tag like this `<html class="scroll-smooth">` otherwise it jumps directly to your anchor, `.scroll-smooth` can cause issues with a Chrome extension called ScrollAnywhere.
 {: .quote-info}
@@ -51,39 +51,39 @@ You can also use the following classes for responsive changes with placing
 
 #### Preloader
 
-Preloader to avoid [https://github.com/ColorlibHQ/AdminLTE/discussions/3319](https://github.com/ColorlibHQ/AdminLTE/discussions/3319)
+Preloader to avoId [https://github.com/ColorlibHQ/AdminLTE/discussions/3319](https://github.com/ColorlibHQ/AdminLTE/discussions/3319)
 
 ```html
 <div class="wrapper">
   <!-- Preloader -->
   <div class="preloader">
-    <img src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" wIdth="60">
   </div>
 </div>
 ```
 
-- Preloader elements should be added inside `.wrapper` element.
-- You can replace image OR modify size OR include any preload items inside `.preloader` element.
+- Preloader elements should be added insIde `.wrapper` element.
+- You can replace image OR modify size OR include any preload items insIde `.preloader` element.
 
 
 #### Dark Mode
 
-AdminLTE 3.2 provides a dark mode option. You can add in body tag:
+AdminLTE 3.2 provIdes a dark mode option. You can add in body tag:
 
 - `.dark-mode`
 
 
 #### Color Variations
 
-AdminLTE 3.2 provides a set of color variations to apply to your sidebar (light & dark) & navbar. You can combine any available color with these class prefixes:
+AdminLTE 3.2 provIdes a set of color variations to apply to your sIdebar (light & dark) & navbar. You can combine any available color with these class prefixes:
 
 - `.navbar-*`
-- `.sidebar-dark-*`
-- `.sidebar-light-*`
+- `.sIdebar-dark-*`
+- `.sIdebar-light-*`
 - `.accent-*`
 
 > ###### New
-> You can use override the link/accent color in AdminLTE, you can add `.accent-*` to `body`.
+> You can use overrIde the link/accent color in AdminLTE, you can add `.accent-*` to `body`.
 {: .quote-info}
 
 > ###### Info
@@ -161,13 +161,13 @@ For custom colored custom-switch you can add this classes:
 
 ##### Toasts
 
-You can also use `bg-*` beside the `.toast` to get a nice colored toast.
+You can also use `bg-*` besIde the `.toast` to get a nice colored toast.
 
 ##### Plugin Support
 
 You can use the all the colors above with these plugins:
 
-- Bootstrap Slider
-  - `.slider-*` (wrapped around the slider)
+- Bootstrap SlIder
+  - `.slIder-*` (wrapped around the slIder)
 - iCheck-Bootstrap
   - `.icheck-*`

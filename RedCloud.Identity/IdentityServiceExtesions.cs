@@ -16,7 +16,7 @@ namespace RedCloud.Identity
     //            options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnectionString"),
     //            b => b.MigrationsAssembly(typeof(IdentityDbContext).Assembly.FullName)));
     //        services.AddIdentity<ApplicationUser, IdentityRole>()
-    //            .AddEntityFrameworkStores<IdentityDbContext>().AddDefaultTokenProviders();
+    //            .AddEntityFrameworkStores<IdentityDbContext>().AddDefaultTokenProvIders();
 
     //        services.AddTransient<IAuthenticationService, AuthenticationService>();
     //        services.AddAuthentication(options =>
@@ -28,15 +28,15 @@ namespace RedCloud.Identity
     //            {
     //                o.RequireHttpsMetadata = false;
     //                o.SaveToken = false;
-    //                o.TokenValidationParameters = new TokenValidationParameters
+    //                o.TokenValIdationParameters = new TokenValIdationParameters
     //                {
-    //                    ValidateIssuerSigningKey = true,
-    //                    ValidateIssuer = true,
-    //                    ValidateAudience = true,
-    //                    ValidateLifetime = true,
+    //                    ValIdateIssuerSigningKey = true,
+    //                    ValIdateIssuer = true,
+    //                    ValIdateAudience = true,
+    //                    ValIdateLifetime = true,
     //                    ClockSkew = TimeSpan.Zero,
-    //                    ValidIssuer = configuration["JwtSettings:Issuer"],
-    //                    ValidAudience = configuration["JwtSettings:Audience"],
+    //                    ValIdIssuer = configuration["JwtSettings:Issuer"],
+    //                    ValIdAudience = configuration["JwtSettings:Audience"],
     //                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]))
     //                };
 
@@ -57,7 +57,7 @@ namespace RedCloud.Identity
     //                        var result = JsonConvert.SerializeObject("401 Not authorized");
     //                        return context.Response.WriteAsync(result);
     //                    },
-    //                    OnForbidden = context =>
+    //                    OnForbIdden = context =>
     //                    {
     //                        context.Response.StatusCode = 403;
     //                        context.Response.ContentType = "application/json";

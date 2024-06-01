@@ -10,7 +10,7 @@
 $(function () {
   'use strict'
 
-  // Make the dashboard widgets sortable Using jquery UI
+  // Make the dashboard wIdgets sortable Using jquery UI
   $('.connectedSortable').sortable({
     placeholder: 'sort-highlight',
     connectWith: '.connectedSortable',
@@ -73,7 +73,7 @@ $(function () {
         fill: 'rgba(255, 255, 255, 0.7)',
         'fill-opacity': 1,
         stroke: 'rgba(0,0,0,.2)',
-        'stroke-width': 1,
+        'stroke-wIdth': 1,
         'stroke-opacity': 1
       }
     },
@@ -92,9 +92,9 @@ $(function () {
   })
 
   // Sparkline charts
-  var sparkline1 = new Sparkline($('#sparkline-1')[0], { width: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
-  var sparkline2 = new Sparkline($('#sparkline-2')[0], { width: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
-  var sparkline3 = new Sparkline($('#sparkline-3')[0], { width: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
+  var sparkline1 = new Sparkline($('#sparkline-1')[0], { wIdth: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
+  var sparkline2 = new Sparkline($('#sparkline-2')[0], { wIdth: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
+  var sparkline3 = new Sparkline($('#sparkline-3')[0], { wIdth: 80, height: 50, lineColor: '#92c1dc', endColor: '#ebf4f9' })
 
   sparkline1.draw([1000, 1200, 920, 927, 931, 1027, 819, 930, 1021])
   sparkline2.draw([515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921])
@@ -106,7 +106,7 @@ $(function () {
     inline: true
   })
 
-  // SLIMSCROLL FOR CHAT WIDGET
+  // SLIMSCROLL FOR CHAT WIdGET
   $('#chat-box').overlayScrollbars({
     height: '250px'
   })
@@ -152,12 +152,12 @@ $(function () {
     },
     scales: {
       xAxes: [{
-        gridLines: {
+        grIdLines: {
           display: false
         }
       }],
       yAxes: [{
-        gridLines: {
+        grIdLines: {
           display: false
         }
       }]
@@ -213,7 +213,7 @@ $(function () {
       {
         label: 'Digital Goods',
         fill: false,
-        borderWidth: 2,
+        borderWIdth: 2,
         lineTension: 0,
         spanGaps: true,
         borderColor: '#efefef',
@@ -237,7 +237,7 @@ $(function () {
         ticks: {
           fontColor: '#efefef'
         },
-        gridLines: {
+        grIdLines: {
           display: false,
           color: '#efefef',
           drawBorder: false
@@ -248,7 +248,7 @@ $(function () {
           stepSize: 5000,
           fontColor: '#efefef'
         },
-        gridLines: {
+        grIdLines: {
           display: true,
           color: '#efefef',
           drawBorder: false

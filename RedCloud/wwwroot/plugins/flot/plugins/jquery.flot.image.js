@@ -44,8 +44,8 @@ Note that because the data format is different from usual data points, you
 can't use images with anything else in a specific data series.
 
 Setting "anchor" to "center" causes the pixels in the image to be anchored at
-the corner pixel centers inside of at the pixel corners, effectively letting
-half a pixel stick out to each side in the plot.
+the corner pixel centers insIde of at the pixel corners, effectively letting
+half a pixel stick out to each sIde in the plot.
 
 A possible future direction could be support for tiling for large images (like
 Google Maps).
@@ -139,7 +139,7 @@ Google Maps).
             // actually we should check img.complete, but it
             // appears to be a somewhat unreliable indicator in
             // IE6 (false even after load event)
-            if (!img || img.width <= 0 || img.height <= 0) {
+            if (!img || img.wIdth <= 0 || img.height <= 0) {
                 continue;
             }
 
@@ -157,7 +157,7 @@ Google Maps).
             // if the anchor is at the center of the pixel, expand the
             // image by 1/2 pixel in each direction
             if (series.images.anchor === "center") {
-                tmp = 0.5 * (x2 - x1) / (img.width - 1);
+                tmp = 0.5 * (x2 - x1) / (img.wIdth - 1);
                 x1 -= tmp;
                 x2 += tmp;
                 tmp = 0.5 * (y2 - y1) / (img.height - 1);
@@ -172,7 +172,7 @@ Google Maps).
                 continue;
             }
 
-            var sx1 = 0, sy1 = 0, sx2 = img.width, sy2 = img.height;
+            var sx1 = 0, sy1 = 0, sx2 = img.wIdth, sy2 = img.height;
             if (x1 < xaxis.min) {
                 sx1 += (sx2 - sx1) * (xaxis.min - x1) / (x2 - x1);
                 x1 = xaxis.min;

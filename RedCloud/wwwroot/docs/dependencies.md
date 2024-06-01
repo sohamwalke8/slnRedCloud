@@ -16,7 +16,7 @@ AdminLTE depends on two main frameworks. The downloadable package contains both 
 #### Plugins
 {: .mt-4 .anchor}
 
-AdminLTE makes use of the following plugins. For documentation, updates or license information, please visit the provided links.
+AdminLTE makes use of the following plugins. For documentation, updates or license information, please visit the provIded links.
 {: .lead}
 
 > Note!
@@ -45,13 +45,13 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
     <ul class="list-unstyled">
       <li><h4>Form Elements</h4></li>
       <li><a href="https://farbelous.io/bootstrap-colorpicker/">Bootstrap Colorpicker</a></li>
-      <li><a href="https://github.com/seiyria/bootstrap-slider/">Bootstrap Slider</a></li>
+      <li><a href="https://github.com/seiyria/bootstrap-slIder/">Bootstrap SlIder</a></li>
       <li><a href="https://github.com/Bttstrp/bootstrap-switch">Bootstrap Switch</a></li>
       <li><a href="http://www.daterangepicker.com/" rel="noopener" target="_blank">Date Range Picker</a></li>
       <li><a href="https://www.dropzonejs.com/" rel="noopener" target="_blank">Dropzone JS</a></li>
       <li><a href="https://github.com/bantikyan/icheck-bootstrap#readme" rel="noopener" target="_blank">iCheck Bootstrap</a></li>
       <li><a href="https://github.com/RobinHerbots/Inputmask/" rel="noopener" target="_blank">Inputmask</a></li>
-      <li><a href="http://ionden.com/a/plugins/ion.rangeSlider/" rel="noopener" target="_blank">Ion.RangeSlider</a></li>
+      <li><a href="http://ionden.com/a/plugins/ion.rangeSlIder/" rel="noopener" target="_blank">Ion.RangeSlIder</a></li>
       <li><a href="https://select2.org/" rel="noopener" target="_blank">Select2</a></li>
       <li><a href="https://tempusdominus.github.io/bootstrap-4/" rel="noopener" target="_blank">Tempus Dominus</a></li>
       <li><a href="https://github.com/istvan-ujjmeszaros/bootstrap-duallistbox#readme" rel="noopener" target="_blank">Bootstrap4 Duallistbox</a></li>
@@ -70,10 +70,10 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
 <div class="row px-3">
   <div class="col-sm-3">
     <ul class="list-unstyled">
-      <li><h4>Table Grids</h4></li>
+      <li><h4>Table GrIds</h4></li>
       <li><a href="https://datatables.net/" rel="noopener" target="_blank">DataTables</a></li>
       <li><a href="https://datatables.net/extensions/" rel="noopener" target="_blank">DataTables (Included all open-source extensions with Bootstrap 4 styling)</a></li>
-      <li><a href="http://js-grid.com/" rel="noopener" target="_blank">jsGrid</a></li>
+      <li><a href="http://js-grId.com/" rel="noopener" target="_blank">jsGrId</a></li>
     </ul>
   </div>
   <div class="col-sm-3">
@@ -90,7 +90,7 @@ AdminLTE makes use of the following plugins. For documentation, updates or licen
       <li><a href="https://fullcalendar.io/">FullCalendar 4</a></li>
       <li><a href="https://github.com/aterrien/jQuery-Knob#readme">jQuery Knob</a></li>
       <li><a href="https://jqueryui.com/" rel="noopener" target="_blank">jQuery UI</a></li>
-      <li><a href="https://jqueryvalidation.org/" rel="noopener" target="_blank">jQuery Validation</a></li>
+      <li><a href="https://jqueryvalIdation.org/" rel="noopener" target="_blank">jQuery ValIdation</a></li>
       <li><a href="https://www.vincentbroute.fr/mapael/" rel="noopener" target="_blank">jQuery Mapael</a></li>
       <li><a href="https://github.com/bbmumford/jqvmap#readme" rel="noopener" target="_blank">jQuery Vector Map</a></li>
       <li><a href="https://kingsora.github.io/OverlayScrollbars/" rel="noopener" target="_blank">Overlay Scrollbars</a></li>

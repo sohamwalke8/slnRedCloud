@@ -2,7 +2,7 @@
 // Distributed under an MIT license: https://codemirror.net/LICENSE
 
 /**********************************************************
-* This script provides syntax highlighting support for
+* This script provIdes syntax highlighting support for
 * the N-Triples format.
 * N-Triples format specification:
 *     https://www.w3.org/TR/n-triples/

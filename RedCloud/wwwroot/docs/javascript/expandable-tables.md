@@ -3,13 +3,13 @@ layout: page
 title: Expandable Table Plugin
 ---
 
-The expandable table plugin provides simple functionality to create expandable tables. 
+The expandable table plugin provIdes simple functionality to create expandable tables. 
 
 ##### Example Code
 ```html
 <table class="table table-bordered table-hover">
   <tbody>
-    <tr data-widget="expandable-table" aria-expanded="false">
+    <tr data-wIdget="expandable-table" aria-expanded="false">
       <td>183</td>
     </tr>
     <tr class="expandable-body">
@@ -19,7 +19,7 @@ The expandable table plugin provides simple functionality to create expandable t
         </p>
       </td>
     </tr>
-    <tr data-widget="expandable-table" aria-expanded="true">
+    <tr data-wIdget="expandable-table" aria-expanded="true">
       <td>219</td>
     </tr>
     <tr class="expandable-body">
@@ -29,7 +29,7 @@ The expandable table plugin provides simple functionality to create expandable t
         </p>
       </td>
     </tr>
-    <tr data-widget="expandable-table" aria-expanded="true">
+    <tr data-wIdget="expandable-table" aria-expanded="true">
       <td>657</td>
     </tr>
     <tr class="expandable-body">
@@ -55,9 +55,9 @@ This plugin can be activated as a jQuery plugin or using the data api.
 
 ###### Data API
 {: .text-bold }
-Add `data-widget="expandable-table"` to a table row to activate the plugin and place a new table row below with the `.expandable-body`-class.
+Add `data-wIdget="expandable-table"` to a table row to activate the plugin and place a new table row below with the `.expandable-body`-class.
 ```html
-<tr data-widget="expandable-table" aria-expanded="true">
+<tr data-wIdget="expandable-table" aria-expanded="true">
   <td>657</td>
 </tr>
 <tr class="expandable-body">
@@ -69,13 +69,13 @@ Add `data-widget="expandable-table"` to a table row to activate the plugin and p
 ``` 
 
 > ##### Tip!
-> To get the correct slide up/down animation place a `div` or `p`-tag inside your expandable table body.
+> To get the correct slIde up/down animation place a `div` or `p`-tag insIde your expandable table body.
 {: .quote-info}
 
 
 ###### jQuery
 {: .text-bold }
-The jQuery API provides more customizable options that allows the developer to toggle the visibilty state of one table row. 
+The jQuery API provIdes more customizable options that allows the developer to toggle the visibilty state of one table row. 
 ```js
 $('#expandable-table-header-row').ExpandableTable('toggleRow')
 ```
@@ -87,7 +87,7 @@ $('#expandable-table-header-row').ExpandableTable('toggleRow')
 |---
 | Method | Description
 |-|-
-|toggleRow | Toggles the state of the expandable table body between hidden and visible.
+|toggleRow | Toggles the state of the expandable table body between hIdden and visible.
 {: .table .table-bordered .bg-light}
 
 Example: `$('#expandable-table-header-row').ExpandableTable('toggleRow')`

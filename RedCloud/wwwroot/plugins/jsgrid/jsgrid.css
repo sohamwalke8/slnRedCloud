@@ -1,27 +1,27 @@
 /*
- * jsGrid v1.5.3 (http://js-grid.com)
+ * jsGrId v1.5.3 (http://js-grId.com)
  * (c) 2016 Artem Tabalin
- * Licensed under MIT (https://github.com/tabalinas/jsgrid/blob/master/LICENSE)
+ * Licensed under MIT (https://github.com/tabalinas/jsgrId/blob/master/LICENSE)
  */
 
-.jsgrid {
+.jsgrId {
     position: relative;
-    overflow: hidden;
+    overflow: hIdden;
     font-size: 1em;
 }
 
-.jsgrid, .jsgrid *, .jsgrid *:before, .jsgrid *:after {
+.jsgrId, .jsgrId *, .jsgrId *:before, .jsgrId *:after {
     box-sizing: border-box;
 }
 
-.jsgrid input,
-.jsgrid textarea,
-.jsgrid select {
+.jsgrId input,
+.jsgrId textarea,
+.jsgrId select {
     font-size: 1em;
 }
 
-.jsgrid-grid-header {
-    overflow-x: hidden;
+.jsgrId-grId-header {
+    overflow-x: hIdden;
     overflow-y: scroll;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -31,96 +31,96 @@
     user-select: none;
 }
 
-.jsgrid-grid-body {
+.jsgrId-grId-body {
     overflow-x: auto;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
 
-.jsgrid-table {
-    width: 100%;
+.jsgrId-table {
+    wIdth: 100%;
     table-layout: fixed;
     border-collapse: collapse;
     border-spacing: 0;
 }
 
-.jsgrid-cell {
+.jsgrId-cell {
     padding: 0.5em 0.5em;
 }
 
-.jsgrid-сell,
-.jsgrid-header-cell {
+.jsgrId-сell,
+.jsgrId-header-cell {
     box-sizing: border-box;
 }
 
-.jsgrid-align-left {
+.jsgrId-align-left {
     text-align: left;
 }
 
-.jsgrid-align-center,
-.jsgrid-align-center input,
-.jsgrid-align-center textarea,
-.jsgrid-align-center select {
+.jsgrId-align-center,
+.jsgrId-align-center input,
+.jsgrId-align-center textarea,
+.jsgrId-align-center select {
     text-align: center;
 }
 
-.jsgrid-align-right,
-.jsgrid-align-right input,
-.jsgrid-align-right textarea,
-.jsgrid-align-right select {
+.jsgrId-align-right,
+.jsgrId-align-right input,
+.jsgrId-align-right textarea,
+.jsgrId-align-right select {
     text-align: right;
 }
 
-.jsgrid-header-cell {
+.jsgrId-header-cell {
     padding: .5em .5em;
 }
 
-.jsgrid-filter-row input,
-.jsgrid-filter-row textarea,
-.jsgrid-filter-row select,
-.jsgrid-edit-row input,
-.jsgrid-edit-row textarea,
-.jsgrid-edit-row select,
-.jsgrid-insert-row input,
-.jsgrid-insert-row textarea,
-.jsgrid-insert-row select {
-    width: 100%;
+.jsgrId-filter-row input,
+.jsgrId-filter-row textarea,
+.jsgrId-filter-row select,
+.jsgrId-edit-row input,
+.jsgrId-edit-row textarea,
+.jsgrId-edit-row select,
+.jsgrId-insert-row input,
+.jsgrId-insert-row textarea,
+.jsgrId-insert-row select {
+    wIdth: 100%;
     padding: .3em .5em;
 }
 
-.jsgrid-filter-row input[type='checkbox'],
-.jsgrid-edit-row input[type='checkbox'],
-.jsgrid-insert-row input[type='checkbox'] {
-    width: auto;
+.jsgrId-filter-row input[type='checkbox'],
+.jsgrId-edit-row input[type='checkbox'],
+.jsgrId-insert-row input[type='checkbox'] {
+    wIdth: auto;
 }
 
 
-.jsgrid-selected-row .jsgrid-cell {
+.jsgrId-selected-row .jsgrId-cell {
     cursor: pointer;
 }
 
-.jsgrid-nodata-row .jsgrid-cell {
+.jsgrId-nodata-row .jsgrId-cell {
     padding: .5em 0;
     text-align: center;
 }
 
-.jsgrid-header-sort {
+.jsgrId-header-sort {
     cursor: pointer;
 }
 
-.jsgrid-pager {
+.jsgrId-pager {
     padding: .5em 0;
 }
 
-.jsgrid-pager-nav-button {
+.jsgrId-pager-nav-button {
     padding: .2em .6em;
 }
 
-.jsgrid-pager-nav-inactive-button {
+.jsgrId-pager-nav-inactive-button {
     display: none;
     pointer-events: none;
 }
 
-.jsgrid-pager-page {
+.jsgrId-pager-page {
     padding: .2em .6em;
 }

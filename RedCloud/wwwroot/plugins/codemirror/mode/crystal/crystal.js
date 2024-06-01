@@ -25,7 +25,7 @@
     var conditionalOperators = /^(?:[=!]~|===|<=>|[<>=!]=?|[|&]{2}|~)/;
     var indexingOperators = /^(?:\[\][?=]?)/;
     var anotherOperators = /^(?:\.(?:\.{2})?|->|[?:])/;
-    var idents = /^[a-z_\u009F-\uFFFF][a-zA-Z0-9_\u009F-\uFFFF]*/;
+    var Idents = /^[a-z_\u009F-\uFFFF][a-zA-Z0-9_\u009F-\uFFFF]*/;
     var types = /^[A-Z_\u009F-\uFFFF][a-zA-Z0-9_\u009F-\uFFFF]*/;
     var keywords = wordRegExp([
       "abstract", "alias", "as", "asm", "begin", "break", "case", "class", "def", "do",
@@ -77,7 +77,7 @@
 
       // Variables and keywords
       var matched;
-      if (stream.match(idents)) {
+      if (stream.match(Idents)) {
         stream.eat(/[?!]/);
 
         matched = stream.current();
@@ -119,7 +119,7 @@
         }
 
         stream.eat("@");
-        stream.match(idents) || stream.match(types);
+        stream.match(Idents) || stream.match(types);
         return "variable-2";
       }
 
@@ -132,7 +132,7 @@
       if (stream.eat(":")) {
         if (stream.eat("\"")) {
           return chain(tokenQuote("\"", "atom", false), stream, state);
-        } else if (stream.match(idents) || stream.match(types) ||
+        } else if (stream.match(Idents) || stream.match(types) ||
                    stream.match(operators) || stream.match(conditionalOperators) || stream.match(indexingOperators)) {
           return "atom";
         }
@@ -277,7 +277,7 @@
       }
 
       var matched;
-      if (matched = stream.match(idents)) {
+      if (matched = stream.match(Idents)) {
         if (matched == "def") {
           return "keyword";
         }
@@ -293,7 +293,7 @@
         return null;
       }
 
-      if (stream.match(idents)) {
+      if (stream.match(Idents)) {
         stream.eat(/[!?]/);
       } else {
         stream.match(operators) || stream.match(conditionalOperators) || stream.match(indexingOperators);

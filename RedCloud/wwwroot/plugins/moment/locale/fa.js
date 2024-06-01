@@ -59,11 +59,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd, D MMMM YYYY HH:mm',
         },
-        meridiemParse: /قبل از ظهر|بعد از ظهر/,
+        merIdiemParse: /قبل از ظهر|بعد از ظهر/,
         isPM: function (input) {
             return /بعد از ظهر/.test(input);
         },
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'قبل از ظهر';
             } else {

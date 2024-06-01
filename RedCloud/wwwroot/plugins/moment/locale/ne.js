@@ -68,22 +68,22 @@
                 return symbolMap[match];
             });
         },
-        meridiemParse: /राति|बिहान|दिउँसो|साँझ/,
-        meridiemHour: function (hour, meridiem) {
+        merIdiemParse: /राति|बिहान|दिउँसो|साँझ/,
+        merIdiemHour: function (hour, merIdiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (meridiem === 'राति') {
+            if (merIdiem === 'राति') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (meridiem === 'बिहान') {
+            } else if (merIdiem === 'बिहान') {
                 return hour;
-            } else if (meridiem === 'दिउँसो') {
+            } else if (merIdiem === 'दिउँसो') {
                 return hour >= 10 ? hour : hour + 12;
-            } else if (meridiem === 'साँझ') {
+            } else if (merIdiem === 'साँझ') {
                 return hour + 12;
             }
         },
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour < 3) {
                 return 'राति';
             } else if (hour < 12) {

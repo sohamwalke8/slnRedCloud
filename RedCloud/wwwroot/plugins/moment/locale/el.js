@@ -44,7 +44,7 @@
         ),
         weekdaysShort: 'Κυρ_Δευ_Τρι_Τετ_Πεμ_Παρ_Σαβ'.split('_'),
         weekdaysMin: 'Κυ_Δε_Τρ_Τε_Πε_Πα_Σα'.split('_'),
-        meridiem: function (hours, minutes, isLower) {
+        merIdiem: function (hours, minutes, isLower) {
             if (hours > 11) {
                 return isLower ? 'μμ' : 'ΜΜ';
             } else {
@@ -54,7 +54,7 @@
         isPM: function (input) {
             return (input + '').toLowerCase()[0] === 'μ';
         },
-        meridiemParse: /[ΠΜ]\.?Μ?\.?/i,
+        merIdiemParse: /[ΠΜ]\.?Μ?\.?/i,
         longDateFormat: {
             LT: 'h:mm A',
             LTS: 'h:mm:ss A',

@@ -66,7 +66,7 @@
 
 
 		/**
-		 * ID of the last touch, retrieved from Touch.identifier.
+		 * Id of the last touch, retrieved from Touch.Identifier.
 		 *
 		 * @type number
 		 */
@@ -106,7 +106,7 @@
 			return;
 		}
 
-		// Some old versions of Android don't have Function.prototype.bind
+		// Some old versions of AndroId don't have Function.prototype.bind
 		function bind(method, context) {
 			return function() { return method.apply(context, arguments); };
 		}
@@ -119,7 +119,7 @@
 		}
 
 		// Set up event handlers as required
-		if (deviceIsAndroid) {
+		if (deviceIsAndroId) {
 			layer.addEventListener('mouseover', this.onMouse, true);
 			layer.addEventListener('mousedown', this.onMouse, true);
 			layer.addEventListener('mouseup', this.onMouse, true);
@@ -131,7 +131,7 @@
 		layer.addEventListener('touchend', this.onTouchEnd, false);
 		layer.addEventListener('touchcancel', this.onTouchCancel, false);
 
-		// Hack is required for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
+		// Hack is required for browsers that don't support Event#stopImmediatePropagation (e.g. AndroId 2)
 		// which is how FastClick normally stops click events bubbling to callbacks registered on the FastClick
 		// layer when they are cancelled.
 		if (!Event.prototype.stopImmediatePropagation) {
@@ -163,7 +163,7 @@
 		// adding it as listener.
 		if (typeof layer.onclick === 'function') {
 
-			// Android browser on at least 3.2 requires a new reference to the function in layer.onclick
+			// AndroId browser on at least 3.2 requires a new reference to the function in layer.onclick
 			// - the old one won't work if passed to addEventListener directly.
 			oldOnClick = layer.onclick;
 			layer.addEventListener('click', function(event) {
@@ -174,18 +174,18 @@
 	}
 
 	/**
-	* Windows Phone 8.1 fakes user agent string to look like Android and iPhone.
+	* Windows Phone 8.1 fakes user agent string to look like AndroId and iPhone.
 	*
 	* @type boolean
 	*/
 	var deviceIsWindowsPhone = navigator.userAgent.indexOf("Windows Phone") >= 0;
 
 	/**
-	 * Android requires exceptions.
+	 * AndroId requires exceptions.
 	 *
 	 * @type boolean
 	 */
-	var deviceIsAndroid = navigator.userAgent.indexOf('Android') > 0 && !deviceIsWindowsPhone;
+	var deviceIsAndroId = navigator.userAgent.indexOf('AndroId') > 0 && !deviceIsWindowsPhone;
 
 
 	/**
@@ -246,7 +246,7 @@
 			break;
 		case 'label':
 		case 'iframe': // iOS8 homescreen apps can prevent events bubbling into frames
-		case 'video':
+		case 'vIdeo':
 			return true;
 		}
 
@@ -265,7 +265,7 @@
 		case 'textarea':
 			return true;
 		case 'select':
-			return !deviceIsAndroid;
+			return !deviceIsAndroId;
 		case 'input':
 			switch (target.type) {
 			case 'button':
@@ -294,7 +294,7 @@
 	FastClick.prototype.sendClick = function(targetElement, event) {
 		var clickEvent, touch;
 
-		// On some Android devices activeElement needs to be blurred otherwise the synthetic click will have no effect (#24)
+		// On some AndroId devices activeElement needs to be blurred otherwise the synthetic click will have no effect (#24)
 		if (document.activeElement && document.activeElement !== targetElement) {
 			document.activeElement.blur();
 		}
@@ -310,8 +310,8 @@
 
 	FastClick.prototype.determineEventType = function(targetElement) {
 
-		//Issue #159: Android Chrome Select Box does not open with a synthetic click event
-		if (deviceIsAndroid && targetElement.tagName.toLowerCase() === 'select') {
+		//Issue #159: AndroId Chrome Select Box does not open with a synthetic click event
+		if (deviceIsAndroId && targetElement.tagName.toLowerCase() === 'select') {
 			return 'mousedown';
 		}
 
@@ -411,18 +411,18 @@
 
 				// Weird things happen on iOS when an alert or confirm dialog is opened from a click event callback (issue #23):
 				// when the user next taps anywhere else on the page, new touchstart and touchend events are dispatched
-				// with the same identifier as the touch event that previously triggered the click that triggered the alert.
-				// Sadly, there is an issue on iOS 4 that causes some normal touch events to have the same identifier as an
+				// with the same Identifier as the touch event that previously triggered the click that triggered the alert.
+				// Sadly, there is an issue on iOS 4 that causes some normal touch events to have the same Identifier as an
 				// immediately preceeding touch event (issue #52), so this fix is unavailable on that platform.
-				// Issue 120: touch.identifier is 0 when Chrome dev tools 'Emulate touch events' is set with an iOS device UA string,
-				// which causes all touch events to be ignored. As this block only applies to iOS, and iOS identifiers are always long,
-				// random integers, it's safe to to continue if the identifier is 0 here.
-				if (touch.identifier && touch.identifier === this.lastTouchIdentifier) {
+				// Issue 120: touch.Identifier is 0 when Chrome dev tools 'Emulate touch events' is set with an iOS device UA string,
+				// which causes all touch events to be ignored. As this block only applies to iOS, and iOS Identifiers are always long,
+				// random integers, it's safe to to continue if the Identifier is 0 here.
+				if (touch.Identifier && touch.Identifier === this.lastTouchIdentifier) {
 					event.preventDefault();
 					return false;
 				}
 
-				this.lastTouchIdentifier = touch.identifier;
+				this.lastTouchIdentifier = touch.Identifier;
 
 				// If the target element is a child of a scrollable layer (using -webkit-overflow-scrolling: touch) and:
 				// 1) the user does a fling scroll on the scrollable layer
@@ -508,7 +508,7 @@
 
 		// If no for attribute exists, attempt to retrieve the first labellable descendant element
 		// the list of which is defined here: http://www.w3.org/TR/html5/forms.html#category-label
-		return labelElement.querySelector('button, input:not([type=hidden]), keygen, meter, output, progress, select, textarea');
+		return labelElement.querySelector('button, input:not([type=hIdden]), keygen, meter, output, progress, select, textarea');
 	};
 
 
@@ -544,7 +544,7 @@
 		this.trackingClick = false;
 		this.trackingClickStart = 0;
 
-		// On some iOS devices, the targetElement supplied with the event is invalid if the layer
+		// On some iOS devices, the targetElement supplied with the event is invalId if the layer
 		// is performing a transition or scroll, and has to be re-detected manually. Note that
 		// for this to function correctly, it must be called *after* the event target is checked!
 		// See issue #57; also filed as rdar://13048589 .
@@ -561,7 +561,7 @@
 			forElement = this.findControl(targetElement);
 			if (forElement) {
 				this.focus(targetElement);
-				if (deviceIsAndroid) {
+				if (deviceIsAndroId) {
 					return false;
 				}
 
@@ -653,7 +653,7 @@
 				event.stopImmediatePropagation();
 			} else {
 
-				// Part of the hack for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
+				// Part of the hack for browsers that don't support Event#stopImmediatePropagation (e.g. AndroId 2)
 				event.propagationStopped = true;
 			}
 
@@ -671,7 +671,7 @@
 
 	/**
 	 * On actual clicks, determine whether this is a touch-generated click, a click action occurring
-	 * naturally after a delay after a touch (which needs to be cancelled to avoid duplication), or
+	 * naturally after a delay after a touch (which needs to be cancelled to avoId duplication), or
 	 * an actual click which should be permitted.
 	 *
 	 * @param {Event} event
@@ -687,7 +687,7 @@
 			return true;
 		}
 
-		// Very odd behaviour on iOS (issue #18): if a submit element is present inside a form and the user hits enter in the iOS simulator or clicks the Go button on the pop-up OS keyboard the a kind of 'fake' click event will be triggered with the submit-type input element as the target.
+		// Very odd behaviour on iOS (issue #18): if a submit element is present insIde a form and the user hits enter in the iOS simulator or clicks the Go button on the pop-up OS keyboard the a kind of 'fake' click event will be triggered with the submit-type input element as the target.
 		if (event.target.type === 'submit' && event.detail === 0) {
 			return true;
 		}
@@ -712,7 +712,7 @@
 	FastClick.prototype.destroy = function() {
 		var layer = this.layer;
 
-		if (deviceIsAndroid) {
+		if (deviceIsAndroId) {
 			layer.removeEventListener('mouseover', this.onMouse, true);
 			layer.removeEventListener('mousedown', this.onMouse, true);
 			layer.removeEventListener('mouseup', this.onMouse, true);
@@ -747,16 +747,16 @@
 
 		if (chromeVersion) {
 
-			if (deviceIsAndroid) {
+			if (deviceIsAndroId) {
 				metaViewport = document.querySelector('meta[name=viewport]');
 
 				if (metaViewport) {
-					// Chrome on Android with user-scalable="no" doesn't need FastClick (issue #89)
+					// Chrome on AndroId with user-scalable="no" doesn't need FastClick (issue #89)
 					if (metaViewport.content.indexOf('user-scalable=no') !== -1) {
 						return true;
 					}
-					// Chrome 32 and above with width=device-width or less don't need FastClick
-					if (chromeVersion > 31 && document.documentElement.scrollWidth <= window.outerWidth) {
+					// Chrome 32 and above with wIdth=device-wIdth or less don't need FastClick
+					if (chromeVersion > 31 && document.documentElement.scrollWIdth <= window.outerWIdth) {
 						return true;
 					}
 				}
@@ -780,8 +780,8 @@
 					if (metaViewport.content.indexOf('user-scalable=no') !== -1) {
 						return true;
 					}
-					// width=device-width (or less than device-width) eliminates click delay.
-					if (document.documentElement.scrollWidth <= window.outerWidth) {
+					// wIdth=device-wIdth (or less than device-wIdth) eliminates click delay.
+					if (document.documentElement.scrollWIdth <= window.outerWIdth) {
 						return true;
 					}
 				}
@@ -797,10 +797,10 @@
 		firefoxVersion = +(/Firefox\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
 
 		if (firefoxVersion >= 27) {
-			// Firefox 27+ does not have tap delay if the content is not zoomable - https://bugzilla.mozilla.org/show_bug.cgi?id=922896
+			// Firefox 27+ does not have tap delay if the content is not zoomable - https://bugzilla.mozilla.org/show_bug.cgi?Id=922896
 
 			metaViewport = document.querySelector('meta[name=viewport]');
-			if (metaViewport && (metaViewport.content.indexOf('user-scalable=no') !== -1 || document.documentElement.scrollWidth <= window.outerWidth)) {
+			if (metaViewport && (metaViewport.content.indexOf('user-scalable=no') !== -1 || document.documentElement.scrollWIdth <= window.outerWIdth)) {
 				return true;
 			}
 		}

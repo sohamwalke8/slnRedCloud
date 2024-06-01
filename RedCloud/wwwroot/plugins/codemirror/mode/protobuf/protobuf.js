@@ -26,7 +26,7 @@
 
   CodeMirror.registerHelper("hintWords", "protobuf", keywordArray);
 
-  var identifiers = new RegExp("^[_A-Za-z\xa1-\uffff][_A-Za-z0-9\xa1-\uffff]*");
+  var Identifiers = new RegExp("^[_A-Za-z\xa1-\uffff][_A-Za-z0-9\xa1-\uffff]*");
 
   function tokenBase(stream) {
     // whitespaces
@@ -54,7 +54,7 @@
 
     // Handle words
     if (stream.match(keywords)) { return "keyword"; }
-    if (stream.match(identifiers)) { return "variable"; } ;
+    if (stream.match(Identifiers)) { return "variable"; } ;
 
     // Handle non-detected items
     stream.next();

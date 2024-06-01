@@ -3,7 +3,7 @@
     Name:       Railscasts
     Author:     Ryan Bates (http://railscasts.com)
 
-    CodeMirror template by Jan T. Sott (https://github.com/idleberg/base16-codemirror)
+    CodeMirror template by Jan T. Sott (https://github.com/Idleberg/base16-codemirror)
     Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
 
 */
@@ -12,7 +12,7 @@
 .cm-s-railscasts div.CodeMirror-selected {background: #272935 !important;}
 .cm-s-railscasts .CodeMirror-gutters {background: #2b2b2b; border-right: 0px;}
 .cm-s-railscasts .CodeMirror-linenumber {color: #5a647e;}
-.cm-s-railscasts .CodeMirror-cursor {border-left: 1px solid #d4cfc9 !important;}
+.cm-s-railscasts .CodeMirror-cursor {border-left: 1px solId #d4cfc9 !important;}
 
 .cm-s-railscasts span.cm-comment {color: #bc9458;}
 .cm-s-railscasts span.cm-atom {color: #b6b3eb;}

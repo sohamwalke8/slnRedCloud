@@ -1,6 +1,6 @@
 //! moment.js locale configuration
 //! locale : Konkani Latin script [gom-latn]
-//! author : The Discoverer : https://github.com/WikiDiscoverer
+//! author : The Discoverer : https://github.com/WikIdiscoverer
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'
@@ -100,22 +100,22 @@
             dow: 0, // Sunday is the first day of the week
             doy: 3, // The week that contains Jan 4th is the first week of the year (7 + 0 - 4)
         },
-        meridiemParse: /rati|sokallim|donparam|sanje/,
-        meridiemHour: function (hour, meridiem) {
+        merIdiemParse: /rati|sokallim|donparam|sanje/,
+        merIdiemHour: function (hour, merIdiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (meridiem === 'rati') {
+            if (merIdiem === 'rati') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (meridiem === 'sokallim') {
+            } else if (merIdiem === 'sokallim') {
                 return hour;
-            } else if (meridiem === 'donparam') {
+            } else if (merIdiem === 'donparam') {
                 return hour > 12 ? hour : hour + 12;
-            } else if (meridiem === 'sanje') {
+            } else if (merIdiem === 'sanje') {
                 return hour + 12;
             }
         },
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'rati';
             } else if (hour < 12) {

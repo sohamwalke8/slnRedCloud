@@ -54,9 +54,9 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
   if (modeCfg.xml === undefined)
     modeCfg.xml = true;
 
-  // Allow token types to be overridden by user-provided token types.
-  if (modeCfg.tokenTypeOverrides === undefined)
-    modeCfg.tokenTypeOverrides = {};
+  // Allow token types to be overrIdden by user-provIded token types.
+  if (modeCfg.tokenTypeOverrIdes === undefined)
+    modeCfg.tokenTypeOverrIdes = {};
 
   var tokenTypes = {
     header: "header",
@@ -81,8 +81,8 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
   };
 
   for (var tokenType in tokenTypes) {
-    if (tokenTypes.hasOwnProperty(tokenType) && modeCfg.tokenTypeOverrides[tokenType]) {
-      tokenTypes[tokenType] = modeCfg.tokenTypeOverrides[tokenType];
+    if (tokenTypes.hasOwnProperty(tokenType) && modeCfg.tokenTypeOverrIdes[tokenType]) {
+      tokenTypes[tokenType] = modeCfg.tokenTypeOverrIdes[tokenType];
     }
   }
 
@@ -287,7 +287,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
       var inner = CodeMirror.innerMode(htmlMode, state.htmlState)
       if ((inner.mode.name == "xml" && inner.state.tagStart === null &&
            (!inner.state.context && inner.state.tokenize.isInText)) ||
-          (state.md_inside && stream.current().indexOf(">") > -1)) {
+          (state.md_insIde && stream.current().indexOf(">") > -1)) {
         state.f = inlineNormal;
         state.block = blockNormal;
         state.htmlState = null;
@@ -550,7 +550,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
       var end = stream.string.indexOf(">", stream.pos);
       if (end != -1) {
         var atts = stream.string.substring(stream.start, end);
-        if (/markdown\s*=\s*('|"){0,1}1('|"){0,1}/.test(atts)) state.md_inside = true;
+        if (/markdown\s*=\s*('|"){0,1}1('|"){0,1}/.test(atts)) state.md_insIde = true;
       }
       stream.backUp(1);
       state.htmlState = CodeMirror.startState(htmlMode);
@@ -558,7 +558,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
     }
 
     if (modeCfg.xml && ch === '<' && stream.match(/^\/\w*?>/)) {
-      state.md_inside = false;
+      state.md_insIde = false;
       return "tag";
     } else if (ch === "*" || ch === "_") {
       var len = 1, before = stream.pos == 1 ? " " : stream.string.charAt(stream.pos - 2)
@@ -662,13 +662,13 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
   }
 
   function linkHref(stream, state) {
-    // Check if space, and return NULL if so (to avoid marking the space)
+    // Check if space, and return NULL if so (to avoId marking the space)
     if(stream.eatSpace()){
       return null;
     }
     var ch = stream.next();
     if (ch === '(' || ch === '[') {
-      state.f = state.inline = getLinkHrefInside(ch === "(" ? ")" : "]");
+      state.f = state.inline = getLinkHrefInsIde(ch === "(" ? ")" : "]");
       if (modeCfg.highlightFormatting) state.formatting = "link-string";
       state.linkHref = true;
       return getType(state);
@@ -681,7 +681,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
     "]": /^(?:[^\\\[\]]|\\.|\[(?:[^\\\[\]]|\\.)*\])*?(?=\])/
   }
 
-  function getLinkHrefInside(endChar) {
+  function getLinkHrefInsIde(endChar) {
     return function(stream, state) {
       var ch = stream.next();
 
@@ -701,7 +701,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
 
   function footnoteLink(stream, state) {
     if (stream.match(/^([^\]\\]|\\.)*\]:/, false)) {
-      state.f = footnoteLinkInside;
+      state.f = footnoteLinkInsIde;
       stream.next(); // Consume [
       if (modeCfg.highlightFormatting) state.formatting = "link";
       state.linkText = true;
@@ -710,7 +710,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
     return switchInline(stream, state, inlineNormal);
   }
 
-  function footnoteLinkInside(stream, state) {
+  function footnoteLinkInsIde(stream, state) {
     if (stream.match(']:', true)) {
       state.f = state.inline = footnoteUrl;
       if (modeCfg.highlightFormatting) state.formatting = "link";
@@ -725,7 +725,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
   }
 
   function footnoteUrl(stream, state) {
-    // Check if space, and return NULL if so (to avoid marking the space)
+    // Check if space, and return NULL if so (to avoId marking the space)
     if(stream.eatSpace()){
       return null;
     }
@@ -813,7 +813,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
         indentedCode: s.indentedCode,
         trailingSpace: s.trailingSpace,
         trailingSpaceNewLine: s.trailingSpaceNewLine,
-        md_inside: s.md_inside,
+        md_insIde: s.md_insIde,
         fencedEndRE: s.fencedEndRE
       };
     },

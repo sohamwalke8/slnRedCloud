@@ -64,7 +64,7 @@ $.extend( DataTable.ext.classes, {
 
 
 /* Bootstrap paging button renderer */
-DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, buttons, page, pages ) {
+DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, Idx, buttons, page, pages ) {
 	var api     = new DataTable.Api( settings );
 	var classes = settings.oClasses;
 	var lang    = settings.oLanguage.oPaginate;
@@ -130,7 +130,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 				if ( btnDisplay ) {
 					node = $('<li>', {
 							'class': classes.sPageButton+' '+btnClass,
-							'id': idx === 0 && typeof button === 'string' ?
+							'Id': Idx === 0 && typeof button === 'string' ?
 								settings.sTableId +'_'+ button :
 								null
 						} )
@@ -138,7 +138,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 								'href': '#',
 								'aria-controls': settings.sTableId,
 								'aria-label': aria[ button ],
-								'data-dt-idx': counter,
+								'data-dt-Idx': counter,
 								'tabindex': settings.iTabIndex,
 								'class': 'page-link'
 							} )
@@ -157,7 +157,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 	};
 
 	// IE9 throws an 'unknown error' if document.activeElement is used
-	// inside an iframe or frame. 
+	// insIde an iframe or frame. 
 	var activeEl;
 
 	try {
@@ -165,7 +165,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 		// elements, focus is lost on the select button which is bad for
 		// accessibility. So we want to restore focus once the draw has
 		// completed
-		activeEl = $(host).find(document.activeElement).data('dt-idx');
+		activeEl = $(host).find(document.activeElement).data('dt-Idx');
 	}
 	catch (e) {}
 
@@ -175,7 +175,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 	);
 
 	if ( activeEl !== undefined ) {
-		$(host).find( '[data-dt-idx='+activeEl+']' ).trigger('focus');
+		$(host).find( '[data-dt-Idx='+activeEl+']' ).trigger('focus');
 	}
 };
 

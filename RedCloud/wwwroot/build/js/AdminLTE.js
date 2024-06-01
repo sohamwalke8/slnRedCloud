@@ -1,6 +1,6 @@
 import CardRefresh from './CardRefresh'
-import CardWidget from './CardWidget'
-import ControlSidebar from './ControlSidebar'
+import CardWIdget from './CardWIdget'
+import ControlSIdebar from './ControlSIdebar'
 import DirectChat from './DirectChat'
 import Dropdown from './Dropdown'
 import ExpandableTable from './ExpandableTable'
@@ -8,7 +8,7 @@ import Fullscreen from './Fullscreen'
 import IFrame from './IFrame'
 import Layout from './Layout'
 import PushMenu from './PushMenu'
-import SidebarSearch from './SidebarSearch'
+import SIdebarSearch from './SIdebarSearch'
 import NavbarSearch from './NavbarSearch'
 import Toasts from './Toasts'
 import TodoList from './TodoList'
@@ -16,8 +16,8 @@ import Treeview from './Treeview'
 
 export {
   CardRefresh,
-  CardWidget,
-  ControlSidebar,
+  CardWIdget,
+  ControlSIdebar,
   DirectChat,
   Dropdown,
   ExpandableTable,
@@ -25,7 +25,7 @@ export {
   IFrame,
   Layout,
   PushMenu,
-  SidebarSearch,
+  SIdebarSearch,
   NavbarSearch,
   Toasts,
   TodoList,

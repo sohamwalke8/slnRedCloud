@@ -75,7 +75,7 @@
    */
 
   var TRANSITION_END = 'transitionend';
-  var MAX_UID = 1000000;
+  var MAX_UId = 1000000;
   var MILLISECONDS_MULTIPLIER = 1000; // Shoutout AngusCroll (https://goo.gl/pxwQGp)
 
   function toType(obj) {
@@ -126,10 +126,10 @@
 
   var Util = {
     TRANSITION_END: 'bsTransitionEnd',
-    getUID: function getUID(prefix) {
+    getUId: function getUId(prefix) {
       do {
         // eslint-disable-next-line no-bitwise
-        prefix += ~~(Math.random() * MAX_UID); // "~~" acts like a faster Math.floor() here
+        prefix += ~~(Math.random() * MAX_UId); // "~~" acts like a faster Math.floor() here
       } while (document.getElementById(prefix));
 
       return prefix;
@@ -188,7 +188,7 @@
           var valueType = value && Util.isElement(value) ? 'element' : toType(value);
 
           if (!new RegExp(expectedTypes).test(valueType)) {
-            throw new Error(componentName.toUpperCase() + ": " + ("Option \"" + property + "\" provided type \"" + valueType + "\" ") + ("but expected type \"" + expectedTypes + "\"."));
+            throw new Error(componentName.toUpperCase() + ": " + ("Option \"" + property + "\" provIded type \"" + valueType + "\" ") + ("but expected type \"" + expectedTypes + "\"."));
           }
         }
       }
@@ -403,7 +403,7 @@
   var SELECTOR_DATA_TOGGLES = '[data-toggle="buttons"]';
   var SELECTOR_DATA_TOGGLE$4 = '[data-toggle="button"]';
   var SELECTOR_DATA_TOGGLES_BUTTONS = '[data-toggle="buttons"] .btn';
-  var SELECTOR_INPUT = 'input:not([type="hidden"])';
+  var SELECTOR_INPUT = 'input:not([type="hIdden"])';
   var SELECTOR_ACTIVE$2 = '.active';
   var SELECTOR_BUTTON = '.btn';
   /**
@@ -413,7 +413,7 @@
   var Button = /*#__PURE__*/function () {
     function Button(element) {
       this._element = element;
-      this.shouldAvoidTriggerChange = false;
+      this.shouldAvoIdTriggerChange = false;
     } // Getters
 
 
@@ -442,12 +442,12 @@
           }
 
           if (triggerChangeEvent) {
-            // if it's not a radio button or checkbox don't add a pointless/invalid checked property to the input
+            // if it's not a radio button or checkbox don't add a pointless/invalId checked property to the input
             if (input.type === 'checkbox' || input.type === 'radio') {
               input.checked = !this._element.classList.contains(CLASS_NAME_ACTIVE$3);
             }
 
-            if (!this.shouldAvoidTriggerChange) {
+            if (!this.shouldAvoIdTriggerChange) {
               $__default["default"](input).trigger('change');
             }
           }
@@ -474,7 +474,7 @@
     } // Static
     ;
 
-    Button._jQueryInterface = function _jQueryInterface(config, avoidTriggerChange) {
+    Button._jQueryInterface = function _jQueryInterface(config, avoIdTriggerChange) {
       return this.each(function () {
         var $element = $__default["default"](this);
         var data = $element.data(DATA_KEY$9);
@@ -484,7 +484,7 @@
           $element.data(DATA_KEY$9, data);
         }
 
-        data.shouldAvoidTriggerChange = avoidTriggerChange;
+        data.shouldAvoIdTriggerChange = avoIdTriggerChange;
 
         if (config === 'toggle') {
           data[config]();
@@ -535,7 +535,7 @@
   });
   $__default["default"](window).on(EVENT_LOAD_DATA_API$2, function () {
     // ensure correct active class is set to match the controls' actual values/states
-    // find all checkboxes/readio buttons inside data-toggle groups
+    // find all checkboxes/readio buttons insIde data-toggle groups
     var buttons = [].slice.call(document.querySelectorAll(SELECTOR_DATA_TOGGLES_BUTTONS));
 
     for (var i = 0, len = buttons.length; i < len; i++) {
@@ -593,7 +593,7 @@
   var SWIPE_THRESHOLD = 40;
   var CLASS_NAME_CAROUSEL = 'carousel';
   var CLASS_NAME_ACTIVE$2 = 'active';
-  var CLASS_NAME_SLIDE = 'slide';
+  var CLASS_NAME_SLIdE = 'slIde';
   var CLASS_NAME_RIGHT = 'carousel-item-right';
   var CLASS_NAME_LEFT = 'carousel-item-left';
   var CLASS_NAME_NEXT = 'carousel-item-next';
@@ -603,8 +603,8 @@
   var DIRECTION_PREV = 'prev';
   var DIRECTION_LEFT = 'left';
   var DIRECTION_RIGHT = 'right';
-  var EVENT_SLIDE = "slide" + EVENT_KEY$8;
-  var EVENT_SLID = "slid" + EVENT_KEY$8;
+  var EVENT_SLIdE = "slIde" + EVENT_KEY$8;
+  var EVENT_SLId = "slId" + EVENT_KEY$8;
   var EVENT_KEYDOWN = "keydown" + EVENT_KEY$8;
   var EVENT_MOUSEENTER = "mouseenter" + EVENT_KEY$8;
   var EVENT_MOUSELEAVE = "mouseleave" + EVENT_KEY$8;
@@ -622,12 +622,12 @@
   var SELECTOR_ITEM_IMG = '.carousel-item img';
   var SELECTOR_NEXT_PREV = '.carousel-item-next, .carousel-item-prev';
   var SELECTOR_INDICATORS = '.carousel-indicators';
-  var SELECTOR_DATA_SLIDE = '[data-slide], [data-slide-to]';
-  var SELECTOR_DATA_RIDE = '[data-ride="carousel"]';
+  var SELECTOR_DATA_SLIdE = '[data-slIde], [data-slIde-to]';
+  var SELECTOR_DATA_RIdE = '[data-rIde="carousel"]';
   var Default$7 = {
     interval: 5000,
     keyboard: true,
-    slide: false,
+    slIde: false,
     pause: 'hover',
     wrap: true,
     touch: true
@@ -635,7 +635,7 @@
   var DefaultType$7 = {
     interval: '(number|boolean)',
     keyboard: 'boolean',
-    slide: '(boolean|string)',
+    slIde: '(boolean|string)',
     pause: '(string|boolean)',
     wrap: 'boolean',
     touch: 'boolean'
@@ -654,7 +654,7 @@
       this._interval = null;
       this._activeElement = null;
       this._isPaused = false;
-      this._isSliding = false;
+      this._isSlIding = false;
       this.touchTimeout = null;
       this.touchStartX = 0;
       this.touchDeltaX = 0;
@@ -672,8 +672,8 @@
 
     // Public
     _proto.next = function next() {
-      if (!this._isSliding) {
-        this._slide(DIRECTION_NEXT);
+      if (!this._isSlIding) {
+        this._slIde(DIRECTION_NEXT);
       }
     };
 
@@ -681,14 +681,14 @@
       var $element = $__default["default"](this._element); // Don't call next when the page isn't visible
       // or the carousel or its parent isn't visible
 
-      if (!document.hidden && $element.is(':visible') && $element.css('visibility') !== 'hidden') {
+      if (!document.hIdden && $element.is(':visible') && $element.css('visibility') !== 'hIdden') {
         this.next();
       }
     };
 
     _proto.prev = function prev() {
-      if (!this._isSliding) {
-        this._slide(DIRECTION_PREV);
+      if (!this._isSlIding) {
+        this._slIde(DIRECTION_PREV);
       }
     };
 
@@ -734,8 +734,8 @@
         return;
       }
 
-      if (this._isSliding) {
-        $__default["default"](this._element).one(EVENT_SLID, function () {
+      if (this._isSlIding) {
+        $__default["default"](this._element).one(EVENT_SLId, function () {
           return _this.to(index);
         });
         return;
@@ -749,7 +749,7 @@
 
       var direction = index > activeIndex ? DIRECTION_NEXT : DIRECTION_PREV;
 
-      this._slide(direction, this._items[index]);
+      this._slIde(direction, this._items[index]);
     };
 
     _proto.dispose = function dispose() {
@@ -760,7 +760,7 @@
       this._element = null;
       this._interval = null;
       this._isPaused = null;
-      this._isSliding = null;
+      this._isSlIding = null;
       this._activeElement = null;
       this._indicatorsElement = null;
     } // Private
@@ -928,19 +928,19 @@
       return itemIndex === -1 ? this._items[this._items.length - 1] : this._items[itemIndex];
     };
 
-    _proto._triggerSlideEvent = function _triggerSlideEvent(relatedTarget, eventDirectionName) {
+    _proto._triggerSlIdeEvent = function _triggerSlIdeEvent(relatedTarget, eventDirectionName) {
       var targetIndex = this._getItemIndex(relatedTarget);
 
       var fromIndex = this._getItemIndex(this._element.querySelector(SELECTOR_ACTIVE_ITEM));
 
-      var slideEvent = $__default["default"].Event(EVENT_SLIDE, {
+      var slIdeEvent = $__default["default"].Event(EVENT_SLIdE, {
         relatedTarget: relatedTarget,
         direction: eventDirectionName,
         from: fromIndex,
         to: targetIndex
       });
-      $__default["default"](this._element).trigger(slideEvent);
-      return slideEvent;
+      $__default["default"](this._element).trigger(slIdeEvent);
+      return slIdeEvent;
     };
 
     _proto._setActiveIndicatorElement = function _setActiveIndicatorElement(element) {
@@ -973,7 +973,7 @@
       }
     };
 
-    _proto._slide = function _slide(direction, element) {
+    _proto._slIde = function _slIde(direction, element) {
       var _this4 = this;
 
       var activeElement = this._element.querySelector(SELECTOR_ACTIVE_ITEM);
@@ -1000,13 +1000,13 @@
       }
 
       if (nextElement && $__default["default"](nextElement).hasClass(CLASS_NAME_ACTIVE$2)) {
-        this._isSliding = false;
+        this._isSlIding = false;
         return;
       }
 
-      var slideEvent = this._triggerSlideEvent(nextElement, eventDirectionName);
+      var slIdeEvent = this._triggerSlIdeEvent(nextElement, eventDirectionName);
 
-      if (slideEvent.isDefaultPrevented()) {
+      if (slIdeEvent.isDefaultPrevented()) {
         return;
       }
 
@@ -1015,7 +1015,7 @@
         return;
       }
 
-      this._isSliding = true;
+      this._isSlIding = true;
 
       if (isCycling) {
         this.pause();
@@ -1024,14 +1024,14 @@
       this._setActiveIndicatorElement(nextElement);
 
       this._activeElement = nextElement;
-      var slidEvent = $__default["default"].Event(EVENT_SLID, {
+      var slIdEvent = $__default["default"].Event(EVENT_SLId, {
         relatedTarget: nextElement,
         direction: eventDirectionName,
         from: activeElementIndex,
         to: nextElementIndex
       });
 
-      if ($__default["default"](this._element).hasClass(CLASS_NAME_SLIDE)) {
+      if ($__default["default"](this._element).hasClass(CLASS_NAME_SLIdE)) {
         $__default["default"](nextElement).addClass(orderClassName);
         Util.reflow(nextElement);
         $__default["default"](activeElement).addClass(directionalClassName);
@@ -1040,16 +1040,16 @@
         $__default["default"](activeElement).one(Util.TRANSITION_END, function () {
           $__default["default"](nextElement).removeClass(directionalClassName + " " + orderClassName).addClass(CLASS_NAME_ACTIVE$2);
           $__default["default"](activeElement).removeClass(CLASS_NAME_ACTIVE$2 + " " + orderClassName + " " + directionalClassName);
-          _this4._isSliding = false;
+          _this4._isSlIding = false;
           setTimeout(function () {
-            return $__default["default"](_this4._element).trigger(slidEvent);
+            return $__default["default"](_this4._element).trigger(slIdEvent);
           }, 0);
         }).emulateTransitionEnd(transitionDuration);
       } else {
         $__default["default"](activeElement).removeClass(CLASS_NAME_ACTIVE$2);
         $__default["default"](nextElement).addClass(CLASS_NAME_ACTIVE$2);
-        this._isSliding = false;
-        $__default["default"](this._element).trigger(slidEvent);
+        this._isSlIding = false;
+        $__default["default"](this._element).trigger(slIdEvent);
       }
 
       if (isCycling) {
@@ -1068,7 +1068,7 @@
           _config = _extends({}, _config, config);
         }
 
-        var action = typeof config === 'string' ? config : _config.slide;
+        var action = typeof config === 'string' ? config : _config.slIde;
 
         if (!data) {
           data = new Carousel(this, _config);
@@ -1083,7 +1083,7 @@
           }
 
           data[action]();
-        } else if (_config.interval && _config.ride) {
+        } else if (_config.interval && _config.rIde) {
           data.pause();
           data.cycle();
         }
@@ -1105,16 +1105,16 @@
 
       var config = _extends({}, $__default["default"](target).data(), $__default["default"](this).data());
 
-      var slideIndex = this.getAttribute('data-slide-to');
+      var slIdeIndex = this.getAttribute('data-slIde-to');
 
-      if (slideIndex) {
+      if (slIdeIndex) {
         config.interval = false;
       }
 
       Carousel._jQueryInterface.call($__default["default"](target), config);
 
-      if (slideIndex) {
-        $__default["default"](target).data(DATA_KEY$8).to(slideIndex);
+      if (slIdeIndex) {
+        $__default["default"](target).data(DATA_KEY$8).to(slIdeIndex);
       }
 
       event.preventDefault();
@@ -1139,9 +1139,9 @@
    */
 
 
-  $__default["default"](document).on(EVENT_CLICK_DATA_API$4, SELECTOR_DATA_SLIDE, Carousel._dataApiClickHandler);
+  $__default["default"](document).on(EVENT_CLICK_DATA_API$4, SELECTOR_DATA_SLIdE, Carousel._dataApiClickHandler);
   $__default["default"](window).on(EVENT_LOAD_DATA_API$1, function () {
-    var carousels = [].slice.call(document.querySelectorAll(SELECTOR_DATA_RIDE));
+    var carousels = [].slice.call(document.querySelectorAll(SELECTOR_DATA_RIdE));
 
     for (var i = 0, len = carousels.length; i < len; i++) {
       var $carousel = $__default["default"](carousels[i]);
@@ -1175,12 +1175,12 @@
   var CLASS_NAME_COLLAPSE = 'collapse';
   var CLASS_NAME_COLLAPSING = 'collapsing';
   var CLASS_NAME_COLLAPSED = 'collapsed';
-  var DIMENSION_WIDTH = 'width';
+  var DIMENSION_WIdTH = 'wIdth';
   var DIMENSION_HEIGHT = 'height';
   var EVENT_SHOW$4 = "show" + EVENT_KEY$7;
   var EVENT_SHOWN$4 = "shown" + EVENT_KEY$7;
-  var EVENT_HIDE$4 = "hide" + EVENT_KEY$7;
-  var EVENT_HIDDEN$4 = "hidden" + EVENT_KEY$7;
+  var EVENT_HIdE$4 = "hIde" + EVENT_KEY$7;
+  var EVENT_HIdDEN$4 = "hIdden" + EVENT_KEY$7;
   var EVENT_CLICK_DATA_API$3 = "click" + EVENT_KEY$7 + DATA_API_KEY$4;
   var SELECTOR_ACTIVES = '.show, .collapsing';
   var SELECTOR_DATA_TOGGLE$3 = '[data-toggle="collapse"]';
@@ -1201,7 +1201,7 @@
       this._isTransitioning = false;
       this._element = element;
       this._config = this._getConfig(config);
-      this._triggerArray = [].slice.call(document.querySelectorAll("[data-toggle=\"collapse\"][href=\"#" + element.id + "\"]," + ("[data-toggle=\"collapse\"][data-target=\"#" + element.id + "\"]")));
+      this._triggerArray = [].slice.call(document.querySelectorAll("[data-toggle=\"collapse\"][href=\"#" + element.Id + "\"]," + ("[data-toggle=\"collapse\"][data-target=\"#" + element.Id + "\"]")));
       var toggleList = [].slice.call(document.querySelectorAll(SELECTOR_DATA_TOGGLE$3));
 
       for (var i = 0, len = toggleList.length; i < len; i++) {
@@ -1235,7 +1235,7 @@
     // Public
     _proto.toggle = function toggle() {
       if ($__default["default"](this._element).hasClass(CLASS_NAME_SHOW$6)) {
-        this.hide();
+        this.hIde();
       } else {
         this.show();
       }
@@ -1281,7 +1281,7 @@
       }
 
       if (actives) {
-        Collapse._jQueryInterface.call($__default["default"](actives).not(this._selector), 'hide');
+        Collapse._jQueryInterface.call($__default["default"](actives).not(this._selector), 'hIde');
 
         if (!activesData) {
           $__default["default"](actives).data(DATA_KEY$7, null);
@@ -1315,14 +1315,14 @@
       this._element.style[dimension] = this._element[scrollSize] + "px";
     };
 
-    _proto.hide = function hide() {
+    _proto.hIde = function hIde() {
       var _this2 = this;
 
       if (this._isTransitioning || !$__default["default"](this._element).hasClass(CLASS_NAME_SHOW$6)) {
         return;
       }
 
-      var startEvent = $__default["default"].Event(EVENT_HIDE$4);
+      var startEvent = $__default["default"].Event(EVENT_HIdE$4);
       $__default["default"](this._element).trigger(startEvent);
 
       if (startEvent.isDefaultPrevented()) {
@@ -1356,7 +1356,7 @@
       var complete = function complete() {
         _this2.setTransitioning(false);
 
-        $__default["default"](_this2._element).removeClass(CLASS_NAME_COLLAPSING).addClass(CLASS_NAME_COLLAPSE).trigger(EVENT_HIDDEN$4);
+        $__default["default"](_this2._element).removeClass(CLASS_NAME_COLLAPSING).addClass(CLASS_NAME_COLLAPSE).trigger(EVENT_HIdDEN$4);
       };
 
       this._element.style[dimension] = '';
@@ -1387,8 +1387,8 @@
     };
 
     _proto._getDimension = function _getDimension() {
-      var hasWidth = $__default["default"](this._element).hasClass(DIMENSION_WIDTH);
-      return hasWidth ? DIMENSION_WIDTH : DIMENSION_HEIGHT;
+      var hasWIdth = $__default["default"](this._element).hasClass(DIMENSION_WIdTH);
+      return hasWIdth ? DIMENSION_WIdTH : DIMENSION_HEIGHT;
     };
 
     _proto._getParent = function _getParent() {
@@ -1435,7 +1435,7 @@
 
         var _config = _extends({}, Default$6, $element.data(), typeof config === 'object' && config ? config : {});
 
-        if (!data && _config.toggle && typeof config === 'string' && /show|hide/.test(config)) {
+        if (!data && _config.toggle && typeof config === 'string' && /show|hIde/.test(config)) {
           _config.toggle = false;
         }
 
@@ -1474,7 +1474,7 @@
 
 
   $__default["default"](document).on(EVENT_CLICK_DATA_API$3, SELECTOR_DATA_TOGGLE$3, function (event) {
-    // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
+    // preventDefault only for <a> elements (which change the URL) not insIde the collapsible element
     if (event.currentTarget.tagName === 'A') {
       event.preventDefault();
     }
@@ -1532,8 +1532,8 @@
   var CLASS_NAME_DROPLEFT = 'dropleft';
   var CLASS_NAME_MENURIGHT = 'dropdown-menu-right';
   var CLASS_NAME_POSITION_STATIC = 'position-static';
-  var EVENT_HIDE$3 = "hide" + EVENT_KEY$6;
-  var EVENT_HIDDEN$3 = "hidden" + EVENT_KEY$6;
+  var EVENT_HIdE$3 = "hIde" + EVENT_KEY$6;
+  var EVENT_HIdDEN$3 = "hIdden" + EVENT_KEY$6;
   var EVENT_SHOW$3 = "show" + EVENT_KEY$6;
   var EVENT_SHOWN$3 = "shown" + EVENT_KEY$6;
   var EVENT_CLICK = "click" + EVENT_KEY$6;
@@ -1669,7 +1669,7 @@
       $__default["default"](parent).toggleClass(CLASS_NAME_SHOW$5).trigger($__default["default"].Event(EVENT_SHOWN$3, relatedTarget));
     };
 
-    _proto.hide = function hide() {
+    _proto.hIde = function hIde() {
       if (this._element.disabled || $__default["default"](this._element).hasClass(CLASS_NAME_DISABLED$1) || !$__default["default"](this._menu).hasClass(CLASS_NAME_SHOW$5)) {
         return;
       }
@@ -1677,13 +1677,13 @@
       var relatedTarget = {
         relatedTarget: this._element
       };
-      var hideEvent = $__default["default"].Event(EVENT_HIDE$3, relatedTarget);
+      var hIdeEvent = $__default["default"].Event(EVENT_HIdE$3, relatedTarget);
 
       var parent = Dropdown._getParentFromElement(this._element);
 
-      $__default["default"](parent).trigger(hideEvent);
+      $__default["default"](parent).trigger(hIdeEvent);
 
-      if (hideEvent.isDefaultPrevented()) {
+      if (hIdeEvent.isDefaultPrevented()) {
         return;
       }
 
@@ -1692,7 +1692,7 @@
       }
 
       $__default["default"](this._menu).toggleClass(CLASS_NAME_SHOW$5);
-      $__default["default"](parent).toggleClass(CLASS_NAME_SHOW$5).trigger($__default["default"].Event(EVENT_HIDDEN$3, relatedTarget));
+      $__default["default"](parent).toggleClass(CLASS_NAME_SHOW$5).trigger($__default["default"].Event(EVENT_HIdDEN$3, relatedTarget));
     };
 
     _proto.dispose = function dispose() {
@@ -1862,10 +1862,10 @@
           continue;
         }
 
-        var hideEvent = $__default["default"].Event(EVENT_HIDE$3, relatedTarget);
-        $__default["default"](parent).trigger(hideEvent);
+        var hIdeEvent = $__default["default"].Event(EVENT_HIdE$3, relatedTarget);
+        $__default["default"](parent).trigger(hIdeEvent);
 
-        if (hideEvent.isDefaultPrevented()) {
+        if (hIdeEvent.isDefaultPrevented()) {
           continue;
         } // If this is a touch-enabled device we remove the extra
         // empty mouseover listeners we added for iOS support
@@ -1882,7 +1882,7 @@
         }
 
         $__default["default"](dropdownMenu).removeClass(CLASS_NAME_SHOW$5);
-        $__default["default"](parent).removeClass(CLASS_NAME_SHOW$5).trigger($__default["default"].Event(EVENT_HIDDEN$3, relatedTarget));
+        $__default["default"](parent).removeClass(CLASS_NAME_SHOW$5).trigger($__default["default"].Event(EVENT_HIdDEN$3, relatedTarget));
       }
     };
 
@@ -1905,7 +1905,7 @@
       //  - If space key => not a dropdown command
       //  - If key is other than escape
       //    - If key is not up or down => not a dropdown command
-      //    - If trigger inside the menu => not a dropdown command
+      //    - If trigger insIde the menu => not a dropdown command
       if (/input|textarea/i.test(event.target.tagName) ? event.which === SPACE_KEYCODE || event.which !== ESCAPE_KEYCODE$1 && (event.which !== ARROW_DOWN_KEYCODE && event.which !== ARROW_UP_KEYCODE || $__default["default"](event.target).closest(SELECTOR_MENU).length) : !REGEXP_KEYDOWN.test(event.which)) {
         return;
       }
@@ -2024,9 +2024,9 @@
   var CLASS_NAME_FADE$4 = 'fade';
   var CLASS_NAME_SHOW$4 = 'show';
   var CLASS_NAME_STATIC = 'modal-static';
-  var EVENT_HIDE$2 = "hide" + EVENT_KEY$5;
-  var EVENT_HIDE_PREVENTED = "hidePrevented" + EVENT_KEY$5;
-  var EVENT_HIDDEN$2 = "hidden" + EVENT_KEY$5;
+  var EVENT_HIdE$2 = "hIde" + EVENT_KEY$5;
+  var EVENT_HIdE_PREVENTED = "hIdePrevented" + EVENT_KEY$5;
+  var EVENT_HIdDEN$2 = "hIdden" + EVENT_KEY$5;
   var EVENT_SHOW$2 = "show" + EVENT_KEY$5;
   var EVENT_SHOWN$2 = "shown" + EVENT_KEY$5;
   var EVENT_FOCUSIN = "focusin" + EVENT_KEY$5;
@@ -2068,7 +2068,7 @@
       this._isBodyOverflowing = false;
       this._ignoreBackdropClick = false;
       this._isTransitioning = false;
-      this._scrollbarWidth = 0;
+      this._scrollbarWIdth = 0;
     } // Getters
 
 
@@ -2076,7 +2076,7 @@
 
     // Public
     _proto.toggle = function toggle(relatedTarget) {
-      return this._isShown ? this.hide() : this.show(relatedTarget);
+      return this._isShown ? this.hIde() : this.show(relatedTarget);
     };
 
     _proto.show = function show(relatedTarget) {
@@ -2112,7 +2112,7 @@
       this._setResizeEvent();
 
       $__default["default"](this._element).on(EVENT_CLICK_DISMISS$1, SELECTOR_DATA_DISMISS$1, function (event) {
-        return _this.hide(event);
+        return _this.hIde(event);
       });
       $__default["default"](this._dialog).on(EVENT_MOUSEDOWN_DISMISS, function () {
         $__default["default"](_this._element).one(EVENT_MOUSEUP_DISMISS, function (event) {
@@ -2127,7 +2127,7 @@
       });
     };
 
-    _proto.hide = function hide(event) {
+    _proto.hIde = function hIde(event) {
       var _this2 = this;
 
       if (event) {
@@ -2138,10 +2138,10 @@
         return;
       }
 
-      var hideEvent = $__default["default"].Event(EVENT_HIDE$2);
-      $__default["default"](this._element).trigger(hideEvent);
+      var hIdeEvent = $__default["default"].Event(EVENT_HIdE$2);
+      $__default["default"](this._element).trigger(hIdeEvent);
 
-      if (!this._isShown || hideEvent.isDefaultPrevented()) {
+      if (!this._isShown || hIdeEvent.isDefaultPrevented()) {
         return;
       }
 
@@ -2164,10 +2164,10 @@
       if (transition) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);
         $__default["default"](this._element).one(Util.TRANSITION_END, function (event) {
-          return _this2._hideModal(event);
+          return _this2._hIdeModal(event);
         }).emulateTransitionEnd(transitionDuration);
       } else {
-        this._hideModal();
+        this._hIdeModal();
       }
     };
 
@@ -2191,7 +2191,7 @@
       this._isBodyOverflowing = null;
       this._ignoreBackdropClick = null;
       this._isTransitioning = null;
-      this._scrollbarWidth = null;
+      this._scrollbarWIdth = null;
     };
 
     _proto.handleUpdate = function handleUpdate() {
@@ -2208,17 +2208,17 @@
     _proto._triggerBackdropTransition = function _triggerBackdropTransition() {
       var _this3 = this;
 
-      var hideEventPrevented = $__default["default"].Event(EVENT_HIDE_PREVENTED);
-      $__default["default"](this._element).trigger(hideEventPrevented);
+      var hIdeEventPrevented = $__default["default"].Event(EVENT_HIdE_PREVENTED);
+      $__default["default"](this._element).trigger(hIdeEventPrevented);
 
-      if (hideEventPrevented.isDefaultPrevented()) {
+      if (hIdeEventPrevented.isDefaultPrevented()) {
         return;
       }
 
       var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
 
       if (!isModalOverflowing) {
-        this._element.style.overflowY = 'hidden';
+        this._element.style.overflowY = 'hIdden';
       }
 
       this._element.classList.add(CLASS_NAME_STATIC);
@@ -2251,7 +2251,7 @@
 
       this._element.style.display = 'block';
 
-      this._element.removeAttribute('aria-hidden');
+      this._element.removeAttribute('aria-hIdden');
 
       this._element.setAttribute('aria-modal', true);
 
@@ -2313,7 +2313,7 @@
           if (_this6._config.keyboard && event.which === ESCAPE_KEYCODE) {
             event.preventDefault();
 
-            _this6.hide();
+            _this6.hIde();
           } else if (!_this6._config.keyboard && event.which === ESCAPE_KEYCODE) {
             _this6._triggerBackdropTransition();
           }
@@ -2335,12 +2335,12 @@
       }
     };
 
-    _proto._hideModal = function _hideModal() {
+    _proto._hIdeModal = function _hIdeModal() {
       var _this8 = this;
 
       this._element.style.display = 'none';
 
-      this._element.setAttribute('aria-hidden', true);
+      this._element.setAttribute('aria-hIdden', true);
 
       this._element.removeAttribute('aria-modal');
 
@@ -2355,7 +2355,7 @@
 
         _this8._resetScrollbar();
 
-        $__default["default"](_this8._element).trigger(EVENT_HIDDEN$2);
+        $__default["default"](_this8._element).trigger(EVENT_HIdDEN$2);
       });
     };
 
@@ -2393,7 +2393,7 @@
           if (_this9._config.backdrop === 'static') {
             _this9._triggerBackdropTransition();
           } else {
-            _this9.hide();
+            _this9.hIde();
           }
         });
 
@@ -2445,11 +2445,11 @@
       var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
 
       if (!this._isBodyOverflowing && isModalOverflowing) {
-        this._element.style.paddingLeft = this._scrollbarWidth + "px";
+        this._element.style.paddingLeft = this._scrollbarWIdth + "px";
       }
 
       if (this._isBodyOverflowing && !isModalOverflowing) {
-        this._element.style.paddingRight = this._scrollbarWidth + "px";
+        this._element.style.paddingRight = this._scrollbarWIdth + "px";
       }
     };
 
@@ -2460,8 +2460,8 @@
 
     _proto._checkScrollbar = function _checkScrollbar() {
       var rect = document.body.getBoundingClientRect();
-      this._isBodyOverflowing = Math.round(rect.left + rect.right) < window.innerWidth;
-      this._scrollbarWidth = this._getScrollbarWidth();
+      this._isBodyOverflowing = Math.round(rect.left + rect.right) < window.innerWIdth;
+      this._scrollbarWIdth = this._getScrollbarWIdth();
     };
 
     _proto._setScrollbar = function _setScrollbar() {
@@ -2476,18 +2476,18 @@
         $__default["default"](fixedContent).each(function (index, element) {
           var actualPadding = element.style.paddingRight;
           var calculatedPadding = $__default["default"](element).css('padding-right');
-          $__default["default"](element).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + _this10._scrollbarWidth + "px");
+          $__default["default"](element).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + _this10._scrollbarWIdth + "px");
         }); // Adjust sticky content margin
 
         $__default["default"](stickyContent).each(function (index, element) {
           var actualMargin = element.style.marginRight;
           var calculatedMargin = $__default["default"](element).css('margin-right');
-          $__default["default"](element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) - _this10._scrollbarWidth + "px");
+          $__default["default"](element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) - _this10._scrollbarWIdth + "px");
         }); // Adjust body padding
 
         var actualPadding = document.body.style.paddingRight;
         var calculatedPadding = $__default["default"](document.body).css('padding-right');
-        $__default["default"](document.body).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + this._scrollbarWidth + "px");
+        $__default["default"](document.body).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + this._scrollbarWIdth + "px");
       }
 
       $__default["default"](document.body).addClass(CLASS_NAME_OPEN);
@@ -2516,14 +2516,14 @@
       document.body.style.paddingRight = padding ? padding : '';
     };
 
-    _proto._getScrollbarWidth = function _getScrollbarWidth() {
+    _proto._getScrollbarWIdth = function _getScrollbarWIdth() {
       // thx d.walsh
       var scrollDiv = document.createElement('div');
       scrollDiv.className = CLASS_NAME_SCROLLBAR_MEASURER;
       document.body.appendChild(scrollDiv);
-      var scrollbarWidth = scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth;
+      var scrollbarWIdth = scrollDiv.getBoundingClientRect().wIdth - scrollDiv.clientWIdth;
       document.body.removeChild(scrollDiv);
-      return scrollbarWidth;
+      return scrollbarWIdth;
     } // Static
     ;
 
@@ -2591,7 +2591,7 @@
         return;
       }
 
-      $target.one(EVENT_HIDDEN$2, function () {
+      $target.one(EVENT_HIdDEN$2, function () {
         if ($__default["default"](_this11).is(':visible')) {
           _this11.focus();
         }
@@ -2622,7 +2622,7 @@
   var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
   var DefaultWhitelist = {
     // Global attributes allowed on any supplied element below.
-    '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
+    '*': ['class', 'dir', 'Id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
     a: ['target', 'href', 'title', 'rel'],
     area: [],
     b: [],
@@ -2639,7 +2639,7 @@
     h5: [],
     h6: [],
     i: [],
-    img: ['src', 'srcset', 'alt', 'title', 'width', 'height'],
+    img: ['src', 'srcset', 'alt', 'title', 'wIdth', 'height'],
     li: [],
     ol: [],
     p: [],
@@ -2661,12 +2661,12 @@
 
   var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file|sms):|[^#&/:?]*(?:[#/?]|$))/i;
   /**
-   * A pattern that matches safe data URLs. Only matches image, video and audio types.
+   * A pattern that matches safe data URLs. Only matches image, vIdeo and audio types.
    *
    * Shoutout to Angular https://github.com/angular/angular/blob/12.2.x/packages/core/src/sanitization/url_sanitizer.ts
    */
 
-  var DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[\d+/a-z]+=*$/i;
+  var DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|vIdeo\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[\d+/a-z]+=*$/i;
 
   function allowedAttribute(attr, allowedAttributeList) {
     var attrName = attr.nodeName.toLowerCase();
@@ -2681,7 +2681,7 @@
 
     var regExp = allowedAttributeList.filter(function (attrRegex) {
       return attrRegex instanceof RegExp;
-    }); // Check if a regular expression validates the attribute.
+    }); // Check if a regular expression valIdates the attribute.
 
     for (var i = 0, len = regExp.length; i < len; i++) {
       if (regExp[i].test(attrName)) {
@@ -2802,8 +2802,8 @@
     popperConfig: '(null|object)'
   };
   var Event$1 = {
-    HIDE: "hide" + EVENT_KEY$4,
-    HIDDEN: "hidden" + EVENT_KEY$4,
+    HIdE: "hIde" + EVENT_KEY$4,
+    HIdDEN: "hIdden" + EVENT_KEY$4,
     SHOW: "show" + EVENT_KEY$4,
     SHOWN: "shown" + EVENT_KEY$4,
     INSERTED: "inserted" + EVENT_KEY$4,
@@ -2889,7 +2889,7 @@
       clearTimeout(this._timeout);
       $__default["default"].removeData(this.element, this.constructor.DATA_KEY);
       $__default["default"](this.element).off(this.constructor.EVENT_KEY);
-      $__default["default"](this.element).closest('.modal').off('hide.bs.modal', this._hideModalHandler);
+      $__default["default"](this.element).closest('.modal').off('hIde.bs.modal', this._hIdeModalHandler);
 
       if (this.tip) {
         $__default["default"](this.tip).remove();
@@ -2929,8 +2929,8 @@
         }
 
         var tip = this.getTipElement();
-        var tipId = Util.getUID(this.constructor.NAME);
-        tip.setAttribute('id', tipId);
+        var tipId = Util.getUId(this.constructor.NAME);
+        tip.setAttribute('Id', tipId);
         this.element.setAttribute('aria-describedby', tipId);
         this.setContent();
 
@@ -2987,11 +2987,11 @@
       }
     };
 
-    _proto.hide = function hide(callback) {
+    _proto.hIde = function hIde(callback) {
       var _this2 = this;
 
       var tip = this.getTipElement();
-      var hideEvent = $__default["default"].Event(this.constructor.Event.HIDE);
+      var hIdeEvent = $__default["default"].Event(this.constructor.Event.HIdE);
 
       var complete = function complete() {
         if (_this2._hoverState !== HOVER_STATE_SHOW && tip.parentNode) {
@@ -3002,7 +3002,7 @@
 
         _this2.element.removeAttribute('aria-describedby');
 
-        $__default["default"](_this2.element).trigger(_this2.constructor.Event.HIDDEN);
+        $__default["default"](_this2.element).trigger(_this2.constructor.Event.HIdDEN);
 
         if (_this2._popper !== null) {
           _this2._popper.destroy();
@@ -3013,9 +3013,9 @@
         }
       };
 
-      $__default["default"](this.element).trigger(hideEvent);
+      $__default["default"](this.element).trigger(hIdeEvent);
 
-      if (hideEvent.isDefaultPrevented()) {
+      if (hIdeEvent.isDefaultPrevented()) {
         return;
       }
 
@@ -3184,13 +3184,13 @@
         }
       });
 
-      this._hideModalHandler = function () {
+      this._hIdeModalHandler = function () {
         if (_this5.element) {
-          _this5.hide();
+          _this5.hIde();
         }
       };
 
-      $__default["default"](this.element).closest('.modal').on('hide.bs.modal', this._hideModalHandler);
+      $__default["default"](this.element).closest('.modal').on('hIde.bs.modal', this._hIdeModalHandler);
 
       if (this.config.selector) {
         this.config = _extends({}, this.config, {
@@ -3264,16 +3264,16 @@
       clearTimeout(context._timeout);
       context._hoverState = HOVER_STATE_OUT;
 
-      if (!context.config.delay || !context.config.delay.hide) {
-        context.hide();
+      if (!context.config.delay || !context.config.delay.hIde) {
+        context.hIde();
         return;
       }
 
       context._timeout = setTimeout(function () {
         if (context._hoverState === HOVER_STATE_OUT) {
-          context.hide();
+          context.hIde();
         }
-      }, context.config.delay.hide);
+      }, context.config.delay.hIde);
     };
 
     _proto._isWithActiveTrigger = function _isWithActiveTrigger() {
@@ -3298,7 +3298,7 @@
       if (typeof config.delay === 'number') {
         config.delay = {
           show: config.delay,
-          hide: config.delay
+          hIde: config.delay
         };
       }
 
@@ -3360,7 +3360,7 @@
 
       $__default["default"](tip).removeClass(CLASS_NAME_FADE$3);
       this.config.animation = false;
-      this.hide();
+      this.hIde();
       this.show();
       this.config.animation = initConfigAnimation;
     } // Static
@@ -3373,7 +3373,7 @@
 
         var _config = typeof config === 'object' && config;
 
-        if (!data && /dispose|hide/.test(config)) {
+        if (!data && /dispose|hIde/.test(config)) {
           return;
         }
 
@@ -3472,8 +3472,8 @@
   });
 
   var Event = {
-    HIDE: "hide" + EVENT_KEY$3,
-    HIDDEN: "hidden" + EVENT_KEY$3,
+    HIdE: "hIde" + EVENT_KEY$3,
+    HIdDEN: "hIdden" + EVENT_KEY$3,
     SHOW: "show" + EVENT_KEY$3,
     SHOWN: "shown" + EVENT_KEY$3,
     INSERTED: "inserted" + EVENT_KEY$3,
@@ -3496,7 +3496,7 @@
 
     var _proto = Popover.prototype;
 
-    // Overrides
+    // OverrIdes
     _proto.isWithContent = function isWithContent() {
       return this.getTitle() || this._getContent();
     };
@@ -3546,7 +3546,7 @@
 
         var _config = typeof config === 'object' ? config : null;
 
-        if (!data && /dispose|hide/.test(config)) {
+        if (!data && /dispose|hIde/.test(config)) {
           return;
         }
 
@@ -3702,7 +3702,7 @@
         if (target) {
           var targetBCR = target.getBoundingClientRect();
 
-          if (targetBCR.width || targetBCR.height) {
+          if (targetBCR.wIdth || targetBCR.height) {
             // TODO (fat): remove sketch reliance on jQuery position/offset
             return [$__default["default"](target)[offsetMethod]().top + offsetBase, targetSelector];
           }
@@ -3738,14 +3738,14 @@
       config = _extends({}, Default$1, typeof config === 'object' && config ? config : {});
 
       if (typeof config.target !== 'string' && Util.isElement(config.target)) {
-        var id = $__default["default"](config.target).attr('id');
+        var Id = $__default["default"](config.target).attr('Id');
 
-        if (!id) {
-          id = Util.getUID(NAME$2);
-          $__default["default"](config.target).attr('id', id);
+        if (!Id) {
+          Id = Util.getUId(NAME$2);
+          $__default["default"](config.target).attr('Id', Id);
         }
 
-        config.target = "#" + id;
+        config.target = "#" + Id;
       }
 
       Util.typeCheckConfig(NAME$2, config, DefaultType$1);
@@ -3821,7 +3821,7 @@
         $link.addClass(CLASS_NAME_ACTIVE$1); // Set triggered links parents as active
         // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
 
-        $link.parents(SELECTOR_NAV_LIST_GROUP$1).prev(SELECTOR_NAV_LINKS + ", " + SELECTOR_LIST_ITEMS).addClass(CLASS_NAME_ACTIVE$1); // Handle special case when .nav-link is inside .nav-item
+        $link.parents(SELECTOR_NAV_LIST_GROUP$1).prev(SELECTOR_NAV_LINKS + ", " + SELECTOR_LIST_ITEMS).addClass(CLASS_NAME_ACTIVE$1); // Handle special case when .nav-link is insIde .nav-item
 
         $link.parents(SELECTOR_NAV_LIST_GROUP$1).prev(SELECTOR_NAV_ITEMS).children(SELECTOR_NAV_LINKS).addClass(CLASS_NAME_ACTIVE$1);
       }
@@ -3917,8 +3917,8 @@
   var CLASS_NAME_DISABLED = 'disabled';
   var CLASS_NAME_FADE$1 = 'fade';
   var CLASS_NAME_SHOW$1 = 'show';
-  var EVENT_HIDE$1 = "hide" + EVENT_KEY$1;
-  var EVENT_HIDDEN$1 = "hidden" + EVENT_KEY$1;
+  var EVENT_HIdE$1 = "hIde" + EVENT_KEY$1;
+  var EVENT_HIdDEN$1 = "hIdden" + EVENT_KEY$1;
   var EVENT_SHOW$1 = "show" + EVENT_KEY$1;
   var EVENT_SHOWN$1 = "shown" + EVENT_KEY$1;
   var EVENT_CLICK_DATA_API = "click" + EVENT_KEY$1 + DATA_API_KEY;
@@ -3960,7 +3960,7 @@
         previous = previous[previous.length - 1];
       }
 
-      var hideEvent = $__default["default"].Event(EVENT_HIDE$1, {
+      var hIdeEvent = $__default["default"].Event(EVENT_HIdE$1, {
         relatedTarget: this._element
       });
       var showEvent = $__default["default"].Event(EVENT_SHOW$1, {
@@ -3968,12 +3968,12 @@
       });
 
       if (previous) {
-        $__default["default"](previous).trigger(hideEvent);
+        $__default["default"](previous).trigger(hIdeEvent);
       }
 
       $__default["default"](this._element).trigger(showEvent);
 
-      if (showEvent.isDefaultPrevented() || hideEvent.isDefaultPrevented()) {
+      if (showEvent.isDefaultPrevented() || hIdeEvent.isDefaultPrevented()) {
         return;
       }
 
@@ -3984,13 +3984,13 @@
       this._activate(this._element, listElement);
 
       var complete = function complete() {
-        var hiddenEvent = $__default["default"].Event(EVENT_HIDDEN$1, {
+        var hIddenEvent = $__default["default"].Event(EVENT_HIdDEN$1, {
           relatedTarget: _this._element
         });
         var shownEvent = $__default["default"].Event(EVENT_SHOWN$1, {
           relatedTarget: previous
         });
-        $__default["default"](previous).trigger(hiddenEvent);
+        $__default["default"](previous).trigger(hIddenEvent);
         $__default["default"](_this._element).trigger(shownEvent);
       };
 
@@ -4136,23 +4136,23 @@
   var EVENT_KEY = "." + DATA_KEY;
   var JQUERY_NO_CONFLICT = $__default["default"].fn[NAME];
   var CLASS_NAME_FADE = 'fade';
-  var CLASS_NAME_HIDE = 'hide';
+  var CLASS_NAME_HIdE = 'hIde';
   var CLASS_NAME_SHOW = 'show';
   var CLASS_NAME_SHOWING = 'showing';
   var EVENT_CLICK_DISMISS = "click.dismiss" + EVENT_KEY;
-  var EVENT_HIDE = "hide" + EVENT_KEY;
-  var EVENT_HIDDEN = "hidden" + EVENT_KEY;
+  var EVENT_HIdE = "hIde" + EVENT_KEY;
+  var EVENT_HIdDEN = "hIdden" + EVENT_KEY;
   var EVENT_SHOW = "show" + EVENT_KEY;
   var EVENT_SHOWN = "shown" + EVENT_KEY;
   var SELECTOR_DATA_DISMISS = '[data-dismiss="toast"]';
   var Default = {
     animation: true,
-    autohide: true,
+    autohIde: true,
     delay: 500
   };
   var DefaultType = {
     animation: 'boolean',
-    autohide: 'boolean',
+    autohIde: 'boolean',
     delay: 'number'
   };
   /**
@@ -4195,14 +4195,14 @@
 
         $__default["default"](_this._element).trigger(EVENT_SHOWN);
 
-        if (_this._config.autohide) {
+        if (_this._config.autohIde) {
           _this._timeout = setTimeout(function () {
-            _this.hide();
+            _this.hIde();
           }, _this._config.delay);
         }
       };
 
-      this._element.classList.remove(CLASS_NAME_HIDE);
+      this._element.classList.remove(CLASS_NAME_HIdE);
 
       Util.reflow(this._element);
 
@@ -4216,15 +4216,15 @@
       }
     };
 
-    _proto.hide = function hide() {
+    _proto.hIde = function hIde() {
       if (!this._element.classList.contains(CLASS_NAME_SHOW)) {
         return;
       }
 
-      var hideEvent = $__default["default"].Event(EVENT_HIDE);
-      $__default["default"](this._element).trigger(hideEvent);
+      var hIdeEvent = $__default["default"].Event(EVENT_HIdE);
+      $__default["default"](this._element).trigger(hIdeEvent);
 
-      if (hideEvent.isDefaultPrevented()) {
+      if (hIdeEvent.isDefaultPrevented()) {
         return;
       }
 
@@ -4255,7 +4255,7 @@
       var _this2 = this;
 
       $__default["default"](this._element).on(EVENT_CLICK_DISMISS, SELECTOR_DATA_DISMISS, function () {
-        return _this2.hide();
+        return _this2.hIde();
       });
     };
 
@@ -4263,9 +4263,9 @@
       var _this3 = this;
 
       var complete = function complete() {
-        _this3._element.classList.add(CLASS_NAME_HIDE);
+        _this3._element.classList.add(CLASS_NAME_HIdE);
 
-        $__default["default"](_this3._element).trigger(EVENT_HIDDEN);
+        $__default["default"](_this3._element).trigger(EVENT_HIdDEN);
       };
 
       this._element.classList.remove(CLASS_NAME_SHOW);

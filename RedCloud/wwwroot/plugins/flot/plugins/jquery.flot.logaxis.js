@@ -61,7 +61,7 @@ formatters and transformers to and from logarithmic representation.
             max = axis.max;
 
         if (!noTicks) {
-            noTicks = 0.3 * Math.sqrt(axis.direction === "x" ? surface.width : surface.height);
+            noTicks = 0.3 * Math.sqrt(axis.direction === "x" ? surface.wIdth : surface.height);
         }
 
         PREFERRED_LOG_TICK_VALUES.some(function (val, i) {
@@ -100,21 +100,21 @@ formatters and transformers to and from logarithmic representation.
         // Count the number of tick values would appear, if we can get at least
         // nTicks / 4 accept them.
         if (maxIdx - minIdx >= noTicks / 4) {
-            for (var idx = maxIdx; idx >= minIdx; idx--) {
-                tickValue = logTickValues[idx];
+            for (var Idx = maxIdx; Idx >= minIdx; Idx--) {
+                tickValue = logTickValues[Idx];
                 pixelCoord = (Math.log(tickValue) - Math.log(min)) / (Math.log(max) - Math.log(min));
                 tick = tickValue;
 
                 if (lastDisplayed === null) {
                     lastDisplayed = {
                         pixelCoord: pixelCoord,
-                        idealPixelCoord: pixelCoord
+                        IdealPixelCoord: pixelCoord
                     };
                 } else {
                     if (Math.abs(pixelCoord - lastDisplayed.pixelCoord) >= inverseNoTicks) {
                         lastDisplayed = {
                             pixelCoord: pixelCoord,
-                            idealPixelCoord: lastDisplayed.idealPixelCoord - inverseNoTicks
+                            IdealPixelCoord: lastDisplayed.IdealPixelCoord - inverseNoTicks
                         };
                     } else {
                         tick = null;
@@ -247,7 +247,7 @@ formatters and transformers to and from logarithmic representation.
                     return series.xaxis === axis || series.yaxis === axis;
                 })
                 .map(function(series) {
-                    return plot.computeRangeForDataSeries(series, null, isValid);
+                    return plot.computeRangeForDataSeries(series, null, isValId);
                 }),
             min = axis.direction === 'x'
                 ? Math.min(0.1, range && range[0] ? range[0].xmin : 0.1)
@@ -258,7 +258,7 @@ formatters and transformers to and from logarithmic representation.
         return min;
     }
 
-    function isValid(a) {
+    function isValId(a) {
         return a > 0;
     }
 

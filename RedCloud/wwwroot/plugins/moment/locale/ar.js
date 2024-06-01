@@ -1,6 +1,6 @@
 //! moment.js locale configuration
 //! locale : Arabic [ar]
-//! author : Abdel Said: https://github.com/abdelsaid
+//! author : Abdel SaId: https://github.com/abdelsaId
 //! author : Ahmed Elkhatib
 //! author : forabi https://github.com/forabi
 
@@ -140,11 +140,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd D MMMM YYYY HH:mm',
         },
-        meridiemParse: /ص|م/,
+        merIdiemParse: /ص|م/,
         isPM: function (input) {
             return 'م' === input;
         },
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'ص';
             } else {

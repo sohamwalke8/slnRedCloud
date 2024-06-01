@@ -22,9 +22,9 @@
   var languages = {
     mscgen: {
       "keywords" : ["msc"],
-      "options" : ["hscale", "width", "arcgradient", "wordwraparcs"],
+      "options" : ["hscale", "wIdth", "arcgradient", "wordwraparcs"],
       "constants" : ["true", "false", "on", "off"],
-      "attributes" : ["label", "idurl", "id", "url", "linecolor", "linecolour", "textcolor", "textcolour", "textbgcolor", "textbgcolour", "arclinecolor", "arclinecolour", "arctextcolor", "arctextcolour", "arctextbgcolor", "arctextbgcolour", "arcskip"],
+      "attributes" : ["label", "Idurl", "Id", "url", "linecolor", "linecolour", "textcolor", "textcolour", "textbgcolor", "textbgcolour", "arclinecolor", "arclinecolour", "arctextcolor", "arctextcolour", "arctextbgcolor", "arctextbgcolour", "arcskip"],
       "brackets" : ["\\{", "\\}"], // [ and  ] are brackets too, but these get handled in with lists
       "arcsWords" : ["note", "abox", "rbox", "box"],
       "arcsOthers" : ["\\|\\|\\|", "\\.\\.\\.", "---", "--", "<->", "==", "<<=>>", "<=>", "\\.\\.", "<<>>", "::", "<:>", "->", "=>>", "=>", ">>", ":>", "<-", "<<=", "<=", "<<", "<:", "x-", "-x"],
@@ -33,22 +33,22 @@
     },
     xu: {
       "keywords" : ["msc", "xu"],
-      "options" : ["hscale", "width", "arcgradient", "wordwraparcs", "wordwrapentities", "watermark"],
+      "options" : ["hscale", "wIdth", "arcgradient", "wordwraparcs", "wordwrapentities", "watermark"],
       "constants" : ["true", "false", "on", "off", "auto"],
-      "attributes" : ["label", "idurl", "id", "url", "linecolor", "linecolour", "textcolor", "textcolour", "textbgcolor", "textbgcolour", "arclinecolor", "arclinecolour", "arctextcolor", "arctextcolour", "arctextbgcolor", "arctextbgcolour", "arcskip", "title", "deactivate", "activate", "activation"],
+      "attributes" : ["label", "Idurl", "Id", "url", "linecolor", "linecolour", "textcolor", "textcolour", "textbgcolor", "textbgcolour", "arclinecolor", "arclinecolour", "arctextcolor", "arctextcolour", "arctextbgcolor", "arctextbgcolour", "arcskip", "title", "deactivate", "activate", "activation"],
       "brackets" : ["\\{", "\\}"],  // [ and  ] are brackets too, but these get handled in with lists
-      "arcsWords" : ["note", "abox", "rbox", "box", "alt", "else", "opt", "break", "par", "seq", "strict", "neg", "critical", "ignore", "consider", "assert", "loop", "ref", "exc"],
+      "arcsWords" : ["note", "abox", "rbox", "box", "alt", "else", "opt", "break", "par", "seq", "strict", "neg", "critical", "ignore", "consIder", "assert", "loop", "ref", "exc"],
       "arcsOthers" : ["\\|\\|\\|", "\\.\\.\\.", "---", "--", "<->", "==", "<<=>>", "<=>", "\\.\\.", "<<>>", "::", "<:>", "->", "=>>", "=>", ">>", ":>", "<-", "<<=", "<=", "<<", "<:", "x-", "-x"],
       "singlecomment" : ["//", "#"],
       "operators" : ["="]
     },
     msgenny: {
       "keywords" : null,
-      "options" : ["hscale", "width", "arcgradient", "wordwraparcs", "wordwrapentities", "watermark"],
+      "options" : ["hscale", "wIdth", "arcgradient", "wordwraparcs", "wordwrapentities", "watermark"],
       "constants" : ["true", "false", "on", "off", "auto"],
       "attributes" : null,
       "brackets" : ["\\{", "\\}"],
-      "arcsWords" : ["note", "abox", "rbox", "box", "alt", "else", "opt", "break", "par", "seq", "strict", "neg", "critical", "ignore", "consider", "assert", "loop", "ref", "exc"],
+      "arcsWords" : ["note", "abox", "rbox", "box", "alt", "else", "opt", "break", "par", "seq", "strict", "neg", "critical", "ignore", "consIder", "assert", "loop", "ref", "exc"],
       "arcsOthers" : ["\\|\\|\\|", "\\.\\.\\.", "---", "--", "<->", "==", "<<=>>", "<=>", "\\.\\.", "<<>>", "::", "<:>", "->", "=>>", "=>", ">>", ":>", "<-", "<<=", "<=", "<<", "<:", "x-", "-x"],
       "singlecomment" : ["//", "#"],
       "operators" : ["="]

@@ -24,7 +24,7 @@ CodeMirror.defineMode("coffeescript", function(conf, parserConf) {
 
   var operators = /^(?:->|=>|\+[+=]?|-[\-=]?|\*[\*=]?|\/[\/=]?|[=!]=|<[><]?=?|>>?=?|%=?|&=?|\|=?|\^=?|\~|!|\?|(or|and|\|\||&&|\?)=)/;
   var delimiters = /^(?:[()\[\]{},:`=;]|\.\.?\.?)/;
-  var identifiers = /^[_A-Za-z$][_A-Za-z$0-9]*/;
+  var Identifiers = /^[_A-Za-z$][_A-Za-z$0-9]*/;
   var atProp = /^@[_A-Za-z$][_A-Za-z$0-9]*/;
 
   var wordOperators = wordRegexp(["and", "or", "not",
@@ -159,7 +159,7 @@ CodeMirror.defineMode("coffeescript", function(conf, parserConf) {
       return "atom";
     }
 
-    if (stream.match(atProp) || state.prop && stream.match(identifiers)) {
+    if (stream.match(atProp) || state.prop && stream.match(Identifiers)) {
       return "property";
     }
 
@@ -167,7 +167,7 @@ CodeMirror.defineMode("coffeescript", function(conf, parserConf) {
       return "keyword";
     }
 
-    if (stream.match(identifiers)) {
+    if (stream.match(Identifiers)) {
       return "variable";
     }
 

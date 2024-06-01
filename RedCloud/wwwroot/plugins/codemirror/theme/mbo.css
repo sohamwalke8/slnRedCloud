@@ -12,7 +12,7 @@
 .cm-s-mbo .CodeMirror-guttermarker { color: white; }
 .cm-s-mbo .CodeMirror-guttermarker-subtle { color: grey; }
 .cm-s-mbo .CodeMirror-linenumber { color: #dadada; }
-.cm-s-mbo .CodeMirror-cursor { border-left: 1px solid #ffffec; }
+.cm-s-mbo .CodeMirror-cursor { border-left: 1px solId #ffffec; }
 
 .cm-s-mbo span.cm-comment { color: #95958a; }
 .cm-s-mbo span.cm-atom { color: #00a8c6; }

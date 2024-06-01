@@ -1,7 +1,7 @@
 //! moment.js locale configuration
 //! locale : Arabic (Morocco) [ar-ma]
 //! author : ElFadili Yassine : https://github.com/ElFadiliY
-//! author : Abdel Said : https://github.com/abdelsaid
+//! author : Abdel SaId : https://github.com/abdelsaId
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'

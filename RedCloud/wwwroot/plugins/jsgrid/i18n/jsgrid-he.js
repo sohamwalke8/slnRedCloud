@@ -1,7 +1,7 @@
-(function(jsGrid) {
+(function(jsGrId) {
 
-    jsGrid.locales.he = {
-        grid: {
+    jsGrId.locales.he = {
+        grId: {
             noDataContent: "לא נמצא",
             deleteConfirm: "האם אתה בטוח?",
             pagerFormat: "עמודים: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} מתוך {pageCount}",
@@ -10,7 +10,7 @@
             pageFirstText: "ראשון",
             pageLastText: "אחרון",
             loadMessage: "אנא המתן ...",
-            invalidMessage: "נתונים לא חוקיים!"
+            invalIdMessage: "נתונים לא חוקיים!"
         },
 
         loadIndicator: {
@@ -31,7 +31,7 @@
             }
         },
 
-        validators: {
+        valIdators: {
             required: { message: "שדה נדרש" },
             rangeLength: { message: "אורכו של הערך הוא מחוץ לטווח המוגדר" },
             minLength: { message: "אורכו של הערך קצר מדי" },
@@ -43,4 +43,4 @@
         }
     };
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));

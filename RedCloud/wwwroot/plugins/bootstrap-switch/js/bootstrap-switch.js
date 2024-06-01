@@ -100,8 +100,8 @@
           if (_this.options.inverse) {
             classes.push('inverse');
           }
-          if (_this.$element.attr('id')) {
-            classes.push('id-' + _this.$element.attr('id'));
+          if (_this.$element.attr('Id')) {
+            classes.push('Id-' + _this.$element.attr('Id'));
           }
           return classes.map(_this._getClass.bind(_this)).concat([_this.options.baseClass], _this._getClasses(_this.options.wrapperClass)).join(' ');
         }
@@ -202,7 +202,7 @@
         if (value) {
           this.$wrapper.addClass(this._getClass(value));
         }
-        this._width();
+        this._wIdth();
         this._containerPosition();
         this.options.size = value;
         return this.$element;
@@ -340,7 +340,7 @@
           return this.options.onText;
         }
         this.$on.html(value);
-        this._width();
+        this._wIdth();
         this._containerPosition();
         this.options.onText = value;
         return this.$element;
@@ -352,7 +352,7 @@
           return this.options.offText;
         }
         this.$off.html(value);
-        this._width();
+        this._wIdth();
         this._containerPosition();
         this.options.offText = value;
         return this.$element;
@@ -364,29 +364,29 @@
           return this.options.labelText;
         }
         this.$label.html(value);
-        this._width();
+        this._wIdth();
         this.options.labelText = value;
         return this.$element;
       }
     }, {
-      key: 'handleWidth',
-      value: function handleWidth(value) {
+      key: 'handleWIdth',
+      value: function handleWIdth(value) {
         if (typeof value === 'undefined') {
-          return this.options.handleWidth;
+          return this.options.handleWIdth;
         }
-        this.options.handleWidth = value;
-        this._width();
+        this.options.handleWIdth = value;
+        this._wIdth();
         this._containerPosition();
         return this.$element;
       }
     }, {
-      key: 'labelWidth',
-      value: function labelWidth(value) {
+      key: 'labelWIdth',
+      value: function labelWIdth(value) {
         if (typeof value === 'undefined') {
-          return this.options.labelWidth;
+          return this.options.labelWIdth;
         }
-        this.options.labelWidth = value;
-        this._width();
+        this.options.labelWIdth = value;
+        this._wIdth();
         this._containerPosition();
         return this.$element;
       }
@@ -474,33 +474,33 @@
           onText: this.$element.data('on-text'),
           offText: this.$element.data('off-text'),
           labelText: this.$element.data('label-text'),
-          handleWidth: this.$element.data('handle-width'),
-          labelWidth: this.$element.data('label-width'),
+          handleWIdth: this.$element.data('handle-wIdth'),
+          labelWIdth: this.$element.data('label-wIdth'),
           baseClass: this.$element.data('base-class'),
           wrapperClass: this.$element.data('wrapper-class')
         };
       }
     }, {
-      key: '_width',
-      value: function _width() {
+      key: '_wIdth',
+      value: function _wIdth() {
         var _this2 = this;
 
-        var $handles = this.$on.add(this.$off).add(this.$label).css('width', '');
-        var handleWidth = this.options.handleWidth === 'auto' ? Math.round(Math.max(this.$on.width(), this.$off.width())) : this.options.handleWidth;
-        $handles.width(handleWidth);
-        this.$label.width(function (index, width) {
-          if (_this2.options.labelWidth !== 'auto') {
-            return _this2.options.labelWidth;
+        var $handles = this.$on.add(this.$off).add(this.$label).css('wIdth', '');
+        var handleWIdth = this.options.handleWIdth === 'auto' ? Math.round(Math.max(this.$on.wIdth(), this.$off.wIdth())) : this.options.handleWIdth;
+        $handles.wIdth(handleWIdth);
+        this.$label.wIdth(function (index, wIdth) {
+          if (_this2.options.labelWIdth !== 'auto') {
+            return _this2.options.labelWIdth;
           }
-          if (width < handleWidth) {
-            return handleWidth;
+          if (wIdth < handleWIdth) {
+            return handleWIdth;
           }
-          return width;
+          return wIdth;
         });
-        this._handleWidth = this.$on.outerWidth();
-        this._labelWidth = this.$label.outerWidth();
-        this.$container.width(this._handleWidth * 2 + this._labelWidth);
-        return this.$wrapper.width(this._handleWidth + this._labelWidth);
+        this._handleWIdth = this.$on.outerWIdth();
+        this._labelWIdth = this.$label.outerWIdth();
+        this.$container.wIdth(this._handleWIdth * 2 + this._labelWIdth);
+        return this.$wrapper.wIdth(this._handleWIdth + this._labelWIdth);
       }
     }, {
       key: '_containerPosition',
@@ -511,9 +511,9 @@
         var callback = arguments[1];
 
         this.$container.css('margin-left', function () {
-          var values = [0, '-' + _this3._handleWidth + 'px'];
+          var values = [0, '-' + _this3._handleWIdth + 'px'];
           if (_this3.options.indeterminate) {
-            return '-' + _this3._handleWidth / 2 + 'px';
+            return '-' + _this3._handleWIdth / 2 + 'px';
           }
           if (state) {
             if (_this3.options.inverse) {
@@ -537,7 +537,7 @@
 
         var init = function init() {
           _this4.setPrevOptions();
-          _this4._width();
+          _this4._wIdth();
           _this4._containerPosition();
           setTimeout(function () {
             if (_this4.options.animate) {
@@ -660,7 +660,7 @@
             }
             var difference = (event.pageX || event.originalEvent.touches[0].pageX) - _this7._dragStart;
             event.preventDefault();
-            if (difference < -_this7._handleWidth || difference > 0) {
+            if (difference < -_this7._handleWIdth || difference > 0) {
               return;
             }
             _this7._dragEnd = difference;
@@ -676,7 +676,7 @@
               _this7.$wrapper.addClass(_this7._getClass('animate'));
             }
             if (_this7._dragEnd) {
-              var state = _this7._dragEnd > -(_this7._handleWidth / 2);
+              var state = _this7._dragEnd > -(_this7._handleWIdth / 2);
               _this7._dragEnd = false;
               _this7.state(_this7.options.inverse ? !state : state);
             } else {
@@ -774,8 +774,8 @@
     onText: 'ON',
     offText: 'OFF',
     labelText: '&nbsp',
-    handleWidth: 'auto',
-    labelWidth: 'auto',
+    handleWIdth: 'auto',
+    labelWIdth: 'auto',
     baseClass: 'bootstrap-switch',
     wrapperClass: 'wrapper',
     onInit: function onInit() {},

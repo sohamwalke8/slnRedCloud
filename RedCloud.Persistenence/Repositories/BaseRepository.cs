@@ -18,15 +18,21 @@ namespace RedCloud.Persistenence.Repositories
         private readonly ILogger _logger;
         public BaseRepository(ApplicationDbContext dbContext, ILogger<T> logger)
         {
-            dbContext = dbContext; logger = logger;
+            _dbContext = dbContext;
+            _logger = logger;
         }
 
-        public virtual async Task<T> GetByIdAsync(Guid id)
+        public virtual async Task<T> GetByIdAsync(Guid Id)
         {
-            return await _dbContext.Set<T>().FindAsync(id)
+            return await _dbContext.Set<T>().FindAsync(Id)
   ;
         }
 
+        public async Task<T> GetByIdAsync(int Id)
+        {
+            return await _dbContext.Set<T>().FindAsync(Id)
+       ;
+        }
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
             _logger.LogInformation("ListAllAsync Initiated");
@@ -40,10 +46,18 @@ namespace RedCloud.Persistenence.Repositories
 
         public async Task<T> AddAsync(T entity)
         {
-            await _dbContext.Set<T>().AddAsync(entity);
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                await _dbContext.Set<T>().AddAsync(entity);
+                await _dbContext.SaveChangesAsync();
 
-            return entity;
+                return entity;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public async Task UpdateAsync(T entity)
@@ -80,6 +94,21 @@ namespace RedCloud.Persistenence.Repositories
                 parameterNames[i] = parameters[i].ParameterName;
             }
             return parameterNames;
+        }
+
+        //Eager Loading of Related Data   ---------------------------
+        public async Task<T> GetByIdAsyncInculde(int id)
+        {
+            var query = _dbContext.Set<T>().AsQueryable();
+
+            var navigationProperties = _dbContext.Model.FindEntityType(typeof(T)).GetNavigations();
+
+            foreach (var navigationProperty in navigationProperties)
+            {
+                query = query.Include(navigationProperty.Name);
+            }
+
+            return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == id);
         }
     }
 }

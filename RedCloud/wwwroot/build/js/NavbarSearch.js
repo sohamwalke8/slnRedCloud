@@ -16,7 +16,7 @@ const NAME = 'NavbarSearch'
 const DATA_KEY = 'lte.navbar-search'
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const SELECTOR_TOGGLE_BUTTON = '[data-widget="navbar-search"]'
+const SELECTOR_TOGGLE_BUTTON = '[data-wIdget="navbar-search"]'
 const SELECTOR_SEARCH_BLOCK = '.navbar-search-block'
 const SELECTOR_SEARCH_INPUT = '.form-control'
 
@@ -41,7 +41,7 @@ class NavbarSearch {
   // Public
 
   open() {
-    $(this._config.target).css('display', 'flex').hide().fadeIn().addClass(CLASS_NAME_OPEN)
+    $(this._config.target).css('display', 'flex').hIde().fadeIn().addClass(CLASS_NAME_OPEN)
     $(`${this._config.target} ${SELECTOR_SEARCH_INPUT}`).focus()
   }
 
@@ -91,7 +91,7 @@ $(document).on('click', SELECTOR_TOGGLE_BUTTON, event => {
 
   let button = $(event.currentTarget)
 
-  if (button.data('widget') !== 'navbar-search') {
+  if (button.data('wIdget') !== 'navbar-search') {
     button = button.closest(SELECTOR_TOGGLE_BUTTON)
   }
 

@@ -1,7 +1,7 @@
-(function(jsGrid) {
+(function(jsGrId) {
 
-    jsGrid.locales["zh-cn"] = {
-        grid: {
+    jsGrId.locales["zh-cn"] = {
+        grId: {
             noDataContent: "暂无数据",
             deleteConfirm: "确认删除？",
             pagerFormat: "页码: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} / {pageCount}",
@@ -10,7 +10,7 @@
             pageFirstText: "第一页",
             pageLastText: "最后页",
             loadMessage: "请稍后...",
-            invalidMessage: "数据有误！"
+            invalIdMessage: "数据有误！"
         },
 
         loadIndicator: {
@@ -31,7 +31,7 @@
             }
         },
 
-        validators: {
+        valIdators: {
             required: { message: "字段必填" },
             rangeLength: { message: "字段值长度超过定义范围" },
             minLength: { message: "字段长度过短" },
@@ -43,4 +43,4 @@
         }
     };
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));

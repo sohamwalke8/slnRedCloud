@@ -1,7 +1,7 @@
 //! moment.js locale configuration
-//! locale : Indonesian [id]
+//! locale : Indonesian [Id]
 //! author : Mohammad Satrio Utomo : https://github.com/tyok
-//! reference: http://id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
+//! reference: http://Id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'
@@ -12,7 +12,7 @@
 
     //! moment.js locale configuration
 
-    var id = moment.defineLocale('id', {
+    var Id = moment.defineLocale('Id', {
         months: 'Januari_Februari_Maret_April_Mei_Juni_Juli_Agustus_September_Oktober_November_Desember'.split(
             '_'
         ),
@@ -28,20 +28,20 @@
             LLL: 'D MMMM YYYY [pukul] HH.mm',
             LLLL: 'dddd, D MMMM YYYY [pukul] HH.mm',
         },
-        meridiemParse: /pagi|siang|sore|malam/,
-        meridiemHour: function (hour, meridiem) {
+        merIdiemParse: /pagi|siang|sore|malam/,
+        merIdiemHour: function (hour, merIdiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (meridiem === 'pagi') {
+            if (merIdiem === 'pagi') {
                 return hour;
-            } else if (meridiem === 'siang') {
+            } else if (merIdiem === 'siang') {
                 return hour >= 11 ? hour : hour + 12;
-            } else if (meridiem === 'sore' || meridiem === 'malam') {
+            } else if (merIdiem === 'sore' || merIdiem === 'malam') {
                 return hour + 12;
             }
         },
-        meridiem: function (hours, minutes, isLower) {
+        merIdiem: function (hours, minutes, isLower) {
             if (hours < 11) {
                 return 'pagi';
             } else if (hours < 15) {
@@ -82,6 +82,6 @@
         },
     });
 
-    return id;
+    return Id;
 
 })));

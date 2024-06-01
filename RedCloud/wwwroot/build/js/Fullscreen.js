@@ -16,8 +16,8 @@ const NAME = 'Fullscreen'
 const DATA_KEY = 'lte.fullscreen'
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
-const SELECTOR_DATA_WIDGET = '[data-widget="fullscreen"]'
-const SELECTOR_ICON = `${SELECTOR_DATA_WIDGET} i`
+const SELECTOR_DATA_WIdGET = '[data-wIdget="fullscreen"]'
+const SELECTOR_ICON = `${SELECTOR_DATA_WIdGET} i`
 
 const EVENT_FULLSCREEN_CHANGE = 'webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange'
 
@@ -107,12 +107,12 @@ class Fullscreen {
   * Data API
   * ====================================================
   */
-$(document).on('click', SELECTOR_DATA_WIDGET, function () {
+$(document).on('click', SELECTOR_DATA_WIdGET, function () {
   Fullscreen._jQueryInterface.call($(this), 'toggle')
 })
 
 $(document).on(EVENT_FULLSCREEN_CHANGE, () => {
-  Fullscreen._jQueryInterface.call($(SELECTOR_DATA_WIDGET), 'toggleIcon')
+  Fullscreen._jQueryInterface.call($(SELECTOR_DATA_WIdGET), 'toggleIcon')
 })
 
 /**

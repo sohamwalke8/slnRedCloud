@@ -152,11 +152,11 @@
           state.tokenize = null;
           return "operator";
         }
-        // IDENT
+        // IdENT
         else if(isNonDigit.test(ch)) {
           state.tokenize = tokenIdent;
         }
-        // Q-IDENT
+        // Q-IdENT
         else if(ch == "'" && stream.peek() && stream.peek() != "'") {
           state.tokenize = tokenQIdent;
         }

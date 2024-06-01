@@ -3,7 +3,7 @@ layout: page
 title: Navbar Search Plugin
 ---
 
-The navbar search plugin provides the functionality to show/hide a search input across the whole header. 
+The navbar search plugin provIdes the functionality to show/hIde a search input across the whole header. 
 
 ##### Usage
 
@@ -12,21 +12,21 @@ This plugin can be activated as a jQuery plugin or using the data API.
 ###### Data API
 {: .text-bold }
 
-Activate the plugin by adding the following data-attribue `data-widget="navbar-search"` to the `.navbar-search-block` inside the header. You can use the HTML Markup below for a quick start.
+Activate the plugin by adding the following data-attribue `data-wIdget="navbar-search"` to the `.navbar-search-block` insIde the header. You can use the HTML Markup below for a quick start.
 
 ###### jQuery
 {: .text-bold }
 
-The jQuery API provides more customizable options that allows the developer to pre-process the request before rendering and post-process it after rendering. 
+The jQuery API provIdes more customizable options that allows the developer to pre-process the request before rendering and post-process it after rendering. 
 
 ```js
-("[data-widget="navbar-search"]").SiteSearch(options)
+("[data-wIdget="navbar-search"]").SiteSearch(options)
 ```
 
 ##### HTML Markup
-Place this HTML Markup after inside the header.
+Place this HTML Markup after insIde the header.
 ```html
-<a data-widget="navbar-search" href="#" role="button">
+<a data-wIdget="navbar-search" href="#" role="button">
   <i class="fas fa-search"></i>
 </a>
 <div class="navbar-search-block">
@@ -37,7 +37,7 @@ Place this HTML Markup after inside the header.
         <button class="btn btn-navbar" type="submit">
           <i class="fas fa-search"></i>
         </button>
-        <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+        <button class="btn btn-navbar" type="button" data-wIdget="navbar-search">
           <i class="fas fa-times"></i>
         </button>
       </div>
@@ -46,10 +46,10 @@ Place this HTML Markup after inside the header.
 </div>
 ```
 
-Or you can place the search button inside the navbar as nav-item with this markup:
+Or you can place the search button insIde the navbar as nav-item with this markup:
 ```html
 <li class="nav-item">
-  <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+  <a class="nav-link" data-wIdget="navbar-search" href="#" role="button">
     <i class="fas fa-search"></i>
   </a>
   <div class="navbar-search-block">
@@ -60,7 +60,7 @@ Or you can place the search button inside the navbar as nav-item with this marku
           <button class="btn btn-navbar" type="submit">
             <i class="fas fa-search"></i>
           </button>
-          <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+          <button class="btn btn-navbar" type="button" data-wIdget="navbar-search">
             <i class="fas fa-times"></i>
           </button>
         </div>
@@ -76,7 +76,7 @@ Or you can place the search button inside the navbar as nav-item with this marku
 |---
 | Name | Type | Default | Description
 |-|-|-|-
-| resetOnClose | Boolean | false | Reset Input on Close/Hide.
+| resetOnClose | Boolean | false | Reset Input on Close/HIde.
 |target | String | `.navbar-search-block` | Target navbar-search-block to handle multiple navbar-search-blocks.
 {: .table .table-bordered .bg-light}
 
@@ -92,4 +92,4 @@ Or you can place the search button inside the navbar as nav-item with this marku
 |open | Opens the search block.
 {: .table .table-bordered .bg-light}
 
-Example: `$('[data-widget="navbar-search"]').SiteSearch('toggle')`
+Example: `$('[data-wIdget="navbar-search"]').SiteSearch('toggle')`

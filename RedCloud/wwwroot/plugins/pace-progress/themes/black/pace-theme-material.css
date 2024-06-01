@@ -1,4 +1,4 @@
-/* This is a compiled file, to make changes persist, consider editing under the templates directory */
+/* This is a compiled file, to make changes persist, consIder editing under the templates directory */
 .pace {
   -webkit-pointer-events: none;
   pointer-events: none;
@@ -18,7 +18,7 @@
   margin-left: -2.5rem;
   margin-top: -2.5rem;
   height: 5rem;
-  width: 5rem;
+  wIdth: 5rem;
   opacity: 1;
   -webkit-transition: opacity 0.1s;
           transition: opacity 0.1s;
@@ -35,7 +35,7 @@
 
 .pace-progress:after {
   height: 5rem;
-  width: 5rem;
+  wIdth: 5rem;
   text-align: center;
   line-height: 5rem;
   content: attr(data-progress);
@@ -46,9 +46,9 @@
 }
 
 .pace-progress .pace-progress-inner {
-  overflow: hidden;
+  overflow: hIdden;
   position: absolute;
-  width: 2.5rem;
+  wIdth: 2.5rem;
   height: 5rem;
   -webkit-transform-origin: left center;
       -ms-transform-origin: left center;
@@ -61,13 +61,13 @@
 .pace-progress .pace-progress-inner:before,
 .pace-progress .pace-progress-inner:after {
   position: absolute;
-  width: 5rem;
+  wIdth: 5rem;
   height: 5rem;
   content: ' ';
   left: -2.5rem;
   top: 0;
   box-sizing: border-box;
-  border: 1px solid;
+  border: 1px solId;
   border-radius: 5rem;
 }
 .pace-progress .pace-progress-inner:before {

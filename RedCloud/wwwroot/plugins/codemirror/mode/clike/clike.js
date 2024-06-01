@@ -276,7 +276,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
   "explicit export final friend import module mutable namespace new noexcept " +
   "not not_eq operator or or_eq override private protected public " +
   "reinterpret_cast requires static_assert static_cast template this " +
-  "thread_local throw try typeid typename using virtual xor xor_eq";
+  "thread_local throw try typeId typename using virtual xor xor_eq";
 
   var objCKeywords = "bycopy byref in inout oneway out self super atomic nonatomic retain copy " +
   "readwrite readonly strong weak assign typeof nullable nonnull null_resettable _cmd " +
@@ -289,26 +289,26 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
   "NS_DESIGNATED_INITIALIZER NS_ENUM NS_OPTIONS NS_REQUIRES_NIL_TERMINATION " +
   "NS_ASSUME_NONNULL_BEGIN NS_ASSUME_NONNULL_END NS_SWIFT_NAME NS_REFINED_FOR_SWIFT"
 
-  // Do not use this. Use the cTypes function below. This is global just to avoid
+  // Do not use this. Use the cTypes function below. This is global just to avoId
   // excessive calls when cTypes is being called multiple times during a parse.
   var basicCTypes = words("int long char short double float unsigned signed " +
     "void bool");
 
-  // Do not use this. Use the objCTypes function below. This is global just to avoid
+  // Do not use this. Use the objCTypes function below. This is global just to avoId
   // excessive calls when objCTypes is being called multiple times during a parse.
-  var basicObjCTypes = words("SEL instancetype id Class Protocol BOOL");
+  var basicObjCTypes = words("SEL instancetype Id Class Protocol BOOL");
 
-  // Returns true if identifier is a "C" type.
+  // Returns true if Identifier is a "C" type.
   // C type is defined as those that are reserved by the compiler (basicTypes),
   // and those that end in _t (Reserved by POSIX for types)
   // http://www.gnu.org/software/libc/manual/html_node/Reserved-Names.html
-  function cTypes(identifier) {
-    return contains(basicCTypes, identifier) || /.+_t$/.test(identifier);
+  function cTypes(Identifier) {
+    return contains(basicCTypes, Identifier) || /.+_t$/.test(Identifier);
   }
 
-  // Returns true if identifier is a "Objective C" type.
-  function objCTypes(identifier) {
-    return cTypes(identifier) || contains(basicObjCTypes, identifier);
+  // Returns true if Identifier is a "Objective C" type.
+  function objCTypes(Identifier) {
+    return cTypes(Identifier) || contains(basicObjCTypes, Identifier);
   }
 
   var cBlockKeywords = "case do else for if switch while struct enum union";
@@ -334,7 +334,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     return false;
   }
 
-  // For C and C++ (and ObjC): identifiers starting with __
+  // For C and C++ (and ObjC): Identifiers starting with __
   // or _ followed by a capital letter are reserved for the compiler.
   function cIsReservedIdentifier(token) {
     if (!token || token.length < 2) return false;
@@ -485,7 +485,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
                     "return static strictfp super switch synchronized this throw throws transient " +
                     "try volatile while @interface"),
     types: words("var byte short int long float double boolean char void Boolean Byte Character Double Float " +
-                 "Integer Long Number Object Short String StringBuffer StringBuilder Void"),
+                 "Integer Long Number Object Short String StringBuffer StringBuilder VoId"),
     blockKeywords: words("catch class do else finally for if switch try while"),
     defKeywords: words("class interface enum @interface"),
     typeFirstDefinitions: true,
@@ -588,7 +588,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
       "Boolean Byte Character CharSequence Class ClassLoader Cloneable Comparable " +
       "Compiler Double Exception Float Integer Long Math Number Object Package Pair Process " +
       "Runtime Runnable SecurityManager Short StackTraceElement StrictMath String " +
-      "StringBuffer System Thread ThreadGroup ThreadLocal Throwable Triple Void"
+      "StringBuffer System Thread ThreadGroup ThreadLocal Throwable Triple VoId"
     ),
     multiLineStrings: true,
     blockKeywords: words("catch class enum do else finally for forSome if match switch try while"),
@@ -666,7 +666,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
       "Boolean Byte Character CharSequence Class ClassLoader Cloneable Comparable " +
       "Compiler Double Exception Float Integer Long Math Number Object Package Pair Process " +
       "Runtime Runnable SecurityManager Short StackTraceElement StrictMath String " +
-      "StringBuffer System Thread ThreadGroup ThreadLocal Throwable Triple Void Annotation Any BooleanArray " +
+      "StringBuffer System Thread ThreadGroup ThreadLocal Throwable Triple VoId Annotation Any BooleanArray " +
       "ByteArray Char CharArray DeprecationLevel DoubleArray Enum FloatArray Function Int IntArray Lazy " +
       "LazyThreadSafetyMode LongArray Nothing ShortArray Unit"
     ),
@@ -734,7 +734,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
                     "textureCube textureCubeLod " +
                     "shadow1D shadow2D shadow1DProj shadow2DProj " +
                     "shadow1DLod shadow2DLod shadow1DProjLod shadow2DProjLod " +
-                    "dFdx dFdy fwidth " +
+                    "dFdx dFdy fwIdth " +
                     "noise1 noise2 noise3 noise4"),
     atoms: words("true false " +
                 "gl_FragColor gl_SecondaryColor gl_Normal gl_Vertex " +
@@ -771,7 +771,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
   def("text/x-nesc", {
     name: "clike",
     keywords: words(cKeywords + " as atomic async call command component components configuration event generic " +
-                    "implementation includes interface module new norace nx_struct nx_union post provides " +
+                    "implementation includes interface module new norace nx_struct nx_union post provIdes " +
                     "signal task uses abstract extends"),
     types: cTypes,
     blockKeywords: words(cBlockKeywords),
@@ -883,7 +883,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
                     " nonempty object of out outer package return satisfies super switch then this throw" +
                     " try value void while"),
     types: function(word) {
-        // In Ceylon all identifiers that start with an uppercase are types
+        // In Ceylon all Identifiers that start with an uppercase are types
         var first = word.charAt(0);
         return (first === first.toUpperCase() && first !== first.toLowerCase());
     },

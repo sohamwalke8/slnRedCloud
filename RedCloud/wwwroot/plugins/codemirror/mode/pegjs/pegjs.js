@@ -14,7 +14,7 @@
 CodeMirror.defineMode("pegjs", function (config) {
   var jsMode = CodeMirror.getMode(config, "javascript");
 
-  function identifier(stream) {
+  function Identifier(stream) {
     return stream.match(/^[a-zA-Z_][a-zA-Z0-9_]*/);
   }
 
@@ -95,7 +95,7 @@ CodeMirror.defineMode("pegjs", function (config) {
           };
         }
         return token;
-      } else if (identifier(stream)) {
+      } else if (Identifier(stream)) {
         if (stream.peek() === ':') {
           return 'variable';
         }

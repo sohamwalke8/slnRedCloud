@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valIdate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -9,10 +9,10 @@
 }(function( $ ) {
 
 /*
- * Translated default messages for the jQuery validation plugin.
+ * Translated default messages for the jQuery valIdation plugin.
  * Locale: AR (Arabic; العربية)
  */
-$.extend( $.validator.messages, {
+$.extend( $.valIdator.messages, {
 	required: "هذا الحقل إلزامي",
 	remote: "يرجى تصحيح هذا الحقل للمتابعة",
 	email: "رجاء إدخال عنوان بريد إلكتروني صحيح",
@@ -24,12 +24,12 @@ $.extend( $.validator.messages, {
 	creditcard: "رجاء إدخال رقم بطاقة ائتمان صحيح",
 	equalTo: "رجاء إدخال نفس القيمة",
 	extension: "رجاء إدخال ملف بامتداد موافق عليه",
-	maxlength: $.validator.format( "الحد الأقصى لعدد الحروف هو {0}" ),
-	minlength: $.validator.format( "الحد الأدنى لعدد الحروف هو {0}" ),
-	rangelength: $.validator.format( "عدد الحروف يجب أن يكون بين {0} و {1}" ),
-	range: $.validator.format( "رجاء إدخال عدد قيمته بين {0} و {1}" ),
-	max: $.validator.format( "رجاء إدخال عدد أقل من أو يساوي {0}" ),
-	min: $.validator.format( "رجاء إدخال عدد أكبر من أو يساوي {0}" )
+	maxlength: $.valIdator.format( "الحد الأقصى لعدد الحروف هو {0}" ),
+	minlength: $.valIdator.format( "الحد الأدنى لعدد الحروف هو {0}" ),
+	rangelength: $.valIdator.format( "عدد الحروف يجب أن يكون بين {0} و {1}" ),
+	range: $.valIdator.format( "رجاء إدخال عدد قيمته بين {0} و {1}" ),
+	max: $.valIdator.format( "رجاء إدخال عدد أقل من أو يساوي {0}" ),
+	min: $.valIdator.format( "رجاء إدخال عدد أكبر من أو يساوي {0}" )
 } );
 return $;
 }));

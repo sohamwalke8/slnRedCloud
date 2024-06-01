@@ -1,6 +1,6 @@
 //! moment.js locale configuration
 //! locale : Maori [mi]
-//! author : John Corrigan <robbiecloset@gmail.com> : https://github.com/johnideal
+//! author : John Corrigan <robbiecloset@gmail.com> : https://github.com/johnIdeal
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'

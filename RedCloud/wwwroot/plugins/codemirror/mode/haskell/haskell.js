@@ -24,7 +24,7 @@ CodeMirror.defineMode("haskell", function(_config, modeConfig) {
   var digitRE = /\d/;
   var hexitRE = /[0-9A-Fa-f]/;
   var octitRE = /[0-7]/;
-  var idRE = /[a-z_A-Z0-9'\xa1-\uffff]/;
+  var IdRE = /[a-z_A-Z0-9'\xa1-\uffff]/;
   var symbolRE = /[-!#$%&*+.\/<=>?@\\^|~:]/;
   var specialRE = /[(),;[\]`{}]/;
   var whiteCharRE = /[ \t\v\f]/; // newlines are handled in tokenizer
@@ -64,7 +64,7 @@ CodeMirror.defineMode("haskell", function(_config, modeConfig) {
     }
 
     if (largeRE.test(ch)) {
-      source.eatWhile(idRE);
+      source.eatWhile(IdRE);
       if (source.eat('.')) {
         return "qualifier";
       }
@@ -72,7 +72,7 @@ CodeMirror.defineMode("haskell", function(_config, modeConfig) {
     }
 
     if (smallRE.test(ch)) {
-      source.eatWhile(idRE);
+      source.eatWhile(IdRE);
       return "variable";
     }
 
@@ -219,7 +219,7 @@ CodeMirror.defineMode("haskell", function(_config, modeConfig) {
       "flip", "floatDigits", "floatRadix", "floatRange", "floor", "fmap",
       "foldl", "foldl1", "foldr", "foldr1", "fromEnum", "fromInteger",
       "fromIntegral", "fromRational", "fst", "gcd", "getChar", "getContents",
-      "getLine", "head", "id", "init", "interact", "ioError", "isDenormalized",
+      "getLine", "head", "Id", "init", "interact", "ioError", "isDenormalized",
       "isIEEE", "isInfinite", "isNaN", "isNegativeZero", "iterate", "last",
       "lcm", "length", "lex", "lines", "log", "logBase", "lookup", "map",
       "mapM", "mapM_", "max", "maxBound", "maximum", "maybe", "min", "minBound",
@@ -237,7 +237,7 @@ CodeMirror.defineMode("haskell", function(_config, modeConfig) {
       "unwords", "unzip", "unzip3", "userError", "words", "writeFile", "zip",
       "zip3", "zipWith", "zipWith3");
 
-    var override = modeConfig.overrideKeywords;
+    var override = modeConfig.overrIdeKeywords;
     if (override) for (var word in override) if (override.hasOwnProperty(word))
       wkw[word] = override[word];
 

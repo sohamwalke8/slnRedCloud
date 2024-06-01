@@ -37,7 +37,7 @@
         };
 
     var paIn = moment.defineLocale('pa-in', {
-        // There are months name as per Nanakshahi Calendar but they are not used as rigidly in modern Punjabi.
+        // There are months name as per Nanakshahi Calendar but they are not used as rigIdly in modern Punjabi.
         months: 'ਜਨਵਰੀ_ਫ਼ਰਵਰੀ_ਮਾਰਚ_ਅਪ੍ਰੈਲ_ਮਈ_ਜੂਨ_ਜੁਲਾਈ_ਅਗਸਤ_ਸਤੰਬਰ_ਅਕਤੂਬਰ_ਨਵੰਬਰ_ਦਸੰਬਰ'.split(
             '_'
         ),
@@ -91,24 +91,24 @@
                 return symbolMap[match];
             });
         },
-        // Punjabi notation for meridiems are quite fuzzy in practice. While there exists
-        // a rigid notion of a 'Pahar' it is not used as rigidly in modern Punjabi.
-        meridiemParse: /ਰਾਤ|ਸਵੇਰ|ਦੁਪਹਿਰ|ਸ਼ਾਮ/,
-        meridiemHour: function (hour, meridiem) {
+        // Punjabi notation for merIdiems are quite fuzzy in practice. While there exists
+        // a rigId notion of a 'Pahar' it is not used as rigIdly in modern Punjabi.
+        merIdiemParse: /ਰਾਤ|ਸਵੇਰ|ਦੁਪਹਿਰ|ਸ਼ਾਮ/,
+        merIdiemHour: function (hour, merIdiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (meridiem === 'ਰਾਤ') {
+            if (merIdiem === 'ਰਾਤ') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (meridiem === 'ਸਵੇਰ') {
+            } else if (merIdiem === 'ਸਵੇਰ') {
                 return hour;
-            } else if (meridiem === 'ਦੁਪਹਿਰ') {
+            } else if (merIdiem === 'ਦੁਪਹਿਰ') {
                 return hour >= 10 ? hour : hour + 12;
-            } else if (meridiem === 'ਸ਼ਾਮ') {
+            } else if (merIdiem === 'ਸ਼ਾਮ') {
                 return hour + 12;
             }
         },
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'ਰਾਤ';
             } else if (hour < 10) {

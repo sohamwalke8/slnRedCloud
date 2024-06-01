@@ -1,7 +1,7 @@
-(function(jsGrid) {
+(function(jsGrId) {
 
-    jsGrid.locales.pl = {
-        grid: {
+    jsGrId.locales.pl = {
+        grId: {
             noDataContent: "Nie znaleziono",
             deleteConfirm: "Czy jesteś pewien?",
             pagerFormat: "Strony: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} z {pageCount}",
@@ -10,7 +10,7 @@
             pageFirstText: "Pierwsza",
             pageLastText: "Ostatnia",
             loadMessage: "Proszę czekać...",
-            invalidMessage: "Wprowadzono nieprawidłowe dane!"
+            invalIdMessage: "Wprowadzono nieprawIdłowe dane!"
         },
 
         loadIndicator: {
@@ -31,7 +31,7 @@
             }
         },
 
-        validators: {
+        valIdators: {
             required: {
                 message: "Pole jest wymagane"
             },
@@ -59,4 +59,4 @@
         }
     };
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));

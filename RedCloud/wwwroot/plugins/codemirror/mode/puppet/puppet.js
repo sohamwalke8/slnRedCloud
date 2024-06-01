@@ -38,7 +38,7 @@ CodeMirror.defineMode("puppet", function () {
     'nagios_servicedependency nagios_serviceescalation nagios_serviceextinfo ' +
     'nagios_servicegroup nagios_timeperiod name notify outiface package proto reject ' +
     'resources router schedule scheduled_task selboolean selmodule service source ' +
-    'sport ssh_authorized_key sshkey stage state table tidy todest toports tosource ' +
+    'sport ssh_authorized_key sshkey stage state table tIdy todest toports tosource ' +
     'user vlan yumrepo zfs zone zpool');
 
   // After finding a start of a string ('|") this function attempts to find the end;
@@ -85,7 +85,7 @@ CodeMirror.defineMode("puppet", function () {
         // If so, and its in a string, assign it a different color
         return state.continueString ? 'variable-2' : 'variable';
       }
-      // Otherwise return an invalid variable
+      // Otherwise return an invalId variable
       return "error";
     }
     // Should we still be looking for the end of a string?

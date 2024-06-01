@@ -8,16 +8,16 @@ terms, you need to use one as the fill bottom of the other. You can specify the
 bottom of each data point as the third coordinate manually, or you can use this
 plugin to compute it for you.
 
-In order to name the other series, you need to give it an id, like this:
+In order to name the other series, you need to give it an Id, like this:
 
     var dataset = [
-        { data: [ ... ], id: "foo" } ,         // use default bottom
+        { data: [ ... ], Id: "foo" } ,         // use default bottom
         { data: [ ... ], fillBetween: "foo" }, // use first dataset as bottom
     ];
 
     $.plot($("#placeholder"), dataset, { lines: { show: true, fill: true }});
 
-As a convenience, if the id given is a number that doesn't appear as an id in
+As a convenience, if the Id given is a number that doesn't appear as an Id in
 the series, it is interpreted as the index in the array instead (so fillBetween:
 0 can also mean the first series).
 
@@ -41,7 +41,7 @@ jquery.flot.stack.js plugin, possibly some code could be shared.
             var i;
 
             for (i = 0; i < allseries.length; ++i) {
-                if (allseries[ i ].id === s.fillBetween) {
+                if (allseries[ i ].Id === s.fillBetween) {
                     return allseries[ i ];
                 }
             }
@@ -62,10 +62,10 @@ jquery.flot.stack.js plugin, possibly some code could be shared.
             }
 
             var format = datapoints.format;
-            var plotHasId = function(id) {
+            var plotHasId = function(Id) {
                 var plotData = plot.getData();
                 for (var i = 0; i < plotData.length; i++) {
-                    if (plotData[i].id === id) {
+                    if (plotData[i].Id === Id) {
                         return true;
                     }
                 }
@@ -89,7 +89,7 @@ jquery.flot.stack.js plugin, possibly some code could be shared.
                     required: true
                 });
 
-                if (s.fillBetween !== undefined && s.fillBetween !== '' && plotHasId(s.fillBetween) && s.fillBetween !== s.id) {
+                if (s.fillBetween !== undefined && s.fillBetween !== '' && plotHasId(s.fillBetween) && s.fillBetween !== s.Id) {
                     format.push({
                         x: false,
                         y: true,

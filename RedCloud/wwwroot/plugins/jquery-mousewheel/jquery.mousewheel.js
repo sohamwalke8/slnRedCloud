@@ -161,7 +161,7 @@
 
         // Adjust older deltas if necessary
         if ( shouldAdjustOldDeltas(orgEvent, absDelta) ) {
-            // Divide all the things by 40!
+            // DivIde all the things by 40!
             delta  /= 40;
             deltaX /= 40;
             deltaY /= 40;
@@ -210,9 +210,9 @@
     function shouldAdjustOldDeltas(orgEvent, absDelta) {
         // If this is an older event and the delta is divisable by 120,
         // then we are assuming that the browser is treating this as an
-        // older mouse wheel event and that we should divide the deltas
+        // older mouse wheel event and that we should divIde the deltas
         // by 40 to try and get a more usable deltaFactor.
-        // Side note, this actually impacts the reported scroll distance
+        // SIde note, this actually impacts the reported scroll distance
         // in older browsers and can cause scrolling to be slower than native.
         // Turn this off by setting $.event.special.mousewheel.settings.adjustOldDeltas to false.
         return special.settings.adjustOldDeltas && orgEvent.type === 'mousewheel' && absDelta % 120 === 0;

@@ -11,14 +11,14 @@
 })(function(CodeMirror) {
   "use strict";
 
-  var langs = "ab aa af ak sq am ar an hy as av ae ay az bm ba eu be bn bh bi bs br bg my ca ch ce ny zh cv kw co cr hr cs da dv nl dz en eo et ee fo fj fi fr ff gl ka de el gn gu ht ha he hz hi ho hu ia id ie ga ig ik io is it iu ja jv kl kn kr ks kk km ki rw ky kv kg ko ku kj la lb lg li ln lo lt lu lv gv mk mg ms ml mt mi mr mh mn na nv nb nd ne ng nn no ii nr oc oj cu om or os pa pi fa pl ps pt qu rm rn ro ru sa sc sd se sm sg sr gd sn si sk sl so st es su sw ss sv ta te tg th ti bo tk tl tn to tr ts tt tw ty ug uk ur uz ve vi vo wa cy wo fy xh yi yo za zu".split(" ");
+  var langs = "ab aa af ak sq am ar an hy as av ae ay az bm ba eu be bn bh bi bs br bg my ca ch ce ny zh cv kw co cr hr cs da dv nl dz en eo et ee fo fj fi fr ff gl ka de el gn gu ht ha he hz hi ho hu ia Id ie ga ig ik io is it iu ja jv kl kn kr ks kk km ki rw ky kv kg ko ku kj la lb lg li ln lo lt lu lv gv mk mg ms ml mt mi mr mh mn na nv nb nd ne ng nn no ii nr oc oj cu om or os pa pi fa pl ps pt qu rm rn ro ru sa sc sd se sm sg sr gd sn si sk sl so st es su sw ss sv ta te tg th ti bo tk tl tn to tr ts tt tw ty ug uk ur uz ve vi vo wa cy wo fy xh yi yo za zu".split(" ");
   var targets = ["_blank", "_self", "_top", "_parent"];
   var charsets = ["ascii", "utf-8", "utf-16", "latin1", "latin1"];
   var methods = ["get", "post", "put", "delete"];
   var encs = ["application/x-www-form-urlencoded", "multipart/form-data", "text/plain"];
   var media = ["all", "screen", "print", "embossed", "braille", "handheld", "print", "projection", "screen", "tty", "tv", "speech",
                "3d-glasses", "resolution [>][<][=] [X]", "device-aspect-ratio: X/Y", "orientation:portrait",
-               "orientation:landscape", "device-height: [X]", "device-width: [X]"];
+               "orientation:landscape", "device-height: [X]", "device-wIdth: [X]"];
   var s = { attrs: {} }; // Simple tag, reused for a whole lot of tags
 
   var data = {
@@ -42,7 +42,7 @@
       }
     },
     article: s,
-    aside: s,
+    asIde: s,
     audio: {
       attrs: {
         src: null, mediagroup: null,
@@ -69,12 +69,12 @@
         disabled: ["", "autofocus"],
         formenctype: encs,
         formmethod: methods,
-        formnovalidate: ["", "novalidate"],
+        formnovalIdate: ["", "novalIdate"],
         formtarget: targets,
         type: ["submit", "reset", "button"]
       }
     },
-    canvas: { attrs: { width: null, height: null } },
+    canvas: { attrs: { wIdth: null, height: null } },
     caption: s,
     center: s,
     cite: s,
@@ -90,7 +90,7 @@
       }
     },
     data: { attrs: { value: null } },
-    datagrid: { attrs: { disabled: ["", "disabled"], multiple: ["", "multiple"] } },
+    datagrId: { attrs: { disabled: ["", "disabled"], multiple: ["", "multiple"] } },
     datalist: { attrs: { data: null } },
     dd: s,
     del: { attrs: { cite: null, datetime: null } },
@@ -102,7 +102,7 @@
     dl: s,
     dt: s,
     em: s,
-    embed: { attrs: { src: null, type: null, width: null, height: null } },
+    embed: { attrs: { src: null, type: null, wIdth: null, height: null } },
     eventsource: { attrs: { src: null } },
     fieldset: { attrs: { disabled: ["", "disabled"], form: null, name: null } },
     figcaption: s,
@@ -116,7 +116,7 @@
         autocomplete: ["on", "off"],
         enctype: encs,
         method: methods,
-        novalidate: ["", "novalidate"],
+        novalIdate: ["", "novalIdate"],
         target: targets
       }
     },
@@ -137,14 +137,14 @@
     i: s,
     iframe: {
       attrs: {
-        src: null, srcdoc: null, name: null, width: null, height: null,
+        src: null, srcdoc: null, name: null, wIdth: null, height: null,
         sandbox: ["allow-top-navigation", "allow-same-origin", "allow-forms", "allow-scripts"],
         seamless: ["", "seamless"]
       }
     },
     img: {
       attrs: {
-        alt: null, src: null, ismap: null, usemap: null, width: null, height: null,
+        alt: null, src: null, ismap: null, usemap: null, wIdth: null, height: null,
         crossorigin: ["anonymous", "use-credentials"]
       }
     },
@@ -153,20 +153,20 @@
         alt: null, dirname: null, form: null, formaction: null,
         height: null, list: null, max: null, maxlength: null, min: null,
         name: null, pattern: null, placeholder: null, size: null, src: null,
-        step: null, value: null, width: null,
-        accept: ["audio/*", "video/*", "image/*"],
+        step: null, value: null, wIdth: null,
+        accept: ["audio/*", "vIdeo/*", "image/*"],
         autocomplete: ["on", "off"],
         autofocus: ["", "autofocus"],
         checked: ["", "checked"],
         disabled: ["", "disabled"],
         formenctype: encs,
         formmethod: methods,
-        formnovalidate: ["", "novalidate"],
+        formnovalIdate: ["", "novalIdate"],
         formtarget: targets,
         multiple: ["", "multiple"],
         readonly: ["", "readonly"],
         required: ["", "required"],
-        type: ["hidden", "text", "search", "tel", "url", "email", "password", "datetime", "date", "month",
+        type: ["hIdden", "text", "search", "tel", "url", "email", "password", "datetime", "date", "month",
                "week", "time", "datetime-local", "number", "range", "color", "checkbox", "radio",
                "file", "submit", "image", "reset", "button"]
       }
@@ -209,7 +209,7 @@
     noscript: s,
     object: {
       attrs: {
-        data: null, type: null, name: null, usemap: null, form: null, width: null, height: null,
+        data: null, type: null, name: null, usemap: null, form: null, wIdth: null, height: null,
         typemustmatch: ["", "typemustmatch"]
       }
     },
@@ -291,9 +291,9 @@
     u: s,
     ul: s,
     "var": s,
-    video: {
+    vIdeo: {
       attrs: {
-        src: null, poster: null, width: null, height: null,
+        src: null, poster: null, wIdth: null, height: null,
         crossorigin: ["anonymous", "use-credentials"],
         preload: ["auto", "metadata", "none"],
         autoplay: ["", "autoplay"],
@@ -313,10 +313,10 @@
     dir: ["ltr", "rtl", "auto"],
     draggable: ["true", "false", "auto"],
     dropzone: ["copy", "move", "link", "string:", "file:"],
-    hidden: ["hidden"],
-    id: null,
+    hIdden: ["hIdden"],
+    Id: null,
     inert: ["inert"],
-    itemid: null,
+    itemId: null,
     itemprop: null,
     itemref: null,
     itemscope: ["itemscope"],

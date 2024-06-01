@@ -28,7 +28,7 @@ This plugin is used to make available some browser-related utility functions.
 
          This function returns the current pixel ratio defined by the product of desktop
          zoom and page zoom.
-         Additional info: https://www.html5rocks.com/en/tutorials/canvas/hidpi/
+         Additional info: https://www.html5rocks.com/en/tutorials/canvas/hIdpi/
         */
         getPixelRatio: function(context) {
             var devicePixelRatio = window.devicePixelRatio || 1,

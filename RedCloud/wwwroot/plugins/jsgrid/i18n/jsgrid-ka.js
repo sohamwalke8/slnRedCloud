@@ -1,7 +1,7 @@
-(function(jsGrid) {
+(function(jsGrId) {
 
-    jsGrid.locales.ka = {
-        grid: {
+    jsGrId.locales.ka = {
+        grId: {
             noDataContent: "მონაცემები ცარიელია.",
             deleteConfirm: "ნამდვილად გსურთ ჩანაწერის წაშლა?",
             pagerFormat: "გვერდები: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} - {pageCount} დან.",
@@ -10,7 +10,7 @@
             pageFirstText: "<<",
             pageLastText: ">>",
             loadMessage: "გთხოვთ დაიცადოთ...",
-            invalidMessage: "შეყვანილია არასწორი მონაცემები!"
+            invalIdMessage: "შეყვანილია არასწორი მონაცემები!"
         },
 
         loadIndicator: {
@@ -31,7 +31,7 @@
             }
         },
 
-        validators: {
+        valIdators: {
             required: { message: "ველი აუცილებელია შესავსებად." },
             rangeLength: { message: "შეყვანილი ჩანაწერის ზომა არ ექვემდებარება დიაპაზონს." },
             minLength: { message: "შეყვანილი ჩანაწერის ზომა საკმაოდ პატარა არის." },
@@ -43,4 +43,4 @@
         }
     };
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));

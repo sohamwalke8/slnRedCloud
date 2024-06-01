@@ -21,11 +21,11 @@
         ),
         weekdaysShort: 'Son_Maa_Din_Woe_Don_Vry_Sat'.split('_'),
         weekdaysMin: 'So_Ma_Di_Wo_Do_Vr_Sa'.split('_'),
-        meridiemParse: /vm|nm/i,
+        merIdiemParse: /vm|nm/i,
         isPM: function (input) {
             return /^nm$/i.test(input);
         },
-        meridiem: function (hours, minutes, isLower) {
+        merIdiem: function (hours, minutes, isLower) {
             if (hours < 12) {
                 return isLower ? 'vm' : 'VM';
             } else {

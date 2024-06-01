@@ -1,5 +1,5 @@
 /**
-Ion.RangeSlider, 2.3.1
+Ion.RangeSlIder, 2.3.1
 © Denis Ineshin, 2010 - 2019, IonDen.com
 Build date: 2019-12-19 16:51:02
 */
@@ -18,20 +18,20 @@ Build date: 2019-12-19 16:51:02
 .irs-line {
   position: relative;
   display: block;
-  overflow: hidden;
+  overflow: hIdden;
   outline: none !important;
 }
 .irs-bar {
   position: absolute;
   display: block;
   left: 0;
-  width: 0;
+  wIdth: 0;
 }
 .irs-shadow {
   position: absolute;
   display: none;
   left: 0;
-  width: 0;
+  wIdth: 0;
 }
 .irs-handle {
   position: absolute;
@@ -65,29 +65,29 @@ Build date: 2019-12-19 16:51:02
   cursor: default;
   white-space: nowrap;
 }
-.irs-grid {
+.irs-grId {
   position: absolute;
   display: none;
   bottom: 0;
   left: 0;
-  width: 100%;
+  wIdth: 100%;
   height: 20px;
 }
-.irs-with-grid .irs-grid {
+.irs-with-grId .irs-grId {
   display: block;
 }
-.irs-grid-pol {
+.irs-grId-pol {
   position: absolute;
   top: 0;
   left: 0;
-  width: 1px;
+  wIdth: 1px;
   height: 8px;
   background: #000;
 }
-.irs-grid-pol.small {
+.irs-grId-pol.small {
   height: 4px;
 }
-.irs-grid-text {
+.irs-grId-text {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -103,7 +103,7 @@ Build date: 2019-12-19 16:51:02
   display: block;
   top: 0;
   left: -1%;
-  width: 102%;
+  wIdth: 102%;
   height: 100%;
   cursor: default;
   background: rgba(0, 0, 0, 0);
@@ -117,28 +117,28 @@ Build date: 2019-12-19 16:51:02
 .irs-disabled {
   opacity: 0.4;
 }
-.irs-hidden-input {
+.irs-hIdden-input {
   position: absolute !important;
   display: block !important;
   top: 0 !important;
   left: 0 !important;
-  width: 0 !important;
+  wIdth: 0 !important;
   height: 0 !important;
   font-size: 0 !important;
   line-height: 0 !important;
   padding: 0 !important;
   margin: 0 !important;
-  overflow: hidden;
+  overflow: hIdden;
   outline: none !important;
   z-index: -9999 !important;
   background: none !important;
-  border-style: solid !important;
+  border-style: solId !important;
   border-color: transparent !important;
 }
 .irs--flat {
   height: 40px;
 }
-.irs--flat.irs-with-grid {
+.irs--flat.irs-with-grId {
   height: 60px;
 }
 .irs--flat .irs-line {
@@ -162,7 +162,7 @@ Build date: 2019-12-19 16:51:02
 }
 .irs--flat .irs-handle {
   top: 22px;
-  width: 16px;
+  wIdth: 16px;
   height: 18px;
   background-color: transparent;
 }
@@ -171,7 +171,7 @@ Build date: 2019-12-19 16:51:02
   display: block;
   top: 0;
   left: 50%;
-  width: 2px;
+  wIdth: 2px;
   height: 100%;
   margin-left: -1px;
   background-color: #da4453;
@@ -210,23 +210,23 @@ Build date: 2019-12-19 16:51:02
   content: "";
   bottom: -6px;
   left: 50%;
-  width: 0;
+  wIdth: 0;
   height: 0;
   margin-left: -3px;
-  overflow: hidden;
-  border: 3px solid transparent;
+  overflow: hIdden;
+  border: 3px solId transparent;
   border-top-color: #ed5565;
 }
-.irs--flat .irs-grid-pol {
+.irs--flat .irs-grId-pol {
   background-color: #e1e4e9;
 }
-.irs--flat .irs-grid-text {
+.irs--flat .irs-grId-text {
   color: #999;
 }
 .irs--big {
   height: 55px;
 }
-.irs--big.irs-with-grid {
+.irs--big.irs-with-grId {
   height: 70px;
 }
 .irs--big .irs-line {
@@ -234,14 +234,14 @@ Build date: 2019-12-19 16:51:02
   height: 12px;
   background-color: white;
   background: linear-gradient(to bottom, #ddd -50%, white 150%);
-  border: 1px solid #ccc;
+  border: 1px solId #ccc;
   border-radius: 12px;
 }
 .irs--big .irs-bar {
   top: 33px;
   height: 12px;
   background-color: #92bce0;
-  border: 1px solid #428bca;
+  border: 1px solId #428bca;
   background: linear-gradient(to bottom, #ffffff 0%, #428bca 30%, #b9d4ec 100%);
   box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.5);
 }
@@ -255,9 +255,9 @@ Build date: 2019-12-19 16:51:02
 }
 .irs--big .irs-handle {
   top: 25px;
-  width: 30px;
+  wIdth: 30px;
   height: 30px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solId rgba(0, 0, 0, 0.3);
   background-color: #cbcfd5;
   background: linear-gradient(to bottom, white 0%, #B4B9BE 30%, white 100%);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), inset 0 0 3px 1px white;
@@ -288,16 +288,16 @@ Build date: 2019-12-19 16:51:02
   background: linear-gradient(to bottom, #428bca 0%, #3071a9 100%);
   border-radius: 3px;
 }
-.irs--big .irs-grid-pol {
+.irs--big .irs-grId-pol {
   background-color: #428bca;
 }
-.irs--big .irs-grid-text {
+.irs--big .irs-grId-text {
   color: #428bca;
 }
 .irs--modern {
   height: 55px;
 }
-.irs--modern.irs-with-grid {
+.irs--modern.irs-with-grId {
   height: 55px;
 }
 .irs--modern .irs-line {
@@ -305,8 +305,8 @@ Build date: 2019-12-19 16:51:02
   height: 5px;
   background-color: #d1d6e0;
   background: linear-gradient(to bottom, #e0e4ea 0%, #d1d6e0 100%);
-  border: 1px solid #a3adc1;
-  border-bottom-width: 0;
+  border: 1px solId #a3adc1;
+  border-bottom-wIdth: 0;
   border-radius: 5px;
 }
 .irs--modern .irs-bar {
@@ -325,10 +325,10 @@ Build date: 2019-12-19 16:51:02
 }
 .irs--modern .irs-handle {
   top: 37px;
-  width: 12px;
+  wIdth: 12px;
   height: 13px;
-  border: 1px solid #a3adc1;
-  border-top-width: 0;
+  border: 1px solId #a3adc1;
+  border-top-wIdth: 0;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 0 0 3px 3px;
 }
@@ -337,9 +337,9 @@ Build date: 2019-12-19 16:51:02
   display: block;
   top: -4px;
   left: 1px;
-  width: 6px;
+  wIdth: 6px;
   height: 6px;
-  border: 1px solid #a3adc1;
+  border: 1px solId #a3adc1;
   background: white;
   transform: rotate(45deg);
 }
@@ -349,7 +349,7 @@ Build date: 2019-12-19 16:51:02
   box-sizing: border-box;
   top: 0;
   left: 0;
-  width: 10px;
+  wIdth: 10px;
   height: 12px;
   background: #e9e6e6;
   background: linear-gradient(to bottom, white 0%, #e9e6e6 100%);
@@ -361,10 +361,10 @@ Build date: 2019-12-19 16:51:02
   box-sizing: border-box;
   top: 3px;
   left: 3px;
-  width: 4px;
+  wIdth: 4px;
   height: 5px;
-  border-left: 1px solid #a3adc1;
-  border-right: 1px solid #a3adc1;
+  border-left: 1px solId #a3adc1;
+  border-right: 1px solId #a3adc1;
 }
 .irs--modern .irs-handle.state_hover,
 .irs--modern .irs-handle:hover {
@@ -410,20 +410,20 @@ Build date: 2019-12-19 16:51:02
   content: "";
   bottom: -6px;
   left: 50%;
-  width: 0;
+  wIdth: 0;
   height: 0;
   margin-left: -3px;
-  overflow: hidden;
-  border: 3px solid transparent;
+  overflow: hIdden;
+  border: 3px solId transparent;
   border-top-color: #20b426;
 }
-.irs--modern .irs-grid {
+.irs--modern .irs-grId {
   height: 25px;
 }
-.irs--modern .irs-grid-pol {
+.irs--modern .irs-grId-pol {
   background-color: #dedede;
 }
-.irs--modern .irs-grid-text {
+.irs--modern .irs-grId-text {
   color: silver;
   font-size: 13px;
 }
@@ -432,7 +432,7 @@ Build date: 2019-12-19 16:51:02
   font-size: 12px;
   line-height: 1;
 }
-.irs--sharp.irs-with-grid {
+.irs--sharp.irs-with-grId {
   height: 57px;
 }
 .irs--sharp .irs-line {
@@ -456,7 +456,7 @@ Build date: 2019-12-19 16:51:02
 }
 .irs--sharp .irs-handle {
   top: 25px;
-  width: 10px;
+  wIdth: 10px;
   height: 10px;
   background-color: #a804b2;
 }
@@ -465,9 +465,9 @@ Build date: 2019-12-19 16:51:02
   display: block;
   top: 100%;
   left: 0;
-  width: 0;
+  wIdth: 0;
   height: 0;
-  border: 5px solid transparent;
+  border: 5px solId transparent;
   border-top-color: #a804b2;
 }
 .irs--sharp .irs-handle.state_hover,
@@ -508,27 +508,27 @@ Build date: 2019-12-19 16:51:02
   content: "";
   bottom: -6px;
   left: 50%;
-  width: 0;
+  wIdth: 0;
   height: 0;
   margin-left: -3px;
-  overflow: hidden;
-  border: 3px solid transparent;
+  overflow: hIdden;
+  border: 3px solId transparent;
   border-top-color: #a804b2;
 }
-.irs--sharp .irs-grid {
+.irs--sharp .irs-grId {
   height: 25px;
 }
-.irs--sharp .irs-grid-pol {
+.irs--sharp .irs-grId-pol {
   background-color: #dedede;
 }
-.irs--sharp .irs-grid-text {
+.irs--sharp .irs-grId-text {
   color: silver;
   font-size: 13px;
 }
 .irs--round {
   height: 50px;
 }
-.irs--round.irs-with-grid {
+.irs--round.irs-with-grId {
   height: 65px;
 }
 .irs--round .irs-line {
@@ -552,9 +552,9 @@ Build date: 2019-12-19 16:51:02
 }
 .irs--round .irs-handle {
   top: 26px;
-  width: 24px;
+  wIdth: 24px;
   height: 24px;
-  border: 4px solid #006cfa;
+  border: 4px solId #006cfa;
   background-color: white;
   border-radius: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 255, 0.3);
@@ -592,27 +592,27 @@ Build date: 2019-12-19 16:51:02
   content: "";
   bottom: -6px;
   left: 50%;
-  width: 0;
+  wIdth: 0;
   height: 0;
   margin-left: -3px;
-  overflow: hidden;
-  border: 3px solid transparent;
+  overflow: hIdden;
+  border: 3px solId transparent;
   border-top-color: #006cfa;
 }
-.irs--round .irs-grid {
+.irs--round .irs-grId {
   height: 25px;
 }
-.irs--round .irs-grid-pol {
+.irs--round .irs-grId-pol {
   background-color: #dedede;
 }
-.irs--round .irs-grid-text {
+.irs--round .irs-grId-text {
   color: silver;
   font-size: 13px;
 }
 .irs--square {
   height: 50px;
 }
-.irs--square.irs-with-grid {
+.irs--square.irs-with-grId {
   height: 60px;
 }
 .irs--square .irs-line {
@@ -632,9 +632,9 @@ Build date: 2019-12-19 16:51:02
 }
 .irs--square .irs-handle {
   top: 25px;
-  width: 16px;
+  wIdth: 16px;
   height: 16px;
-  border: 3px solid black;
+  border: 3px solId black;
   background-color: white;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -663,13 +663,13 @@ Build date: 2019-12-19 16:51:02
   background-color: black;
   color: white;
 }
-.irs--square .irs-grid {
+.irs--square .irs-grId {
   height: 25px;
 }
-.irs--square .irs-grid-pol {
+.irs--square .irs-grId-pol {
   background-color: #dedede;
 }
-.irs--square .irs-grid-text {
+.irs--square .irs-grId-text {
   color: silver;
   font-size: 11px;
 }

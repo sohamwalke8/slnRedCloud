@@ -90,22 +90,22 @@
                 return symbolMap[match];
             });
         },
-        meridiemParse: /রাত|সকাল|দুপুর|বিকাল|রাত/,
-        meridiemHour: function (hour, meridiem) {
+        merIdiemParse: /রাত|সকাল|দুপুর|বিকাল|রাত/,
+        merIdiemHour: function (hour, merIdiem) {
             if (hour === 12) {
                 hour = 0;
             }
             if (
-                (meridiem === 'রাত' && hour >= 4) ||
-                (meridiem === 'দুপুর' && hour < 5) ||
-                meridiem === 'বিকাল'
+                (merIdiem === 'রাত' && hour >= 4) ||
+                (merIdiem === 'দুপুর' && hour < 5) ||
+                merIdiem === 'বিকাল'
             ) {
                 return hour + 12;
             } else {
                 return hour;
             }
         },
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'রাত';
             } else if (hour < 10) {

@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valIdate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -9,10 +9,10 @@
 }(function( $ ) {
 
 /*
- * Translated default messages for the jQuery validation plugin.
+ * Translated default messages for the jQuery valIdation plugin.
  * Locale: CS (Czech; čeština, český jazyk)
  */
-$.extend( $.validator.messages, {
+$.extend( $.valIdator.messages, {
 	required: "Tento údaj je povinný.",
 	remote: "Prosím, opravte tento údaj.",
 	email: "Prosím, zadejte platný e-mail.",
@@ -24,13 +24,13 @@ $.extend( $.validator.messages, {
 	creditcard: "Prosím, zadejte číslo kreditní karty.",
 	equalTo: "Prosím, zadejte znovu stejnou hodnotu.",
 	extension: "Prosím, zadejte soubor se správnou příponou.",
-	maxlength: $.validator.format( "Prosím, zadejte nejvíce {0} znaků." ),
-	minlength: $.validator.format( "Prosím, zadejte nejméně {0} znaků." ),
-	rangelength: $.validator.format( "Prosím, zadejte od {0} do {1} znaků." ),
-	range: $.validator.format( "Prosím, zadejte hodnotu od {0} do {1}." ),
-	max: $.validator.format( "Prosím, zadejte hodnotu menší nebo rovnu {0}." ),
-	min: $.validator.format( "Prosím, zadejte hodnotu větší nebo rovnu {0}." ),
-	step: $.validator.format( "Musí být násobkem čísla {0}." )
+	maxlength: $.valIdator.format( "Prosím, zadejte nejvíce {0} znaků." ),
+	minlength: $.valIdator.format( "Prosím, zadejte nejméně {0} znaků." ),
+	rangelength: $.valIdator.format( "Prosím, zadejte od {0} do {1} znaků." ),
+	range: $.valIdator.format( "Prosím, zadejte hodnotu od {0} do {1}." ),
+	max: $.valIdator.format( "Prosím, zadejte hodnotu menší nebo rovnu {0}." ),
+	min: $.valIdator.format( "Prosím, zadejte hodnotu větší nebo rovnu {0}." ),
+	step: $.valIdator.format( "Musí být násobkem čísla {0}." )
 } );
 return $;
 }));

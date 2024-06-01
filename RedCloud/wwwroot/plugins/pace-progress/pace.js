@@ -45,8 +45,8 @@
     requestAnimationFrame = function(fn) {
       return setTimeout(fn, 50);
     };
-    cancelAnimationFrame = function(id) {
-      return clearTimeout(id);
+    cancelAnimationFrame = function(Id) {
+      return clearTimeout(Id);
     };
   }
 
@@ -910,7 +910,7 @@
         return setTimeout(function() {
           bar.finish();
           Pace.running = false;
-          return Pace.trigger('hide');
+          return Pace.trigger('hIde');
         }, Math.max(options.ghostTime, Math.max(options.minTime - (now() - start), 0)));
       } else {
         return enqueueNextFrame();

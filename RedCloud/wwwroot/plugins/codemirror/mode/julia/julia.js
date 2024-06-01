@@ -36,7 +36,7 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
     "\\b(in|isa)\\b(?!\.?\\()"
   ], "");
   var delimiters = parserConf.delimiters || /^[;,()[\]{}]/;
-  var identifiers = parserConf.identifiers ||
+  var Identifiers = parserConf.Identifiers ||
         /^[_A-Za-z\u00A1-\u2217\u2219-\uFFFF][\w\u00A1-\u2217\u2219-\uFFFF]*!*/;
 
   var chars = wordRegexp([octChar, hexChar, sChar, uChar], "'");
@@ -240,7 +240,7 @@ CodeMirror.defineMode("julia", function(config, parserConf) {
                        state.lastToken == "macro" || state.lastToken == "type" ||
                        state.lastToken == "struct" || state.lastToken == "immutable";
 
-    if (stream.match(identifiers)) {
+    if (stream.match(Identifiers)) {
       if (isDefinition) {
         if (stream.peek() === '.') {
           state.isDefinition = true;

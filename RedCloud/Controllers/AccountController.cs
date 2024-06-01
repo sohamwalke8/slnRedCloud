@@ -39,14 +39,14 @@ namespace RedCloud.Controllers
 
                 //var data = loginData;
 
-                // Here you would call your API to validate the credentials
+                // Here you would call your API to valIdate the credentials
                 //var result =await _accountService.Login(loginData);
 
                 //correct code below 
                 var result = await _accountService.Login(model);
                 if (!result.Succeeded)
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "InvalId login attempt.");
                     return View(model);
 
                 }
@@ -68,7 +68,7 @@ namespace RedCloud.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "InvalId login attempt.");
                 }
             }
             return View(model);
@@ -76,7 +76,7 @@ namespace RedCloud.Controllers
 
         public IActionResult SetRole(string roleName)
         {
-            // Set the session variable to the provided role name
+            // Set the session variable to the provIded role name
             HttpContext.Session.SetString("Role", roleName);
 
             ViewBag.role = HttpContext.Session.GetString("Role");

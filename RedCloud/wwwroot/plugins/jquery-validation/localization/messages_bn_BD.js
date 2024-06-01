@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valIdate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -9,10 +9,10 @@
 }(function( $ ) {
 
 /*
- * Translated default messages for the jQuery validation plugin.
+ * Translated default messages for the jQuery valIdation plugin.
  * Locale: bn_BD (Bengali, Bangladesh)
  */
-$.extend( $.validator.messages, {
+$.extend( $.valIdator.messages, {
 	required: "এই তথ্যটি আবশ্যক।",
 	remote: "এই তথ্যটি ঠিক করুন।",
 	email: "অনুগ্রহ করে একটি সঠিক মেইল ঠিকানা লিখুন।",
@@ -24,12 +24,12 @@ $.extend( $.validator.messages, {
 	creditcard: "অনুগ্রহ করে একটি ক্রেডিট কার্ডের সঠিক নম্বর লিখুন।",
 	equalTo: "একই মান আবার লিখুন।",
 	extension: "সঠিক ধরনের ফাইল আপলোড করুন।",
-	maxlength: $.validator.format( "{0}টির বেশি অক্ষর লেখা যাবে না।" ),
-	minlength: $.validator.format( "{0}টির কম অক্ষর লেখা যাবে না।" ),
-	rangelength: $.validator.format( "{0} থেকে {1} টি অক্ষর সম্বলিত মান লিখুন।" ),
-	range: $.validator.format( "{0} থেকে {1} এর মধ্যে একটি মান ব্যবহার করুন।" ),
-	max: $.validator.format( "অনুগ্রহ করে {0} বা তার চাইতে কম মান ব্যবহার করুন।" ),
-	min: $.validator.format( "অনুগ্রহ করে {0} বা তার চাইতে বেশি মান ব্যবহার করুন।" )
+	maxlength: $.valIdator.format( "{0}টির বেশি অক্ষর লেখা যাবে না।" ),
+	minlength: $.valIdator.format( "{0}টির কম অক্ষর লেখা যাবে না।" ),
+	rangelength: $.valIdator.format( "{0} থেকে {1} টি অক্ষর সম্বলিত মান লিখুন।" ),
+	range: $.valIdator.format( "{0} থেকে {1} এর মধ্যে একটি মান ব্যবহার করুন।" ),
+	max: $.valIdator.format( "অনুগ্রহ করে {0} বা তার চাইতে কম মান ব্যবহার করুন।" ),
+	min: $.valIdator.format( "অনুগ্রহ করে {0} বা তার চাইতে বেশি মান ব্যবহার করুন।" )
 } );
 return $;
 }));

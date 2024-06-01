@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------
- * AdminLTE CardWidget.js
+ * AdminLTE CardWIdget.js
  * License MIT
  * --------------------------------------------
  */
@@ -12,8 +12,8 @@ import $ from 'jquery'
  * ====================================================
  */
 
-const NAME = 'CardWidget'
-const DATA_KEY = 'lte.cardwidget'
+const NAME = 'CardWIdget'
+const DATA_KEY = 'lte.cardwIdget'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
@@ -30,9 +30,9 @@ const CLASS_NAME_EXPANDING = 'expanding-card'
 const CLASS_NAME_WAS_COLLAPSED = 'was-collapsed'
 const CLASS_NAME_MAXIMIZED = 'maximized-card'
 
-const SELECTOR_DATA_REMOVE = '[data-card-widget="remove"]'
-const SELECTOR_DATA_COLLAPSE = '[data-card-widget="collapse"]'
-const SELECTOR_DATA_MAXIMIZE = '[data-card-widget="maximize"]'
+const SELECTOR_DATA_REMOVE = '[data-card-wIdget="remove"]'
+const SELECTOR_DATA_COLLAPSE = '[data-card-wIdget="collapse"]'
+const SELECTOR_DATA_MAXIMIZE = '[data-card-wIdget="maximize"]'
 const SELECTOR_CARD = `.${CLASS_NAME_CARD}`
 const SELECTOR_CARD_HEADER = '.card-header'
 const SELECTOR_CARD_BODY = '.card-body'
@@ -49,7 +49,7 @@ const Default = {
   minimizeIcon: 'fa-compress'
 }
 
-class CardWidget {
+class CardWIdget {
   constructor(element, settings) {
     this._element = element
     this._parent = element.parents(SELECTOR_CARD).first()
@@ -63,7 +63,7 @@ class CardWidget {
 
   collapse() {
     this._parent.addClass(CLASS_NAME_COLLAPSING).children(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`)
-      .slideUp(this._settings.animationSpeed, () => {
+      .slIdeUp(this._settings.animationSpeed, () => {
         this._parent.addClass(CLASS_NAME_COLLAPSED).removeClass(CLASS_NAME_COLLAPSING)
       })
 
@@ -76,7 +76,7 @@ class CardWidget {
 
   expand() {
     this._parent.addClass(CLASS_NAME_EXPANDING).children(`${SELECTOR_CARD_BODY}, ${SELECTOR_CARD_FOOTER}`)
-      .slideDown(this._settings.animationSpeed, () => {
+      .slIdeDown(this._settings.animationSpeed, () => {
         this._parent.removeClass(CLASS_NAME_COLLAPSED).removeClass(CLASS_NAME_EXPANDING)
       })
 
@@ -88,7 +88,7 @@ class CardWidget {
   }
 
   remove() {
-    this._parent.slideUp()
+    this._parent.slIdeUp()
     this._element.trigger($.Event(EVENT_REMOVED), this._parent)
   }
 
@@ -107,7 +107,7 @@ class CardWidget {
       .removeClass(this._settings.maximizeIcon)
     this._parent.css({
       height: this._parent.height(),
-      width: this._parent.width(),
+      wIdth: this._parent.wIdth(),
       transition: 'all .15s'
     }).delay(150).queue(function () {
       const $element = $(this)
@@ -128,7 +128,7 @@ class CardWidget {
     this._parent.find(`${this._settings.maximizeTrigger} .${this._settings.minimizeIcon}`)
       .addClass(this._settings.maximizeIcon)
       .removeClass(this._settings.minimizeIcon)
-    this._parent.css('cssText', `height: ${this._parent[0].style.height} !important; width: ${this._parent[0].style.width} !important; transition: all .15s;`
+    this._parent.css('cssText', `height: ${this._parent[0].style.height} !important; wIdth: ${this._parent[0].style.wIdth} !important; transition: all .15s;`
     ).delay(10).queue(function () {
       const $element = $(this)
 
@@ -136,7 +136,7 @@ class CardWidget {
       $('html').removeClass(CLASS_NAME_MAXIMIZED)
       $element.css({
         height: 'inherit',
-        width: 'inherit'
+        wIdth: 'inherit'
       })
       if ($element.hasClass(CLASS_NAME_WAS_COLLAPSED)) {
         $element.removeClass(CLASS_NAME_WAS_COLLAPSED)
@@ -182,7 +182,7 @@ class CardWidget {
     const _options = $.extend({}, Default, $(this).data())
 
     if (!data) {
-      data = new CardWidget($(this), _options)
+      data = new CardWIdget($(this), _options)
       $(this).data(DATA_KEY, typeof config === 'string' ? data : config)
     }
 
@@ -204,7 +204,7 @@ $(document).on('click', SELECTOR_DATA_COLLAPSE, function (event) {
     event.preventDefault()
   }
 
-  CardWidget._jQueryInterface.call($(this), 'toggle')
+  CardWIdget._jQueryInterface.call($(this), 'toggle')
 })
 
 $(document).on('click', SELECTOR_DATA_REMOVE, function (event) {
@@ -212,7 +212,7 @@ $(document).on('click', SELECTOR_DATA_REMOVE, function (event) {
     event.preventDefault()
   }
 
-  CardWidget._jQueryInterface.call($(this), 'remove')
+  CardWIdget._jQueryInterface.call($(this), 'remove')
 })
 
 $(document).on('click', SELECTOR_DATA_MAXIMIZE, function (event) {
@@ -220,7 +220,7 @@ $(document).on('click', SELECTOR_DATA_MAXIMIZE, function (event) {
     event.preventDefault()
   }
 
-  CardWidget._jQueryInterface.call($(this), 'toggleMaximize')
+  CardWIdget._jQueryInterface.call($(this), 'toggleMaximize')
 })
 
 /**
@@ -228,11 +228,11 @@ $(document).on('click', SELECTOR_DATA_MAXIMIZE, function (event) {
  * ====================================================
  */
 
-$.fn[NAME] = CardWidget._jQueryInterface
-$.fn[NAME].Constructor = CardWidget
+$.fn[NAME] = CardWIdget._jQueryInterface
+$.fn[NAME].Constructor = CardWIdget
 $.fn[NAME].noConflict = function () {
   $.fn[NAME] = JQUERY_NO_CONFLICT
-  return CardWidget._jQueryInterface
+  return CardWIdget._jQueryInterface
 }
 
-export default CardWidget
+export default CardWIdget

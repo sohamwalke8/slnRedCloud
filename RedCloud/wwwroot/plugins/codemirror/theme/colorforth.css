@@ -1,9 +1,9 @@
 .cm-s-colorforth.CodeMirror { background: #000000; color: #f8f8f8; }
-.cm-s-colorforth .CodeMirror-gutters { background: #0a001f; border-right: 1px solid #aaa; }
+.cm-s-colorforth .CodeMirror-gutters { background: #0a001f; border-right: 1px solId #aaa; }
 .cm-s-colorforth .CodeMirror-guttermarker { color: #FFBD40; }
 .cm-s-colorforth .CodeMirror-guttermarker-subtle { color: #78846f; }
 .cm-s-colorforth .CodeMirror-linenumber { color: #bababa; }
-.cm-s-colorforth .CodeMirror-cursor { border-left: 1px solid white; }
+.cm-s-colorforth .CodeMirror-cursor { border-left: 1px solId white; }
 
 .cm-s-colorforth span.cm-comment     { color: #ededed; }
 .cm-s-colorforth span.cm-def         { color: #ff1c1c; font-weight:bold; }

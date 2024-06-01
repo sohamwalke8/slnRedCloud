@@ -1,7 +1,7 @@
 //! moment.js locale configuration
 //! locale : Burmese [my]
 //! author : Squar team, mysquar.com
-//! author : David Rossellat : https://github.com/gholadr
+//! author : DavId Rossellat : https://github.com/gholadr
 //! author : Tin Aung Lin : https://github.com/thanyawzinmin
 
 ;(function (global, factory) {

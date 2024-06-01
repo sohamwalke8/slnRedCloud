@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MvcApiCallingService.Models.Responses;
 using Newtonsoft.Json;
@@ -22,6 +23,17 @@ namespace MvcApiCallingService.Helpers.ApiHelper
             _httpClient = new HttpClient() { BaseAddress = new Uri(_configuration.GetSection("BaseUrl").Value) };
         }
 
+
+
+        public async Task<Response<List<T>>> GetListByIdAsync(string apiUrl)
+        {
+            HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
+            if (!responseMessage.IsSuccessStatusCode)
+                await RaiseException(responseMessage);
+            return JsonConvert.DeserializeObject<Response<List<T>>>(await responseMessage.Content.ReadAsStringAsync());
+        }
+
+
         public async Task<PagedResponse<IEnumerable<T>>> GetPagedAsync(string apiUrl)
         {
             HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
@@ -43,26 +55,29 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         public async Task<Response<T>> GetByIdAsync(string apiUrl)
         {
             HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
-            return await ValidateResponse(responseMessage);
+            return await ValIdateResponse(responseMessage);
         }
 
-        public async Task<Response<T>> PostAsync<TEntity>(string apiUrl, TEntity entity)
+        public async Task<Response<int>> PostAsync<TEntity>(string apiUrl, TEntity entity)
         {
+            
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage responseMessage = await _httpClient.PostAsync(apiUrl, stringContent);
-            return await ValidateResponse(responseMessage);
+            if (!responseMessage.IsSuccessStatusCode)
+                await RaiseException(responseMessage);
+            return JsonConvert.DeserializeObject<Response<int>>(await responseMessage.Content.ReadAsStringAsync());
         }
         // For Account
 
         public async Task<Response<T>> PostAuthAsync<TEntity>(string apiUrl, TEntity entity)
         {
-            apiUrl = _httpClient.BaseAddress+ apiUrl;
+           
             //Change by Akash
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
             try
             {
 
-                //var BaseUrl = "https://localhost:7253/api/Account/Login";
+                
                 HttpResponseMessage responseMessage = await _httpClient.PostAsync(apiUrl, stringContent);
                 var result = responseMessage.Content.ReadAsStringAsync().Result;
                 var res = JsonConvert.DeserializeObject<Response<T>>(result);
@@ -72,7 +87,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
             catch (Exception ex)
             {
                 Console.Error.WriteLine(ex.Message);
-                return new Response<T>(" Invalid login credentials ");
+                return new Response<T>(" InvalId login credentials ");
             }
 
             return default;
@@ -109,7 +124,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         {
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
             HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
-            return await ValidateResponse(responseMessage);
+            return await ValIdateResponse(responseMessage);
         }
 
         public async Task<string> DeleteAsync(string apiUrl)
@@ -128,7 +143,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
                 _httpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
         }
 
-        async Task<Response<T>> ValidateResponse(HttpResponseMessage response)
+        async Task<Response<T>> ValIdateResponse(HttpResponseMessage response)
         {
             if (!response.IsSuccessStatusCode)
                 await RaiseException(response);
@@ -142,6 +157,12 @@ namespace MvcApiCallingService.Helpers.ApiHelper
             throw new HttpRequestException($"{response.StatusCode}:{content}");
         }
 
-        
+        //disha
+        public async Task<Response<T>> PutAsyncc<TEntity>(string apiUrl, TEntity entity)
+        {
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
+            HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
+            return await ValIdateResponse(responseMessage);
+        }
     }
 }

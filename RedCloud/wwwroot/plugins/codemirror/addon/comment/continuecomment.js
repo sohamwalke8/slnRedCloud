@@ -27,7 +27,7 @@
         line = cm.getLine(pos.line);
         var end = line.lastIndexOf(mode.blockCommentEnd, pos.ch - mode.blockCommentEnd.length);
         // 1. if this block comment ended
-        // 2. if this is actually inside a line comment
+        // 2. if this is actually insIde a line comment
         if (end != -1 && end == pos.ch - mode.blockCommentEnd.length ||
             lineCmt && (found = line.lastIndexOf(lineCmt, pos.ch - 1)) > -1 &&
             /\bcomment\b/.test(cm.getTokenTypeAt({line: pos.line, ch: found + 1}))) {

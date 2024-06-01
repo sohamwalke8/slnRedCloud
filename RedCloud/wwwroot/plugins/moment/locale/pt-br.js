@@ -38,7 +38,7 @@
             lastWeek: function () {
                 return this.day() === 0 || this.day() === 6
                     ? '[Último] dddd [às] LT' // Saturday + Sunday
-                    : '[Última] dddd [às] LT'; // Monday - Friday
+                    : '[Última] dddd [às] LT'; // Monday - FrIday
             },
             sameElse: 'L',
         },
@@ -60,7 +60,7 @@
         },
         dayOfMonthOrdinalParse: /\d{1,2}º/,
         ordinal: '%dº',
-        invalidDate: 'Data inválida',
+        invalIdDate: 'Data inválIda',
     });
 
     return ptBr;

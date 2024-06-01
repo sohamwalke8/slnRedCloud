@@ -53,9 +53,9 @@ var DataTable = $.fn.dataTable;
  */
 var ZeroClipboard_TableTools = {
 	version: "1.0.4-TableTools2",
-	clients: {}, // registered upload clients on page, indexed by id
+	clients: {}, // registered upload clients on page, indexed by Id
 	moviePath: '', // URL to movie
-	nextId: 1, // ID of next movie
+	nextId: 1, // Id of next movie
 
 	$: function(thingy) {
 		// simple DOM lookup utility function
@@ -64,7 +64,7 @@ var ZeroClipboard_TableTools = {
 		}
 		if (!thingy.addClass) {
 			// extend element with a few useful methods
-			thingy.hide = function() { this.style.display = 'none'; };
+			thingy.hIde = function() { this.style.display = 'none'; };
 			thingy.show = function() { this.style.display = ''; };
 			thingy.addClass = function(name) { this.removeClass(name); this.className += ' ' + name; };
 			thingy.removeClass = function(name) {
@@ -82,9 +82,9 @@ var ZeroClipboard_TableTools = {
 		this.moviePath = path;
 	},
 
-	dispatch: function(id, eventName, args) {
+	dispatch: function(Id, eventName, args) {
 		// receive event from flash movie, send to client
-		var client = this.clients[id];
+		var client = this.clients[Id];
 		if (client) {
 			client.receiveEvent(eventName, args);
 		}
@@ -94,9 +94,9 @@ var ZeroClipboard_TableTools = {
 		console.log( 'Flash: '+str );
 	},
 
-	register: function(id, client) {
+	register: function(Id, client) {
 		// register new client to receive events
-		this.clients[id] = client;
+		this.clients[Id] = client;
 	},
 
 	getDOMObjectPosition: function(obj) {
@@ -104,12 +104,12 @@ var ZeroClipboard_TableTools = {
 		var info = {
 			left: 0,
 			top: 0,
-			width: obj.width ? obj.width : obj.offsetWidth,
+			wIdth: obj.wIdth ? obj.wIdth : obj.offsetWIdth,
 			height: obj.height ? obj.height : obj.offsetHeight
 		};
 
-		if ( obj.style.width !== "" ) {
-			info.width = obj.style.width.replace("px","");
+		if ( obj.style.wIdth !== "" ) {
+			info.wIdth = obj.style.wIdth.replace("px","");
 		}
 
 		if ( obj.style.height !== "" ) {
@@ -129,12 +129,12 @@ var ZeroClipboard_TableTools = {
 		// constructor for new simple upload client
 		this.handlers = {};
 
-		// unique ID
-		this.id = ZeroClipboard_TableTools.nextId++;
-		this.movieId = 'ZeroClipboard_TableToolsMovie_' + this.id;
+		// unique Id
+		this.Id = ZeroClipboard_TableTools.nextId++;
+		this.movieId = 'ZeroClipboard_TableToolsMovie_' + this.Id;
 
 		// register client with singleton to receive flash events
-		ZeroClipboard_TableTools.register(this.id, this);
+		ZeroClipboard_TableTools.register(this.Id, this);
 
 		// create movie
 		if (elem) {
@@ -145,7 +145,7 @@ var ZeroClipboard_TableTools = {
 
 ZeroClipboard_TableTools.Client.prototype = {
 
-	id: 0, // unique ID for us
+	Id: 0, // unique Id for us
 	ready: false, // whether movie is ready to receive events or not
 	movie: null, // reference to movie object
 	clipText: '', // text to copy to clipboard
@@ -159,7 +159,7 @@ ZeroClipboard_TableTools.Client.prototype = {
 
 	glue: function(elem, title) {
 		// glue to DOM element
-		// elem can be ID or actual DOM element object
+		// elem can be Id or actual DOM element object
 		this.domElement = ZeroClipboard_TableTools.$(elem);
 
 		// float just above object, or zIndex 99 if dom element isn't set
@@ -177,21 +177,21 @@ ZeroClipboard_TableTools.Client.prototype = {
 		style.position = 'absolute';
 		style.left = '0px';
 		style.top = '0px';
-		style.width = (box.width) + 'px';
+		style.wIdth = (box.wIdth) + 'px';
 		style.height = box.height + 'px';
 		style.zIndex = zIndex;
 
 		if ( typeof title != "undefined" && title !== "" ) {
 			this.div.title = title;
 		}
-		if ( box.width !== 0 && box.height !== 0 ) {
+		if ( box.wIdth !== 0 && box.height !== 0 ) {
 			this.sized = true;
 		}
 
 		// style.backgroundColor = '#f00'; // debug
 		if ( this.domElement ) {
 			this.domElement.appendChild(this.div);
-			this.div.innerHTML = this.getHTML( box.width, box.height ).replace(/&/g, '&amp;');
+			this.div.innerHTML = this.getHTML( box.wIdth, box.height ).replace(/&/g, '&amp;');
 		}
 	},
 
@@ -202,48 +202,48 @@ ZeroClipboard_TableTools.Client.prototype = {
 		style.position = 'absolute';
 		//style.left = (this.domElement.offsetLeft)+'px';
 		//style.top = this.domElement.offsetTop+'px';
-		style.width = box.width + 'px';
+		style.wIdth = box.wIdth + 'px';
 		style.height = box.height + 'px';
 
-		if ( box.width !== 0 && box.height !== 0 ) {
+		if ( box.wIdth !== 0 && box.height !== 0 ) {
 			this.sized = true;
 		} else {
 			return;
 		}
 
 		var flash = this.div.childNodes[0];
-		flash.width = box.width;
+		flash.wIdth = box.wIdth;
 		flash.height = box.height;
 	},
 
-	getHTML: function(width, height) {
+	getHTML: function(wIdth, height) {
 		// return HTML for movie
 		var html = '';
-		var flashvars = 'id=' + this.id +
-			'&width=' + width +
+		var flashvars = 'Id=' + this.Id +
+			'&wIdth=' + wIdth +
 			'&height=' + height;
 
 		if (navigator.userAgent.match(/MSIE/)) {
 			// IE gets an OBJECT tag
 			var protocol = location.href.match(/^https/i) ? 'https://' : 'http://';
-			html += '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="'+protocol+'download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0" width="'+width+'" height="'+height+'" id="'+this.movieId+'" align="middle"><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="false" /><param name="movie" value="'+ZeroClipboard_TableTools.moviePath+'" /><param name="loop" value="false" /><param name="menu" value="false" /><param name="quality" value="best" /><param name="bgcolor" value="#ffffff" /><param name="flashvars" value="'+flashvars+'"/><param name="wmode" value="transparent"/></object>';
+			html += '<object classId="clsId:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="'+protocol+'download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0" wIdth="'+wIdth+'" height="'+height+'" Id="'+this.movieId+'" align="mIddle"><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="false" /><param name="movie" value="'+ZeroClipboard_TableTools.moviePath+'" /><param name="loop" value="false" /><param name="menu" value="false" /><param name="quality" value="best" /><param name="bgcolor" value="#ffffff" /><param name="flashvars" value="'+flashvars+'"/><param name="wmode" value="transparent"/></object>';
 		}
 		else {
 			// all other browsers get an EMBED tag
-			html += '<embed id="'+this.movieId+'" src="'+ZeroClipboard_TableTools.moviePath+'" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="'+width+'" height="'+height+'" name="'+this.movieId+'" align="middle" allowScriptAccess="always" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="'+flashvars+'" wmode="transparent" />';
+			html += '<embed Id="'+this.movieId+'" src="'+ZeroClipboard_TableTools.moviePath+'" loop="false" menu="false" quality="best" bgcolor="#ffffff" wIdth="'+wIdth+'" height="'+height+'" name="'+this.movieId+'" align="mIddle" allowScriptAccess="always" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="'+flashvars+'" wmode="transparent" />';
 		}
 		return html;
 	},
 
-	hide: function() {
-		// temporarily hide floater offscreen
+	hIde: function() {
+		// temporarily hIde floater offscreen
 		if (this.div) {
 			this.div.style.left = '-2000px';
 		}
 	},
 
 	show: function() {
-		// show ourselves after a call to hide()
+		// show ourselves after a call to hIde()
 		this.reposition();
 	},
 
@@ -257,9 +257,9 @@ ZeroClipboard_TableTools.Client.prototype = {
 			this.domElement = null;
 			this.div = null;
 
-			$.each( ZeroClipboard_TableTools.clients, function ( id, client ) {
+			$.each( ZeroClipboard_TableTools.clients, function ( Id, client ) {
 				if ( client === that ) {
-					delete ZeroClipboard_TableTools.clients[ id ];
+					delete ZeroClipboard_TableTools.clients[ Id ];
 				}
 			} );
 		}
@@ -271,7 +271,7 @@ ZeroClipboard_TableTools.Client.prototype = {
 		if (elem) {
 			this.domElement = ZeroClipboard_TableTools.$(elem);
 			if (!this.domElement) {
-				this.hide();
+				this.hIde();
 			}
 		}
 
@@ -418,8 +418,8 @@ ZeroClipboard_TableTools.Client.prototype = {
 		} // switch eventName
 
 		if (this.handlers[eventName]) {
-			for (var idx = 0, len = this.handlers[eventName].length; idx < len; idx++) {
-				var func = this.handlers[eventName][idx];
+			for (var Idx = 0, len = this.handlers[eventName].length; Idx < len; Idx++) {
+				var func = this.handlers[eventName][Idx];
 
 				if (typeof(func) == 'function') {
 					// actual function reference
@@ -479,7 +479,7 @@ window.ZeroClipboard_TableTools = ZeroClipboard_TableTools;
  */
 var _glue = function ( flash, node )
 {
-	var id = node.attr('id');
+	var Id = node.attr('Id');
 
 	if ( node.parents('html').length ) {
 		flash.glue( node[0], '' );
@@ -556,7 +556,7 @@ var _title = function ( config )
 
 /**
  * Set the flash text. This has to be broken up into chunks as the Javascript /
- * Flash bridge has a size limit. There is no indication in the Flash
+ * Flash brIdge has a size limit. There is no indication in the Flash
  * documentation what this is, and it probably depends upon the browser.
  * Experimentation shows that the point is around 50k when data starts to get
  * lost, so an 8K limit used here is safe.
@@ -738,12 +738,12 @@ function _createNode( doc, nodeName, opts ){
 }
 
 /**
- * Get the width for an Excel column based on the contents of that column
+ * Get the wIdth for an Excel column based on the contents of that column
  * @param  {object} data Data for export
  * @param  {int}    col  Column index
- * @return {int}         Column width
+ * @return {int}         Column wIdth
  */
-function _excelColWidth( data, col ) {
+function _excelColWIdth( data, col ) {
 	var max = data.header[col].length;
 	var len, lineSplit, str;
 
@@ -757,7 +757,7 @@ function _excelColWidth( data, col ) {
 			point.toString() :
 			'';
 
-		// If there is a newline character, workout the width of the column
+		// If there is a newline character, workout the wIdth of the column
 		// based on the longest line in the string
 		if ( str.indexOf('\n') !== -1 ) {
 			lineSplit = str.split('\n');
@@ -775,7 +775,7 @@ function _excelColWidth( data, col ) {
 			max = len;
 		}
 
-		// Max width rather than having potentially massive column widths
+		// Max wIdth rather than having potentially massive column wIdths
 		if ( max > 40 ) {
 			return 52; // 40 * 1.3
 		}
@@ -783,7 +783,7 @@ function _excelColWidth( data, col ) {
 
 	max *= 1.3;
 
-	// And a min width
+	// And a min wIdth
 	return max > 6 ? max : 6;
 }
 
@@ -892,9 +892,9 @@ var excelStrings = {
 			'<Default Extension="xml" ContentType="application/xml" />'+
 			'<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml" />'+
 			'<Default Extension="jpeg" ContentType="image/jpeg" />'+
-			'<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml" />'+
-			'<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml" />'+
-			'<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml" />'+
+			'<OverrIde PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml" />'+
+			'<OverrIde PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml" />'+
+			'<OverrIde PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml" />'+
 		'</Types>',
 
 	"xl/workbook.xml":
@@ -903,10 +903,10 @@ var excelStrings = {
 			'<fileVersion appName="xl" lastEdited="5" lowestEdited="5" rupBuild="24816"/>'+
 			'<workbookPr showInkAnnotation="0" autoCompressPictures="0"/>'+
 			'<bookViews>'+
-				'<workbookView xWindow="0" yWindow="0" windowWidth="25600" windowHeight="19020" tabRatio="500"/>'+
+				'<workbookView xWindow="0" yWindow="0" windowWIdth="25600" windowHeight="19020" tabRatio="500"/>'+
 			'</bookViews>'+
 			'<sheets>'+
-				'<sheet name="" sheetId="1" r:id="rId1"/>'+
+				'<sheet name="" sheetId="1" r:Id="rId1"/>'+
 			'</sheets>'+
 		'</workbook>',
 
@@ -959,25 +959,25 @@ var excelStrings = {
 				'</fill>'+
 				'<fill/>'+ // Excel appears to use this as a dotted background regardless of values
 				'<fill>'+
-					'<patternFill patternType="solid">'+
+					'<patternFill patternType="solId">'+
 						'<fgColor rgb="FFD9D9D9" />'+
 						'<bgColor indexed="64" />'+
 					'</patternFill>'+
 				'</fill>'+
 				'<fill>'+
-					'<patternFill patternType="solid">'+
+					'<patternFill patternType="solId">'+
 						'<fgColor rgb="FFD99795" />'+
 						'<bgColor indexed="64" />'+
 					'</patternFill>'+
 				'</fill>'+
 				'<fill>'+
-					'<patternFill patternType="solid">'+
+					'<patternFill patternType="solId">'+
 						'<fgColor rgb="ffc6efce" />'+
 						'<bgColor indexed="64" />'+
 					'</patternFill>'+
 				'</fill>'+
 				'<fill>'+
-					'<patternFill patternType="solid">'+
+					'<patternFill patternType="solId">'+
 						'<fgColor rgb="ffc6cfef" />'+
 						'<bgColor indexed="64" />'+
 					'</patternFill>'+
@@ -1123,7 +1123,7 @@ var _excelSpecials = [
 DataTable.Buttons.swfPath = '//cdn.datatables.net/buttons/1.2.4/swf/flashExport.swf';
 
 // Method to allow Flash buttons to be resized when made visible - as they are
-// of zero height and width if initialised hidden
+// of zero height and wIdth if initialised hIdden
 DataTable.Api.register( 'buttons.resize()', function () {
 	$.each( ZeroClipboard_TableTools.clients, function ( i, client ) {
 		if ( client.domElement !== undefined && client.domElement.parentNode ) {
@@ -1146,7 +1146,7 @@ DataTable.ext.buttons.copyFlash = $.extend( {}, flashButton, {
 	},
 
 	action: function ( e, dt, button, config ) {
-		// Check that the trigger did actually occur due to a Flash activation
+		// Check that the trigger dId actually occur due to a Flash activation
 		if ( ! config._fromFlash ) {
 			return;
 		}
@@ -1259,7 +1259,7 @@ DataTable.ext.buttons.excelFlash = $.extend( {}, flashButton, {
 				for ( var j=0, jen=_excelSpecials.length ; j<jen ; j++ ) {
 					var special = _excelSpecials[j];
 
-					// TODO Need to provide the ability for the specials to say
+					// TODO Need to provIde the ability for the specials to say
 					// if they are returning a string, since at the moment it is
 					// assumed to be a number
 					if ( row[i].match && ! row[i].match(/^0\d+/) && row[i].match( special.match ) ) {
@@ -1352,7 +1352,7 @@ DataTable.ext.buttons.excelFlash = $.extend( {}, flashButton, {
 			$('row:last c', rels).attr( 's', '2' ); // bold
 		}
 
-		// Set column widths
+		// Set column wIdths
 		var cols = _createNode( rels, 'cols' );
 		$('worksheet', rels).prepend( cols );
 
@@ -1361,8 +1361,8 @@ DataTable.ext.buttons.excelFlash = $.extend( {}, flashButton, {
 				attr: {
 					min: i+1,
 					max: i+1,
-					width: _excelColWidth( data, i ),
-					customWidth: 1
+					wIdth: _excelColWIdth( data, i ),
+					customWIdth: 1
 				}
 			} ) );
 		}
@@ -1401,11 +1401,11 @@ DataTable.ext.buttons.pdfFlash = $.extend( {}, flashButton, {
 		// Set the text
 		var flash = config._flash;
 		var data = dt.buttons.exportData( config.exportOptions );
-		var totalWidth = dt.table().node().offsetWidth;
+		var totalWIdth = dt.table().node().offsetWIdth;
 
-		// Calculate the column width ratios for layout of the table in the PDF
-		var ratios = dt.columns( config.columns ).indexes().map( function ( idx ) {
-			return dt.column( idx ).header().offsetWidth / totalWidth;
+		// Calculate the column wIdth ratios for layout of the table in the PDF
+		var ratios = dt.columns( config.columns ).indexes().map( function ( Idx ) {
+			return dt.column( Idx ).header().offsetWIdth / totalWIdth;
 		} );
 
 		flash.setAction( 'pdf' );
@@ -1414,7 +1414,7 @@ DataTable.ext.buttons.pdfFlash = $.extend( {}, flashButton, {
 		_setText( flash, JSON.stringify( {
 			title:       _filename(config, false),
 			message: typeof config.message == 'function' ? config.message(dt, button, config) : config.message,
-			colWidth:    ratios.toArray(),
+			colWIdth:    ratios.toArray(),
 			orientation: config.orientation,
 			size:        config.pageSize,
 			header:      config.header ? data.header : null,

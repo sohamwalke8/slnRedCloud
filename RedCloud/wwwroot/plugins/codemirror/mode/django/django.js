@@ -21,7 +21,7 @@
                     "empty", "url", "static", "trans", "blocktrans", "endblocktrans", "now",
                     "regroup", "lorem", "ifchanged", "endifchanged", "firstof", "debug", "cycle",
                     "csrf_token", "autoescape", "endautoescape", "spaceless", "endspaceless",
-                    "ssi", "templatetag", "verbatim", "endverbatim", "widthratio"],
+                    "ssi", "templatetag", "verbatim", "endverbatim", "wIdthratio"],
         filters = ["add", "addslashes", "capfirst", "center", "cut", "date",
                    "default", "default_if_none", "dictsort",
                    "dictsortreversed", "divisibleby", "escape", "escapejs",
@@ -43,11 +43,11 @@
     operators = new RegExp("^\\b(" + operators.join("|") + ")\\b");
     wordOperators = new RegExp("^\\b(" + wordOperators.join("|") + ")\\b");
 
-    // We have to return "null" instead of null, in order to avoid string
-    // styling as the default, when using Django templates inside HTML
+    // We have to return "null" instead of null, in order to avoId string
+    // styling as the default, when using Django templates insIde HTML
     // element attributes
     function tokenBase (stream, state) {
-      // Attempt to identify a variable, template or comment tag respectively
+      // Attempt to Identify a variable, template or comment tag respectively
       if (stream.match("{{")) {
         state.tokenize = inVariable;
         return "tag";
@@ -100,7 +100,7 @@
           return "null";
         }
 
-        // Dot followed by a non-word character should be considered an error.
+        // Dot followed by a non-word character should be consIdered an error.
         if (stream.match(/\.\W+/)) {
           return "error";
         } else if (stream.eat(".")) {
@@ -119,7 +119,7 @@
           return "null";
         }
 
-        // Pipe followed by a non-word character should be considered an error.
+        // Pipe followed by a non-word character should be consIdered an error.
         if (stream.match(/\.\W+/)) {
           return "error";
         } else if (stream.eat("|")) {
@@ -199,7 +199,7 @@
           return "null";
         }
 
-        // Dot followed by a non-word character should be considered an error.
+        // Dot followed by a non-word character should be consIdered an error.
         if (stream.match(/\.\W+/)) {
           return "error";
         } else if (stream.eat(".")) {
@@ -218,7 +218,7 @@
           return "null";
         }
 
-        // Pipe followed by a non-word character should be considered an error.
+        // Pipe followed by a non-word character should be consIdered an error.
         if (stream.match(/\.\W+/)) {
           return "error";
         } else if (stream.eat("|")) {
@@ -315,7 +315,7 @@
       return "null";
     }
 
-    // Mark everything as comment inside the tag and the tag itself.
+    // Mark everything as comment insIde the tag and the tag itself.
     function inComment (stream, state) {
       if (stream.match(/^.*?#\}/)) state.tokenize = tokenBase
       else stream.skipToEnd()

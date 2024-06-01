@@ -18,7 +18,7 @@ namespace RedCloud.Infrastructure
         //    services.Configure<CacheConfiguration>(configuration.GetSection("CacheConfiguration"));
         //    services.AddMemoryCache();
         //    services.AddTransient<ICacheService, MemoryCacheService>();
-        //    services.AddSendGrid(options => { options.ApiKey = configuration.GetValue<string>("EmailSettings:ApiKey"); });
+        //    services.AddSendGrId(options => { options.ApiKey = configuration.GetValue<string>("EmailSettings:ApiKey"); });
         //    return services;
         //}
 

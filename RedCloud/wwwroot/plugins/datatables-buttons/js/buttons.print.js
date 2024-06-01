@@ -94,8 +94,8 @@ DataTable.ext.buttons.print = {
 		var columnClasses = dt
 			.columns( config.exportOptions.columns )
 			.flatten()
-			.map( function (idx) {
-				return dt.settings()[0].aoColumns[dt.column(idx).index()].sClass;
+			.map( function (Idx) {
+				return dt.settings()[0].aoColumns[dt.column(Idx).index()].sClass;
 			} )
 			.toArray();
 
@@ -191,7 +191,7 @@ DataTable.ext.buttons.print = {
 			}
 		};
 
-		if ( navigator.userAgent.match(/Trident\/\d.\d/) ) { // IE needs to call this without a setTimeout
+		if ( navigator.userAgent.match(/TrIdent\/\d.\d/) ) { // IE needs to call this without a setTimeout
 			autoPrint();
 		}
 		else {

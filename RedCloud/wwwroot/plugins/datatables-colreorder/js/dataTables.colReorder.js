@@ -4,7 +4,7 @@
 
 /**
  * @summary     ColReorder
- * @description Provide the ability to reorder columns in a DataTable
+ * @description ProvIde the ability to reorder columns in a DataTable
  * @version     1.5.4
  * @file        dataTables.colReorder.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
@@ -52,7 +52,7 @@ var DataTable = $.fn.dataTable;
 
 /**
  * Switch the key value pairing of an index array to be value key (i.e. the old value is now the
- * key). For example consider [ 2, 0, 1 ] this would be returned as [ 1, 2, 0 ].
+ * key). For example consIder [ 2, 0, 1 ] this would be returned as [ 1, 2, 0 ].
  *  @method  fnInvertKeyValues
  *  @param   array aIn Array to switch around
  *  @returns array
@@ -71,7 +71,7 @@ function fnInvertKeyValues( aIn )
 /**
  * Modify an array by switching the position of two elements
  *  @method  fnArraySwitch
- *  @param   array aArray Array to consider, will be modified by reference (i.e. no return)
+ *  @param   array aArray Array to consIder, will be modified by reference (i.e. no return)
  *  @param   int iFrom From point
  *  @param   int iTo Insert point
  *  @returns void
@@ -85,9 +85,9 @@ function fnArraySwitch( aArray, iFrom, iTo )
 
 /**
  * Switch the positions of nodes in a parent node (note this is specifically designed for
- * table rows). Note this function considers all element nodes under the parent!
+ * table rows). Note this function consIders all element nodes under the parent!
  *  @method  fnDomSwitch
- *  @param   string sTag Tag to consider
+ *  @param   string sTag Tag to consIder
  *  @param   int iFrom Element to move
  *  @param   int Point to element the element to (before this point), can be null for append
  *  @returns void
@@ -124,10 +124,10 @@ function fnDomSwitch( nParent, iFrom, iTo )
  *  @param   int iTo and insert it into this point
  *  @param   bool drop Indicate if the reorder is the final one (i.e. a drop)
  *    not a live reorder
- *  @param   bool invalidateRows speeds up processing if false passed
+ *  @param   bool invalIdateRows speeds up processing if false passed
  *  @returns void
  */
-$.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, invalidateRows )
+$.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, invalIdateRows )
 {
 	var i, iLen, j, jLen, jen, iCols=oSettings.aoColumns.length, nTrs, oCol;
 	var attrMap = function ( obj, prop, mapping ) {
@@ -204,7 +204,7 @@ $.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, in
 		}
 
 		// Update the column indexes
-		oCol.idx = aiInvertMapping[ oCol.idx ];
+		oCol.Idx = aiInvertMapping[ oCol.Idx ];
 	}
 
 	// Update 1.10 optimised sort class removal variable
@@ -298,7 +298,7 @@ $.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, in
 		if ( cells ) {
 			fnArraySwitch( cells, iFrom, iTo );
 
-			// Longer term, should this be moved into the DataTables' invalidate
+			// Longer term, should this be moved into the DataTables' invalIdate
 			// methods?
 			for ( j=0, jen=cells.length ; j<jen ; j++ ) {
 				if ( cells[j] && cells[j]._DT_CellIndex ) {
@@ -307,7 +307,7 @@ $.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, in
 			}
 		}
 
-		// For DOM sourced data, the invalidate will reread the cell into
+		// For DOM sourced data, the invalIdate will reread the cell into
 		// the data array, but for data sources as an array, they need to
 		// be flipped
 		if ( data.src !== 'dom' && Array.isArray( data._aData ) ) {
@@ -329,9 +329,9 @@ $.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, in
 		}
 	}
 
-	if ( invalidateRows || invalidateRows === undefined )
+	if ( invalIdateRows || invalIdateRows === undefined )
 	{
-		$.fn.dataTable.Api( oSettings ).rows().invalidate();
+		$.fn.dataTable.Api( oSettings ).rows().invalIdate();
 	}
 
 	/*
@@ -361,7 +361,7 @@ $.fn.dataTableExt.oApi.fnColReorder = function ( oSettings, iFrom, iTo, drop, in
 };
 
 /**
- * ColReorder provides column visibility control for DataTables
+ * ColReorder provIdes column visibility control for DataTables
  * @class ColReorder
  * @constructor
  * @param {object} dt DataTables settings object
@@ -554,7 +554,7 @@ $.extend( ColReorder.prototype, {
 
 	/**
 	 * `Deprecated` - Get the current order of the columns, as an array.
-	 *  @return {array} Array of column identifiers
+	 *  @return {array} Array of column Identifiers
 	 *  @deprecated `fnOrder` should be used in preference to this method.
 	 *      `fnOrder` acts as a getter/setter.
 	 */
@@ -565,20 +565,20 @@ $.extend( ColReorder.prototype, {
 
 	/**
 	 * Get the current order of the columns, as an array. Note that the values
-	 * given in the array are unique identifiers for each column. Currently
+	 * given in the array are unique Identifiers for each column. Currently
 	 * these are the original ordering of the columns that was detected on
 	 * start up, but this could potentially change in future.
-	 *  @return {array} Array of column identifiers
+	 *  @return {array} Array of column Identifiers
 	 *
 	 *  @example
 	 *    // Get column ordering for the table
 	 *    var order = $.fn.dataTable.ColReorder( dataTable ).fnOrder();
 	 *//**
-	 * Set the order of the columns, from the positions identified in the
+	 * Set the order of the columns, from the positions Identified in the
 	 * ordering array given. Note that ColReorder takes a brute force approach
 	 * to reordering, so it is possible multiple reordering events will occur
 	 * before the final order is settled upon.
-	 *  @param {array} [set] Array of column identifiers in the new order. Note
+	 *  @param {array} [set] Array of column Identifiers in the new order. Note
 	 *    that every column must be included, uniquely, in this array.
 	 *  @return {this} Returns `this` for chaining.
 	 *
@@ -634,12 +634,12 @@ $.extend( ColReorder.prototype, {
 	/**
 	 * Convert from the original column index, to the original
 	 *
-	 * @param  {int|array} idx Index(es) to convert
+	 * @param  {int|array} Idx Index(es) to convert
 	 * @param  {string} dir Transpose direction - `fromOriginal` / `toCurrent`
 	 *   or `'toOriginal` / `fromCurrent`
 	 * @return {int|array}     Converted values
 	 */
-	fnTranspose: function ( idx, dir )
+	fnTranspose: function ( Idx, dir )
 	{
 		if ( ! dir ) {
 			dir = 'toCurrent';
@@ -650,17 +650,17 @@ $.extend( ColReorder.prototype, {
 
 		if ( dir === 'toCurrent' ) {
 			// Given an original index, want the current
-			return ! Array.isArray( idx ) ?
-				$.inArray( idx, order ) :
-				$.map( idx, function ( index ) {
+			return ! Array.isArray( Idx ) ?
+				$.inArray( Idx, order ) :
+				$.map( Idx, function ( index ) {
 					return $.inArray( index, order );
 				} );
 		}
 		else {
 			// Given a current index, want the original
-			return ! Array.isArray( idx ) ?
-				columns[idx]._ColReorder_iOrigCol :
-				$.map( idx, function ( index ) {
+			return ! Array.isArray( Idx ) ?
+				columns[Idx]._ColReorder_iOrigCol :
+				$.map( Idx, function ( index ) {
 					return columns[index]._ColReorder_iOrigCol;
 				} );
 		}
@@ -730,7 +730,7 @@ $.extend( ColReorder.prototype, {
 			aiOrder = this.s.init.aiOrder.slice();
 		}
 
-		/* State loading, overrides the column order given */
+		/* State loading, overrIdes the column order given */
 		if ( this.s.dt.oLoadedState && typeof this.s.dt.oLoadedState.ColReorder != 'undefined' &&
 		  this.s.dt.oLoadedState.ColReorder.length == this.s.dt.aoColumns.length )
 		{
@@ -820,7 +820,7 @@ $.extend( ColReorder.prototype, {
 			return;
 		}
 
-		$.fn.dataTable.Api( this.s.dt ).rows().invalidate();
+		$.fn.dataTable.Api( this.s.dt ).rows().invalIdate();
 
 		/* When scrolling we need to recalculate the column sizes to allow for the shift */
 		if ( this.s.dt.oScroll.sX !== "" || this.s.dt.oScroll.sY !== "" )
@@ -944,9 +944,9 @@ $.extend( ColReorder.prototype, {
 		/* Store information about the mouse position */
 		var target = $(e.target).closest('th, td');
 		var offset = target.offset();
-		var idx = parseInt( $(nTh).attr('data-column-index'), 10 );
+		var Idx = parseInt( $(nTh).attr('data-column-index'), 10 );
 
-		if ( idx === undefined ) {
+		if ( Idx === undefined ) {
 			return;
 		}
 
@@ -954,9 +954,9 @@ $.extend( ColReorder.prototype, {
 		this.s.mouse.startY = this._fnCursorPosition( e, 'pageY' );
 		this.s.mouse.offsetX = this._fnCursorPosition( e, 'pageX' ) - offset.left;
 		this.s.mouse.offsetY = this._fnCursorPosition( e, 'pageY' ) - offset.top;
-		this.s.mouse.target = this.s.dt.aoColumns[ idx ].nTh;//target[0];
-		this.s.mouse.targetIndex = idx;
-		this.s.mouse.fromIndex = idx;
+		this.s.mouse.target = this.s.dt.aoColumns[ Idx ].nTh;//target[0];
+		this.s.mouse.targetIndex = Idx;
+		this.s.mouse.fromIndex = Idx;
 
 		this._fnRegions();
 
@@ -1020,14 +1020,14 @@ $.extend( ColReorder.prototype, {
 				}
 			}
 		};
-		var firstNotHidden = function () {
+		var firstNotHIdden = function () {
 			for (var i=0 ; i<that.s.aoTargets.length-1 ; i++) {
 				if (that.s.aoTargets[i].x !== that.s.aoTargets[i+1].x) {
 					return that.s.aoTargets[i];
 				}
 			}
 		};
-		var lastNotHidden = function () {
+		var lastNotHIdden = function () {
 			for (var i=that.s.aoTargets.length-1 ; i>0 ; i--) {
 				if (that.s.aoTargets[i].x !== that.s.aoTargets[i-1].x) {
 					return that.s.aoTargets[i];
@@ -1038,19 +1038,19 @@ $.extend( ColReorder.prototype, {
         for (var i = 1; i < this.s.aoTargets.length; i++) {
 			var prevTarget = targetsPrev(i);
 			if (! prevTarget) {
-				prevTarget = firstNotHidden();
+				prevTarget = firstNotHIdden();
 			}
 
-			var prevTargetMiddle = prevTarget.x + (this.s.aoTargets[i].x - prevTarget.x) / 2;
+			var prevTargetMIddle = prevTarget.x + (this.s.aoTargets[i].x - prevTarget.x) / 2;
 
             if (this._fnIsLtr()) {
-                if (cursorXPosiotion < prevTargetMiddle ) {
+                if (cursorXPosiotion < prevTargetMIddle ) {
                     target = prevTarget;
                     break;
                 }
             }
             else {
-                if (cursorXPosiotion > prevTargetMiddle) {
+                if (cursorXPosiotion > prevTargetMIddle) {
                     target = prevTarget;
                     break;
                 }
@@ -1064,8 +1064,8 @@ $.extend( ColReorder.prototype, {
         else {
 			// The insert element wasn't positioned in the array (less than
 			// operator), so we put it at the end
-			this.dom.pointer.css( 'left', lastNotHidden().x );
-			this.s.mouse.toIndex = lastNotHidden().to;
+			this.dom.pointer.css( 'left', lastNotHIdden().x );
+			this.s.mouse.toIndex = lastNotHIdden().to;
 		}
 
 		// Perform reordering if realtime updating is on and the column has moved
@@ -1099,7 +1099,7 @@ $.extend( ColReorder.prototype, {
 
 		if ( this.dom.drag !== null )
 		{
-			/* Remove the guide elements */
+			/* Remove the guIde elements */
 			this.dom.drag.remove();
 			this.dom.pointer.remove();
 			this.dom.drag = null;
@@ -1147,7 +1147,7 @@ $.extend( ColReorder.prototype, {
 				var bound = nth.offset().left;
 
                 if (isLTR) {
-                    bound += nth.outerWidth();
+                    bound += nth.outerWIdth();
                 }
 
                 aoColumnBounds.push({
@@ -1166,11 +1166,11 @@ $.extend( ColReorder.prototype, {
 		});
 
         var firstColumn = aoColumnBounds[0];
-		var firstColumnWidth = $(aoColumns[firstColumn.index].nTh).outerWidth();
+		var firstColumnWIdth = $(aoColumns[firstColumn.index].nTh).outerWIdth();
 
         this.s.aoTargets.push({
             to: 0,
-			x: firstColumn.bound - firstColumnWidth
+			x: firstColumn.bound - firstColumnWIdth
         });
 
         for (var i = 0; i < aoColumnBounds.length; i++) {
@@ -1206,7 +1206,7 @@ $.extend( ColReorder.prototype, {
 
 
 	/**
-	 * Copy the TH element that is being drags so the user has the idea that they are actually
+	 * Copy the TH element that is being drags so the user has the Idea that they are actually
 	 * moving it around the page.
 	 *  @method  _fnCreateDragNode
 	 *  @returns void
@@ -1238,7 +1238,7 @@ $.extend( ColReorder.prototype, {
 				position: 'absolute',
 				top: 0,
 				left: 0,
-				width: $(origCell).outerWidth(),
+				wIdth: $(origCell).outerWIdth(),
 				height: $(origCell).outerHeight()
 			} )
 			.appendTo( 'body' );
@@ -1327,7 +1327,7 @@ ColReorder.defaults = {
 	 * Redraw the table's column ordering as the end user draws the column
 	 * (`true`) or wait until the mouse is released (`false` - default). Note
 	 * that this will perform a redraw on each reordering, which involves an
-	 * Ajax request each time if you are using server-side processing in
+	 * Ajax request each time if you are using server-sIde processing in
 	 * DataTables.
 	 *  @type boolean
 	 *  @default false
@@ -1456,15 +1456,15 @@ $.fn.dataTable.Api.register( 'colReorder.order()', function ( set, original ) {
 		null;
 } );
 
-$.fn.dataTable.Api.register( 'colReorder.transpose()', function ( idx, dir ) {
+$.fn.dataTable.Api.register( 'colReorder.transpose()', function ( Idx, dir ) {
 	return this.context.length && this.context[0]._colReorder ?
-		this.context[0]._colReorder.fnTranspose( idx, dir ) :
-		idx;
+		this.context[0]._colReorder.fnTranspose( Idx, dir ) :
+		Idx;
 } );
 
-$.fn.dataTable.Api.register( 'colReorder.move()', function( from, to, drop, invalidateRows ) {
+$.fn.dataTable.Api.register( 'colReorder.move()', function( from, to, drop, invalIdateRows ) {
 	if (this.context.length) {
-		this.context[0]._colReorder.s.dt.oInstance.fnColReorder( from, to, drop, invalidateRows );
+		this.context[0]._colReorder.s.dt.oInstance.fnColReorder( from, to, drop, invalIdateRows );
 		this.context[0]._colReorder._fnSetColumnIndexes();
 	}
 	return this;

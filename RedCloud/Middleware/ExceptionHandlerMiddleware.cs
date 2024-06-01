@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Security.Authentication;
 
-namespace RedCloud.Middleware
+namespace RedCloud.MIddleware
 {
-    public class ExceptionHandlerMiddleware
+    public class ExceptionHandlerMIddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
 
-        public ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionHandlerMiddleware> logger)
+        public ExceptionHandlerMIddleware(RequestDelegate next, ILogger<ExceptionHandlerMIddleware> logger)
         {
             next = next; logger = logger;
         }
@@ -37,7 +37,7 @@ namespace RedCloud.Middleware
 
             switch (exception)
             {
-                case ValidationException validationException:
+                case ValidationException valIdationException:
                     httpStatusCode = HttpStatusCode.BadRequest;
                     break;
                 case BadRequestException badRequestException:

@@ -15,7 +15,7 @@ CodeMirror.defineMode("pug", function (config) {
   // token types
   var KEYWORD = 'keyword';
   var DOCTYPE = 'meta';
-  var ID = 'builtin';
+  var Id = 'builtin';
   var CLASS = 'qualifier';
 
   var ATTRS_NEST = {
@@ -348,9 +348,9 @@ CodeMirror.defineMode("pug", function (config) {
     }
   }
 
-  function id(stream) {
+  function Id(stream) {
     if (stream.match(/^#([\w-]+)/)) {
-      return ID;
+      return Id;
     }
   }
 
@@ -494,7 +494,7 @@ CodeMirror.defineMode("pug", function (config) {
         if (!state.innerState) {
           state.innerState = state.innerMode.startState ? CodeMirror.startState(state.innerMode, stream.indentation()) : {};
         }
-        return stream.hideFirstChars(state.indentOf + 2, function () {
+        return stream.hIdeFirstChars(state.indentOf + 2, function () {
           return state.innerMode.token(stream, state.innerState) || true;
         });
       } else {
@@ -565,7 +565,7 @@ CodeMirror.defineMode("pug", function (config) {
       || tag(stream, state)
       || filter(stream, state)
       || code(stream, state)
-      || id(stream)
+      || Id(stream)
       || className(stream)
       || attrs(stream, state)
       || attributesBlock(stream, state)

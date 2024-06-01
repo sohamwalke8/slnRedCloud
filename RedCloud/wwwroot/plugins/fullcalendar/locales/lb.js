@@ -9,7 +9,7 @@ FullCalendar.globalLocales.push(function () {
     },
     buttonText: {
       prev: 'Zréck',
-      next: 'Weider',
+      next: 'WeIder',
       today: 'Haut',
       month: 'Mount',
       week: 'Woch',

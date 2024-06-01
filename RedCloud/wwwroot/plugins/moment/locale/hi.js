@@ -134,24 +134,24 @@
                 return symbolMap[match];
             });
         },
-        // Hindi notation for meridiems are quite fuzzy in practice. While there exists
-        // a rigid notion of a 'Pahar' it is not used as rigidly in modern Hindi.
-        meridiemParse: /रात|सुबह|दोपहर|शाम/,
-        meridiemHour: function (hour, meridiem) {
+        // Hindi notation for merIdiems are quite fuzzy in practice. While there exists
+        // a rigId notion of a 'Pahar' it is not used as rigIdly in modern Hindi.
+        merIdiemParse: /रात|सुबह|दोपहर|शाम/,
+        merIdiemHour: function (hour, merIdiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (meridiem === 'रात') {
+            if (merIdiem === 'रात') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (meridiem === 'सुबह') {
+            } else if (merIdiem === 'सुबह') {
                 return hour;
-            } else if (meridiem === 'दोपहर') {
+            } else if (merIdiem === 'दोपहर') {
                 return hour >= 10 ? hour : hour + 12;
-            } else if (meridiem === 'शाम') {
+            } else if (merIdiem === 'शाम') {
                 return hour + 12;
             }
         },
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'रात';
             } else if (hour < 10) {

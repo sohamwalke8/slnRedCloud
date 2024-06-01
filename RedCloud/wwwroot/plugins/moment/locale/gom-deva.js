@@ -1,6 +1,6 @@
 //! moment.js locale configuration
 //! locale : Konkani Devanagari script [gom-deva]
-//! author : The Discoverer : https://github.com/WikiDiscoverer
+//! author : The Discoverer : https://github.com/WikIdiscoverer
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'
@@ -100,22 +100,22 @@
             dow: 0, // Sunday is the first day of the week
             doy: 3, // The week that contains Jan 4th is the first week of the year (7 + 0 - 4)
         },
-        meridiemParse: /राती|सकाळीं|दनपारां|सांजे/,
-        meridiemHour: function (hour, meridiem) {
+        merIdiemParse: /राती|सकाळीं|दनपारां|सांजे/,
+        merIdiemHour: function (hour, merIdiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (meridiem === 'राती') {
+            if (merIdiem === 'राती') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (meridiem === 'सकाळीं') {
+            } else if (merIdiem === 'सकाळीं') {
                 return hour;
-            } else if (meridiem === 'दनपारां') {
+            } else if (merIdiem === 'दनपारां') {
                 return hour > 12 ? hour : hour + 12;
-            } else if (meridiem === 'सांजे') {
+            } else if (merIdiem === 'सांजे') {
                 return hour + 12;
             }
         },
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'राती';
             } else if (hour < 12) {

@@ -30,7 +30,7 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
     var indent = lineIndent(cm, i)
     if (indent == -1) {
     } else if (indent > myIndent) {
-      // Lines with a greater indent are considered part of the block.
+      // Lines with a greater indent are consIdered part of the block.
       lastLineInFold = i;
     } else {
       // If this line has non-space, non-comment content, and is

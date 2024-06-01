@@ -3,7 +3,7 @@ layout: page
 title: Ribbons Component
 ---
 
-The ribbons component is a easy way to display informations above any content. The `.ribbon-warpper` needs to be inside a element with _position:relative;_. In this docs page we place the ribbon always inside `<div class="position-relative p-3 bg-gray" style="height: 180px"></div>` for demo purpose but it can placed inside cards, table rows & many more.
+The ribbons component is a easy way to display informations above any content. The `.ribbon-warpper` needs to be insIde a element with _position:relative;_. In this docs page we place the ribbon always insIde `<div class="position-relative p-3 bg-gray" style="height: 180px"></div>` for demo purpose but it can placed insIde cards, table rows & many more.
 
 The ribbon comes in three sizes to display more text or use larger font sizes, default (only `.ribbon-wrapper`), large (`.ribbon-wrapper` with `.ribbon-lg`), extra large (`.ribbon-wrapper` with `.ribbon-xl`).
 
@@ -170,7 +170,7 @@ The ribbon comes in three sizes to display more text or use larger font sizes, d
 
 ```html
 <div class="position-relative">
-  <img src="../../dist/img/photo1.png" alt="Photo 1" class="img-fluid">
+  <img src="../../dist/img/photo1.png" alt="Photo 1" class="img-fluId">
   <div class="ribbon-wrapper ribbon-lg">
     <div class="ribbon bg-success text-lg">
       Ribbon

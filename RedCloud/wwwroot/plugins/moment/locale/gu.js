@@ -91,24 +91,24 @@
                 return symbolMap[match];
             });
         },
-        // Gujarati notation for meridiems are quite fuzzy in practice. While there exists
-        // a rigid notion of a 'Pahar' it is not used as rigidly in modern Gujarati.
-        meridiemParse: /રાત|બપોર|સવાર|સાંજ/,
-        meridiemHour: function (hour, meridiem) {
+        // Gujarati notation for merIdiems are quite fuzzy in practice. While there exists
+        // a rigId notion of a 'Pahar' it is not used as rigIdly in modern Gujarati.
+        merIdiemParse: /રાત|બપોર|સવાર|સાંજ/,
+        merIdiemHour: function (hour, merIdiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (meridiem === 'રાત') {
+            if (merIdiem === 'રાત') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (meridiem === 'સવાર') {
+            } else if (merIdiem === 'સવાર') {
                 return hour;
-            } else if (meridiem === 'બપોર') {
+            } else if (merIdiem === 'બપોર') {
                 return hour >= 10 ? hour : hour + 12;
-            } else if (meridiem === 'સાંજ') {
+            } else if (merIdiem === 'સાંજ') {
                 return hour + 12;
             }
         },
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'રાત';
             } else if (hour < 10) {

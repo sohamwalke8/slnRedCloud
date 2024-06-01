@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valIdate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -9,10 +9,10 @@
 }(function( $ ) {
 
 /*
- * Translated default messages for the jQuery validation plugin.
+ * Translated default messages for the jQuery valIdation plugin.
  * Locale: RU (Russian; русский язык)
  */
-$.extend( $.validator.messages, {
+$.extend( $.valIdator.messages, {
 	required: "Это поле необходимо заполнить.",
 	remote: "Пожалуйста, введите правильное значение.",
 	email: "Пожалуйста, введите корректный адрес электронной почты.",
@@ -24,12 +24,12 @@ $.extend( $.validator.messages, {
 	creditcard: "Пожалуйста, введите правильный номер кредитной карты.",
 	equalTo: "Пожалуйста, введите такое же значение ещё раз.",
 	extension: "Пожалуйста, выберите файл с правильным расширением.",
-	maxlength: $.validator.format( "Пожалуйста, введите не больше {0} символов." ),
-	minlength: $.validator.format( "Пожалуйста, введите не меньше {0} символов." ),
-	rangelength: $.validator.format( "Пожалуйста, введите значение длиной от {0} до {1} символов." ),
-	range: $.validator.format( "Пожалуйста, введите число от {0} до {1}." ),
-	max: $.validator.format( "Пожалуйста, введите число, меньшее или равное {0}." ),
-	min: $.validator.format( "Пожалуйста, введите число, большее или равное {0}." )
+	maxlength: $.valIdator.format( "Пожалуйста, введите не больше {0} символов." ),
+	minlength: $.valIdator.format( "Пожалуйста, введите не меньше {0} символов." ),
+	rangelength: $.valIdator.format( "Пожалуйста, введите значение длиной от {0} до {1} символов." ),
+	range: $.valIdator.format( "Пожалуйста, введите число от {0} до {1}." ),
+	max: $.valIdator.format( "Пожалуйста, введите число, меньшее или равное {0}." ),
+	min: $.valIdator.format( "Пожалуйста, введите число, большее или равное {0}." )
 } );
 return $;
 }));

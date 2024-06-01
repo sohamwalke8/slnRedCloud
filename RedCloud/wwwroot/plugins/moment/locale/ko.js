@@ -72,11 +72,11 @@
                     return number;
             }
         },
-        meridiemParse: /오전|오후/,
+        merIdiemParse: /오전|오후/,
         isPM: function (token) {
             return token === '오후';
         },
-        meridiem: function (hour, minute, isUpper) {
+        merIdiem: function (hour, minute, isUpper) {
             return hour < 12 ? '오전' : '오후';
         },
     });

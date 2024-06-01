@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------
- * AdminLTE ControlSidebar.js
+ * AdminLTE ControlSIdebar.js
  * License MIT
  * --------------------------------------------
  */
@@ -12,8 +12,8 @@ import $ from 'jquery'
  * ====================================================
  */
 
-const NAME = 'ControlSidebar'
-const DATA_KEY = 'lte.controlsidebar'
+const NAME = 'ControlSIdebar'
+const DATA_KEY = 'lte.controlsIdebar'
 const EVENT_KEY = `.${DATA_KEY}`
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
@@ -21,15 +21,15 @@ const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 const EVENT_COLLAPSED_DONE = `collapsed-done${EVENT_KEY}`
 const EVENT_EXPANDED = `expanded${EVENT_KEY}`
 
-const SELECTOR_CONTROL_SIDEBAR = '.control-sidebar'
-const SELECTOR_CONTROL_SIDEBAR_CONTENT = '.control-sidebar-content'
-const SELECTOR_DATA_TOGGLE = '[data-widget="control-sidebar"]'
+const SELECTOR_CONTROL_SIdEBAR = '.control-sIdebar'
+const SELECTOR_CONTROL_SIdEBAR_CONTENT = '.control-sIdebar-content'
+const SELECTOR_DATA_TOGGLE = '[data-wIdget="control-sIdebar"]'
 const SELECTOR_HEADER = '.main-header'
 const SELECTOR_FOOTER = '.main-footer'
 
-const CLASS_NAME_CONTROL_SIDEBAR_ANIMATE = 'control-sidebar-animate'
-const CLASS_NAME_CONTROL_SIDEBAR_OPEN = 'control-sidebar-open'
-const CLASS_NAME_CONTROL_SIDEBAR_SLIDE = 'control-sidebar-slide-open'
+const CLASS_NAME_CONTROL_SIdEBAR_ANIMATE = 'control-sIdebar-animate'
+const CLASS_NAME_CONTROL_SIdEBAR_OPEN = 'control-sIdebar-open'
+const CLASS_NAME_CONTROL_SIdEBAR_SLIdE = 'control-sIdebar-slIde-open'
 const CLASS_NAME_LAYOUT_FIXED = 'layout-fixed'
 const CLASS_NAME_NAVBAR_FIXED = 'layout-navbar-fixed'
 const CLASS_NAME_NAVBAR_SM_FIXED = 'layout-sm-navbar-fixed'
@@ -43,10 +43,10 @@ const CLASS_NAME_FOOTER_LG_FIXED = 'layout-lg-footer-fixed'
 const CLASS_NAME_FOOTER_XL_FIXED = 'layout-xl-footer-fixed'
 
 const Default = {
-  controlsidebarSlide: true,
+  controlsIdebarSlIde: true,
   scrollbarTheme: 'os-theme-light',
-  scrollbarAutoHide: 'l',
-  target: SELECTOR_CONTROL_SIDEBAR,
+  scrollbarAutoHIde: 'l',
+  target: SELECTOR_CONTROL_SIdEBAR,
   animationSpeed: 300
 }
 
@@ -55,7 +55,7 @@ const Default = {
  * ====================================================
  */
 
-class ControlSidebar {
+class ControlSIdebar {
   constructor(element, config) {
     this._element = element
     this._config = config
@@ -67,16 +67,16 @@ class ControlSidebar {
     const $body = $('body')
     const $html = $('html')
 
-    // Show the control sidebar
-    if (this._config.controlsidebarSlide) {
-      $html.addClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
-      $body.removeClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
-        $(SELECTOR_CONTROL_SIDEBAR).hide()
-        $html.removeClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
+    // Show the control sIdebar
+    if (this._config.controlsIdebarSlIde) {
+      $html.addClass(CLASS_NAME_CONTROL_SIdEBAR_ANIMATE)
+      $body.removeClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE).delay(300).queue(function () {
+        $(SELECTOR_CONTROL_SIdEBAR).hIde()
+        $html.removeClass(CLASS_NAME_CONTROL_SIdEBAR_ANIMATE)
         $(this).dequeue()
       })
     } else {
-      $body.removeClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN)
+      $body.removeClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN)
     }
 
     $(this._element).trigger($.Event(EVENT_COLLAPSED))
@@ -91,21 +91,21 @@ class ControlSidebar {
     const $html = $('html')
 
     if (toggle) {
-      $(SELECTOR_CONTROL_SIDEBAR).hide()
+      $(SELECTOR_CONTROL_SIdEBAR).hIde()
     }
 
-    // Collapse the control sidebar
-    if (this._config.controlsidebarSlide) {
-      $html.addClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
+    // Collapse the control sIdebar
+    if (this._config.controlsIdebarSlIde) {
+      $html.addClass(CLASS_NAME_CONTROL_SIdEBAR_ANIMATE)
       $(this._config.target).show().delay(10).queue(function () {
-        $body.addClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE).delay(300).queue(function () {
-          $html.removeClass(CLASS_NAME_CONTROL_SIDEBAR_ANIMATE)
+        $body.addClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE).delay(300).queue(function () {
+          $html.removeClass(CLASS_NAME_CONTROL_SIdEBAR_ANIMATE)
           $(this).dequeue()
         })
         $(this).dequeue()
       })
     } else {
-      $body.addClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN)
+      $body.addClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN)
     }
 
     this._fixHeight()
@@ -119,16 +119,16 @@ class ControlSidebar {
     const { target } = this._config
 
     const notVisible = !$(target).is(':visible')
-    const shouldClose = ($body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) ||
-      $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE))
-    const shouldToggle = notVisible && ($body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) ||
-      $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE))
+    const shouldClose = ($body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN) ||
+      $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE))
+    const shouldToggle = notVisible && ($body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN) ||
+      $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE))
 
     if (notVisible || shouldToggle) {
-      // Open the control sidebar
+      // Open the control sIdebar
       this.show(notVisible)
     } else if (shouldClose) {
-      // Close the control sidebar
+      // Close the control sIdebar
       this.collapse()
     }
   }
@@ -137,14 +137,14 @@ class ControlSidebar {
 
   _init() {
     const $body = $('body')
-    const shouldNotHideAll = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) ||
-        $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE)
+    const shouldNotHIdeAll = $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN) ||
+        $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE)
 
-    if (shouldNotHideAll) {
-      $(SELECTOR_CONTROL_SIDEBAR).not(this._config.target).hide()
+    if (shouldNotHIdeAll) {
+      $(SELECTOR_CONTROL_SIdEBAR).not(this._config.target).hIde()
       $(this._config.target).css('display', 'block')
     } else {
-      $(SELECTOR_CONTROL_SIDEBAR).hide()
+      $(SELECTOR_CONTROL_SIdEBAR).hIde()
     }
 
     this._fixHeight()
@@ -157,8 +157,8 @@ class ControlSidebar {
 
     $(window).scroll(() => {
       const $body = $('body')
-      const shouldFixHeight = $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) ||
-          $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE)
+      const shouldFixHeight = $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN) ||
+          $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE)
 
       if (shouldFixHeight) {
         this._fixScrollHeight()
@@ -190,7 +190,7 @@ class ControlSidebar {
 
   _fixScrollHeight() {
     const $body = $('body')
-    const $controlSidebar = $(this._config.target)
+    const $controlSIdebar = $(this._config.target)
 
     if (!$body.hasClass(CLASS_NAME_LAYOUT_FIXED)) {
       return
@@ -211,51 +211,51 @@ class ControlSidebar {
 
     const footerFixed = this._isFooterFixed() && $(SELECTOR_FOOTER).css('position') === 'fixed'
 
-    const $controlsidebarContent = $(`${this._config.target}, ${this._config.target} ${SELECTOR_CONTROL_SIDEBAR_CONTENT}`)
+    const $controlsIdebarContent = $(`${this._config.target}, ${this._config.target} ${SELECTOR_CONTROL_SIdEBAR_CONTENT}`)
 
     if (positions.top === 0 && positions.bottom === 0) {
-      $controlSidebar.css({
+      $controlSIdebar.css({
         bottom: heights.footer,
         top: heights.header
       })
-      $controlsidebarContent.css('height', heights.window - (heights.header + heights.footer))
+      $controlsIdebarContent.css('height', heights.window - (heights.header + heights.footer))
     } else if (positions.bottom <= heights.footer) {
       if (footerFixed === false) {
         const top = heights.header - positions.top
-        $controlSidebar.css('bottom', heights.footer - positions.bottom).css('top', top >= 0 ? top : 0)
-        $controlsidebarContent.css('height', heights.window - (heights.footer - positions.bottom))
+        $controlSIdebar.css('bottom', heights.footer - positions.bottom).css('top', top >= 0 ? top : 0)
+        $controlsIdebarContent.css('height', heights.window - (heights.footer - positions.bottom))
       } else {
-        $controlSidebar.css('bottom', heights.footer)
+        $controlSIdebar.css('bottom', heights.footer)
       }
     } else if (positions.top <= heights.header) {
       if (navbarFixed === false) {
-        $controlSidebar.css('top', heights.header - positions.top)
-        $controlsidebarContent.css('height', heights.window - (heights.header - positions.top))
+        $controlSIdebar.css('top', heights.header - positions.top)
+        $controlsIdebarContent.css('height', heights.window - (heights.header - positions.top))
       } else {
-        $controlSidebar.css('top', heights.header)
+        $controlSIdebar.css('top', heights.header)
       }
     } else if (navbarFixed === false) {
-      $controlSidebar.css('top', 0)
-      $controlsidebarContent.css('height', heights.window)
+      $controlSIdebar.css('top', 0)
+      $controlsIdebarContent.css('height', heights.window)
     } else {
-      $controlSidebar.css('top', heights.header)
+      $controlSIdebar.css('top', heights.header)
     }
 
     if (footerFixed && navbarFixed) {
-      $controlsidebarContent.css('height', '100%')
-      $controlSidebar.css('height', '')
+      $controlsIdebarContent.css('height', '100%')
+      $controlSIdebar.css('height', '')
     } else if (footerFixed || navbarFixed) {
-      $controlsidebarContent.css('height', '100%')
-      $controlsidebarContent.css('height', '')
+      $controlsIdebarContent.css('height', '100%')
+      $controlsIdebarContent.css('height', '')
     }
   }
 
   _fixHeight() {
     const $body = $('body')
-    const $controlSidebar = $(`${this._config.target} ${SELECTOR_CONTROL_SIDEBAR_CONTENT}`)
+    const $controlSIdebar = $(`${this._config.target} ${SELECTOR_CONTROL_SIdEBAR_CONTENT}`)
 
     if (!$body.hasClass(CLASS_NAME_LAYOUT_FIXED)) {
-      $controlSidebar.attr('style', '')
+      $controlSIdebar.attr('style', '')
       return
     }
 
@@ -265,20 +265,20 @@ class ControlSidebar {
       footer: $(SELECTOR_FOOTER).outerHeight()
     }
 
-    let sidebarHeight = heights.window - heights.header
+    let sIdebarHeight = heights.window - heights.header
 
     if (this._isFooterFixed() && $(SELECTOR_FOOTER).css('position') === 'fixed') {
-      sidebarHeight = heights.window - heights.header - heights.footer
+      sIdebarHeight = heights.window - heights.header - heights.footer
     }
 
-    $controlSidebar.css('height', sidebarHeight)
+    $controlSIdebar.css('height', sIdebarHeight)
 
     if (typeof $.fn.overlayScrollbars !== 'undefined') {
-      $controlSidebar.overlayScrollbars({
+      $controlSIdebar.overlayScrollbars({
         className: this._config.scrollbarTheme,
         sizeAutoCapable: true,
         scrollbars: {
-          autoHide: this._config.scrollbarAutoHide,
+          autoHIde: this._config.scrollbarAutoHIde,
           clickScrolling: true
         }
       })
@@ -293,7 +293,7 @@ class ControlSidebar {
       const _options = $.extend({}, Default, $(this).data())
 
       if (!data) {
-        data = new ControlSidebar(this, _options)
+        data = new ControlSIdebar(this, _options)
         $(this).data(DATA_KEY, data)
       }
 
@@ -314,11 +314,11 @@ class ControlSidebar {
 $(document).on('click', SELECTOR_DATA_TOGGLE, function (event) {
   event.preventDefault()
 
-  ControlSidebar._jQueryInterface.call($(this), 'toggle')
+  ControlSIdebar._jQueryInterface.call($(this), 'toggle')
 })
 
 $(document).ready(() => {
-  ControlSidebar._jQueryInterface.call($(SELECTOR_DATA_TOGGLE), '_init')
+  ControlSIdebar._jQueryInterface.call($(SELECTOR_DATA_TOGGLE), '_init')
 })
 
 /**
@@ -326,11 +326,11 @@ $(document).ready(() => {
  * ====================================================
  */
 
-$.fn[NAME] = ControlSidebar._jQueryInterface
-$.fn[NAME].Constructor = ControlSidebar
+$.fn[NAME] = ControlSIdebar._jQueryInterface
+$.fn[NAME].Constructor = ControlSIdebar
 $.fn[NAME].noConflict = function () {
   $.fn[NAME] = JQUERY_NO_CONFLICT
-  return ControlSidebar._jQueryInterface
+  return ControlSIdebar._jQueryInterface
 }
 
-export default ControlSidebar
+export default ControlSIdebar

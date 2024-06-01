@@ -2,18 +2,18 @@ table.dt-rowReorder-float {
   position: absolute !important;
   opacity: 0.8;
   table-layout: fixed;
-  outline: 2px solid #0275d8;
+  outline: 2px solId #0275d8;
   outline-offset: -2px;
   z-index: 2001;
 }
 
 tr.dt-rowReorder-moving {
-  outline: 2px solid #888;
+  outline: 2px solId #888;
   outline-offset: -2px;
 }
 
 body.dt-rowReorder-noOverflow {
-  overflow-x: hidden;
+  overflow-x: hIdden;
 }
 
 table.dataTable td.reorder {

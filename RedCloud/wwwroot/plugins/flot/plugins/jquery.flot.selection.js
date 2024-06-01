@@ -35,7 +35,7 @@ but can be turned off by setting displaySelectionDecorations to false.
 be customized to determine the smallest size a selection can be and still
 have the selection rectangle be displayed. When customizing this value, the
 fact that it refers to pixels, not axis units must be taken into account.
-Thus, for example, if there is a bar graph in time mode with BarWidth set to 1
+Thus, for example, if there is a bar graph in time mode with BarWIdth set to 1
 minute, setting "minSize" to 1 will not make the minimum selection size 1
 minute, but rather 1 pixel. Note also that setting "minSize" to 0 will prevent
 "plotunselected" events from being fired when the user clicks the mouse without
@@ -73,14 +73,14 @@ The plugin allso adds the following methods to the plot object:
     setSelection({ xaxis: { from: 0, to: 10 }, yaxis: { from: 40, to: 60 } });
 
   setSelection will trigger the "plotselected" event when called. If you don't
-  want that to happen, e.g. if you're inside a "plotselected" handler, pass
+  want that to happen, e.g. if you're insIde a "plotselected" handler, pass
   true as the second parameter. If you are using multiple axes, you can
   specify the ranges on any of those, e.g. as x2axis/x3axis/... instead of
   xaxis, the plugin picks the first one it sees.
 
 - clearSelection( preventEvent )
 
-  Clear the selection rectangle. Pass in true to avoid getting a
+  Clear the selection rectangle. Pass in true to avoId getting a
   "plotunselected" event.
 
 - getSelection()
@@ -184,7 +184,7 @@ The plugin allso adds the following methods to the plot object:
 
             if (selectionDirection(plot) === 'y') {
                 c1.x = 0;
-                c2.x = plot.width();
+                c2.x = plot.wIdth();
             }
 
             $.each(plot.getAxes(), function (name, axis) {
@@ -241,13 +241,13 @@ The plugin allso adds the following methods to the plot object:
         function setSelectionPos(pos, e) {
             var offset = plot.getPlaceholder().offset();
             var plotOffset = plot.getPlotOffset();
-            pos.x = clamp(0, e.pageX - offset.left - plotOffset.left, plot.width());
+            pos.x = clamp(0, e.pageX - offset.left - plotOffset.left, plot.wIdth());
             pos.y = clamp(0, e.pageY - offset.top - plotOffset.top, plot.height());
 
             if (pos !== selection.first) updateMode(pos);
 
             if (selectionDirection(plot) === "y") {
-                pos.x = pos === selection.first ? 0 : plot.width();
+                pos.x = pos === selection.first ? 0 : plot.wIdth();
             }
 
             if (selectionDirection(plot) === "x") {
@@ -319,7 +319,7 @@ The plugin allso adds the following methods to the plot object:
 
             if (selectionDirection(plot) === "y") {
                 selection.first.x = 0;
-                selection.second.x = plot.width();
+                selection.second.x = plot.wIdth();
             } else {
                 range = extractRange(ranges, "x");
                 selection.first.x = range.axis.p2c(range.from);
@@ -363,41 +363,41 @@ The plugin allso adds the following methods to the plot object:
 
         function drawSelectionDecorations(ctx, x, y, w, h, oX, oY, mode) {
             var spacing = 3;
-            var fullEarWidth = 15;
-            var earWidth = Math.max(0, Math.min(fullEarWidth, w / 2 - 2, h / 2 - 2));
+            var fullEarWIdth = 15;
+            var earWIdth = Math.max(0, Math.min(fullEarWIdth, w / 2 - 2, h / 2 - 2));
             ctx.fillStyle = '#ffffff';
 
             if (mode === 'xy') {
                 ctx.beginPath();
-                ctx.moveTo(x, y + earWidth);
-                ctx.lineTo(x - 3, y + earWidth);
+                ctx.moveTo(x, y + earWIdth);
+                ctx.lineTo(x - 3, y + earWIdth);
                 ctx.lineTo(x - 3, y - 3);
-                ctx.lineTo(x + earWidth, y - 3);
-                ctx.lineTo(x + earWidth, y);
+                ctx.lineTo(x + earWIdth, y - 3);
+                ctx.lineTo(x + earWIdth, y);
                 ctx.lineTo(x, y);
                 ctx.closePath();
 
-                ctx.moveTo(x, y + h - earWidth);
-                ctx.lineTo(x - 3, y + h - earWidth);
+                ctx.moveTo(x, y + h - earWIdth);
+                ctx.lineTo(x - 3, y + h - earWIdth);
                 ctx.lineTo(x - 3, y + h + 3);
-                ctx.lineTo(x + earWidth, y + h + 3);
-                ctx.lineTo(x + earWidth, y + h);
+                ctx.lineTo(x + earWIdth, y + h + 3);
+                ctx.lineTo(x + earWIdth, y + h);
                 ctx.lineTo(x, y + h);
                 ctx.closePath();
 
-                ctx.moveTo(x + w, y + earWidth);
-                ctx.lineTo(x + w + 3, y + earWidth);
+                ctx.moveTo(x + w, y + earWIdth);
+                ctx.lineTo(x + w + 3, y + earWIdth);
                 ctx.lineTo(x + w + 3, y - 3);
-                ctx.lineTo(x + w - earWidth, y - 3);
-                ctx.lineTo(x + w - earWidth, y);
+                ctx.lineTo(x + w - earWIdth, y - 3);
+                ctx.lineTo(x + w - earWIdth, y);
                 ctx.lineTo(x + w, y);
                 ctx.closePath();
 
-                ctx.moveTo(x + w, y + h - earWidth);
-                ctx.lineTo(x + w + 3, y + h - earWidth);
+                ctx.moveTo(x + w, y + h - earWIdth);
+                ctx.lineTo(x + w + 3, y + h - earWIdth);
                 ctx.lineTo(x + w + 3, y + h + 3);
-                ctx.lineTo(x + w - earWidth, y + h + 3);
-                ctx.lineTo(x + w - earWidth, y + h);
+                ctx.lineTo(x + w - earWIdth, y + h + 3);
+                ctx.lineTo(x + w - earWIdth, y + h);
                 ctx.lineTo(x + w, y + h);
                 ctx.closePath();
 
@@ -410,16 +410,16 @@ The plugin allso adds the following methods to the plot object:
 
             if (mode === 'x') {
                 ctx.beginPath();
-                ctx.moveTo(x, y + fullEarWidth);
-                ctx.lineTo(x, y - fullEarWidth);
-                ctx.lineTo(x - spacing, y - fullEarWidth);
-                ctx.lineTo(x - spacing, y + fullEarWidth);
+                ctx.moveTo(x, y + fullEarWIdth);
+                ctx.lineTo(x, y - fullEarWIdth);
+                ctx.lineTo(x - spacing, y - fullEarWIdth);
+                ctx.lineTo(x - spacing, y + fullEarWIdth);
                 ctx.closePath();
 
-                ctx.moveTo(x + w, y + fullEarWidth);
-                ctx.lineTo(x + w, y - fullEarWidth);
-                ctx.lineTo(x + w + spacing, y - fullEarWidth);
-                ctx.lineTo(x + w + spacing, y + fullEarWidth);
+                ctx.moveTo(x + w, y + fullEarWIdth);
+                ctx.lineTo(x + w, y - fullEarWIdth);
+                ctx.lineTo(x + w + spacing, y - fullEarWIdth);
+                ctx.lineTo(x + w + spacing, y + fullEarWIdth);
                 ctx.closePath();
                 ctx.stroke();
                 ctx.fill();
@@ -428,16 +428,16 @@ The plugin allso adds the following methods to the plot object:
             if (mode === 'y') {
                 ctx.beginPath();
 
-                ctx.moveTo(x - fullEarWidth, y);
-                ctx.lineTo(x + fullEarWidth, y);
-                ctx.lineTo(x + fullEarWidth, y - spacing);
-                ctx.lineTo(x - fullEarWidth, y - spacing);
+                ctx.moveTo(x - fullEarWIdth, y);
+                ctx.lineTo(x + fullEarWIdth, y);
+                ctx.lineTo(x + fullEarWIdth, y - spacing);
+                ctx.lineTo(x - fullEarWIdth, y - spacing);
                 ctx.closePath();
 
-                ctx.moveTo(x - fullEarWidth, y + h);
-                ctx.lineTo(x + fullEarWidth, y + h);
-                ctx.lineTo(x + fullEarWidth, y + h + spacing);
-                ctx.lineTo(x - fullEarWidth, y + h + spacing);
+                ctx.moveTo(x - fullEarWIdth, y + h);
+                ctx.lineTo(x + fullEarWIdth, y + h);
+                ctx.lineTo(x + fullEarWIdth, y + h + spacing);
+                ctx.lineTo(x - fullEarWIdth, y + h + spacing);
                 ctx.closePath();
                 ctx.stroke();
                 ctx.fill();
@@ -465,7 +465,7 @@ The plugin allso adds the following methods to the plot object:
                 }
 
                 ctx.strokeStyle = c.scale('a', scalingFactor).toString();
-                ctx.lineWidth = 1;
+                ctx.lineWIdth = 1;
                 ctx.lineJoin = o.selection.shape;
                 ctx.fillStyle = c.scale('a', 0.4).toString();
 
@@ -490,7 +490,7 @@ The plugin allso adds the following methods to the plot object:
                     ctx.fillRect(x, y, w, h);
                     ctx.strokeRect(x, y, w, h);
                 } else {
-                    ctx.fillRect(0, 0, plot.width(), plot.height());
+                    ctx.fillRect(0, 0, plot.wIdth(), plot.height());
                     ctx.clearRect(x, y, w, h);
 
                     if (displaySelectionDecorations) {

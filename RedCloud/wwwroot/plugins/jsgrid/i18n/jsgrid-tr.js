@@ -1,7 +1,7 @@
-(function(jsGrid) {
+(function(jsGrId) {
 
-    jsGrid.locales.tr = {
-        grid: {
+    jsGrId.locales.tr = {
+        grId: {
             noDataContent: "Kayıt Bulunamadı",
             deleteConfirm: "Emin misiniz ?",
             pagerFormat: "Sayfalar: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} / {pageCount}",
@@ -10,7 +10,7 @@
             pageFirstText: "<<",
             pageLastText: ">>",
             loadMessage: "Lütfen bekleyiniz...",
-            invalidMessage: "Geçersiz veri girişi !"
+            invalIdMessage: "Geçersiz veri girişi !"
         },
 
         loadIndicator: {
@@ -31,7 +31,7 @@
             }
         },
 
-        validators: {
+        valIdators: {
             required: { message: "Gerekli alandır" },
             rangeLength: { message: "Alan değerinin uzunluğu tanımlanan aralık dışındadır" },
             minLength: { message: "Alan değeri çok kısadır" },
@@ -43,5 +43,5 @@
         }
     };
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));
 

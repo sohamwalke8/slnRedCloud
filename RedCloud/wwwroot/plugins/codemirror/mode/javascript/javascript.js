@@ -42,7 +42,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   }();
 
   var isOperatorChar = /[+\-*&%=<>!?|~^@]/;
-  var isJsonldKeyword = /^@(context|id|value|language|type|container|list|set|reverse|index|base|vocab|graph)"/;
+  var isJsonldKeyword = /^@(context|Id|value|language|type|container|list|set|reverse|index|base|vocab|graph)"/;
 
   function readRegexp(stream) {
     var escaped = false, next, inSet = false;

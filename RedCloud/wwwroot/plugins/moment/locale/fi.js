@@ -1,6 +1,6 @@
 //! moment.js locale configuration
 //! locale : Finnish [fi]
-//! author : Tarmo Aidantausta : https://github.com/bleadof
+//! author : Tarmo AIdantausta : https://github.com/bleadof
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'
@@ -20,7 +20,7 @@
             'kahden',
             'kolmen',
             'neljän',
-            'viiden',
+            'viIden',
             'kuuden',
             numbersPast[7],
             numbersPast[8],

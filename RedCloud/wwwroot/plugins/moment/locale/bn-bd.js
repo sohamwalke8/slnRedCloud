@@ -91,27 +91,27 @@
             });
         },
 
-        meridiemParse: /রাত|ভোর|সকাল|দুপুর|বিকাল|সন্ধ্যা|রাত/,
-        meridiemHour: function (hour, meridiem) {
+        merIdiemParse: /রাত|ভোর|সকাল|দুপুর|বিকাল|সন্ধ্যা|রাত/,
+        merIdiemHour: function (hour, merIdiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (meridiem === 'রাত') {
+            if (merIdiem === 'রাত') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (meridiem === 'ভোর') {
+            } else if (merIdiem === 'ভোর') {
                 return hour;
-            } else if (meridiem === 'সকাল') {
+            } else if (merIdiem === 'সকাল') {
                 return hour;
-            } else if (meridiem === 'দুপুর') {
+            } else if (merIdiem === 'দুপুর') {
                 return hour >= 3 ? hour : hour + 12;
-            } else if (meridiem === 'বিকাল') {
+            } else if (merIdiem === 'বিকাল') {
                 return hour + 12;
-            } else if (meridiem === 'সন্ধ্যা') {
+            } else if (merIdiem === 'সন্ধ্যা') {
                 return hour + 12;
             }
         },
 
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'রাত';
             } else if (hour < 6) {

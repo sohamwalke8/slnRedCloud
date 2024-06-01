@@ -41,7 +41,7 @@ namespace RedCloud.Identity.Services
 
     //        if (!result.Succeeded)
     //        {
-    //            throw new AuthenticationException($"Credentials for '{request.Email}' aren't valid'.");
+    //            throw new AuthenticationException($"Credentials for '{request.Email}' aren't valId'.");
     //        }
 
     //        JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
@@ -125,9 +125,9 @@ namespace RedCloud.Identity.Services
     //        var claims = new[]
     //        {
     //          new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-    //          new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+    //          new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuId().ToString()),
     //          new Claim(JwtRegisteredClaimNames.Email, user.Email),
-    //          new Claim("uid", user.Id)
+    //          new Claim("uId", user.Id)
     //      }
     //        .Union(userClaims)
     //        .Union(roleClaims);
@@ -147,7 +147,7 @@ namespace RedCloud.Identity.Services
     //    private RefreshToken GenerateRefreshToken()
     //    {
     //        var randomNumber = new byte[32];
-    //        using (var generator = new RNGCryptoServiceProvider())
+    //        using (var generator = new RNGCryptoServiceProvIder())
     //        {
     //            generator.GetBytes(randomNumber);
     //            return new RefreshToken
@@ -166,7 +166,7 @@ namespace RedCloud.Identity.Services
     //        if (user == null)
     //        {
     //            response.IsAuthenticated = false;
-    //            response.Message = $"Token did not match any users.";
+    //            response.Message = $"Token dId not match any users.";
     //            return response;
     //        }
 
@@ -213,7 +213,7 @@ namespace RedCloud.Identity.Services
     //        if (user == null)
     //        {
     //            response.IsRevoked = false;
-    //            response.Message = "Token did not match any users";
+    //            response.Message = "Token dId not match any users";
     //            return response;
     //        }
 

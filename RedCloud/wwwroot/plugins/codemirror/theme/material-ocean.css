@@ -22,7 +22,7 @@
 }
 
 .cm-s-material-ocean .CodeMirror-cursor {
-  border-left: 1px solid #FFCC00;
+  border-left: 1px solId #FFCC00;
 }
 .cm-s-material-ocean.cm-fat-cursor .CodeMirror-cursor {
   background-color: #a2a8a175 !important;

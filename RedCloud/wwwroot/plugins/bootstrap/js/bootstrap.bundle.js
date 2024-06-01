@@ -74,7 +74,7 @@
    */
 
   var TRANSITION_END = 'transitionend';
-  var MAX_UID = 1000000;
+  var MAX_UId = 1000000;
   var MILLISECONDS_MULTIPLIER = 1000; // Shoutout AngusCroll (https://goo.gl/pxwQGp)
 
   function toType(obj) {
@@ -125,10 +125,10 @@
 
   var Util = {
     TRANSITION_END: 'bsTransitionEnd',
-    getUID: function getUID(prefix) {
+    getUId: function getUId(prefix) {
       do {
         // eslint-disable-next-line no-bitwise
-        prefix += ~~(Math.random() * MAX_UID); // "~~" acts like a faster Math.floor() here
+        prefix += ~~(Math.random() * MAX_UId); // "~~" acts like a faster Math.floor() here
       } while (document.getElementById(prefix));
 
       return prefix;
@@ -187,7 +187,7 @@
           var valueType = value && Util.isElement(value) ? 'element' : toType(value);
 
           if (!new RegExp(expectedTypes).test(valueType)) {
-            throw new Error(componentName.toUpperCase() + ": " + ("Option \"" + property + "\" provided type \"" + valueType + "\" ") + ("but expected type \"" + expectedTypes + "\"."));
+            throw new Error(componentName.toUpperCase() + ": " + ("Option \"" + property + "\" provIded type \"" + valueType + "\" ") + ("but expected type \"" + expectedTypes + "\"."));
           }
         }
       }
@@ -402,7 +402,7 @@
   var SELECTOR_DATA_TOGGLES = '[data-toggle="buttons"]';
   var SELECTOR_DATA_TOGGLE$4 = '[data-toggle="button"]';
   var SELECTOR_DATA_TOGGLES_BUTTONS = '[data-toggle="buttons"] .btn';
-  var SELECTOR_INPUT = 'input:not([type="hidden"])';
+  var SELECTOR_INPUT = 'input:not([type="hIdden"])';
   var SELECTOR_ACTIVE$2 = '.active';
   var SELECTOR_BUTTON = '.btn';
   /**
@@ -412,7 +412,7 @@
   var Button = /*#__PURE__*/function () {
     function Button(element) {
       this._element = element;
-      this.shouldAvoidTriggerChange = false;
+      this.shouldAvoIdTriggerChange = false;
     } // Getters
 
 
@@ -441,12 +441,12 @@
           }
 
           if (triggerChangeEvent) {
-            // if it's not a radio button or checkbox don't add a pointless/invalid checked property to the input
+            // if it's not a radio button or checkbox don't add a pointless/invalId checked property to the input
             if (input.type === 'checkbox' || input.type === 'radio') {
               input.checked = !this._element.classList.contains(CLASS_NAME_ACTIVE$3);
             }
 
-            if (!this.shouldAvoidTriggerChange) {
+            if (!this.shouldAvoIdTriggerChange) {
               $__default["default"](input).trigger('change');
             }
           }
@@ -473,7 +473,7 @@
     } // Static
     ;
 
-    Button._jQueryInterface = function _jQueryInterface(config, avoidTriggerChange) {
+    Button._jQueryInterface = function _jQueryInterface(config, avoIdTriggerChange) {
       return this.each(function () {
         var $element = $__default["default"](this);
         var data = $element.data(DATA_KEY$9);
@@ -483,7 +483,7 @@
           $element.data(DATA_KEY$9, data);
         }
 
-        data.shouldAvoidTriggerChange = avoidTriggerChange;
+        data.shouldAvoIdTriggerChange = avoIdTriggerChange;
 
         if (config === 'toggle') {
           data[config]();
@@ -534,7 +534,7 @@
   });
   $__default["default"](window).on(EVENT_LOAD_DATA_API$2, function () {
     // ensure correct active class is set to match the controls' actual values/states
-    // find all checkboxes/readio buttons inside data-toggle groups
+    // find all checkboxes/readio buttons insIde data-toggle groups
     var buttons = [].slice.call(document.querySelectorAll(SELECTOR_DATA_TOGGLES_BUTTONS));
 
     for (var i = 0, len = buttons.length; i < len; i++) {
@@ -592,7 +592,7 @@
   var SWIPE_THRESHOLD = 40;
   var CLASS_NAME_CAROUSEL = 'carousel';
   var CLASS_NAME_ACTIVE$2 = 'active';
-  var CLASS_NAME_SLIDE = 'slide';
+  var CLASS_NAME_SLIdE = 'slIde';
   var CLASS_NAME_RIGHT = 'carousel-item-right';
   var CLASS_NAME_LEFT = 'carousel-item-left';
   var CLASS_NAME_NEXT = 'carousel-item-next';
@@ -602,8 +602,8 @@
   var DIRECTION_PREV = 'prev';
   var DIRECTION_LEFT = 'left';
   var DIRECTION_RIGHT = 'right';
-  var EVENT_SLIDE = "slide" + EVENT_KEY$8;
-  var EVENT_SLID = "slid" + EVENT_KEY$8;
+  var EVENT_SLIdE = "slIde" + EVENT_KEY$8;
+  var EVENT_SLId = "slId" + EVENT_KEY$8;
   var EVENT_KEYDOWN = "keydown" + EVENT_KEY$8;
   var EVENT_MOUSEENTER = "mouseenter" + EVENT_KEY$8;
   var EVENT_MOUSELEAVE = "mouseleave" + EVENT_KEY$8;
@@ -621,12 +621,12 @@
   var SELECTOR_ITEM_IMG = '.carousel-item img';
   var SELECTOR_NEXT_PREV = '.carousel-item-next, .carousel-item-prev';
   var SELECTOR_INDICATORS = '.carousel-indicators';
-  var SELECTOR_DATA_SLIDE = '[data-slide], [data-slide-to]';
-  var SELECTOR_DATA_RIDE = '[data-ride="carousel"]';
+  var SELECTOR_DATA_SLIdE = '[data-slIde], [data-slIde-to]';
+  var SELECTOR_DATA_RIdE = '[data-rIde="carousel"]';
   var Default$7 = {
     interval: 5000,
     keyboard: true,
-    slide: false,
+    slIde: false,
     pause: 'hover',
     wrap: true,
     touch: true
@@ -634,7 +634,7 @@
   var DefaultType$7 = {
     interval: '(number|boolean)',
     keyboard: 'boolean',
-    slide: '(boolean|string)',
+    slIde: '(boolean|string)',
     pause: '(string|boolean)',
     wrap: 'boolean',
     touch: 'boolean'
@@ -653,7 +653,7 @@
       this._interval = null;
       this._activeElement = null;
       this._isPaused = false;
-      this._isSliding = false;
+      this._isSlIding = false;
       this.touchTimeout = null;
       this.touchStartX = 0;
       this.touchDeltaX = 0;
@@ -671,8 +671,8 @@
 
     // Public
     _proto.next = function next() {
-      if (!this._isSliding) {
-        this._slide(DIRECTION_NEXT);
+      if (!this._isSlIding) {
+        this._slIde(DIRECTION_NEXT);
       }
     };
 
@@ -680,14 +680,14 @@
       var $element = $__default["default"](this._element); // Don't call next when the page isn't visible
       // or the carousel or its parent isn't visible
 
-      if (!document.hidden && $element.is(':visible') && $element.css('visibility') !== 'hidden') {
+      if (!document.hIdden && $element.is(':visible') && $element.css('visibility') !== 'hIdden') {
         this.next();
       }
     };
 
     _proto.prev = function prev() {
-      if (!this._isSliding) {
-        this._slide(DIRECTION_PREV);
+      if (!this._isSlIding) {
+        this._slIde(DIRECTION_PREV);
       }
     };
 
@@ -733,8 +733,8 @@
         return;
       }
 
-      if (this._isSliding) {
-        $__default["default"](this._element).one(EVENT_SLID, function () {
+      if (this._isSlIding) {
+        $__default["default"](this._element).one(EVENT_SLId, function () {
           return _this.to(index);
         });
         return;
@@ -748,7 +748,7 @@
 
       var direction = index > activeIndex ? DIRECTION_NEXT : DIRECTION_PREV;
 
-      this._slide(direction, this._items[index]);
+      this._slIde(direction, this._items[index]);
     };
 
     _proto.dispose = function dispose() {
@@ -759,7 +759,7 @@
       this._element = null;
       this._interval = null;
       this._isPaused = null;
-      this._isSliding = null;
+      this._isSlIding = null;
       this._activeElement = null;
       this._indicatorsElement = null;
     } // Private
@@ -927,19 +927,19 @@
       return itemIndex === -1 ? this._items[this._items.length - 1] : this._items[itemIndex];
     };
 
-    _proto._triggerSlideEvent = function _triggerSlideEvent(relatedTarget, eventDirectionName) {
+    _proto._triggerSlIdeEvent = function _triggerSlIdeEvent(relatedTarget, eventDirectionName) {
       var targetIndex = this._getItemIndex(relatedTarget);
 
       var fromIndex = this._getItemIndex(this._element.querySelector(SELECTOR_ACTIVE_ITEM));
 
-      var slideEvent = $__default["default"].Event(EVENT_SLIDE, {
+      var slIdeEvent = $__default["default"].Event(EVENT_SLIdE, {
         relatedTarget: relatedTarget,
         direction: eventDirectionName,
         from: fromIndex,
         to: targetIndex
       });
-      $__default["default"](this._element).trigger(slideEvent);
-      return slideEvent;
+      $__default["default"](this._element).trigger(slIdeEvent);
+      return slIdeEvent;
     };
 
     _proto._setActiveIndicatorElement = function _setActiveIndicatorElement(element) {
@@ -972,7 +972,7 @@
       }
     };
 
-    _proto._slide = function _slide(direction, element) {
+    _proto._slIde = function _slIde(direction, element) {
       var _this4 = this;
 
       var activeElement = this._element.querySelector(SELECTOR_ACTIVE_ITEM);
@@ -999,13 +999,13 @@
       }
 
       if (nextElement && $__default["default"](nextElement).hasClass(CLASS_NAME_ACTIVE$2)) {
-        this._isSliding = false;
+        this._isSlIding = false;
         return;
       }
 
-      var slideEvent = this._triggerSlideEvent(nextElement, eventDirectionName);
+      var slIdeEvent = this._triggerSlIdeEvent(nextElement, eventDirectionName);
 
-      if (slideEvent.isDefaultPrevented()) {
+      if (slIdeEvent.isDefaultPrevented()) {
         return;
       }
 
@@ -1014,7 +1014,7 @@
         return;
       }
 
-      this._isSliding = true;
+      this._isSlIding = true;
 
       if (isCycling) {
         this.pause();
@@ -1023,14 +1023,14 @@
       this._setActiveIndicatorElement(nextElement);
 
       this._activeElement = nextElement;
-      var slidEvent = $__default["default"].Event(EVENT_SLID, {
+      var slIdEvent = $__default["default"].Event(EVENT_SLId, {
         relatedTarget: nextElement,
         direction: eventDirectionName,
         from: activeElementIndex,
         to: nextElementIndex
       });
 
-      if ($__default["default"](this._element).hasClass(CLASS_NAME_SLIDE)) {
+      if ($__default["default"](this._element).hasClass(CLASS_NAME_SLIdE)) {
         $__default["default"](nextElement).addClass(orderClassName);
         Util.reflow(nextElement);
         $__default["default"](activeElement).addClass(directionalClassName);
@@ -1039,16 +1039,16 @@
         $__default["default"](activeElement).one(Util.TRANSITION_END, function () {
           $__default["default"](nextElement).removeClass(directionalClassName + " " + orderClassName).addClass(CLASS_NAME_ACTIVE$2);
           $__default["default"](activeElement).removeClass(CLASS_NAME_ACTIVE$2 + " " + orderClassName + " " + directionalClassName);
-          _this4._isSliding = false;
+          _this4._isSlIding = false;
           setTimeout(function () {
-            return $__default["default"](_this4._element).trigger(slidEvent);
+            return $__default["default"](_this4._element).trigger(slIdEvent);
           }, 0);
         }).emulateTransitionEnd(transitionDuration);
       } else {
         $__default["default"](activeElement).removeClass(CLASS_NAME_ACTIVE$2);
         $__default["default"](nextElement).addClass(CLASS_NAME_ACTIVE$2);
-        this._isSliding = false;
-        $__default["default"](this._element).trigger(slidEvent);
+        this._isSlIding = false;
+        $__default["default"](this._element).trigger(slIdEvent);
       }
 
       if (isCycling) {
@@ -1067,7 +1067,7 @@
           _config = _extends$1({}, _config, config);
         }
 
-        var action = typeof config === 'string' ? config : _config.slide;
+        var action = typeof config === 'string' ? config : _config.slIde;
 
         if (!data) {
           data = new Carousel(this, _config);
@@ -1082,7 +1082,7 @@
           }
 
           data[action]();
-        } else if (_config.interval && _config.ride) {
+        } else if (_config.interval && _config.rIde) {
           data.pause();
           data.cycle();
         }
@@ -1104,16 +1104,16 @@
 
       var config = _extends$1({}, $__default["default"](target).data(), $__default["default"](this).data());
 
-      var slideIndex = this.getAttribute('data-slide-to');
+      var slIdeIndex = this.getAttribute('data-slIde-to');
 
-      if (slideIndex) {
+      if (slIdeIndex) {
         config.interval = false;
       }
 
       Carousel._jQueryInterface.call($__default["default"](target), config);
 
-      if (slideIndex) {
-        $__default["default"](target).data(DATA_KEY$8).to(slideIndex);
+      if (slIdeIndex) {
+        $__default["default"](target).data(DATA_KEY$8).to(slIdeIndex);
       }
 
       event.preventDefault();
@@ -1138,9 +1138,9 @@
    */
 
 
-  $__default["default"](document).on(EVENT_CLICK_DATA_API$4, SELECTOR_DATA_SLIDE, Carousel._dataApiClickHandler);
+  $__default["default"](document).on(EVENT_CLICK_DATA_API$4, SELECTOR_DATA_SLIdE, Carousel._dataApiClickHandler);
   $__default["default"](window).on(EVENT_LOAD_DATA_API$1, function () {
-    var carousels = [].slice.call(document.querySelectorAll(SELECTOR_DATA_RIDE));
+    var carousels = [].slice.call(document.querySelectorAll(SELECTOR_DATA_RIdE));
 
     for (var i = 0, len = carousels.length; i < len; i++) {
       var $carousel = $__default["default"](carousels[i]);
@@ -1174,12 +1174,12 @@
   var CLASS_NAME_COLLAPSE = 'collapse';
   var CLASS_NAME_COLLAPSING = 'collapsing';
   var CLASS_NAME_COLLAPSED = 'collapsed';
-  var DIMENSION_WIDTH = 'width';
+  var DIMENSION_WIdTH = 'wIdth';
   var DIMENSION_HEIGHT = 'height';
   var EVENT_SHOW$4 = "show" + EVENT_KEY$7;
   var EVENT_SHOWN$4 = "shown" + EVENT_KEY$7;
-  var EVENT_HIDE$4 = "hide" + EVENT_KEY$7;
-  var EVENT_HIDDEN$4 = "hidden" + EVENT_KEY$7;
+  var EVENT_HIdE$4 = "hIde" + EVENT_KEY$7;
+  var EVENT_HIdDEN$4 = "hIdden" + EVENT_KEY$7;
   var EVENT_CLICK_DATA_API$3 = "click" + EVENT_KEY$7 + DATA_API_KEY$4;
   var SELECTOR_ACTIVES = '.show, .collapsing';
   var SELECTOR_DATA_TOGGLE$3 = '[data-toggle="collapse"]';
@@ -1200,7 +1200,7 @@
       this._isTransitioning = false;
       this._element = element;
       this._config = this._getConfig(config);
-      this._triggerArray = [].slice.call(document.querySelectorAll("[data-toggle=\"collapse\"][href=\"#" + element.id + "\"]," + ("[data-toggle=\"collapse\"][data-target=\"#" + element.id + "\"]")));
+      this._triggerArray = [].slice.call(document.querySelectorAll("[data-toggle=\"collapse\"][href=\"#" + element.Id + "\"]," + ("[data-toggle=\"collapse\"][data-target=\"#" + element.Id + "\"]")));
       var toggleList = [].slice.call(document.querySelectorAll(SELECTOR_DATA_TOGGLE$3));
 
       for (var i = 0, len = toggleList.length; i < len; i++) {
@@ -1234,7 +1234,7 @@
     // Public
     _proto.toggle = function toggle() {
       if ($__default["default"](this._element).hasClass(CLASS_NAME_SHOW$6)) {
-        this.hide();
+        this.hIde();
       } else {
         this.show();
       }
@@ -1280,7 +1280,7 @@
       }
 
       if (actives) {
-        Collapse._jQueryInterface.call($__default["default"](actives).not(this._selector), 'hide');
+        Collapse._jQueryInterface.call($__default["default"](actives).not(this._selector), 'hIde');
 
         if (!activesData) {
           $__default["default"](actives).data(DATA_KEY$7, null);
@@ -1314,14 +1314,14 @@
       this._element.style[dimension] = this._element[scrollSize] + "px";
     };
 
-    _proto.hide = function hide() {
+    _proto.hIde = function hIde() {
       var _this2 = this;
 
       if (this._isTransitioning || !$__default["default"](this._element).hasClass(CLASS_NAME_SHOW$6)) {
         return;
       }
 
-      var startEvent = $__default["default"].Event(EVENT_HIDE$4);
+      var startEvent = $__default["default"].Event(EVENT_HIdE$4);
       $__default["default"](this._element).trigger(startEvent);
 
       if (startEvent.isDefaultPrevented()) {
@@ -1355,7 +1355,7 @@
       var complete = function complete() {
         _this2.setTransitioning(false);
 
-        $__default["default"](_this2._element).removeClass(CLASS_NAME_COLLAPSING).addClass(CLASS_NAME_COLLAPSE).trigger(EVENT_HIDDEN$4);
+        $__default["default"](_this2._element).removeClass(CLASS_NAME_COLLAPSING).addClass(CLASS_NAME_COLLAPSE).trigger(EVENT_HIdDEN$4);
       };
 
       this._element.style[dimension] = '';
@@ -1386,8 +1386,8 @@
     };
 
     _proto._getDimension = function _getDimension() {
-      var hasWidth = $__default["default"](this._element).hasClass(DIMENSION_WIDTH);
-      return hasWidth ? DIMENSION_WIDTH : DIMENSION_HEIGHT;
+      var hasWIdth = $__default["default"](this._element).hasClass(DIMENSION_WIdTH);
+      return hasWIdth ? DIMENSION_WIdTH : DIMENSION_HEIGHT;
     };
 
     _proto._getParent = function _getParent() {
@@ -1434,7 +1434,7 @@
 
         var _config = _extends$1({}, Default$6, $element.data(), typeof config === 'object' && config ? config : {});
 
-        if (!data && _config.toggle && typeof config === 'string' && /show|hide/.test(config)) {
+        if (!data && _config.toggle && typeof config === 'string' && /show|hIde/.test(config)) {
           _config.toggle = false;
         }
 
@@ -1473,7 +1473,7 @@
 
 
   $__default["default"](document).on(EVENT_CLICK_DATA_API$3, SELECTOR_DATA_TOGGLE$3, function (event) {
-    // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
+    // preventDefault only for <a> elements (which change the URL) not insIde the collapsible element
     if (event.currentTarget.tagName === 'A') {
       event.preventDefault();
     }
@@ -1517,7 +1517,7 @@
    * The above copyright notice and this permission notice shall be included in all
    * copies or substantial portions of the Software.
    *
-   * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   * THE SOFTWARE IS PROVIdED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
    * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
    * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
    * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -1528,7 +1528,7 @@
   var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined' && typeof navigator !== 'undefined';
 
   var timeoutDuration = function () {
-    var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
+    var longerTimeoutBrowsers = ['Edge', 'TrIdent', 'Firefox'];
     for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
       if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
         return 1;
@@ -1702,7 +1702,7 @@
 
     // NOTE: 1 DOM access here
     var offsetParent = element.offsetParent || null;
-    // Skip hidden elements which don't have an offsetParent
+    // Skip hIdden elements which don't have an offsetParent
     while (offsetParent === noOffsetParent && element.nextElementSibling) {
       offsetParent = (element = element.nextElementSibling).offsetParent;
     }
@@ -1747,7 +1747,7 @@
   }
 
   /**
-   * Finds the offset parent common to the two provided nodes
+   * Finds the offset parent common to the two provIded nodes
    * @method
    * @memberof Popper.Utils
    * @argument {Element} element1
@@ -1755,7 +1755,7 @@
    * @returns {Element} common offset parent
    */
   function findCommonOffsetParent(element1, element2) {
-    // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+    // This check is needed to avoId errors in case one of the elements isn't defined for any reason
     if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
       return document.documentElement;
     }
@@ -1771,7 +1771,7 @@
     range.setEnd(end, 0);
     var commonAncestorContainer = range.commonAncestorContainer;
 
-    // Both nodes are inside #document
+    // Both nodes are insIde #document
 
     if (element1 !== commonAncestorContainer && element2 !== commonAncestorContainer || start.contains(end)) {
       if (isOffsetContainer(commonAncestorContainer)) {
@@ -1781,7 +1781,7 @@
       return getOffsetParent(commonAncestorContainer);
     }
 
-    // one of the nodes is inside shadowDOM, find which one
+    // one of the nodes is insIde shadowDOM, find which one
     var element1root = getRoot(element1);
     if (element1root.host) {
       return findCommonOffsetParent(element1root.host, element2);
@@ -1791,26 +1791,26 @@
   }
 
   /**
-   * Gets the scroll value of the given element in the given side (top and left)
+   * Gets the scroll value of the given element in the given sIde (top and left)
    * @method
    * @memberof Popper.Utils
    * @argument {Element} element
-   * @argument {String} side `top` or `left`
+   * @argument {String} sIde `top` or `left`
    * @returns {number} amount of scrolled pixels
    */
   function getScroll(element) {
-    var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
+    var sIde = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
 
-    var upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
+    var upperSIde = sIde === 'top' ? 'scrollTop' : 'scrollLeft';
     var nodeName = element.nodeName;
 
     if (nodeName === 'BODY' || nodeName === 'HTML') {
       var html = element.ownerDocument.documentElement;
       var scrollingElement = element.ownerDocument.scrollingElement || html;
-      return scrollingElement[upperSide];
+      return scrollingElement[upperSIde];
     }
 
-    return element[upperSide];
+    return element[upperSIde];
   }
 
   /*
@@ -1846,10 +1846,10 @@
    */
 
   function getBordersSize(styles, axis) {
-    var sideA = axis === 'x' ? 'Left' : 'Top';
-    var sideB = sideA === 'Left' ? 'Right' : 'Bottom';
+    var sIdeA = axis === 'x' ? 'Left' : 'Top';
+    var sIdeB = sIdeA === 'Left' ? 'Right' : 'Bottom';
 
-    return parseFloat(styles['border' + sideA + 'Width']) + parseFloat(styles['border' + sideB + 'Width']);
+    return parseFloat(styles['border' + sIdeA + 'WIdth']) + parseFloat(styles['border' + sIdeB + 'WIdth']);
   }
 
   function getSize(axis, body, html, computedStyle) {
@@ -1863,7 +1863,7 @@
 
     return {
       height: getSize('Height', body, html, computedStyle),
-      width: getSize('Width', body, html, computedStyle)
+      wIdth: getSize('WIdth', body, html, computedStyle)
     };
   }
 
@@ -1933,7 +1933,7 @@
    */
   function getClientRect(offsets) {
     return _extends({}, offsets, {
-      right: offsets.left + offsets.width,
+      right: offsets.left + offsets.wIdth,
       bottom: offsets.top + offsets.height
     });
   }
@@ -1949,7 +1949,7 @@
     var rect = {};
 
     // IE10 10 FIX: Please, don't ask, the element isn't
-    // considered in DOM in some circumstances...
+    // consIdered in DOM in some circumstances...
     // This isn't reproducible in IE10 compatibility mode of IE11
     try {
       if (isIE(10)) {
@@ -1968,16 +1968,16 @@
     var result = {
       left: rect.left,
       top: rect.top,
-      width: rect.right - rect.left,
+      wIdth: rect.right - rect.left,
       height: rect.bottom - rect.top
     };
 
     // subtract scrollbar size from sizes
     var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
-    var width = sizes.width || element.clientWidth || result.width;
+    var wIdth = sizes.wIdth || element.clientWIdth || result.wIdth;
     var height = sizes.height || element.clientHeight || result.height;
 
-    var horizScrollbar = element.offsetWidth - width;
+    var horizScrollbar = element.offsetWIdth - wIdth;
     var vertScrollbar = element.offsetHeight - height;
 
     // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
@@ -1987,7 +1987,7 @@
       horizScrollbar -= getBordersSize(styles, 'x');
       vertScrollbar -= getBordersSize(styles, 'y');
 
-      result.width -= horizScrollbar;
+      result.wIdth -= horizScrollbar;
       result.height -= vertScrollbar;
     }
 
@@ -2004,8 +2004,8 @@
     var scrollParent = getScrollParent(children);
 
     var styles = getStyleComputedProperty(parent);
-    var borderTopWidth = parseFloat(styles.borderTopWidth);
-    var borderLeftWidth = parseFloat(styles.borderLeftWidth);
+    var borderTopWIdth = parseFloat(styles.borderTopWIdth);
+    var borderLeftWIdth = parseFloat(styles.borderLeftWIdth);
 
     // In cases where the parent is fixed, we must ignore negative scroll in offset calc
     if (fixedPosition && isHTML) {
@@ -2013,9 +2013,9 @@
       parentRect.left = Math.max(parentRect.left, 0);
     }
     var offsets = getClientRect({
-      top: childrenRect.top - parentRect.top - borderTopWidth,
-      left: childrenRect.left - parentRect.left - borderLeftWidth,
-      width: childrenRect.width,
+      top: childrenRect.top - parentRect.top - borderTopWIdth,
+      left: childrenRect.left - parentRect.left - borderLeftWIdth,
+      wIdth: childrenRect.wIdth,
       height: childrenRect.height
     });
     offsets.marginTop = 0;
@@ -2029,10 +2029,10 @@
       var marginTop = parseFloat(styles.marginTop);
       var marginLeft = parseFloat(styles.marginLeft);
 
-      offsets.top -= borderTopWidth - marginTop;
-      offsets.bottom -= borderTopWidth - marginTop;
-      offsets.left -= borderLeftWidth - marginLeft;
-      offsets.right -= borderLeftWidth - marginLeft;
+      offsets.top -= borderTopWIdth - marginTop;
+      offsets.bottom -= borderTopWIdth - marginTop;
+      offsets.left -= borderLeftWIdth - marginLeft;
+      offsets.right -= borderLeftWIdth - marginLeft;
 
       // Attach marginTop and marginLeft because in some circumstances we may need them
       offsets.marginTop = marginTop;
@@ -2051,7 +2051,7 @@
 
     var html = element.ownerDocument.documentElement;
     var relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
-    var width = Math.max(html.clientWidth, window.innerWidth || 0);
+    var wIdth = Math.max(html.clientWIdth, window.innerWIdth || 0);
     var height = Math.max(html.clientHeight, window.innerHeight || 0);
 
     var scrollTop = !excludeScroll ? getScroll(html) : 0;
@@ -2060,7 +2060,7 @@
     var offset = {
       top: scrollTop - relativeOffset.top + relativeOffset.marginTop,
       left: scrollLeft - relativeOffset.left + relativeOffset.marginLeft,
-      width: width,
+      wIdth: wIdth,
       height: height
     };
 
@@ -2068,7 +2068,7 @@
   }
 
   /**
-   * Check if the given element is fixed or is inside a fixed parent
+   * Check if the given element is fixed or is insIde a fixed parent
    * @method
    * @memberof Popper.Utils
    * @argument {Element} element
@@ -2099,7 +2099,7 @@
    */
 
   function getFixedPositionOffsetParent(element) {
-    // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+    // This check is needed to avoId errors in case one of the elements isn't defined for any reason
     if (!element || !element.parentElement || isIE()) {
       return document.documentElement;
     }
@@ -2152,12 +2152,12 @@
       if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
         var _getWindowSizes = getWindowSizes(popper.ownerDocument),
             height = _getWindowSizes.height,
-            width = _getWindowSizes.width;
+            wIdth = _getWindowSizes.wIdth;
 
         boundaries.top += offsets.top - offsets.marginTop;
         boundaries.bottom = height + offsets.top;
         boundaries.left += offsets.left - offsets.marginLeft;
-        boundaries.right = width + offsets.left;
+        boundaries.right = wIdth + offsets.left;
       } else {
         // for all the other DOM elements, this one is good
         boundaries = offsets;
@@ -2176,10 +2176,10 @@
   }
 
   function getArea(_ref) {
-    var width = _ref.width,
+    var wIdth = _ref.wIdth,
         height = _ref.height;
 
-    return width * height;
+    return wIdth * height;
   }
 
   /**
@@ -2202,19 +2202,19 @@
 
     var rects = {
       top: {
-        width: boundaries.width,
+        wIdth: boundaries.wIdth,
         height: refRect.top - boundaries.top
       },
       right: {
-        width: boundaries.right - refRect.right,
+        wIdth: boundaries.right - refRect.right,
         height: boundaries.height
       },
       bottom: {
-        width: boundaries.width,
+        wIdth: boundaries.wIdth,
         height: boundaries.bottom - refRect.bottom
       },
       left: {
-        width: refRect.left - boundaries.left,
+        wIdth: refRect.left - boundaries.left,
         height: boundaries.height
       }
     };
@@ -2230,9 +2230,9 @@
     });
 
     var filteredAreas = sortedAreas.filter(function (_ref2) {
-      var width = _ref2.width,
+      var wIdth = _ref2.wIdth,
           height = _ref2.height;
-      return width >= popper.clientWidth && height >= popper.clientHeight;
+      return wIdth >= popper.clientWIdth && height >= popper.clientHeight;
     });
 
     var computedPlacement = filteredAreas.length > 0 ? filteredAreas[0].key : sortedAreas[0].key;
@@ -2264,7 +2264,7 @@
    * @method
    * @memberof Popper.Utils
    * @argument {Element} element
-   * @returns {Object} object containing width and height properties
+   * @returns {Object} object containing wIdth and height properties
    */
   function getOuterSizes(element) {
     var window = element.ownerDocument.defaultView;
@@ -2272,7 +2272,7 @@
     var x = parseFloat(styles.marginTop || 0) + parseFloat(styles.marginBottom || 0);
     var y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
     var result = {
-      width: element.offsetWidth + y,
+      wIdth: element.offsetWIdth + y,
       height: element.offsetHeight + x
     };
     return result;
@@ -2299,7 +2299,7 @@
    * @param {Object} position - CSS position the Popper will get applied
    * @param {HTMLElement} popper - the popper element
    * @param {Object} referenceOffsets - the reference offsets (the popper will be relative to this)
-   * @param {String} placement - one of the valid placement options
+   * @param {String} placement - one of the valId placement options
    * @returns {Object} popperOffsets - An object containing the offsets which will be applied to the popper
    */
   function getPopperOffsets(popper, referenceOffsets, placement) {
@@ -2308,24 +2308,24 @@
     // Get popper node sizes
     var popperRect = getOuterSizes(popper);
 
-    // Add position, width and height to our offsets object
+    // Add position, wIdth and height to our offsets object
     var popperOffsets = {
-      width: popperRect.width,
+      wIdth: popperRect.wIdth,
       height: popperRect.height
     };
 
     // depending by the popper placement we have to compute its offsets slightly differently
     var isHoriz = ['right', 'left'].indexOf(placement) !== -1;
-    var mainSide = isHoriz ? 'top' : 'left';
-    var secondarySide = isHoriz ? 'left' : 'top';
-    var measurement = isHoriz ? 'height' : 'width';
-    var secondaryMeasurement = !isHoriz ? 'height' : 'width';
+    var mainSIde = isHoriz ? 'top' : 'left';
+    var secondarySIde = isHoriz ? 'left' : 'top';
+    var measurement = isHoriz ? 'height' : 'wIdth';
+    var secondaryMeasurement = !isHoriz ? 'height' : 'wIdth';
 
-    popperOffsets[mainSide] = referenceOffsets[mainSide] + referenceOffsets[measurement] / 2 - popperRect[measurement] / 2;
-    if (placement === secondarySide) {
-      popperOffsets[secondarySide] = referenceOffsets[secondarySide] - popperRect[secondaryMeasurement];
+    popperOffsets[mainSIde] = referenceOffsets[mainSIde] + referenceOffsets[measurement] / 2 - popperRect[measurement] / 2;
+    if (placement === secondarySIde) {
+      popperOffsets[secondarySIde] = referenceOffsets[secondarySIde] - popperRect[secondaryMeasurement];
     } else {
-      popperOffsets[secondarySide] = referenceOffsets[getOppositePlacement(secondarySide)];
+      popperOffsets[secondarySIde] = referenceOffsets[getOppositePlacement(secondarySIde)];
     }
 
     return popperOffsets;
@@ -2432,12 +2432,12 @@
     // compute reference element offsets
     data.offsets.reference = getReferenceOffsets(this.state, this.popper, this.reference, this.options.positionFixed);
 
-    // compute auto placement, store placement inside the data object,
+    // compute auto placement, store placement insIde the data object,
     // modifiers will be able to edit `placement` if needed
     // and refer to originalPlacement to know the original value
     data.placement = computeAutoPlacement(this.options.placement, data.offsets.reference, this.popper, this.reference, this.options.modifiers.flip.boundariesElement, this.options.modifiers.flip.padding);
 
-    // store the computed placement inside `originalPlacement`
+    // store the computed placement insIde `originalPlacement`
     data.originalPlacement = data.placement;
 
     data.positionFixed = this.options.positionFixed;
@@ -2638,7 +2638,7 @@
     Object.keys(styles).forEach(function (prop) {
       var unit = '';
       // add unit if the value is numeric and is one of the following
-      if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
+      if (['wIdth', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
         unit = 'px';
       }
       element.style[prop] = styles[prop] + unit;
@@ -2706,7 +2706,7 @@
     // compute reference element offsets
     var referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
 
-    // compute auto placement, store placement inside the data object,
+    // compute auto placement, store placement insIde the data object,
     // modifiers will be able to edit `placement` if needed
     // and refer to originalPlacement to know the original value
     var placement = computeAutoPlacement(options.placement, referenceOffsets, popper, reference, options.modifiers.flip.boundariesElement, options.modifiers.flip.padding);
@@ -2737,7 +2737,7 @@
    * Firefox prefers no rounding for positioning and does not have blurriness on
    * high DPI screens.
    *
-   * Only horizontal placement and left/right values need to be considered.
+   * Only horizontal placement and left/right values need to be consIdered.
    */
   function getRoundedOffsets(data, shouldRound) {
     var _data$offsets = data.offsets,
@@ -2750,19 +2750,19 @@
       return v;
     };
 
-    var referenceWidth = round(reference.width);
-    var popperWidth = round(popper.width);
+    var referenceWIdth = round(reference.wIdth);
+    var popperWIdth = round(popper.wIdth);
 
     var isVertical = ['left', 'right'].indexOf(data.placement) !== -1;
     var isVariation = data.placement.indexOf('-') !== -1;
-    var sameWidthParity = referenceWidth % 2 === popperWidth % 2;
-    var bothOddWidth = referenceWidth % 2 === 1 && popperWidth % 2 === 1;
+    var sameWIdthParity = referenceWIdth % 2 === popperWIdth % 2;
+    var bothOddWIdth = referenceWIdth % 2 === 1 && popperWIdth % 2 === 1;
 
-    var horizontalToInteger = !shouldRound ? noRound : isVertical || isVariation || sameWidthParity ? round : floor;
+    var horizontalToInteger = !shouldRound ? noRound : isVertical || isVariation || sameWIdthParity ? round : floor;
     var verticalToInteger = !shouldRound ? noRound : round;
 
     return {
-      left: horizontalToInteger(bothOddWidth && !isVariation && shouldRound ? popper.left - 1 : popper.left),
+      left: horizontalToInteger(bothOddWIdth && !isVariation && shouldRound ? popper.left - 1 : popper.left),
       top: verticalToInteger(popper.top),
       bottom: verticalToInteger(popper.bottom),
       right: horizontalToInteger(popper.right)
@@ -2803,8 +2803,8 @@
 
     var offsets = getRoundedOffsets(data, window.devicePixelRatio < 2 || !isFirefox);
 
-    var sideA = x === 'bottom' ? 'top' : 'bottom';
-    var sideB = y === 'right' ? 'left' : 'right';
+    var sIdeA = x === 'bottom' ? 'top' : 'bottom';
+    var sIdeB = y === 'right' ? 'left' : 'right';
 
     // if gpuAcceleration is set to `true` and transform is supported,
     //  we use `translate3d` to apply the position to the popper we
@@ -2815,14 +2815,14 @@
     // If the content of the popper grows once it's been positioned, it
     // may happen that the popper gets misplaced because of the new content
     // overflowing its reference element
-    // To avoid this problem, we provide two options (x and y), which allow
+    // To avoId this problem, we provIde two options (x and y), which allow
     // the consumer to define the offset origin.
     // If we position a popper on top of a reference element, we can set
     // `x` to `top` to make the popper grow towards its top instead of
     // its bottom.
     var left = void 0,
         top = void 0;
-    if (sideA === 'bottom') {
+    if (sIdeA === 'bottom') {
       // when offsetParent is <html> the positioning is relative to the bottom of the screen (excluding the scrollbar)
       // and not the bottom of the html element
       if (offsetParent.nodeName === 'HTML') {
@@ -2833,27 +2833,27 @@
     } else {
       top = offsets.top;
     }
-    if (sideB === 'right') {
+    if (sIdeB === 'right') {
       if (offsetParent.nodeName === 'HTML') {
-        left = -offsetParent.clientWidth + offsets.right;
+        left = -offsetParent.clientWIdth + offsets.right;
       } else {
-        left = -offsetParentRect.width + offsets.right;
+        left = -offsetParentRect.wIdth + offsets.right;
       }
     } else {
       left = offsets.left;
     }
     if (gpuAcceleration && prefixedProperty) {
       styles[prefixedProperty] = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
-      styles[sideA] = 0;
-      styles[sideB] = 0;
+      styles[sIdeA] = 0;
+      styles[sIdeB] = 0;
       styles.willChange = 'transform';
     } else {
       // othwerise, we use the standard `top`, `left`, `bottom` and `right` properties
-      var invertTop = sideA === 'bottom' ? -1 : 1;
-      var invertLeft = sideB === 'right' ? -1 : 1;
-      styles[sideA] = top * invertTop;
-      styles[sideB] = left * invertLeft;
-      styles.willChange = sideA + ', ' + sideB;
+      var invertTop = sIdeA === 'bottom' ? -1 : 1;
+      var invertLeft = sIdeB === 'right' ? -1 : 1;
+      styles[sIdeA] = top * invertTop;
+      styles[sIdeB] = left * invertLeft;
+      styles.willChange = sIdeA + ', ' + sIdeB;
     }
 
     // Attributes
@@ -2924,7 +2924,7 @@
       }
     } else {
       // if the arrowElement isn't a query selector we must check that the
-      // provided DOM node is child of its popper node
+      // provIded DOM node is child of its popper node
       if (!data.instance.popper.contains(arrowElement)) {
         console.warn('WARNING: `arrow.element` must be child of its popper element!');
         return data;
@@ -2938,11 +2938,11 @@
 
     var isVertical = ['left', 'right'].indexOf(placement) !== -1;
 
-    var len = isVertical ? 'height' : 'width';
-    var sideCapitalized = isVertical ? 'Top' : 'Left';
-    var side = sideCapitalized.toLowerCase();
-    var altSide = isVertical ? 'left' : 'top';
-    var opSide = isVertical ? 'bottom' : 'right';
+    var len = isVertical ? 'height' : 'wIdth';
+    var sIdeCapitalized = isVertical ? 'Top' : 'Left';
+    var sIde = sIdeCapitalized.toLowerCase();
+    var altSIde = isVertical ? 'left' : 'top';
+    var opSIde = isVertical ? 'bottom' : 'right';
     var arrowElementSize = getOuterSizes(arrowElement)[len];
 
     //
@@ -2950,31 +2950,31 @@
     // reference have enough pixels in conjunction
     //
 
-    // top/left side
-    if (reference[opSide] - arrowElementSize < popper[side]) {
-      data.offsets.popper[side] -= popper[side] - (reference[opSide] - arrowElementSize);
+    // top/left sIde
+    if (reference[opSIde] - arrowElementSize < popper[sIde]) {
+      data.offsets.popper[sIde] -= popper[sIde] - (reference[opSIde] - arrowElementSize);
     }
-    // bottom/right side
-    if (reference[side] + arrowElementSize > popper[opSide]) {
-      data.offsets.popper[side] += reference[side] + arrowElementSize - popper[opSide];
+    // bottom/right sIde
+    if (reference[sIde] + arrowElementSize > popper[opSIde]) {
+      data.offsets.popper[sIde] += reference[sIde] + arrowElementSize - popper[opSIde];
     }
     data.offsets.popper = getClientRect(data.offsets.popper);
 
     // compute center of the popper
-    var center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
+    var center = reference[sIde] + reference[len] / 2 - arrowElementSize / 2;
 
-    // Compute the sideValue using the updated popper offsets
+    // Compute the sIdeValue using the updated popper offsets
     // take popper margin in account because we don't have this info available
     var css = getStyleComputedProperty(data.instance.popper);
-    var popperMarginSide = parseFloat(css['margin' + sideCapitalized]);
-    var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width']);
-    var sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
+    var popperMarginSIde = parseFloat(css['margin' + sIdeCapitalized]);
+    var popperBorderSIde = parseFloat(css['border' + sIdeCapitalized + 'WIdth']);
+    var sIdeValue = center - data.offsets.popper[sIde] - popperMarginSIde - popperBorderSIde;
 
     // prevent arrowElement from being placed not contiguously to its popper
-    sideValue = Math.max(Math.min(popper[len] - arrowElementSize, sideValue), 0);
+    sIdeValue = Math.max(Math.min(popper[len] - arrowElementSize, sIdeValue), 0);
 
     data.arrowElement = arrowElement;
-    data.offsets.arrow = (_data$offsets$arrow = {}, defineProperty(_data$offsets$arrow, side, Math.round(sideValue)), defineProperty(_data$offsets$arrow, altSide, ''), _data$offsets$arrow);
+    data.offsets.arrow = (_data$offsets$arrow = {}, defineProperty(_data$offsets$arrow, sIde, Math.round(sIdeValue)), defineProperty(_data$offsets$arrow, altSIde, ''), _data$offsets$arrow);
 
     return data;
   }
@@ -2997,7 +2997,7 @@
 
   /**
    * List of accepted placements to use as values of the `placement` option.<br />
-   * Valid placements are:
+   * ValId placements are:
    * - `auto`
    * - `top`
    * - `right`
@@ -3013,11 +3013,11 @@
    * is right.<br />
    * Vertically (`left` and `right`), `start` is top and `end` is bottom.
    *
-   * Some valid examples are:
+   * Some valId examples are:
    * - `top-end` (on top of reference, right aligned)
    * - `right-start` (on right of reference, top aligned)
    * - `bottom` (on bottom, centered)
-   * - `auto-end` (on the side with more space available, alignment depends by placement)
+   * - `auto-end` (on the sIde with more space available, alignment depends by placement)
    *
    * @static
    * @type {Array}
@@ -3028,8 +3028,8 @@
    */
   var placements = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
 
-  // Get rid of `auto` `auto-start` and `auto-end`
-  var validPlacements = placements.slice(3);
+  // Get rId of `auto` `auto-start` and `auto-end`
+  var valIdPlacements = placements.slice(3);
 
   /**
    * Given an initial placement, returns all the subsequent placements
@@ -3037,15 +3037,15 @@
    *
    * @method
    * @memberof Popper.Utils
-   * @argument {String} placement - A valid placement (it accepts variations)
+   * @argument {String} placement - A valId placement (it accepts variations)
    * @argument {Boolean} counter - Set to true to walk the placements counterclockwise
    * @returns {Array} placements including their variations
    */
   function clockwise(placement) {
     var counter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-    var index = validPlacements.indexOf(placement);
-    var arr = validPlacements.slice(index + 1).concat(validPlacements.slice(0, index));
+    var index = valIdPlacements.indexOf(placement);
+    var arr = valIdPlacements.slice(index + 1).concat(valIdPlacements.slice(0, index));
     return counter ? arr.reverse() : arr;
   }
 
@@ -3069,7 +3069,7 @@
     }
 
     if (data.flipped && data.placement === data.originalPlacement) {
-      // seems like flip is trying to loop, probably there's not enough space on any of the flippable sides
+      // seems like flip is trying to loop, probably there's not enough space on any of the flippable sIdes
       return data;
     }
 
@@ -3106,7 +3106,7 @@
       var popperOffsets = data.offsets.popper;
       var refOffsets = data.offsets.reference;
 
-      // using floor because the reference offsets may contain decimals we are not going to consider here
+      // using floor because the reference offsets may contain decimals we are not going to consIder here
       var floor = Math.floor;
       var overlapsRef = placement === 'left' && floor(popperOffsets.right) > floor(refOffsets.left) || placement === 'right' && floor(popperOffsets.left) < floor(refOffsets.right) || placement === 'top' && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === 'bottom' && floor(popperOffsets.top) < floor(refOffsets.bottom);
 
@@ -3167,15 +3167,15 @@
     var placement = data.placement.split('-')[0];
     var floor = Math.floor;
     var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
-    var side = isVertical ? 'right' : 'bottom';
-    var opSide = isVertical ? 'left' : 'top';
-    var measurement = isVertical ? 'width' : 'height';
+    var sIde = isVertical ? 'right' : 'bottom';
+    var opSIde = isVertical ? 'left' : 'top';
+    var measurement = isVertical ? 'wIdth' : 'height';
 
-    if (popper[side] < floor(reference[opSide])) {
-      data.offsets.popper[opSide] = floor(reference[opSide]) - popper[measurement];
+    if (popper[sIde] < floor(reference[opSIde])) {
+      data.offsets.popper[opSIde] = floor(reference[opSIde]) - popper[measurement];
     }
-    if (popper[opSide] > floor(reference[side])) {
-      data.offsets.popper[opSide] = floor(reference[side]);
+    if (popper[opSIde] > floor(reference[sIde])) {
+      data.offsets.popper[opSIde] = floor(reference[sIde]);
     }
 
     return data;
@@ -3187,7 +3187,7 @@
    * @memberof {modifiers~offset}
    * @private
    * @argument {String} str - Value + unit string
-   * @argument {String} measurement - `height` or `width`
+   * @argument {String} measurement - `height` or `wIdth`
    * @argument {Object} popperOffsets
    * @argument {Object} referenceOffsets
    * @returns {Number|String}
@@ -3224,11 +3224,11 @@
       if (unit === 'vh') {
         size = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
       } else {
-        size = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        size = Math.max(document.documentElement.clientWIdth, window.innerWIdth || 0);
       }
       return size / 100 * value;
     } else {
-      // if is an explicit pixel unit, we get rid of the unit and keep the value
+      // if is an explicit pixel unit, we get rId of the unit and keep the value
       // if is an implicit unit, it's px, and we return just the value
       return value;
     }
@@ -3248,7 +3248,7 @@
   function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
     var offsets = [0, 0];
 
-    // Use height if placement is left or right and index is 0 otherwise use width
+    // Use height if placement is left or right and index is 0 otherwise use wIdth
     // in this way the first offset will use an axis and the second one
     // will use the other one
     var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
@@ -3261,26 +3261,26 @@
 
     // Detect if the offset string contains a pair of values or a single one
     // they could be separated by comma or space
-    var divider = fragments.indexOf(find(fragments, function (frag) {
+    var divIder = fragments.indexOf(find(fragments, function (frag) {
       return frag.search(/,|\s/) !== -1;
     }));
 
-    if (fragments[divider] && fragments[divider].indexOf(',') === -1) {
+    if (fragments[divIder] && fragments[divIder].indexOf(',') === -1) {
       console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
     }
 
-    // If divider is found, we divide the list of values and operands to divide
+    // If divIder is found, we divIde the list of values and operands to divIde
     // them by ofset X and Y.
     var splitRegex = /\s*,\s*|\s+/;
-    var ops = divider !== -1 ? [fragments.slice(0, divider).concat([fragments[divider].split(splitRegex)[0]]), [fragments[divider].split(splitRegex)[1]].concat(fragments.slice(divider + 1))] : [fragments];
+    var ops = divIder !== -1 ? [fragments.slice(0, divIder).concat([fragments[divIder].split(splitRegex)[0]]), [fragments[divIder].split(splitRegex)[1]].concat(fragments.slice(divIder + 1))] : [fragments];
 
     // Convert the values with units to absolute pixels to allow our computations
     ops = ops.map(function (op, index) {
       // Most of the units rely on the orientation of the popper
-      var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'width';
+      var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'wIdth';
       var mergeWithPrevious = false;
       return op
-      // This aggregates any `+` or `-` sign that aren't considered operators
+      // This aggregates any `+` or `-` sign that aren't consIdered operators
       // e.g.: 10 + +5 => [10, +, +5]
       .reduce(function (a, b) {
         if (a[a.length - 1] === '' && ['+', '-'].indexOf(b) !== -1) {
@@ -3367,7 +3367,7 @@
 
     // If offsetParent is the reference element, we really want to
     // go one step up and use the next offsetParent as reference to
-    // avoid to make this modifier completely useless and look like broken
+    // avoId to make this modifier completely useless and look like broken
     if (data.instance.reference === boundariesElement) {
       boundariesElement = getOffsetParent(boundariesElement);
     }
@@ -3407,18 +3407,18 @@
         return defineProperty({}, placement, value);
       },
       secondary: function secondary(placement) {
-        var mainSide = placement === 'right' ? 'left' : 'top';
-        var value = popper[mainSide];
+        var mainSIde = placement === 'right' ? 'left' : 'top';
+        var value = popper[mainSIde];
         if (popper[placement] > boundaries[placement] && !options.escapeWithReference) {
-          value = Math.min(popper[mainSide], boundaries[placement] - (placement === 'right' ? popper.width : popper.height));
+          value = Math.min(popper[mainSIde], boundaries[placement] - (placement === 'right' ? popper.wIdth : popper.height));
         }
-        return defineProperty({}, mainSide, value);
+        return defineProperty({}, mainSIde, value);
       }
     };
 
     order.forEach(function (placement) {
-      var side = ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
-      popper = _extends({}, popper, check[side](placement));
+      var sIde = ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
+      popper = _extends({}, popper, check[sIde](placement));
     });
 
     data.offsets.popper = popper;
@@ -3445,12 +3445,12 @@
           popper = _data$offsets.popper;
 
       var isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
-      var side = isVertical ? 'left' : 'top';
-      var measurement = isVertical ? 'width' : 'height';
+      var sIde = isVertical ? 'left' : 'top';
+      var measurement = isVertical ? 'wIdth' : 'height';
 
       var shiftOffsets = {
-        start: defineProperty({}, side, reference[side]),
-        end: defineProperty({}, side, reference[side] + reference[measurement] - popper[measurement])
+        start: defineProperty({}, sIde, reference[sIde]),
+        end: defineProperty({}, sIde, reference[sIde] + reference[measurement] - popper[measurement])
       };
 
       data.offsets.popper = _extends({}, popper, shiftOffsets[shiftvariation]);
@@ -3466,8 +3466,8 @@
    * @argument {Object} options - Modifiers configuration and options
    * @returns {Object} The data object, properly modified
    */
-  function hide(data) {
-    if (!isModifierRequired(data.instance.modifiers, 'hide', 'preventOverflow')) {
+  function hIde(data) {
+    if (!isModifierRequired(data.instance.modifiers, 'hIde', 'preventOverflow')) {
       return data;
     }
 
@@ -3477,20 +3477,20 @@
     }).boundaries;
 
     if (refRect.bottom < bound.top || refRect.left > bound.right || refRect.top > bound.bottom || refRect.right < bound.left) {
-      // Avoid unnecessary DOM access if visibility hasn't changed
-      if (data.hide === true) {
+      // AvoId unnecessary DOM access if visibility hasn't changed
+      if (data.hIde === true) {
         return data;
       }
 
-      data.hide = true;
+      data.hIde = true;
       data.attributes['x-out-of-boundaries'] = '';
     } else {
-      // Avoid unnecessary DOM access if visibility hasn't changed
-      if (data.hide === false) {
+      // AvoId unnecessary DOM access if visibility hasn't changed
+      if (data.hIde === false) {
         return data;
       }
 
-      data.hide = false;
+      data.hIde = false;
       data.attributes['x-out-of-boundaries'] = false;
     }
 
@@ -3515,7 +3515,7 @@
 
     var subtractLength = ['top', 'left'].indexOf(basePlacement) === -1;
 
-    popper[isHoriz ? 'left' : 'top'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
+    popper[isHoriz ? 'left' : 'top'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'wIdth' : 'height'] : 0);
 
     data.placement = getOppositePlacement(placement);
     data.offsets.popper = getClientRect(popper);
@@ -3527,7 +3527,7 @@
    * Modifier function, each modifier can have a function of this type assigned
    * to its `fn` property.<br />
    * These functions will be called on each update, this means that you must
-   * make sure they are performant enough to avoid performance bottlenecks.
+   * make sure they are performant enough to avoId performance bottlenecks.
    *
    * @function ModifierFn
    * @argument {dataObject} data - The data object generated by `update` method
@@ -3537,7 +3537,7 @@
 
   /**
    * Modifiers are plugins used to alter the behavior of your poppers.<br />
-   * Popper.js uses a set of 9 modifiers to provide all the basic functionalities
+   * Popper.js uses a set of 9 modifiers to provIde all the basic functionalities
    * needed by the library.
    *
    * Usually you don't want to override the `order`, `fn` and `onLoad` props.
@@ -3569,21 +3569,21 @@
      * - `px` or unit-less, interpreted as pixels
      * - `%` or `%r`, percentage relative to the length of the reference element
      * - `%p`, percentage relative to the length of the popper element
-     * - `vw`, CSS viewport width unit
+     * - `vw`, CSS viewport wIdth unit
      * - `vh`, CSS viewport height unit
      *
      * For length is intended the main axis relative to the placement of the popper.<br />
      * This means that if the placement is `top` or `bottom`, the length will be the
-     * `width`. In case of `left` or `right`, it will be the `height`.
+     * `wIdth`. In case of `left` or `right`, it will be the `height`.
      *
-     * You can provide a single value (as `Number` or `String`), or a pair of values
-     * as `String` divided by a comma or one (or more) white spaces.<br />
+     * You can provIde a single value (as `Number` or `String`), or a pair of values
+     * as `String` divIded by a comma or one (or more) white spaces.<br />
      * The latter is a deprecated method because it leads to confusion and will be
      * removed in v2.<br />
      * Additionally, it accepts additions and subtractions between different units.
      * Note that multiplications and divisions aren't supported.
      *
-     * Valid examples are:
+     * ValId examples are:
      * ```
      * 10
      * '10%'
@@ -3614,17 +3614,17 @@
     },
 
     /**
-     * Modifier used to prevent the popper from being positioned outside the boundary.
+     * Modifier used to prevent the popper from being positioned outsIde the boundary.
      *
      * A scenario exists where the reference itself is not within the boundaries.<br />
      * We can say it has "escaped the boundaries" — or just "escaped".<br />
-     * In this case we need to decide whether the popper should either:
+     * In this case we need to decIde whether the popper should either:
      *
      * - detach from the reference and remain "trapped" in the boundaries, or
      * - if it should ignore the boundary and "escape with its reference"
      *
      * When `escapeWithReference` is set to`true` and reference is completely
-     * outside its boundaries, the popper will overflow (or completely leave)
+     * outsIde its boundaries, the popper will overflow (or completely leave)
      * the boundaries in order to remain attached to the edge of the reference.
      *
      * @memberof modifiers
@@ -3682,7 +3682,7 @@
      * It will read the outer size of the `arrowElement` node to detect how many
      * pixels of conjunction are needed.
      *
-     * It has no effect if no `arrowElement` is provided.
+     * It has no effect if no `arrowElement` is provIded.
      * @memberof modifiers
      * @inner
      */
@@ -3718,7 +3718,7 @@
       /**
        * @prop {String|Array} behavior='flip'
        * The behavior used to change the popper's placement. It can be one of
-       * `flip`, `clockwise`, `counterclockwise` or an array with a list of valid
+       * `flip`, `clockwise`, `counterclockwise` or an array with a list of valId
        * placements (with optional variations)
        */
       behavior: 'flip',
@@ -3730,7 +3730,7 @@
       /**
        * @prop {String|HTMLElement} boundariesElement='viewport'
        * The element which will define the boundaries of the popper position.
-       * The popper will never be placed outside of the defined boundaries
+       * The popper will never be placed outsIde of the defined boundaries
        * (except if `keepTogether` is enabled)
        */
       boundariesElement: 'viewport',
@@ -3754,7 +3754,7 @@
 
     /**
      * Modifier used to make the popper flow toward the inner of the reference element.
-     * By default, when this modifier is disabled, the popper will be placed outside
+     * By default, when this modifier is disabled, the popper will be placed outsIde
      * the reference element.
      * @memberof modifiers
      * @inner
@@ -3769,22 +3769,22 @@
     },
 
     /**
-     * Modifier used to hide the popper when its reference element is outside of the
+     * Modifier used to hIde the popper when its reference element is outsIde of the
      * popper boundaries. It will set a `x-out-of-boundaries` attribute which can
-     * be used to hide with a CSS selector the popper when its reference is
+     * be used to hIde with a CSS selector the popper when its reference is
      * out of boundaries.
      *
      * Requires the `preventOverflow` modifier before it in order to work.
      * @memberof modifiers
      * @inner
      */
-    hide: {
+    hIde: {
       /** @prop {number} order=800 - Index used to define the order of execution */
       order: 800,
       /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
       enabled: true,
       /** @prop {ModifierFn} */
-      fn: hide
+      fn: hIde
     },
 
     /**
@@ -3833,7 +3833,7 @@
      * Applies the computed styles to the popper element.
      *
      * All the DOM manipulations are limited to this modifier. This is useful in case
-     * you want to integrate Popper.js inside a framework or view library and you
+     * you want to integrate Popper.js insIde a framework or view library and you
      * want to delegate all the DOM manipulations to it.
      *
      * Note that if you disable this modifier, you must make sure the popper element
@@ -3871,20 +3871,20 @@
    * @property {String} data.placement Placement applied to popper
    * @property {String} data.originalPlacement Placement originally defined on init
    * @property {Boolean} data.flipped True if popper has been flipped by flip modifier
-   * @property {Boolean} data.hide True if the reference element is out of boundaries, useful to know when to hide the popper
+   * @property {Boolean} data.hIde True if the reference element is out of boundaries, useful to know when to hIde the popper
    * @property {HTMLElement} data.arrowElement Node used as arrow by arrow modifier
    * @property {Object} data.styles Any CSS property defined here will be applied to the popper. It expects the JavaScript nomenclature (eg. `marginBottom`)
    * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow. It expects the JavaScript nomenclature (eg. `marginBottom`)
    * @property {Object} data.boundaries Offsets of the popper boundaries
    * @property {Object} data.offsets The measurements of popper, reference and arrow elements
-   * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values
-   * @property {Object} data.offsets.reference `top`, `left`, `width`, `height` values
+   * @property {Object} data.offsets.popper `top`, `left`, `wIdth`, `height` values
+   * @property {Object} data.offsets.reference `top`, `left`, `wIdth`, `height` values
    * @property {Object} data.offsets.arrow] `top` and `left` offsets, only one of them will be different from 0
    */
 
   /**
-   * Default options provided to Popper.js constructor.<br />
-   * These can be overridden using the `options` argument of Popper.js.<br />
+   * Default options provIded to Popper.js constructor.<br />
+   * These can be overrIdden using the `options` argument of Popper.js.<br />
    * To override an option, simply pass an object with the same
    * structure of the `options` object, as the 3rd argument. For example:
    * ```
@@ -3944,7 +3944,7 @@
 
     /**
      * List of modifiers used to modify the offsets before they are applied to the popper.
-     * They provide most of the functionalities of Popper.js.
+     * They provIde most of the functionalities of Popper.js.
      * @prop {modifiers}
      */
     modifiers: modifiers
@@ -3984,7 +3984,7 @@
       // make update() debounced, so that it only runs at most once-per-tick
       this.update = debounce(this.update.bind(this));
 
-      // with {} we create a new object with the options inside it
+      // with {} we create a new object with the options insIde it
       this.options = _extends({}, Popper.Defaults, options);
 
       // init state
@@ -4091,7 +4091,7 @@
   }();
 
   /**
-   * The `referenceObject` is an object that provides an interface compatible with Popper.js
+   * The `referenceObject` is an object that provIdes an interface compatible with Popper.js
    * and lets you use it as replacement of a real DOM node.<br />
    * You can use this method to position a popper relatively to a set of coordinates
    * in case you don't have a DOM node to use as reference.
@@ -4104,8 +4104,8 @@
    * @name referenceObject
    * @property {Function} data.getBoundingClientRect
    * A function that returns a set of coordinates compatible with the native `getBoundingClientRect` method.
-   * @property {number} data.clientWidth
-   * An ES6 getter that will return the width of the virtual reference element.
+   * @property {number} data.clientWIdth
+   * An ES6 getter that will return the wIdth of the virtual reference element.
    * @property {number} data.clientHeight
    * An ES6 getter that will return the height of the virtual reference element.
    */
@@ -4147,8 +4147,8 @@
   var CLASS_NAME_DROPLEFT = 'dropleft';
   var CLASS_NAME_MENURIGHT = 'dropdown-menu-right';
   var CLASS_NAME_POSITION_STATIC = 'position-static';
-  var EVENT_HIDE$3 = "hide" + EVENT_KEY$6;
-  var EVENT_HIDDEN$3 = "hidden" + EVENT_KEY$6;
+  var EVENT_HIdE$3 = "hIde" + EVENT_KEY$6;
+  var EVENT_HIdDEN$3 = "hIdden" + EVENT_KEY$6;
   var EVENT_SHOW$3 = "show" + EVENT_KEY$6;
   var EVENT_SHOWN$3 = "shown" + EVENT_KEY$6;
   var EVENT_CLICK = "click" + EVENT_KEY$6;
@@ -4284,7 +4284,7 @@
       $__default["default"](parent).toggleClass(CLASS_NAME_SHOW$5).trigger($__default["default"].Event(EVENT_SHOWN$3, relatedTarget));
     };
 
-    _proto.hide = function hide() {
+    _proto.hIde = function hIde() {
       if (this._element.disabled || $__default["default"](this._element).hasClass(CLASS_NAME_DISABLED$1) || !$__default["default"](this._menu).hasClass(CLASS_NAME_SHOW$5)) {
         return;
       }
@@ -4292,13 +4292,13 @@
       var relatedTarget = {
         relatedTarget: this._element
       };
-      var hideEvent = $__default["default"].Event(EVENT_HIDE$3, relatedTarget);
+      var hIdeEvent = $__default["default"].Event(EVENT_HIdE$3, relatedTarget);
 
       var parent = Dropdown._getParentFromElement(this._element);
 
-      $__default["default"](parent).trigger(hideEvent);
+      $__default["default"](parent).trigger(hIdeEvent);
 
-      if (hideEvent.isDefaultPrevented()) {
+      if (hIdeEvent.isDefaultPrevented()) {
         return;
       }
 
@@ -4307,7 +4307,7 @@
       }
 
       $__default["default"](this._menu).toggleClass(CLASS_NAME_SHOW$5);
-      $__default["default"](parent).toggleClass(CLASS_NAME_SHOW$5).trigger($__default["default"].Event(EVENT_HIDDEN$3, relatedTarget));
+      $__default["default"](parent).toggleClass(CLASS_NAME_SHOW$5).trigger($__default["default"].Event(EVENT_HIdDEN$3, relatedTarget));
     };
 
     _proto.dispose = function dispose() {
@@ -4477,10 +4477,10 @@
           continue;
         }
 
-        var hideEvent = $__default["default"].Event(EVENT_HIDE$3, relatedTarget);
-        $__default["default"](parent).trigger(hideEvent);
+        var hIdeEvent = $__default["default"].Event(EVENT_HIdE$3, relatedTarget);
+        $__default["default"](parent).trigger(hIdeEvent);
 
-        if (hideEvent.isDefaultPrevented()) {
+        if (hIdeEvent.isDefaultPrevented()) {
           continue;
         } // If this is a touch-enabled device we remove the extra
         // empty mouseover listeners we added for iOS support
@@ -4497,7 +4497,7 @@
         }
 
         $__default["default"](dropdownMenu).removeClass(CLASS_NAME_SHOW$5);
-        $__default["default"](parent).removeClass(CLASS_NAME_SHOW$5).trigger($__default["default"].Event(EVENT_HIDDEN$3, relatedTarget));
+        $__default["default"](parent).removeClass(CLASS_NAME_SHOW$5).trigger($__default["default"].Event(EVENT_HIdDEN$3, relatedTarget));
       }
     };
 
@@ -4520,7 +4520,7 @@
       //  - If space key => not a dropdown command
       //  - If key is other than escape
       //    - If key is not up or down => not a dropdown command
-      //    - If trigger inside the menu => not a dropdown command
+      //    - If trigger insIde the menu => not a dropdown command
       if (/input|textarea/i.test(event.target.tagName) ? event.which === SPACE_KEYCODE || event.which !== ESCAPE_KEYCODE$1 && (event.which !== ARROW_DOWN_KEYCODE && event.which !== ARROW_UP_KEYCODE || $__default["default"](event.target).closest(SELECTOR_MENU).length) : !REGEXP_KEYDOWN.test(event.which)) {
         return;
       }
@@ -4639,9 +4639,9 @@
   var CLASS_NAME_FADE$4 = 'fade';
   var CLASS_NAME_SHOW$4 = 'show';
   var CLASS_NAME_STATIC = 'modal-static';
-  var EVENT_HIDE$2 = "hide" + EVENT_KEY$5;
-  var EVENT_HIDE_PREVENTED = "hidePrevented" + EVENT_KEY$5;
-  var EVENT_HIDDEN$2 = "hidden" + EVENT_KEY$5;
+  var EVENT_HIdE$2 = "hIde" + EVENT_KEY$5;
+  var EVENT_HIdE_PREVENTED = "hIdePrevented" + EVENT_KEY$5;
+  var EVENT_HIdDEN$2 = "hIdden" + EVENT_KEY$5;
   var EVENT_SHOW$2 = "show" + EVENT_KEY$5;
   var EVENT_SHOWN$2 = "shown" + EVENT_KEY$5;
   var EVENT_FOCUSIN = "focusin" + EVENT_KEY$5;
@@ -4683,7 +4683,7 @@
       this._isBodyOverflowing = false;
       this._ignoreBackdropClick = false;
       this._isTransitioning = false;
-      this._scrollbarWidth = 0;
+      this._scrollbarWIdth = 0;
     } // Getters
 
 
@@ -4691,7 +4691,7 @@
 
     // Public
     _proto.toggle = function toggle(relatedTarget) {
-      return this._isShown ? this.hide() : this.show(relatedTarget);
+      return this._isShown ? this.hIde() : this.show(relatedTarget);
     };
 
     _proto.show = function show(relatedTarget) {
@@ -4727,7 +4727,7 @@
       this._setResizeEvent();
 
       $__default["default"](this._element).on(EVENT_CLICK_DISMISS$1, SELECTOR_DATA_DISMISS$1, function (event) {
-        return _this.hide(event);
+        return _this.hIde(event);
       });
       $__default["default"](this._dialog).on(EVENT_MOUSEDOWN_DISMISS, function () {
         $__default["default"](_this._element).one(EVENT_MOUSEUP_DISMISS, function (event) {
@@ -4742,7 +4742,7 @@
       });
     };
 
-    _proto.hide = function hide(event) {
+    _proto.hIde = function hIde(event) {
       var _this2 = this;
 
       if (event) {
@@ -4753,10 +4753,10 @@
         return;
       }
 
-      var hideEvent = $__default["default"].Event(EVENT_HIDE$2);
-      $__default["default"](this._element).trigger(hideEvent);
+      var hIdeEvent = $__default["default"].Event(EVENT_HIdE$2);
+      $__default["default"](this._element).trigger(hIdeEvent);
 
-      if (!this._isShown || hideEvent.isDefaultPrevented()) {
+      if (!this._isShown || hIdeEvent.isDefaultPrevented()) {
         return;
       }
 
@@ -4779,10 +4779,10 @@
       if (transition) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);
         $__default["default"](this._element).one(Util.TRANSITION_END, function (event) {
-          return _this2._hideModal(event);
+          return _this2._hIdeModal(event);
         }).emulateTransitionEnd(transitionDuration);
       } else {
-        this._hideModal();
+        this._hIdeModal();
       }
     };
 
@@ -4806,7 +4806,7 @@
       this._isBodyOverflowing = null;
       this._ignoreBackdropClick = null;
       this._isTransitioning = null;
-      this._scrollbarWidth = null;
+      this._scrollbarWIdth = null;
     };
 
     _proto.handleUpdate = function handleUpdate() {
@@ -4823,17 +4823,17 @@
     _proto._triggerBackdropTransition = function _triggerBackdropTransition() {
       var _this3 = this;
 
-      var hideEventPrevented = $__default["default"].Event(EVENT_HIDE_PREVENTED);
-      $__default["default"](this._element).trigger(hideEventPrevented);
+      var hIdeEventPrevented = $__default["default"].Event(EVENT_HIdE_PREVENTED);
+      $__default["default"](this._element).trigger(hIdeEventPrevented);
 
-      if (hideEventPrevented.isDefaultPrevented()) {
+      if (hIdeEventPrevented.isDefaultPrevented()) {
         return;
       }
 
       var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
 
       if (!isModalOverflowing) {
-        this._element.style.overflowY = 'hidden';
+        this._element.style.overflowY = 'hIdden';
       }
 
       this._element.classList.add(CLASS_NAME_STATIC);
@@ -4866,7 +4866,7 @@
 
       this._element.style.display = 'block';
 
-      this._element.removeAttribute('aria-hidden');
+      this._element.removeAttribute('aria-hIdden');
 
       this._element.setAttribute('aria-modal', true);
 
@@ -4928,7 +4928,7 @@
           if (_this6._config.keyboard && event.which === ESCAPE_KEYCODE) {
             event.preventDefault();
 
-            _this6.hide();
+            _this6.hIde();
           } else if (!_this6._config.keyboard && event.which === ESCAPE_KEYCODE) {
             _this6._triggerBackdropTransition();
           }
@@ -4950,12 +4950,12 @@
       }
     };
 
-    _proto._hideModal = function _hideModal() {
+    _proto._hIdeModal = function _hIdeModal() {
       var _this8 = this;
 
       this._element.style.display = 'none';
 
-      this._element.setAttribute('aria-hidden', true);
+      this._element.setAttribute('aria-hIdden', true);
 
       this._element.removeAttribute('aria-modal');
 
@@ -4970,7 +4970,7 @@
 
         _this8._resetScrollbar();
 
-        $__default["default"](_this8._element).trigger(EVENT_HIDDEN$2);
+        $__default["default"](_this8._element).trigger(EVENT_HIdDEN$2);
       });
     };
 
@@ -5008,7 +5008,7 @@
           if (_this9._config.backdrop === 'static') {
             _this9._triggerBackdropTransition();
           } else {
-            _this9.hide();
+            _this9.hIde();
           }
         });
 
@@ -5060,11 +5060,11 @@
       var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
 
       if (!this._isBodyOverflowing && isModalOverflowing) {
-        this._element.style.paddingLeft = this._scrollbarWidth + "px";
+        this._element.style.paddingLeft = this._scrollbarWIdth + "px";
       }
 
       if (this._isBodyOverflowing && !isModalOverflowing) {
-        this._element.style.paddingRight = this._scrollbarWidth + "px";
+        this._element.style.paddingRight = this._scrollbarWIdth + "px";
       }
     };
 
@@ -5075,8 +5075,8 @@
 
     _proto._checkScrollbar = function _checkScrollbar() {
       var rect = document.body.getBoundingClientRect();
-      this._isBodyOverflowing = Math.round(rect.left + rect.right) < window.innerWidth;
-      this._scrollbarWidth = this._getScrollbarWidth();
+      this._isBodyOverflowing = Math.round(rect.left + rect.right) < window.innerWIdth;
+      this._scrollbarWIdth = this._getScrollbarWIdth();
     };
 
     _proto._setScrollbar = function _setScrollbar() {
@@ -5091,18 +5091,18 @@
         $__default["default"](fixedContent).each(function (index, element) {
           var actualPadding = element.style.paddingRight;
           var calculatedPadding = $__default["default"](element).css('padding-right');
-          $__default["default"](element).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + _this10._scrollbarWidth + "px");
+          $__default["default"](element).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + _this10._scrollbarWIdth + "px");
         }); // Adjust sticky content margin
 
         $__default["default"](stickyContent).each(function (index, element) {
           var actualMargin = element.style.marginRight;
           var calculatedMargin = $__default["default"](element).css('margin-right');
-          $__default["default"](element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) - _this10._scrollbarWidth + "px");
+          $__default["default"](element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) - _this10._scrollbarWIdth + "px");
         }); // Adjust body padding
 
         var actualPadding = document.body.style.paddingRight;
         var calculatedPadding = $__default["default"](document.body).css('padding-right');
-        $__default["default"](document.body).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + this._scrollbarWidth + "px");
+        $__default["default"](document.body).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + this._scrollbarWIdth + "px");
       }
 
       $__default["default"](document.body).addClass(CLASS_NAME_OPEN);
@@ -5131,14 +5131,14 @@
       document.body.style.paddingRight = padding ? padding : '';
     };
 
-    _proto._getScrollbarWidth = function _getScrollbarWidth() {
+    _proto._getScrollbarWIdth = function _getScrollbarWIdth() {
       // thx d.walsh
       var scrollDiv = document.createElement('div');
       scrollDiv.className = CLASS_NAME_SCROLLBAR_MEASURER;
       document.body.appendChild(scrollDiv);
-      var scrollbarWidth = scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth;
+      var scrollbarWIdth = scrollDiv.getBoundingClientRect().wIdth - scrollDiv.clientWIdth;
       document.body.removeChild(scrollDiv);
-      return scrollbarWidth;
+      return scrollbarWIdth;
     } // Static
     ;
 
@@ -5206,7 +5206,7 @@
         return;
       }
 
-      $target.one(EVENT_HIDDEN$2, function () {
+      $target.one(EVENT_HIdDEN$2, function () {
         if ($__default["default"](_this11).is(':visible')) {
           _this11.focus();
         }
@@ -5237,7 +5237,7 @@
   var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
   var DefaultWhitelist = {
     // Global attributes allowed on any supplied element below.
-    '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
+    '*': ['class', 'dir', 'Id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
     a: ['target', 'href', 'title', 'rel'],
     area: [],
     b: [],
@@ -5254,7 +5254,7 @@
     h5: [],
     h6: [],
     i: [],
-    img: ['src', 'srcset', 'alt', 'title', 'width', 'height'],
+    img: ['src', 'srcset', 'alt', 'title', 'wIdth', 'height'],
     li: [],
     ol: [],
     p: [],
@@ -5276,12 +5276,12 @@
 
   var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file|sms):|[^#&/:?]*(?:[#/?]|$))/i;
   /**
-   * A pattern that matches safe data URLs. Only matches image, video and audio types.
+   * A pattern that matches safe data URLs. Only matches image, vIdeo and audio types.
    *
    * Shoutout to Angular https://github.com/angular/angular/blob/12.2.x/packages/core/src/sanitization/url_sanitizer.ts
    */
 
-  var DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[\d+/a-z]+=*$/i;
+  var DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|vIdeo\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[\d+/a-z]+=*$/i;
 
   function allowedAttribute(attr, allowedAttributeList) {
     var attrName = attr.nodeName.toLowerCase();
@@ -5296,7 +5296,7 @@
 
     var regExp = allowedAttributeList.filter(function (attrRegex) {
       return attrRegex instanceof RegExp;
-    }); // Check if a regular expression validates the attribute.
+    }); // Check if a regular expression valIdates the attribute.
 
     for (var i = 0, len = regExp.length; i < len; i++) {
       if (regExp[i].test(attrName)) {
@@ -5417,8 +5417,8 @@
     popperConfig: '(null|object)'
   };
   var Event$1 = {
-    HIDE: "hide" + EVENT_KEY$4,
-    HIDDEN: "hidden" + EVENT_KEY$4,
+    HIdE: "hIde" + EVENT_KEY$4,
+    HIdDEN: "hIdden" + EVENT_KEY$4,
     SHOW: "show" + EVENT_KEY$4,
     SHOWN: "shown" + EVENT_KEY$4,
     INSERTED: "inserted" + EVENT_KEY$4,
@@ -5504,7 +5504,7 @@
       clearTimeout(this._timeout);
       $__default["default"].removeData(this.element, this.constructor.DATA_KEY);
       $__default["default"](this.element).off(this.constructor.EVENT_KEY);
-      $__default["default"](this.element).closest('.modal').off('hide.bs.modal', this._hideModalHandler);
+      $__default["default"](this.element).closest('.modal').off('hIde.bs.modal', this._hIdeModalHandler);
 
       if (this.tip) {
         $__default["default"](this.tip).remove();
@@ -5544,8 +5544,8 @@
         }
 
         var tip = this.getTipElement();
-        var tipId = Util.getUID(this.constructor.NAME);
-        tip.setAttribute('id', tipId);
+        var tipId = Util.getUId(this.constructor.NAME);
+        tip.setAttribute('Id', tipId);
         this.element.setAttribute('aria-describedby', tipId);
         this.setContent();
 
@@ -5602,11 +5602,11 @@
       }
     };
 
-    _proto.hide = function hide(callback) {
+    _proto.hIde = function hIde(callback) {
       var _this2 = this;
 
       var tip = this.getTipElement();
-      var hideEvent = $__default["default"].Event(this.constructor.Event.HIDE);
+      var hIdeEvent = $__default["default"].Event(this.constructor.Event.HIdE);
 
       var complete = function complete() {
         if (_this2._hoverState !== HOVER_STATE_SHOW && tip.parentNode) {
@@ -5617,7 +5617,7 @@
 
         _this2.element.removeAttribute('aria-describedby');
 
-        $__default["default"](_this2.element).trigger(_this2.constructor.Event.HIDDEN);
+        $__default["default"](_this2.element).trigger(_this2.constructor.Event.HIdDEN);
 
         if (_this2._popper !== null) {
           _this2._popper.destroy();
@@ -5628,9 +5628,9 @@
         }
       };
 
-      $__default["default"](this.element).trigger(hideEvent);
+      $__default["default"](this.element).trigger(hIdeEvent);
 
-      if (hideEvent.isDefaultPrevented()) {
+      if (hIdeEvent.isDefaultPrevented()) {
         return;
       }
 
@@ -5799,13 +5799,13 @@
         }
       });
 
-      this._hideModalHandler = function () {
+      this._hIdeModalHandler = function () {
         if (_this5.element) {
-          _this5.hide();
+          _this5.hIde();
         }
       };
 
-      $__default["default"](this.element).closest('.modal').on('hide.bs.modal', this._hideModalHandler);
+      $__default["default"](this.element).closest('.modal').on('hIde.bs.modal', this._hIdeModalHandler);
 
       if (this.config.selector) {
         this.config = _extends$1({}, this.config, {
@@ -5879,16 +5879,16 @@
       clearTimeout(context._timeout);
       context._hoverState = HOVER_STATE_OUT;
 
-      if (!context.config.delay || !context.config.delay.hide) {
-        context.hide();
+      if (!context.config.delay || !context.config.delay.hIde) {
+        context.hIde();
         return;
       }
 
       context._timeout = setTimeout(function () {
         if (context._hoverState === HOVER_STATE_OUT) {
-          context.hide();
+          context.hIde();
         }
-      }, context.config.delay.hide);
+      }, context.config.delay.hIde);
     };
 
     _proto._isWithActiveTrigger = function _isWithActiveTrigger() {
@@ -5913,7 +5913,7 @@
       if (typeof config.delay === 'number') {
         config.delay = {
           show: config.delay,
-          hide: config.delay
+          hIde: config.delay
         };
       }
 
@@ -5975,7 +5975,7 @@
 
       $__default["default"](tip).removeClass(CLASS_NAME_FADE$3);
       this.config.animation = false;
-      this.hide();
+      this.hIde();
       this.show();
       this.config.animation = initConfigAnimation;
     } // Static
@@ -5988,7 +5988,7 @@
 
         var _config = typeof config === 'object' && config;
 
-        if (!data && /dispose|hide/.test(config)) {
+        if (!data && /dispose|hIde/.test(config)) {
           return;
         }
 
@@ -6087,8 +6087,8 @@
   });
 
   var Event = {
-    HIDE: "hide" + EVENT_KEY$3,
-    HIDDEN: "hidden" + EVENT_KEY$3,
+    HIdE: "hIde" + EVENT_KEY$3,
+    HIdDEN: "hIdden" + EVENT_KEY$3,
     SHOW: "show" + EVENT_KEY$3,
     SHOWN: "shown" + EVENT_KEY$3,
     INSERTED: "inserted" + EVENT_KEY$3,
@@ -6111,7 +6111,7 @@
 
     var _proto = Popover.prototype;
 
-    // Overrides
+    // OverrIdes
     _proto.isWithContent = function isWithContent() {
       return this.getTitle() || this._getContent();
     };
@@ -6161,7 +6161,7 @@
 
         var _config = typeof config === 'object' ? config : null;
 
-        if (!data && /dispose|hide/.test(config)) {
+        if (!data && /dispose|hIde/.test(config)) {
           return;
         }
 
@@ -6317,7 +6317,7 @@
         if (target) {
           var targetBCR = target.getBoundingClientRect();
 
-          if (targetBCR.width || targetBCR.height) {
+          if (targetBCR.wIdth || targetBCR.height) {
             // TODO (fat): remove sketch reliance on jQuery position/offset
             return [$__default["default"](target)[offsetMethod]().top + offsetBase, targetSelector];
           }
@@ -6353,14 +6353,14 @@
       config = _extends$1({}, Default$1, typeof config === 'object' && config ? config : {});
 
       if (typeof config.target !== 'string' && Util.isElement(config.target)) {
-        var id = $__default["default"](config.target).attr('id');
+        var Id = $__default["default"](config.target).attr('Id');
 
-        if (!id) {
-          id = Util.getUID(NAME$2);
-          $__default["default"](config.target).attr('id', id);
+        if (!Id) {
+          Id = Util.getUId(NAME$2);
+          $__default["default"](config.target).attr('Id', Id);
         }
 
-        config.target = "#" + id;
+        config.target = "#" + Id;
       }
 
       Util.typeCheckConfig(NAME$2, config, DefaultType$1);
@@ -6436,7 +6436,7 @@
         $link.addClass(CLASS_NAME_ACTIVE$1); // Set triggered links parents as active
         // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
 
-        $link.parents(SELECTOR_NAV_LIST_GROUP$1).prev(SELECTOR_NAV_LINKS + ", " + SELECTOR_LIST_ITEMS).addClass(CLASS_NAME_ACTIVE$1); // Handle special case when .nav-link is inside .nav-item
+        $link.parents(SELECTOR_NAV_LIST_GROUP$1).prev(SELECTOR_NAV_LINKS + ", " + SELECTOR_LIST_ITEMS).addClass(CLASS_NAME_ACTIVE$1); // Handle special case when .nav-link is insIde .nav-item
 
         $link.parents(SELECTOR_NAV_LIST_GROUP$1).prev(SELECTOR_NAV_ITEMS).children(SELECTOR_NAV_LINKS).addClass(CLASS_NAME_ACTIVE$1);
       }
@@ -6532,8 +6532,8 @@
   var CLASS_NAME_DISABLED = 'disabled';
   var CLASS_NAME_FADE$1 = 'fade';
   var CLASS_NAME_SHOW$1 = 'show';
-  var EVENT_HIDE$1 = "hide" + EVENT_KEY$1;
-  var EVENT_HIDDEN$1 = "hidden" + EVENT_KEY$1;
+  var EVENT_HIdE$1 = "hIde" + EVENT_KEY$1;
+  var EVENT_HIdDEN$1 = "hIdden" + EVENT_KEY$1;
   var EVENT_SHOW$1 = "show" + EVENT_KEY$1;
   var EVENT_SHOWN$1 = "shown" + EVENT_KEY$1;
   var EVENT_CLICK_DATA_API = "click" + EVENT_KEY$1 + DATA_API_KEY;
@@ -6575,7 +6575,7 @@
         previous = previous[previous.length - 1];
       }
 
-      var hideEvent = $__default["default"].Event(EVENT_HIDE$1, {
+      var hIdeEvent = $__default["default"].Event(EVENT_HIdE$1, {
         relatedTarget: this._element
       });
       var showEvent = $__default["default"].Event(EVENT_SHOW$1, {
@@ -6583,12 +6583,12 @@
       });
 
       if (previous) {
-        $__default["default"](previous).trigger(hideEvent);
+        $__default["default"](previous).trigger(hIdeEvent);
       }
 
       $__default["default"](this._element).trigger(showEvent);
 
-      if (showEvent.isDefaultPrevented() || hideEvent.isDefaultPrevented()) {
+      if (showEvent.isDefaultPrevented() || hIdeEvent.isDefaultPrevented()) {
         return;
       }
 
@@ -6599,13 +6599,13 @@
       this._activate(this._element, listElement);
 
       var complete = function complete() {
-        var hiddenEvent = $__default["default"].Event(EVENT_HIDDEN$1, {
+        var hIddenEvent = $__default["default"].Event(EVENT_HIdDEN$1, {
           relatedTarget: _this._element
         });
         var shownEvent = $__default["default"].Event(EVENT_SHOWN$1, {
           relatedTarget: previous
         });
-        $__default["default"](previous).trigger(hiddenEvent);
+        $__default["default"](previous).trigger(hIddenEvent);
         $__default["default"](_this._element).trigger(shownEvent);
       };
 
@@ -6751,23 +6751,23 @@
   var EVENT_KEY = "." + DATA_KEY;
   var JQUERY_NO_CONFLICT = $__default["default"].fn[NAME];
   var CLASS_NAME_FADE = 'fade';
-  var CLASS_NAME_HIDE = 'hide';
+  var CLASS_NAME_HIdE = 'hIde';
   var CLASS_NAME_SHOW = 'show';
   var CLASS_NAME_SHOWING = 'showing';
   var EVENT_CLICK_DISMISS = "click.dismiss" + EVENT_KEY;
-  var EVENT_HIDE = "hide" + EVENT_KEY;
-  var EVENT_HIDDEN = "hidden" + EVENT_KEY;
+  var EVENT_HIdE = "hIde" + EVENT_KEY;
+  var EVENT_HIdDEN = "hIdden" + EVENT_KEY;
   var EVENT_SHOW = "show" + EVENT_KEY;
   var EVENT_SHOWN = "shown" + EVENT_KEY;
   var SELECTOR_DATA_DISMISS = '[data-dismiss="toast"]';
   var Default = {
     animation: true,
-    autohide: true,
+    autohIde: true,
     delay: 500
   };
   var DefaultType = {
     animation: 'boolean',
-    autohide: 'boolean',
+    autohIde: 'boolean',
     delay: 'number'
   };
   /**
@@ -6810,14 +6810,14 @@
 
         $__default["default"](_this._element).trigger(EVENT_SHOWN);
 
-        if (_this._config.autohide) {
+        if (_this._config.autohIde) {
           _this._timeout = setTimeout(function () {
-            _this.hide();
+            _this.hIde();
           }, _this._config.delay);
         }
       };
 
-      this._element.classList.remove(CLASS_NAME_HIDE);
+      this._element.classList.remove(CLASS_NAME_HIdE);
 
       Util.reflow(this._element);
 
@@ -6831,15 +6831,15 @@
       }
     };
 
-    _proto.hide = function hide() {
+    _proto.hIde = function hIde() {
       if (!this._element.classList.contains(CLASS_NAME_SHOW)) {
         return;
       }
 
-      var hideEvent = $__default["default"].Event(EVENT_HIDE);
-      $__default["default"](this._element).trigger(hideEvent);
+      var hIdeEvent = $__default["default"].Event(EVENT_HIdE);
+      $__default["default"](this._element).trigger(hIdeEvent);
 
-      if (hideEvent.isDefaultPrevented()) {
+      if (hIdeEvent.isDefaultPrevented()) {
         return;
       }
 
@@ -6870,7 +6870,7 @@
       var _this2 = this;
 
       $__default["default"](this._element).on(EVENT_CLICK_DISMISS, SELECTOR_DATA_DISMISS, function () {
-        return _this2.hide();
+        return _this2.hIde();
       });
     };
 
@@ -6878,9 +6878,9 @@
       var _this3 = this;
 
       var complete = function complete() {
-        _this3._element.classList.add(CLASS_NAME_HIDE);
+        _this3._element.classList.add(CLASS_NAME_HIdE);
 
-        $__default["default"](_this3._element).trigger(EVENT_HIDDEN);
+        $__default["default"](_this3._element).trigger(EVENT_HIdDEN);
       };
 
       this._element.classList.remove(CLASS_NAME_SHOW);

@@ -1,15 +1,15 @@
 /*
- * jsGrid v1.5.3 (http://js-grid.com)
+ * jsGrId v1.5.3 (http://js-grId.com)
  * (c) 2016 Artem Tabalin
- * Licensed under MIT (https://github.com/tabalinas/jsgrid/blob/master/LICENSE)
+ * Licensed under MIT (https://github.com/tabalinas/jsgrId/blob/master/LICENSE)
  */
 
 (function(window, $, undefined) {
 
-    var JSGRID = "JSGrid",
-        JSGRID_DATA_KEY = JSGRID,
-        JSGRID_ROW_DATA_KEY = "JSGridItem",
-        JSGRID_EDIT_ROW_DATA_KEY = "JSGridEditRow",
+    var JSGRId = "JSGrId",
+        JSGRId_DATA_KEY = JSGRId,
+        JSGRId_ROW_DATA_KEY = "JSGrIdItem",
+        JSGRId_EDIT_ROW_DATA_KEY = "JSGrIdEditRow",
 
         SORT_ORDER_ASC = "asc",
         SORT_ORDER_DESC = "desc",
@@ -56,10 +56,10 @@
     };
 
 
-    function Grid(element, config) {
+    function GrId(element, config) {
         var $element = $(element);
 
-        $element.data(JSGRID_DATA_KEY, this);
+        $element.data(JSGRId_DATA_KEY, this);
 
         this._container = $element;
 
@@ -75,8 +75,8 @@
         this.render();
     }
 
-    Grid.prototype = {
-        width: "auto",
+    GrId.prototype = {
+        wIdth: "auto",
         height: "auto",
         updateOnResize: true,
 
@@ -91,38 +91,38 @@
         rowDoubleClick: $.noop,
 
         noDataContent: "Not found",
-        noDataRowClass: "jsgrid-nodata-row",
+        noDataRowClass: "jsgrId-nodata-row",
 
         heading: true,
         headerRowRenderer: null,
-        headerRowClass: "jsgrid-header-row",
-        headerCellClass: "jsgrid-header-cell",
+        headerRowClass: "jsgrId-header-row",
+        headerCellClass: "jsgrId-header-cell",
 
         filtering: false,
         filterRowRenderer: null,
-        filterRowClass: "jsgrid-filter-row",
+        filterRowClass: "jsgrId-filter-row",
 
         inserting: false,
         insertRowRenderer: null,
-        insertRowClass: "jsgrid-insert-row",
+        insertRowClass: "jsgrId-insert-row",
 
         editing: false,
         editRowRenderer: null,
-        editRowClass: "jsgrid-edit-row",
+        editRowClass: "jsgrId-edit-row",
 
         confirmDeleting: true,
         deleteConfirm: "Are you sure?",
 
         selecting: true,
-        selectedRowClass: "jsgrid-selected-row",
-        oddRowClass: "jsgrid-row",
-        evenRowClass: "jsgrid-alt-row",
-        cellClass: "jsgrid-cell",
+        selectedRowClass: "jsgrId-selected-row",
+        oddRowClass: "jsgrId-row",
+        evenRowClass: "jsgrId-alt-row",
+        cellClass: "jsgrId-cell",
 
         sorting: false,
-        sortableClass: "jsgrid-header-sortable",
-        sortAscClass: "jsgrid-header-sort jsgrid-header-sort-asc",
-        sortDescClass: "jsgrid-header-sort jsgrid-header-sort-desc",
+        sortableClass: "jsgrId-header-sortable",
+        sortAscClass: "jsgrId-header-sort jsgrId-header-sort-asc",
+        sortDescClass: "jsgrId-header-sort jsgrId-header-sort-desc",
 
         paging: false,
         pagerContainer: null,
@@ -136,12 +136,12 @@
         pageLastText: "Last",
         pageNavigatorNextText: "...",
         pageNavigatorPrevText: "...",
-        pagerContainerClass: "jsgrid-pager-container",
-        pagerClass: "jsgrid-pager",
-        pagerNavButtonClass: "jsgrid-pager-nav-button",
-        pagerNavButtonInactiveClass: "jsgrid-pager-nav-inactive-button",
-        pageClass: "jsgrid-pager-page",
-        currentPageClass: "jsgrid-pager-current-page",
+        pagerContainerClass: "jsgrId-pager-container",
+        pagerClass: "jsgrId-pager",
+        pagerNavButtonClass: "jsgrId-pager-nav-button",
+        pagerNavButtonInactiveClass: "jsgrId-pager-nav-inactive-button",
+        pageClass: "jsgrId-pager-page",
+        currentPageClass: "jsgrId-pager-current-page",
 
         customLoading: false,
         pageLoading: false,
@@ -154,14 +154,14 @@
         loadMessage: "Please, wait...",
         loadShading: true,
 
-        invalidMessage: "Invalid data entered!",
+        invalIdMessage: "InvalId data entered!",
 
-        invalidNotify: function(args) {
+        invalIdNotify: function(args) {
             var messages = $.map(args.errors, function(error) {
                 return error.message || null;
             });
 
-            window.alert([this.invalidMessage].concat(messages).join("\n"));
+            window.alert([this.invalIdMessage].concat(messages).join("\n"));
         },
 
         onInit: $.noop,
@@ -175,19 +175,19 @@
         onItemEditing: $.noop,
         onItemUpdating: $.noop,
         onItemUpdated: $.noop,
-        onItemInvalid: $.noop,
+        onItemInvalId: $.noop,
         onDataLoading: $.noop,
         onDataLoaded: $.noop,
         onOptionChanging: $.noop,
         onOptionChanged: $.noop,
         onError: $.noop,
 
-        invalidClass: "jsgrid-invalid",
+        invalIdClass: "jsgrId-invalId",
 
-        containerClass: "jsgrid",
-        tableClass: "jsgrid-table",
-        gridHeaderClass: "jsgrid-grid-header",
-        gridBodyClass: "jsgrid-grid-body",
+        containerClass: "jsgrId",
+        tableClass: "jsgrId-table",
+        grIdHeaderClass: "jsgrId-grId-header",
+        grIdBodyClass: "jsgrId-grId-body",
 
         _init: function(config) {
             $.extend(this, config);
@@ -201,8 +201,8 @@
 
         loadStrategy: function() {
             return this.pageLoading
-                ? new jsGrid.loadStrategies.PageLoadingStrategy(this)
-                : new jsGrid.loadStrategies.DirectLoadingStrategy(this);
+                ? new jsGrId.loadStrategies.PageLoadingStrategy(this)
+                : new jsGrId.loadStrategies.DirectLoadingStrategy(this);
         },
 
         _initLoadStrategy: function() {
@@ -226,21 +226,21 @@
         },
 
         loadIndicator: function(config) {
-            return new jsGrid.LoadIndicator(config);
+            return new jsGrId.LoadIndicator(config);
         },
 
-        validation: function(config) {
-            return jsGrid.Validation && new jsGrid.Validation(config);
+        valIdation: function(config) {
+            return jsGrId.ValIdation && new jsGrId.ValIdation(config);
         },
 
         _initFields: function() {
             var self = this;
             self.fields = $.map(self.fields, function(field) {
                 if($.isPlainObject(field)) {
-                    var fieldConstructor = (field.type && jsGrid.fields[field.type]) || jsGrid.Field;
+                    var fieldConstructor = (field.type && jsGrId.fields[field.type]) || jsGrId.Field;
                     field = new fieldConstructor(field);
                 }
-                field._grid = self;
+                field._grId = self;
                 return field;
             });
         },
@@ -289,14 +289,14 @@
                 return field[key];
 
             field[key] = value;
-            this._renderGrid();
+            this._renderGrId();
         },
 
         _handleOptionChange: function(name, value) {
             this[name] = value;
 
             switch(name) {
-                case "width":
+                case "wIdth":
                 case "height":
                     this._refreshSize();
                     break;
@@ -359,8 +359,8 @@
                     this._detachWindowResizeCallback();
                     this._attachWindowResizeCallback();
                     break;
-                case "invalidNotify":
-                case "invalidMessage":
+                case "invalIdNotify":
+                case "invalIdMessage":
                     break;
                 default:
                     this.render();
@@ -371,15 +371,15 @@
         destroy: function() {
             this._detachWindowResizeCallback();
             this._clear();
-            this._container.removeData(JSGRID_DATA_KEY);
+            this._container.removeData(JSGRId_DATA_KEY);
         },
 
         render: function() {
-            this._renderGrid();
+            this._renderGrId();
             return this.autoload ? this.loadData() : $.Deferred().resolve().promise();
         },
 
-        _renderGrid: function() {
+        _renderGrId: function() {
             this._clear();
 
             this._container.addClass(this.containerClass)
@@ -389,7 +389,7 @@
 
             this._pagerContainer = this._createPagerContainer();
             this._loadIndicator = this._createLoadIndicator();
-            this._validation = this._createValidation();
+            this._valIdation = this._createValIdation();
 
             this.refresh();
         },
@@ -402,8 +402,8 @@
             });
         },
 
-        _createValidation: function() {
-            return getOrApply(this.validation, this);
+        _createValIdation: function() {
+            return getOrApply(this.valIdation, this);
         },
 
         _clear: function() {
@@ -414,7 +414,7 @@
             this._pagerContainer && this._pagerContainer.empty();
 
             this._container.empty()
-                .css({ position: "", width: "", height: "" });
+                .css({ position: "", wIdth: "", height: "" });
         },
 
         _createHeader: function() {
@@ -422,14 +422,14 @@
                 $filterRow = this._filterRow = this._createFilterRow(),
                 $insertRow = this._insertRow = this._createInsertRow();
 
-            var $headerGrid = this._headerGrid = $("<table>").addClass(this.tableClass)
+            var $headerGrId = this._headerGrId = $("<table>").addClass(this.tableClass)
                 .append($headerRow)
                 .append($filterRow)
                 .append($insertRow);
 
-            var $header = this._header = $("<div>").addClass(this.gridHeaderClass)
-                .addClass(this._scrollBarWidth() ? "jsgrid-header-scrollbar" : "")
-                .append($headerGrid);
+            var $header = this._header = $("<div>").addClass(this.grIdHeaderClass)
+                .addClass(this._scrollBarWIdth() ? "jsgrId-header-scrollbar" : "")
+                .append($headerGrId);
 
             return $header;
         },
@@ -437,11 +437,11 @@
         _createBody: function() {
             var $content = this._content = $("<tbody>");
 
-            var $bodyGrid = this._bodyGrid = $("<table>").addClass(this.tableClass)
+            var $bodyGrId = this._bodyGrId = $("<table>").addClass(this.tableClass)
                 .append($content);
 
-            var $body = this._body = $("<div>").addClass(this.gridBodyClass)
-                .append($bodyGrid)
+            var $body = this._body = $("<div>").addClass(this.grIdBodyClass)
+                .append($bodyGrId)
                 .on("scroll", $.proxy(function(e) {
                     this._header.scrollLeft(e.target.scrollLeft);
                 }, this));
@@ -486,10 +486,10 @@
         },
 
         _prepareCell: function(cell, field, cssprop, cellClass) {
-            return $(cell).css("width", field.width)
+            return $(cell).css("wIdth", field.wIdth)
                 .addClass(cellClass || this.cellClass)
                 .addClass((cssprop && field[cssprop]) || field.css)
-                .addClass(field.align ? ("jsgrid-align-" + field.align) : "");
+                .addClass(field.align ? ("jsgrId-align-" + field.align) : "");
         },
 
         _createFilterRow: function() {
@@ -524,7 +524,7 @@
 
         _callEventHandler: function(handler, eventParams) {
             handler.call(this, $.extend(eventParams, {
-                grid: this
+                grId: this
             }));
 
             return eventParams;
@@ -614,7 +614,7 @@
             }
 
             $result.addClass(this._getRowClasses(item, itemIndex))
-                .data(JSGRID_ROW_DATA_KEY, item)
+                .data(JSGRId_ROW_DATA_KEY, item)
                 .on("click", $.proxy(function(e) {
                     this.rowClick({
                         item: item,
@@ -903,42 +903,42 @@
 
         _refreshSize: function() {
             this._refreshHeight();
-            this._refreshWidth();
+            this._refreshWIdth();
         },
 
-        _refreshWidth: function() {
-            var width = (this.width === "auto") ? this._getAutoWidth() : this.width;
+        _refreshWIdth: function() {
+            var wIdth = (this.wIdth === "auto") ? this._getAutoWIdth() : this.wIdth;
 
-            this._container.width(width);
+            this._container.wIdth(wIdth);
         },
 
-        _getAutoWidth: function() {
-            var $headerGrid = this._headerGrid,
+        _getAutoWIdth: function() {
+            var $headerGrId = this._headerGrId,
                 $header = this._header;
 
-            $headerGrid.width("auto");
+            $headerGrId.wIdth("auto");
 
-            var contentWidth = $headerGrid.outerWidth();
-            var borderWidth = $header.outerWidth() - $header.innerWidth();
+            var contentWIdth = $headerGrId.outerWIdth();
+            var borderWIdth = $header.outerWIdth() - $header.innerWIdth();
 
-            $headerGrid.width("");
+            $headerGrId.wIdth("");
 
-            return contentWidth + borderWidth;
+            return contentWIdth + borderWIdth;
         },
 
-        _scrollBarWidth: (function() {
+        _scrollBarWIdth: (function() {
             var result;
 
             return function() {
                 if(result === undefined) {
-                    var $ghostContainer = $("<div style='width:50px;height:50px;overflow:hidden;position:absolute;top:-10000px;left:-10000px;'></div>");
+                    var $ghostContainer = $("<div style='wIdth:50px;height:50px;overflow:hIdden;position:absolute;top:-10000px;left:-10000px;'></div>");
                     var $ghostContent = $("<div style='height:100px;'></div>");
                     $ghostContainer.append($ghostContent).appendTo("body");
-                    var width = $ghostContent.innerWidth();
+                    var wIdth = $ghostContent.innerWIdth();
                     $ghostContainer.css("overflow-y", "auto");
-                    var widthExcludingScrollBar = $ghostContent.innerWidth();
+                    var wIdthExcludingScrollBar = $ghostContent.innerWIdth();
                     $ghostContainer.remove();
-                    result = width - widthExcludingScrollBar;
+                    result = wIdth - wIdthExcludingScrollBar;
                 }
                 return result;
             };
@@ -1026,7 +1026,7 @@
             return normalizePromise(controller[method](param))
                 .done($.proxy(doneCallback, this))
                 .fail($.proxy(this._errorHandler, this))
-                .always($.proxy(this._hideLoading, this));
+                .always($.proxy(this._hIdeLoading, this));
         },
 
         _errorHandler: function() {
@@ -1046,12 +1046,12 @@
             }, this), this.loadIndicationDelay);
         },
 
-        _hideLoading: function() {
+        _hIdeLoading: function() {
             if(!this.loadIndication)
                 return;
 
             clearTimeout(this._loadingTimer);
-            this._loadIndicator.hide();
+            this._loadIndicator.hIde();
         },
 
         search: function(filter) {
@@ -1117,7 +1117,7 @@
         },
 
         insertItem: function(item) {
-            var insertingItem = item || this._getValidatedInsertItem();
+            var insertingItem = item || this._getValIdatedInsertItem();
 
             if(!insertingItem)
                 return $.Deferred().reject().promise();
@@ -1136,9 +1136,9 @@
             });
         },
 
-        _getValidatedInsertItem: function() {
+        _getValIdatedInsertItem: function() {
             var item = this._getInsertItem();
-            return this._validateItem(item, this._insertRow) ? item : null;
+            return this._valIdateItem(item, this._insertRow) ? item : null;
         },
 
         _getInsertItem: function() {
@@ -1151,8 +1151,8 @@
             return result;
         },
 
-        _validateItem: function(item, $row) {
-            var validationErrors = [];
+        _valIdateItem: function(item, $row) {
+            var valIdationErrors = [];
 
             var args = {
                 item: item,
@@ -1161,44 +1161,44 @@
             };
 
             this._eachField(function(field) {
-                if(!field.validate ||
+                if(!field.valIdate ||
                    ($row === this._insertRow && !field.inserting) ||
                    ($row === this._getEditRow() && !field.editing))
                     return;
 
                 var fieldValue = this._getItemFieldValue(item, field);
 
-                var errors = this._validation.validate($.extend({
+                var errors = this._valIdation.valIdate($.extend({
                     value: fieldValue,
-                    rules: field.validate
+                    rules: field.valIdate
                 }, args));
 
-                this._setCellValidity($row.children().eq(this._visibleFieldIndex(field)), errors);
+                this._setCellValIdity($row.children().eq(this._visibleFieldIndex(field)), errors);
 
                 if(!errors.length)
                     return;
 
-                validationErrors.push.apply(validationErrors,
+                valIdationErrors.push.apply(valIdationErrors,
                     $.map(errors, function(message) {
                         return { field: field, message: message };
                     }));
             });
 
-            if(!validationErrors.length)
+            if(!valIdationErrors.length)
                 return true;
 
-            var invalidArgs = $.extend({
-                errors: validationErrors
+            var invalIdArgs = $.extend({
+                errors: valIdationErrors
             }, args);
-            this._callEventHandler(this.onItemInvalid, invalidArgs);
-            this.invalidNotify(invalidArgs);
+            this._callEventHandler(this.onItemInvalId, invalIdArgs);
+            this.invalIdNotify(invalIdArgs);
 
             return false;
         },
 
-        _setCellValidity: function($cell, errors) {
+        _setCellValIdity: function($cell, errors) {
             $cell
-                .toggleClass(this.invalidClass, !!errors.length)
+                .toggleClass(this.invalIdClass, !!errors.length)
                 .attr("title", errors.join("\n"));
         },
 
@@ -1221,7 +1221,7 @@
                 return $(item);
 
             return this._content.find("tr").filter(function() {
-                return $.data(this, JSGRID_ROW_DATA_KEY) === item;
+                return $.data(this, JSGRId_ROW_DATA_KEY) === item;
             });
         },
 
@@ -1229,7 +1229,7 @@
             if(!this.editing)
                 return;
 
-            var item = $row.data(JSGRID_ROW_DATA_KEY);
+            var item = $row.data(JSGRId_ROW_DATA_KEY);
 
             var args = this._callEventHandler(this.onItemEditing, {
                 row: $row,
@@ -1247,9 +1247,9 @@
             var $editRow = this._createEditRow(item);
 
             this._editingRow = $row;
-            $row.hide();
+            $row.hIde();
             $editRow.insertBefore($row);
-            $row.data(JSGRID_EDIT_ROW_DATA_KEY, $editRow);
+            $row.data(JSGRId_EDIT_ROW_DATA_KEY, $editRow);
         },
 
         _createEditRow: function(item) {
@@ -1276,7 +1276,7 @@
             }
 
             var $row = item ? this.rowByItem(item) : this._editingRow;
-            editedItem = editedItem || this._getValidatedEditedItem();
+            editedItem = editedItem || this._getValIdatedEditedItem();
 
             if(!editedItem)
                 return;
@@ -1284,13 +1284,13 @@
             return this._updateRow($row, editedItem);
         },
 
-        _getValidatedEditedItem: function() {
+        _getValIdatedEditedItem: function() {
             var item = this._getEditedItem();
-            return this._validateItem(item, this._getEditRow()) ? item : null;
+            return this._valIdateItem(item, this._getEditRow()) ? item : null;
         },
 
         _updateRow: function($updatingRow, editedItem) {
-            var updatingItem = $updatingRow.data(JSGRID_ROW_DATA_KEY),
+            var updatingItem = $updatingRow.data(JSGRId_ROW_DATA_KEY),
                 updatingItemIndex = this._itemIndex(updatingItem),
                 updatedItem = $.extend(true, {}, updatingItem, editedItem);
 
@@ -1353,7 +1353,7 @@
         },
 
         _getEditRow: function() {
-            return this._editingRow && this._editingRow.data(JSGRID_EDIT_ROW_DATA_KEY);
+            return this._editingRow && this._editingRow.data(JSGRId_EDIT_ROW_DATA_KEY);
         },
 
         deleteItem: function(item) {
@@ -1362,14 +1362,14 @@
             if(!$row.length)
                 return;
 
-            if(this.confirmDeleting && !window.confirm(getOrApply(this.deleteConfirm, this, $row.data(JSGRID_ROW_DATA_KEY))))
+            if(this.confirmDeleting && !window.confirm(getOrApply(this.deleteConfirm, this, $row.data(JSGRId_ROW_DATA_KEY))))
                 return;
 
             return this._deleteRow($row);
         },
 
         _deleteRow: function($row) {
-            var deletingItem = $row.data(JSGRID_ROW_DATA_KEY),
+            var deletingItem = $row.data(JSGRId_ROW_DATA_KEY),
                 deletingItemIndex = this._itemIndex(deletingItem);
 
             var args = this._callEventHandler(this.onItemDeleting, {
@@ -1390,14 +1390,14 @@
         }
     };
 
-    $.fn.jsGrid = function(config) {
+    $.fn.jsGrId = function(config) {
         var args = $.makeArray(arguments),
             methodArgs = args.slice(1),
             result = this;
 
         this.each(function() {
             var $element = $(this),
-                instance = $element.data(JSGRID_DATA_KEY),
+                instance = $element.data(JSGRId_DATA_KEY),
                 methodResult;
 
             if(instance) {
@@ -1413,7 +1413,7 @@
                     instance.render();
                 }
             } else {
-                new Grid($element, config);
+                new GrId($element, config);
             }
         });
 
@@ -1426,7 +1426,7 @@
         var componentPrototype;
 
         if($.isPlainObject(config)) {
-            componentPrototype = Grid.prototype;
+            componentPrototype = GrId.prototype;
         } else {
             componentPrototype = fields[config].prototype;
             config = arguments[1] || {};
@@ -1443,7 +1443,7 @@
         if(!localeConfig)
             throw Error("unknown locale " + lang);
 
-        setLocale(jsGrid, localeConfig);
+        setLocale(jsGrId, localeConfig);
     };
 
     var setLocale = function(obj, localeConfig) {
@@ -1461,8 +1461,8 @@
         });
     };
 
-    window.jsGrid = {
-        Grid: Grid,
+    window.jsGrId = {
+        GrId: GrId,
         fields: fields,
         setDefaults: setDefaults,
         locales: locales,
@@ -1472,7 +1472,7 @@
 
 }(window, jQuery));
 
-(function(jsGrid, $, undefined) {
+(function(jsGrId, $, undefined) {
 
     function LoadIndicator(config) {
         this._init(config);
@@ -1485,8 +1485,8 @@
         shading: true,
 
         zIndex: 1000,
-        shaderClass: "jsgrid-load-shader",
-        loadPanelClass: "jsgrid-load-panel",
+        shaderClass: "jsgrId-load-shader",
+        loadPanelClass: "jsgrId-load-panel",
 
         _init: function(config) {
             $.extend(true, this, config);
@@ -1505,7 +1505,7 @@
                 return;
 
             this._shader = $("<div>").addClass(this.shaderClass)
-                .hide()
+                .hIde()
                 .css({
                     position: "absolute",
                     top: 0,
@@ -1520,7 +1520,7 @@
         _initLoadPanel: function() {
             this._loadPanel = $("<div>").addClass(this.loadPanelClass)
                 .text(this.message)
-                .hide()
+                .hIde()
                 .css({
                     position: "absolute",
                     top: "50%",
@@ -1533,56 +1533,56 @@
         show: function() {
             var $loadPanel = this._loadPanel.show();
 
-            var actualWidth = $loadPanel.outerWidth();
+            var actualWIdth = $loadPanel.outerWIdth();
             var actualHeight = $loadPanel.outerHeight();
 
             $loadPanel.css({
                 marginTop: -actualHeight / 2,
-                marginLeft: -actualWidth / 2
+                marginLeft: -actualWIdth / 2
             });
 
             this._shader.show();
         },
 
-        hide: function() {
-            this._loadPanel.hide();
-            this._shader.hide();
+        hIde: function() {
+            this._loadPanel.hIde();
+            this._shader.hIde();
         }
 
     };
 
-    jsGrid.LoadIndicator = LoadIndicator;
+    jsGrId.LoadIndicator = LoadIndicator;
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));
 
-(function(jsGrid, $, undefined) {
+(function(jsGrId, $, undefined) {
 
-    function DirectLoadingStrategy(grid) {
-        this._grid = grid;
+    function DirectLoadingStrategy(grId) {
+        this._grId = grId;
     }
 
     DirectLoadingStrategy.prototype = {
 
         firstDisplayIndex: function() {
-            var grid = this._grid;
-            return grid.option("paging") ? (grid.option("pageIndex") - 1) * grid.option("pageSize") : 0;
+            var grId = this._grId;
+            return grId.option("paging") ? (grId.option("pageIndex") - 1) * grId.option("pageSize") : 0;
         },
 
         lastDisplayIndex: function() {
-            var grid = this._grid;
-            var itemsCount = grid.option("data").length;
+            var grId = this._grId;
+            var itemsCount = grId.option("data").length;
 
-            return grid.option("paging")
-                ? Math.min(grid.option("pageIndex") * grid.option("pageSize"), itemsCount)
+            return grId.option("paging")
+                ? Math.min(grId.option("pageIndex") * grId.option("pageSize"), itemsCount)
                 : itemsCount;
         },
 
         itemsCount: function() {
-            return this._grid.option("data").length;
+            return this._grId.option("data").length;
         },
 
         openPage: function(index) {
-            this._grid.refresh();
+            this._grId.refresh();
         },
 
         loadParams: function() {
@@ -1590,36 +1590,36 @@
         },
 
         sort: function() {
-            this._grid._sortData();
-            this._grid.refresh();
+            this._grId._sortData();
+            this._grId.refresh();
             return $.Deferred().resolve().promise();
         },
 
         reset: function() {
-            this._grid.refresh();
+            this._grId.refresh();
             return $.Deferred().resolve().promise();
         },
 
         finishLoad: function(loadedData) {
-            this._grid.option("data", loadedData);
+            this._grId.option("data", loadedData);
         },
 
         finishInsert: function(insertedItem) {
-            var grid = this._grid;
-            grid.option("data").push(insertedItem);
-            grid.refresh();
+            var grId = this._grId;
+            grId.option("data").push(insertedItem);
+            grId.refresh();
         },
 
         finishDelete: function(deletedItem, deletedItemIndex) {
-            var grid = this._grid;
-            grid.option("data").splice(deletedItemIndex, 1);
-            grid.reset();
+            var grId = this._grId;
+            grId.option("data").splice(deletedItemIndex, 1);
+            grId.reset();
         }
     };
 
 
-    function PageLoadingStrategy(grid) {
-        this._grid = grid;
+    function PageLoadingStrategy(grId) {
+        this._grId = grId;
         this._itemsCount = 0;
     }
 
@@ -1630,7 +1630,7 @@
         },
 
         lastDisplayIndex: function() {
-            return this._grid.option("data").length;
+            return this._grId.option("data").length;
         },
 
         itemsCount: function() {
@@ -1638,47 +1638,47 @@
         },
 
         openPage: function(index) {
-            this._grid.loadData();
+            this._grId.loadData();
         },
 
         loadParams: function() {
-            var grid = this._grid;
+            var grId = this._grId;
             return {
-                pageIndex: grid.option("pageIndex"),
-                pageSize: grid.option("pageSize")
+                pageIndex: grId.option("pageIndex"),
+                pageSize: grId.option("pageSize")
             };
         },
 
         reset: function() {
-            return this._grid.loadData();
+            return this._grId.loadData();
         },
 
         sort: function() {
-            return this._grid.loadData();
+            return this._grId.loadData();
         },
 
         finishLoad: function(loadedData) {
             this._itemsCount = loadedData.itemsCount;
-            this._grid.option("data", loadedData.data);
+            this._grId.option("data", loadedData.data);
         },
 
         finishInsert: function(insertedItem) {
-            this._grid.search();
+            this._grId.search();
         },
 
         finishDelete: function(deletedItem, deletedItemIndex) {
-            this._grid.search();
+            this._grId.search();
         }
     };
 
-    jsGrid.loadStrategies = {
+    jsGrId.loadStrategies = {
         DirectLoadingStrategy: DirectLoadingStrategy,
         PageLoadingStrategy: PageLoadingStrategy
     };
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));
 
-(function(jsGrid, $, undefined) {
+(function(jsGrId, $, undefined) {
 
     var isDefined = function(val) {
         return typeof(val) !== "undefined" && val !== null;
@@ -1711,27 +1711,27 @@
         }
     };
 
-    jsGrid.sortStrategies = sortStrategies;
+    jsGrId.sortStrategies = sortStrategies;
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));
 
-(function(jsGrid, $, undefined) {
+(function(jsGrId, $, undefined) {
 
-    function Validation(config) {
+    function ValIdation(config) {
         this._init(config);
     }
 
-    Validation.prototype = {
+    ValIdation.prototype = {
 
         _init: function(config) {
             $.extend(true, this, config);
         },
 
-        validate: function(args) {
+        valIdate: function(args) {
             var errors = [];
 
             $.each(this._normalizeRules(args.rules), function(_, rule) {
-                if(rule.validator(args.value, args.item, rule.param))
+                if(rule.valIdator(args.value, args.item, rule.param))
                     return;
 
                 var errorMessage = $.isFunction(rule.message) ? rule.message(args.value, args.item) : rule.message;
@@ -1752,72 +1752,72 @@
 
         _normalizeRule: function(rule) {
             if(typeof rule === "string")
-                rule = { validator: rule };
+                rule = { valIdator: rule };
 
             if($.isFunction(rule))
-                rule = { validator: rule };
+                rule = { valIdator: rule };
 
             if($.isPlainObject(rule))
                 rule = $.extend({}, rule);
             else
-                throw Error("wrong validation config specified");
+                throw Error("wrong valIdation config specified");
 
-            if($.isFunction(rule.validator))
+            if($.isFunction(rule.valIdator))
                 return rule;
 
-            return this._applyNamedValidator(rule, rule.validator);
+            return this._applyNamedValIdator(rule, rule.valIdator);
         },
 
-        _applyNamedValidator: function(rule, validatorName) {
-            delete rule.validator;
+        _applyNamedValIdator: function(rule, valIdatorName) {
+            delete rule.valIdator;
 
-            var validator = validators[validatorName];
-            if(!validator)
-                throw Error("unknown validator \"" + validatorName + "\"");
+            var valIdator = valIdators[valIdatorName];
+            if(!valIdator)
+                throw Error("unknown valIdator \"" + valIdatorName + "\"");
 
-            if($.isFunction(validator)) {
-                validator = { validator: validator };
+            if($.isFunction(valIdator)) {
+                valIdator = { valIdator: valIdator };
             }
 
-            return $.extend({}, validator, rule);
+            return $.extend({}, valIdator, rule);
         }
     };
 
-    jsGrid.Validation = Validation;
+    jsGrId.ValIdation = ValIdation;
 
 
-    var validators = {
+    var valIdators = {
         required: {
             message: "Field is required",
-            validator: function(value) {
+            valIdator: function(value) {
                 return value !== undefined && value !== null && value !== "";
             }
         },
 
         rangeLength: {
             message: "Field value length is out of the defined range",
-            validator: function(value, _, param) {
+            valIdator: function(value, _, param) {
                 return value.length >= param[0] && value.length <= param[1];
             }
         },
 
         minLength: {
             message: "Field value is too short",
-            validator: function(value, _, param) {
+            valIdator: function(value, _, param) {
                 return value.length >= param;
             }
         },
 
         maxLength: {
             message: "Field value is too long",
-            validator: function(value, _, param) {
+            valIdator: function(value, _, param) {
                 return value.length <= param;
             }
         },
 
         pattern: {
             message: "Field value is not matching the defined pattern",
-            validator: function(value, _, param) {
+            valIdator: function(value, _, param) {
                 if(typeof param === "string") {
                     param = new RegExp("^(?:" + param + ")$");
                 }
@@ -1827,31 +1827,31 @@
 
         range: {
             message: "Field value is out of the defined range",
-            validator: function(value, _, param) {
+            valIdator: function(value, _, param) {
                 return value >= param[0] && value <= param[1];
             }
         },
 
         min: {
             message: "Field value is too small",
-            validator: function(value, _, param) {
+            valIdator: function(value, _, param) {
                 return value >= param;
             }
         },
 
         max: {
             message: "Field value is too large",
-            validator: function(value, _, param) {
+            valIdator: function(value, _, param) {
                 return value <= param;
             }
         }
     };
 
-    jsGrid.validators = validators;
+    jsGrId.valIdators = valIdators;
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));
 
-(function(jsGrid, $, undefined) {
+(function(jsGrId, $, undefined) {
 
     function Field(config) {
         $.extend(true, this, config);
@@ -1863,7 +1863,7 @@
         title: null,
         css: "",
         align: "",
-        width: 100,
+        wIdth: 100,
 
         visible: true,
         filtering: true,
@@ -1913,20 +1913,20 @@
             }
 
             if(typeof sorter === "string") {
-                return jsGrid.sortStrategies[sorter];
+                return jsGrId.sortStrategies[sorter];
             }
 
             throw Error("wrong sorter for the field \"" + this.name + "\"!");
         }
     };
 
-    jsGrid.Field = Field;
+    jsGrId.Field = Field;
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));
 
-(function(jsGrid, $, undefined) {
+(function(jsGrId, $, undefined) {
 
-    var Field = jsGrid.Field;
+    var Field = jsGrId.Field;
 
     function TextField(config) {
         Field.call(this, config);
@@ -1941,13 +1941,13 @@
             if(!this.filtering)
                 return "";
 
-            var grid = this._grid,
+            var grId = this._grId,
                 $result = this.filterControl = this._createTextBox();
 
             if(this.autosearch) {
                 $result.on("keypress", function(e) {
                     if(e.which === 13) {
-                        grid.search();
+                        grId.search();
                         e.preventDefault();
                     }
                 });
@@ -1990,13 +1990,13 @@
         }
     });
 
-    jsGrid.fields.text = jsGrid.TextField = TextField;
+    jsGrId.fields.text = jsGrId.TextField = TextField;
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));
 
-(function(jsGrid, $, undefined) {
+(function(jsGrId, $, undefined) {
 
-    var TextField = jsGrid.TextField;
+    var TextField = jsGrId.TextField;
 
     function NumberField(config) {
         TextField.call(this, config);
@@ -2032,13 +2032,13 @@
         }
     });
 
-    jsGrid.fields.number = jsGrid.NumberField = NumberField;
+    jsGrId.fields.number = jsGrId.NumberField = NumberField;
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));
 
-(function(jsGrid, $, undefined) {
+(function(jsGrId, $, undefined) {
 
-    var TextField = jsGrid.TextField;
+    var TextField = jsGrId.TextField;
 
     function TextAreaField(config) {
         TextField.call(this, config);
@@ -2067,13 +2067,13 @@
         }
     });
 
-    jsGrid.fields.textarea = jsGrid.TextAreaField = TextAreaField;
+    jsGrId.fields.textarea = jsGrId.TextAreaField = TextAreaField;
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));
 
-(function(jsGrid, $, undefined) {
+(function(jsGrId, $, undefined) {
 
-    var NumberField = jsGrid.NumberField;
+    var NumberField = jsGrId.NumberField;
     var numberValueType = "number";
     var stringValueType = "string";
 
@@ -2122,12 +2122,12 @@
             if(!this.filtering)
                 return "";
 
-            var grid = this._grid,
+            var grId = this._grId,
                 $result = this.filterControl = this._createSelect();
 
             if(this.autosearch) {
                 $result.on("change", function(e) {
-                    grid.search();
+                    grId.search();
                 });
             }
 
@@ -2189,13 +2189,13 @@
         }
     });
 
-    jsGrid.fields.select = jsGrid.SelectField = SelectField;
+    jsGrId.fields.select = jsGrId.SelectField = SelectField;
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));
 
-(function(jsGrid, $, undefined) {
+(function(jsGrId, $, undefined) {
 
-    var Field = jsGrid.Field;
+    var Field = jsGrId.Field;
 
     function CheckboxField(config) {
         Field.call(this, config);
@@ -2218,7 +2218,7 @@
             if(!this.filtering)
                 return "";
 
-            var grid = this._grid,
+            var grId = this._grId,
                 $result = this.filterControl = this._createCheckbox();
 
             $result.prop({
@@ -2245,7 +2245,7 @@
 
             if(this.autosearch) {
                 $result.on("click", function() {
-                    grid.search();
+                    grId.search();
                 });
             }
 
@@ -2287,13 +2287,13 @@
         }
     });
 
-    jsGrid.fields.checkbox = jsGrid.CheckboxField = CheckboxField;
+    jsGrId.fields.checkbox = jsGrId.CheckboxField = CheckboxField;
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));
 
-(function(jsGrid, $, undefined) {
+(function(jsGrId, $, undefined) {
 
-    var Field = jsGrid.Field;
+    var Field = jsGrId.Field;
 
     function ControlField(config) {
         Field.call(this, config);
@@ -2301,27 +2301,27 @@
     }
 
     ControlField.prototype = new Field({
-        css: "jsgrid-control-field",
+        css: "jsgrId-control-field",
         align: "center",
-        width: 50,
+        wIdth: 50,
         filtering: false,
         inserting: false,
         editing: false,
         sorting: false,
 
-        buttonClass: "jsgrid-button",
-        modeButtonClass: "jsgrid-mode-button",
+        buttonClass: "jsgrId-button",
+        modeButtonClass: "jsgrId-mode-button",
 
-        modeOnButtonClass: "jsgrid-mode-on-button",
-        searchModeButtonClass: "jsgrid-search-mode-button",
-        insertModeButtonClass: "jsgrid-insert-mode-button",
-        editButtonClass: "jsgrid-edit-button",
-        deleteButtonClass: "jsgrid-delete-button",
-        searchButtonClass: "jsgrid-search-button",
-        clearFilterButtonClass: "jsgrid-clear-filter-button",
-        insertButtonClass: "jsgrid-insert-button",
-        updateButtonClass: "jsgrid-update-button",
-        cancelEditButtonClass: "jsgrid-cancel-edit-button",
+        modeOnButtonClass: "jsgrId-mode-on-button",
+        searchModeButtonClass: "jsgrId-search-mode-button",
+        insertModeButtonClass: "jsgrId-insert-mode-button",
+        editButtonClass: "jsgrId-edit-button",
+        deleteButtonClass: "jsgrId-delete-button",
+        searchButtonClass: "jsgrId-search-button",
+        clearFilterButtonClass: "jsgrId-clear-filter-button",
+        insertButtonClass: "jsgrId-insert-button",
+        updateButtonClass: "jsgrId-update-button",
+        cancelEditButtonClass: "jsgrId-cancel-edit-button",
 
         searchModeButtonTooltip: "Switch to searching",
         insertModeButtonTooltip: "Switch to inserting",
@@ -2339,11 +2339,11 @@
         modeSwitchButton: true,
 
         _initConfig: function() {
-            this._hasFiltering = this._grid.filtering;
-            this._hasInserting = this._grid.inserting;
+            this._hasFiltering = this._grId.filtering;
+            this._hasInserting = this._grId.inserting;
 
             if(this._hasInserting && this.modeSwitchButton) {
-                this._grid.inserting = false;
+                this._grId.inserting = false;
             }
 
             this._configInitialized = true;
@@ -2411,9 +2411,9 @@
                 $button.toggleClass(this.modeOnButtonClass, isOn);
             }, this);
 
-            var $button = this._createGridButton(this.modeButtonClass + " " + cssClass, "", function(grid) {
+            var $button = this._createGrIdButton(this.modeButtonClass + " " + cssClass, "", function(grId) {
                 isOn = !isOn;
-                grid.option(option, isOn);
+                grId.option(option, isOn);
                 updateButtonState();
             });
 
@@ -2431,10 +2431,10 @@
                     .toggleClass(this.searchModeButtonClass, isInserting);
             }, this);
 
-            var $button = this._createGridButton(this.modeButtonClass, "", function(grid) {
+            var $button = this._createGrIdButton(this.modeButtonClass, "", function(grId) {
                 isInserting = !isInserting;
-                grid.option("inserting", isInserting);
-                grid.option("filtering", !isInserting);
+                grId.option("inserting", isInserting);
+                grId.option("filtering", !isInserting);
                 updateButtonState();
             });
 
@@ -2444,55 +2444,55 @@
         },
 
         _createEditButton: function(item) {
-            return this._createGridButton(this.editButtonClass, this.editButtonTooltip, function(grid, e) {
-                grid.editItem(item);
+            return this._createGrIdButton(this.editButtonClass, this.editButtonTooltip, function(grId, e) {
+                grId.editItem(item);
                 e.stopPropagation();
             });
         },
 
         _createDeleteButton: function(item) {
-            return this._createGridButton(this.deleteButtonClass, this.deleteButtonTooltip, function(grid, e) {
-                grid.deleteItem(item);
+            return this._createGrIdButton(this.deleteButtonClass, this.deleteButtonTooltip, function(grId, e) {
+                grId.deleteItem(item);
                 e.stopPropagation();
             });
         },
 
         _createSearchButton: function() {
-            return this._createGridButton(this.searchButtonClass, this.searchButtonTooltip, function(grid) {
-                grid.search();
+            return this._createGrIdButton(this.searchButtonClass, this.searchButtonTooltip, function(grId) {
+                grId.search();
             });
         },
 
         _createClearFilterButton: function() {
-            return this._createGridButton(this.clearFilterButtonClass, this.clearFilterButtonTooltip, function(grid) {
-                grid.clearFilter();
+            return this._createGrIdButton(this.clearFilterButtonClass, this.clearFilterButtonTooltip, function(grId) {
+                grId.clearFilter();
             });
         },
 
         _createInsertButton: function() {
-            return this._createGridButton(this.insertButtonClass, this.insertButtonTooltip, function(grid) {
-                grid.insertItem().done(function() {
-                    grid.clearInsert();
+            return this._createGrIdButton(this.insertButtonClass, this.insertButtonTooltip, function(grId) {
+                grId.insertItem().done(function() {
+                    grId.clearInsert();
                 });
             });
         },
 
         _createUpdateButton: function() {
-            return this._createGridButton(this.updateButtonClass, this.updateButtonTooltip, function(grid, e) {
-                grid.updateItem();
+            return this._createGrIdButton(this.updateButtonClass, this.updateButtonTooltip, function(grId, e) {
+                grId.updateItem();
                 e.stopPropagation();
             });
         },
 
         _createCancelEditButton: function() {
-            return this._createGridButton(this.cancelEditButtonClass, this.cancelEditButtonTooltip, function(grid, e) {
-                grid.cancelEdit();
+            return this._createGrIdButton(this.cancelEditButtonClass, this.cancelEditButtonTooltip, function(grId, e) {
+                grId.cancelEdit();
                 e.stopPropagation();
             });
         },
 
-        _createGridButton: function(cls, tooltip, clickHandler) {
-            var grid = this._grid;
+        _createGrIdButton: function(cls, tooltip, clickHandler) {
+            var grId = this._grId;
 
             return $("<input>").addClass(this.buttonClass)
                 .addClass(cls)
@@ -2501,7 +2501,7 @@
                     title: tooltip
                 })
                 .on("click", function(e) {
-                    clickHandler(grid, e);
+                    clickHandler(grId, e);
                 });
         },
 
@@ -2511,6 +2511,6 @@
 
     });
 
-    jsGrid.fields.control = jsGrid.ControlField = ControlField;
+    jsGrId.fields.control = jsGrId.ControlField = ControlField;
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));

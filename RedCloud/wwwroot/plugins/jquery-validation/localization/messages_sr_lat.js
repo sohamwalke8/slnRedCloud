@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.validate"], factory );
+		define( ["jquery", "../jquery.valIdate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -9,10 +9,10 @@
 }(function( $ ) {
 
 /*
- * Translated default messages for the jQuery validation plugin.
+ * Translated default messages for the jQuery valIdation plugin.
  * Locale: SR (Serbian - Latin alphabet; srpski jezik - latinica)
  */
-$.extend( $.validator.messages, {
+$.extend( $.valIdator.messages, {
 	required: "Polje je obavezno.",
 	remote: "Sredite ovo polje.",
 	email: "Unesite ispravnu e-mail adresu",
@@ -24,13 +24,13 @@ $.extend( $.validator.messages, {
 	creditcard: "Unesite ispravan broj kreditne kartice.",
 	equalTo: "Unesite istu vrednost ponovo.",
 	extension: "Unesite vrednost sa odgovarajućom ekstenzijom.",
-	maxlength: $.validator.format( "Unesite manje od {0} karaktera." ),
-	minlength: $.validator.format( "Unesite barem {0} karaktera." ),
-	rangelength: $.validator.format( "Unesite vrednost dugačku između {0} i {1} karaktera." ),
-	range: $.validator.format( "Unesite vrednost između {0} i {1}." ),
-	max: $.validator.format( "Unesite vrednost manju ili jednaku {0}." ),
-	min: $.validator.format( "Unesite vrednost veću ili jednaku {0}." ),
-	step: $.validator.format( "Unesite vrednost koja je umnožak broja {0}." )
+	maxlength: $.valIdator.format( "Unesite manje od {0} karaktera." ),
+	minlength: $.valIdator.format( "Unesite barem {0} karaktera." ),
+	rangelength: $.valIdator.format( "Unesite vrednost dugačku između {0} i {1} karaktera." ),
+	range: $.valIdator.format( "Unesite vrednost između {0} i {1}." ),
+	max: $.valIdator.format( "Unesite vrednost manju ili jednaku {0}." ),
+	min: $.valIdator.format( "Unesite vrednost veću ili jednaku {0}." ),
+	step: $.valIdator.format( "Unesite vrednost koja je umnožak broja {0}." )
 } );
 return $;
 }));

@@ -49,11 +49,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd D MMMM YYYY HH:mm',
         },
-        meridiemParse: /މކ|މފ/,
+        merIdiemParse: /މކ|މފ/,
         isPM: function (input) {
             return 'މފ' === input;
         },
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'މކ';
             } else {

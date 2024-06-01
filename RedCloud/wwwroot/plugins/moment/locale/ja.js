@@ -92,11 +92,11 @@
             lll: 'YYYY年M月D日 HH:mm',
             llll: 'YYYY年M月D日(ddd) HH:mm',
         },
-        meridiemParse: /午前|午後/i,
+        merIdiemParse: /午前|午後/i,
         isPM: function (input) {
             return input === '午後';
         },
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return '午前';
             } else {

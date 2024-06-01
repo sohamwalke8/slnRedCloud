@@ -24,11 +24,11 @@ namespace RedCloud.Services
         public async Task<Response<UserVM>> Login(LoginVM login)
         {
             _logger.LogInformation("LoginAccount Service initiated");
-            var response = await _apiClientLogin.PostAuthAsync("/Account/Login", login);
+            var response = await _apiClientLogin.PostAuthAsync("Account/Login", login);
             if (response == null)
             {
                 _logger.LogInformation("LoginAccount Service completed with failure");
-                return new Response<UserVM>(null, "Invalid login credentials");
+                return new Response<UserVM>(null, "InvalId login credentials");
             }
 
             _logger.LogInformation("LoginAccount Service conpleted");

@@ -22,7 +22,7 @@
 }
 
 .cm-s-material .CodeMirror-cursor {
-  border-left: 1px solid #FFCC00;
+  border-left: 1px solId #FFCC00;
 }
 .cm-s-material.cm-fat-cursor .CodeMirror-cursor {
   background-color: #5d6d5c80 !important;

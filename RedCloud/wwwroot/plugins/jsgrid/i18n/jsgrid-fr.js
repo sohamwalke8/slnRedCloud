@@ -1,7 +1,7 @@
-(function(jsGrid) {
+(function(jsGrId) {
 
-    jsGrid.locales.fr = {
-        grid: {
+    jsGrId.locales.fr = {
+        grId: {
             noDataContent: "Pas de données",
             deleteConfirm: "Êtes-vous sûr ?",
             pagerFormat: "Pages: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} de {pageCount}",
@@ -10,7 +10,7 @@
             pageFirstText: "<<",
             pageLastText: ">>",
             loadMessage: "Chargement en cours...",
-            invalidMessage: "Des données incorrectes sont entrés !"
+            invalIdMessage: "Des données incorrectes sont entrés !"
         },
 
         loadIndicator: {
@@ -31,7 +31,7 @@
             }
         },
 
-        validators: {
+        valIdators: {
             required: { message: "Champ requis" },
             rangeLength: { message: "Longueur de la valeur du champ est hors de la plage définie" },
             minLength: { message: "La valeur du champ est trop court" },
@@ -43,5 +43,5 @@
         }
     };
 
-}(jsGrid, jQuery));
+}(jsGrId, jQuery));
 

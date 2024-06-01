@@ -174,22 +174,22 @@
                 return symbolMap[match];
             });
         },
-        meridiemParse: /पहाटे|सकाळी|दुपारी|सायंकाळी|रात्री/,
-        meridiemHour: function (hour, meridiem) {
+        merIdiemParse: /पहाटे|सकाळी|दुपारी|सायंकाळी|रात्री/,
+        merIdiemHour: function (hour, merIdiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (meridiem === 'पहाटे' || meridiem === 'सकाळी') {
+            if (merIdiem === 'पहाटे' || merIdiem === 'सकाळी') {
                 return hour;
             } else if (
-                meridiem === 'दुपारी' ||
-                meridiem === 'सायंकाळी' ||
-                meridiem === 'रात्री'
+                merIdiem === 'दुपारी' ||
+                merIdiem === 'सायंकाळी' ||
+                merIdiem === 'रात्री'
             ) {
                 return hour >= 12 ? hour : hour + 12;
             }
         },
-        meridiem: function (hour, minute, isLower) {
+        merIdiem: function (hour, minute, isLower) {
             if (hour >= 0 && hour < 6) {
                 return 'पहाटे';
             } else if (hour < 12) {

@@ -289,11 +289,11 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .mailbox-controls.with-border {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: 1px solId rgba(0, 0, 0, 0.125);
 }
 
 .mailbox-read-info {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: 1px solId rgba(0, 0, 0, 0.125);
   padding: 10px;
 }
 
@@ -322,11 +322,11 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .mailbox-attachments li {
-  border: 1px solid #eee;
+  border: 1px solId #eee;
   float: left;
   margin-bottom: 10px;
   margin-right: 10px;
-  width: 200px;
+  wIdth: 200px;
 }
 
 .mailbox-attachment-name {
@@ -369,7 +369,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .mailbox-attachment-icon.has-img > img {
   height: auto;
-  max-width: 100%;
+  max-wIdth: 100%;
 }
 
 .lockscreen {
@@ -395,7 +395,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 .lockscreen-wrapper {
   margin: 0 auto;
   margin-top: 10%;
-  max-width: 400px;
+  max-wIdth: 400px;
 }
 
 .lockscreen-item {
@@ -404,7 +404,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   margin: 10px auto 30px;
   padding: 0;
   position: relative;
-  width: 290px;
+  wIdth: 290px;
 }
 
 .lockscreen-image {
@@ -420,7 +420,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 .lockscreen-image > img {
   border-radius: 50%;
   height: 70px;
-  width: 70px;
+  wIdth: 70px;
 }
 
 .lockscreen-credentials {
@@ -486,14 +486,14 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .login-box,
 .register-box {
-  width: 360px;
+  wIdth: 360px;
 }
 
-@media (max-width: 576px) {
+@media (max-wIdth: 576px) {
   .login-box,
   .register-box {
     margin-top: .5rem;
-    width: 90%;
+    wIdth: 90%;
   }
 }
 
@@ -527,25 +527,25 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   border-color: #80bdff;
 }
 
-.login-card-body .input-group .form-control.is-valid:focus,
-.register-card-body .input-group .form-control.is-valid:focus {
+.login-card-body .input-group .form-control.is-valId:focus,
+.register-card-body .input-group .form-control.is-valId:focus {
   box-shadow: none;
 }
 
-.login-card-body .input-group .form-control.is-valid ~ .input-group-prepend .input-group-text,
-.login-card-body .input-group .form-control.is-valid ~ .input-group-append .input-group-text,
-.register-card-body .input-group .form-control.is-valid ~ .input-group-prepend .input-group-text,
-.register-card-body .input-group .form-control.is-valid ~ .input-group-append .input-group-text {
+.login-card-body .input-group .form-control.is-valId ~ .input-group-prepend .input-group-text,
+.login-card-body .input-group .form-control.is-valId ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control.is-valId ~ .input-group-prepend .input-group-text,
+.register-card-body .input-group .form-control.is-valId ~ .input-group-append .input-group-text {
   border-color: #28a745;
 }
 
-.login-card-body .input-group .form-control.is-invalid:focus,
-.register-card-body .input-group .form-control.is-invalid:focus {
+.login-card-body .input-group .form-control.is-invalId:focus,
+.register-card-body .input-group .form-control.is-invalId:focus {
   box-shadow: none;
 }
 
-.login-card-body .input-group .form-control.is-invalid ~ .input-group-append .input-group-text,
-.register-card-body .input-group .form-control.is-invalid ~ .input-group-append .input-group-text {
+.login-card-body .input-group .form-control.is-invalId ~ .input-group-append .input-group-text,
+.register-card-body .input-group .form-control.is-invalId ~ .input-group-append .input-group-text {
   border-color: #dc3545;
 }
 
@@ -584,12 +584,12 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .error-page {
   margin: 20px auto 0;
-  width: 600px;
+  wIdth: 600px;
 }
 
-@media (max-width: 767.98px) {
+@media (max-wIdth: 767.98px) {
   .error-page {
-    width: 100%;
+    wIdth: 100%;
   }
 }
 
@@ -599,7 +599,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   font-weight: 300;
 }
 
-@media (max-width: 767.98px) {
+@media (max-wIdth: 767.98px) {
   .error-page > .headline {
     float: none;
     text-align: center;
@@ -611,7 +611,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   margin-left: 190px;
 }
 
-@media (max-width: 767.98px) {
+@media (max-wIdth: 767.98px) {
   .error-page > .error-content {
     margin-left: 0;
   }
@@ -622,7 +622,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   font-weight: 300;
 }
 
-@media (max-width: 767.98px) {
+@media (max-wIdth: 767.98px) {
   .error-page > .error-content > h3 {
     text-align: center;
   }
@@ -630,7 +630,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .invoice {
   background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 1px solId rgba(0, 0, 0, 0.125);
   position: relative;
 }
 
@@ -643,10 +643,10 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .profile-user-img {
-  border: 3px solid #adb5bd;
+  border: 3px solId #adb5bd;
   margin: 0 auto;
   padding: 3px;
-  width: 100px;
+  wIdth: 100px;
 }
 
 .profile-username {
@@ -655,7 +655,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .post {
-  border-bottom: 1px solid #adb5bd;
+  border-bottom: 1px solId #adb5bd;
   color: #666;
   margin-bottom: 15px;
   padding-bottom: 15px;
@@ -669,11 +669,11 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .post .user-block {
   margin-bottom: 15px;
-  width: 100%;
+  wIdth: 100%;
 }
 
 .post .row {
-  width: 100%;
+  wIdth: 100%;
 }
 
 .dark-mode .post {
@@ -682,9 +682,9 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .product-image {
-  max-width: 100%;
+  max-wIdth: 100%;
   height: auto;
-  width: 100%;
+  wIdth: 100%;
 }
 
 .product-image-thumbs {
@@ -699,16 +699,16 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
   border-radius: 0.25rem;
   background-color: #fff;
-  border: 1px solid #dee2e6;
+  border: 1px solId #dee2e6;
   display: -ms-flexbox;
   display: flex;
   margin-right: 1rem;
-  max-width: 7rem;
+  max-wIdth: 7rem;
   padding: 0.5rem;
 }
 
 .product-image-thumb img {
-  max-width: 100%;
+  max-wIdth: 100%;
   height: auto;
   -ms-flex-item-align: center;
   align-self: center;
@@ -723,7 +723,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .projects td {
-  vertical-align: middle;
+  vertical-align: mIddle;
 }
 
 .projects .list-inline {
@@ -734,14 +734,14 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 .projects .table-avatar img {
   border-radius: 50%;
   display: inline;
-  width: 2.5rem;
+  wIdth: 2.5rem;
 }
 
 .projects .project-state {
   text-align: center;
 }
 
-body.iframe-mode .main-sidebar {
+body.iframe-mode .main-sIdebar {
   display: none;
 }
 
@@ -757,7 +757,7 @@ body.iframe-mode .main-footer {
 }
 
 body.iframe-mode-fullscreen {
-  overflow: hidden;
+  overflow: hIdden;
 }
 
 body.iframe-mode-fullscreen.layout-navbar-fixed .wrapper .content-wrapper {
@@ -775,7 +775,7 @@ body.iframe-mode-fullscreen.layout-navbar-fixed .wrapper .content-wrapper {
   right: .125rem;
   top: .125rem;
   z-index: 10;
-  visibility: hidden;
+  visibility: hIdden;
 }
 
 .content-wrapper.iframe-mode .btn-iframe-close:hover, .content-wrapper.iframe-mode .btn-iframe-close:focus {
@@ -796,7 +796,7 @@ body.iframe-mode-fullscreen.layout-navbar-fixed .wrapper .content-wrapper {
 
 .content-wrapper.iframe-mode .navbar-nav {
   overflow-y: auto;
-  width: 100%;
+  wIdth: 100%;
 }
 
 .content-wrapper.iframe-mode .navbar-nav .nav-link {
@@ -832,7 +832,7 @@ body.iframe-mode-fullscreen.layout-navbar-fixed .wrapper .content-wrapper {
 }
 
 .content-wrapper.iframe-mode .tab-empty {
-  width: 100%;
+  wIdth: 100%;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -845,7 +845,7 @@ body.iframe-mode-fullscreen.layout-navbar-fixed .wrapper .content-wrapper {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  wIdth: 100%;
   display: none;
   background-color: #f4f6f9;
 }
@@ -857,13 +857,13 @@ body.iframe-mode-fullscreen.layout-navbar-fixed .wrapper .content-wrapper {
   justify-content: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 100%;
+  wIdth: 100%;
   height: 100%;
 }
 
 .content-wrapper.iframe-mode iframe {
   border: 0;
-  width: 100%;
+  wIdth: 100%;
   height: 100%;
   margin-bottom: -8px;
 }
@@ -902,14 +902,14 @@ body.iframe-mode-fullscreen .content-wrapper.iframe-mode {
 .content-wrapper.kanban .content {
   height: 100%;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: hIdden;
 }
 
 .content-wrapper.kanban .content .container,
-.content-wrapper.kanban .content .container-fluid {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
+.content-wrapper.kanban .content .container-fluId {
+  wIdth: -webkit-max-content;
+  wIdth: -moz-max-content;
+  wIdth: max-content;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: stretch;
@@ -925,7 +925,7 @@ body.iframe-mode-fullscreen .content-wrapper.iframe-mode {
 }
 
 .content-wrapper.kanban .card.card-row {
-  width: 340px;
+  wIdth: 340px;
   display: inline-block;
   margin: 0 .5rem;
 }
@@ -941,7 +941,7 @@ body.iframe-mode-fullscreen .content-wrapper.iframe-mode {
 
 .content-wrapper.kanban .card.card-row .card:last-child {
   margin-bottom: 0;
-  border-bottom-width: 1px;
+  border-bottom-wIdth: 1px;
 }
 
 .content-wrapper.kanban .card.card-row .card .card-header {

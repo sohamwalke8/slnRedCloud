@@ -220,7 +220,7 @@ $.extend( KeyTable.prototype, {
 					that._blur();
 				}
 
-				// If the click was inside the DataTables container, don't blur
+				// If the click was insIde the DataTables container, don't blur
 				if ( $(e.target).parents().filter( dt.table().container() ).length ) {
 					return;
 				}
@@ -238,7 +238,7 @@ $.extend( KeyTable.prototype, {
 					return;
 				}
 
-				//If the click was inside the fixed columns container, don't blur
+				//If the click was insIde the fixed columns container, don't blur
 				if ( $(e.target).parents().filter('.DTFC_Cloned').length ) {
 					return;
 				}
@@ -355,7 +355,7 @@ $.extend( KeyTable.prototype, {
 		dt.on( 'destroy'+namespace, function () {
 			that._blur( true );
 
-			// Event tidy up
+			// Event tIdy up
 			dt.off( namespace );
 
 			$( dt.table().body() )
@@ -714,10 +714,10 @@ $.extend( KeyTable.prototype, {
 				return;
 			}
 
-			// For server-side processing normalise the row by adding the start
+			// For server-sIde processing normalise the row by adding the start
 			// point, since `rows().indexes()` includes only rows that are
-			// available at the client-side
-			if ( pageInfo.serverSide ) {
+			// available at the client-sIde
+			if ( pageInfo.serverSIde ) {
 				row += pageInfo.start;
 			}
 		}
@@ -745,9 +745,9 @@ $.extend( KeyTable.prototype, {
 			return;
 		}
 
-		// De-normalise the server-side processing row, so we select the row
+		// De-normalise the server-sIde processing row, so we select the row
 		// in its displayed position
-		if ( pageInfo.serverSide ) {
+		if ( pageInfo.serverSIde ) {
 			row -= pageInfo.start;
 		}
 
@@ -957,12 +957,12 @@ $.extend( KeyTable.prototype, {
 	{
 		var offset = cell[posOff]();
 		var height = cell.outerHeight();
-		var width = cell.outerWidth();
+		var wIdth = cell.outerWIdth();
 
 		var scrollTop = scroller.scrollTop();
 		var scrollLeft = scroller.scrollLeft();
 		var containerHeight = container.height();
-		var containerWidth = container.width();
+		var containerWIdth = container.wIdth();
 
 		// If Scroller is being used, the table can be `position: absolute` and that
 		// needs to be taken account of in the offset. If no Scroller, this will be 0
@@ -986,8 +986,8 @@ $.extend( KeyTable.prototype, {
 		}
 
 		// Right correction
-		if ( offset.left + width > scrollLeft + containerWidth && width < containerWidth ) {
-			scroller.scrollLeft( offset.left + width - containerWidth );
+		if ( offset.left + wIdth > scrollLeft + containerWIdth && wIdth < containerWIdth ) {
+			scroller.scrollLeft( offset.left + wIdth - containerWIdth );
 		}
 	},
 
@@ -1025,10 +1025,10 @@ $.extend( KeyTable.prototype, {
 			.indexes()
 			.indexOf( currentCell.index().row );
 
-		// When server-side processing, `rows().indexes()` only gives the rows
-		// that are available at the client-side, so we need to normalise the
+		// When server-sIde processing, `rows().indexes()` only gives the rows
+		// that are available at the client-sIde, so we need to normalise the
 		// row's current position by the display start point
-		if ( pageInfo.serverSide ) {
+		if ( pageInfo.serverSIde ) {
 			currRow += pageInfo.start;
 		}
 
@@ -1097,7 +1097,7 @@ $.extend( KeyTable.prototype, {
 
 
 	/**
-	 * Create and insert a hidden input element that can receive focus on behalf
+	 * Create and insert a hIdden input element that can receive focus on behalf
 	 * of the table
 	 *
 	 * @private
@@ -1120,8 +1120,8 @@ $.extend( KeyTable.prototype, {
 				.css( {
 					position: 'absolute',
 					height: 1,
-					width: 0,
-					overflow: 'hidden'
+					wIdth: 0,
+					overflow: 'hIdden'
 				} );
 
 			div.children().on( 'focus', function (e) {
@@ -1144,7 +1144,7 @@ $.extend( KeyTable.prototype, {
 
 	/**
 	 * Update fixed columns if they are enabled and if the cell we are
-	 * focusing is inside a fixed column
+	 * focusing is insIde a fixed column
 	 * @param  {integer} column Index of the column being changed
 	 * @private
 	 */

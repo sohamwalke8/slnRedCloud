@@ -44,7 +44,7 @@
       {regex: /[\)><]+\S+(?=\s|$)/, token: "builtin"},
       // operators
       {regex: /(?:[\+\-\=\/\*<>])(?=\s|$)/, token: "keyword"},
-      // any id (?)
+      // any Id (?)
       {regex: /\S+/, token: "variable"},
       {regex: /\s+|./, token: null}
     ],

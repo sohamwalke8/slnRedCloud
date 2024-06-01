@@ -87,7 +87,7 @@ There are two types of boxes, info boxes & small boxes. Both boxes are used to d
         <span class="info-box-text">Bookmarks</span>
         <span class="info-box-number">41,410</span>
         <div class="progress">
-          <div class="progress-bar bg-info" style="width: 70%"></div>
+          <div class="progress-bar bg-info" style="wIdth: 70%"></div>
         </div>
         <span class="progress-description">
           70% Increase in 30 Days
@@ -102,7 +102,7 @@ There are two types of boxes, info boxes & small boxes. Both boxes are used to d
         <span class="info-box-text">Likes</span>
         <span class="info-box-number">41,410</span>
         <div class="progress">
-          <div class="progress-bar" style="width: 70%"></div>
+          <div class="progress-bar" style="wIdth: 70%"></div>
         </div>
         <span class="progress-description">
           70% Increase in 30 Days
@@ -117,7 +117,7 @@ There are two types of boxes, info boxes & small boxes. Both boxes are used to d
         <span class="info-box-text">Events</span>
         <span class="info-box-number">41,410</span>
         <div class="progress">
-          <div class="progress-bar" style="width: 70%"></div>
+          <div class="progress-bar" style="wIdth: 70%"></div>
         </div>
         <span class="progress-description">
           70% Increase in 30 Days
@@ -135,7 +135,7 @@ There are two types of boxes, info boxes & small boxes. Both boxes are used to d
     <span class="info-box-text">Bookmarks</span>
     <span class="info-box-number">41,410</span>
     <div class="progress">
-      <div class="progress-bar bg-info" style="width: 70%"></div>
+      <div class="progress-bar bg-info" style="wIdth: 70%"></div>
     </div>
     <span class="progress-description">
       70% Increase in 30 Days
@@ -151,7 +151,7 @@ There are two types of boxes, info boxes & small boxes. Both boxes are used to d
     <span class="info-box-text">Likes</span>
     <span class="info-box-number">41,410</span>
     <div class="progress">
-      <div class="progress-bar" style="width: 70%"></div>
+      <div class="progress-bar" style="wIdth: 70%"></div>
     </div>
     <span class="progress-description">
       70% Increase in 30 Days
@@ -167,7 +167,7 @@ There are two types of boxes, info boxes & small boxes. Both boxes are used to d
     <span class="info-box-text">Events</span>
     <span class="info-box-number">41,410</span>
     <div class="progress">
-      <div class="progress-bar" style="width: 70%"></div>
+      <div class="progress-bar" style="wIdth: 70%"></div>
     </div>
     <span class="progress-description">
       70% Increase in 30 Days
@@ -283,7 +283,7 @@ To simulate a loading state, simply place this code before the `.info-box` / `.s
         <span class="info-box-text">Bookmarks</span>
         <span class="info-box-number">41,410</span>
         <div class="progress">
-          <div class="progress-bar bg-info" style="width: 70%"></div>
+          <div class="progress-bar bg-info" style="wIdth: 70%"></div>
         </div>
         <span class="progress-description">
           70% Increase in 30 Days
@@ -342,7 +342,7 @@ You can also use a dark loading style with adding `.dark` to `.overlay` like thi
         <span class="info-box-text">Bookmarks</span>
         <span class="info-box-number">41,410</span>
         <div class="progress">
-          <div class="progress-bar bg-info" style="width: 70%"></div>
+          <div class="progress-bar bg-info" style="wIdth: 70%"></div>
         </div>
         <span class="progress-description">
           70% Increase in 30 Days

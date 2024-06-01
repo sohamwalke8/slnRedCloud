@@ -2,7 +2,7 @@
 Name:   DuoTone-Dark
 Author: by Bram de Haan, adapted from DuoTone themes by Simurai (http://simurai.com/projects/2016/01/01/duotone-themes)
 
-CodeMirror template by Jan T. Sott (https://github.com/idleberg), adapted by Bram de Haan (https://github.com/atelierbram/)
+CodeMirror template by Jan T. Sott (https://github.com/Idleberg), adapted by Bram de Haan (https://github.com/atelierbram/)
 */
 
 .cm-s-duotone-dark.CodeMirror { background: #2a2734; color: #6c6783; }
@@ -11,7 +11,7 @@ CodeMirror template by Jan T. Sott (https://github.com/idleberg), adapted by Bra
 .cm-s-duotone-dark .CodeMirror-linenumber { color: #545167; }
 
 /* begin cursor */
-.cm-s-duotone-dark .CodeMirror-cursor { border-left: 1px solid #ffad5c; /* border-left: 1px solid #ffad5c80; */ border-right: .5em solid #ffad5c; /* border-right: .5em solid #ffad5c80; */ opacity: .5; }
+.cm-s-duotone-dark .CodeMirror-cursor { border-left: 1px solId #ffad5c; /* border-left: 1px solId #ffad5c80; */ border-right: .5em solId #ffad5c; /* border-right: .5em solId #ffad5c80; */ opacity: .5; }
 .cm-s-duotone-dark .CodeMirror-activeline-background { background: #363342; /* background: #36334280;  */ opacity: .5;}
 .cm-s-duotone-dark .cm-fat-cursor .CodeMirror-cursor { background: #ffad5c; /* background: #ffad5c80; */ opacity: .5;}
 /* end cursor */
@@ -29,7 +29,7 @@ CodeMirror template by Jan T. Sott (https://github.com/idleberg), adapted by Bra
 .cm-s-duotone-dark span.cm-bracket, .cm-s-duotone-dark span.cm-comment { color: #6c6783; }
 
 /* using #f00 red for errors, don't think any of the colorscheme variables will stand out enough, ... maybe by giving it a background-color ... */
-.cm-s-duotone-dark span.cm-error, .cm-s-duotone-dark span.cm-invalidchar { color: #f00; }
+.cm-s-duotone-dark span.cm-error, .cm-s-duotone-dark span.cm-invalIdchar { color: #f00; }
 
 .cm-s-duotone-dark span.cm-header { font-weight: normal; }
 .cm-s-duotone-dark .CodeMirror-matchingbracket { text-decoration: underline; color: #eeebff !important; } 
