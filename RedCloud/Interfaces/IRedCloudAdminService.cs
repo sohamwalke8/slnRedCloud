@@ -10,6 +10,6 @@ namespace RedCloud.Interfaces
         Task EditAdminUser(RedCloudAdmin adminUser);
 
         Task<RedCloudAdminVM> GetAdminUserById(int Id);
-
+        Task<IEnumerable<RedCloudAdminVM>> GetallRedCloudAdminUser();
     }
 }

@@ -9,7 +9,7 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
 {
     public class ResellerAdminUserVM
     {
-        public int Id { get; set; }
+        public int ResellerAdminUserId { get; set; }
 
         [Required(ErrorMessage = "Reseller name is required")]
         public string ResellerName { get; set; }

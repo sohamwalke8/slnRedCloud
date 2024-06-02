@@ -52,7 +52,7 @@ namespace RedCloud.Controllers
         }
 
 
-        [HttpPost("EditAdminUser")]
+        [HttpPost]
         public async Task<IActionResult> EditAdmin(RedCloudAdminVM request)
         {
             if (ModelState.IsValid)

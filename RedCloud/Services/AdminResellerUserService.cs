@@ -49,7 +49,7 @@ namespace RedCloud.Services
         public async Task<ResellerAdminUserVM> GetResellerAdminUserById(int eventId)
         {
             // _logger.LogInformation("GetEventById Service initiated");
-            var Events = await _client.GetByIdAsync(" /ResellerAdminUser/" + eventId);
+            var Events = await _client.GetByIdAsync("ResellerAdminUser/" + eventId);
             //_logger.LogInformation("GetEventById Service conpleted");
             return Events.Data;
         }

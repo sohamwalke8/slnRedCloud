@@ -1,6 +1,6 @@
 ﻿using MvcApiCallingService.Helpers.ApiHelper;
-using RedCloud.Application.Features.OrganizationAdmins.Queries;
 using RedCloud.Interfaces;
+using RedCloud.ViewModel;
 
 namespace RedCloud.Services
 {

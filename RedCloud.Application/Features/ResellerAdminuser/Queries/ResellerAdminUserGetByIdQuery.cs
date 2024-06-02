@@ -13,9 +13,6 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
 
         public int Id { get; set; }
 
-        public ResellerAdminUserGetByIdQuery(int Id)
-        {
-            Id = Id;
-        }
+        
     }
 }

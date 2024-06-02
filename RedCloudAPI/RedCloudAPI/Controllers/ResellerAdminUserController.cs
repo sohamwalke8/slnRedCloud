@@ -55,7 +55,7 @@ namespace RedCloudAPI.Controllers
         {
 
             //_logger.LogInformation($"GetResellerAdminById Initiated for ID: {id}");
-            var dto = await _mediator.Send(new ResellerAdminUserGetByIdQuery(id));
+            var dto = await _mediator.Send(new ResellerAdminUserGetByIdQuery() { Id = id});
             if (dto == null)
             {
                 return NotFound();

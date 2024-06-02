@@ -22,8 +22,8 @@
 <div class="container-fluId d-flex justify-content-center align-items-center" style="height: 100vh">
     <div class="col-md-12">
         <div class="mb-3">
-            <a asp-action="Index" asp-controller="RedCloudUserAdmin" class="btn btn-secondary">Back</a>
-            <a asp-action="AssignReseller" asp-controller="RedCloudUserAdmin" class="btn btn-warning">Assign Reseller</a>
+            <a asp-action="Index" asp-controller="RedCloudAdmin" class="btn btn-secondary">Back</a>
+            <a asp-action="AssignReseller" asp-controller="RedCloudAdmin" class="btn btn-warning">Assign Reseller</a>
 
         </div>
         <div class="card card-primary">
@@ -33,7 +33,7 @@
             <div class="mandatory-message">
                 * marked fields are mandatory.
             </div>
-            <form asp-action="EditAdmin" asp-controller="RedCloudUserAdmin" method="post">
+            <form asp-action="EditAdmin" asp-controller="RedCloudAdmin" method="post">
                 <input type="hIdden" asp-for="RedCloudAdminUserId" />
                 <div class="card-body">
                     <div class="form-group">

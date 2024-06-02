@@ -40,7 +40,7 @@ namespace RedCloud.Domain.Entities
             public virtual ICollection<RedCloudAdmin> RedCloudAdmins { get; set; } = new List<RedCloudAdmin>();
 
 
-            //public virtual ICollection<OrganizationAdmin> OrganizationAdmins { get; set; } = new List<OrganizationAdmin>();
+            public virtual List<OrganizationAdmin> OrganizationAdmins { get; set; } = new List<OrganizationAdmin>();
 
 
             public int CountryId { get; set; }

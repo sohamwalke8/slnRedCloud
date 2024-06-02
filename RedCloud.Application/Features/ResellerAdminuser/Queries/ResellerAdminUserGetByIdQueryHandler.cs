@@ -35,7 +35,7 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
 
             var dto = new ResellerAdminUserVM()
             {
-                Id = admin.ResellerAdminUserId,
+                ResellerAdminUserId = admin.ResellerAdminUserId,
                 ResellerName = admin.ResellerName,
                 EIN = admin.EIN,
                 AddressLine1 = admin.AddressLine1,

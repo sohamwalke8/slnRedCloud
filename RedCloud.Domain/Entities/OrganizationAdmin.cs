@@ -42,7 +42,7 @@ namespace RedCloud.Domain.Entities
 
         public bool IsActive { get; set; } = true;
 
-        public virtual ICollection<ResellerAdminUser> ResellerAdminUsers { get; set; } = new List<ResellerAdminUser>();
+        public virtual List<ResellerAdminUser> ResellerAdminUsers { get; set; } = new List<ResellerAdminUser>();
 
         public int CountryId { get; set; }
 

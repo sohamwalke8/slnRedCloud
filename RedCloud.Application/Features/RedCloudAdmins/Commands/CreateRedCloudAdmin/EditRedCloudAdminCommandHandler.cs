@@ -24,13 +24,14 @@ namespace RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAd
        
         public async Task<Response<Unit>> Handle(EditRedCloudAdminCommand request, CancellationToken cancellationToken)
         {
+            var userObj = await _repository.GetByIdAsync(request.RedCloudAdminUserId);
             var adminuser = _mapper.Map<RedCloudAdmin>(request);
 
 
 
             adminuser.LastModifiedDate = DateTime.UtcNow;
             adminuser.LastModifiedBy = null;
-
+            adminuser.Password = userObj.Password;
 
             await _repository.UpdateAsync(adminuser);
             var response = new Response<Unit>("Updated Successfully");

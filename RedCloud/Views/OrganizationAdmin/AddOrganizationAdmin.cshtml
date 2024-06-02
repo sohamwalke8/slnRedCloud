@@ -1,4 +1,7 @@
-﻿@{
+﻿@model RedCloud.ViewModel.OrganizationAdminVM;
+@using RedCloud.ViewModel;
+
+@{
     IEnumerable<CountryVM> countries = (IEnumerable<CountryVM>)ViewBag.Country;
     IEnumerable<SelectListItem> countrySelectList = countries.Select(c => new SelectListItem
             {
@@ -10,7 +13,7 @@
 }
 
 
-@model RedCloud.ModelVM.OrganizationAdminVM;
+
 
 
 <body>
@@ -80,7 +83,7 @@
 
                                     </div>
                                     <div id="states" class="form-group">
-                                        @ the options will be appended in this div @
+                                     
 
                                         @Html.Partial("_StateDropDown", stateList)
                                         <span asp-validation-for="StateId" class="text-danger"></span>
@@ -92,7 +95,7 @@
 
                                     <div id="cities" class="form-group">
 
-                                        @ the options will be appended in this div @
+                                    
                                         @Html.Partial("_CityDropDown", cityList)
                                         <span asp-validation-for="CityId" class="text-danger"></span>
 
@@ -119,13 +122,13 @@
                                     <div class="form-group">
 
                                         <label for="ResellerName">Reseller Name</label>
-                                        @ <select asp-items="@(new SelectList(ViewBag.ResellerList))"></select> @
+                                      @*   @ <select asp-items="@(new SelectList(ViewBag.ResellerList))"></select> @ *@
                                         <select asp-for="ResellerId" class="form-control" asp-items="@ViewBag.ResellerList" required>
                                             <option value="">Select Reseller</option>
                                         </select>
                                         <span asp-validation-for="ResellerId" class="text-danger"></span>
 
-                                        @ <input asp-for="ResellerName" class="form-control" id="ResellerName" placeholder="Enter reseller name"> @
+                                      @*   @ <input asp-for="ResellerName" class="form-control" id="ResellerName" placeholder="Enter reseller name"> @ *@
                                     </div>
                                 </div>
                             </div>
@@ -203,5 +206,5 @@
 
 
 }
-@ </html> @
+
 

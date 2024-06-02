@@ -1,4 +1,5 @@
-﻿using RedCloud.Application.Features.OrganizationAdmins.Queries;
+﻿
+using RedCloud.ViewModel;
 
 namespace RedCloud.Interfaces
 {

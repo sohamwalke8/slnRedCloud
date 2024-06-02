@@ -14,17 +14,20 @@ namespace RedCloud.Controllers
         private readonly IDropDownService<CountryVM> _dropDownService;
         private readonly IStateService<StateVM> _stateService;
         private readonly ICityService<CityVM> _cityService;
+        private readonly IRedCloudAdminService _redcloudAdminService;
 
 
 
 
-        public ResellerAdminUserController(IAdminResellerUser adminreseller, ILogger<ResellerAdminUserController> logger, IDropDownService<CountryVM> dropDownService, IStateService<StateVM> stateService, ICityService<CityVM> cityService)
+        public ResellerAdminUserController(IAdminResellerUser adminreseller, ILogger<ResellerAdminUserController> logger, IDropDownService<CountryVM> dropDownService, 
+            IStateService<StateVM> stateService, ICityService<CityVM> cityService, IRedCloudAdminService redCloudAdmin)
         {
             _adminreseller = adminreseller;
             _logger = logger;
             _dropDownService = dropDownService;
             _stateService = stateService;
             _cityService = cityService;
+            _redcloudAdminService = redCloudAdmin;
 
 
 
@@ -40,8 +43,8 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> AddReseller()
 
         {
-            var resellerList = await _adminreseller.GetallResellerAdminUser();
-            ViewBag.AdminList = new SelectList(resellerList, "Id", "FirstName");
+            var resellerList = await _redcloudAdminService.GetallRedCloudAdminUser();
+            ViewBag.AdminList = new SelectList(resellerList, "RedCloudAdminUserId", "FirstName");
             var countries = await _dropDownService.GetAllCountryList();
             ViewBag.Country = countries;
             return View(new ResellerAdminUserVM());
@@ -65,7 +68,7 @@ namespace RedCloud.Controllers
         //}
 
 
-        public async Task<IActionResult> UpdateResellerAdmin(int Id)
+        public async Task<IActionResult> UpdateResellerAdminUser(int Id)
         {
 
             //var response = await _organizationAdminService.GetOrganizationAdminById(Id)
@@ -79,15 +82,15 @@ namespace RedCloud.Controllers
 
             // var countries = await _dropDownService.GetAllCountryList();
             //ViewBag.Country = countries;
-            var resellerList = await _adminreseller.GetallResellerAdminUser();
-            ViewBag.AdminList = new SelectList(resellerList, "Id", "FirstName");
+            var resellerList = await _redcloudAdminService.GetallRedCloudAdminUser();
+            ViewBag.AdminList = new SelectList(resellerList, "RedCloudAdminUserId", "FirstName");
             // var resellerList = await _reSellerAdminService.GetallResellerAdmin();
             // ViewBag.ResellerList = new SelectList(resellerList, "Id", "ResellerName");
             return View(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateResellerAdmin(ResellerAdminUser request)
+        public async Task<IActionResult> UpdateResellerAdminUser(ResellerAdminUser request)
         {
             // _logger.LogInformation("CreateCategory Action initiated");
             var response = _adminreseller.UpdateAdminResellerUser(request);

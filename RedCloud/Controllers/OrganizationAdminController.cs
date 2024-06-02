@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using RedCloud.Application.Features.OrganizationAdmins.Queries;
 using RedCloud.Interfaces;
 using RedCloud.ViewModel;
 
@@ -32,8 +31,8 @@ namespace RedCloud.Controllers
             //return View(); 
             var countries = await _dropDownService.GetAllCountryList();
             ViewBag.Country = countries;
-            var resellerList = await _reSellerAdminService.GetallResellerAdminUser();
-            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ReSellerName");
+            var resellerList = await _reSellerAdminService.GetallResellerAdmin();
+            ViewBag.ResellerList = new SelectList(resellerList, "ResellerAdminUserId", "ResellerName");
             return View(new OrganizationAdminVM());
         }
 
@@ -60,8 +59,8 @@ namespace RedCloud.Controllers
             ViewBag.City = await _cityService.GetCityByStateId(response.StateId);
 
 
-            var resellerList = await _reSellerAdminService.GetallResellerAdminUser();
-            ViewBag.ResellerList = new SelectList(resellerList, "Id", "ReSellerName");
+            var resellerList = await _reSellerAdminService.GetallResellerAdmin();
+            ViewBag.ResellerList = new SelectList(resellerList, "ResellerAdminUserId", "ResellerName");
 
 
             return View(response);

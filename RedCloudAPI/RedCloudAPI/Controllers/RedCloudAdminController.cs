@@ -58,5 +58,20 @@ namespace RedCloudAPI.Controllers
             }
         }
 
+        [HttpGet("all")]
+        public async Task<ActionResult> GetAll()
+        {
+            try
+            {
+                var response = await _mediator.Send(new GetAllRedCloudAdminQuery() );
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching admin user by Id");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
+        }
+
     }
 }

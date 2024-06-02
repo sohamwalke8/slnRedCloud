@@ -27,10 +27,11 @@ namespace RedCloud.Services
         //}
 
 
+
         [HttpPost]
         public async Task EditAdminUser(RedCloudAdmin adminUser)
         {
-            var users = _client.PutAsync("AdminUser/EditAdminUser", adminUser);
+            var users = _client.PutAsync("RedCloudAdmin/EditAdminUser", adminUser);
             //not returning anything here.
             //return users.Data;  
         }
@@ -40,7 +41,7 @@ namespace RedCloud.Services
         public async Task<RedCloudAdminVM> GetAdminUserById(int Id)
         {
             // _logger.LogInformation("GetEventById Service initiated");
-            var Events = await _client.GetByIdAsync($"AdminUser/{Id}");
+            var Events = await _client.GetByIdAsync($"RedCloudAdmin/{Id}");
             //_logger.LogInformation("GetEventById Service conpleted");
             return Events.Data;
         }
@@ -55,6 +56,14 @@ namespace RedCloud.Services
             return users.Data;
 
 
+        }
+
+        public async Task<IEnumerable<RedCloudAdminVM>> GetallRedCloudAdminUser()
+        {
+            // _logger.LogInformation("GetAllRedCloudAdmin Service initiated");
+            var reSelleradmin = await _client.GetAllAsync("RedCloudAdmin/all");//add api link hehe
+                                                                                      // _logger.LogInformation("GetAllRedCloudAdmin Service conpleted");
+            return reSelleradmin.Data;
         }
     }
 }

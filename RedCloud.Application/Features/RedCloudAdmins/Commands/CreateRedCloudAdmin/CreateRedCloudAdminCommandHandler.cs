@@ -27,8 +27,9 @@ namespace RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAd
         {
             request.Password = GenerateRandomPassword();
             var encryptedPassword = EncryptionDecryption.EncryptString(request.Password);
-            request.Password = encryptedPassword;
+            
             var adminuser = _mapper.Map<RedCloudAdmin>(request);
+            adminuser.Password = encryptedPassword;
 
 
 

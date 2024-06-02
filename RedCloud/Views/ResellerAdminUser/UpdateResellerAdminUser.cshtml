@@ -191,12 +191,12 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form asp-action="UpdateResellerAdmin" method="post">
+                    <form asp-action="UpdateResellerAdminUser" method="post">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
 
-                                    <input type="hidden" asp-for="Id" />
+                                    <input type="hidden" asp-for="ResellerAdminUserId" />
                                     <div class="form-group">
                                         <label for="ResellerName">Reseller Name</label>
                                         <input asp-for="ResellerName" class="form-control" id="ResellerName" placeholder="Enter Reseller Name">

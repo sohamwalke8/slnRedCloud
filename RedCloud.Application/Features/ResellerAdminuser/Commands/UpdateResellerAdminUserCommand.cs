@@ -12,7 +12,7 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Commands
     public class UpdateResellerAdminUserCommand:IRequest<Response<Unit>>
     {
 
-        public int Id { get; set; }
+        public int ResellerAdminUserId { get; set; }
 
         [Required(ErrorMessage = "Reseller name is required")]
         public string ResellerName { get; set; }
