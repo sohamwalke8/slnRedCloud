@@ -21,7 +21,7 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
 
         public async Task<Response<ReSellerAdmindto>> Handle(GetReSellerAdminByIdQuery request, CancellationToken cancellationToken)
         {
-            var admin = await _asyncRepository.GetByIdAsync(request.Id);
+            var admin = await _asyncRepository.GetByIdAsyncInculde(request.Id);
 
             if (admin == null)
             {

@@ -26,7 +26,6 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
             _logger = logger;
         }
 
-
         public async Task<Response<IEnumerable<ResellerAdminUserVM>>> Handle(GetAllResellerAdminUserQuery request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Handle Initiated");
@@ -36,10 +35,17 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
             return new Response<IEnumerable<ResellerAdminUserVM>>(resellerAdmin, "success");
         }
 
-        Task<Response<IEnumerable<ResellerAdminUserVM>>> IRequestHandler<GetAllResellerAdminUserQuery, Response<IEnumerable<ResellerAdminUserVM>>>.Handle(GetAllResellerAdminUserQuery request, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
+
+        //public async Task<Response<IEnumerable<ResellerAdminUserVM>>> Handle(GetAllResellerAdminUserQuery request, CancellationToken cancellationToken)
+        //{
+        //    _logger.LogInformation("Handle Initiated");
+        //    var allReSellerAdmin = (await _asyncRepository.ListAllAsync()).Where(x => x.IsDeleted == false);
+        //    var resellerAdmin = _mapper.Map<IEnumerable<ResellerAdminUserVM>>(allReSellerAdmin);
+        //    _logger.LogInformation("Hanlde Completed");
+        //    return new Response<IEnumerable<ResellerAdminUserVM>>(resellerAdmin, "success");
+        //}
+
+
     }
 
 }

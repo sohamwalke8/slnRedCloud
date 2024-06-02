@@ -89,13 +89,15 @@ namespace RedCloudAPI.Controllers
 
         //    return Ok(dto);
         //}
-        [HttpGet("{id:int}", Name = "GetResellerAdminById")]
+
+
+        [HttpGet("{Id:int}", Name = "GetResellerAdminById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Response<ReSellerAdmindto>>> GetResellerAdminById(int id)
+        public async Task<ActionResult<Response<ReSellerAdmindto>>> GetResellerAdminById(int Id)
         {
             _logger.LogInformation("GetResellerAdminById initiated");
-            var result = await _mediator.Send(new GetReSellerAdminByIdQuery(id));
+            var result = await _mediator.Send(new GetReSellerAdminByIdQuery(Id));
 
             if (result.Data == null)
             {

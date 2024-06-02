@@ -67,7 +67,7 @@ namespace RedCloud.Services
         public async Task<IEnumerable<ResellerAdminUserVM>> GetallResellerAdmin()
         {
             _logger.LogInformation("GetAllCategories Service initiated");
-            var reSelleradmin = await _client.GetAllAsync("ReSellerAdmin/all");
+            var reSelleradmin = await _client.GetAllAsync("ResellerAdminUser/all");
             _logger.LogInformation("GetAllCategories Service conpleted");
             return reSelleradmin.Data;
         }
@@ -86,7 +86,7 @@ namespace RedCloud.Services
         public async Task<ReSellerAdmindto> GetResellerAdminById(int id)
         {
             _logger.LogInformation($"GetResellerAdminById Service initiated for ID: {id}");
-            var apiUrl = $"ReSellerAdmin/{id}";//apiurl=>controllername/id
+            var apiUrl = $"ResellerAdminUser/{id}";//apiurl=>controllername/id
             var response = await _adminuserd.GetByIdAsync(apiUrl);
             _logger.LogInformation($"GetResellerAdminById Service completed for ID: {id}");
             return response.Data;
@@ -97,14 +97,14 @@ namespace RedCloud.Services
         {
             _logger.LogInformation($"Soft delete initiated for ResellerAdmin with ID: {id}");
 
-            await _client.DeleteAsync($"ReSellerAdmin/{id}");
+            await _client.DeleteAsync($"ResellerAdminUser/{id}");
 
             _logger.LogInformation($"Soft delete completed for ResellerAdmin with ID: {id}");
         }
 
         public async Task<ResellerAdminUserVM> Block(int Id)
         {
-            var apiUrl = $"ReSellerAdmin/{Id}";
+            var apiUrl = $"ResellerAdminUser/{Id}";
             var response = await _client.GetByIdAsync(apiUrl);
             var data = response.Data;
             data.IsActive = false;

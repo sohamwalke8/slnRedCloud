@@ -163,7 +163,7 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> ViewallResellerAdmin()
         {
             //_logger.LogInformation("ViewResellerAdmin Action initiated");
-            var response = await _adminreseller.GetallResellerAdminUser();
+            var response = await _adminreseller.GetallResellerAdmin();
             //_logger.LogInformation("ViewResellerAdmin Action completed");
             return View(response);
         }
