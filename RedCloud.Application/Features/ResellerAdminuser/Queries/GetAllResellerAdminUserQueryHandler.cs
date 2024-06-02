@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.ResellerAdminuser.Queries
 {
-    public  class GetAllResellerAdminUserQueryHandler : IRequestHandler<GetAllResellerAdminUserQuery, Response<IEnumerable<ResellerAdminUserVM>>>
+    public class GetAllResellerAdminUserQueryHandler : IRequestHandler<GetAllResellerAdminUserQuery, Response<IEnumerable<ResellerAdminUserVM>>>
     {
         private readonly ILogger<GetAllResellerAdminUserQueryHandler> _logger;
         private readonly IAsyncRepository<ResellerAdminUser> _asyncRepository;

@@ -11,8 +11,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.RedCloudAdmins.Queries
 {
-    public class GetRedCloudAdminByIdQueryHandler 
-    {
+    public class GetRedCloudAdminByIdQueryHandler : IRequestHandler <GetRedCloudAdminByIdQuery, Response<RedCloudAdmin>> { 
 
         private readonly IAsyncRepository<RedCloudAdmin> _repository;
         private readonly IMapper _mapper;

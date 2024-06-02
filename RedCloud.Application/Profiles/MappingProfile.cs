@@ -4,6 +4,7 @@ using RedCloud.Application.Features.Categories.Commands.StoredProcedure;
 using RedCloud.Application.Features.Cities.Queries;
 using RedCloud.Application.Features.Countries;
 using RedCloud.Application.Features.Events.Queries.GetEventDetail;
+using RedCloud.Application.Features.OrganizationAdmins.Commands;
 using RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAdmin;
 using RedCloud.Application.Features.ResellerAdminuser.Commands;
 using RedCloud.Application.Features.ResellerAdminuser.Queries;
@@ -36,6 +37,8 @@ namespace RedCloud.Application.Profiles
             CreateMap<CityListVM, City>().ReverseMap();
             //
 
+            CreateMap<CreateOrganizationAdminCommand, OrganizationAdmin>();
+            CreateMap<UpdateOrganizationAdminCommand, OrganizationAdmin>();
         }
     }
 

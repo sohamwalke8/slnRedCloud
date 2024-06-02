@@ -30,8 +30,16 @@ namespace RedCloud.Persistenence.Repositories
 
         public async Task<T> GetByIdAsync(int Id)
         {
-            return await _dbContext.Set<T>().FindAsync(Id)
-       ;
+            try
+            {
+                return await _dbContext.Set<T>().FindAsync(Id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+       
         }
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
