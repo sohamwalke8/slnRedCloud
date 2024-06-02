@@ -1,0 +1,115 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ReSellerAdmindto; 
+@using RedCloud.Application.Features.ResellerAdminuser.Queries;
+
+
+{
+
+<div class="container">
+    <h2 class="text-center">@ViewData["Title"]</h2>
+
+    <div class="header-section">
+        <div class="logo-text">
+            <img src="https://files.axshare.com/gsc/5886BD/e2/ee/cb/e2eecb648f19481093d6b12d28c3beb3/images/view_user_details/u27.svg?pageId=45d84280-2bba-453f-a23a-42e8aeab14be" alt="ReSeller Admin Logo">
+            <p><strong> View ReSeller Details </strong></p>
+        </div>
+        <div class="buttons">
+            <a href="@Url.Action("Edit", new { id = Model.ResellerAdminUserId })" class="btn btn-primary"><i class="fa-solid fa-pen-to-square" style="color: #74C0FC;"></i></a>
+            <a href="@Url.Action("ViewReSellerAdmin")" class="btn btn-secondary"><i class="fa-solid fa-circle-left"></i></a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="custom-border">
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.HiddenFor(x => x.ResellerAdminUserId)
+                        <p><strong>Reseller Name:</strong> @Html.DisplayFor(model => model.ResellerName)</p>
+                        <p><strong>EIN:</strong> @Html.DisplayFor(model => model.EIN)</p>
+                        <p><strong>Address Line 1:</strong> @Html.DisplayFor(model => model.AddressLine1)</p>
+                        <p><strong>Address Line 2:</strong> @Html.DisplayFor(model => model.AddressLine2)</p>
+                        <p><strong>City:</strong> @Html.DisplayFor(model => model.CityName)</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>State:</strong> @Html.DisplayFor(model => model.StateName)</p>
+                        <p><strong>Zip Code:</strong> @Html.DisplayFor(model => model.ZipCode)</p>
+                        <p><strong>Company URL:</strong> @Html.DisplayFor(model => model.CompanyURL)</p>
+                        <p><strong>Company Support Email:</strong> @Html.DisplayFor(model => model.CompanySupportEmail)</p>
+                        <p><strong>Red Cloud Admin:</strong> @Html.DisplayFor(model => model.RedCloudAdmin)</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <!-- Trigger the confirmation modal -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">Block</button>
+                    <a href="@Url.Action("Index")" class="btn btn-primary">Cancel</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap modal markup -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to block this User?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmBlock">OK</button>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+        </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#confirmBlock').click(function () {
+                debugger
+                // Get the ID of the item to be blocked
+                var itemId = '@Model.ResellerAdminUserId';
+
+                $.ajax({
+                    url: '@Url.Action("Block", "ResellerAdminUser")',
+                    type: 'PUT',
+                    data: { id: itemId },
+                    success: function (result) {
+                        // Redirect to list page upon successful block
+                        window.location.href = '@Url.Action("ViewReSellerAdmin", "ResellerAdminUser")';
+                    },
+                    error: function () {
+
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+
+
+

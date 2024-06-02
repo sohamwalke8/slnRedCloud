@@ -25,7 +25,7 @@ builder.Services.AddScoped(typeof(IApiClient<>), typeof(ApiClient<>));
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IRedCloudAdminService, RedCloudAdminService>();  // Added by Atharva
 builder.Services.AddScoped<IAdminResellerUser, AdminResellerUserService>();
-builder.Services.AddScoped<IAdminResellerUser, AdminResellerUserService>();
+//builder.Services.AddScoped<IAdminResellerUser, AdminResellerUserService>();
 builder.Services.AddScoped(typeof(IDropDownService<CountryVM>), typeof(DropDownService<CountryVM>));
 builder.Services.AddScoped(typeof(IStateService<StateVM>), typeof(StateService<StateVM>));
 builder.Services.AddScoped(typeof(ICityService<CityVM>), typeof(CityService<CityVM>));
