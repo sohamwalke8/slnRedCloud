@@ -24,7 +24,7 @@ const EVENT_OVERLAY_REMOVED = `overlay.removed${EVENT_KEY}`
 const CLASS_NAME_CARD = 'card'
 
 const SELECTOR_CARD = `.${CLASS_NAME_CARD}`
-const SELECTOR_DATA_REFRESH = '[data-card-wIdget="card-refresh"]'
+const SELECTOR_DATA_REFRESH = '[data-card-widget="card-refresh"]'
 
 const Default = {
   source: '',

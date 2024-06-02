@@ -62,10 +62,10 @@ CodeMirror.defineMode("erlang", function(cmCfg) {
 
   var guardWords = [
     "is_atom","is_binary","is_bitstring","is_boolean","is_float",
-    "is_function","is_integer","is_list","is_number","is_pId",
+    "is_function","is_integer","is_list","is_number","is_pid",
     "is_port","is_record","is_reference","is_tuple",
     "atom","binary","bitstring","boolean","function","integer","list",
-    "number","pId","port","record","reference","tuple"];
+    "number","pid","port","record","reference","tuple"];
 
   var bifWords = [
     "abs","adler32","adler32_combine","alive","apply","atom_to_binary",
@@ -77,13 +77,13 @@ CodeMirror.defineMode("erlang", function(cmCfg) {
     "garbage_collect","get","get_keys","group_leader","halt","hd",
     "integer_to_list","internal_bif","iolist_size","iolist_to_binary",
     "is_alive","is_atom","is_binary","is_bitstring","is_boolean",
-    "is_float","is_function","is_integer","is_list","is_number","is_pId",
+    "is_float","is_function","is_integer","is_list","is_number","is_pid",
     "is_port","is_process_alive","is_record","is_reference","is_tuple",
     "length","link","list_to_atom","list_to_binary","list_to_bitstring",
     "list_to_existing_atom","list_to_float","list_to_integer",
-    "list_to_pId","list_to_tuple","load_module","make_ref","module_loaded",
+    "list_to_pid","list_to_tuple","load_module","make_ref","module_loaded",
     "monitor_node","node","node_link","node_unlink","nodes","notalive",
-    "now","open_port","pId_to_list","port_close","port_command",
+    "now","open_port","pid_to_list","port_close","port_command",
     "port_connect","port_control","pre_loaded","process_flag",
     "process_info","processes","purge_module","put","register",
     "registered","round","self","setelement","size","spawn","spawn_link",

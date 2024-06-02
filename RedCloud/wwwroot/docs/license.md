@@ -15,7 +15,7 @@ AdminLTE is an open source project that is licensed under the [MIT license](http
 
 <h5 class="text-bold text-dark mt-3">What You Are <span class="text-danger">Not Allowed</span> To Do With AdminLTE</h5>
 
-- The work is provIded "as is". You may not hold the author liable.
+- The work is provided "as is". You may not hold the author liable.
 
 <h5 class="text-bold text-dark mt-3">What You <span class="text-warning">Must</span> Do When Using AdminLTE</h5>
 

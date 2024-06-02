@@ -1,6 +1,6 @@
-/* This is a compiled file, to make changes persist, consIder editing under the templates directory */
+/* This is a compiled file, to make changes persist, consider editing under the templates directory */
 .pace {
-  wIdth: 140px;
+  width: 140px;
   height: 300px;
   position: fixed;
   top: -90px;
@@ -27,7 +27,7 @@
 }
 
 .pace .pace-activity {
-  wIdth: 140px;
+  width: 140px;
   height: 140px;
   border-radius: 70px;
   background: #d6d6d6;
@@ -48,7 +48,7 @@
   bottom: 0;
   z-index: 1910;
   margin-left: -30px;
-  wIdth: 60px;
+  width: 60px;
   height: 75px;
   background: rgba(20, 20, 20, .1);
   box-shadow: 0 0 20px 35px rgba(20, 20, 20, .1);
@@ -165,7 +165,7 @@
   0% {
     bottom: 0;
     margin-left: -30px;
-    wIdth: 60px;
+    width: 60px;
     height: 75px;
     background: rgba(20, 20, 20, .1);
     box-shadow: 0 0 20px 35px rgba(20, 20, 20, .1);
@@ -175,7 +175,7 @@
   100% {
     bottom: 30px;
     margin-left: -10px;
-    wIdth: 20px;
+    width: 20px;
     height: 5px;
     background: rgba(20, 20, 20, .3);
     box-shadow: 0 0 20px 35px rgba(20, 20, 20, .3);
@@ -188,7 +188,7 @@
   0% {
     bottom: 0;
     margin-left: -30px;
-    wIdth: 60px;
+    width: 60px;
     height: 75px;
     background: rgba(20, 20, 20, .1);
     box-shadow: 0 0 20px 35px rgba(20, 20, 20, .1);
@@ -198,7 +198,7 @@
   100% {
     bottom: 30px;
     margin-left: -10px;
-    wIdth: 20px;
+    width: 20px;
     height: 5px;
     background: rgba(20, 20, 20, .3);
     box-shadow: 0 0 20px 35px rgba(20, 20, 20, .3);
@@ -211,7 +211,7 @@
   0% {
     bottom: 0;
     margin-left: -30px;
-    wIdth: 60px;
+    width: 60px;
     height: 75px;
     background: rgba(20, 20, 20, .1);
     box-shadow: 0 0 20px 35px rgba(20, 20, 20, .1);
@@ -221,7 +221,7 @@
   100% {
     bottom: 30px;
     margin-left: -10px;
-    wIdth: 20px;
+    width: 20px;
     height: 5px;
     background: rgba(20, 20, 20, .3);
     box-shadow: 0 0 20px 35px rgba(20, 20, 20, .3);

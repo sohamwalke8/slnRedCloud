@@ -172,7 +172,7 @@ can set the default in the options.
             var axes = plot.getXAxes().concat(plot.getYAxes()).filter(function (axis) {
                 var box = axis.box;
                 if (box !== undefined) {
-                    return (ec.left > box.left) && (ec.left < box.left + box.wIdth) &&
+                    return (ec.left > box.left) && (ec.left < box.left + box.width) &&
                         (ec.top > box.top) && (ec.top < box.top + box.height);
                 }
             });
@@ -267,7 +267,7 @@ can set the default in the options.
             panAxes = plot.getXAxes().concat(plot.getYAxes()).filter(function (axis) {
                 var box = axis.box;
                 if (box !== undefined) {
-                    return (ec.left > box.left) && (ec.left < box.left + box.wIdth) &&
+                    return (ec.left > box.left) && (ec.left < box.left + box.width) &&
                         (ec.top > box.top) && (ec.top < box.top + box.height);
                 }
             });
@@ -449,7 +449,7 @@ can set the default in the options.
 
             var c = args.center,
                 amount = args.amount || plot.getOptions().zoom.amount,
-                w = plot.wIdth(),
+                w = plot.width(),
                 h = plot.height(),
                 axes = args.axes || plot.getAxes();
 
@@ -515,7 +515,7 @@ can set the default in the options.
                 opts.offset = { below: offsetBelow, above: offsetAbove };
             };
 
-            plot.setupGrId(true);
+            plot.setupGrid(true);
             plot.draw();
 
             if (!args.preventEvent) {
@@ -568,7 +568,7 @@ can set the default in the options.
                 }
             });
 
-            plot.setupGrId(true);
+            plot.setupGrid(true);
             plot.draw();
             if (!args.preventEvent) {
                 plot.getPlaceholder().trigger("plotpan", [plot, args]);
@@ -587,7 +587,7 @@ can set the default in the options.
                     axis.options.offset = { below: 0, above: 0 };
                 }
             });
-            plot.setupGrId(true);
+            plot.setupGrid(true);
             plot.draw();
         };
 
@@ -729,7 +729,7 @@ can set the default in the options.
             });
 
             prevDelta = delta;
-            plot.setupGrId(true);
+            plot.setupGrid(true);
             plot.draw();
 
             if (!preventEvent) {
@@ -760,7 +760,7 @@ can set the default in the options.
         function drawOverlay(plot, ctx) {
             if (panHint) {
                 ctx.strokeStyle = 'rgba(96, 160, 208, 0.7)';
-                ctx.lineWIdth = 2;
+                ctx.lineWidth = 2;
                 ctx.lineJoin = "round";
                 var startx = Math.round(panHint.start.x),
                     starty = Math.round(panHint.start.y),
@@ -812,7 +812,7 @@ can set the default in the options.
             var axis = plot.getXAxes().concat(plot.getYAxes()).filter(function (axis) {
                 var box = axis.box;
                 if (box !== undefined) {
-                    return (ec.left > box.left) && (ec.left < box.left + box.wIdth) &&
+                    return (ec.left > box.left) && (ec.left < box.left + box.width) &&
                             (ec.top > box.top) && (ec.top < box.top + box.height);
                 }
             });

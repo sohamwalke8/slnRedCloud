@@ -6,14 +6,14 @@
   display: inline-block;
   height: 24px;
   position: relative;
-  wIdth: 50px;
+  width: 50px;
 }
 
 .theme-switch input {
   display: none;
 }
 
-.slIder {
+.slider {
   background-color: #ccc;
   bottom: 0;
   cursor: pointer;
@@ -24,7 +24,7 @@
   transition: 400ms;
 }
 
-.slIder::before {
+.slider::before {
   background-color: #fff;
   bottom: 4px;
   content: "";
@@ -32,21 +32,21 @@
   left: 4px;
   position: absolute;
   transition: 400ms;
-  wIdth: 16px;
+  width: 16px;
 }
 
-input:checked + .slIder {
+input:checked + .slider {
   background-color: #66bb6a;
 }
 
-input:checked + .slIder::before {
+input:checked + .slider::before {
   transform: translateX(26px);
 }
 
-.slIder.round {
+.slider.round {
   border-radius: 34px;
 }
 
-.slIder.round::before {
+.slider.round::before {
   border-radius: 50%;
 }

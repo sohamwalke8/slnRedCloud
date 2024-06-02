@@ -91,22 +91,22 @@
                 return symbolMap[match];
             });
         },
-        merIdiemParse: /ರಾತ್ರಿ|ಬೆಳಿಗ್ಗೆ|ಮಧ್ಯಾಹ್ನ|ಸಂಜೆ/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /ರಾತ್ರಿ|ಬೆಳಿಗ್ಗೆ|ಮಧ್ಯಾಹ್ನ|ಸಂಜೆ/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'ರಾತ್ರಿ') {
+            if (meridiem === 'ರಾತ್ರಿ') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (merIdiem === 'ಬೆಳಿಗ್ಗೆ') {
+            } else if (meridiem === 'ಬೆಳಿಗ್ಗೆ') {
                 return hour;
-            } else if (merIdiem === 'ಮಧ್ಯಾಹ್ನ') {
+            } else if (meridiem === 'ಮಧ್ಯಾಹ್ನ') {
                 return hour >= 10 ? hour : hour + 12;
-            } else if (merIdiem === 'ಸಂಜೆ') {
+            } else if (meridiem === 'ಸಂಜೆ') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'ರಾತ್ರಿ';
             } else if (hour < 10) {

@@ -43,7 +43,7 @@
         },
         relativeTime: {
             future: 'om %s',
-            past: '%s sIden',
+            past: '%s siden',
             s: 'noen sekunder',
             ss: '%d sekunder',
             m: 'ett minutt',

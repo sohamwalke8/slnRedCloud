@@ -910,7 +910,7 @@
   };
 
   var l38 = {
-    code: 'Id',
+    code: 'id',
     week: {
       dow: 1, // Monday is the first day of the week.
       doy: 7, // The week that contains Jan 1st is the first week of the year.
@@ -927,7 +927,7 @@
     weekText: 'Mg',
     allDayText: 'Sehari penuh',
     moreLinkText: 'lebih',
-    noEventsText: 'TIdak ada acara untuk ditampilkan',
+    noEventsText: 'Tidak ada acara untuk ditampilkan',
   };
 
   var l39 = {
@@ -1108,7 +1108,7 @@
     },
     buttonText: {
       prev: 'Zréck',
-      next: 'WeIder',
+      next: 'Weider',
       today: 'Haut',
       month: 'Mount',
       week: 'Woch',

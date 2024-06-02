@@ -8,7 +8,7 @@ properties in a plot.
 
 * Created by Rui Pereira  -  rui (dot) pereira (at) gmail (dot) com
 
-This plugin allows you to plot error-bars over points. Set "errorbars" insIde
+This plugin allows you to plot error-bars over points. Set "errorbars" inside
 the points series to the axis name over which there will be error values in
 your data array (*even* if you do not intend to plot them later, by setting
 "show: null" on xerr/yerr).
@@ -58,7 +58,7 @@ Color and radius both default to the same ones of the points series if not
 set. The independent radius parameter on xerr/yerr is useful for the case when
 we may want to add error-bars to a line, without showing the interconnecting
 points (with radius: 0), and still showing end caps on the error-bars.
-shadowSize and lineWIdth are derived as well from the points series.
+shadowSize and lineWidth are derived as well from the points series.
 
 */
 
@@ -215,7 +215,7 @@ shadowSize and lineWIdth are derived as well from the points series.
                     var upper = [x, y][e] + errRanges[e * err.length + 1],
                         lower = [x, y][e] - errRanges[e * err.length];
 
-                    //points outsIde of the canvas
+                    //points outside of the canvas
                     if (err[e].err === 'x') {
                         if (y > ax[1].max || y < ax[1].min || upper < ax[0].min || lower > ax[0].max) {
                             continue;
@@ -264,13 +264,13 @@ shadowSize and lineWIdth are derived as well from the points series.
                     minmax[1] = ax[e].p2c(minmax[1]);
 
                     //same style as points by default
-                    var lw = err[e].lineWIdth ? err[e].lineWIdth : s.points.lineWIdth,
+                    var lw = err[e].lineWidth ? err[e].lineWidth : s.points.lineWidth,
                         sw = s.points.shadowSize != null ? s.points.shadowSize : s.shadowSize;
 
                     //shadow as for points
                     if (lw > 0 && sw > 0) {
                         var w = sw / 2;
-                        ctx.lineWIdth = w;
+                        ctx.lineWidth = w;
                         ctx.strokeStyle = "rgba(0,0,0,0.1)";
                         drawError(ctx, err[e], x, y, upper, lower, drawUpper, drawLower, radius, w + w / 2, minmax);
 
@@ -281,7 +281,7 @@ shadowSize and lineWIdth are derived as well from the points series.
                     ctx.strokeStyle = err[e].color
                         ? err[e].color
                         : s.color;
-                    ctx.lineWIdth = lw;
+                    ctx.lineWidth = lw;
                     //draw it
                     drawError(ctx, err[e], x, y, upper, lower, drawUpper, drawLower, radius, 0, minmax);
                 }
@@ -295,7 +295,7 @@ shadowSize and lineWIdth are derived as well from the points series.
         upper += offset;
         lower += offset;
 
-        // error bar - avoId plotting over circles
+        // error bar - avoid plotting over circles
         if (err.err === 'x') {
             if (upper > x + radius) drawPath(ctx, [[upper, y], [Math.max(x + radius, minmax[0]), y]]);
             else drawUpper = false;

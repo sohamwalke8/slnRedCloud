@@ -175,12 +175,12 @@
     if (dv.mv.options.connect == "align") {
       targetPos = sInfo.top;
     } else {
-      var halfScreen = .5 * sInfo.clientHeight, mIdY = sInfo.top + halfScreen;
-      var mId = editor.lineAtHeight(mIdY, "local");
-      var around = chunkBoundariesAround(dv.chunks, mId, toOrig);
+      var halfScreen = .5 * sInfo.clientHeight, midY = sInfo.top + halfScreen;
+      var mid = editor.lineAtHeight(midY, "local");
+      var around = chunkBoundariesAround(dv.chunks, mid, toOrig);
       var off = getOffsets(editor, toOrig ? around.edit : around.orig);
       var offOther = getOffsets(other, toOrig ? around.orig : around.edit);
-      var ratio = (mIdY - off.top) / (off.bot - off.top);
+      var ratio = (midY - off.top) / (off.bot - off.top);
       var targetPos = (offOther.top - halfScreen) + ratio * (offOther.bot - offOther.top);
 
       var botDist, mix;
@@ -317,8 +317,8 @@
 
     if (dv.svg) {
       clear(dv.svg);
-      var w = dv.gap.offsetWIdth;
-      attrs(dv.svg, "wIdth", w, "height", dv.gap.offsetHeight);
+      var w = dv.gap.offsetWidth;
+      attrs(dv.svg, "width", w, "height", dv.gap.offsetHeight);
     }
     if (dv.copyButtons) clear(dv.copyButtons);
 
@@ -346,7 +346,7 @@
     return origStart + (editLine - editStart);
   }
 
-  // Combines information about chunks and wIdgets/markers to return
+  // Combines information about chunks and widgets/markers to return
   // an array of lines, in a single editor, that probably need to be
   // aligned with their counterparts in the editor next to it.
   function alignableFor(cm, chunks, isOrig) {
@@ -481,8 +481,8 @@
     }
     var elt = document.createElement("div");
     elt.className = "CodeMirror-merge-spacer";
-    elt.style.height = size + "px"; elt.style.minWIdth = "1px";
-    return cm.addLineWIdget(line, elt, {height: size, above: above, mergeSpacer: true, handleMouseEvents: true});
+    elt.style.height = size + "px"; elt.style.minWidth = "1px";
+    return cm.addLineWidget(line, elt, {height: size, above: above, mergeSpacer: true, handleMouseEvents: true});
   }
 
   function drawConnectorsForChunk(dv, chunk, sTopOrig, sTopEdit, w) {
@@ -733,13 +733,13 @@
 
   function collapseSingle(cm, from, to) {
     cm.addLineClass(from, "wrap", "CodeMirror-merge-collapsed-line");
-    var wIdget = document.createElement("span");
-    wIdget.className = "CodeMirror-merge-collapsed-wIdget";
-    wIdget.title = cm.phrase("Identical text collapsed. Click to expand.");
+    var widget = document.createElement("span");
+    widget.className = "CodeMirror-merge-collapsed-widget";
+    widget.title = cm.phrase("Identical text collapsed. Click to expand.");
     var mark = cm.markText(Pos(from, 0), Pos(to - 1), {
       inclusiveLeft: true,
       inclusiveRight: true,
-      replacedWith: wIdget,
+      replacedWith: widget,
       clearOnEnter: true
     });
     function clear() {
@@ -747,9 +747,9 @@
       cm.removeLineClass(from, "wrap", "CodeMirror-merge-collapsed-line");
     }
     if (mark.explicitlyCleared) clear();
-    CodeMirror.on(wIdget, "click", clear);
+    CodeMirror.on(widget, "click", clear);
     mark.on("clear", clear);
-    CodeMirror.on(wIdget, "click", clear);
+    CodeMirror.on(widget, "click", clear);
     return {mark: mark, clear: clear};
   }
 
@@ -840,10 +840,10 @@
     return out;
   }
 
-  // Tracks collapsed markers and line wIdgets, in order to be able to
+  // Tracks collapsed markers and line widgets, in order to be able to
   // accurately align the content of two editors.
 
-  var F_WIdGET = 1, F_WIdGET_BELOW = 2, F_MARKER = 4
+  var F_WIDGET = 1, F_WIDGET_BELOW = 2, F_MARKER = 4
 
   function TrackAlignable(cm) {
     this.cm = cm
@@ -860,17 +860,17 @@
         self.check(max, F_MARKER, self.hasMarker)
     })
     cm.on("markerChanged", this.signal.bind(this))
-    cm.on("lineWIdgetAdded", function(_, wIdget, lineNo) {
-      if (wIdget.mergeSpacer) return
-      if (wIdget.above) self.set(lineNo - 1, F_WIdGET_BELOW)
-      else self.set(lineNo, F_WIdGET)
+    cm.on("lineWidgetAdded", function(_, widget, lineNo) {
+      if (widget.mergeSpacer) return
+      if (widget.above) self.set(lineNo - 1, F_WIDGET_BELOW)
+      else self.set(lineNo, F_WIDGET)
     })
-    cm.on("lineWIdgetCleared", function(_, wIdget, lineNo) {
-      if (wIdget.mergeSpacer) return
-      if (wIdget.above) self.check(lineNo - 1, F_WIdGET_BELOW, self.hasWIdgetBelow)
-      else self.check(lineNo, F_WIdGET, self.hasWIdget)
+    cm.on("lineWidgetCleared", function(_, widget, lineNo) {
+      if (widget.mergeSpacer) return
+      if (widget.above) self.check(lineNo - 1, F_WIDGET_BELOW, self.hasWidgetBelow)
+      else self.check(lineNo, F_WIDGET, self.hasWidget)
     })
-    cm.on("lineWIdgetChanged", this.signal.bind(this))
+    cm.on("lineWidgetChanged", this.signal.bind(this))
     cm.on("change", function(_, change) {
       var start = change.from.line, nBefore = change.to.line - change.from.line
       var nAfter = change.text.length - 1, end = start + nAfter
@@ -930,38 +930,38 @@
       return false
     },
 
-    hasWIdget: function(n) {
+    hasWidget: function(n) {
       var handle = this.cm.getLineHandle(n)
-      if (handle.wIdgets) for (var i = 0; i < handle.wIdgets.length; i++)
-        if (!handle.wIdgets[i].above && !handle.wIdgets[i].mergeSpacer) return true
+      if (handle.widgets) for (var i = 0; i < handle.widgets.length; i++)
+        if (!handle.widgets[i].above && !handle.widgets[i].mergeSpacer) return true
       return false
     },
 
-    hasWIdgetBelow: function(n) {
+    hasWidgetBelow: function(n) {
       if (n == this.cm.lastLine()) return false
       var handle = this.cm.getLineHandle(n + 1)
-      if (handle.wIdgets) for (var i = 0; i < handle.wIdgets.length; i++)
-        if (handle.wIdgets[i].above && !handle.wIdgets[i].mergeSpacer) return true
+      if (handle.widgets) for (var i = 0; i < handle.widgets.length; i++)
+        if (handle.widgets[i].above && !handle.widgets[i].mergeSpacer) return true
       return false
     },
 
     map: function(from, nBefore, nAfter) {
-      var diff = nAfter - nBefore, to = from + nBefore, wIdgetFrom = -1, wIdgetTo = -1
+      var diff = nAfter - nBefore, to = from + nBefore, widgetFrom = -1, widgetTo = -1
       for (var i = 0; i < this.alignable.length; i += 2) {
         var n = this.alignable[i]
-        if (n == from && (this.alignable[i + 1] & F_WIdGET_BELOW)) wIdgetFrom = i
-        if (n == to && (this.alignable[i + 1] & F_WIdGET_BELOW)) wIdgetTo = i
+        if (n == from && (this.alignable[i + 1] & F_WIDGET_BELOW)) widgetFrom = i
+        if (n == to && (this.alignable[i + 1] & F_WIDGET_BELOW)) widgetTo = i
         if (n <= from) continue
         else if (n < to) this.alignable.splice(i--, 2)
         else this.alignable[i] += diff
       }
-      if (wIdgetFrom > -1) {
-        var flags = this.alignable[wIdgetFrom + 1]
-        if (flags == F_WIdGET_BELOW) this.alignable.splice(wIdgetFrom, 2)
-        else this.alignable[wIdgetFrom + 1] = flags & ~F_WIdGET_BELOW
+      if (widgetFrom > -1) {
+        var flags = this.alignable[widgetFrom + 1]
+        if (flags == F_WIDGET_BELOW) this.alignable.splice(widgetFrom, 2)
+        else this.alignable[widgetFrom + 1] = flags & ~F_WIDGET_BELOW
       }
-      if (wIdgetTo > -1 && nAfter)
-        this.set(from + nAfter, F_WIdGET_BELOW)
+      if (widgetTo > -1 && nAfter)
+        this.set(from + nAfter, F_WIDGET_BELOW)
     }
   }
 

@@ -1,7 +1,7 @@
-(function(jsGrId) {
+(function(jsGrid) {
 
-    jsGrId.locales.de = {
-        grId: {
+    jsGrid.locales.de = {
+        grid: {
             noDataContent: "Die Daten konnten nicht gefunden werden",
             deleteConfirm: "Möchten Sie die Daten unwiederruflich löschen?",
             pagerFormat: "Seiten: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} von {pageCount}",
@@ -10,7 +10,7 @@
             pageFirstText: "<<",
             pageLastText: ">>",
             loadMessage: "Bitte warten...",
-            invalIdMessage: "Ihre Eingabe ist nicht zulässig!"
+            invalidMessage: "Ihre Eingabe ist nicht zulässig!"
         },
 
         loadIndicator: {
@@ -31,7 +31,7 @@
             }
         },
 
-        valIdators: {
+        validators: {
             required: { message: "Dies ist ein Pflichtfeld" },
             rangeLength: { message: "Die Länge der Eingabe liegt außerhalb des zulässigen Bereichs" },
             minLength: { message: "Die Eingabe ist zu kurz" },
@@ -43,4 +43,4 @@
         }
     };
 
-}(jsGrId, jQuery));
+}(jsGrid, jQuery));

@@ -58,14 +58,14 @@ const Plugins = [
     from: 'node_modules/summernote/dist/',
     to: 'plugins/summernote'
   },
-  // Bootstrap SlIder
+  // Bootstrap Slider
   {
-    from: 'node_modules/bootstrap-slIder/dist/',
-    to: 'plugins/bootstrap-slIder'
+    from: 'node_modules/bootstrap-slider/dist/',
+    to: 'plugins/bootstrap-slider'
   },
   {
-    from: 'node_modules/bootstrap-slIder/dist/css',
-    to: 'plugins/bootstrap-slIder/css'
+    from: 'node_modules/bootstrap-slider/dist/css',
+    to: 'plugins/bootstrap-slider/css'
   },
   // Bootstrap Colorpicker
   {
@@ -297,10 +297,10 @@ const Plugins = [
     from: 'node_modules/inputmask/dist/',
     to: 'plugins/inputmask'
   },
-  // ion-rangeslIder
+  // ion-rangeslider
   {
-    from: 'node_modules/ion-rangeslIder/',
-    to: 'plugins/ion-rangeslIder'
+    from: 'node_modules/ion-rangeslider/',
+    to: 'plugins/ion-rangeslider'
   },
   // JQVMap (jqvmap-novulnerability)
   {
@@ -360,14 +360,14 @@ const Plugins = [
     from: 'node_modules/toastr/build/',
     to: 'plugins/toastr'
   },
-  // jsGrId
+  // jsGrid
   {
-    from: 'node_modules/jsgrId/dist',
-    to: 'plugins/jsgrId'
+    from: 'node_modules/jsgrid/dist',
+    to: 'plugins/jsgrid'
   },
   {
-    from: 'node_modules/jsgrId/demos/db.js',
-    to: 'plugins/jsgrId/demos/db.js'
+    from: 'node_modules/jsgrid/demos/db.js',
+    to: 'plugins/jsgrid/demos/db.js'
   },
   // flag-icon-css
   {
@@ -398,10 +398,10 @@ const Plugins = [
     from: 'node_modules/bootstrap-switch/dist',
     to: 'plugins/bootstrap-switch/'
   },
-  // jQuery ValIdate
+  // jQuery Validate
   {
-    from: 'node_modules/jquery-valIdation/dist/',
-    to: 'plugins/jquery-valIdation'
+    from: 'node_modules/jquery-validation/dist/',
+    to: 'plugins/jquery-validation'
   },
   // bs-custom-file-input
   {

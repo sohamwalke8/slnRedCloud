@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valIdate"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -9,10 +9,10 @@
 }(function( $ ) {
 
 /*
- * Translated default messages for the jQuery valIdation plugin.
+ * Translated default messages for the jQuery validation plugin.
  * Locale: BG (Bulgarian; български език)
  */
-$.extend( $.valIdator.messages, {
+$.extend( $.validator.messages, {
 	required: "Полето е задължително.",
 	remote: "Моля, въведете правилната стойност.",
 	email: "Моля, въведете валиден email.",
@@ -24,12 +24,12 @@ $.extend( $.valIdator.messages, {
 	creditcard: "Моля, въведете валиден номер на кредитна карта.",
 	equalTo: "Моля, въведете същата стойност отново.",
 	extension: "Моля, въведете стойност с валидно разширение.",
-	maxlength: $.valIdator.format( "Моля, въведете не повече от {0} символа." ),
-	minlength: $.valIdator.format( "Моля, въведете поне {0} символа." ),
-	rangelength: $.valIdator.format( "Моля, въведете стойност с дължина между {0} и {1} символа." ),
-	range: $.valIdator.format( "Моля, въведете стойност между {0} и {1}." ),
-	max: $.valIdator.format( "Моля, въведете стойност по-малка или равна на {0}." ),
-	min: $.valIdator.format( "Моля, въведете стойност по-голяма или равна на {0}." )
+	maxlength: $.validator.format( "Моля, въведете не повече от {0} символа." ),
+	minlength: $.validator.format( "Моля, въведете поне {0} символа." ),
+	rangelength: $.validator.format( "Моля, въведете стойност с дължина между {0} и {1} символа." ),
+	range: $.validator.format( "Моля, въведете стойност между {0} и {1}." ),
+	max: $.validator.format( "Моля, въведете стойност по-малка или равна на {0}." ),
+	min: $.validator.format( "Моля, въведете стойност по-голяма или равна на {0}." )
 } );
 return $;
 }));

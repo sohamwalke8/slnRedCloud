@@ -52,7 +52,7 @@ var DataTable = $.fn.dataTable;
 
 
 /**
- * RowReorder provIdes the ability in DataTables to click and drag rows to
+ * RowReorder provides the ability in DataTables to click and drag rows to
  * reorder them. When a row is dropped the data for the rows effected will be
  * updated to reflect the change. Normally this data point should also be the
  * column being sorted upon in the DataTable but this does not need to be the
@@ -97,7 +97,7 @@ var RowReorder = function ( dt, opts ) {
 		getDataFn: DataTable.ext.oApi._fnGetObjectDataFn( this.c.dataSrc ),
 
 		/** @type {array} Pixel positions for row insertion calculation */
-		mIddles: null,
+		middles: null,
 
 		/** @type {Object} Cached dimension information for use in the mouse move event handler */
 		scroll: {},
@@ -235,13 +235,13 @@ $.extend( RowReorder.prototype, {
 		// not what DataTables thinks it is, since we have been altering the
 		// order
 		var nodes = $.unique( dt.rows( { page: 'current' } ).nodes().toArray() );
-		var mIddles = $.map( nodes, function ( node, i ) {
+		var middles = $.map( nodes, function ( node, i ) {
 			var top = $(node).position().top - headerHeight;
 
 			return (top + top + $(node).outerHeight() ) / 2;
 		} );
 
-		this.s.mIddles = mIddles;
+		this.s.middles = middles;
 		this.s.bodyTop = $( dt.table().body() ).offset().top;
 		this.s.windowHeight = $(window).height();
 		this.s.documentOuterHeight = $(document).outerHeight();
@@ -262,19 +262,19 @@ $.extend( RowReorder.prototype, {
 			.append('<tbody/>')
 			.append( target.clone( false ) );
 
-		// Match the table and column wIdths - read all sizes before setting
+		// Match the table and column widths - read all sizes before setting
 		// to reduce reflows
-		var tableWIdth = target.outerWIdth();
+		var tableWidth = target.outerWidth();
 		var tableHeight = target.outerHeight();
 		var sizes = target.children().map( function () {
-			return $(this).wIdth();
+			return $(this).width();
 		} );
 
 		clone
-			.wIdth( tableWIdth )
+			.width( tableWidth )
 			.height( tableHeight )
 			.find('tr').children().each( function (i) {
-				this.style.wIdth = sizes[i]+'px';
+				this.style.width = sizes[i]+'px';
 			} );
 
 		// Insert into the document to have it floating around
@@ -395,7 +395,7 @@ $.extend( RowReorder.prototype, {
 
 		// Check if window is x-scrolling - if not, disable it for the duration
 		// of the drag
-		if ( $(window).wIdth() === $(document).wIdth() ) {
+		if ( $(window).width() === $(document).width() ) {
 			$(document.body).addClass( 'dt-rowReorder-noOverflow' );
 		}
 
@@ -405,11 +405,11 @@ $.extend( RowReorder.prototype, {
 		var scrollWrapper = this.dom.dtScroll;
 		this.s.scroll = {
 			windowHeight: $(window).height(),
-			windowWIdth:  $(window).wIdth(),
+			windowWidth:  $(window).width(),
 			dtTop:        scrollWrapper.length ? scrollWrapper.offset().top : null,
 			dtLeft:       scrollWrapper.length ? scrollWrapper.offset().left : null,
 			dtHeight:     scrollWrapper.length ? scrollWrapper.outerHeight() : null,
-			dtWIdth:      scrollWrapper.length ? scrollWrapper.outerWIdth() : null
+			dtWidth:      scrollWrapper.length ? scrollWrapper.outerWidth() : null
 		};
 	},
 
@@ -427,21 +427,21 @@ $.extend( RowReorder.prototype, {
 
 		// Transform the mouse position into a position in the table's body
 		var bodyY = this._eventToPage( e, 'Y' ) - this.s.bodyTop;
-		var mIddles = this.s.mIddles;
+		var middles = this.s.middles;
 		var insertPoint = null;
 		var dt = this.s.dt;
 
 		// Determine where the row should be inserted based on the mouse
 		// position
-		for ( var i=0, ien=mIddles.length ; i<ien ; i++ ) {
-			if ( bodyY < mIddles[i] ) {
+		for ( var i=0, ien=middles.length ; i<ien ; i++ ) {
+			if ( bodyY < middles[i] ) {
 				insertPoint = i;
 				break;
 			}
 		}
 
 		if ( insertPoint === null ) {
-			insertPoint = mIddles.length;
+			insertPoint = middles.length;
 		}
 
 		// Perform the DOM shuffle if it has changed from last time
@@ -493,7 +493,7 @@ $.extend( RowReorder.prototype, {
 		// Calculate the difference
 		var startNodes = this.s.start.nodes;
 		var endNodes = $.unique( dt.rows( { page: 'current' } ).nodes().toArray() );
-		var IdDiff = {};
+		var idDiff = {};
 		var fullDiff = [];
 		var diffNodes = [];
 		var getDataFn = this.s.getDataFn;
@@ -501,12 +501,12 @@ $.extend( RowReorder.prototype, {
 
 		for ( i=0, ien=startNodes.length ; i<ien ; i++ ) {
 			if ( startNodes[i] !== endNodes[i] ) {
-				var Id = dt.row( endNodes[i] ).Id();
+				var id = dt.row( endNodes[i] ).id();
 				var endRowData = dt.row( endNodes[i] ).data();
 				var startRowData = dt.row( startNodes[i] ).data();
 
-				if ( Id ) {
-					IdDiff[ Id ] = getDataFn( startRowData );
+				if ( id ) {
+					idDiff[ id ] = getDataFn( startRowData );
 				}
 
 				fullDiff.push( {
@@ -525,7 +525,7 @@ $.extend( RowReorder.prototype, {
 		var eventArgs = [ fullDiff, {
 			dataSrc:       dataSrc,
 			nodes:         diffNodes,
-			values:        IdDiff,
+			values:        idDiff,
 			triggerRow:    dt.row( this.dom.target ),
 			originalEvent: e
 		} ];
@@ -541,10 +541,10 @@ $.extend( RowReorder.prototype, {
 
 					setDataFn( rowData, fullDiff[i].newData );
 
-					// InvalIdate the cell that has the same data source as the dataSrc
+					// Invalidate the cell that has the same data source as the dataSrc
 					dt.columns().every( function () {
 						if ( this.dataSrc() === dataSrc ) {
-							dt.cell( fullDiff[i].node, this.index() ).invalIdate( 'data' );
+							dt.cell( fullDiff[i].node, this.index() ).invalidate( 'data' );
 						}
 					} );
 				}
@@ -567,7 +567,7 @@ $.extend( RowReorder.prototype, {
 					false,
 					$.extend( {submit: 'changed'}, this.c.formOptions )
 				)
-				.multiSet( dataSrc, IdDiff )
+				.multiSet( dataSrc, idDiff )
 				.one( 'preSubmitCancelled.rowReorder', function () {
 					that.c.enable = true;
 					that.c.editor.off( '.rowReorder' );
@@ -596,7 +596,7 @@ $.extend( RowReorder.prototype, {
 	 * content into view.
 	 *
 	 * This matches the `_shiftScroll` method used in AutoFill, but only
-	 * horizontal scrolling is consIdered here.
+	 * horizontal scrolling is considered here.
 	 *
 	 * @param  {object} e Mouse move event object
 	 * @private
@@ -635,7 +635,7 @@ $.extend( RowReorder.prototype, {
 		// This is where it gets interesting. We want to continue scrolling
 		// without requiring a mouse move, so we need an interval to be
 		// triggered. The interval should continue until it is no longer needed,
-		// but it must also use the latest scroll commands (for example consIder
+		// but it must also use the latest scroll commands (for example consider
 		// that the mouse might move from scrolling up to scrolling left, all
 		// with the same interval running. We use the `scroll` object to "pass"
 		// this information to the interval. Can't use local variables as they

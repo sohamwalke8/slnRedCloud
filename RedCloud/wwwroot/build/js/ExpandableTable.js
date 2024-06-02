@@ -22,7 +22,7 @@ const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 
 const SELECTOR_TABLE = '.expandable-table'
 const SELECTOR_EXPANDABLE_BODY = '.expandable-body'
-const SELECTOR_DATA_TOGGLE = '[data-wIdget="expandable-table"]'
+const SELECTOR_DATA_TOGGLE = '[data-widget="expandable-table"]'
 const SELECTOR_ARIA_ATTR = 'aria-expanded'
 
 /**
@@ -44,7 +44,7 @@ class ExpandableTable {
       if ($type === 'true') {
         $body.show()
       } else if ($type === 'false') {
-        $body.hIde()
+        $body.hide()
         $body.parent().parent().addClass('d-none')
       }
     })
@@ -66,14 +66,14 @@ class ExpandableTable {
 
     $body.stop()
     if ($type === 'true') {
-      $body.slIdeUp(time, () => {
+      $body.slideUp(time, () => {
         $element.next(SELECTOR_EXPANDABLE_BODY).addClass('d-none')
       })
       $element.attr(SELECTOR_ARIA_ATTR, 'false')
       $element.trigger($.Event(EVENT_COLLAPSED))
     } else if ($type === 'false') {
       $element.next(SELECTOR_EXPANDABLE_BODY).removeClass('d-none')
-      $body.slIdeDown(time)
+      $body.slideDown(time)
       $element.attr(SELECTOR_ARIA_ATTR, 'true')
       $element.trigger($.Event(EVENT_EXPANDED))
     }

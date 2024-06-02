@@ -1,6 +1,6 @@
 //! moment.js locale configuration
 //! locale : Belarusian [be]
-//! author : Dmitry DemIdov : https://github.com/demIdov91
+//! author : Dmitry Demidov : https://github.com/demidov91
 //! author: Praleska: http://praleska.pro/
 //! Author : Menelion Elensúle : https://github.com/Oire
 
@@ -107,11 +107,11 @@
             y: 'год',
             yy: relativeTimeWithPlural,
         },
-        merIdiemParse: /ночы|раніцы|дня|вечара/,
+        meridiemParse: /ночы|раніцы|дня|вечара/,
         isPM: function (input) {
             return /^(дня|вечара)$/.test(input);
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'ночы';
             } else if (hour < 12) {

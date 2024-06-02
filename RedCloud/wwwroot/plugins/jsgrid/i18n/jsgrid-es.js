@@ -1,7 +1,7 @@
-(function(jsGrId) {
+(function(jsGrid) {
 
-    jsGrId.locales.es = {
-        grId: {
+    jsGrid.locales.es = {
+        grid: {
             noDataContent: "No encontrado",
             deleteConfirm: "¿Está seguro?",
             pagerFormat: "Paginas: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} de {pageCount}",
@@ -10,7 +10,7 @@
             pageFirstText: "Primero",
             pageLastText: "Ultimo",
             loadMessage: "Por favor, espere...",
-            invalIdMessage: "¡Datos no válIdos!"
+            invalidMessage: "¡Datos no válidos!"
         },
 
         loadIndicator: {
@@ -31,16 +31,16 @@
             }
         },
 
-        valIdators: {
-            required: { message: "Campo requerIdo" },
-            rangeLength: { message: "La longitud del valor está fuera del intervalo definIdo" },
+        validators: {
+            required: { message: "Campo requerido" },
+            rangeLength: { message: "La longitud del valor está fuera del intervalo definido" },
             minLength: { message: "La longitud del valor es demasiado corta" },
             maxLength: { message: "La longitud del valor es demasiado larga" },
-            pattern: { message: "El valor no se ajusta al patrón definIdo" },
-            range: { message: "Valor fuera del rango definIdo" },
+            pattern: { message: "El valor no se ajusta al patrón definido" },
+            range: { message: "Valor fuera del rango definido" },
             min: { message: "Valor demasiado bajo" },
             max: { message: "Valor demasiado alto" }
         }
     };
 
-}(jsGrId, jQuery));
+}(jsGrid, jQuery));

@@ -45,5 +45,5 @@ Thanks to many of AdminLTE users, there are multiple implementations of the temp
 
 
 > ##### Note!
-> These implementations are not supported by ColorlibHQ. However, they do provIde a good example of how to integrate AdminLTE into different frameworks. For the latest release of AdminLTE, please visit our [repository](https://github.com/ColorlibHQ/AdminLTE/) or [website](https://adminlte.io).
+> These implementations are not supported by ColorlibHQ. However, they do provide a good example of how to integrate AdminLTE into different frameworks. For the latest release of AdminLTE, please visit our [repository](https://github.com/ColorlibHQ/AdminLTE/) or [website](https://adminlte.io).
 {: .quote-danger}

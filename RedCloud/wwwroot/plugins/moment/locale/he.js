@@ -81,11 +81,11 @@
                 return number + ' שנים';
             },
         },
-        merIdiemParse: /אחה"צ|לפנה"צ|אחרי הצהריים|לפני הצהריים|לפנות בוקר|בבוקר|בערב/i,
+        meridiemParse: /אחה"צ|לפנה"צ|אחרי הצהריים|לפני הצהריים|לפנות בוקר|בבוקר|בערב/i,
         isPM: function (input) {
             return /^(אחה"צ|אחרי הצהריים|בערב)$/.test(input);
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 5) {
                 return 'לפנות בוקר';
             } else if (hour < 10) {

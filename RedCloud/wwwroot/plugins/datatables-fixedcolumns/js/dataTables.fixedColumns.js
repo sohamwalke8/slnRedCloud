@@ -30,13 +30,13 @@
                 this.c.right = this.c.rightColumns;
             }
             this.s = {
-                barWIdth: 0,
+                barWidth: 0,
                 dt: table,
                 rtl: $(table.table().node()).css('direction') === 'rtl'
             };
-            // Set the bar wIdth if vertical scrolling is enabled
+            // Set the bar width if vertical scrolling is enabled
             if (this.s.dt.settings()[0].oInit.scrollY === true) {
-                this.s.barWIdth = this.s.dt.settings()[0].oBrowser.barWIdth;
+                this.s.barWidth = this.s.dt.settings()[0].oBrowser.barWidth;
             }
             // Common CSS for all blockers
             var blockerCSS = {
@@ -44,7 +44,7 @@
                 'bottom': '0px',
                 'display': 'block',
                 'position': 'absolute',
-                'wIdth': this.s.barWIdth + 1 + 'px'
+                'width': this.s.barWidth + 1 + 'px'
             };
             this.dom = {
                 leftBottomBlocker: $('<div>')
@@ -161,11 +161,11 @@
                 if (i < this.c.left) {
                     $(this.s.dt.table().node()).addClass(this.classes.tableFixedLeft);
                     parentDiv.addClass(this.classes.tableFixedLeft);
-                    // Add the wIdth of the previous node - only if we are on atleast the second column
+                    // Add the width of the previous node - only if we are on atleast the second column
                     if (i !== 0) {
                         var prevCol = this.s.dt.column(i - 1);
                         if (prevCol.visible()) {
-                            distLeft += $(prevCol.nodes()[0]).outerWIdth();
+                            distLeft += $(prevCol.nodes()[0]).outerWidth();
                         }
                     }
                     // Iterate over all of the rows, fixing the cell to the left
@@ -245,11 +245,11 @@
                 if (i >= numCols - this.c.right) {
                     $(this.s.dt.table().node()).addClass(this.classes.tableFixedRight);
                     parentDiv.addClass(this.classes.tableFixedLeft);
-                    // Add the wIdht of the previous node, only if we are on atleast the second column
+                    // Add the widht of the previous node, only if we are on atleast the second column
                     if (i !== numCols - 1) {
                         var prevCol = this.s.dt.column(i + 1);
                         if (prevCol.visible()) {
-                            distRight += $(prevCol.nodes()[0]).outerWIdth();
+                            distRight += $(prevCol.nodes()[0]).outerWidth();
                         }
                     }
                     // Iterate over all of the rows, fixing the cell to the right
@@ -317,7 +317,7 @@
             }
         };
         /**
-         * Gets the correct CSS for the cell, header or footer based on options provIded
+         * Gets the correct CSS for the cell, header or footer based on options provided
          *
          * @param header Whether this cell is a header or a footer
          * @param dist The distance that the cell should be moved away from the edge
@@ -333,14 +333,14 @@
                     } :
                     {
                         position: 'sticky',
-                        right: dist + (header ? this.s.barWIdth : 0) + 'px'
+                        right: dist + (header ? this.s.barWidth : 0) + 'px'
                     };
             }
             else {
                 return !this.s.rtl ?
                     {
                         position: 'sticky',
-                        right: dist + (header ? this.s.barWIdth : 0) + 'px'
+                        right: dist + (header ? this.s.barWidth : 0) + 'px'
                     } :
                     {
                         left: dist + 'px',
@@ -349,7 +349,7 @@
             }
         };
         /**
-         * Gets the css that is required to clear the fixing to a sIde
+         * Gets the css that is required to clear the fixing to a side
          *
          * @param lr Indicator of fixing to the left or the right
          * @returns An object containing the correct css
@@ -385,34 +385,34 @@
                 var scroll = $($(_this.s.dt.table().node()).closest('div.dataTables_scrollBody'));
                 // If there are fixed columns to the left
                 if (_this.c.left > 0) {
-                    // Get the rightmost left fixed column header, it's position and it's wIdth
+                    // Get the rightmost left fixed column header, it's position and it's width
                     var rightMost = $(_this.s.dt.column(_this.c.left - 1).header());
                     var rightMostPos = rightMost.offset();
-                    var rightMostWIdth = rightMost.outerWIdth();
+                    var rightMostWidth = rightMost.outerWidth();
                     // If the current highlighted cell is left of the rightmost cell on the screen
-                    if (cellPos.left < rightMostPos.left + rightMostWIdth) {
+                    if (cellPos.left < rightMostPos.left + rightMostWidth) {
                         // Scroll it into view
                         var currScroll = scroll.scrollLeft();
-                        scroll.scrollLeft(currScroll - (rightMostPos.left + rightMostWIdth - cellPos.left));
+                        scroll.scrollLeft(currScroll - (rightMostPos.left + rightMostWidth - cellPos.left));
                     }
                 }
                 // If there are fixed columns to the right
                 if (_this.c.right > 0) {
-                    // Get the number of columns and the wIdth of the cell as doing right sIde calc
+                    // Get the number of columns and the width of the cell as doing right side calc
                     var numCols = _this.s.dt.columns().data().toArray().length;
-                    var cellWIdth = $(cell.node()).outerWIdth();
+                    var cellWidth = $(cell.node()).outerWidth();
                     // Get the leftmost right fixed column header and it's position
                     var leftMost = $(_this.s.dt.column(numCols - _this.c.right).header());
                     var leftMostPos = leftMost.offset();
                     // If the current highlighted cell is right of the leftmost cell on the screen
-                    if (cellPos.left + cellWIdth > leftMostPos.left) {
+                    if (cellPos.left + cellWidth > leftMostPos.left) {
                         // Scroll it into view
                         var currScroll = scroll.scrollLeft();
-                        scroll.scrollLeft(currScroll - (leftMostPos.left - (cellPos.left + cellWIdth)));
+                        scroll.scrollLeft(currScroll - (leftMostPos.left - (cellPos.left + cellWidth)));
                     }
                 }
             });
-            // Whenever a draw occurs there is potential for the data to have changed and therefore also the column wIdths
+            // Whenever a draw occurs there is potential for the data to have changed and therefore also the column widths
             // Therefore it is necessary to recalculate the values for the fixed columns
             this.s.dt.on('draw', function () {
                 _this._addStyles();

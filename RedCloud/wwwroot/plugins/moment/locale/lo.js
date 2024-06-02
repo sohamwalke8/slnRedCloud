@@ -30,11 +30,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'ວັນdddd D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /ຕອນເຊົ້າ|ຕອນແລງ/,
+        meridiemParse: /ຕອນເຊົ້າ|ຕອນແລງ/,
         isPM: function (input) {
             return input === 'ຕອນແລງ';
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'ຕອນເຊົ້າ';
             } else {

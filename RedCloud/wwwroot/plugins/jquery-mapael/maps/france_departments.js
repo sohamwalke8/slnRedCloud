@@ -31,7 +31,7 @@
         {
             maps : {
                 france_departments : {
-                    wIdth : 600.08728, 
+                    width : 600.08728, 
                     height : 626.26221,
                     getCoords : function (lat, lon) {
                         var xfactor,

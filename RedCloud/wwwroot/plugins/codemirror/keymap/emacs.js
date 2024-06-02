@@ -232,7 +232,7 @@
     var fragment = document.createDocumentFragment();
     var input = document.createElement("input");
     input.setAttribute("type", "text");
-    input.style.wIdth = "10em";
+    input.style.width = "10em";
     fragment.appendChild(document.createTextNode(msg + ": "));
     fragment.appendChild(input);
     return fragment;
@@ -272,7 +272,7 @@
   }
 
   // Commands. Names should match emacs function names (albeit in camelCase)
-  // except where emacs function names collIde with code mirror core commands.
+  // except where emacs function names collide with code mirror core commands.
 
   cmds.killRegion = function(cm) {
     _kill(cm, cm.getCursor("start"), cm.getCursor("end"), true);
@@ -428,7 +428,7 @@
     });
   };
 
-  cmds.indentRigIdly = function(cm) {
+  cmds.indentRigidly = function(cm) {
     cm.indentSelection(getPrefix(cm, true) || cm.getOption("indentUnit"));
   };
 
@@ -521,7 +521,7 @@
     "Ctrl-J": "newline",
     "Tab": "indentAuto",
     "Alt-G G": "gotoLine",
-    "Ctrl-X Tab": "indentRigIdly",
+    "Ctrl-X Tab": "indentRigidly",
     "Ctrl-X Ctrl-X": "exchangePointAndMark",
     "Ctrl-X Ctrl-S": "save",
     "Ctrl-X Ctrl-W": "save",

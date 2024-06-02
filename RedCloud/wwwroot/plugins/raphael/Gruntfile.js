@@ -62,7 +62,7 @@ module.exports = function(grunt) {
         }
     });
 
-    // These plugins provIde necessary tasks.
+    // These plugins provide necessary tasks.
     grunt.loadNpmTasks("grunt-contrib-concat");
     grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("grunt-replace");

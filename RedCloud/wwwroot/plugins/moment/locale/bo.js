@@ -94,22 +94,22 @@
                 return symbolMap[match];
             });
         },
-        merIdiemParse: /མཚན་མོ|ཞོགས་ཀས|ཉིན་གུང|དགོང་དག|མཚན་མོ/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /མཚན་མོ|ཞོགས་ཀས|ཉིན་གུང|དགོང་དག|མཚན་མོ/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
             if (
-                (merIdiem === 'མཚན་མོ' && hour >= 4) ||
-                (merIdiem === 'ཉིན་གུང' && hour < 5) ||
-                merIdiem === 'དགོང་དག'
+                (meridiem === 'མཚན་མོ' && hour >= 4) ||
+                (meridiem === 'ཉིན་གུང' && hour < 5) ||
+                meridiem === 'དགོང་དག'
             ) {
                 return hour + 12;
             } else {
                 return hour;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'མཚན་མོ';
             } else if (hour < 10) {

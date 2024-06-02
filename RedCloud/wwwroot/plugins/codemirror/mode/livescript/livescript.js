@@ -74,8 +74,8 @@
     return external;
   });
 
-  var Identifier = '(?![\\d\\s])[$\\w\\xAA-\\uFFDC](?:(?!\\s)[$\\w\\xAA-\\uFFDC]|-[A-Za-z])*';
-  var indenter = RegExp('(?:[({[=:]|[-~]>|\\b(?:e(?:lse|xport)|d(?:o|efault)|t(?:ry|hen)|finally|import(?:\\s*all)?|const|var|let|new|catch(?:\\s*' + Identifier + ')?))\\s*$');
+  var identifier = '(?![\\d\\s])[$\\w\\xAA-\\uFFDC](?:(?!\\s)[$\\w\\xAA-\\uFFDC]|-[A-Za-z])*';
+  var indenter = RegExp('(?:[({[=:]|[-~]>|\\b(?:e(?:lse|xport)|d(?:o|efault)|t(?:ry|hen)|finally|import(?:\\s*all)?|const|var|let|new|catch(?:\\s*' + identifier + ')?))\\s*$');
   var keywordend = '(?![$\\w]|-[A-Za-z]|\\s*:(?![:=]))';
   var stringfill = {
     token: 'string',
@@ -97,7 +97,7 @@
         token: 'constant.language',
         regex: '(?:true|false|yes|no|on|off|null|void|undefined)' + keywordend
       }, {
-        token: 'invalId.illegal',
+        token: 'invalid.illegal',
         regex: '(?:p(?:ackage|r(?:ivate|otected)|ublic)|i(?:mplements|nterface)|enum|static|yield)' + keywordend
       }, {
         token: 'language.support.class',
@@ -109,11 +109,11 @@
         token: 'variable.language',
         regex: '(?:t(?:hat|il|o)|f(?:rom|allthrough)|it|by|e)' + keywordend
       }, {
-        token: 'Identifier',
-        regex: Identifier + '\\s*:(?![:=])'
+        token: 'identifier',
+        regex: identifier + '\\s*:(?![:=])'
       }, {
         token: 'variable',
-        regex: Identifier
+        regex: identifier
       }, {
         token: 'keyword.operator',
         regex: '(?:\\.{3}|\\s+\\?)'
@@ -199,8 +199,8 @@
         token: 'keyword.operator',
         regex: '[.?@!]+'
       }, {
-        token: 'Identifier',
-        regex: Identifier,
+        token: 'identifier',
+        regex: identifier,
         next: 'start'
       }, {
         token: 'text',
@@ -261,17 +261,17 @@
       }, stringfill
     ]
   };
-  for (var Idx in Rules) {
-    var r = Rules[Idx];
+  for (var idx in Rules) {
+    var r = Rules[idx];
     if (r.splice) {
       for (var i = 0, len = r.length; i < len; ++i) {
         var rr = r[i];
         if (typeof rr.regex === 'string') {
-          Rules[Idx][i].regex = new RegExp('^' + rr.regex);
+          Rules[idx][i].regex = new RegExp('^' + rr.regex);
         }
       }
     } else if (typeof rr.regex === 'string') {
-      Rules[Idx].regex = new RegExp('^' + r.regex);
+      Rules[idx].regex = new RegExp('^' + r.regex);
     }
   }
 

@@ -59,7 +59,7 @@
                     .addClass(this.classes.dropDown)
                     .addClass(this.classes.italic)
                     .attr('autocomplete', 'hacking'),
-                conditionTitle: $$2('<option value="" disabled selected hIdden/>')
+                conditionTitle: $$2('<option value="" disabled selected hidden/>')
                     .html(this.s.dt.i18n('searchBuilder.condition', i18n.condition)),
                 container: $$2('<div/>')
                     .addClass(this.classes.container),
@@ -67,7 +67,7 @@
                     .addClass(this.classes.data)
                     .addClass(this.classes.dropDown)
                     .addClass(this.classes.italic),
-                dataTitle: $$2('<option value="" disabled selected hIdden/>')
+                dataTitle: $$2('<option value="" disabled selected hidden/>')
                     .html(this.s.dt.i18n('searchBuilder.data', i18n.data)),
                 defaultValue: $$2('<select disabled/>')
                     .addClass(this.classes.value)
@@ -101,7 +101,7 @@
                         .addClass(this.classes.italic)
                         .addClass(this.classes.select)
                 ],
-                valueTitle: $$2('<option value="--valueTitle--" disabled selected hIdden/>')
+                valueTitle: $$2('<option value="--valueTitle--" disabled selected hidden/>')
                     .html(this.s.dt.i18n('searchBuilder.value', i18n.value))
             };
             // If the greyscale option is selected then add the class to add the grey colour to SearchBuilder
@@ -246,7 +246,7 @@
                 if (this.s.type.includes('html') && typeof filter === 'string') {
                     filter = filter.replace(/(<([^>]+)>)/ig, '');
                 }
-                // Not Ideal, but jqueries .val() returns an empty string even
+                // Not ideal, but jqueries .val() returns an empty string even
                 // when the value set is null, so we shall assume the two are equal
                 if (filter === null) {
                     filter = '';
@@ -296,7 +296,7 @@
                     }
                 }
             }
-            if (this.s.type.includes('num') && this.s.dt.page.info().serverSIde) {
+            if (this.s.type.includes('num') && this.s.dt.page.info().serverSide) {
                 for (var i = 0; i < this.s.value.length; i++) {
                     this.s.value[i] = this.s.value[i].replace(/[^0-9.]/g, '');
                 }
@@ -413,7 +413,7 @@
                 .unbind('change')
                 .on('change.dtsb', function () {
                 _this.dom.dataTitle.removeProp('selected');
-                // Need to go over every option to Identify the correct selection
+                // Need to go over every option to identify the correct selection
                 var options = _this.dom.data.children('option.' + _this.classes.option);
                 // eslint-disable-next-line @typescript-eslint/prefer-for-of
                 for (var i = 0; i < options.length; i++) {
@@ -448,7 +448,7 @@
                 .unbind('change')
                 .on('change.dtsb', function () {
                 _this.dom.conditionTitle.removeProp('selected');
-                // Need to go over every option to Identify the correct selection
+                // Need to go over every option to identify the correct selection
                 var options = _this.dom.condition.children('option.' + _this.classes.option);
                 // eslint-disable-next-line @typescript-eslint/prefer-for-of
                 for (var i = 0; i < options.length; i++) {
@@ -499,12 +499,12 @@
                 return;
             }
             var valRight;
-            var valWIdth;
+            var valWidth;
             var outmostval = this.dom.value[this.dom.value.length - 1];
-            // Calculate the wIdth and right value of the outmost value element
+            // Calculate the width and right value of the outmost value element
             if (outmostval !== undefined && this.dom.container.has(outmostval[0]).length !== 0) {
-                valWIdth = outmostval.outerWIdth(true);
-                valRight = outmostval.offset().left + valWIdth;
+                valWidth = outmostval.outerWidth(true);
+                valRight = outmostval.offset().left + valWidth;
             }
             else {
                 return;
@@ -529,9 +529,9 @@
             }
             else if (buttonsLeft -
                 (this.dom.data.offset().left +
-                    this.dom.data.outerWIdth(true) +
-                    this.dom.condition.outerWIdth(true) +
-                    valWIdth) > 15
+                    this.dom.data.outerWidth(true) +
+                    this.dom.condition.outerWidth(true) +
+                    valWidth) > 15
                 && this.dom.container.parent().hasClass(this.classes.vertical)) {
                 this.dom.container.parent().removeClass(this.classes.vertical);
                 this.s.topGroup.trigger('dtsb-redrawContents');
@@ -701,12 +701,12 @@
                 for (var _i = 0, _a = Object.keys(conditionObj); _i < _a.length; _i++) {
                     var condition = _a[_i];
                     if (conditionObj[condition] !== null) {
-                        // ServersIde processing does not supply the options for the select elements
+                        // Serverside processing does not supply the options for the select elements
                         // Instead input elements need to be used for these instead
-                        if (this.s.dt.page.info().serverSIde && conditionObj[condition].init === Criteria.initSelect) {
+                        if (this.s.dt.page.info().serverSide && conditionObj[condition].init === Criteria.initSelect) {
                             conditionObj[condition].init = Criteria.initInput;
                             conditionObj[condition].inputValue = Criteria.inputValueInput;
-                            conditionObj[condition].isInputValId = Criteria.isInputValIdInput;
+                            conditionObj[condition].isInputValid = Criteria.isInputValidInput;
                         }
                         this.s.conditions[condition] = conditionObj[condition];
                         var condName = conditionObj[condition].conditionName;
@@ -892,20 +892,20 @@
                     .trigger('dtsb-inserted');
             }
             // Check if the criteria can be used in a search
-            this.s.filled = this.s.conditions[this.s.condition].isInputValId(this.dom.value, this);
+            this.s.filled = this.s.conditions[this.s.condition].isInputValid(this.dom.value, this);
             this.setListeners();
             // If it can and this is different to before then trigger a draw
             if (prevFilled !== this.s.filled) {
                 // If using SSP we want to restrict the amount of server calls that take place
                 //  and this will already have taken place
-                if (!this.s.dt.page.info().serverSIde) {
+                if (!this.s.dt.page.info().serverSide) {
                     this.s.dt.draw();
                 }
                 this.setListeners();
             }
         };
         /**
-         * ProvIdes throttling capabilities to SearchBuilder without having to use dt's _fnThrottle function
+         * Provides throttling capabilities to SearchBuilder without having to use dt's _fnThrottle function
          * This is because that function is not quite suitable for our needs as it runs initially rather than waiting
          *
          * @param args arguments supplied to the throttle function
@@ -1038,7 +1038,7 @@
                         }
                     }
                 };
-                // If this is to add the indivIdual values within the array we need to loop over the array
+                // If this is to add the individual values within the array we need to loop over the array
                 if (array) {
                     for (var i = 0; i < value.filter.length; i++) {
                         addOption(value.filter[i], value.text[i]);
@@ -1327,11 +1327,11 @@
             return els;
         };
         /**
-         * Default function for select elements to valIdate condition
+         * Default function for select elements to validate condition
          */
-        Criteria.isInputValIdSelect = function (el) {
+        Criteria.isInputValidSelect = function (el) {
             var allFilled = true;
-            // Check each element to make sure that the selections are valId
+            // Check each element to make sure that the selections are valid
             for (var _i = 0, el_1 = el; _i < el_1.length; _i++) {
                 var element = el_1[_i];
                 if (element.children('option:selected').length ===
@@ -1345,11 +1345,11 @@
             return allFilled;
         };
         /**
-         * Default function for input and date elements to valIdate condition
+         * Default function for input and date elements to validate condition
          */
-        Criteria.isInputValIdInput = function (el) {
+        Criteria.isInputValidInput = function (el) {
             var allFilled = true;
-            // Check each element to make sure that the inputs are valId
+            // Check each element to make sure that the inputs are valid
             for (var _i = 0, el_2 = el; _i < el_2.length; _i++) {
                 var element = el_2[_i];
                 if (element.is('input') && element.val().length === 0) {
@@ -1393,7 +1393,7 @@
             // When the value is changed the criteria is now complete so can be included in searches
             // Get the condition from the map based on the key that has been selected for the condition
             var condition = that.s.conditions[that.s.condition];
-            that.s.filled = condition.isInputValId(that.dom.value, that);
+            that.s.filled = condition.isInputValid(that.dom.value, that);
             that.s.value = condition.inputValue(that.dom.value, that);
             if (!that.s.filled) {
                 that.s.dt.draw();
@@ -1424,11 +1424,11 @@
                 }
             }
             // Take note of the cursor position so that we can refocus there later
-            var Idx = null;
+            var idx = null;
             var cursorPos = null;
             for (var i = 0; i < that.dom.value.length; i++) {
                 if (el === that.dom.value[i][0]) {
-                    Idx = i;
+                    idx = i;
                     if (el.selectionStart !== undefined) {
                         cursorPos = el.selectionStart;
                     }
@@ -1437,11 +1437,11 @@
             // Trigger a search
             that.s.dt.draw();
             // Refocus the element and set the correct cursor position
-            if (Idx !== null) {
-                that.dom.value[Idx].removeClass(that.classes.italic);
-                that.dom.value[Idx].focus();
+            if (idx !== null) {
+                that.dom.value[idx].removeClass(that.classes.italic);
+                that.dom.value[idx].focus();
                 if (cursorPos !== null) {
-                    that.dom.value[Idx][0].setSelectionRange(cursorPos, cursorPos);
+                    that.dom.value[idx][0].setSelectionRange(cursorPos, cursorPos);
                 }
             }
         };
@@ -1456,7 +1456,7 @@
                 },
                 init: Criteria.initDate,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     value = value.replace(/(\/|-|,)/g, '-');
                     return value === comparison[0];
@@ -1469,7 +1469,7 @@
                 },
                 init: Criteria.initDate,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     value = value.replace(/(\/|-|,)/g, '-');
                     return value !== comparison[0];
@@ -1481,7 +1481,7 @@
                 },
                 init: Criteria.initDate,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     value = value.replace(/(\/|-|,)/g, '-');
                     return value < comparison[0];
@@ -1493,7 +1493,7 @@
                 },
                 init: Criteria.initDate,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     value = value.replace(/(\/|-|,)/g, '-');
                     return value > comparison[0];
@@ -1505,7 +1505,7 @@
                 },
                 init: Criteria.init2Date,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     value = value.replace(/(\/|-|,)/g, '-');
                     if (comparison[0] < comparison[1]) {
@@ -1523,7 +1523,7 @@
                 },
                 init: Criteria.init2Date,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     value = value.replace(/(\/|-|,)/g, '-');
                     if (comparison[0] < comparison[1]) {
@@ -1542,7 +1542,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -1558,7 +1558,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -1577,7 +1577,7 @@
                 },
                 init: Criteria.initDate,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison, that) {
                     return moment(value, that.s.dateFormat).valueOf() ===
                         moment(comparison[0], that.s.dateFormat).valueOf();
@@ -1590,7 +1590,7 @@
                 },
                 init: Criteria.initDate,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison, that) {
                     return moment(value, that.s.dateFormat).valueOf() !==
                         moment(comparison[0], that.s.dateFormat).valueOf();
@@ -1602,7 +1602,7 @@
                 },
                 init: Criteria.initDate,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison, that) {
                     return moment(value, that.s.dateFormat).valueOf() < moment(comparison[0], that.s.dateFormat).valueOf();
                 }
@@ -1613,7 +1613,7 @@
                 },
                 init: Criteria.initDate,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison, that) {
                     return moment(value, that.s.dateFormat).valueOf() > moment(comparison[0], that.s.dateFormat).valueOf();
                 }
@@ -1624,7 +1624,7 @@
                 },
                 init: Criteria.init2Date,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison, that) {
                     var val = moment(value, that.s.dateFormat).valueOf();
                     var comp0 = moment(comparison[0], that.s.dateFormat).valueOf();
@@ -1644,7 +1644,7 @@
                 },
                 init: Criteria.init2Date,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison, that) {
                     var val = moment(value, that.s.dateFormat).valueOf();
                     var comp0 = moment(comparison[0], that.s.dateFormat).valueOf();
@@ -1665,7 +1665,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -1681,7 +1681,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -1700,7 +1700,7 @@
                 },
                 init: Criteria.initDate,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison, that) {
                     return luxon.DateTime.fromFormat(value, that.s.dateFormat).ts
                         === luxon.DateTime.fromFormat(comparison[0], that.s.dateFormat).ts;
@@ -1713,7 +1713,7 @@
                 },
                 init: Criteria.initDate,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison, that) {
                     return luxon.DateTime.fromFormat(value, that.s.dateFormat).ts
                         !== luxon.DateTime.fromFormat(comparison[0], that.s.dateFormat).ts;
@@ -1725,7 +1725,7 @@
                 },
                 init: Criteria.initDate,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison, that) {
                     return luxon.DateTime.fromFormat(value, that.s.dateFormat).ts
                         < luxon.DateTime.fromFormat(comparison[0], that.s.dateFormat).ts;
@@ -1737,7 +1737,7 @@
                 },
                 init: Criteria.initDate,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison, that) {
                     return luxon.DateTime.fromFormat(value, that.s.dateFormat).ts
                         > luxon.DateTime.fromFormat(comparison[0], that.s.dateFormat).ts;
@@ -1749,7 +1749,7 @@
                 },
                 init: Criteria.init2Date,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison, that) {
                     var val = luxon.DateTime.fromFormat(value, that.s.dateFormat).ts;
                     var comp0 = luxon.DateTime.fromFormat(comparison[0], that.s.dateFormat).ts;
@@ -1769,7 +1769,7 @@
                 },
                 init: Criteria.init2Date,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison, that) {
                     var val = luxon.DateTime.fromFormat(value, that.s.dateFormat).ts;
                     var comp0 = luxon.DateTime.fromFormat(comparison[0], that.s.dateFormat).ts;
@@ -1790,7 +1790,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -1806,7 +1806,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -1825,7 +1825,7 @@
                 },
                 init: Criteria.initSelect,
                 inputValue: Criteria.inputValueSelect,
-                isInputValId: Criteria.isInputValIdSelect,
+                isInputValid: Criteria.isInputValidSelect,
                 search: function (value, comparison) {
                     return +value === +comparison[0];
                 }
@@ -1837,7 +1837,7 @@
                 },
                 init: Criteria.initSelect,
                 inputValue: Criteria.inputValueSelect,
-                isInputValId: Criteria.isInputValIdSelect,
+                isInputValid: Criteria.isInputValidSelect,
                 search: function (value, comparison) {
                     return +value !== +comparison[0];
                 }
@@ -1848,7 +1848,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     return +value < +comparison[0];
                 }
@@ -1859,7 +1859,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     return +value <= +comparison[0];
                 }
@@ -1870,7 +1870,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     return +value >= +comparison[0];
                 }
@@ -1882,7 +1882,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     return +value > +comparison[0];
                 }
@@ -1893,7 +1893,7 @@
                 },
                 init: Criteria.init2Input,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     if (+comparison[0] < +comparison[1]) {
                         return +comparison[0] <= +value && +value <= +comparison[1];
@@ -1910,7 +1910,7 @@
                 },
                 init: Criteria.init2Input,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     if (+comparison[0] < +comparison[1]) {
                         return !(+comparison[0] <= +value && +value <= +comparison[1]);
@@ -1928,7 +1928,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -1944,7 +1944,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -1963,7 +1963,7 @@
                 },
                 init: Criteria.initSelect,
                 inputValue: Criteria.inputValueSelect,
-                isInputValId: Criteria.isInputValIdSelect,
+                isInputValid: Criteria.isInputValidSelect,
                 search: function (value, comparison) {
                     var val = value.indexOf('-') === 0 ?
                         '-' + value.replace(/[^0-9.]/g, '') :
@@ -1981,7 +1981,7 @@
                 },
                 init: Criteria.initSelect,
                 inputValue: Criteria.inputValueSelect,
-                isInputValId: Criteria.isInputValIdSelect,
+                isInputValid: Criteria.isInputValidSelect,
                 search: function (value, comparison) {
                     var val = value.indexOf('-') === 0 ?
                         '-' + value.replace(/[^0-9.]/g, '') :
@@ -1998,7 +1998,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     var val = value.indexOf('-') === 0 ?
                         '-' + value.replace(/[^0-9.]/g, '') :
@@ -2015,7 +2015,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     var val = value.indexOf('-') === 0 ?
                         '-' + value.replace(/[^0-9.]/g, '') :
@@ -2032,7 +2032,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     var val = value.indexOf('-') === 0 ?
                         '-' + value.replace(/[^0-9.]/g, '') :
@@ -2050,7 +2050,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     var val = value.indexOf('-') === 0 ?
                         '-' + value.replace(/[^0-9.]/g, '') :
@@ -2067,7 +2067,7 @@
                 },
                 init: Criteria.init2Input,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     var val = value.indexOf('-') === 0 ?
                         '-' + value.replace(/[^0-9.]/g, '') :
@@ -2093,7 +2093,7 @@
                 },
                 init: Criteria.init2Input,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     var val = value.indexOf('-') === 0 ?
                         '-' + value.replace(/[^0-9.]/g, '') :
@@ -2120,7 +2120,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -2136,7 +2136,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -2155,7 +2155,7 @@
                 },
                 init: Criteria.initSelect,
                 inputValue: Criteria.inputValueSelect,
-                isInputValId: Criteria.isInputValIdSelect,
+                isInputValid: Criteria.isInputValidSelect,
                 search: function (value, comparison) {
                     return value === comparison[0];
                 }
@@ -2167,7 +2167,7 @@
                 },
                 init: Criteria.initSelect,
                 inputValue: Criteria.inputValueSelect,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     return value !== comparison[0];
                 }
@@ -2178,7 +2178,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     return value.toLowerCase().indexOf(comparison[0].toLowerCase()) === 0;
                 }
@@ -2190,7 +2190,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     return value.toLowerCase().indexOf(comparison[0].toLowerCase()) !== 0;
                 }
@@ -2202,7 +2202,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     return value.toLowerCase().includes(comparison[0].toLowerCase());
                 }
@@ -2214,7 +2214,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     return !value.toLowerCase().includes(comparison[0].toLowerCase());
                 }
@@ -2225,7 +2225,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     return value.toLowerCase().endsWith(comparison[0].toLowerCase());
                 }
@@ -2237,7 +2237,7 @@
                 },
                 init: Criteria.initInput,
                 inputValue: Criteria.inputValueInput,
-                isInputValId: Criteria.isInputValIdInput,
+                isInputValid: Criteria.isInputValidInput,
                 search: function (value, comparison) {
                     return !value.toLowerCase().endsWith(comparison[0].toLowerCase());
                 }
@@ -2250,7 +2250,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -2266,7 +2266,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -2284,7 +2284,7 @@
                 },
                 init: Criteria.initSelectArray,
                 inputValue: Criteria.inputValueSelect,
-                isInputValId: Criteria.isInputValIdSelect,
+                isInputValid: Criteria.isInputValidSelect,
                 search: function (value, comparison) {
                     return value.includes(comparison[0]);
                 }
@@ -2295,7 +2295,7 @@
                 },
                 init: Criteria.initSelectArray,
                 inputValue: Criteria.inputValueSelect,
-                isInputValId: Criteria.isInputValIdSelect,
+                isInputValid: Criteria.isInputValidSelect,
                 search: function (value, comparison) {
                     return value.indexOf(comparison[0]) === -1;
                 }
@@ -2307,7 +2307,7 @@
                 },
                 init: Criteria.initSelect,
                 inputValue: Criteria.inputValueSelect,
-                isInputValId: Criteria.isInputValIdSelect,
+                isInputValid: Criteria.isInputValidSelect,
                 search: function (value, comparison) {
                     if (value.length === comparison[0].length) {
                         for (var i = 0; i < value.length; i++) {
@@ -2327,7 +2327,7 @@
                 },
                 init: Criteria.initSelect,
                 inputValue: Criteria.inputValueSelect,
-                isInputValId: Criteria.isInputValIdSelect,
+                isInputValid: Criteria.isInputValidSelect,
                 search: function (value, comparison) {
                     if (value.length === comparison[0].length) {
                         for (var i = 0; i < value.length; i++) {
@@ -2348,7 +2348,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -2364,7 +2364,7 @@
                 inputValue: function () {
                     return;
                 },
-                isInputValId: function () {
+                isInputValid: function () {
                     return true;
                 },
                 search: function (value) {
@@ -2665,10 +2665,10 @@
                 }
                 return;
             }
-            // Set wIdth, take 2 for the border
+            // Set width, take 2 for the border
             var height = this.dom.container.height() - 1;
             this.dom.clear.height('0px');
-            this.dom.logicContainer.append(this.dom.clear).wIdth(height);
+            this.dom.logicContainer.append(this.dom.clear).width(height);
             // Prepend logic button
             this.dom.container.prepend(this.dom.logicContainer);
             this._setLogicListener();
@@ -2801,17 +2801,17 @@
          * @param loadedGroup The details of a group within this group
          */
         Group.prototype._addPrevGroup = function (loadedGroup) {
-            var Idx = this.s.criteria.length;
-            var group = new Group(this.s.dt, this.c, this.s.topGroup, Idx, true, this.s.depth + 1);
+            var idx = this.s.criteria.length;
+            var group = new Group(this.s.dt, this.c, this.s.topGroup, idx, true, this.s.depth + 1);
             // Add the new group to the criteria array
             this.s.criteria.push({
                 criteria: group,
-                index: Idx,
+                index: idx,
                 logic: group.s.logic
             });
             // Rebuild it with the previous conditions for that group
             group.rebuild(loadedGroup);
-            this.s.criteria[Idx].criteria = group;
+            this.s.criteria[idx].criteria = group;
             this.s.topGroup.trigger('dtsb-redrawContents');
             this._setGroupListeners(group);
         };
@@ -2821,17 +2821,17 @@
          * @param loadedCriteria The details of a criteria within the group
          */
         Group.prototype._addPrevCriteria = function (loadedCriteria) {
-            var Idx = this.s.criteria.length;
-            var criteria = new Criteria(this.s.dt, this.s.opts, this.s.topGroup, Idx, this.s.depth);
+            var idx = this.s.criteria.length;
+            var criteria = new Criteria(this.s.dt, this.s.opts, this.s.topGroup, idx, this.s.depth);
             criteria.populate();
             // Add the new criteria to the criteria array
             this.s.criteria.push({
                 criteria: criteria,
-                index: Idx
+                index: idx
             });
             // Rebuild it with the previous conditions for that criteria
             criteria.rebuild(loadedCriteria);
-            this.s.criteria[Idx].criteria = criteria;
+            this.s.criteria[idx].criteria = criteria;
             this.s.topGroup.trigger('dtsb-redrawContents');
         };
         /**
@@ -2949,13 +2949,13 @@
             criteria.dom.right
                 .unbind('click')
                 .on('click.dtsb', function () {
-                var Idx = criteria.s.index;
+                var idx = criteria.s.index;
                 var group = new Group(_this.s.dt, _this.s.opts, _this.s.topGroup, criteria.s.index, true, _this.s.depth + 1);
                 // Add the criteria that is to be moved to the new group
                 group.addCriteria(criteria);
                 // Update the details in the current groups criteria array
-                _this.s.criteria[Idx].criteria = group;
-                _this.s.criteria[Idx].logic = 'AND';
+                _this.s.criteria[idx].criteria = group;
+                _this.s.criteria[idx].logic = 'AND';
                 _this.s.topGroup.trigger('dtsb-redrawContents');
                 _this._setGroupListeners(group);
                 return false;
@@ -3201,7 +3201,7 @@
             }
             table.settings()[0]._searchBuilder = this;
             // If using SSP we want to include the previous state in the very first server call
-            if (this.s.dt.page.info().serverSIde) {
+            if (this.s.dt.page.info().serverSide) {
                 this.s.dt.on('preXhr.dtsb', function (e, settings, data) {
                     var loadedState = _this.s.dt.state.loaded();
                     if (loadedState && loadedState.searchBuilder) {
@@ -3238,7 +3238,7 @@
             return this.dom.container;
         };
         /**
-         * Rebuilds the SearchBuilder to a state that is provIded
+         * Rebuilds the SearchBuilder to a state that is provided
          *
          * @param details The details required to perform a rebuild
          */
@@ -3343,7 +3343,7 @@
             });
             this._build();
             this.s.dt.on('preXhr.dtsb', function (e, settings, data) {
-                if (_this.s.dt.page.info().serverSIde) {
+                if (_this.s.dt.page.info().serverSide) {
                     data.searchBuilder = _this._collapseArray(_this.getDetails(true));
                 }
             });
@@ -3358,7 +3358,7 @@
                     this.s.topGroup.dom.container.trigger('dtsb-redrawContents');
                     // If using SSP we want to restrict the amount of server calls that take place
                     //  and this information will already have been processed
-                    if (!this.s.dt.page.info().serverSIde) {
+                    if (!this.s.dt.page.info().serverSide) {
                         this.s.dt.page(loadedState.page).draw('page');
                     }
                     this.s.topGroup.setListeners();
@@ -3504,7 +3504,7 @@
                 _this._filterChanged(count);
                 // If using SSP we want to restrict the amount of server calls that take place
                 //  and this information will already have been processed
-                if (!_this.s.dt.page.info().serverSIde) {
+                if (!_this.s.dt.page.info().serverSide) {
                     _this.s.dt.draw();
                 }
                 _this.s.dt.state.save();
@@ -3597,7 +3597,7 @@
                         notBetween: 'Not Between',
                         notEmpty: 'Not Empty'
                     },
-                    // eslint-disable-next-line Id-blacklist
+                    // eslint-disable-next-line id-blacklist
                     number: {
                         between: 'Between',
                         empty: 'Empty',
@@ -3610,7 +3610,7 @@
                         notBetween: 'Not Between',
                         notEmpty: 'Not Empty'
                     },
-                    // eslint-disable-next-line Id-blacklist
+                    // eslint-disable-next-line id-blacklist
                     string: {
                         contains: 'Contains',
                         empty: 'Empty',

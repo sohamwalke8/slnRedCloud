@@ -22,7 +22,7 @@
     "doctype-first": false,
     "tag-pair": true,
     "spec-char-escape": true,
-    "Id-unique": true,
+    "id-unique": true,
     "src-not-empty": true,
     "attr-no-duplication": true
   };

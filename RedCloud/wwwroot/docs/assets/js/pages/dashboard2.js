@@ -51,12 +51,12 @@ $(function () {
     },
     scales: {
       xAxes: [{
-        grIdLines: {
+        gridLines: {
           display: false
         }
       }],
       yAxes: [{
-        grIdLines: {
+        gridLines: {
           display: false
         }
       }]
@@ -140,7 +140,7 @@ $(function () {
   //       fill            : 'rgba(210, 214, 222, 1)',
   //       'fill-opacity'  : 1,
   //       stroke          : 'none',
-  //       'stroke-wIdth'  : 0,
+  //       'stroke-width'  : 0,
   //       'stroke-opacity': 1
   //     },
   //     hover        : {

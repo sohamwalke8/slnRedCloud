@@ -120,7 +120,7 @@
         this.container = $(options.template).appendTo(this.parentEl);
 
         //
-        // handle all the possible options overrIding defaults
+        // handle all the possible options overriding defaults
         //
 
         if (typeof options.locale === 'object') {
@@ -269,8 +269,8 @@
         if (typeof options.linkedCalendars === 'boolean')
             this.linkedCalendars = options.linkedCalendars;
 
-        if (typeof options.isInvalIdDate === 'function')
-            this.isInvalIdDate = options.isInvalIdDate;
+        if (typeof options.isInvalidDate === 'function')
+            this.isInvalidDate = options.isInvalidDate;
 
         if (typeof options.isCustomDate === 'function')
             this.isCustomDate = options.isCustomDate;
@@ -367,7 +367,7 @@
         if (!this.timePicker) {
             this.startDate = this.startDate.startOf('day');
             this.endDate = this.endDate.endOf('day');
-            this.container.find('.calendar-time').hIde();
+            this.container.find('.calendar-time').hide();
         }
 
         //can't be used together for now
@@ -385,7 +385,7 @@
             this.container.addClass('single');
             this.container.find('.drp-calendar.left').addClass('single');
             this.container.find('.drp-calendar.left').show();
-            this.container.find('.drp-calendar.right').hIde();
+            this.container.find('.drp-calendar.right').hide();
             if (!this.timePicker && this.autoApply) {
                 this.container.addClass('auto-apply');
             }
@@ -513,7 +513,7 @@
             this.updateMonthsInView();
         },
 
-        isInvalIdDate: function() {
+        isInvalidDate: function() {
             return false;
         },
 
@@ -616,13 +616,13 @@
             this.calculateChosenLabel();
         },
 
-        renderCalendar: function(sIde) {
+        renderCalendar: function(side) {
 
             //
             // Build the matrix of dates that will populate the calendar
             //
 
-            var calendar = sIde == 'left' ? this.leftCalendar : this.rightCalendar;
+            var calendar = side == 'left' ? this.leftCalendar : this.rightCalendar;
             var month = calendar.month.month();
             var year = calendar.month.year();
             var hour = calendar.month.hour();
@@ -664,18 +664,18 @@
                 calendar[row][col] = curDate.clone().hour(hour).minute(minute).second(second);
                 curDate.hour(12);
 
-                if (this.minDate && calendar[row][col].format('YYYY-MM-DD') == this.minDate.format('YYYY-MM-DD') && calendar[row][col].isBefore(this.minDate) && sIde == 'left') {
+                if (this.minDate && calendar[row][col].format('YYYY-MM-DD') == this.minDate.format('YYYY-MM-DD') && calendar[row][col].isBefore(this.minDate) && side == 'left') {
                     calendar[row][col] = this.minDate.clone();
                 }
 
-                if (this.maxDate && calendar[row][col].format('YYYY-MM-DD') == this.maxDate.format('YYYY-MM-DD') && calendar[row][col].isAfter(this.maxDate) && sIde == 'right') {
+                if (this.maxDate && calendar[row][col].format('YYYY-MM-DD') == this.maxDate.format('YYYY-MM-DD') && calendar[row][col].isAfter(this.maxDate) && side == 'right') {
                     calendar[row][col] = this.maxDate.clone();
                 }
 
             }
 
             //make the calendar object available to hoverDate/clickDate
-            if (sIde == 'left') {
+            if (side == 'left') {
                 this.leftCalendar.calendar = calendar;
             } else {
                 this.rightCalendar.calendar = calendar;
@@ -685,9 +685,9 @@
             // Display the calendar
             //
 
-            var minDate = sIde == 'left' ? this.minDate : this.startDate;
+            var minDate = side == 'left' ? this.minDate : this.startDate;
             var maxDate = this.maxDate;
-            var selected = sIde == 'left' ? this.startDate : this.endDate;
+            var selected = side == 'left' ? this.startDate : this.endDate;
             var arrow = this.locale.direction == 'ltr' ? {left: 'chevron-left', right: 'chevron-right'} : {left: 'chevron-right', right: 'chevron-left'};
 
             var html = '<table class="table-condensed">';
@@ -698,7 +698,7 @@
             if (this.showWeekNumbers || this.showISOWeekNumbers)
                 html += '<th></th>';
 
-            if ((!minDate || minDate.isBefore(calendar.firstDay)) && (!this.linkedCalendars || sIde == 'left')) {
+            if ((!minDate || minDate.isBefore(calendar.firstDay)) && (!this.linkedCalendars || side == 'left')) {
                 html += '<th class="prev available"><span></span></th>';
             } else {
                 html += '<th></th>';
@@ -740,7 +740,7 @@
             }
 
             html += '<th colspan="5" class="month">' + dateHtml + '</th>';
-            if ((!maxDate || maxDate.isAfter(calendar.lastDay)) && (!this.linkedCalendars || sIde == 'right' || this.singleDatePicker)) {
+            if ((!maxDate || maxDate.isAfter(calendar.lastDay)) && (!this.linkedCalendars || side == 'right' || this.singleDatePicker)) {
                 html += '<th class="next available"><span></span></th>';
             } else {
                 html += '<th></th>';
@@ -803,8 +803,8 @@
                     if (maxDate && calendar[row][col].isAfter(maxDate, 'day'))
                         classes.push('off', 'disabled');
 
-                    //don't allow selection of date if a custom function decIdes it's invalId
-                    if (this.isInvalIdDate(calendar[row][col]))
+                    //don't allow selection of date if a custom function decides it's invalid
+                    if (this.isInvalidDate(calendar[row][col]))
                         classes.push('off', 'disabled');
 
                     //highlight the currently selected start date
@@ -846,25 +846,25 @@
             html += '</tbody>';
             html += '</table>';
 
-            this.container.find('.drp-calendar.' + sIde + ' .calendar-table').html(html);
+            this.container.find('.drp-calendar.' + side + ' .calendar-table').html(html);
 
         },
 
-        renderTimePicker: function(sIde) {
+        renderTimePicker: function(side) {
 
             // Don't bother updating the time picker if it's currently disabled
             // because an end date hasn't been clicked yet
-            if (sIde == 'right' && !this.endDate) return;
+            if (side == 'right' && !this.endDate) return;
 
             var html, selected, minDate, maxDate = this.maxDate;
 
             if (this.maxSpan && (!this.maxDate || this.startDate.clone().add(this.maxSpan).isBefore(this.maxDate)))
                 maxDate = this.startDate.clone().add(this.maxSpan);
 
-            if (sIde == 'left') {
+            if (side == 'left') {
                 selected = this.startDate.clone();
                 minDate = this.minDate;
-            } else if (sIde == 'right') {
+            } else if (side == 'right') {
                 selected = this.endDate.clone();
                 minDate = this.startDate;
 
@@ -1007,7 +1007,7 @@
                 html += '</select>';
             }
 
-            this.container.find('.drp-calendar.' + sIde + ' .calendar-time').html(html);
+            this.container.find('.drp-calendar.' + side + ' .calendar-time').html(html);
 
         },
 
@@ -1026,13 +1026,13 @@
                 containerTop,
                 drops = this.drops;
 
-            var parentRightEdge = $(window).wIdth();
+            var parentRightEdge = $(window).width();
             if (!this.parentEl.is('body')) {
                 parentOffset = {
                     top: this.parentEl.offset().top - this.parentEl.scrollTop(),
                     left: this.parentEl.offset().left - this.parentEl.scrollLeft()
                 };
-                parentRightEdge = this.parentEl[0].clientWIdth + this.parentEl.offset().left;
+                parentRightEdge = this.parentEl[0].clientWidth + this.parentEl.offset().left;
             }
 
             switch (drops) {
@@ -1051,19 +1051,19 @@
                 break;
             }
 
-            // Force the container to it's actual wIdth
+            // Force the container to it's actual width
             this.container.css({
               top: 0,
               left: 0,
               right: 'auto'
             });
-            var containerWIdth = this.container.outerWIdth();
+            var containerWidth = this.container.outerWidth();
 
             this.container.toggleClass('drop-up', drops == 'up');
 
             if (this.opens == 'left') {
-                var containerRight = parentRightEdge - this.element.offset().left - this.element.outerWIdth();
-                if (containerWIdth + containerRight > $(window).wIdth()) {
+                var containerRight = parentRightEdge - this.element.offset().left - this.element.outerWidth();
+                if (containerWidth + containerRight > $(window).width()) {
                     this.container.css({
                         top: containerTop,
                         right: 'auto',
@@ -1077,15 +1077,15 @@
                     });
                 }
             } else if (this.opens == 'center') {
-                var containerLeft = this.element.offset().left - parentOffset.left + this.element.outerWIdth() / 2
-                                        - containerWIdth / 2;
+                var containerLeft = this.element.offset().left - parentOffset.left + this.element.outerWidth() / 2
+                                        - containerWidth / 2;
                 if (containerLeft < 0) {
                     this.container.css({
                         top: containerTop,
                         right: 'auto',
                         left: 9
                     });
-                } else if (containerLeft + containerWIdth > $(window).wIdth()) {
+                } else if (containerLeft + containerWidth > $(window).width()) {
                     this.container.css({
                         top: containerTop,
                         left: 'auto',
@@ -1100,7 +1100,7 @@
                 }
             } else {
                 var containerLeft = this.element.offset().left - parentOffset.left;
-                if (containerLeft + containerWIdth > $(window).wIdth()) {
+                if (containerLeft + containerWidth > $(window).width()) {
                     this.container.css({
                         top: containerTop,
                         left: 'auto',
@@ -1120,17 +1120,17 @@
             if (this.isShowing) return;
 
             // Create a click proxy that is private to this instance of datepicker, for unbinding
-            this._outsIdeClickProxy = $.proxy(function(e) { this.outsIdeClick(e); }, this);
+            this._outsideClickProxy = $.proxy(function(e) { this.outsideClick(e); }, this);
 
-            // Bind global datepicker mousedown for hIding and
+            // Bind global datepicker mousedown for hiding and
             $(document)
-              .on('mousedown.daterangepicker', this._outsIdeClickProxy)
+              .on('mousedown.daterangepicker', this._outsideClickProxy)
               // also support mobile devices
-              .on('touchend.daterangepicker', this._outsIdeClickProxy)
+              .on('touchend.daterangepicker', this._outsideClickProxy)
               // also explicitly play nice with Bootstrap dropdowns, which stopPropagation when clicking them
-              .on('click.daterangepicker', '[data-toggle=dropdown]', this._outsIdeClickProxy)
-              // and also close when focus changes to outsIde the picker (eg. tabbing between controls)
-              .on('focusin.daterangepicker', this._outsIdeClickProxy);
+              .on('click.daterangepicker', '[data-toggle=dropdown]', this._outsideClickProxy)
+              // and also close when focus changes to outside the picker (eg. tabbing between controls)
+              .on('focusin.daterangepicker', this._outsideClickProxy);
 
             // Reposition the picker if the window is resized while it's open
             $(window).on('resize.daterangepicker', $.proxy(function(e) { this.move(e); }, this));
@@ -1146,7 +1146,7 @@
             this.isShowing = true;
         },
 
-        hIde: function(e) {
+        hide: function(e) {
             if (!this.isShowing) return;
 
             //incomplete date selection, revert to last values
@@ -1164,23 +1164,23 @@
 
             $(document).off('.daterangepicker');
             $(window).off('.daterangepicker');
-            this.container.hIde();
-            this.element.trigger('hIde.daterangepicker', this);
+            this.container.hide();
+            this.element.trigger('hide.daterangepicker', this);
             this.isShowing = false;
         },
 
         toggle: function(e) {
             if (this.isShowing) {
-                this.hIde();
+                this.hide();
             } else {
                 this.show();
             }
         },
 
-        outsIdeClick: function(e) {
+        outsideClick: function(e) {
             var target = $(e.target);
             // if the page is clicked anywhere except within the daterangerpicker/button
-            // itself then call this.hIde()
+            // itself then call this.hide()
             if (
                 // ie modal dialog fix
                 e.type == "focusin" ||
@@ -1188,8 +1188,8 @@
                 target.closest(this.container).length ||
                 target.closest('.calendar-table').length
                 ) return;
-            this.hIde();
-            this.element.trigger('outsIdeClick.daterangepicker', this);
+            this.hide();
+            this.element.trigger('outsideClick.daterangepicker', this);
         },
 
         showCalendars: function() {
@@ -1198,9 +1198,9 @@
             this.element.trigger('showCalendar.daterangepicker', this);
         },
 
-        hIdeCalendars: function() {
+        hideCalendars: function() {
             this.container.removeClass('show-calendar');
-            this.element.trigger('hIdeCalendar.daterangepicker', this);
+            this.element.trigger('hideCalendar.daterangepicker', this);
         },
 
         clickRange: function(e) {
@@ -1219,7 +1219,7 @@
                 }
 
                 if (!this.alwaysShowCalendars)
-                    this.hIdeCalendars();
+                    this.hideCalendars();
                 this.clickApply();
             }
         },
@@ -1398,14 +1398,14 @@
         },
 
         clickApply: function(e) {
-            this.hIde();
+            this.hide();
             this.element.trigger('apply.daterangepicker', this);
         },
 
         clickCancel: function(e) {
             this.startDate = this.oldStartDate;
             this.endDate = this.oldEndDate;
-            this.hIde();
+            this.hide();
             this.element.trigger('cancel.daterangepicker', this);
         },
 
@@ -1520,7 +1520,7 @@
                 end = start;
             }
 
-            if (!start.isValId() || !end.isValId()) return;
+            if (!start.isValid() || !end.isValid()) return;
 
             this.setStartDate(start);
             this.setEndDate(end);
@@ -1528,17 +1528,17 @@
         },
 
         keydown: function(e) {
-            //hIde on tab or enter
+            //hide on tab or enter
             if ((e.keyCode === 9) || (e.keyCode === 13)) {
-                this.hIde();
+                this.hide();
             }
 
-            //hIde on esc and prevent propagation
+            //hide on esc and prevent propagation
             if (e.keyCode === 27) {
                 e.preventDefault();
                 e.stopPropagation();
 
-                this.hIde();
+                this.hide();
             }
         },
 

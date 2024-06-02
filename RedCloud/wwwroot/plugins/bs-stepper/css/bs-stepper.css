@@ -21,7 +21,7 @@
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
-  vertical-align: mIddle;
+  vertical-align: middle;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -52,7 +52,7 @@
   background-color: rgba(0, 0, 0, .06);
 }
 
-@media (max-wIdth: 520px) {
+@media (max-width: 520px) {
   .bs-stepper .step-trigger {
     -ms-flex-direction: column;
         flex-direction: column;
@@ -72,7 +72,7 @@
       align-items: center;
 }
 
-@media (max-wIdth: 520px) {
+@media (max-width: 520px) {
   .bs-stepper-header {
     margin: 0 -10px;
     text-align: center;
@@ -83,13 +83,13 @@
 .bs-stepper .line {
   -ms-flex: 1 0 32px;
       flex: 1 0 32px;
-  min-wIdth: 1px;
+  min-width: 1px;
   min-height: 1px;
   margin: auto;
   background-color: rgba(0, 0, 0, .12);
 }
 
-@media (max-wIdth: 400px) {
+@media (max-width: 400px) {
   .bs-stepper-line,
   .bs-stepper .line {
     -ms-flex-preferred-size: 20px;
@@ -104,7 +104,7 @@
       align-content: center;
   -ms-flex-pack: center;
       justify-content: center;
-  wIdth: 2em;
+  width: 2em;
   height: 2em;
   padding: .5em 0;
   margin: .25rem;
@@ -122,7 +122,7 @@
   padding: 0 20px 20px;
 }
 
-@media (max-wIdth: 520px) {
+@media (max-width: 520px) {
   .bs-stepper-content {
     padding: 0;
   }
@@ -149,7 +149,7 @@
 .bs-stepper.vertical .bs-stepper-pane:not(.fade),
 .bs-stepper.vertical .content:not(.fade) {
   display: block;
-  visibility: hIdden;
+  visibility: hidden;
 }
 
 .bs-stepper-pane:not(.fade),
@@ -159,7 +159,7 @@
 
 .bs-stepper .content.fade,
 .bs-stepper-pane.fade {
-  visibility: hIdden;
+  visibility: hidden;
   transition-duration: .3s;
   transition-property: opacity;
 }
@@ -188,7 +188,7 @@
 
 .vertical .bs-stepper-pane.fade.dstepper-none,
 .vertical .content.fade.dstepper-none {
-  visibility: hIdden;
+  visibility: hidden;
 }
 
 /*# sourceMappingURL=bs-stepper.css.map */

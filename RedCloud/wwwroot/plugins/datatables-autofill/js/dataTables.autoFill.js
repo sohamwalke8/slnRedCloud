@@ -53,7 +53,7 @@ var DataTable = $.fn.dataTable;
 var _instance = 0;
 
 /** 
- * AutoFill provIdes Excel like auto-fill features for a DataTable
+ * AutoFill provides Excel like auto-fill features for a DataTable
  *
  * @class AutoFill
  * @constructor
@@ -91,7 +91,7 @@ var AutoFill = function( dt, opts )
 
 		handle: {
 			height: 0,
-			wIdth: 0
+			width: 0
 		},
 
 		/**
@@ -232,11 +232,11 @@ $.extend( AutoFill.prototype, {
 	_attach: function ( node )
 	{
 		var dt = this.s.dt;
-		var Idx = dt.cell( node ).index();
+		var idx = dt.cell( node ).index();
 		var handle = this.dom.handle;
 		var handleDim = this.s.handle;
 
-		if ( ! Idx || dt.columns( this.c.columns ).indexes().indexOf( Idx.column ) === -1 ) {
+		if ( ! idx || dt.columns( this.c.columns ).indexes().indexOf( idx.column ) === -1 ) {
 			this._detach();
 			return;
 		}
@@ -246,12 +246,12 @@ $.extend( AutoFill.prototype, {
 			this.dom.offsetParent = $( dt.table().node() ).offsetParent();
 		}
 
-		if ( ! handleDim.height || ! handleDim.wIdth ) {
+		if ( ! handleDim.height || ! handleDim.width ) {
 			// Append to document so we can get its size. Not expecting it to
 			// change during the life time of the page
 			handle.appendTo( 'body' );
 			handleDim.height = handle.outerHeight();
-			handleDim.wIdth = handle.outerWIdth();
+			handleDim.width = handle.outerWidth();
 		}
 
 		// Might need to go through multiple offset parents
@@ -261,7 +261,7 @@ $.extend( AutoFill.prototype, {
 		handle
 			.css( {
 				top: offset.top + node.offsetHeight - handleDim.height,
-				left: offset.left + node.offsetWIdth - handleDim.wIdth
+				left: offset.left + node.offsetWidth - handleDim.width
 			} )
 			.appendTo( this.dom.offsetParent );
 	},
@@ -382,7 +382,7 @@ $.extend( AutoFill.prototype, {
 
 		this.s.end = end;
 
-		var top, bottom, left, right, height, wIdth;
+		var top, bottom, left, right, height, width;
 
 		top    = start.row    < end.row    ? startCell : endCell;
 		bottom = start.row    < end.row    ? endCell   : startCell;
@@ -392,13 +392,13 @@ $.extend( AutoFill.prototype, {
 		top    = this._getPosition( top.get(0) ).top;
 		left   = this._getPosition( left.get(0) ).left;
 		height = this._getPosition( bottom.get(0) ).top + bottom.outerHeight() - top;
-		wIdth  = this._getPosition( right.get(0) ).left + right.outerWIdth() - left;
+		width  = this._getPosition( right.get(0) ).left + right.outerWidth() - left;
 
 		var select = this.dom.select;
 		select.top.css( {
 			top: top,
 			left: left,
-			wIdth: wIdth
+			width: width
 		} );
 
 		select.left.css( {
@@ -410,12 +410,12 @@ $.extend( AutoFill.prototype, {
 		select.bottom.css( {
 			top: top + height,
 			left: left,
-			wIdth: wIdth
+			width: width
 		} );
 
 		select.right.css( {
 			top: top,
-			left: left + wIdth,
+			left: left + width,
 			height: height
 		} );
 	},
@@ -439,7 +439,7 @@ $.extend( AutoFill.prototype, {
 		}
 
 		// Build the object structure for Editor's multi-row editing
-		var IdValues = {};
+		var idValues = {};
 		var nodes = [];
 		var fields = editor.fields();
 
@@ -472,12 +472,12 @@ $.extend( AutoFill.prototype, {
 						'Please see https://datatables.net/tn/11';
 				}
 
-				if ( ! IdValues[ fieldName ] ) {
-					IdValues[ fieldName ] = {};
+				if ( ! idValues[ fieldName ] ) {
+					idValues[ fieldName ] = {};
 				}
 
-				var Id = dt.row( cell.index.row ).Id();
-				IdValues[ fieldName ][ Id ] = cell.set;
+				var id = dt.row( cell.index.row ).id();
+				idValues[ fieldName ][ id ] = cell.set;
 
 				// Keep a list of cells so we can activate the bubble editing
 				// with them
@@ -489,7 +489,7 @@ $.extend( AutoFill.prototype, {
 		// the cells to be edited, rather than using full rows
 		editor
 			.bubble( nodes, false )
-			.multiSet( IdValues )
+			.multiSet( idValues )
 			.submit();
 	},
 
@@ -603,8 +603,8 @@ $.extend( AutoFill.prototype, {
 			// jQuery doesn't give a `table` as the offset parent oddly, so use DOM directly
 			currOffsetParent = $( currNode.offsetParent );
 
-			top += positionTop + parseInt( currOffsetParent.css('border-top-wIdth') || 0 ) * 1;
-			left += positionLeft + parseInt( currOffsetParent.css('border-left-wIdth') || 0 ) * 1;
+			top += positionTop + parseInt( currOffsetParent.css('border-top-width') || 0 ) * 1;
+			left += positionLeft + parseInt( currOffsetParent.css('border-left-width') || 0 ) * 1;
 
 			// Emergency fall back. Shouldn't happen, but just in case!
 			if ( currNode.nodeName.toLowerCase() === 'body' ) {
@@ -664,11 +664,11 @@ $.extend( AutoFill.prototype, {
 		var scrollWrapper = this.dom.dtScroll;
 		this.s.scroll = {
 			windowHeight: $(window).height(),
-			windowWIdth:  $(window).wIdth(),
+			windowWidth:  $(window).width(),
 			dtTop:        scrollWrapper ? scrollWrapper.offset().top : null,
 			dtLeft:       scrollWrapper ? scrollWrapper.offset().left : null,
 			dtHeight:     scrollWrapper ? scrollWrapper.outerHeight() : null,
-			dtWIdth:      scrollWrapper ? scrollWrapper.outerWIdth() : null
+			dtWidth:      scrollWrapper ? scrollWrapper.outerWidth() : null
 		};
 	},
 
@@ -725,7 +725,7 @@ $.extend( AutoFill.prototype, {
 
 		var startDt = dt.cell( ':eq('+start.row+')', start.column+':visible', {page:'current'} );
 
-		// If Editor is active insIde this cell (inline editing) we need to wait for Editor to
+		// If Editor is active inside this cell (inline editing) we need to wait for Editor to
 		// submit and then we can loop back and trigger the fill.
 		if ( $('div.DTE', startDt.node()).length ) {
 			var editor = dt.editor();
@@ -859,7 +859,7 @@ $.extend( AutoFill.prototype, {
 		if ( windowX < buffer ) {
 			windowHoriz = scrollSpeed * -1;
 		}
-		else if ( windowX > scroll.windowWIdth - buffer ) {
+		else if ( windowX > scroll.windowWidth - buffer ) {
 			windowHoriz = scrollSpeed;
 		}
 
@@ -875,14 +875,14 @@ $.extend( AutoFill.prototype, {
 		if ( scroll.dtLeft !== null && e.pageX < scroll.dtLeft + buffer ) {
 			dtHoriz = scrollSpeed * -1;
 		}
-		else if ( scroll.dtLeft !== null && e.pageX > scroll.dtLeft + scroll.dtWIdth - buffer ) {
+		else if ( scroll.dtLeft !== null && e.pageX > scroll.dtLeft + scroll.dtWidth - buffer ) {
 			dtHoriz = scrollSpeed;
 		}
 
 		// This is where it gets interesting. We want to continue scrolling
 		// without requiring a mouse move, so we need an interval to be
 		// triggered. The interval should continue until it is no longer needed,
-		// but it must also use the latest scroll commands (for example consIder
+		// but it must also use the latest scroll commands (for example consider
 		// that the mouse might move from scrolling up to scrolling left, all
 		// with the same interval running. We use the `scroll` object to "pass"
 		// this information to the interval. Can't use local variables as they
@@ -1117,7 +1117,7 @@ AutoFill.defaults = {
 	/** @type {string|null} What will trigger a focus */
 	focus: null, // focus, click, hover
 
-	/** @type {column-selector} Columns to provIde auto fill for */
+	/** @type {column-selector} Columns to provide auto fill for */
 	columns: '', // all
 
 	/** @type {Boolean} Enable AutoFill on load */

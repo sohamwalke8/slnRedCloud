@@ -72,12 +72,12 @@ $.extend( DataTable.ext.buttons, {
 		return buttonConf;
 	},
 
-	// Selected columns with indivIdual buttons - toggle column visibility
+	// Selected columns with individual buttons - toggle column visibility
 	columnsToggle: function ( dt, conf ) {
-		var columns = dt.columns( conf.columns ).indexes().map( function ( Idx ) {
+		var columns = dt.columns( conf.columns ).indexes().map( function ( idx ) {
 			return {
 				extend: 'columnToggle',
-				columns: Idx,
+				columns: idx,
 				columnText: conf.columnText
 			};
 		} ).toArray();
@@ -94,12 +94,12 @@ $.extend( DataTable.ext.buttons, {
 		};
 	},
 
-	// Selected columns with indivIdual buttons - set column visibility
+	// Selected columns with individual buttons - set column visibility
 	columnsVisibility: function ( dt, conf ) {
-		var columns = dt.columns( conf.columns ).indexes().map( function ( Idx ) {
+		var columns = dt.columns( conf.columns ).indexes().map( function ( idx ) {
 			return {
 				extend: 'columnVisibility',
-				columns: Idx,
+				columns: idx,
 				visibility: conf.visibility,
 				columnText: conf.columnText
 			};
@@ -126,7 +126,7 @@ $.extend( DataTable.ext.buttons, {
 		},
 		init: function ( dt, button, conf ) {
 			var that = this;
-			button.attr( 'data-cv-Idx', conf.columns );
+			button.attr( 'data-cv-idx', conf.columns );
 
 			dt
 				.on( 'column-visibility.dt'+conf.namespace, function (e, settings) {
@@ -165,11 +165,11 @@ $.extend( DataTable.ext.buttons, {
 			// is a public API. The other option is to use
 			// `$( column(col).node() ).text()` but the node might not have been
 			// populated when Buttons is constructed.
-			var Idx = dt.column( conf.columns ).index();
-			var title = dt.settings()[0].aoColumns[ Idx ].sTitle;
+			var idx = dt.column( conf.columns ).index();
+			var title = dt.settings()[0].aoColumns[ idx ].sTitle;
 
 			if (! title) {
-				title = dt.column(Idx).header().innerHTML;
+				title = dt.column(idx).header().innerHTML;
 			}
 
 			title = title
@@ -181,7 +181,7 @@ $.extend( DataTable.ext.buttons, {
 				.replace(/^\s+|\s+$/g,""); // trim
 
 			return conf.columnText ?
-				conf.columnText( dt, Idx, title ) :
+				conf.columnText( dt, idx, title ) :
 				title;
 		}
 	},
@@ -195,8 +195,8 @@ $.extend( DataTable.ext.buttons, {
 		},
 
 		init: function ( dt, button, conf ) {
-			conf._visOriginal = dt.columns().indexes().map( function ( Idx ) {
-				return dt.column( Idx ).visible();
+			conf._visOriginal = dt.columns().indexes().map( function ( idx ) {
+				return dt.column( idx ).visible();
 			} ).toArray();
 		},
 
@@ -204,11 +204,11 @@ $.extend( DataTable.ext.buttons, {
 			dt.columns().every( function ( i ) {
 				// Take into account that ColReorder might have disrupted our
 				// indexes
-				var Idx = dt.colReorder && dt.colReorder.transpose ?
+				var idx = dt.colReorder && dt.colReorder.transpose ?
 					dt.colReorder.transpose( i, 'toOriginal' ) :
 					i;
 
-				this.visible( conf._visOriginal[ Idx ] );
+				this.visible( conf._visOriginal[ idx ] );
 			} );
 		}
 	},
@@ -219,14 +219,14 @@ $.extend( DataTable.ext.buttons, {
 
 		action: function ( e, dt, button, conf ) {
 			dt.columns( conf.show ).visible( true, false );
-			dt.columns( conf.hIde ).visible( false, false );
+			dt.columns( conf.hide ).visible( false, false );
 
 			dt.columns.adjust();
 		},
 
 		show: [],
 
-		hIde: []
+		hide: []
 	}
 } );
 

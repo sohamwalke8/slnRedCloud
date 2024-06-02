@@ -3,7 +3,7 @@ layout: page
 title: Layout Plugin
 ---
 
-The layout plugin manages the layout in case of css failure to reset the height or wIdth of the content.
+The layout plugin manages the layout in case of css failure to reset the height or width of the content.
 
 ##### Usage
 This plugin is activated automatically upon window load.
@@ -14,8 +14,8 @@ This plugin is activated automatically upon window load.
 |---
 | Name | Type | Default | Description
 |-|-|-|-
-|scrollbarTheme | String | `os-theme-light` | Scrollbar Theme used while SIdeBar Fixed
-|scrollbarAutoHIde | String | `l` | Scrollbar auto-hIde trigger
+|scrollbarTheme | String | `os-theme-light` | Scrollbar Theme used while SideBar Fixed
+|scrollbarAutoHide | String | `l` | Scrollbar auto-hide trigger
 |panelAutoHeight | Boolean\|Numeric | true | Panel Height Correction (`true` = default correction on load/resize; numeric = offset the correction on load/resize)
 |panelAutoHeightMode | String | `min-height` | Panel Height Mode (`min-height` = sets the `min-height`-attribute to the content-wrapper; `height` = sets `height`-attribute to the content-wrapper)
 |preloadDuration | Integer | 200 | Preloader Duration (Set in milliseconds)
@@ -26,7 +26,7 @@ This plugin is activated automatically upon window load.
 > ##### Tip!
 > You can use any option via the data-attributes like this.
 > ```html
-> <body data-scrollbar-auto-hIde="n">...</body>
+> <body data-scrollbar-auto-hide="n">...</body>
 > ```
 {: .quote-info}
 
@@ -36,7 +36,7 @@ This plugin is activated automatically upon window load.
 |---
 | Method | Description
 |-|-
-|fixLayoutHeight | Fix the content / control sIdebar height and activates OverlayScrollbars for sIdebar / control sIdebar
+|fixLayoutHeight | Fix the content / control sidebar height and activates OverlayScrollbars for sidebar / control sidebar
 |fixLoginRegisterHeight | Fix the login & register body height
 {: .table .table-bordered .bg-light}
 

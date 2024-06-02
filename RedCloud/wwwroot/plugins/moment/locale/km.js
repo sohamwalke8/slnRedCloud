@@ -55,11 +55,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd, D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /ព្រឹក|ល្ងាច/,
+        meridiemParse: /ព្រឹក|ល្ងាច/,
         isPM: function (input) {
             return input === 'ល្ងាច';
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'ព្រឹក';
             } else {

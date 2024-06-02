@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valIdate"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -9,10 +9,10 @@
 }(function( $ ) {
 
 /*
- * Translated default messages for the jQuery valIdation plugin.
+ * Translated default messages for the jQuery validation plugin.
  * Locale: HE (Hebrew; עברית)
  */
-$.extend( $.valIdator.messages, {
+$.extend( $.validator.messages, {
 	required: "השדה הזה הינו שדה חובה",
 	remote: "נא לתקן שדה זה",
 	email: "נא למלא כתובת דוא\"ל חוקית",
@@ -24,12 +24,12 @@ $.extend( $.valIdator.messages, {
 	creditcard: "נא למלא מספר כרטיס אשראי חוקי",
 	equalTo: "נא למלא את אותו ערך שוב",
 	extension: "נא למלא ערך עם סיומת חוקית",
-	maxlength: $.valIdator.format( ".נא לא למלא יותר מ- {0} תווים" ),
-	minlength: $.valIdator.format( "נא למלא לפחות {0} תווים" ),
-	rangelength: $.valIdator.format( "נא למלא ערך בין {0} ל- {1} תווים" ),
-	range: $.valIdator.format( "נא למלא ערך בין {0} ל- {1}" ),
-	max: $.valIdator.format( "נא למלא ערך קטן או שווה ל- {0}" ),
-	min: $.valIdator.format( "נא למלא ערך גדול או שווה ל- {0}" )
+	maxlength: $.validator.format( ".נא לא למלא יותר מ- {0} תווים" ),
+	minlength: $.validator.format( "נא למלא לפחות {0} תווים" ),
+	rangelength: $.validator.format( "נא למלא ערך בין {0} ל- {1} תווים" ),
+	range: $.validator.format( "נא למלא ערך בין {0} ל- {1}" ),
+	max: $.validator.format( "נא למלא ערך קטן או שווה ל- {0}" ),
+	min: $.validator.format( "נא למלא ערך גדול או שווה ל- {0}" )
 } );
 return $;
 }));

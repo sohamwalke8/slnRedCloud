@@ -57,11 +57,11 @@
             LLL: 'YYYY оны MMMMын D HH:mm',
             LLLL: 'dddd, YYYY оны MMMMын D HH:mm',
         },
-        merIdiemParse: /ҮӨ|ҮХ/i,
+        meridiemParse: /ҮӨ|ҮХ/i,
         isPM: function (input) {
             return input === 'ҮХ';
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'ҮӨ';
             } else {

@@ -1,13 +1,13 @@
 ---
 layout: page
-title: Main SIdebar Component
+title: Main Sidebar Component
 ---
 
-The sIdebar used in this page to the left provIdes an example of what your sIdebar would look like. Construction of a sIdebar: 
+The sidebar used in this page to the left provides an example of what your sidebar would look like. Construction of a sidebar: 
 
 ```html
-<!-- Main SIdebar Container -->
-<asIde class="main-sIdebar sIdebar-dark-primary elevation-4">
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="index3.html" class="brand-link">
     <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
@@ -15,9 +15,9 @@ The sIdebar used in this page to the left provIdes an example of what your sIdeb
     <span class="brand-text font-weight-light">AdminLTE 3</span>
   </a>
 
-  <!-- SIdebar -->
-  <div class="sIdebar">
-    <!-- SIdebar user panel (optional) -->
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
@@ -27,9 +27,9 @@ The sIdebar used in this page to the left provIdes an example of what your sIdeb
       </div>
     </div>
 
-    <!-- SIdebar Menu -->
+    <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sIdebar flex-column" data-wIdget="treeview" role="menu">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item menu-open">
@@ -66,10 +66,10 @@ The sIdebar used in this page to the left provIdes an example of what your sIdeb
         </li>
       </ul>
     </nav>
-    <!-- /.sIdebar-menu -->
+    <!-- /.sidebar-menu -->
   </div>
-  <!-- /.sIdebar -->
-</asIde>
+  <!-- /.sidebar -->
+</aside>
 ```
 {: .max-height-300}
 
@@ -90,7 +90,7 @@ Based on the example above, you can replace `.brand-image-xl` on `.logo-xs` with
 
 #### Brand with Pushmenu Button
 
-You can place the pushmenu button insIde the brand, simply replace the brand-link code with the code below:
+You can place the pushmenu button inside the brand, simply replace the brand-link code with the code below:
 
 ```html
 <div class="brand-link d-flex justify-content-between align-items-center">
@@ -98,20 +98,20 @@ You can place the pushmenu button insIde the brand, simply replace the brand-lin
     <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
     <span class="brand-text font-weight-light">AdminLTE 3</span>
   </a>
-  <a class="pushmenu" data-wIdget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+  <a class="pushmenu" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 </div>
 ```
 
-#### Search Form in SIdebar
+#### Search Form in Sidebar
 
-You can add this code above user-panel or nav-sIdebar:
+You can add this code above user-panel or nav-sidebar:
 
 ```html
 <form class="form-inline">
   <div class="input-group">
-    <input class="form-control form-control-sIdebar" type="search" placeholder="Search" aria-label="Search">
+    <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
     <div class="input-group-append">
-      <button class="btn btn-sIdebar" type="submit">
+      <button class="btn btn-sidebar" type="submit">
         <i class="fas fa-search"></i>
       </button>
     </div>
@@ -121,29 +121,29 @@ You can add this code above user-panel or nav-sIdebar:
 {: .max-height-300}
 
 
-#### SIdebar Custom Area
+#### Sidebar Custom Area
 
-You can add a Custom Area insIde the SIdebar to display extra buttons or text below your menu entries.
+You can add a Custom Area inside the Sidebar to display extra buttons or text below your menu entries.
 
-You can simply add this code after the `div.sIdebar`:
+You can simply add this code after the `div.sidebar`:
 
 ```html
-<div class="sIdebar-custom">
+<div class="sidebar-custom">
   <a href="#" class="btn btn-link"><i class="fas fa-cogs"></i></a>
-  <a href="#" class="btn btn-secondary hIde-on-collapse pos-right">Help</a>
+  <a href="#" class="btn btn-secondary hide-on-collapse pos-right">Help</a>
 </div>
 ```
 
 > ##### Warning!
-> The SIdebar Custom Area works only with `.layout-fixed` enabled.
+> The Sidebar Custom Area works only with `.layout-fixed` enabled.
 {: .quote-warning}
 
 
 #### Additional Classes
 
-##### SIdebar
+##### Sidebar
 
-- `.sIdebar-no-expand` Disables Auto Expand on Hover/Focus
+- `.sidebar-no-expand` Disables Auto Expand on Hover/Focus
 
 ##### Navbar
 
@@ -151,11 +151,11 @@ You can simply add this code after the `div.sIdebar`:
 - `.nav-compact` Compact nav items
 - `.nav-flat` Flat nav style
 - `.nav-legacy` Legacy v2 nav style
-- `.nav-collapse-hIde-child` HIde nav item submenus on collapsed sIdebar
+- `.nav-collapse-hide-child` Hide nav item submenus on collapsed sidebar
 
 
 > ##### Tip!
-> You can also use `.text-sm` on `.nav-sIdebar` or `.brand-link` for smaller font.
+> You can also use `.text-sm` on `.nav-sidebar` or `.brand-link` for smaller font.
 {: .quote-info}
 
-For more information about the JS part of the sIdebar, please visit the [PushMenu plugin page]({% link javascript/push-menu.md %})
+For more information about the JS part of the sidebar, please visit the [PushMenu plugin page]({% link javascript/push-menu.md %})

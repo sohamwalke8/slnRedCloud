@@ -64,10 +64,10 @@ namespace RedCloud.Services
         ///
 
         [HttpGet]
-        public async Task<IEnumerable<ResellerAdminUserVM>> GetallResellerAdmin()
+        public async Task<IEnumerable<ReSellerAdmindto>> GetallResellerAdmin()
         {
             _logger.LogInformation("GetAllCategories Service initiated");
-            var reSelleradmin = await _client.GetAllAsync("ResellerAdminUser/all");
+            var reSelleradmin = await _adminuserd.GetAllAsync("ResellerAdminUser/all");
             _logger.LogInformation("GetAllCategories Service conpleted");
             return reSelleradmin.Data;
         }

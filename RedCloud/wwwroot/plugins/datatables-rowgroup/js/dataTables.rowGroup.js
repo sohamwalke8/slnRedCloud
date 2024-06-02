@@ -213,7 +213,7 @@ $.extend( RowGroup.prototype, {
 	/**
 	 * Get the grouping information from a data set (index) of rows
 	 * @param {number} level Nesting level
-	 * @param {DataTables.Api} rows API of the rows to consIder for this group
+	 * @param {DataTables.Api} rows API of the rows to consider for this group
 	 * @returns {object[]} Nested grouping information - it is structured like this:
 	 *	{
 	 *		dataPoint: 'Edinburgh',

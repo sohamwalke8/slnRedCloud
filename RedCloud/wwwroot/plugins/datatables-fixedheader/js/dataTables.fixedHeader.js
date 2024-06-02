@@ -76,7 +76,7 @@ var FixedHeader = function ( dt, config ) {
 			tbodyTop: 0,
 			tfootTop: 0,
 			tfootBottom: 0,
-			wIdth: 0,
+			width: 0,
 			left: 0,
 			tfootHeight: 0,
 			theadHeight: 0,
@@ -85,7 +85,7 @@ var FixedHeader = function ( dt, config ) {
 		},
 		headerMode: null,
 		footerMode: null,
-		autoWIdth: dt.settings()[0].oFeatures.bAutoWIdth,
+		autoWidth: dt.settings()[0].oFeatures.bAutoWidth,
 		namespace: '.dtfc'+(_instCounter++),
 		scrollLeft: {
 			header: -1,
@@ -118,7 +118,7 @@ var FixedHeader = function ( dt, config ) {
 
 	var dtSettings = dt.settings()[0];
 	if ( dtSettings._fixedHeader ) {
-		throw "FixedHeader already initialised on table "+dtSettings.nTable.Id;
+		throw "FixedHeader already initialised on table "+dtSettings.nTable.id;
 	}
 
 	dtSettings._fixedHeader = this;
@@ -331,19 +331,19 @@ $.extend( FixedHeader.prototype, {
 			var scrollEnabled = this._scrollEnabled();
 
 			itemDom.floating = $( dt.table().node().cloneNode( false ) )
-				.attr( 'aria-hIdden', 'true' )
+				.attr( 'aria-hidden', 'true' )
 				.css({
 					'table-layout': 'fixed',
 					top: 0,
 					left: 0
 				})
-				.removeAttr( 'Id' )
+				.removeAttr( 'id' )
 				.append( itemElement );
 
 			itemDom.floatingParent
 				.css({
-					wIdth: scrollBody.wIdth(),
-					overflow: 'hIdden',
+					width: scrollBody.width(),
+					overflow: 'hidden',
 					height: 'fit-content',
 					position: 'fixed',
 					left: scrollEnabled ? tableNode.offset().left + scrollBody.scrollLeft() : 0
@@ -377,13 +377,13 @@ $.extend( FixedHeader.prototype, {
 			// Insert a fake thead/tfoot into the DataTable to stop it jumping around
 			itemDom.placeholder = itemElement.clone( false );
 			itemDom.placeholder
-				.find( '*[Id]' )
-				.removeAttr( 'Id' );
+				.find( '*[id]' )
+				.removeAttr( 'id' );
 
 			itemDom.host.prepend( itemDom.placeholder );
 
-			// Clone wIdths
-			this._matchWIdths( itemDom.placeholder, itemDom.floating );
+			// Clone widths
+			this._matchWidths( itemDom.placeholder, itemDom.floating );
 		}
 	},
 
@@ -403,12 +403,12 @@ $.extend( FixedHeader.prototype, {
 					var right = $(this).css('right');
 					var left = $(this).css('left');
 					if (right !== 'auto' && !rtl) {
-						// New position either adds or dismisses the barWIdth
-						var potential = +right.replace(/px/g, '') + (sign === '-' ? -1 : 1) * that.s.dt.settings()[0].oBrowser.barWIdth;
+						// New position either adds or dismisses the barWidth
+						var potential = +right.replace(/px/g, '') + (sign === '-' ? -1 : 1) * that.s.dt.settings()[0].oBrowser.barWidth;
 						$(this).css('right', potential > 0 ? potential : 0);
 					}
 					else if(left !== 'auto' && rtl) {
-						var potential = +left.replace(/px/g, '') + (sign === '-' ? -1 : 1) * that.s.dt.settings()[0].oBrowser.barWIdth;
+						var potential = +left.replace(/px/g, '') + (sign === '-' ? -1 : 1) * that.s.dt.settings()[0].oBrowser.barWidth;
 						$(this).css('left', potential > 0 ? potential : 0);
 					}
 				}
@@ -417,44 +417,44 @@ $.extend( FixedHeader.prototype, {
 	},
 
 	/**
-	 * Copy wIdths from the cells in one element to another. This is required
+	 * Copy widths from the cells in one element to another. This is required
 	 * for the footer as the footer in the main table takes its sizes from the
 	 * header columns. That isn't present in the footer so to have it still
 	 * align correctly, the sizes need to be copied over. It is also required
-	 * for the header when auto wIdth is not enabled
+	 * for the header when auto width is not enabled
 	 *
-	 * @param  {jQuery} from Copy wIdths from
-	 * @param  {jQuery} to   Copy wIdths to
+	 * @param  {jQuery} from Copy widths from
+	 * @param  {jQuery} to   Copy widths to
 	 * @private
 	 */
-	_matchWIdths: function ( from, to ) {
+	_matchWidths: function ( from, to ) {
 		var get = function ( name ) {
 			return $(name, from)
 				.map( function () {
-					return $(this).css('wIdth').replace(/[^\d\.]/g, '') * 1;
+					return $(this).css('width').replace(/[^\d\.]/g, '') * 1;
 				} ).toArray();
 		};
 
-		var set = function ( name, toWIdths ) {
+		var set = function ( name, toWidths ) {
 			$(name, to).each( function ( i ) {
 				$(this).css( {
-					wIdth: toWIdths[i],
-					minWIdth: toWIdths[i]
+					width: toWidths[i],
+					minWidth: toWidths[i]
 				} );
 			} );
 		};
 
-		var thWIdths = get( 'th' );
-		var tdWIdths = get( 'td' );
+		var thWidths = get( 'th' );
+		var tdWidths = get( 'td' );
 
-		set( 'th', thWIdths );
-		set( 'td', tdWIdths );
+		set( 'th', thWidths );
+		set( 'td', tdWidths );
 	},
 
 	/**
-	 * Remove assigned wIdths from the cells in an element. This is required
+	 * Remove assigned widths from the cells in an element. This is required
 	 * when inserting the footer back into the main table so the size is defined
-	 * by the header columns and also when auto wIdth is disabled in the
+	 * by the header columns and also when auto width is disabled in the
 	 * DataTable.
 	 *
 	 * @param  {string} item The `header` or `footer`
@@ -463,14 +463,14 @@ $.extend( FixedHeader.prototype, {
 	_unsize: function ( item ) {
 		var el = this.dom[ item ].floating;
 
-		if ( el && (item === 'footer' || (item === 'header' && ! this.s.autoWIdth)) ) {
+		if ( el && (item === 'footer' || (item === 'header' && ! this.s.autoWidth)) ) {
 			$('th, td', el).css( {
-				wIdth: '',
-				minWIdth: ''
+				width: '',
+				minWidth: ''
 			} );
 		}
 		else if ( el && item === 'header' ) {
-			$('th, td', el).css( 'min-wIdth', '' );
+			$('th, td', el).css( 'min-width', '' );
 		}
 	},
 
@@ -531,15 +531,15 @@ $.extend( FixedHeader.prototype, {
 		}		
 
 		// It isn't trivial to add a !important css attribute...
-		var importantWIdth = function (w) {
+		var importantWidth = function (w) {
 			itemDom.floating.attr('style', function(i,s) {
-				return (s || '') + 'wIdth: '+w+'px !important;';
+				return (s || '') + 'width: '+w+'px !important;';
 			});
 
 			// If not scrolling also have to update the floatingParent
 			if (!scrollEnabled) {
 				itemDom.floatingParent.attr('style', function(i,s) {
-					return (s || '') + 'wIdth: '+w+'px !important;';
+					return (s || '') + 'width: '+w+'px !important;';
 				});
 			}
 		};
@@ -619,7 +619,7 @@ $.extend( FixedHeader.prototype, {
 				})
 				.append(itemDom.floating);
 
-			importantWIdth(position.wIdth);
+			importantWidth(position.width);
 
 			if ( item === 'footer' ) {
 				itemDom.floating.css( 'top', '' );
@@ -636,7 +636,7 @@ $.extend( FixedHeader.prototype, {
 				left: position.left+'px'
 			});
 
-			importantWIdth(position.wIdth);
+			importantWidth(position.width);
 		}
 		else if ( mode === 'above' ) { // only used for the footer
 			// Fix the position of the floating footer at top of the table body
@@ -649,7 +649,7 @@ $.extend( FixedHeader.prototype, {
 				left: position.left+'px'
 			});
 
-			importantWIdth(position.wIdth);
+			importantWidth(position.width);
 		}
 
 		// Restore focus if it was lost
@@ -688,7 +688,7 @@ $.extend( FixedHeader.prototype, {
 		var scrollBody = tableNode.parent();
 
 		position.visible = tableNode.is(':visible');
-		position.wIdth = tableNode.outerWIdth();
+		position.width = tableNode.outerWidth();
 		position.left = tableNode.offset().left;
 		position.theadTop = thead.offset().top;
 		position.tbodyTop = scrollEnabled ? scrollBody.offset().top : tbody.offset().top;
@@ -739,7 +739,7 @@ $.extend( FixedHeader.prototype, {
 		var bodyTop = (scrollEnabled ? scrollOffset.top : position.tbodyTop);
 		var bodyLeft = (scrollEnabled ? scrollOffset.left : position.left);
 		var bodyBottom = (scrollEnabled ? scrollOffset.top + scrollHeight : position.tfootTop);
-		var bodyWIdth = (scrollEnabled ? scrollBody.outerWIdth() : position.tbodyWIdth);
+		var bodyWidth = (scrollEnabled ? scrollBody.outerWidth() : position.tbodyWidth);
 
 		var windowBottom = windowTop + windowHeight;
 
@@ -865,7 +865,7 @@ $.extend( FixedHeader.prototype, {
 				if(Math.round(scrollBody.outerHeight()) >= Math.round(newHeight)) {
 					$(this.dom.tfoot.parent()).addClass("fixedHeader-floating");
 				}
-				// Otherwise max-wIdth has kicked in so it is not floating
+				// Otherwise max-width has kicked in so it is not floating
 				else {
 					$(this.dom.tfoot.parent()).removeClass("fixedHeader-floating");
 				}
@@ -883,9 +883,9 @@ $.extend( FixedHeader.prototype, {
 		// Cloning these is cleaner than creating as our own as it will keep consistency with fixedColumns automatically
 		// ASSUMING that the class remains the same
 		if (this.s.dt.settings()[0]._fixedColumns !== undefined) {
-			var adjustBlocker = (sIde, end, el) => {
+			var adjustBlocker = (side, end, el) => {
 				if (el === undefined) {
-					let blocker = $('div.dtfc-'+sIde+'-'+end+'-blocker');
+					let blocker = $('div.dtfc-'+side+'-'+end+'-blocker');
 					el = blocker.length === 0 ?
 						null :
 						blocker.clone().appendTo('body').css('z-index', 1);
@@ -893,7 +893,7 @@ $.extend( FixedHeader.prototype, {
 				if(el !== null) {
 					el.css({
 						top: end === 'top' ? header.offset.top : footer.offset.top,
-						left: sIde === 'right' ? bodyLeft + bodyWIdth - el.wIdth() : bodyLeft
+						left: side === 'right' ? bodyLeft + bodyWidth - el.width() : bodyLeft
 					});
 				}
 

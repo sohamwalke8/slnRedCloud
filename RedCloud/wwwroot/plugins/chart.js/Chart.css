@@ -1,6 +1,6 @@
 /*
  * DOM element rendering detection
- * https://davIdwalsh.name/detect-node-insertion
+ * https://davidwalsh.name/detect-node-insertion
  */
 @keyframes chartjs-render-animation {
 	from { opacity: 0.99; }
@@ -24,15 +24,15 @@
 	top: 0;
 	right: 0;
 	bottom: 0;
-	overflow: hIdden;
+	overflow: hidden;
 	pointer-events: none;
-	visibility: hIdden;
+	visibility: hidden;
 	z-index: -1;
 }
 
 .chartjs-size-monitor-expand > div {
 	position: absolute;
-	wIdth: 1000000px;
+	width: 1000000px;
 	height: 1000000px;
 	left: 0;
 	top: 0;
@@ -40,7 +40,7 @@
 
 .chartjs-size-monitor-shrink > div {
 	position: absolute;
-	wIdth: 200%;
+	width: 200%;
 	height: 200%;
 	left: 0;
 	top: 0;

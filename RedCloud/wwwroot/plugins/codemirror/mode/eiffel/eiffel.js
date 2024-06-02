@@ -68,7 +68,7 @@ CodeMirror.defineMode("eiffel", function() {
     'expanded',
     'deferred',
     'class',
-    'VoId',
+    'Void',
     'True',
     'Result',
     'Precursor',
@@ -103,11 +103,11 @@ CodeMirror.defineMode("eiffel", function() {
     } else if (/[0-9]/.test(ch)) {
       stream.eatWhile(/[xXbBCc0-9\.]/);
       stream.eat(/[\?\!]/);
-      return "Ident";
+      return "ident";
     } else if (/[a-zA-Z_0-9]/.test(ch)) {
       stream.eatWhile(/[a-zA-Z_0-9]/);
       stream.eat(/[\?\!]/);
-      return "Ident";
+      return "ident";
     } else if (/[=+\-\/*^%<>~]/.test(ch)) {
       stream.eatWhile(/[=+\-\/*^%<>~]/);
       return "operator";
@@ -137,7 +137,7 @@ CodeMirror.defineMode("eiffel", function() {
 
     token: function(stream, state) {
       var style = state.tokenize[state.tokenize.length-1](stream, state);
-      if (style == "Ident") {
+      if (style == "ident") {
         var word = stream.current();
         style = keywords.propertyIsEnumerable(stream.current()) ? "keyword"
           : operators.propertyIsEnumerable(stream.current()) ? "operator"

@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valIdate"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -9,10 +9,10 @@
 }(function( $ ) {
 
 /*
- * Translated default messages for the jQuery valIdation plugin.
+ * Translated default messages for the jQuery validation plugin.
  * Locale: KO (Korean; 한국어)
  */
-$.extend( $.valIdator.messages, {
+$.extend( $.validator.messages, {
 	required: "필수 항목입니다.",
 	remote: "항목을 수정하세요.",
 	email: "유효하지 않은 E-Mail주소입니다.",
@@ -24,12 +24,12 @@ $.extend( $.valIdator.messages, {
 	creditcard: "신용카드 번호가 바르지 않습니다.",
 	equalTo: "같은 값을 다시 입력하세요.",
 	extension: "올바른 확장자가 아닙니다.",
-	maxlength: $.valIdator.format( "{0}자를 넘을 수 없습니다. " ),
-	minlength: $.valIdator.format( "{0}자 이상 입력하세요." ),
-	rangelength: $.valIdator.format( "문자 길이가 {0} 에서 {1} 사이의 값을 입력하세요." ),
-	range: $.valIdator.format( "{0} 에서 {1} 사이의 값을 입력하세요." ),
-	max: $.valIdator.format( "{0} 이하의 값을 입력하세요." ),
-	min: $.valIdator.format( "{0} 이상의 값을 입력하세요." )
+	maxlength: $.validator.format( "{0}자를 넘을 수 없습니다. " ),
+	minlength: $.validator.format( "{0}자 이상 입력하세요." ),
+	rangelength: $.validator.format( "문자 길이가 {0} 에서 {1} 사이의 값을 입력하세요." ),
+	range: $.validator.format( "{0} 에서 {1} 사이의 값을 입력하세요." ),
+	max: $.validator.format( "{0} 이하의 값을 입력하세요." ),
+	min: $.validator.format( "{0} 이상의 값을 입력하세요." )
 } );
 return $;
 }));

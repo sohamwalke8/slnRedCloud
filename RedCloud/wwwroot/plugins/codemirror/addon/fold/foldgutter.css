@@ -6,7 +6,7 @@
   cursor: pointer;
 }
 .CodeMirror-foldgutter {
-  wIdth: .7em;
+  width: .7em;
 }
 .CodeMirror-foldgutter-open,
 .CodeMirror-foldgutter-folded {

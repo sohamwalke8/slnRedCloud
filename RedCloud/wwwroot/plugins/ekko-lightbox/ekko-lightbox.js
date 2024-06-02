@@ -20,7 +20,7 @@ var Lightbox = (function ($) {
 	var Default = {
 		title: '',
 		footer: '',
-		maxWIdth: 9999,
+		maxWidth: 9999,
 		maxHeight: 9999,
 		showArrows: true, //display the left / right arrows or not
 		wrapping: true, //if true, gallery loops infinitely
@@ -37,8 +37,8 @@ var Lightbox = (function ($) {
 		doc: document, // if in an iframe can specify top.document
 		onShow: function onShow() {},
 		onShown: function onShown() {},
-		onHIde: function onHIde() {},
-		onHIdden: function onHIdden() {},
+		onHide: function onHide() {},
+		onHidden: function onHidden() {},
 		onNavigate: function onNavigate() {},
 		onContentLoaded: function onContentLoaded() {}
 	};
@@ -64,7 +64,7 @@ var Lightbox = (function ($) {
     _galleryName: Name of the current data('gallery') showing
     _galleryIndex: The current index of the _$galleryItems being shown
    	 _config: {} the options for the modal
-    _modalId: unique Id for the current lightbox
+    _modalId: unique id for the current lightbox
     _padding / _border: CSS properties for the modal container; these are used to calculate the available space for the content
    	 */
 
@@ -86,7 +86,7 @@ var Lightbox = (function ($) {
 			this._border = null;
 			this._titleIsShown = false;
 			this._footerIsShown = false;
-			this._wantedWIdth = 0;
+			this._wantedWidth = 0;
 			this._wantedHeight = 0;
 			this._touchstartX = 0;
 			this._touchendX = 0;
@@ -97,13 +97,13 @@ var Lightbox = (function ($) {
 			this._isBootstrap3 = $.fn.modal.Constructor.VERSION[0] == 3;
 
 			var h4 = '<h4 class="modal-title">' + (this._config.title || "&nbsp;") + '</h4>';
-			var btn = '<button type="button" class="close" data-dismiss="modal" aria-label="' + this._config.strings.close + '"><span aria-hIdden="true">&times;</span></button>';
+			var btn = '<button type="button" class="close" data-dismiss="modal" aria-label="' + this._config.strings.close + '"><span aria-hidden="true">&times;</span></button>';
 
-			var header = '<div class="modal-header' + (this._config.title || this._config.alwaysShowClose ? '' : ' hIde') + '">' + (this._isBootstrap3 ? btn + h4 : h4 + btn) + '</div>';
-			var footer = '<div class="modal-footer' + (this._config.footer ? '' : ' hIde') + '">' + (this._config.footer || "&nbsp;") + '</div>';
+			var header = '<div class="modal-header' + (this._config.title || this._config.alwaysShowClose ? '' : ' hide') + '">' + (this._isBootstrap3 ? btn + h4 : h4 + btn) + '</div>';
+			var footer = '<div class="modal-footer' + (this._config.footer ? '' : ' hide') + '">' + (this._config.footer || "&nbsp;") + '</div>';
 			var body = '<div class="modal-body"><div class="ekko-lightbox-container"><div class="ekko-lightbox-item fade in show"></div><div class="ekko-lightbox-item fade"></div></div></div>';
 			var dialog = '<div class="modal-dialog" role="document"><div class="modal-content">' + header + body + footer + '</div></div>';
-			$(this._config.doc.body).append('<div Id="' + this._modalId + '" class="ekko-lightbox modal fade" tabindex="-1" tabindex="-1" role="dialog" aria-hIdden="true">' + dialog + '</div>');
+			$(this._config.doc.body).append('<div id="' + this._modalId + '" class="ekko-lightbox modal fade" tabindex="-1" tabindex="-1" role="dialog" aria-hidden="true">' + dialog + '</div>');
 
 			this._$modal = $('#' + this._modalId, this._config.doc);
 			this._$modalDialog = this._$modal.find('.modal-dialog').first();
@@ -145,17 +145,17 @@ var Lightbox = (function ($) {
 				_this._toggleLoading(true);
 				_this._handle();
 				return _this._config.onShown.call(_this);
-			}).on('hIde.bs.modal', this._config.onHIde.bind(this)).on('hIdden.bs.modal', function () {
+			}).on('hide.bs.modal', this._config.onHide.bind(this)).on('hidden.bs.modal', function () {
 				if (_this._galleryName) {
 					$(document).off('keydown.ekkoLightbox');
 					$(window).off('resize.ekkoLightbox');
 				}
 				_this._$modal.remove();
-				return _this._config.onHIdden.call(_this);
+				return _this._config.onHidden.call(_this);
 			}).modal(this._config);
 
 			$(window).on('resize.ekkoLightbox', function () {
-				_this._resize(_this._wantedWIdth, _this._wantedHeight);
+				_this._resize(_this._wantedWidth, _this._wantedHeight);
 			});
 			this._$lightboxContainer.on('touchstart', function () {
 				_this._touchstartX = event.changedTouches[0].screenX;
@@ -233,7 +233,7 @@ var Lightbox = (function ($) {
 		}, {
 			key: 'close',
 			value: function close() {
-				return this._$modal.modal('hIde');
+				return this._$modal.modal('hide');
 			}
 
 			// helper private methods
@@ -257,7 +257,7 @@ var Lightbox = (function ($) {
 				if (!type && this._getVimeoId(src)) type = 'vimeo';
 				if (!type && this._getInstagramId(src)) type = 'instagram';
 
-				if (!type || ['image', 'youtube', 'vimeo', 'instagram', 'vIdeo', 'url'].indexOf(type) < 0) type = 'url';
+				if (!type || ['image', 'youtube', 'vimeo', 'instagram', 'video', 'url'].indexOf(type) < 0) type = 'url';
 
 				return type;
 			}
@@ -299,7 +299,7 @@ var Lightbox = (function ($) {
 				var currentRemote = this._$element.attr('data-remote') || this._$element.attr('href');
 				var currentType = this._detectRemoteType(currentRemote, this._$element.attr('data-type') || false);
 
-				if (['image', 'youtube', 'vimeo', 'instagram', 'vIdeo', 'url'].indexOf(currentType) < 0) return this._error(this._config.strings.type);
+				if (['image', 'youtube', 'vimeo', 'instagram', 'video', 'url'].indexOf(currentType) < 0) return this._error(this._config.strings.type);
 
 				switch (currentType) {
 					case 'image':
@@ -307,16 +307,16 @@ var Lightbox = (function ($) {
 						this._preloadImageByIndex(this._galleryIndex, 3);
 						break;
 					case 'youtube':
-						this._showYoutubeVIdeo(currentRemote, $toUse);
+						this._showYoutubeVideo(currentRemote, $toUse);
 						break;
 					case 'vimeo':
-						this._showVimeoVIdeo(this._getVimeoId(currentRemote), $toUse);
+						this._showVimeoVideo(this._getVimeoId(currentRemote), $toUse);
 						break;
 					case 'instagram':
-						this._showInstagramVIdeo(this._getInstagramId(currentRemote), $toUse);
+						this._showInstagramVideo(this._getInstagramId(currentRemote), $toUse);
 						break;
-					case 'vIdeo':
-						this._showHtml5VIdeo(currentRemote, $toUse);
+					case 'video':
+						this._showHtml5Video(currentRemote, $toUse);
 						break;
 					default:
 						// url
@@ -364,10 +364,10 @@ var Lightbox = (function ($) {
 			key: '_calculateBorders',
 			value: function _calculateBorders() {
 				return {
-					top: this._totalCssByAttribute('border-top-wIdth'),
-					right: this._totalCssByAttribute('border-right-wIdth'),
-					bottom: this._totalCssByAttribute('border-bottom-wIdth'),
-					left: this._totalCssByAttribute('border-left-wIdth')
+					top: this._totalCssByAttribute('border-top-width'),
+					right: this._totalCssByAttribute('border-right-width'),
+					bottom: this._totalCssByAttribute('border-bottom-width'),
+					left: this._totalCssByAttribute('border-left-width')
 				};
 			}
 		}, {
@@ -406,58 +406,58 @@ var Lightbox = (function ($) {
 				return this;
 			}
 		}, {
-			key: '_showYoutubeVIdeo',
-			value: function _showYoutubeVIdeo(remote, $containerForElement) {
-				var Id = this._getYoutubeId(remote);
+			key: '_showYoutubeVideo',
+			value: function _showYoutubeVideo(remote, $containerForElement) {
+				var id = this._getYoutubeId(remote);
 				var query = remote.indexOf('&') > 0 ? remote.substr(remote.indexOf('&')) : '';
-				var wIdth = this._$element.data('wIdth') || 560;
-				var height = this._$element.data('height') || wIdth / (560 / 315);
-				return this._showVIdeoIframe('//www.youtube.com/embed/' + Id + '?badge=0&autoplay=1&html5=1' + query, wIdth, height, $containerForElement);
+				var width = this._$element.data('width') || 560;
+				var height = this._$element.data('height') || width / (560 / 315);
+				return this._showVideoIframe('//www.youtube.com/embed/' + id + '?badge=0&autoplay=1&html5=1' + query, width, height, $containerForElement);
 			}
 		}, {
-			key: '_showVimeoVIdeo',
-			value: function _showVimeoVIdeo(Id, $containerForElement) {
-				var wIdth = this._$element.data('wIdth') || 500;
-				var height = this._$element.data('height') || wIdth / (560 / 315);
-				return this._showVIdeoIframe(Id + '?autoplay=1', wIdth, height, $containerForElement);
+			key: '_showVimeoVideo',
+			value: function _showVimeoVideo(id, $containerForElement) {
+				var width = this._$element.data('width') || 500;
+				var height = this._$element.data('height') || width / (560 / 315);
+				return this._showVideoIframe(id + '?autoplay=1', width, height, $containerForElement);
 			}
 		}, {
-			key: '_showInstagramVIdeo',
-			value: function _showInstagramVIdeo(Id, $containerForElement) {
+			key: '_showInstagramVideo',
+			value: function _showInstagramVideo(id, $containerForElement) {
 				// instagram load their content into iframe's so this can be put straight into the element
-				var wIdth = this._$element.data('wIdth') || 612;
-				var height = wIdth + 80;
-				Id = Id.substr(-1) !== '/' ? Id + '/' : Id; // ensure Id has trailing slash
-				$containerForElement.html('<iframe wIdth="' + wIdth + '" height="' + height + '" src="' + Id + 'embed/" frameborder="0" allowfullscreen></iframe>');
-				this._resize(wIdth, height);
+				var width = this._$element.data('width') || 612;
+				var height = width + 80;
+				id = id.substr(-1) !== '/' ? id + '/' : id; // ensure id has trailing slash
+				$containerForElement.html('<iframe width="' + width + '" height="' + height + '" src="' + id + 'embed/" frameborder="0" allowfullscreen></iframe>');
+				this._resize(width, height);
 				this._config.onContentLoaded.call(this);
-				if (this._$modalArrows) //hIde the arrows when showing vIdeo
+				if (this._$modalArrows) //hide the arrows when showing video
 					this._$modalArrows.css('display', 'none');
 				this._toggleLoading(false);
 				return this;
 			}
 		}, {
-			key: '_showVIdeoIframe',
-			value: function _showVIdeoIframe(url, wIdth, height, $containerForElement) {
-				// should be used for vIdeos only. for remote content use loadRemoteContent (data-type=url)
-				height = height || wIdth; // default to square
-				$containerForElement.html('<div class="embed-responsive embed-responsive-16by9"><iframe wIdth="' + wIdth + '" height="' + height + '" src="' + url + '" frameborder="0" allowfullscreen class="embed-responsive-item"></iframe></div>');
-				this._resize(wIdth, height);
+			key: '_showVideoIframe',
+			value: function _showVideoIframe(url, width, height, $containerForElement) {
+				// should be used for videos only. for remote content use loadRemoteContent (data-type=url)
+				height = height || width; // default to square
+				$containerForElement.html('<div class="embed-responsive embed-responsive-16by9"><iframe width="' + width + '" height="' + height + '" src="' + url + '" frameborder="0" allowfullscreen class="embed-responsive-item"></iframe></div>');
+				this._resize(width, height);
 				this._config.onContentLoaded.call(this);
-				if (this._$modalArrows) this._$modalArrows.css('display', 'none'); //hIde the arrows when showing vIdeo
+				if (this._$modalArrows) this._$modalArrows.css('display', 'none'); //hide the arrows when showing video
 				this._toggleLoading(false);
 				return this;
 			}
 		}, {
-			key: '_showHtml5VIdeo',
-			value: function _showHtml5VIdeo(url, $containerForElement) {
-				// should be used for vIdeos only. for remote content use loadRemoteContent (data-type=url)
-				var wIdth = this._$element.data('wIdth') || 560;
-				var height = this._$element.data('height') || wIdth / (560 / 315);
-				$containerForElement.html('<div class="embed-responsive embed-responsive-16by9"><vIdeo wIdth="' + wIdth + '" height="' + height + '" src="' + url + '" preload="auto" autoplay controls class="embed-responsive-item"></vIdeo></div>');
-				this._resize(wIdth, height);
+			key: '_showHtml5Video',
+			value: function _showHtml5Video(url, $containerForElement) {
+				// should be used for videos only. for remote content use loadRemoteContent (data-type=url)
+				var width = this._$element.data('width') || 560;
+				var height = this._$element.data('height') || width / (560 / 315);
+				$containerForElement.html('<div class="embed-responsive embed-responsive-16by9"><video width="' + width + '" height="' + height + '" src="' + url + '" preload="auto" autoplay controls class="embed-responsive-item"></video></div>');
+				this._resize(width, height);
 				this._config.onContentLoaded.call(this);
-				if (this._$modalArrows) this._$modalArrows.css('display', 'none'); //hIde the arrows when showing vIdeo
+				if (this._$modalArrows) this._$modalArrows.css('display', 'none'); //hide the arrows when showing video
 				this._toggleLoading(false);
 				return this;
 			}
@@ -466,7 +466,7 @@ var Lightbox = (function ($) {
 			value: function _loadRemoteContent(url, $containerForElement) {
 				var _this3 = this;
 
-				var wIdth = this._$element.data('wIdth') || 560;
+				var width = this._$element.data('width') || 560;
 				var height = this._$element.data('height') || 560;
 
 				var disableExternalCheck = this._$element.data('disableExternalCheck') || false;
@@ -483,10 +483,10 @@ var Lightbox = (function ($) {
 					this._config.onContentLoaded.call(this);
 				}
 
-				if (this._$modalArrows) //hIde the arrows when remote content
+				if (this._$modalArrows) //hide the arrows when remote content
 					this._$modalArrows.css('display', 'none');
 
-				this._resize(wIdth, height);
+				this._resize(width, height);
 				return this;
 			}
 		}, {
@@ -545,15 +545,15 @@ var Lightbox = (function ($) {
 							loadingTimeout = null;
 							var image = $('<img />');
 							image.attr('src', img.src);
-							image.addClass('img-fluId');
+							image.addClass('img-fluid');
 
 							// backward compatibility for bootstrap v3
-							image.css('wIdth', '100%');
+							image.css('width', '100%');
 
 							$containerForImage.html(image);
 							if (_this4._$modalArrows) _this4._$modalArrows.css('display', ''); // remove display to default to css property
 
-							_this4._resize(img.wIdth, img.height);
+							_this4._resize(img.width, img.height);
 							_this4._toggleLoading(false);
 							return _this4._config.onContentLoaded.call(_this4);
 						};
@@ -579,27 +579,27 @@ var Lightbox = (function ($) {
 			}
 		}, {
 			key: '_resize',
-			value: function _resize(wIdth, height) {
+			value: function _resize(width, height) {
 
-				height = height || wIdth;
-				this._wantedWIdth = wIdth;
+				height = height || width;
+				this._wantedWidth = width;
 				this._wantedHeight = height;
 
-				var imageAspecRatio = wIdth / height;
+				var imageAspecRatio = width / height;
 
-				// if wIdth > the available space, scale down the expected wIdth and height
-				var wIdthBorderAndPadding = this._padding.left + this._padding.right + this._border.left + this._border.right;
+				// if width > the available space, scale down the expected width and height
+				var widthBorderAndPadding = this._padding.left + this._padding.right + this._border.left + this._border.right;
 
 				// force 10px margin if window size > 575px
-				var addMargin = this._config.doc.body.clientWIdth > 575 ? 20 : 0;
-				var discountMargin = this._config.doc.body.clientWIdth > 575 ? 0 : 20;
+				var addMargin = this._config.doc.body.clientWidth > 575 ? 20 : 0;
+				var discountMargin = this._config.doc.body.clientWidth > 575 ? 0 : 20;
 
-				var maxWIdth = Math.min(wIdth + wIdthBorderAndPadding, this._config.doc.body.clientWIdth - addMargin, this._config.maxWIdth);
+				var maxWidth = Math.min(width + widthBorderAndPadding, this._config.doc.body.clientWidth - addMargin, this._config.maxWidth);
 
-				if (wIdth + wIdthBorderAndPadding > maxWIdth) {
-					height = (maxWIdth - wIdthBorderAndPadding - discountMargin) / imageAspecRatio;
-					wIdth = maxWIdth;
-				} else wIdth = wIdth + wIdthBorderAndPadding;
+				if (width + widthBorderAndPadding > maxWidth) {
+					height = (maxWidth - widthBorderAndPadding - discountMargin) / imageAspecRatio;
+					width = maxWidth;
+				} else width = width + widthBorderAndPadding;
 
 				var headerHeight = 0,
 				    footerHeight = 0;
@@ -612,18 +612,18 @@ var Lightbox = (function ($) {
 
 				var borderPadding = this._padding.top + this._padding.bottom + this._border.bottom + this._border.top;
 
-				//calculated each time as resizing the window can cause them to change due to Bootstraps fluId margins
+				//calculated each time as resizing the window can cause them to change due to Bootstraps fluid margins
 				var margins = parseFloat(this._$modalDialog.css('margin-top')) + parseFloat(this._$modalDialog.css('margin-bottom'));
 
 				var maxHeight = Math.min(height, $(window).height() - borderPadding - margins - headerHeight - footerHeight, this._config.maxHeight - borderPadding - headerHeight - footerHeight);
 
 				if (height > maxHeight) {
-					// if height > the available height, scale down the wIdth
-					wIdth = Math.ceil(maxHeight * imageAspecRatio) + wIdthBorderAndPadding;
+					// if height > the available height, scale down the width
+					width = Math.ceil(maxHeight * imageAspecRatio) + widthBorderAndPadding;
 				}
 
 				this._$lightboxContainer.css('height', maxHeight);
-				this._$modalDialog.css('flex', 1).css('maxWIdth', wIdth);
+				this._$modalDialog.css('flex', 1).css('maxWidth', width);
 
 				var modal = this._$modal.data('bs.modal');
 				if (modal) {

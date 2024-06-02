@@ -45,7 +45,7 @@
     }
 
     function xmlToken(stream, state, cx) {
-      if (cx.depth == 2) { // InsIde a JS /* */ comment
+      if (cx.depth == 2) { // Inside a JS /* */ comment
         if (stream.match(/^.*?\*\//)) cx.depth = 1
         else stream.skipToEnd()
         return "comment"
@@ -63,7 +63,7 @@
           if (xmlContext.startOfLine) indent -= config.indentUnit
           // Else use JS indentation level
           else if (cx.prev.state.lexical) indent = cx.prev.state.lexical.indented
-        // Else if insIde of tag
+        // Else if inside of tag
         } else if (cx.depth == 1) {
           indent += config.indentUnit
         }
@@ -73,8 +73,8 @@
         return null
       }
 
-      if (cx.depth == 1) { // InsIde of tag
-        if (stream.peek() == "<") { // Tag insIde of tag
+      if (cx.depth == 1) { // Inside of tag
+        if (stream.peek() == "<") { // Tag inside of tag
           xmlMode.skipAttribute(cx.state)
           state.context = new Context(CodeMirror.startState(xmlMode, flatXMLIndent(cx.state)),
                                       xmlMode, 0, state.context)

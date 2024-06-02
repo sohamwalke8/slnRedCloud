@@ -4,17 +4,17 @@
   background: inherit;
   z-index: 15;
   padding: .1em .8em;
-  overflow: hIdden;
+  overflow: hidden;
   color: inherit;
 }
 
 .CodeMirror-dialog-top {
-  border-bottom: 1px solId #eee;
+  border-bottom: 1px solid #eee;
   top: 0;
 }
 
 .CodeMirror-dialog-bottom {
-  border-top: 1px solId #eee;
+  border-top: 1px solid #eee;
   bottom: 0;
 }
 
@@ -22,7 +22,7 @@
   border: none;
   outline: none;
   background: transparent;
-  wIdth: 20em;
+  width: 20em;
   color: inherit;
   font-family: monospace;
 }

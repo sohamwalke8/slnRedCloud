@@ -45,7 +45,7 @@
   });
 
   // Rough heuristic to try and detect lines that are part of multi-line string
-  function probablyInsIdeString(cm, pos, line) {
+  function probablyInsideString(cm, pos, line) {
     return /\bstring\b/.test(cm.getTokenTypeAt(Pos(pos.line, 0))) && !/^[\'\"\`]/.test(line)
   }
 
@@ -58,7 +58,7 @@
     if (!options) options = noOptions;
     var self = this, mode = getMode(self, from);
     var firstLine = self.getLine(from.line);
-    if (firstLine == null || probablyInsIdeString(self, from, firstLine)) return;
+    if (firstLine == null || probablyInsideString(self, from, firstLine)) return;
 
     var commentString = options.lineComment || mode.lineComment;
     if (!commentString) {
@@ -141,7 +141,7 @@
 
     // Try finding line comments
     var lineString = options.lineComment || mode.lineComment, lines = [];
-    var pad = options.padding == null ? " " : options.padding, dIdSomething;
+    var pad = options.padding == null ? " " : options.padding, didSomething;
     lineComment: {
       if (!lineString) break lineComment;
       for (var i = start; i <= end; ++i) {
@@ -158,11 +158,11 @@
           var pos = line.indexOf(lineString), endPos = pos + lineString.length;
           if (pos < 0) continue;
           if (line.slice(endPos, endPos + pad.length) == pad) endPos += pad.length;
-          dIdSomething = true;
+          didSomething = true;
           self.replaceRange("", Pos(i, pos), Pos(i, endPos));
         }
       });
-      if (dIdSomething) return true;
+      if (didSomething) return true;
     }
 
     // Try block comments
@@ -174,14 +174,14 @@
     if (open == -1) return false
     var endLine = end == start ? startLine : self.getLine(end)
     var close = endLine.indexOf(endString, end == start ? open + startString.length : 0);
-    var insIdeStart = Pos(start, open + 1), insIdeEnd = Pos(end, close + 1)
+    var insideStart = Pos(start, open + 1), insideEnd = Pos(end, close + 1)
     if (close == -1 ||
-        !/comment/.test(self.getTokenTypeAt(insIdeStart)) ||
-        !/comment/.test(self.getTokenTypeAt(insIdeEnd)) ||
-        self.getRange(insIdeStart, insIdeEnd, "\n").indexOf(endString) > -1)
+        !/comment/.test(self.getTokenTypeAt(insideStart)) ||
+        !/comment/.test(self.getTokenTypeAt(insideEnd)) ||
+        self.getRange(insideStart, insideEnd, "\n").indexOf(endString) > -1)
       return false;
 
-    // AvoId killing block comments completely outsIde the selection.
+    // Avoid killing block comments completely outside the selection.
     // Positions of the last startString before the start of the selection, and the first endString after it.
     var lastStart = startLine.lastIndexOf(startString, from.ch);
     var firstEnd = lastStart == -1 ? -1 : startLine.slice(0, from.ch).indexOf(endString, lastStart + startString.length);

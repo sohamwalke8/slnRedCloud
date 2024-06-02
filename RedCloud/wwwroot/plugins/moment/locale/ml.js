@@ -56,22 +56,22 @@
             y: 'ഒരു വർഷം',
             yy: '%d വർഷം',
         },
-        merIdiemParse: /രാത്രി|രാവിലെ|ഉച്ച കഴിഞ്ഞ്|വൈകുന്നേരം|രാത്രി/i,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /രാത്രി|രാവിലെ|ഉച്ച കഴിഞ്ഞ്|വൈകുന്നേരം|രാത്രി/i,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
             if (
-                (merIdiem === 'രാത്രി' && hour >= 4) ||
-                merIdiem === 'ഉച്ച കഴിഞ്ഞ്' ||
-                merIdiem === 'വൈകുന്നേരം'
+                (meridiem === 'രാത്രി' && hour >= 4) ||
+                meridiem === 'ഉച്ച കഴിഞ്ഞ്' ||
+                meridiem === 'വൈകുന്നേരം'
             ) {
                 return hour + 12;
             } else {
                 return hour;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'രാത്രി';
             } else if (hour < 12) {

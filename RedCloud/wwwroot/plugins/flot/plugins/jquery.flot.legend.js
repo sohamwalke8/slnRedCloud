@@ -10,7 +10,7 @@
             labelFormatter: null, // fn: string -> string
             container: null, // container (as jQuery object) to put legend in, null means default on top of graph
             position: 'ne', // position of default legend container within plot
-            margin: 5, // distance from grId edge to default legend container within plot
+            margin: 5, // distance from grid edge to default legend container within plot
             sorted: null // default to no legend sorting
         }
     };
@@ -44,12 +44,12 @@
                 yPos: ''
             };
 
-        html[j++] = '<svg class="legendLayer" style="wIdth:inherit;height:inherit;">';
-        html[j++] = '<rect class="background" wIdth="100%" height="100%"/>';
+        html[j++] = '<svg class="legendLayer" style="width:inherit;height:inherit;">';
+        html[j++] = '<rect class="background" width="100%" height="100%"/>';
         html[j++] = svgShapeDefs;
 
         var left = 0;
-        var columnWIdths = [];
+        var columnWidths = [];
         var style = window.getComputedStyle(document.querySelector('body'));
         for (i = 0; i < entries.length; ++i) {
             let columnIndex = i % options.legend.noColumns;
@@ -64,15 +64,15 @@
                 family: style.fontFamily
             });
 
-            var labelWIdth = info.wIdth;
+            var labelWidth = info.width;
             // 36px = 1.5em + 6px margin
-            var iconWIdth = 48;
-            if (columnWIdths[columnIndex]) {
-                if (labelWIdth > columnWIdths[columnIndex]) {
-                    columnWIdths[columnIndex] = labelWIdth + iconWIdth;
+            var iconWidth = 48;
+            if (columnWidths[columnIndex]) {
+                if (labelWidth > columnWidths[columnIndex]) {
+                    columnWidths[columnIndex] = labelWidth + iconWidth;
                 }
             } else {
-                columnWIdths[columnIndex] = labelWIdth + iconWIdth;
+                columnWidths[columnIndex] = labelWidth + iconWidth;
             }
         }
 
@@ -83,7 +83,7 @@
             iconHtml = '';
             shape.label = entry.label;
             shape.xPos = (left + 3) + 'px';
-            left += columnWIdths[columnIndex];
+            left += columnWidths[columnIndex];
             if ((i + 1) % options.legend.noColumns === 0) {
                 left = 0;
             }
@@ -104,7 +104,7 @@
             if (entry.options.lines.show && !entry.options.lines.fill) {
                 shape.name = 'line';
                 shape.strokeColor = entry.color;
-                shape.strokeWIdth = entry.options.lines.lineWIdth;
+                shape.strokeWidth = entry.options.lines.lineWidth;
                 iconHtml += getEntryIconHtml(shape);
             }
             // points
@@ -112,7 +112,7 @@
                 shape.name = entry.options.points.symbol;
                 shape.strokeColor = entry.color;
                 shape.fillColor = entry.options.points.fillColor;
-                shape.strokeWIdth = entry.options.points.lineWIdth;
+                shape.strokeWidth = entry.options.points.lineWidth;
                 iconHtml += getEntryIconHtml(shape);
             }
 
@@ -137,21 +137,21 @@
             pos += 'left:' + (m[0] + plotOffset.left) + 'px;';
         }
 
-        var wIdth = 6;
-        for (i = 0; i < columnWIdths.length; ++i) {
-            wIdth += columnWIdths[i];
+        var width = 6;
+        for (i = 0; i < columnWidths.length; ++i) {
+            width += columnWidths[i];
         }
 
         var legendEl,
             height = Math.ceil(entries.length / options.legend.noColumns) * 1.6;
         if (!options.legend.container) {
             legendEl = $('<div class="legend" style="position:absolute;' + pos + '">' + html.join('') + '</div>').appendTo(placeholder);
-            legendEl.css('wIdth', wIdth + 'px');
+            legendEl.css('width', width + 'px');
             legendEl.css('height', height + 'em');
             legendEl.css('pointerEvents', 'none');
         } else {
             legendEl = $(html.join('')).appendTo(options.legend.container)[0];
-            options.legend.container.style.wIdth = wIdth + 'px';
+            options.legend.container.style.width = width + 'px';
             options.legend.container.style.height = height + 'em';
         }
     }
@@ -164,7 +164,7 @@
             y = shape.yPos,
             fill = shape.fillColor,
             stroke = shape.strokeColor,
-            wIdth = shape.strokeWIdth;
+            width = shape.strokeWidth;
         switch (name) {
             case 'circle':
                 html = '<use xlink:href="#circle" class="legendIcon" ' +
@@ -172,8 +172,8 @@
                     'y="' + y + '" ' +
                     'fill="' + fill + '" ' +
                     'stroke="' + stroke + '" ' +
-                    'stroke-wIdth="' + wIdth + '" ' +
-                    'wIdth="1.5em" height="1.5em"' +
+                    'stroke-width="' + width + '" ' +
+                    'width="1.5em" height="1.5em"' +
                     '/>';
                 break;
             case 'diamond':
@@ -182,8 +182,8 @@
                     'y="' + y + '" ' +
                     'fill="' + fill + '" ' +
                     'stroke="' + stroke + '" ' +
-                    'stroke-wIdth="' + wIdth + '" ' +
-                    'wIdth="1.5em" height="1.5em"' +
+                    'stroke-width="' + width + '" ' +
+                    'width="1.5em" height="1.5em"' +
                     '/>';
                 break;
             case 'cross':
@@ -192,8 +192,8 @@
                     'y="' + y + '" ' +
                     // 'fill="' + fill + '" ' +
                     'stroke="' + stroke + '" ' +
-                    'stroke-wIdth="' + wIdth + '" ' +
-                    'wIdth="1.5em" height="1.5em"' +
+                    'stroke-width="' + width + '" ' +
+                    'width="1.5em" height="1.5em"' +
                     '/>';
                 break;
             case 'rectangle':
@@ -202,8 +202,8 @@
                     'y="' + y + '" ' +
                     'fill="' + fill + '" ' +
                     'stroke="' + stroke + '" ' +
-                    'stroke-wIdth="' + wIdth + '" ' +
-                    'wIdth="1.5em" height="1.5em"' +
+                    'stroke-width="' + width + '" ' +
+                    'width="1.5em" height="1.5em"' +
                     '/>';
                 break;
             case 'plus':
@@ -212,8 +212,8 @@
                     'y="' + y + '" ' +
                     // 'fill="' + fill + '" ' +
                     'stroke="' + stroke + '" ' +
-                    'stroke-wIdth="' + wIdth + '" ' +
-                    'wIdth="1.5em" height="1.5em"' +
+                    'stroke-width="' + width + '" ' +
+                    'width="1.5em" height="1.5em"' +
                     '/>';
                 break;
             case 'bar':
@@ -222,8 +222,8 @@
                     'y="' + y + '" ' +
                     'fill="' + fill + '" ' +
                     // 'stroke="' + stroke + '" ' +
-                    // 'stroke-wIdth="' + wIdth + '" ' +
-                    'wIdth="1.5em" height="1.5em"' +
+                    // 'stroke-width="' + width + '" ' +
+                    'width="1.5em" height="1.5em"' +
                     '/>';
                 break;
             case 'area':
@@ -232,8 +232,8 @@
                     'y="' + y + '" ' +
                     'fill="' + fill + '" ' +
                     // 'stroke="' + stroke + '" ' +
-                    // 'stroke-wIdth="' + wIdth + '" ' +
-                    'wIdth="1.5em" height="1.5em"' +
+                    // 'stroke-width="' + width + '" ' +
+                    'width="1.5em" height="1.5em"' +
                     '/>';
                 break;
             case 'line':
@@ -242,8 +242,8 @@
                     'y="' + y + '" ' +
                     // 'fill="' + fill + '" ' +
                     'stroke="' + stroke + '" ' +
-                    'stroke-wIdth="' + wIdth + '" ' +
-                    'wIdth="1.5em" height="1.5em"' +
+                    'stroke-width="' + width + '" ' +
+                    'width="1.5em" height="1.5em"' +
                     '/>';
                 break;
             default:
@@ -253,8 +253,8 @@
                     'y="' + y + '" ' +
                     'fill="' + fill + '" ' +
                     'stroke="' + stroke + '" ' +
-                    'stroke-wIdth="' + wIdth + '" ' +
-                    'wIdth="1.5em" height="1.5em"' +
+                    'stroke-width="' + width + '" ' +
+                    'width="1.5em" height="1.5em"' +
                     '/>';
         }
 
@@ -264,47 +264,47 @@
     // Define svg symbols for shapes
     var svgShapeDefs = '' +
         '<defs>' +
-            '<symbol Id="line" fill="none" viewBox="-5 -5 25 25">' +
+            '<symbol id="line" fill="none" viewBox="-5 -5 25 25">' +
                 '<polyline points="0,15 5,5 10,10 15,0"/>' +
             '</symbol>' +
 
-            '<symbol Id="area" stroke-wIdth="1" viewBox="-5 -5 25 25">' +
+            '<symbol id="area" stroke-width="1" viewBox="-5 -5 25 25">' +
                 '<polyline points="0,15 5,5 10,10 15,0, 15,15, 0,15"/>' +
             '</symbol>' +
 
-            '<symbol Id="bars" stroke-wIdth="1" viewBox="-5 -5 25 25">' +
+            '<symbol id="bars" stroke-width="1" viewBox="-5 -5 25 25">' +
                 '<polyline points="1.5,15.5 1.5,12.5, 4.5,12.5 4.5,15.5 6.5,15.5 6.5,3.5, 9.5,3.5 9.5,15.5 11.5,15.5 11.5,7.5 14.5,7.5 14.5,15.5 1.5,15.5"/>' +
             '</symbol>' +
 
-            '<symbol Id="circle" viewBox="-5 -5 25 25">' +
+            '<symbol id="circle" viewBox="-5 -5 25 25">' +
                 '<circle cx="0" cy="15" r="2.5"/>' +
                 '<circle cx="5" cy="5" r="2.5"/>' +
                 '<circle cx="10" cy="10" r="2.5"/>' +
                 '<circle cx="15" cy="0" r="2.5"/>' +
             '</symbol>' +
 
-            '<symbol Id="rectangle" viewBox="-5 -5 25 25">' +
-                '<rect x="-2.1" y="12.9" wIdth="4.2" height="4.2"/>' +
-                '<rect x="2.9" y="2.9" wIdth="4.2" height="4.2"/>' +
-                '<rect x="7.9" y="7.9" wIdth="4.2" height="4.2"/>' +
-                '<rect x="12.9" y="-2.1" wIdth="4.2" height="4.2"/>' +
+            '<symbol id="rectangle" viewBox="-5 -5 25 25">' +
+                '<rect x="-2.1" y="12.9" width="4.2" height="4.2"/>' +
+                '<rect x="2.9" y="2.9" width="4.2" height="4.2"/>' +
+                '<rect x="7.9" y="7.9" width="4.2" height="4.2"/>' +
+                '<rect x="12.9" y="-2.1" width="4.2" height="4.2"/>' +
             '</symbol>' +
 
-            '<symbol Id="diamond" viewBox="-5 -5 25 25">' +
+            '<symbol id="diamond" viewBox="-5 -5 25 25">' +
                 '<path d="M-3,15 L0,12 L3,15, L0,18 Z"/>' +
                 '<path d="M2,5 L5,2 L8,5, L5,8 Z"/>' +
                 '<path d="M7,10 L10,7 L13,10, L10,13 Z"/>' +
                 '<path d="M12,0 L15,-3 L18,0, L15,3 Z"/>' +
             '</symbol>' +
 
-            '<symbol Id="cross" fill="none" viewBox="-5 -5 25 25">' +
+            '<symbol id="cross" fill="none" viewBox="-5 -5 25 25">' +
                 '<path d="M-2.1,12.9 L2.1,17.1, M2.1,12.9 L-2.1,17.1 Z"/>' +
                 '<path d="M2.9,2.9 L7.1,7.1 M7.1,2.9 L2.9,7.1 Z"/>' +
                 '<path d="M7.9,7.9 L12.1,12.1 M12.1,7.9 L7.9,12.1 Z"/>' +
                 '<path d="M12.9,-2.1 L17.1,2.1 M17.1,-2.1 L12.9,2.1 Z"/>' +
             '</symbol>' +
 
-            '<symbol Id="plus" fill="none" viewBox="-5 -5 25 25">' +
+            '<symbol id="plus" fill="none" viewBox="-5 -5 25 25">' +
                 '<path d="M0,12 L0,18, M-3,15 L3,15 Z"/>' +
                 '<path d="M5,2 L5,8 M2,5 L8,5 Z"/>' +
                 '<path d="M10,7 L10,13 M7,10 L13,10 Z"/>' +
@@ -315,7 +315,7 @@
     // Generate a list of legend entries in their final order
     function getLegendEntries(series, labelFormatter, sorted) {
         var lf = labelFormatter,
-            legendEntries = series.reduce(function(valIdEntries, s, i) {
+            legendEntries = series.reduce(function(validEntries, s, i) {
                 var labelEval = (lf ? lf(s.label, s) : s.label)
                 if (s.hasOwnProperty("label") ? labelEval : true) {
                     var entry = {
@@ -327,9 +327,9 @@
                             bars: s.bars
                         }
                     }
-                    valIdEntries.push(entry)
+                    validEntries.push(entry)
                 }
-                return valIdEntries;
+                return validEntries;
             }, []);
 
         // Sort the legend using either the default or a custom comparator
@@ -412,7 +412,7 @@
     }
 
     function init(plot) {
-        plot.hooks.setupGrId.push(function (plot) {
+        plot.hooks.setupGrid.push(function (plot) {
             var options = plot.getOptions();
             var series = plot.getData(),
                 labelFormatter = options.legend.labelFormatter,

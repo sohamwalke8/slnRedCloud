@@ -17,27 +17,27 @@ const DATA_KEY = 'lte.layout'
 const JQUERY_NO_CONFLICT = $.fn[NAME]
 
 const SELECTOR_HEADER = '.main-header'
-const SELECTOR_MAIN_SIdEBAR = '.main-sIdebar'
-const SELECTOR_SIdEBAR = '.main-sIdebar .sIdebar'
+const SELECTOR_MAIN_SIDEBAR = '.main-sidebar'
+const SELECTOR_SIDEBAR = '.main-sidebar .sidebar'
 const SELECTOR_CONTENT = '.content-wrapper'
-const SELECTOR_CONTROL_SIdEBAR_CONTENT = '.control-sIdebar-content'
-const SELECTOR_CONTROL_SIdEBAR_BTN = '[data-wIdget="control-sIdebar"]'
+const SELECTOR_CONTROL_SIDEBAR_CONTENT = '.control-sidebar-content'
+const SELECTOR_CONTROL_SIDEBAR_BTN = '[data-widget="control-sidebar"]'
 const SELECTOR_FOOTER = '.main-footer'
-const SELECTOR_PUSHMENU_BTN = '[data-wIdget="pushmenu"]'
+const SELECTOR_PUSHMENU_BTN = '[data-widget="pushmenu"]'
 const SELECTOR_LOGIN_BOX = '.login-box'
 const SELECTOR_REGISTER_BOX = '.register-box'
 const SELECTOR_PRELOADER = '.preloader'
 
-const CLASS_NAME_SIdEBAR_COLLAPSED = 'sIdebar-collapse'
-const CLASS_NAME_SIdEBAR_FOCUSED = 'sIdebar-focused'
+const CLASS_NAME_SIDEBAR_COLLAPSED = 'sidebar-collapse'
+const CLASS_NAME_SIDEBAR_FOCUSED = 'sidebar-focused'
 const CLASS_NAME_LAYOUT_FIXED = 'layout-fixed'
-const CLASS_NAME_CONTROL_SIdEBAR_SLIdE_OPEN = 'control-sIdebar-slIde-open'
-const CLASS_NAME_CONTROL_SIdEBAR_OPEN = 'control-sIdebar-open'
+const CLASS_NAME_CONTROL_SIDEBAR_SLIDE_OPEN = 'control-sidebar-slide-open'
+const CLASS_NAME_CONTROL_SIDEBAR_OPEN = 'control-sidebar-open'
 const CLASS_NAME_IFRAME_MODE = 'iframe-mode'
 
 const Default = {
   scrollbarTheme: 'os-theme-light',
-  scrollbarAutoHIde: 'l',
+  scrollbarAutoHide: 'l',
   panelAutoHeight: true,
   panelAutoHeightMode: 'min-height',
   preloadDuration: 200,
@@ -59,18 +59,18 @@ class Layout {
 
   fixLayoutHeight(extra = null) {
     const $body = $('body')
-    let controlSIdebar = 0
+    let controlSidebar = 0
 
-    if ($body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_SLIdE_OPEN) || $body.hasClass(CLASS_NAME_CONTROL_SIdEBAR_OPEN) || extra === 'control_sIdebar') {
-      controlSIdebar = $(SELECTOR_CONTROL_SIdEBAR_CONTENT).outerHeight()
+    if ($body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_SLIDE_OPEN) || $body.hasClass(CLASS_NAME_CONTROL_SIDEBAR_OPEN) || extra === 'control_sidebar') {
+      controlSidebar = $(SELECTOR_CONTROL_SIDEBAR_CONTENT).outerHeight()
     }
 
     const heights = {
       window: $(window).height(),
       header: $(SELECTOR_HEADER).length > 0 ? $(SELECTOR_HEADER).outerHeight() : 0,
       footer: $(SELECTOR_FOOTER).length > 0 ? $(SELECTOR_FOOTER).outerHeight() : 0,
-      sIdebar: $(SELECTOR_SIdEBAR).length > 0 ? $(SELECTOR_SIdEBAR).height() : 0,
-      controlSIdebar
+      sidebar: $(SELECTOR_SIDEBAR).length > 0 ? $(SELECTOR_SIDEBAR).height() : 0,
+      controlSidebar
     }
 
     const max = this._max(heights)
@@ -83,7 +83,7 @@ class Layout {
     const $contentSelector = $(SELECTOR_CONTENT)
 
     if (offset !== false) {
-      if (max === heights.controlSIdebar) {
+      if (max === heights.controlSidebar) {
         $contentSelector.css(this._config.panelAutoHeightMode, (max + offset))
       } else if (max === heights.window) {
         $contentSelector.css(this._config.panelAutoHeightMode, (max + offset) - heights.header - heights.footer)
@@ -101,16 +101,16 @@ class Layout {
     }
 
     if (typeof $.fn.overlayScrollbars !== 'undefined') {
-      $(SELECTOR_SIdEBAR).overlayScrollbars({
+      $(SELECTOR_SIDEBAR).overlayScrollbars({
         className: this._config.scrollbarTheme,
         sizeAutoCapable: true,
         scrollbars: {
-          autoHIde: this._config.scrollbarAutoHIde,
+          autoHide: this._config.scrollbarAutoHide,
           clickScrolling: true
         }
       })
     } else {
-      $(SELECTOR_SIdEBAR).css('overflow-y', 'auto')
+      $(SELECTOR_SIDEBAR).css('overflow-y', 'auto')
     }
   }
 
@@ -146,14 +146,14 @@ class Layout {
       setInterval(this.fixLoginRegisterHeight, this._config.loginRegisterAutoHeight)
     }
 
-    $(SELECTOR_SIdEBAR)
+    $(SELECTOR_SIDEBAR)
       .on('collapsed.lte.treeview expanded.lte.treeview', () => {
         this.fixLayoutHeight()
       })
 
-    $(SELECTOR_MAIN_SIdEBAR)
+    $(SELECTOR_MAIN_SIDEBAR)
       .on('mouseenter mouseleave', () => {
-        if ($('body').hasClass(CLASS_NAME_SIdEBAR_COLLAPSED)) {
+        if ($('body').hasClass(CLASS_NAME_SIDEBAR_COLLAPSED)) {
           this.fixLayoutHeight()
         }
       })
@@ -165,12 +165,12 @@ class Layout {
         }, 300)
       })
 
-    $(SELECTOR_CONTROL_SIdEBAR_BTN)
-      .on('collapsed.lte.controlsIdebar', () => {
+    $(SELECTOR_CONTROL_SIDEBAR_BTN)
+      .on('collapsed.lte.controlsidebar', () => {
         this.fixLayoutHeight()
       })
-      .on('expanded.lte.controlsIdebar', () => {
-        this.fixLayoutHeight('control_sIdebar')
+      .on('expanded.lte.controlsidebar', () => {
+        this.fixLayoutHeight('control_sidebar')
       })
 
     $(window).resize(() => {
@@ -186,7 +186,7 @@ class Layout {
       if ($preloader) {
         $preloader.css('height', 0)
         setTimeout(() => {
-          $preloader.children().hIde()
+          $preloader.children().hide()
         }, 200)
       }
     }, this._config.preloadDuration)
@@ -239,12 +239,12 @@ $(window).on('load', () => {
   Layout._jQueryInterface.call($('body'))
 })
 
-$(`${SELECTOR_SIdEBAR} a`)
+$(`${SELECTOR_SIDEBAR} a`)
   .on('focusin', () => {
-    $(SELECTOR_MAIN_SIdEBAR).addClass(CLASS_NAME_SIdEBAR_FOCUSED)
+    $(SELECTOR_MAIN_SIDEBAR).addClass(CLASS_NAME_SIDEBAR_FOCUSED)
   })
   .on('focusout', () => {
-    $(SELECTOR_MAIN_SIdEBAR).removeClass(CLASS_NAME_SIdEBAR_FOCUSED)
+    $(SELECTOR_MAIN_SIDEBAR).removeClass(CLASS_NAME_SIDEBAR_FOCUSED)
   })
 
 /**

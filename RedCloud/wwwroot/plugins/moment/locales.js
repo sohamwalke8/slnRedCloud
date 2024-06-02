@@ -17,11 +17,11 @@
         ),
         weekdaysShort: 'Son_Maa_Din_Woe_Don_Vry_Sat'.split('_'),
         weekdaysMin: 'So_Ma_Di_Wo_Do_Vr_Sa'.split('_'),
-        merIdiemParse: /vm|nm/i,
+        meridiemParse: /vm|nm/i,
         isPM: function (input) {
             return /^nm$/i.test(input);
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours < 12) {
                 return isLower ? 'vm' : 'VM';
             } else {
@@ -178,11 +178,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /ص|م/,
+        meridiemParse: /ص|م/,
         isPM: function (input) {
             return 'م' === input;
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'ص';
             } else {
@@ -390,11 +390,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /ص|م/,
+        meridiemParse: /ص|م/,
         isPM: function (input) {
             return 'م' === input;
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'ص';
             } else {
@@ -538,11 +538,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /ص|م/,
+        meridiemParse: /ص|م/,
         isPM: function (input) {
             return 'م' === input;
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'ص';
             } else {
@@ -773,11 +773,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /ص|م/,
+        meridiemParse: /ص|م/,
         isPM: function (input) {
             return 'م' === input;
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'ص';
             } else {
@@ -894,11 +894,11 @@
             y: 'bir il',
             yy: '%d il',
         },
-        merIdiemParse: /gecə|səhər|gündüz|axşam/,
+        meridiemParse: /gecə|səhər|gündüz|axşam/,
         isPM: function (input) {
             return /^(gündüz|axşam)$/.test(input);
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'gecə';
             } else if (hour < 12) {
@@ -1022,11 +1022,11 @@
             y: 'год',
             yy: relativeTimeWithPlural,
         },
-        merIdiemParse: /ночы|раніцы|дня|вечара/,
+        meridiemParse: /ночы|раніцы|дня|вечара/,
         isPM: function (input) {
             return /^(дня|вечара)$/.test(input);
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'ночы';
             } else if (hour < 12) {
@@ -1276,27 +1276,27 @@
             });
         },
 
-        merIdiemParse: /রাত|ভোর|সকাল|দুপুর|বিকাল|সন্ধ্যা|রাত/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /রাত|ভোর|সকাল|দুপুর|বিকাল|সন্ধ্যা|রাত/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'রাত') {
+            if (meridiem === 'রাত') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (merIdiem === 'ভোর') {
+            } else if (meridiem === 'ভোর') {
                 return hour;
-            } else if (merIdiem === 'সকাল') {
+            } else if (meridiem === 'সকাল') {
                 return hour;
-            } else if (merIdiem === 'দুপুর') {
+            } else if (meridiem === 'দুপুর') {
                 return hour >= 3 ? hour : hour + 12;
-            } else if (merIdiem === 'বিকাল') {
+            } else if (meridiem === 'বিকাল') {
                 return hour + 12;
-            } else if (merIdiem === 'সন্ধ্যা') {
+            } else if (meridiem === 'সন্ধ্যা') {
                 return hour + 12;
             }
         },
 
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'রাত';
             } else if (hour < 6) {
@@ -1400,22 +1400,22 @@
                 return symbolMap$4[match];
             });
         },
-        merIdiemParse: /রাত|সকাল|দুপুর|বিকাল|রাত/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /রাত|সকাল|দুপুর|বিকাল|রাত/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
             if (
-                (merIdiem === 'রাত' && hour >= 4) ||
-                (merIdiem === 'দুপুর' && hour < 5) ||
-                merIdiem === 'বিকাল'
+                (meridiem === 'রাত' && hour >= 4) ||
+                (meridiem === 'দুপুর' && hour < 5) ||
+                meridiem === 'বিকাল'
             ) {
                 return hour + 12;
             } else {
                 return hour;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'রাত';
             } else if (hour < 10) {
@@ -1519,22 +1519,22 @@
                 return symbolMap$5[match];
             });
         },
-        merIdiemParse: /མཚན་མོ|ཞོགས་ཀས|ཉིན་གུང|དགོང་དག|མཚན་མོ/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /མཚན་མོ|ཞོགས་ཀས|ཉིན་གུང|དགོང་དག|མཚན་མོ/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
             if (
-                (merIdiem === 'མཚན་མོ' && hour >= 4) ||
-                (merIdiem === 'ཉིན་གུང' && hour < 5) ||
-                merIdiem === 'དགོང་དག'
+                (meridiem === 'མཚན་མོ' && hour >= 4) ||
+                (meridiem === 'ཉིན་གུང' && hour < 5) ||
+                meridiem === 'དགོང་དག'
             ) {
                 return hour + 12;
             } else {
                 return hour;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'མཚན་མོ';
             } else if (hour < 10) {
@@ -1706,11 +1706,11 @@
             dow: 1, // Monday is the first day of the week.
             doy: 4, // The week that contains Jan 4th is the first week of the year.
         },
-        merIdiemParse: /a.m.|g.m./, // goude merenn | a-raok merenn
+        meridiemParse: /a.m.|g.m./, // goude merenn | a-raok merenn
         isPM: function (token) {
             return token === 'g.m.';
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             return hour < 12 ? 'a.m.' : 'g.m.';
         },
     });
@@ -2302,7 +2302,7 @@
         },
         relativeTime: {
             future: 'om %s',
-            past: '%s sIden',
+            past: '%s siden',
             s: 'få sekunder',
             ss: '%d sekunder',
             m: 'et minut',
@@ -2583,11 +2583,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /މކ|މފ/,
+        meridiemParse: /މކ|މފ/,
         isPM: function (input) {
             return 'މފ' === input;
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'މކ';
             } else {
@@ -2665,7 +2665,7 @@
         ),
         weekdaysShort: 'Κυρ_Δευ_Τρι_Τετ_Πεμ_Παρ_Σαβ'.split('_'),
         weekdaysMin: 'Κυ_Δε_Τρ_Τε_Πε_Πα_Σα'.split('_'),
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours > 11) {
                 return isLower ? 'μμ' : 'ΜΜ';
             } else {
@@ -2675,7 +2675,7 @@
         isPM: function (input) {
             return (input + '').toLowerCase()[0] === 'μ';
         },
-        merIdiemParse: /[ΠΜ]\.?Μ?\.?/i,
+        meridiemParse: /[ΠΜ]\.?Μ?\.?/i,
         longDateFormat: {
             LT: 'h:mm A',
             LTS: 'h:mm:ss A',
@@ -2738,7 +2738,7 @@
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_FrIday_Saturday'.split(
+        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split(
             '_'
         ),
         weekdaysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
@@ -2803,7 +2803,7 @@
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_FrIday_Saturday'.split(
+        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split(
             '_'
         ),
         weekdaysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
@@ -2864,7 +2864,7 @@
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_FrIday_Saturday'.split(
+        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split(
             '_'
         ),
         weekdaysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
@@ -2929,7 +2929,7 @@
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_FrIday_Saturday'.split(
+        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split(
             '_'
         ),
         weekdaysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
@@ -2994,7 +2994,7 @@
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_FrIday_Saturday'.split(
+        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split(
             '_'
         ),
         weekdaysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
@@ -3055,7 +3055,7 @@
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_FrIday_Saturday'.split(
+        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split(
             '_'
         ),
         weekdaysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
@@ -3120,7 +3120,7 @@
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_FrIday_Saturday'.split(
+        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split(
             '_'
         ),
         weekdaysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
@@ -3185,7 +3185,7 @@
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_FrIday_Saturday'.split(
+        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split(
             '_'
         ),
         weekdaysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
@@ -3262,11 +3262,11 @@
             LLLL: 'dddd[n], [la] D[-an de] MMMM, YYYY HH:mm',
             llll: 'ddd, [la] D[-an de] MMM, YYYY HH:mm',
         },
-        merIdiemParse: /[ap]\.t\.m/i,
+        meridiemParse: /[ap]\.t\.m/i,
         isPM: function (input) {
             return input.charAt(0).toLowerCase() === 'p';
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours > 11) {
                 return isLower ? 'p.t.m.' : 'P.T.M.';
             } else {
@@ -3507,7 +3507,7 @@
             dow: 0, // Sunday is the first day of the week.
             doy: 4, // The week that contains Jan 4th is the first week of the year.
         },
-        invalIdDate: 'Fecha inválIda',
+        invalidDate: 'Fecha inválida',
     });
 
     //! moment.js locale configuration
@@ -3712,7 +3712,7 @@
             dow: 1, // Monday is the first day of the week.
             doy: 4, // The week that contains Jan 4th is the first week of the year.
         },
-        invalIdDate: 'Fecha inválIda',
+        invalidDate: 'Fecha inválida',
     });
 
     //! moment.js locale configuration
@@ -3899,11 +3899,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd, D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /قبل از ظهر|بعد از ظهر/,
+        meridiemParse: /قبل از ظهر|بعد از ظهر/,
         isPM: function (input) {
             return /بعد از ظهر/.test(input);
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'قبل از ظهر';
             } else {
@@ -3967,7 +3967,7 @@
             'kahden',
             'kolmen',
             'neljän',
-            'viIden',
+            'viiden',
             'kuuden',
             numbersPast[7],
             numbersPast[8],
@@ -4391,7 +4391,7 @@
         dayOfMonthOrdinalParse: /\d{1,2}(er|)/,
         ordinal: function (number, period) {
             switch (period) {
-                // TODO: Return 'e' when day of month > 1. Move this case insIde
+                // TODO: Return 'e' when day of month > 1. Move this case inside
                 // block for masculine words below.
                 // See https://github.com/moment/moment/issues/3375
                 case 'D':
@@ -4614,7 +4614,7 @@
             'Dùbh',
         ],
         weekdays$2 = [
-            'DIdòmhnaich',
+            'Didòmhnaich',
             'Diluain',
             'Dimàirt',
             'Diciadain',
@@ -4622,7 +4622,7 @@
             'Dihaoine',
             'Disathairne',
         ],
-        weekdaysShort$1 = ['DId', 'Dil', 'Dim', 'Dic', 'Dia', 'Dih', 'Dis'],
+        weekdaysShort$1 = ['Did', 'Dil', 'Dim', 'Dic', 'Dia', 'Dih', 'Dis'],
         weekdaysMin$1 = ['Dò', 'Lu', 'Mà', 'Ci', 'Ar', 'Ha', 'Sa'];
 
     moment.defineLocale('gd', {
@@ -4645,7 +4645,7 @@
             nextDay: '[A-màireach aig] LT',
             nextWeek: 'dddd [aig] LT',
             lastDay: '[An-dè aig] LT',
-            lastWeek: 'dddd [seo chaIdh] [aig] LT',
+            lastWeek: 'dddd [seo chaidh] [aig] LT',
             sameElse: 'L',
         },
         relativeTime: {
@@ -4653,8 +4653,8 @@
             past: 'bho chionn %s',
             s: 'beagan diogan',
             ss: '%d diogan',
-            m: 'mionaId',
-            mm: '%d mionaIdean',
+            m: 'mionaid',
+            mm: '%d mionaidean',
             h: 'uair',
             hh: '%d uairean',
             d: 'latha',
@@ -4837,22 +4837,22 @@
             dow: 0, // Sunday is the first day of the week
             doy: 3, // The week that contains Jan 4th is the first week of the year (7 + 0 - 4)
         },
-        merIdiemParse: /राती|सकाळीं|दनपारां|सांजे/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /राती|सकाळीं|दनपारां|सांजे/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'राती') {
+            if (meridiem === 'राती') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (merIdiem === 'सकाळीं') {
+            } else if (meridiem === 'सकाळीं') {
                 return hour;
-            } else if (merIdiem === 'दनपारां') {
+            } else if (meridiem === 'दनपारां') {
                 return hour > 12 ? hour : hour + 12;
-            } else if (merIdiem === 'सांजे') {
+            } else if (meridiem === 'सांजे') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'राती';
             } else if (hour < 12) {
@@ -4958,22 +4958,22 @@
             dow: 0, // Sunday is the first day of the week
             doy: 3, // The week that contains Jan 4th is the first week of the year (7 + 0 - 4)
         },
-        merIdiemParse: /rati|sokallim|donparam|sanje/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /rati|sokallim|donparam|sanje/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'rati') {
+            if (meridiem === 'rati') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (merIdiem === 'sokallim') {
+            } else if (meridiem === 'sokallim') {
                 return hour;
-            } else if (merIdiem === 'donparam') {
+            } else if (meridiem === 'donparam') {
                 return hour > 12 ? hour : hour + 12;
-            } else if (merIdiem === 'sanje') {
+            } else if (meridiem === 'sanje') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'rati';
             } else if (hour < 12) {
@@ -5070,24 +5070,24 @@
                 return symbolMap$7[match];
             });
         },
-        // Gujarati notation for merIdiems are quite fuzzy in practice. While there exists
-        // a rigId notion of a 'Pahar' it is not used as rigIdly in modern Gujarati.
-        merIdiemParse: /રાત|બપોર|સવાર|સાંજ/,
-        merIdiemHour: function (hour, merIdiem) {
+        // Gujarati notation for meridiems are quite fuzzy in practice. While there exists
+        // a rigid notion of a 'Pahar' it is not used as rigidly in modern Gujarati.
+        meridiemParse: /રાત|બપોર|સવાર|સાંજ/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'રાત') {
+            if (meridiem === 'રાત') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (merIdiem === 'સવાર') {
+            } else if (meridiem === 'સવાર') {
                 return hour;
-            } else if (merIdiem === 'બપોર') {
+            } else if (meridiem === 'બપોર') {
                 return hour >= 10 ? hour : hour + 12;
-            } else if (merIdiem === 'સાંજ') {
+            } else if (meridiem === 'સાંજ') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'રાત';
             } else if (hour < 10) {
@@ -5176,11 +5176,11 @@
                 return number + ' שנים';
             },
         },
-        merIdiemParse: /אחה"צ|לפנה"צ|אחרי הצהריים|לפני הצהריים|לפנות בוקר|בבוקר|בערב/i,
+        meridiemParse: /אחה"צ|לפנה"צ|אחרי הצהריים|לפני הצהריים|לפנות בוקר|בבוקר|בערב/i,
         isPM: function (input) {
             return /^(אחה"צ|אחרי הצהריים|בערב)$/.test(input);
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 5) {
                 return 'לפנות בוקר';
             } else if (hour < 10) {
@@ -5320,24 +5320,24 @@
                 return symbolMap$8[match];
             });
         },
-        // Hindi notation for merIdiems are quite fuzzy in practice. While there exists
-        // a rigId notion of a 'Pahar' it is not used as rigIdly in modern Hindi.
-        merIdiemParse: /रात|सुबह|दोपहर|शाम/,
-        merIdiemHour: function (hour, merIdiem) {
+        // Hindi notation for meridiems are quite fuzzy in practice. While there exists
+        // a rigid notion of a 'Pahar' it is not used as rigidly in modern Hindi.
+        meridiemParse: /रात|सुबह|दोपहर|शाम/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'रात') {
+            if (meridiem === 'रात') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (merIdiem === 'सुबह') {
+            } else if (meridiem === 'सुबह') {
                 return hour;
-            } else if (merIdiem === 'दोपहर') {
+            } else if (meridiem === 'दोपहर') {
                 return hour >= 10 ? hour : hour + 12;
-            } else if (merIdiem === 'शाम') {
+            } else if (meridiem === 'शाम') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'रात';
             } else if (hour < 10) {
@@ -5574,11 +5574,11 @@
             LLL: 'YYYY. MMMM D. H:mm',
             LLLL: 'YYYY. MMMM D., dddd H:mm',
         },
-        merIdiemParse: /de|du/i,
+        meridiemParse: /de|du/i,
         isPM: function (input) {
             return input.charAt(1).toLowerCase() === 'u';
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours < 12) {
                 return isLower === true ? 'de' : 'DE';
             } else {
@@ -5674,11 +5674,11 @@
             y: 'տարի',
             yy: '%d տարի',
         },
-        merIdiemParse: /գիշերվա|առավոտվա|ցերեկվա|երեկոյան/,
+        meridiemParse: /գիշերվա|առավոտվա|ցերեկվա|երեկոյան/,
         isPM: function (input) {
             return /^(ցերեկվա|երեկոյան)$/.test(input);
         },
-        merIdiem: function (hour) {
+        meridiem: function (hour) {
             if (hour < 4) {
                 return 'գիշերվա';
             } else if (hour < 12) {
@@ -5712,7 +5712,7 @@
 
     //! moment.js locale configuration
 
-    moment.defineLocale('Id', {
+    moment.defineLocale('id', {
         months: 'Januari_Februari_Maret_April_Mei_Juni_Juli_Agustus_September_Oktober_November_Desember'.split(
             '_'
         ),
@@ -5728,20 +5728,20 @@
             LLL: 'D MMMM YYYY [pukul] HH.mm',
             LLLL: 'dddd, D MMMM YYYY [pukul] HH.mm',
         },
-        merIdiemParse: /pagi|siang|sore|malam/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /pagi|siang|sore|malam/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'pagi') {
+            if (meridiem === 'pagi') {
                 return hour;
-            } else if (merIdiem === 'siang') {
+            } else if (meridiem === 'siang') {
                 return hour >= 11 ? hour : hour + 12;
-            } else if (merIdiem === 'sore' || merIdiem === 'malam') {
+            } else if (meridiem === 'sore' || meridiem === 'malam') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours < 11) {
                 return 'pagi';
             } else if (hours < 15) {
@@ -6163,11 +6163,11 @@
             lll: 'YYYY年M月D日 HH:mm',
             llll: 'YYYY年M月D日(ddd) HH:mm',
         },
-        merIdiemParse: /午前|午後/i,
+        meridiemParse: /午前|午後/i,
         isPM: function (input) {
             return input === '午後';
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return '午前';
             } else {
@@ -6243,20 +6243,20 @@
             LLL: 'D MMMM YYYY [pukul] HH.mm',
             LLLL: 'dddd, D MMMM YYYY [pukul] HH.mm',
         },
-        merIdiemParse: /enjing|siyang|sonten|ndalu/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /enjing|siyang|sonten|ndalu/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'enjing') {
+            if (meridiem === 'enjing') {
                 return hour;
-            } else if (merIdiem === 'siyang') {
+            } else if (meridiem === 'siyang') {
                 return hour >= 11 ? hour : hour + 12;
-            } else if (merIdiem === 'sonten' || merIdiem === 'ndalu') {
+            } else if (meridiem === 'sonten' || meridiem === 'ndalu') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours < 11) {
                 return 'enjing';
             } else if (hours < 15) {
@@ -6511,11 +6511,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd, D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /ព្រឹក|ល្ងាច/,
+        meridiemParse: /ព្រឹក|ល្ងាច/,
         isPM: function (input) {
             return input === 'ល្ងាច';
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'ព្រឹក';
             } else {
@@ -6646,22 +6646,22 @@
                 return symbolMap$a[match];
             });
         },
-        merIdiemParse: /ರಾತ್ರಿ|ಬೆಳಿಗ್ಗೆ|ಮಧ್ಯಾಹ್ನ|ಸಂಜೆ/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /ರಾತ್ರಿ|ಬೆಳಿಗ್ಗೆ|ಮಧ್ಯಾಹ್ನ|ಸಂಜೆ/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'ರಾತ್ರಿ') {
+            if (meridiem === 'ರಾತ್ರಿ') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (merIdiem === 'ಬೆಳಿಗ್ಗೆ') {
+            } else if (meridiem === 'ಬೆಳಿಗ್ಗೆ') {
                 return hour;
-            } else if (merIdiem === 'ಮಧ್ಯಾಹ್ನ') {
+            } else if (meridiem === 'ಮಧ್ಯಾಹ್ನ') {
                 return hour >= 10 ? hour : hour + 12;
-            } else if (merIdiem === 'ಸಂಜೆ') {
+            } else if (meridiem === 'ಸಂಜೆ') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'ರಾತ್ರಿ';
             } else if (hour < 10) {
@@ -6746,11 +6746,11 @@
                     return number;
             }
         },
-        merIdiemParse: /오전|오후/,
+        meridiemParse: /오전|오후/,
         isPM: function (token) {
             return token === '오후';
         },
-        merIdiem: function (hour, minute, isUpper) {
+        meridiem: function (hour, minute, isUpper) {
             return hour < 12 ? '오전' : '오후';
         },
     });
@@ -6815,11 +6815,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd, D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /ئێواره‌|به‌یانی/,
+        meridiemParse: /ئێواره‌|به‌یانی/,
         isPM: function (input) {
             return /ئێواره‌/.test(input);
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'به‌یانی';
             } else {
@@ -7027,7 +7027,7 @@
             '_'
         ),
         monthsParseExact: true,
-        weekdays: 'Sonndeg_Méindeg_Dënschdeg_Mëttwoch_Donneschdeg_FreIdeg_Samschdeg'.split(
+        weekdays: 'Sonndeg_Méindeg_Dënschdeg_Mëttwoch_Donneschdeg_Freideg_Samschdeg'.split(
             '_'
         ),
         weekdaysShort: 'So._Mé._Dë._Më._Do._Fr._Sa.'.split('_'),
@@ -7103,11 +7103,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'ວັນdddd D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /ຕອນເຊົ້າ|ຕອນແລງ/,
+        meridiemParse: /ຕອນເຊົ້າ|ຕອນແລງ/,
         isPM: function (input) {
             return input === 'ຕອນແລງ';
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'ຕອນເຊົ້າ';
             } else {
@@ -7653,22 +7653,22 @@
             y: 'ഒരു വർഷം',
             yy: '%d വർഷം',
         },
-        merIdiemParse: /രാത്രി|രാവിലെ|ഉച്ച കഴിഞ്ഞ്|വൈകുന്നേരം|രാത്രി/i,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /രാത്രി|രാവിലെ|ഉച്ച കഴിഞ്ഞ്|വൈകുന്നേരം|രാത്രി/i,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
             if (
-                (merIdiem === 'രാത്രി' && hour >= 4) ||
-                merIdiem === 'ഉച്ച കഴിഞ്ഞ്' ||
-                merIdiem === 'വൈകുന്നേരം'
+                (meridiem === 'രാത്രി' && hour >= 4) ||
+                meridiem === 'ഉച്ച കഴിഞ്ഞ്' ||
+                meridiem === 'വൈകുന്നേരം'
             ) {
                 return hour + 12;
             } else {
                 return hour;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'രാത്രി';
             } else if (hour < 12) {
@@ -7731,11 +7731,11 @@
             LLL: 'YYYY оны MMMMын D HH:mm',
             LLLL: 'dddd, YYYY оны MMMMын D HH:mm',
         },
-        merIdiemParse: /ҮӨ|ҮХ/i,
+        meridiemParse: /ҮӨ|ҮХ/i,
         isPM: function (input) {
             return input === 'ҮХ';
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'ҮӨ';
             } else {
@@ -7943,22 +7943,22 @@
                 return symbolMap$c[match];
             });
         },
-        merIdiemParse: /पहाटे|सकाळी|दुपारी|सायंकाळी|रात्री/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /पहाटे|सकाळी|दुपारी|सायंकाळी|रात्री/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'पहाटे' || merIdiem === 'सकाळी') {
+            if (meridiem === 'पहाटे' || meridiem === 'सकाळी') {
                 return hour;
             } else if (
-                merIdiem === 'दुपारी' ||
-                merIdiem === 'सायंकाळी' ||
-                merIdiem === 'रात्री'
+                meridiem === 'दुपारी' ||
+                meridiem === 'सायंकाळी' ||
+                meridiem === 'रात्री'
             ) {
                 return hour >= 12 ? hour : hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour >= 0 && hour < 6) {
                 return 'पहाटे';
             } else if (hour < 12) {
@@ -7995,20 +7995,20 @@
             LLL: 'D MMMM YYYY [pukul] HH.mm',
             LLLL: 'dddd, D MMMM YYYY [pukul] HH.mm',
         },
-        merIdiemParse: /pagi|tengahari|petang|malam/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /pagi|tengahari|petang|malam/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'pagi') {
+            if (meridiem === 'pagi') {
                 return hour;
-            } else if (merIdiem === 'tengahari') {
+            } else if (meridiem === 'tengahari') {
                 return hour >= 11 ? hour : hour + 12;
-            } else if (merIdiem === 'petang' || merIdiem === 'malam') {
+            } else if (meridiem === 'petang' || meridiem === 'malam') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours < 11) {
                 return 'pagi';
             } else if (hours < 15) {
@@ -8067,20 +8067,20 @@
             LLL: 'D MMMM YYYY [pukul] HH.mm',
             LLLL: 'dddd, D MMMM YYYY [pukul] HH.mm',
         },
-        merIdiemParse: /pagi|tengahari|petang|malam/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /pagi|tengahari|petang|malam/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'pagi') {
+            if (meridiem === 'pagi') {
                 return hour;
-            } else if (merIdiem === 'tengahari') {
+            } else if (meridiem === 'tengahari') {
                 return hour >= 11 ? hour : hour + 12;
-            } else if (merIdiem === 'petang' || merIdiem === 'malam') {
+            } else if (meridiem === 'petang' || meridiem === 'malam') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours < 11) {
                 return 'pagi';
             } else if (hours < 15) {
@@ -8291,7 +8291,7 @@
         },
         relativeTime: {
             future: 'om %s',
-            past: '%s sIden',
+            past: '%s siden',
             s: 'noen sekunder',
             ss: '%d sekunder',
             m: 'ett minutt',
@@ -8374,22 +8374,22 @@
                 return symbolMap$e[match];
             });
         },
-        merIdiemParse: /राति|बिहान|दिउँसो|साँझ/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /राति|बिहान|दिउँसो|साँझ/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'राति') {
+            if (meridiem === 'राति') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (merIdiem === 'बिहान') {
+            } else if (meridiem === 'बिहान') {
                 return hour;
-            } else if (merIdiem === 'दिउँसो') {
+            } else if (meridiem === 'दिउँसो') {
                 return hour >= 10 ? hour : hour + 12;
-            } else if (merIdiem === 'साँझ') {
+            } else if (meridiem === 'साँझ') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 3) {
                 return 'राति';
             } else if (hour < 12) {
@@ -8662,7 +8662,7 @@
         },
         relativeTime: {
             future: 'om %s',
-            past: '%s sIdan',
+            past: '%s sidan',
             s: 'nokre sekund',
             ss: '%d sekund',
             m: 'eit minutt',
@@ -8794,7 +8794,7 @@
         };
 
     moment.defineLocale('pa-in', {
-        // There are months name as per Nanakshahi Calendar but they are not used as rigIdly in modern Punjabi.
+        // There are months name as per Nanakshahi Calendar but they are not used as rigidly in modern Punjabi.
         months: 'ਜਨਵਰੀ_ਫ਼ਰਵਰੀ_ਮਾਰਚ_ਅਪ੍ਰੈਲ_ਮਈ_ਜੂਨ_ਜੁਲਾਈ_ਅਗਸਤ_ਸਤੰਬਰ_ਅਕਤੂਬਰ_ਨਵੰਬਰ_ਦਸੰਬਰ'.split(
             '_'
         ),
@@ -8848,24 +8848,24 @@
                 return symbolMap$f[match];
             });
         },
-        // Punjabi notation for merIdiems are quite fuzzy in practice. While there exists
-        // a rigId notion of a 'Pahar' it is not used as rigIdly in modern Punjabi.
-        merIdiemParse: /ਰਾਤ|ਸਵੇਰ|ਦੁਪਹਿਰ|ਸ਼ਾਮ/,
-        merIdiemHour: function (hour, merIdiem) {
+        // Punjabi notation for meridiems are quite fuzzy in practice. While there exists
+        // a rigid notion of a 'Pahar' it is not used as rigidly in modern Punjabi.
+        meridiemParse: /ਰਾਤ|ਸਵੇਰ|ਦੁਪਹਿਰ|ਸ਼ਾਮ/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'ਰਾਤ') {
+            if (meridiem === 'ਰਾਤ') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (merIdiem === 'ਸਵੇਰ') {
+            } else if (meridiem === 'ਸਵੇਰ') {
                 return hour;
-            } else if (merIdiem === 'ਦੁਪਹਿਰ') {
+            } else if (meridiem === 'ਦੁਪਹਿਰ') {
                 return hour >= 10 ? hour : hour + 12;
-            } else if (merIdiem === 'ਸ਼ਾਮ') {
+            } else if (meridiem === 'ਸ਼ਾਮ') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'ਰਾਤ';
             } else if (hour < 10) {
@@ -9049,7 +9049,7 @@
             lastWeek: function () {
                 return this.day() === 0 || this.day() === 6
                     ? '[Último] dddd [às] LT' // Saturday + Sunday
-                    : '[Última] dddd [às] LT'; // Monday - FrIday
+                    : '[Última] dddd [às] LT'; // Monday - Friday
             },
             sameElse: 'L',
         },
@@ -9071,7 +9071,7 @@
         },
         dayOfMonthOrdinalParse: /\d{1,2}º/,
         ordinal: '%dº',
-        invalIdDate: 'Data inválIda',
+        invalidDate: 'Data inválida',
     });
 
     //! moment.js locale configuration
@@ -9103,7 +9103,7 @@
             lastWeek: function () {
                 return this.day() === 0 || this.day() === 6
                     ? '[Último] dddd [às] LT' // Saturday + Sunday
-                    : '[Última] dddd [às] LT'; // Monday - FrIday
+                    : '[Última] dddd [às] LT'; // Monday - Friday
             },
             sameElse: 'L',
         },
@@ -9367,11 +9367,11 @@
             y: 'год',
             yy: relativeTimeWithPlural$3,
         },
-        merIdiemParse: /ночи|утра|дня|вечера/i,
+        meridiemParse: /ночи|утра|дня|вечера/i,
         isPM: function (input) {
             return /^(дня|вечера)$/.test(input);
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'ночи';
             } else if (hour < 12) {
@@ -9436,11 +9436,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd، D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /صبح|شام/,
+        meridiemParse: /صبح|شام/,
         isPM: function (input) {
             return 'شام' === input;
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'صبح';
             }
@@ -9485,7 +9485,7 @@
     //! moment.js locale configuration
 
     moment.defineLocale('se', {
-        months: 'ođđajagemánnu_guovvamánnu_njukčamánnu_cuoŋománnu_miessemánnu_geassemánnu_suoIdnemánnu_borgemánnu_čakčamánnu_golggotmánnu_skábmamánnu_juovlamánnu'.split(
+        months: 'ođđajagemánnu_guovvamánnu_njukčamánnu_cuoŋománnu_miessemánnu_geassemánnu_suoidnemánnu_borgemánnu_čakčamánnu_golggotmánnu_skábmamánnu_juovlamánnu'.split(
             '_'
         ),
         monthsShort: 'ođđj_guov_njuk_cuo_mies_geas_suoi_borg_čakč_golg_skáb_juov'.split(
@@ -9588,11 +9588,11 @@
         ordinal: function (number) {
             return number + ' වැනි';
         },
-        merIdiemParse: /පෙර වරු|පස් වරු|පෙ.ව|ප.ව./,
+        meridiemParse: /පෙර වරු|පස් වරු|පෙ.ව|ප.ව./,
         isPM: function (input) {
             return input === 'ප.ව.' || input === 'පස් වරු';
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours > 11) {
                 return isLower ? 'ප.ව.' : 'පස් වරු';
             } else {
@@ -9921,11 +9921,11 @@
         weekdaysShort: 'Die_Hën_Mar_Mër_Enj_Pre_Sht'.split('_'),
         weekdaysMin: 'D_H_Ma_Më_E_P_Sh'.split('_'),
         weekdaysParseExact: true,
-        merIdiemParse: /PD|MD/,
+        meridiemParse: /PD|MD/,
         isPM: function (input) {
             return input.charAt(0) === 'M';
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             return hours < 12 ? 'PD' : 'MD';
         },
         longDateFormat: {
@@ -10197,7 +10197,7 @@
     //! moment.js locale configuration
 
     moment.defineLocale('ss', {
-        months: "BhimbIdvwane_Indlovana_Indlov'lenkhulu_Mabasa_Inkhwekhweti_Inhlaba_Kholwane_Ingci_Inyoni_Imphala_Lweti_Ingongoni".split(
+        months: "Bhimbidvwane_Indlovana_Indlov'lenkhulu_Mabasa_Inkhwekhweti_Inhlaba_Kholwane_Ingci_Inyoni_Imphala_Lweti_Ingongoni".split(
             '_'
         ),
         monthsShort: 'Bhi_Ina_Inu_Mab_Ink_Inh_Kho_Igc_Iny_Imp_Lwe_Igo'.split('_'),
@@ -10239,8 +10239,8 @@
             y: 'umnyaka',
             yy: '%d iminyaka',
         },
-        merIdiemParse: /ekuseni|emini|entsambama|ebusuku/,
-        merIdiem: function (hours, minutes, isLower) {
+        meridiemParse: /ekuseni|emini|entsambama|ebusuku/,
+        meridiem: function (hours, minutes, isLower) {
             if (hours < 11) {
                 return 'ekuseni';
             } else if (hours < 15) {
@@ -10251,15 +10251,15 @@
                 return 'ebusuku';
             }
         },
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'ekuseni') {
+            if (meridiem === 'ekuseni') {
                 return hour;
-            } else if (merIdiem === 'emini') {
+            } else if (meridiem === 'emini') {
                 return hour >= 11 ? hour : hour + 12;
-            } else if (merIdiem === 'entsambama' || merIdiem === 'ebusuku') {
+            } else if (meridiem === 'entsambama' || meridiem === 'ebusuku') {
                 if (hour === 0) {
                     return 0;
                 }
@@ -10478,8 +10478,8 @@
             });
         },
         // refer http://ta.wikipedia.org/s/1er1
-        merIdiemParse: /யாமம்|வைகறை|காலை|நண்பகல்|எற்பாடு|மாலை/,
-        merIdiem: function (hour, minute, isLower) {
+        meridiemParse: /யாமம்|வைகறை|காலை|நண்பகல்|எற்பாடு|மாலை/,
+        meridiem: function (hour, minute, isLower) {
             if (hour < 2) {
                 return ' யாமம்';
             } else if (hour < 6) {
@@ -10496,15 +10496,15 @@
                 return ' யாமம்';
             }
         },
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'யாமம்') {
+            if (meridiem === 'யாமம்') {
                 return hour < 2 ? hour : hour + 12;
-            } else if (merIdiem === 'வைகறை' || merIdiem === 'காலை') {
+            } else if (meridiem === 'வைகறை' || meridiem === 'காலை') {
                 return hour;
-            } else if (merIdiem === 'நண்பகல்') {
+            } else if (meridiem === 'நண்பகல்') {
                 return hour >= 10 ? hour : hour + 12;
             } else {
                 return hour + 12;
@@ -10565,22 +10565,22 @@
         },
         dayOfMonthOrdinalParse: /\d{1,2}వ/,
         ordinal: '%dవ',
-        merIdiemParse: /రాత్రి|ఉదయం|మధ్యాహ్నం|సాయంత్రం/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /రాత్రి|ఉదయం|మధ్యాహ్నం|సాయంత్రం/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'రాత్రి') {
+            if (meridiem === 'రాత్రి') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (merIdiem === 'ఉదయం') {
+            } else if (meridiem === 'ఉదయం') {
                 return hour;
-            } else if (merIdiem === 'మధ్యాహ్నం') {
+            } else if (meridiem === 'మధ్యాహ్నం') {
                 return hour >= 10 ? hour : hour + 12;
-            } else if (merIdiem === 'సాయంత్రం') {
+            } else if (meridiem === 'సాయంత్రం') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'రాత్రి';
             } else if (hour < 10) {
@@ -10630,15 +10630,15 @@
             past: '%s liuba',
             s: 'segundu balun',
             ss: 'segundu %d',
-            m: 'minutu Ida',
+            m: 'minutu ida',
             mm: 'minutu %d',
-            h: 'oras Ida',
+            h: 'oras ida',
             hh: 'oras %d',
-            d: 'loron Ida',
+            d: 'loron ida',
             dd: 'loron %d',
-            M: 'fulan Ida',
+            M: 'fulan ida',
             MM: 'fulan %d',
-            y: 'tinan Ida',
+            y: 'tinan ida',
             yy: 'tinan %d',
         },
         dayOfMonthOrdinalParse: /\d{1,2}(st|nd|rd|th)/,
@@ -10735,22 +10735,22 @@
             y: 'як сол',
             yy: '%d сол',
         },
-        merIdiemParse: /шаб|субҳ|рӯз|бегоҳ/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /шаб|субҳ|рӯз|бегоҳ/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'шаб') {
+            if (meridiem === 'шаб') {
                 return hour < 4 ? hour : hour + 12;
-            } else if (merIdiem === 'субҳ') {
+            } else if (meridiem === 'субҳ') {
                 return hour;
-            } else if (merIdiem === 'рӯз') {
+            } else if (meridiem === 'рӯз') {
                 return hour >= 11 ? hour : hour + 12;
-            } else if (merIdiem === 'бегоҳ') {
+            } else if (meridiem === 'бегоҳ') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'шаб';
             } else if (hour < 11) {
@@ -10797,11 +10797,11 @@
             LLL: 'D MMMM YYYY เวลา H:mm',
             LLLL: 'วันddddที่ D MMMM YYYY เวลา H:mm',
         },
-        merIdiemParse: /ก่อนเที่ยง|หลังเที่ยง/,
+        meridiemParse: /ก่อนเที่ยง|หลังเที่ยง/,
         isPM: function (input) {
             return input === 'หลังเที่ยง';
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'ก่อนเที่ยง';
             } else {
@@ -11133,14 +11133,14 @@
         ),
         weekdaysShort: 'Paz_Pts_Sal_Çar_Per_Cum_Cts'.split('_'),
         weekdaysMin: 'Pz_Pt_Sa_Ça_Pe_Cu_Ct'.split('_'),
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours < 12) {
                 return isLower ? 'öö' : 'ÖÖ';
             } else {
                 return isLower ? 'ös' : 'ÖS';
             }
         },
-        merIdiemParse: /öö|ÖÖ|ös|ÖS/,
+        meridiemParse: /öö|ÖÖ|ös|ÖS/,
         isPM: function (input) {
             return input === 'ös' || input === 'ÖS';
         },
@@ -11222,11 +11222,11 @@
             LLL: 'D. MMMM [dallas] YYYY HH.mm',
             LLLL: 'dddd, [li] D. MMMM [dallas] YYYY HH.mm',
         },
-        merIdiemParse: /d\'o|d\'a/i,
+        meridiemParse: /d\'o|d\'a/i,
         isPM: function (input) {
             return "d'o" === input.toLowerCase();
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours > 11) {
                 return isLower ? "d'o" : "D'O";
             } else {
@@ -11409,24 +11409,24 @@
             LLL: 'YYYY-يىلىM-ئاينىڭD-كۈنى، HH:mm',
             LLLL: 'dddd، YYYY-يىلىM-ئاينىڭD-كۈنى، HH:mm',
         },
-        merIdiemParse: /يېرىم كېچە|سەھەر|چۈشتىن بۇرۇن|چۈش|چۈشتىن كېيىن|كەچ/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /يېرىم كېچە|سەھەر|چۈشتىن بۇرۇن|چۈش|چۈشتىن كېيىن|كەچ/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
             if (
-                merIdiem === 'يېرىم كېچە' ||
-                merIdiem === 'سەھەر' ||
-                merIdiem === 'چۈشتىن بۇرۇن'
+                meridiem === 'يېرىم كېچە' ||
+                meridiem === 'سەھەر' ||
+                meridiem === 'چۈشتىن بۇرۇن'
             ) {
                 return hour;
-            } else if (merIdiem === 'چۈشتىن كېيىن' || merIdiem === 'كەچ') {
+            } else if (meridiem === 'چۈشتىن كېيىن' || meridiem === 'كەچ') {
                 return hour + 12;
             } else {
                 return hour >= 11 ? hour : hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             var hm = hour * 100 + minute;
             if (hm < 600) {
                 return 'يېرىم كېچە';
@@ -11617,11 +11617,11 @@
             yy: relativeTimeWithPlural$4,
         },
         // M. E.: those two are virtually unused but a user might want to implement them for his/her website for some reason
-        merIdiemParse: /ночі|ранку|дня|вечора/,
+        meridiemParse: /ночі|ранку|дня|вечора/,
         isPM: function (input) {
             return /^(дня|вечора)$/.test(input);
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 4) {
                 return 'ночі';
             } else if (hour < 12) {
@@ -11685,11 +11685,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd، D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /صبح|شام/,
+        meridiemParse: /صبح|شام/,
         isPM: function (input) {
             return 'شام' === input;
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'صبح';
             }
@@ -11760,7 +11760,7 @@
             sameElse: 'L',
         },
         relativeTime: {
-            future: 'Yaqin %s ichIda',
+            future: 'Yaqin %s ichida',
             past: 'Bir necha %s oldin',
             s: 'soniya',
             ss: '%d soniya',
@@ -11845,11 +11845,11 @@
         weekdaysShort: 'CN_T2_T3_T4_T5_T6_T7'.split('_'),
         weekdaysMin: 'CN_T2_T3_T4_T5_T6_T7'.split('_'),
         weekdaysParseExact: true,
-        merIdiemParse: /sa|ch/i,
+        meridiemParse: /sa|ch/i,
         isPM: function (input) {
             return /^ch$/i.test(input);
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours < 12) {
                 return isLower ? 'sa' : 'SA';
             } else {
@@ -12046,21 +12046,21 @@
             lll: 'YYYY年M月D日 HH:mm',
             llll: 'YYYY年M月D日dddd HH:mm',
         },
-        merIdiemParse: /凌晨|早上|上午|中午|下午|晚上/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === '凌晨' || merIdiem === '早上' || merIdiem === '上午') {
+            if (meridiem === '凌晨' || meridiem === '早上' || meridiem === '上午') {
                 return hour;
-            } else if (merIdiem === '下午' || merIdiem === '晚上') {
+            } else if (meridiem === '下午' || meridiem === '晚上') {
                 return hour + 12;
             } else {
                 // '中午'
                 return hour >= 11 ? hour : hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             var hm = hour * 100 + minute;
             if (hm < 600) {
                 return '凌晨';
@@ -12161,20 +12161,20 @@
             lll: 'YYYY年M月D日 HH:mm',
             llll: 'YYYY年M月D日dddd HH:mm',
         },
-        merIdiemParse: /凌晨|早上|上午|中午|下午|晚上/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === '凌晨' || merIdiem === '早上' || merIdiem === '上午') {
+            if (meridiem === '凌晨' || meridiem === '早上' || meridiem === '上午') {
                 return hour;
-            } else if (merIdiem === '中午') {
+            } else if (meridiem === '中午') {
                 return hour >= 11 ? hour : hour + 12;
-            } else if (merIdiem === '下午' || merIdiem === '晚上') {
+            } else if (meridiem === '下午' || meridiem === '晚上') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             var hm = hour * 100 + minute;
             if (hm < 600) {
                 return '凌晨';
@@ -12256,20 +12256,20 @@
             lll: 'YYYY年M月D日 HH:mm',
             llll: 'YYYY年M月D日dddd HH:mm',
         },
-        merIdiemParse: /凌晨|早上|上午|中午|下午|晚上/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === '凌晨' || merIdiem === '早上' || merIdiem === '上午') {
+            if (meridiem === '凌晨' || meridiem === '早上' || meridiem === '上午') {
                 return hour;
-            } else if (merIdiem === '中午') {
+            } else if (meridiem === '中午') {
                 return hour >= 11 ? hour : hour + 12;
-            } else if (merIdiem === '下午' || merIdiem === '晚上') {
+            } else if (meridiem === '下午' || meridiem === '晚上') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             var hm = hour * 100 + minute;
             if (hm < 600) {
                 return '凌晨';
@@ -12351,20 +12351,20 @@
             lll: 'YYYY年M月D日 HH:mm',
             llll: 'YYYY年M月D日dddd HH:mm',
         },
-        merIdiemParse: /凌晨|早上|上午|中午|下午|晚上/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === '凌晨' || merIdiem === '早上' || merIdiem === '上午') {
+            if (meridiem === '凌晨' || meridiem === '早上' || meridiem === '上午') {
                 return hour;
-            } else if (merIdiem === '中午') {
+            } else if (meridiem === '中午') {
                 return hour >= 11 ? hour : hour + 12;
-            } else if (merIdiem === '下午' || merIdiem === '晚上') {
+            } else if (meridiem === '下午' || meridiem === '晚上') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             var hm = hour * 100 + minute;
             if (hm < 600) {
                 return '凌晨';

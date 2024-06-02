@@ -25,7 +25,7 @@ API.txt for details.
 
     var floorInBase = $.plot.saturated.floorInBase;
 
-    // Method to provIde microsecond support to Date like classes.
+    // Method to provide microsecond support to Date like classes.
     var CreateMicroSecondDate = function(DateType, microEpoch) {
         var newDate = new DateType(microEpoch);
 
@@ -442,10 +442,10 @@ API.txt for details.
 
             if (unit === "month" || unit === "quarter") {
                 if (tickSize < 1) {
-                    // a bit complicated - we'll divIde the
+                    // a bit complicated - we'll divide the
                     // month/quarter up but we need to take
                     // care of fractions so we don't end up in
-                    // the mIddle of a day
+                    // the middle of a day
                     d.setDate(1);
                     var start = d.getTime();
                     d.setMonth(d.getMonth() +
@@ -481,7 +481,7 @@ API.txt for details.
                 if (opts.mode === "time") {
                     axis.tickGenerator = dateTickGenerator;
 
-                    // if a tick formatter is already provIded do not overwrite it
+                    // if a tick formatter is already provided do not overwrite it
                     if ('tickFormatter' in opts && typeof opts.tickFormatter === 'function') return;
 
                     axis.tickFormatter = function (v, axis) {

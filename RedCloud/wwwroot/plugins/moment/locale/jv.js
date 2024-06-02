@@ -28,20 +28,20 @@
             LLL: 'D MMMM YYYY [pukul] HH.mm',
             LLLL: 'dddd, D MMMM YYYY [pukul] HH.mm',
         },
-        merIdiemParse: /enjing|siyang|sonten|ndalu/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /enjing|siyang|sonten|ndalu/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'enjing') {
+            if (meridiem === 'enjing') {
                 return hour;
-            } else if (merIdiem === 'siyang') {
+            } else if (meridiem === 'siyang') {
                 return hour >= 11 ? hour : hour + 12;
-            } else if (merIdiem === 'sonten' || merIdiem === 'ndalu') {
+            } else if (meridiem === 'sonten' || meridiem === 'ndalu') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours < 11) {
                 return 'enjing';
             } else if (hours < 15) {

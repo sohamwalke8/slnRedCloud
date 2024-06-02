@@ -1,7 +1,7 @@
-(function(jsGrId) {
+(function(jsGrid) {
 
-    jsGrId.locales.ja = {
-        grId: {
+    jsGrid.locales.ja = {
+        grid: {
             noDataContent: "データが見つかりません。",
             deleteConfirm: "削除しますよろしですか。",
             pagerFormat: "頁: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; 【{pageIndex}／{pageCount}】",
@@ -10,7 +10,7 @@
             pageFirstText: "最初",
             pageLastText: "最後",
             loadMessage: "しばらくお待ちください…",
-            invalIdMessage: "入力されたデータが不正です。"
+            invalidMessage: "入力されたデータが不正です。"
         },
 
         loadIndicator: {
@@ -31,7 +31,7 @@
             }
         },
 
-        valIdators: {
+        validators: {
             required: { message: "項目が必要です。" },
             rangeLength: { message: "項目の桁数が範囲外です。" },
             minLength: { message: "項目の桁数が超過しています。" },
@@ -43,4 +43,4 @@
         }
     };
 
-}(jsGrId, jQuery));
+}(jsGrid, jQuery));

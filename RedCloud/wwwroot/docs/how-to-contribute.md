@@ -9,11 +9,11 @@ Contributions are always **welcome and recommended**! Here is how for beginner's
 
 1. Contribution Requirements :
     * When you contribute, you agree to give a non-exclusive license to AdminLTE.io to use that contribution in any context as we (AdminLTE.io) see appropriate.
-    * If you use content provIded by another party, it must be appropriately licensed using an [open source](https://opensource.org/licenses) license.
+    * If you use content provided by another party, it must be appropriately licensed using an [open source](https://opensource.org/licenses) license.
     * Contributions are only accepted through GitHub pull requests.
     * Finally, contributed code must work in all supported browsers (see above for browser support).
 2. Installation :
-    * Fork the repository ([here is the guIde](https://help.github.com/articles/fork-a-repo/)).
+    * Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
     * Clone to your machine
 
     ```bash
@@ -32,7 +32,7 @@ Contributions are always **welcome and recommended**! Here is how for beginner's
 
 ## Online one-click setup for contributing
 
-You can use Gitpod(an online IdE which is free for Open Source) for working on issues or making PRs (Pull Requests). With a single click it will launch a workspace and automatically:
+You can use Gitpod(an online IDE which is free for Open Source) for working on issues or making PRs (Pull Requests). With a single click it will launch a workspace and automatically:
 
 - clone the `AdminLTE` repo.
 - install the dependencies.

@@ -2,32 +2,32 @@
 layout: page
 title: Plugins
 ---
-AdminLTE comes with color overrIdes & extras for the following plugins.
+AdminLTE comes with color overrides & extras for the following plugins.
 
-### Bootstrap SlIder
+### Bootstrap Slider
 
-You can override the color for bootstrap slIder tracks with the following classes:
+You can override the color for bootstrap slider tracks with the following classes:
 
-- `.slIder-*`
+- `.slider-*`
 
 Example:
 
 ```html
-<div class="slIder-red">
-  <input type="text" value="" class="slIder form-control" data-slIder...>
+<div class="slider-red">
+  <input type="text" value="" class="slider form-control" data-slider...>
 </div>
 ```
 
-You can also change the layout of the slIder with the following classes:
+You can also change the layout of the slider with the following classes:
 
-- `.slIder-vertical`
-- `.slIder-horizontal`
+- `.slider-vertical`
+- `.slider-horizontal`
 
 Example:
 
 ```html
-<div class="slIder-red">
-  <input type="text" value="" class="slIder slIder-vertical form-control" data-slIder...>
+<div class="slider-red">
+  <input type="text" value="" class="slider slider-vertical form-control" data-slider...>
 </div>
 ```
 
@@ -42,7 +42,7 @@ Example:
 
 ```html
 <div class="icheck-primary">
-  <input type="checkbox" Id="checkbox1">
+  <input type="checkbox" id="checkbox1">
   <label for="checkbox1">
     Checkbox Label
   </label>

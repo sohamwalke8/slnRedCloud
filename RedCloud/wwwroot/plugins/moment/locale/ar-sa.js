@@ -55,11 +55,11 @@
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd D MMMM YYYY HH:mm',
         },
-        merIdiemParse: /ص|م/,
+        meridiemParse: /ص|م/,
         isPM: function (input) {
             return 'م' === input;
         },
-        merIdiem: function (hour, minute, isLower) {
+        meridiem: function (hour, minute, isLower) {
             if (hour < 12) {
                 return 'ص';
             } else {

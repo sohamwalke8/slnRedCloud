@@ -21,7 +21,7 @@ CodeMirror.defineMode("oz", function (conf) {
   var doubleOperators = /(<-)|(:=)|(=<)|(>=)|(<=)|(<:)|(>:)|(=:)|(\\=)|(\\=:)|(!!)|(==)|(::)/;
   var tripleOperators = /(:::)|(\.\.\.)|(=<:)|(>=:)/;
 
-  var mIddle = ["in", "then", "else", "of", "elseof", "elsecase", "elseif", "catch",
+  var middle = ["in", "then", "else", "of", "elseof", "elsecase", "elseif", "catch",
     "finally", "with", "require", "prepare", "import", "export", "define", "do"];
   var end = ["end"];
 
@@ -30,7 +30,7 @@ CodeMirror.defineMode("oz", function (conf) {
     "mod", "div", "mode", "orelse", "parser", "prod", "prop", "scanner", "self", "syn", "token"]);
   var openingKeywords = wordRegexp(["local", "proc", "fun", "case", "class", "if", "cond", "or", "dis",
     "choice", "not", "thread", "try", "raise", "lock", "for", "suchthat", "meth", "functor"]);
-  var mIddleKeywords = wordRegexp(mIddle);
+  var middleKeywords = wordRegexp(middle);
   var endKeywords = wordRegexp(end);
 
   // Tokenizers
@@ -78,8 +78,8 @@ CodeMirror.defineMode("oz", function (conf) {
       return 'keyword';
     }
 
-    // MIddle and other keywords
-    if (stream.match(mIddleKeywords) || stream.match(commonKeywords)) {
+    // Middle and other keywords
+    if (stream.match(middleKeywords) || stream.match(commonKeywords)) {
       return "keyword"
     }
 
@@ -206,7 +206,7 @@ CodeMirror.defineMode("oz", function (conf) {
   function buildElectricInputRegEx() {
     // Reindentation should occur on [] or on a match of any of
     // the block closing keywords, at the end of a line.
-    var allClosings = mIddle.concat(end);
+    var allClosings = middle.concat(end);
     return new RegExp("[\\[\\]]|(" + allClosings.join("|") + ")$");
   }
 
@@ -231,7 +231,7 @@ CodeMirror.defineMode("oz", function (conf) {
     indent: function (state, textAfter) {
       var trueText = textAfter.replace(/^\s+|\s+$/g, '');
 
-      if (trueText.match(endKeywords) || trueText.match(mIddleKeywords) || trueText.match(/(\[])/))
+      if (trueText.match(endKeywords) || trueText.match(middleKeywords) || trueText.match(/(\[])/))
         return conf.indentUnit * (state.currentIndent - 1);
 
       if (state.currentIndent < 0)

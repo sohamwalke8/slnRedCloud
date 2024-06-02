@@ -21,15 +21,15 @@ const EVENT_COLLAPSED = `collapsed${EVENT_KEY}`
 const EVENT_COLLAPSED_DONE = `collapsed-done${EVENT_KEY}`
 const EVENT_SHOWN = `shown${EVENT_KEY}`
 
-const SELECTOR_TOGGLE_BUTTON = '[data-wIdget="pushmenu"]'
+const SELECTOR_TOGGLE_BUTTON = '[data-widget="pushmenu"]'
 const SELECTOR_BODY = 'body'
-const SELECTOR_OVERLAY = '#sIdebar-overlay'
+const SELECTOR_OVERLAY = '#sidebar-overlay'
 const SELECTOR_WRAPPER = '.wrapper'
 
-const CLASS_NAME_COLLAPSED = 'sIdebar-collapse'
-const CLASS_NAME_OPEN = 'sIdebar-open'
-const CLASS_NAME_IS_OPENING = 'sIdebar-is-opening'
-const CLASS_NAME_CLOSED = 'sIdebar-closed'
+const CLASS_NAME_COLLAPSED = 'sidebar-collapse'
+const CLASS_NAME_OPEN = 'sidebar-open'
+const CLASS_NAME_IS_OPENING = 'sidebar-is-opening'
+const CLASS_NAME_CLOSED = 'sidebar-closed'
 
 const Default = {
   autoCollapseSize: 992,
@@ -60,7 +60,7 @@ class PushMenu {
   expand() {
     const $bodySelector = $(SELECTOR_BODY)
 
-    if (this._options.autoCollapseSize && $(window).wIdth() <= this._options.autoCollapseSize) {
+    if (this._options.autoCollapseSize && $(window).width() <= this._options.autoCollapseSize) {
       $bodySelector.addClass(CLASS_NAME_OPEN)
     }
 
@@ -79,7 +79,7 @@ class PushMenu {
   collapse() {
     const $bodySelector = $(SELECTOR_BODY)
 
-    if (this._options.autoCollapseSize && $(window).wIdth() <= this._options.autoCollapseSize) {
+    if (this._options.autoCollapseSize && $(window).width() <= this._options.autoCollapseSize) {
       $bodySelector.removeClass(CLASS_NAME_OPEN).addClass(CLASS_NAME_CLOSED)
     }
 
@@ -111,7 +111,7 @@ class PushMenu {
 
     const $bodySelector = $(SELECTOR_BODY)
 
-    if ($(window).wIdth() <= this._options.autoCollapseSize) {
+    if ($(window).width() <= this._options.autoCollapseSize) {
       if (!$bodySelector.hasClass(CLASS_NAME_OPEN)) {
         this.collapse()
       }
@@ -164,7 +164,7 @@ class PushMenu {
 
   _addOverlay() {
     const overlay = $('<div />', {
-      Id: 'sIdebar-overlay'
+      id: 'sidebar-overlay'
     })
 
     overlay.on('click', () => {
@@ -203,7 +203,7 @@ $(document).on('click', SELECTOR_TOGGLE_BUTTON, event => {
 
   let button = event.currentTarget
 
-  if ($(button).data('wIdget') !== 'pushmenu') {
+  if ($(button).data('widget') !== 'pushmenu') {
     button = $(button).closest(SELECTOR_TOGGLE_BUTTON)
   }
 

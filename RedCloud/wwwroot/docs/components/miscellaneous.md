@@ -17,7 +17,7 @@ You can change the font sizes with adding to any element `.text-*` e.g. (`.text-
 - `.text-xl` (2rem)
 
 > ##### Tip!
-> You can also add `.text-sm` to `body`, with this you get a complete smaller font on the UI or can you add `.text-sm` to `.main-sIdebar` or `.main-header` & `.brand-link`.
+> You can also add `.text-sm` to `body`, with this you get a complete smaller font on the UI or can you add `.text-sm` to `.main-sidebar` or `.main-header` & `.brand-link`.
 {: .quote-info}
 
 
@@ -28,7 +28,7 @@ You can add the `.dropdown-menu-lg` to `.dropdown-menu` for a bigger dropdown me
 
 ### Dropdown Hover
 
-You can add the `.dropdown-hover` class besIde this classes:
+You can add the `.dropdown-hover` class beside this classes:
 - `.dropdown` (to use hover for the whole dropdown menu)
 - `.dropdown-menu` (to use hover on a specific menu item & sub menus)
 - `.dropdown-submenu` (to use hover on a specific sub menu item & sub sub menus)

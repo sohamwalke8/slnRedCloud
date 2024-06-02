@@ -6,7 +6,7 @@
 This plugin is used for mouse hover and tap on a point of plot series.
 It supports the following options:
 ```js
-grId: {
+grid: {
     hoverable: false, //to trigger plothover event on mouse hover or tap on a point
     clickable: false //to trigger plotclick event on mouse hover
 }
@@ -28,7 +28,7 @@ the tooltip from webcharts).
     'use strict';
 
     var options = {
-        grId: {
+        grid: {
             hoverable: false,
             clickable: false
         }
@@ -48,16 +48,16 @@ the tooltip from webcharts).
         function bindEvents(plot, eventHolder) {
             var o = plot.getOptions();
 
-            if (o.grId.hoverable || o.grId.clickable) {
+            if (o.grid.hoverable || o.grid.clickable) {
                 eventHolder[0].addEventListener('touchevent', triggerCleanupEvent, false);
                 eventHolder[0].addEventListener('tap', generatePlothoverEvent, false);
             }
 
-            if (o.grId.clickable) {
+            if (o.grid.clickable) {
                 eventHolder.bind("click", onClick);
             }
 
-            if (o.grId.hoverable) {
+            if (o.grid.hoverable) {
                 eventHolder.bind("mousemove", onMouseMove);
 
                 // Use bind, rather than .mouseleave, because we officially
@@ -89,7 +89,7 @@ the tooltip from webcharts).
             newEvent.clientX = e.detail.changedTouches[0].clientX;
             newEvent.clientY = e.detail.changedTouches[0].clientY;
 
-            if (o.grId.hoverable) {
+            if (o.grid.hoverable) {
                 doTriggerClickHoverEvent(newEvent, eventType.hover, 30);
             }
             return false;
@@ -146,7 +146,7 @@ the tooltip from webcharts).
                     left: canvasX,
                     top: canvasY
                 }),
-                distance = searchDistance !== undefined ? searchDistance : options.grId.mouseActiveRadius;
+                distance = searchDistance !== undefined ? searchDistance : options.grid.mouseActiveRadius;
 
             pos.pageX = page.X;
             pos.pageY = page.Y;
@@ -169,7 +169,7 @@ the tooltip from webcharts).
                 item = null;
             }
 
-            if (options.grId.autoHighlight) {
+            if (options.grid.autoHighlight) {
                 // clear auto-highlights
                 for (let i = 0; i < highlights.length; ++i) {
                     var h = highlights[i];
@@ -255,7 +255,7 @@ the tooltip from webcharts).
             doTriggerClickHoverEvent(lastMouseMoveEvent, eventType.hover);
         }
 
-        function setupGrId() {
+        function setupGrid() {
             doTriggerClickHoverEvent(lastMouseMoveEvent, eventType.hover);
         }
 
@@ -285,8 +285,8 @@ the tooltip from webcharts).
                 return;
             }
 
-            var pointRadius = series.points.radius + series.points.lineWIdth / 2;
-            octx.lineWIdth = pointRadius;
+            var pointRadius = series.points.radius + series.points.lineWidth / 2;
+            octx.lineWidth = pointRadius;
             octx.strokeStyle = highlightColor;
             var radius = 1.5 * pointRadius;
             x = axisx.p2c(x);
@@ -309,37 +309,37 @@ the tooltip from webcharts).
                 fillStyle = highlightColor,
                 barLeft;
 
-            var barWIdth = series.bars.barWIdth[0] || series.bars.barWIdth;
+            var barWidth = series.bars.barWidth[0] || series.bars.barWidth;
             switch (series.bars.align) {
                 case "left":
                     barLeft = 0;
                     break;
                 case "right":
-                    barLeft = -barWIdth;
+                    barLeft = -barWidth;
                     break;
                 default:
-                    barLeft = -barWIdth / 2;
+                    barLeft = -barWidth / 2;
             }
 
-            octx.lineWIdth = series.bars.lineWIdth;
+            octx.lineWidth = series.bars.lineWidth;
             octx.strokeStyle = highlightColor;
 
             var fillTowards = series.bars.fillTowards || 0,
                 bottom = fillTowards > series.yaxis.min ? Math.min(series.yaxis.max, fillTowards) : series.yaxis.min;
 
-            $.plot.drawSeries.drawBar(point[0], point[1], point[2] || bottom, barLeft, barLeft + barWIdth,
+            $.plot.drawSeries.drawBar(point[0], point[1], point[2] || bottom, barLeft, barLeft + barWidth,
                 function() {
                     return fillStyle;
-                }, series.xaxis, series.yaxis, octx, series.bars.horizontal, series.bars.lineWIdth);
+                }, series.xaxis, series.yaxis, octx, series.bars.horizontal, series.bars.lineWidth);
         }
 
         function initHover(plot, options) {
             plot.highlight = highlight;
             plot.unhighlight = unhighlight;
-            if (options.grId.hoverable || options.grId.clickable) {
+            if (options.grid.hoverable || options.grid.clickable) {
                 plot.hooks.drawOverlay.push(drawOverlay);
                 plot.hooks.processDatapoints.push(processDatapoints);
-                plot.hooks.setupGrId.push(setupGrId);
+                plot.hooks.setupGrid.push(setupGrid);
             }
 
             lastMouseMoveEvent = plot.getPlaceholder()[0].lastMouseMoveEvent;

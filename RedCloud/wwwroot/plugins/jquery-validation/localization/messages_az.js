@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../jquery.valIdate"], factory );
+		define( ["jquery", "../jquery.validate"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
@@ -9,10 +9,10 @@
 }(function( $ ) {
 
 /*
- * Translated default messages for the jQuery valIdation plugin.
+ * Translated default messages for the jQuery validation plugin.
  * Locale: Az (Azeri; azərbaycan dili)
  */
-$.extend( $.valIdator.messages, {
+$.extend( $.validator.messages, {
 	required: "Bu xana mütləq doldurulmalıdır.",
 	remote: "Zəhmət olmasa, düzgün məna daxil edin.",
 	email: "Zəhmət olmasa, düzgün elektron poçt daxil edin.",
@@ -24,12 +24,12 @@ $.extend( $.valIdator.messages, {
 	creditcard: "Zəhmət olmasa, düzgün kredit kart nömrəsini daxil edin.",
 	equalTo: "Zəhmət olmasa, eyni mənanı bir daha daxil edin.",
 	extension: "Zəhmət olmasa, düzgün genişlənməyə malik faylı seçin.",
-	maxlength: $.valIdator.format( "Zəhmət olmasa, {0} simvoldan çox olmayaraq daxil edin." ),
-	minlength: $.valIdator.format( "Zəhmət olmasa, {0} simvoldan az olmayaraq daxil edin." ),
-	rangelength: $.valIdator.format( "Zəhmət olmasa, {0} - {1} aralığında uzunluğa malik simvol daxil edin." ),
-	range: $.valIdator.format( "Zəhmət olmasa, {0} - {1} aralığında rəqəm daxil edin." ),
-	max: $.valIdator.format( "Zəhmət olmasa, {0} və ondan kiçik rəqəm daxil edin." ),
-	min: $.valIdator.format( "Zəhmət olmasa, {0} və ondan böyük rəqəm daxil edin" )
+	maxlength: $.validator.format( "Zəhmət olmasa, {0} simvoldan çox olmayaraq daxil edin." ),
+	minlength: $.validator.format( "Zəhmət olmasa, {0} simvoldan az olmayaraq daxil edin." ),
+	rangelength: $.validator.format( "Zəhmət olmasa, {0} - {1} aralığında uzunluğa malik simvol daxil edin." ),
+	range: $.validator.format( "Zəhmət olmasa, {0} - {1} aralığında rəqəm daxil edin." ),
+	max: $.validator.format( "Zəhmət olmasa, {0} və ondan kiçik rəqəm daxil edin." ),
+	min: $.validator.format( "Zəhmət olmasa, {0} və ondan böyük rəqəm daxil edin" )
 } );
 return $;
 }));

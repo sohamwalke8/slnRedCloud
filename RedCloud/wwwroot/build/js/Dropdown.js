@@ -44,11 +44,11 @@ class Dropdown {
     this._element.siblings().show().toggleClass('show')
 
     if (!this._element.next().hasClass('show')) {
-      this._element.parents(SELECTOR_DROPDOWN_MENU).first().find('.show').removeClass('show').hIde()
+      this._element.parents(SELECTOR_DROPDOWN_MENU).first().find('.show').removeClass('show').hide()
     }
 
-    this._element.parents('li.nav-item.dropdown.show').on('hIdden.bs.dropdown', () => {
-      $('.dropdown-submenu .show').removeClass('show').hIde()
+    this._element.parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', () => {
+      $('.dropdown-submenu .show').removeClass('show').hide()
     })
   }
 
@@ -72,15 +72,15 @@ class Dropdown {
     }
 
     const offset = $element.offset()
-    const wIdth = $element.wIdth()
-    const visiblePart = $(window).wIdth() - offset.left
+    const width = $element.width()
+    const visiblePart = $(window).width() - offset.left
 
     if (offset.left < 0) {
       $element.css({
         left: 'inherit',
         right: offset.left - 5
       })
-    } else if (visiblePart < wIdth) {
+    } else if (visiblePart < width) {
       $element.css({
         left: 'inherit',
         right: 0

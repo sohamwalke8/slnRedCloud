@@ -31,11 +31,11 @@
             LLLL: 'dddd[n], [la] D[-an de] MMMM, YYYY HH:mm',
             llll: 'ddd, [la] D[-an de] MMM, YYYY HH:mm',
         },
-        merIdiemParse: /[ap]\.t\.m/i,
+        meridiemParse: /[ap]\.t\.m/i,
         isPM: function (input) {
             return input.charAt(0).toLowerCase() === 'p';
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours > 11) {
                 return isLower ? 'p.t.m.' : 'P.T.M.';
             } else {

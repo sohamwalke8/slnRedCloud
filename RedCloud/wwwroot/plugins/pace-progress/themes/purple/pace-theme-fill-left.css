@@ -1,4 +1,4 @@
-/* This is a compiled file, to make changes persist, consIder editing under the templates directory */
+/* This is a compiled file, to make changes persist, consider editing under the templates directory */
 .pace {
   -webkit-pointer-events: none;
   pointer-events: none;
@@ -18,5 +18,5 @@
   top: 0;
   right: 100%;
   bottom: 0;
-  wIdth: 100%;
+  width: 100%;
 }

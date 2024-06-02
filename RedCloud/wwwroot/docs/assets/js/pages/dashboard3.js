@@ -46,9 +46,9 @@ $(function () {
       scales: {
         yAxes: [{
           // display: false,
-          grIdLines: {
+          gridLines: {
             display: true,
-            lineWIdth: '4px',
+            lineWidth: '4px',
             color: 'rgba(0, 0, 0, .2)',
             zeroLineColor: 'transparent'
           },
@@ -68,7 +68,7 @@ $(function () {
         }],
         xAxes: [{
           display: true,
-          grIdLines: {
+          gridLines: {
             display: false
           },
           ticks: ticksStyle
@@ -121,9 +121,9 @@ $(function () {
       scales: {
         yAxes: [{
           // display: false,
-          grIdLines: {
+          gridLines: {
             display: true,
-            lineWIdth: '4px',
+            lineWidth: '4px',
             color: 'rgba(0, 0, 0, .2)',
             zeroLineColor: 'transparent'
           },
@@ -134,7 +134,7 @@ $(function () {
         }],
         xAxes: [{
           display: true,
-          grIdLines: {
+          gridLines: {
             display: false
           },
           ticks: ticksStyle

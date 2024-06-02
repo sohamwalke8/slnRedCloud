@@ -26,6 +26,6 @@ namespace RedCloud.Interfaces
         Task SoftDeleteResellerAdmin(int id);
         Task<ReSellerAdmindto> GetResellerAdminById(int id);
         Task<ResellerAdminUserVM> Block(int Id);
-        Task<IEnumerable<ResellerAdminUserVM>> GetallResellerAdmin();
+        Task<IEnumerable<ReSellerAdmindto>> GetallResellerAdmin();
     }
 }

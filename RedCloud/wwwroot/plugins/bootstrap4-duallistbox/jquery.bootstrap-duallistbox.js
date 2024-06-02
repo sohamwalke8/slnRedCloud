@@ -1,6 +1,6 @@
 /*
  *  Bootstrap Duallistbox - v4.0.2
- *  A responsive dual listbox wIdget optimized for Twitter Bootstrap. It works on all modern browsers and on touch devices.
+ *  A responsive dual listbox widget optimized for Twitter Bootstrap. It works on all modern browsers and on touch devices.
  *  http://www.virtuosoft.eu/code/bootstrap-duallistbox/
  *
  *  Made by István Ujj-Mészáros
@@ -35,8 +35,8 @@
       moveAllLabel: 'Move all',
       removeSelectedLabel: 'Remove selected',
       removeAllLabel: 'Remove all',
-      moveOnSelect: true,                                                                 // true/false (forced true on androIds, see the comment later)
-      moveOnDoubleClick: true,                                                            // true/false (forced false on androIds, cause moveOnSelect is forced to true)
+      moveOnSelect: true,                                                                 // true/false (forced true on androids, see the comment later)
+      moveOnDoubleClick: true,                                                            // true/false (forced false on androids, cause moveOnSelect is forced to true)
       preserveSelectionOnMove: false,                                                     // 'all' / 'moved' / false
       selectedListLabel: false,                                                           // 'string', false
       nonSelectedListLabel: false,                                                        // 'string', false
@@ -50,19 +50,19 @@
       infoTextEmpty: 'Empty list',                                                        // when there are no options present in the list
       filterOnValues: false,                                                              // filter by selector's values, boolean
       sortByInputOrder: false,
-      eventMoveOverrIde: false,                                                           // boolean, allows user to unbind default event behaviour and run their own instead
-      eventMoveAllOverrIde: false,                                                        // boolean, allows user to unbind default event behaviour and run their own instead
-      eventRemoveOverrIde: false,                                                         // boolean, allows user to unbind default event behaviour and run their own instead
-      eventRemoveAllOverrIde: false,                                                      // boolean, allows user to unbind default event behaviour and run their own instead
+      eventMoveOverride: false,                                                           // boolean, allows user to unbind default event behaviour and run their own instead
+      eventMoveAllOverride: false,                                                        // boolean, allows user to unbind default event behaviour and run their own instead
+      eventRemoveOverride: false,                                                         // boolean, allows user to unbind default event behaviour and run their own instead
+      eventRemoveAllOverride: false,                                                      // boolean, allows user to unbind default event behaviour and run their own instead
       btnClass: 'btn-outline-secondary',                                                  // sets the button style class for all the buttons
       btnMoveText: '&gt;',                                                                // string, sets the text for the "Move" button
       btnRemoveText: '&lt;',                                                              // string, sets the text for the "Remove" button
       btnMoveAllText: '&gt;&gt;',                                                         // string, sets the text for the "Move All" button
       btnRemoveAllText: '&lt;&lt;'                                                        // string, sets the text for the "Remove All" button
     },
-    // Selections are invisible on androId if the containing select is styled with CSS
-    // http://code.google.com/p/androId/issues/detail?Id=16922
-    isBuggyAndroId = /androId/i.test(navigator.userAgent.toLowerCase());
+    // Selections are invisible on android if the containing select is styled with CSS
+    // http://code.google.com/p/android/issues/detail?id=16922
+    isBuggyAndroid = /android/i.test(navigator.userAgent.toLowerCase());
 
   // The actual plugin constructor
   function BootstrapDualListbox(element, options) {
@@ -243,7 +243,7 @@
       return ($(a).data('original-index') > $(b).data('original-index')) ? 1 : -1;
     }).appendTo(select);
 
-    // workaround for chromium bug: https://bugs.chromium.org/p/chromium/issues/detail?Id=1072475
+    // workaround for chromium bug: https://bugs.chromium.org/p/chromium/issues/detail?id=1072475
     refreshSelects(dualListbox);
   }
 
@@ -364,25 +364,25 @@
       dualListbox.setSelectedFilter('', true);
     });
 
-    if (dualListbox.settings.eventMoveOverrIde === false) {
+    if (dualListbox.settings.eventMoveOverride === false) {
       dualListbox.elements.moveButton.on('click', function() {
         move(dualListbox);
       });
     }
 
-    if (dualListbox.settings.eventMoveAllOverrIde === false) {
+    if (dualListbox.settings.eventMoveAllOverride === false) {
       dualListbox.elements.moveAllButton.on('click', function() {
         moveAll(dualListbox);
       });
     }
 
-    if (dualListbox.settings.eventRemoveOverrIde === false) {
+    if (dualListbox.settings.eventRemoveOverride === false) {
       dualListbox.elements.removeButton.on('click', function() {
         remove(dualListbox);
       });
     }
 
-    if (dualListbox.settings.eventRemoveAllOverrIde === false) {
+    if (dualListbox.settings.eventRemoveAllOverride === false) {
       dualListbox.elements.removeAllButton.on('click', function() {
         removeAll(dualListbox);
       });
@@ -453,12 +453,12 @@
         form: $($('.box1 .filter', this.container)[0].form)
       };
 
-      // Set select Ids
+      // Set select IDs
       this.originalSelectName = this.element.attr('name') || '';
       var select1Id = 'bootstrap-duallistbox-nonselected-list_' + this.originalSelectName,
         select2Id = 'bootstrap-duallistbox-selected-list_' + this.originalSelectName;
-      this.elements.select1.attr('Id', select1Id);
-      this.elements.select2.attr('Id', select2Id);
+      this.elements.select1.attr('id', select1Id);
+      this.elements.select2.attr('id', select2Id);
       this.elements.label1.attr('for', select1Id);
       this.elements.label2.attr('for', select2Id);
 
@@ -490,18 +490,18 @@
       this.setInfoTextEmpty(this.settings.infoTextEmpty);
       this.setFilterOnValues(this.settings.filterOnValues);
       this.setSortByInputOrder(this.settings.sortByInputOrder);
-      this.setEventMoveOverrIde(this.settings.eventMoveOverrIde);
-      this.setEventMoveAllOverrIde(this.settings.eventMoveAllOverrIde);
-      this.setEventRemoveOverrIde(this.settings.eventRemoveOverrIde);
-      this.setEventRemoveAllOverrIde(this.settings.eventRemoveAllOverrIde);
+      this.setEventMoveOverride(this.settings.eventMoveOverride);
+      this.setEventMoveAllOverride(this.settings.eventMoveAllOverride);
+      this.setEventRemoveOverride(this.settings.eventRemoveOverride);
+      this.setEventRemoveAllOverride(this.settings.eventRemoveAllOverride);
       this.setBtnClass(this.settings.btnClass);
       this.setBtnMoveText(this.settings.btnMoveText);
       this.setBtnRemoveText(this.settings.btnRemoveText);
       this.setBtnMoveAllText(this.settings.btnMoveAllText);
       this.setBtnRemoveAllText(this.settings.btnRemoveAllText);
 
-      // HIde the original select
-      this.element.hIde();
+      // Hide the original select
+      this.element.hide();
 
       bindEvents(this);
       refreshSelects(this);
@@ -559,7 +559,7 @@
       return this.element;
     },
     setMoveOnSelect: function(value, refresh) {
-      if (isBuggyAndroId) {
+      if (isBuggyAndroid) {
         value = true;
       }
       this.settings.moveOnSelect = value;
@@ -587,7 +587,7 @@
       return this.element;
     },
     setMoveOnDoubleClick: function(value, refresh) {
-      if (isBuggyAndroId) {
+      if (isBuggyAndroid) {
         value = false;
       }
       this.settings.moveOnDoubleClick = value;
@@ -611,8 +611,8 @@
       return this.element;
     },
     setPreserveSelectionOnMove: function(value, refresh) {
-      // We are forcing to move on select and disabling preserveSelectionOnMove on AndroId
-      if (isBuggyAndroId) {
+      // We are forcing to move on select and disabling preserveSelectionOnMove on Android
+      if (isBuggyAndroid) {
         value = false;
       }
       this.settings.preserveSelectionOnMove = value;
@@ -626,7 +626,7 @@
       if (value) {
         this.elements.label2.show().html(value);
       } else {
-        this.elements.label2.hIde().html(value);
+        this.elements.label2.hide().html(value);
       }
       if (refresh) {
         refreshSelects(this);
@@ -638,7 +638,7 @@
       if (value) {
         this.elements.label1.show().html(value);
       } else {
-        this.elements.label1.hIde().html(value);
+        this.elements.label1.hide().html(value);
       }
       if (refresh) {
         refreshSelects(this);
@@ -677,8 +677,8 @@
         this.setNonSelectedFilter('');
         this.setSelectedFilter('');
         refreshSelects(this);
-        this.elements.filterInput1.hIde();
-        this.elements.filterInput2.hIde();
+        this.elements.filterInput1.hide();
+        this.elements.filterInput2.hide();
       } else {
         this.elements.filterInput1.show();
         this.elements.filterInput2.show();
@@ -715,8 +715,8 @@
         this.elements.info1.show();
         this.elements.info2.show();
       } else {
-        this.elements.info1.hIde();
-        this.elements.info2.hIde();
+        this.elements.info1.hide();
+        this.elements.info2.hide();
       }
       if (refresh) {
         refreshSelects(this);
@@ -751,29 +751,29 @@
         }
         return this.element;
     },
-    setEventMoveOverrIde: function(value, refresh) {
-        this.settings.eventMoveOverrIde = value;
+    setEventMoveOverride: function(value, refresh) {
+        this.settings.eventMoveOverride = value;
         if (refresh) {
           refreshSelects(this);
         }
         return this.element;
     },
-    setEventMoveAllOverrIde: function(value, refresh) {
-        this.settings.eventMoveAllOverrIde = value;
+    setEventMoveAllOverride: function(value, refresh) {
+        this.settings.eventMoveAllOverride = value;
         if (refresh) {
           refreshSelects(this);
         }
         return this.element;
     },
-    setEventRemoveOverrIde: function(value, refresh) {
-        this.settings.eventRemoveOverrIde = value;
+    setEventRemoveOverride: function(value, refresh) {
+        this.settings.eventRemoveOverride = value;
         if (refresh) {
           refreshSelects(this);
         }
         return this.element;
     },
-    setEventRemoveAllOverrIde: function(value, refresh) {
-        this.settings.eventRemoveAllOverrIde = value;
+    setEventRemoveAllOverride: function(value, refresh) {
+        this.settings.eventRemoveAllOverride = value;
         if (refresh) {
           refreshSelects(this);
         }

@@ -1,6 +1,6 @@
 //! moment.js locale configuration
 //! locale : English (Ireland) [en-ie]
-//! author : Chris CartlIdge : https://github.com/chriscartlIdge
+//! author : Chris Cartlidge : https://github.com/chriscartlidge
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'
@@ -16,7 +16,7 @@
             '_'
         ),
         monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_FrIday_Saturday'.split(
+        weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split(
             '_'
         ),
         weekdaysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),

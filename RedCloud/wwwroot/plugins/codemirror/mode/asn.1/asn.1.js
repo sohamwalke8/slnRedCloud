@@ -169,29 +169,29 @@
     name: "asn.1",
     keywords: words("DEFINITIONS OBJECTS IF DERIVED INFORMATION ACTION" +
     " REPLY ANY NAMED CHARACTERIZED BEHAVIOUR REGISTERED" +
-    " WITH AS IdENTIFIED CONSTRAINED BY PRESENT BEGIN" +
+    " WITH AS IDENTIFIED CONSTRAINED BY PRESENT BEGIN" +
     " IMPORTS FROM UNITS SYNTAX MIN-ACCESS MAX-ACCESS" +
     " MINACCESS MAXACCESS REVISION STATUS DESCRIPTION" +
     " SEQUENCE SET COMPONENTS OF CHOICE DistinguishedName" +
     " ENUMERATED SIZE MODULE END INDEX AUGMENTS EXTENSIBILITY" +
     " IMPLIED EXPORTS"),
     cmipVerbs: words("ACTIONS ADD GET NOTIFICATIONS REPLACE REMOVE"),
-    compareTypes: words("OPTIONAL DEFAULT MANAGED MODULE-TYPE MODULE_IdENTITY" +
-    " MODULE-COMPLIANCE OBJECT-TYPE OBJECT-IdENTITY" +
+    compareTypes: words("OPTIONAL DEFAULT MANAGED MODULE-TYPE MODULE_IDENTITY" +
+    " MODULE-COMPLIANCE OBJECT-TYPE OBJECT-IDENTITY" +
     " OBJECT-COMPLIANCE MODE CONFIRMED CONDITIONAL" +
     " SUBORDINATE SUPERIOR CLASS TRUE FALSE NULL" +
     " TEXTUAL-CONVENTION"),
     status: words("current deprecated mandatory obsolete"),
     tags: words("APPLICATION AUTOMATIC EXPLICIT IMPLICIT PRIVATE TAGS" +
     " UNIVERSAL"),
-    storage: words("BOOLEAN INTEGER OBJECT IdENTIFIER BIT OCTET STRING" +
+    storage: words("BOOLEAN INTEGER OBJECT IDENTIFIER BIT OCTET STRING" +
     " UTCTime InterfaceIndex IANAifType CMIP-Attribute" +
     " REAL PACKAGE PACKAGES IpAddress PhysAddress" +
     " NetworkAddress BITS BMPString TimeStamp TimeTicks" +
     " TruthValue RowStatus DisplayString GeneralString" +
     " GraphicString IA5String NumericString" +
     " PrintableString SnmpAdminString TeletexString" +
-    " UTF8String VIdeotexString VisibleString StringStore" +
+    " UTF8String VideotexString VisibleString StringStore" +
     " ISO646String T61String UniversalString Unsigned32" +
     " Integer32 Gauge Gauge32 Counter Counter32 Counter64"),
     modifier: words("ATTRIBUTE ATTRIBUTES MANDATORY-GROUP MANDATORY-GROUPS" +

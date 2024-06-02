@@ -28,20 +28,20 @@
             LLL: 'D MMMM YYYY [pukul] HH.mm',
             LLLL: 'dddd, D MMMM YYYY [pukul] HH.mm',
         },
-        merIdiemParse: /pagi|tengahari|petang|malam/,
-        merIdiemHour: function (hour, merIdiem) {
+        meridiemParse: /pagi|tengahari|petang|malam/,
+        meridiemHour: function (hour, meridiem) {
             if (hour === 12) {
                 hour = 0;
             }
-            if (merIdiem === 'pagi') {
+            if (meridiem === 'pagi') {
                 return hour;
-            } else if (merIdiem === 'tengahari') {
+            } else if (meridiem === 'tengahari') {
                 return hour >= 11 ? hour : hour + 12;
-            } else if (merIdiem === 'petang' || merIdiem === 'malam') {
+            } else if (meridiem === 'petang' || meridiem === 'malam') {
                 return hour + 12;
             }
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours < 11) {
                 return 'pagi';
             } else if (hours < 15) {

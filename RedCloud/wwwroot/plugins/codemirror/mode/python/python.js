@@ -24,7 +24,7 @@
   var commonBuiltins = ["abs", "all", "any", "bin", "bool", "bytearray", "callable", "chr",
                         "classmethod", "compile", "complex", "delattr", "dict", "dir", "divmod",
                         "enumerate", "eval", "filter", "float", "format", "frozenset",
-                        "getattr", "globals", "hasattr", "hash", "help", "hex", "Id",
+                        "getattr", "globals", "hasattr", "hash", "help", "hex", "id",
                         "input", "int", "isinstance", "issubclass", "iter", "len",
                         "list", "locals", "map", "max", "memoryview", "min", "next",
                         "object", "oct", "open", "ord", "pow", "property", "range",
@@ -59,12 +59,12 @@
     var py3 = !(parserConf.version && Number(parserConf.version) < 3)
     if (py3) {
       // since http://legacy.python.org/dev/peps/pep-0465/ @ is also an operator
-      var Identifiers = parserConf.Identifiers|| /^[_A-Za-z\u00A1-\uFFFF][_A-Za-z0-9\u00A1-\uFFFF]*/;
+      var identifiers = parserConf.identifiers|| /^[_A-Za-z\u00A1-\uFFFF][_A-Za-z0-9\u00A1-\uFFFF]*/;
       myKeywords = myKeywords.concat(["nonlocal", "False", "True", "None", "async", "await"]);
       myBuiltins = myBuiltins.concat(["ascii", "bytes", "exec", "print"]);
       var stringPrefixes = new RegExp("^(([rbuf]|(br)|(rb)|(fr)|(rf))?('{3}|\"{3}|['\"]))", "i");
     } else {
-      var Identifiers = parserConf.Identifiers|| /^[_A-Za-z][_A-Za-z0-9]*/;
+      var identifiers = parserConf.identifiers|| /^[_A-Za-z][_A-Za-z0-9]*/;
       myKeywords = myKeywords.concat(["exec", "print"]);
       myBuiltins = myBuiltins.concat(["apply", "basestring", "buffer", "cmp", "coerce", "execfile",
                                       "file", "intern", "long", "raw_input", "reduce", "reload",
@@ -157,7 +157,7 @@
 
       if (stream.match(delimiters)) return "punctuation";
 
-      if (state.lastToken == "." && stream.match(Identifiers))
+      if (state.lastToken == "." && stream.match(identifiers))
         return "property";
 
       if (stream.match(keywords) || stream.match(wordOperators))
@@ -169,7 +169,7 @@
       if (stream.match(/^(self|cls)\b/))
         return "variable-2";
 
-      if (stream.match(Identifiers)) {
+      if (stream.match(identifiers)) {
         if (state.lastToken == "def" || state.lastToken == "class")
           return "def";
         return "variable";
@@ -308,7 +308,7 @@
 
       // Handle decorators
       if (state.beginningOfLine && current == "@")
-        return stream.match(Identifiers, false) ? "meta" : py3 ? "operator" : ERRORCLASS;
+        return stream.match(identifiers, false) ? "meta" : py3 ? "operator" : ERRORCLASS;
 
       if (/\S/.test(current)) state.beginningOfLine = false;
 

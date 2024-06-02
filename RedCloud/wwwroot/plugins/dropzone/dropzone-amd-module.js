@@ -131,7 +131,7 @@ var defineProperty = __webpack_require__(3070).f;
 var getPrototypeOf = __webpack_require__(9518);
 var setPrototypeOf = __webpack_require__(7674);
 var wellKnownSymbol = __webpack_require__(5112);
-var uId = __webpack_require__(9711);
+var uid = __webpack_require__(9711);
 
 var Int8Array = global.Int8Array;
 var Int8ArrayPrototype = Int8Array && Int8Array.prototype;
@@ -143,7 +143,7 @@ var ObjectPrototype = Object.prototype;
 var isPrototypeOf = ObjectPrototype.isPrototypeOf;
 
 var TO_STRING_TAG = wellKnownSymbol('toStringTag');
-var TYPED_ARRAY_TAG = uId('TYPED_ARRAY_TAG');
+var TYPED_ARRAY_TAG = uid('TYPED_ARRAY_TAG');
 // Fixing native typed arrays in Opera Presto crashes the browser, see #595
 var NATIVE_ARRAY_BUFFER_VIEWS = NATIVE_ARRAY_BUFFER && !!setPrototypeOf && classof(global.opera) !== 'Opera';
 var TYPED_ARRAY_TAG_REQIRED = false;
@@ -1546,7 +1546,7 @@ module.exports = function (KEY, length, exec, sham) {
         if (DELEGATES_TO_SYMBOL && !forceStringMethod) {
           // The native String method already delegates to @@method (this
           // polyfilled function), leasing to infinite recursion.
-          // We avoId it by directly calling the native @@method method.
+          // We avoid it by directly calling the native @@method method.
           return { done: true, value: nativeRegExpMethod.call(regexp, str, arg2) };
         }
         return { done: true, value: nativeMethod.call(str, regexp, arg2) };
@@ -1939,7 +1939,7 @@ var createNonEnumerableProperty = __webpack_require__(8880);
 var objectHas = __webpack_require__(6656);
 var shared = __webpack_require__(5465);
 var sharedKey = __webpack_require__(6200);
-var hIddenKeys = __webpack_require__(3501);
+var hiddenKeys = __webpack_require__(3501);
 
 var WeakMap = global.WeakMap;
 var set, get, has;
@@ -1975,7 +1975,7 @@ if (NATIVE_WEAK_MAP) {
   };
 } else {
   var STATE = sharedKey('state');
-  hIddenKeys[STATE] = true;
+  hiddenKeys[STATE] = true;
   set = function (it, metadata) {
     metadata.facade = it;
     createNonEnumerableProperty(it, STATE, metadata);
@@ -2304,7 +2304,7 @@ module.exports = !nativeAssign || fails(function () {
 var anObject = __webpack_require__(9670);
 var defineProperties = __webpack_require__(6048);
 var enumBugKeys = __webpack_require__(748);
-var hIddenKeys = __webpack_require__(3501);
+var hiddenKeys = __webpack_require__(3501);
 var html = __webpack_require__(490);
 var documentCreateElement = __webpack_require__(317);
 var sharedKey = __webpack_require__(6200);
@@ -2326,7 +2326,7 @@ var NullProtoObjectViaActiveX = function (activeXDocument) {
   activeXDocument.write(scriptTag(''));
   activeXDocument.close();
   var temp = activeXDocument.parentWindow.Object;
-  activeXDocument = null; // avoId memory leak
+  activeXDocument = null; // avoid memory leak
   return temp;
 };
 
@@ -2350,8 +2350,8 @@ var NullProtoObjectViaIFrame = function () {
 // Check for document.domain and active x support
 // No need to use active x approach when document.domain is not set
 // see https://github.com/es-shims/es5-shim/issues/150
-// variation of https://github.com/kitcambrIdge/es5-shim/commit/4f738ac066346
-// avoId IE GC bug
+// variation of https://github.com/kitcambridge/es5-shim/commit/4f738ac066346
+// avoid IE GC bug
 var activeXDocument;
 var NullProtoObject = function () {
   try {
@@ -2364,7 +2364,7 @@ var NullProtoObject = function () {
   return NullProtoObject();
 };
 
-hIddenKeys[IE_PROTO] = true;
+hiddenKeys[IE_PROTO] = true;
 
 // `Object.create` method
 // https://tc39.es/ecma262/#sec-object.create
@@ -2466,12 +2466,12 @@ exports.f = DESCRIPTORS ? nativeGetOwnPropertyDescriptor : function getOwnProper
 var internalObjectKeys = __webpack_require__(6324);
 var enumBugKeys = __webpack_require__(748);
 
-var hIddenKeys = enumBugKeys.concat('length', 'prototype');
+var hiddenKeys = enumBugKeys.concat('length', 'prototype');
 
 // `Object.getOwnPropertyNames` method
 // https://tc39.es/ecma262/#sec-object.getownpropertynames
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-  return internalObjectKeys(O, hIddenKeys);
+  return internalObjectKeys(O, hiddenKeys);
 };
 
 
@@ -2515,15 +2515,15 @@ module.exports = CORRECT_PROTOTYPE_GETTER ? Object.getPrototypeOf : function (O)
 var has = __webpack_require__(6656);
 var toIndexedObject = __webpack_require__(5656);
 var indexOf = __webpack_require__(1318).indexOf;
-var hIddenKeys = __webpack_require__(3501);
+var hiddenKeys = __webpack_require__(3501);
 
 module.exports = function (object, names) {
   var O = toIndexedObject(object);
   var i = 0;
   var result = [];
   var key;
-  for (key in O) !has(hIddenKeys, key) && has(O, key) && result.push(key);
-  // Don't enum bug & hIdden keys
+  for (key in O) !has(hiddenKeys, key) && has(O, key) && result.push(key);
+  // Don't enum bug & hidden keys
   while (names.length > i) if (has(O, key = names[i++])) {
     ~indexOf(result, key) || result.push(key);
   }
@@ -2876,7 +2876,7 @@ exports.UNSUPPORTED_Y = fails(function () {
 });
 
 exports.BROKEN_CARET = fails(function () {
-  // https://bugzilla.mozilla.org/show_bug.cgi?Id=773687
+  // https://bugzilla.mozilla.org/show_bug.cgi?id=773687
   var re = RE('^r', 'gy');
   re.lastIndex = 2;
   return re.exec('str') != null;
@@ -2964,12 +2964,12 @@ module.exports = function (it, TAG, STATIC) {
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 var shared = __webpack_require__(2309);
-var uId = __webpack_require__(9711);
+var uid = __webpack_require__(9711);
 
 var keys = shared('keys');
 
 module.exports = function (key) {
-  return keys[key] || (keys[key] = uId(key));
+  return keys[key] || (keys[key] = uid(key));
 };
 
 
@@ -3077,7 +3077,7 @@ var initialN = 128; // 0x80
 var delimiter = '-'; // '\x2D'
 var regexNonASCII = /[^\0-\u007E]/; // non-ASCII chars
 var regexSeparators = /[.\u3002\uFF0E\uFF61]/g; // RFC 3490 separators
-var OVERFLOW_ERROR = 'Overflow: input needs wIder integers to process';
+var OVERFLOW_ERROR = 'Overflow: input needs wider integers to process';
 var baseMinusTMin = base - tMin;
 var floor = Math.floor;
 var stringFromCharCode = String.fromCharCode;
@@ -3422,7 +3422,7 @@ var isObject = __webpack_require__(111);
 
 // `ToPrimitive` abstract operation
 // https://tc39.es/ecma262/#sec-toprimitive
-// instead of the ES6 spec version, we dIdn't implement @@toPrimitive case
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
 module.exports = function (input, PREFERRED_STRING) {
   if (!isObject(input)) return input;
@@ -3538,7 +3538,7 @@ var wrappedDefineProperty = function defineProperty(target, key, descriptor) {
     && has(descriptor, 'value')
     && !has(descriptor, 'get')
     && !has(descriptor, 'set')
-    // TODO: add valIdation descriptor w/o calling accessors
+    // TODO: add validation descriptor w/o calling accessors
     && !descriptor.configurable
     && (!has(descriptor, 'writable') || descriptor.writable)
     && (!has(descriptor, 'enumerable') || descriptor.enumerable)
@@ -3778,11 +3778,11 @@ module.exports = function from(source /* , mapfn, thisArg */) {
 /***/ 9711:
 /***/ (function(module) {
 
-var Id = 0;
+var id = 0;
 var postfix = Math.random();
 
 module.exports = function (key) {
-  return 'Symbol(' + String(key === undefined ? '' : key) + ')_' + (++Id + postfix).toString(36);
+  return 'Symbol(' + String(key === undefined ? '' : key) + ')_' + (++id + postfix).toString(36);
 };
 
 
@@ -3807,13 +3807,13 @@ module.exports = NATIVE_SYMBOL
 var global = __webpack_require__(7854);
 var shared = __webpack_require__(2309);
 var has = __webpack_require__(6656);
-var uId = __webpack_require__(9711);
+var uid = __webpack_require__(9711);
 var NATIVE_SYMBOL = __webpack_require__(133);
-var USE_SYMBOL_AS_UId = __webpack_require__(3307);
+var USE_SYMBOL_AS_UID = __webpack_require__(3307);
 
 var WellKnownSymbolsStore = shared('wks');
 var Symbol = global.Symbol;
-var createWellKnownSymbol = USE_SYMBOL_AS_UId ? Symbol : Symbol && Symbol.withoutSetter || uId;
+var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol : Symbol && Symbol.withoutSetter || uid;
 
 module.exports = function (name) {
   if (!has(WellKnownSymbolsStore, name)) {
@@ -3828,7 +3828,7 @@ module.exports = function (name) {
 /***/ 1361:
 /***/ (function(module) {
 
-// a string of all valId unicode whitespaces
+// a string of all valid unicode whitespaces
 module.exports = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u2002' +
   '\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
@@ -4560,7 +4560,7 @@ fixRegExpWellKnownSymbolLogic('split', 2, function (SPLIT, nativeSplit, maybeCal
                   (separator.unicode ? 'u' : '') +
                   (separator.sticky ? 'y' : '');
       var lastLastIndex = 0;
-      // Make `global` and avoId `lastIndex` issues by working with a copy
+      // Make `global` and avoid `lastIndex` issues by working with a copy
       var separatorCopy = new RegExp(separator.source, flags + 'g');
       var match, lastIndex, lastLength;
       while (match = regexpExec.call(separatorCopy, string)) {
@@ -4572,7 +4572,7 @@ fixRegExpWellKnownSymbolLogic('split', 2, function (SPLIT, nativeSplit, maybeCal
           lastLastIndex = lastIndex;
           if (output.length >= lim) break;
         }
-        if (separatorCopy.lastIndex === match.index) separatorCopy.lastIndex++; // AvoId an infinite loop
+        if (separatorCopy.lastIndex === match.index) separatorCopy.lastIndex++; // Avoid an infinite loop
       }
       if (lastLastIndex === string.length) {
         if (lastLength || !separatorCopy.test('')) output.push('');
@@ -5023,10 +5023,10 @@ var floor = Math.floor;
 exportTypedArrayMethod('reverse', function reverse() {
   var that = this;
   var length = aTypedArray(that).length;
-  var mIddle = floor(length / 2);
+  var middle = floor(length / 2);
   var index = 0;
   var value;
-  while (index < mIddle) {
+  while (index < middle) {
     value = that[index];
     that[index++] = that[--length];
     that[length] = value;
@@ -5422,7 +5422,7 @@ var updateSearchParams = function (query) {
   parseSearchParams(this.entries, query);
 };
 
-var valIdateArgumentsLength = function (passed, required) {
+var validateArgumentsLength = function (passed, required) {
   if (passed < required) throw TypeError('Not enough arguments');
 };
 
@@ -5487,7 +5487,7 @@ redefineAll(URLSearchParamsPrototype, {
   // `URLSearchParams.prototype.append` method
   // https://url.spec.whatwg.org/#dom-urlsearchparams-append
   append: function append(name, value) {
-    valIdateArgumentsLength(arguments.length, 2);
+    validateArgumentsLength(arguments.length, 2);
     var state = getInternalParamsState(this);
     state.entries.push({ key: name + '', value: value + '' });
     state.updateURL();
@@ -5495,7 +5495,7 @@ redefineAll(URLSearchParamsPrototype, {
   // `URLSearchParams.prototype.delete` method
   // https://url.spec.whatwg.org/#dom-urlsearchparams-delete
   'delete': function (name) {
-    valIdateArgumentsLength(arguments.length, 1);
+    validateArgumentsLength(arguments.length, 1);
     var state = getInternalParamsState(this);
     var entries = state.entries;
     var key = name + '';
@@ -5509,7 +5509,7 @@ redefineAll(URLSearchParamsPrototype, {
   // `URLSearchParams.prototype.get` method
   // https://url.spec.whatwg.org/#dom-urlsearchparams-get
   get: function get(name) {
-    valIdateArgumentsLength(arguments.length, 1);
+    validateArgumentsLength(arguments.length, 1);
     var entries = getInternalParamsState(this).entries;
     var key = name + '';
     var index = 0;
@@ -5521,7 +5521,7 @@ redefineAll(URLSearchParamsPrototype, {
   // `URLSearchParams.prototype.getAll` method
   // https://url.spec.whatwg.org/#dom-urlsearchparams-getall
   getAll: function getAll(name) {
-    valIdateArgumentsLength(arguments.length, 1);
+    validateArgumentsLength(arguments.length, 1);
     var entries = getInternalParamsState(this).entries;
     var key = name + '';
     var result = [];
@@ -5534,7 +5534,7 @@ redefineAll(URLSearchParamsPrototype, {
   // `URLSearchParams.prototype.has` method
   // https://url.spec.whatwg.org/#dom-urlsearchparams-has
   has: function has(name) {
-    valIdateArgumentsLength(arguments.length, 1);
+    validateArgumentsLength(arguments.length, 1);
     var entries = getInternalParamsState(this).entries;
     var key = name + '';
     var index = 0;
@@ -5546,7 +5546,7 @@ redefineAll(URLSearchParamsPrototype, {
   // `URLSearchParams.prototype.set` method
   // https://url.spec.whatwg.org/#dom-urlsearchparams-set
   set: function set(name, value) {
-    valIdateArgumentsLength(arguments.length, 1);
+    validateArgumentsLength(arguments.length, 1);
     var state = getInternalParamsState(this);
     var entries = state.entries;
     var found = false;
@@ -5702,10 +5702,10 @@ var getInternalURLState = InternalStateModule.getterFor('URL');
 var floor = Math.floor;
 var pow = Math.pow;
 
-var INVALId_AUTHORITY = 'InvalId authority';
-var INVALId_SCHEME = 'InvalId scheme';
-var INVALId_HOST = 'InvalId host';
-var INVALId_PORT = 'InvalId port';
+var INVALID_AUTHORITY = 'Invalid authority';
+var INVALID_SCHEME = 'Invalid scheme';
+var INVALID_HOST = 'Invalid host';
+var INVALID_PORT = 'Invalid port';
 
 var ALPHA = /[A-Za-z]/;
 var ALPHANUMERIC = /[\d+-.A-Za-z]/;
@@ -5715,8 +5715,8 @@ var OCT = /^[0-7]+$/;
 var DEC = /^\d+$/;
 var HEX = /^[\dA-Fa-f]+$/;
 /* eslint-disable no-control-regex -- safe */
-var FORBIdDEN_HOST_CODE_POINT = /[\u0000\t\u000A\u000D #%/:?@[\\]]/;
-var FORBIdDEN_HOST_CODE_POINT_EXCLUDING_PERCENT = /[\u0000\t\u000A\u000D #/:?@[\\]]/;
+var FORBIDDEN_HOST_CODE_POINT = /[\u0000\t\u000A\u000D #%/:?@[\\]]/;
+var FORBIDDEN_HOST_CODE_POINT_EXCLUDING_PERCENT = /[\u0000\t\u000A\u000D #/:?@[\\]]/;
 var LEADING_AND_TRAILING_C0_CONTROL_OR_SPACE = /^[\u0000-\u001F ]+|[\u0000-\u001F ]+$/g;
 var TAB_AND_NEW_LINE = /[\t\u000A\u000D]/g;
 /* eslint-enable no-control-regex -- safe */
@@ -5725,13 +5725,13 @@ var EOF;
 var parseHost = function (url, input) {
   var result, codePoints, index;
   if (input.charAt(0) == '[') {
-    if (input.charAt(input.length - 1) != ']') return INVALId_HOST;
+    if (input.charAt(input.length - 1) != ']') return INVALID_HOST;
     result = parseIPv6(input.slice(1, -1));
-    if (!result) return INVALId_HOST;
+    if (!result) return INVALID_HOST;
     url.host = result;
   // opaque host
   } else if (!isSpecial(url)) {
-    if (FORBIdDEN_HOST_CODE_POINT_EXCLUDING_PERCENT.test(input)) return INVALId_HOST;
+    if (FORBIDDEN_HOST_CODE_POINT_EXCLUDING_PERCENT.test(input)) return INVALID_HOST;
     result = '';
     codePoints = arrayFrom(input);
     for (index = 0; index < codePoints.length; index++) {
@@ -5740,9 +5740,9 @@ var parseHost = function (url, input) {
     url.host = result;
   } else {
     input = toASCII(input);
-    if (FORBIdDEN_HOST_CODE_POINT.test(input)) return INVALId_HOST;
+    if (FORBIDDEN_HOST_CODE_POINT.test(input)) return INVALID_HOST;
     result = parseIPv4(input);
-    if (result === null) return INVALId_HOST;
+    if (result === null) return INVALID_HOST;
     url.host = result;
   }
 };
@@ -6008,8 +6008,8 @@ var QUERY = {};
 var FRAGMENT = {};
 
 // eslint-disable-next-line max-statements -- TODO
-var parseURL = function (url, input, stateOverrIde, base) {
-  var state = stateOverrIde || SCHEME_START;
+var parseURL = function (url, input, stateOverride, base) {
+  var state = stateOverride || SCHEME_START;
   var pointer = 0;
   var buffer = '';
   var seenAt = false;
@@ -6017,7 +6017,7 @@ var parseURL = function (url, input, stateOverrIde, base) {
   var seenPasswordToken = false;
   var codePoints, char, bufferCodePoints, failure;
 
-  if (!stateOverrIde) {
+  if (!stateOverride) {
     url.scheme = '';
     url.username = '';
     url.password = '';
@@ -6041,23 +6041,23 @@ var parseURL = function (url, input, stateOverrIde, base) {
         if (char && ALPHA.test(char)) {
           buffer += char.toLowerCase();
           state = SCHEME;
-        } else if (!stateOverrIde) {
+        } else if (!stateOverride) {
           state = NO_SCHEME;
           continue;
-        } else return INVALId_SCHEME;
+        } else return INVALID_SCHEME;
         break;
 
       case SCHEME:
         if (char && (ALPHANUMERIC.test(char) || char == '+' || char == '-' || char == '.')) {
           buffer += char.toLowerCase();
         } else if (char == ':') {
-          if (stateOverrIde && (
+          if (stateOverride && (
             (isSpecial(url) != has(specialSchemes, buffer)) ||
             (buffer == 'file' && (includesCredentials(url) || url.port !== null)) ||
             (url.scheme == 'file' && !url.host)
           )) return;
           url.scheme = buffer;
-          if (stateOverrIde) {
+          if (stateOverride) {
             if (isSpecial(url) && specialSchemes[url.scheme] == url.port) url.port = null;
             return;
           }
@@ -6076,16 +6076,16 @@ var parseURL = function (url, input, stateOverrIde, base) {
             url.path.push('');
             state = CANNOT_BE_A_BASE_URL_PATH;
           }
-        } else if (!stateOverrIde) {
+        } else if (!stateOverride) {
           buffer = '';
           state = NO_SCHEME;
           pointer = 0;
           continue;
-        } else return INVALId_SCHEME;
+        } else return INVALID_SCHEME;
         break;
 
       case NO_SCHEME:
-        if (!base || (base.cannotBeABaseURL && char != '#')) return INVALId_SCHEME;
+        if (!base || (base.cannotBeABaseURL && char != '#')) return INVALID_SCHEME;
         if (base.cannotBeABaseURL && char == '#') {
           url.scheme = base.scheme;
           url.path = base.path.slice();
@@ -6201,7 +6201,7 @@ var parseURL = function (url, input, stateOverrIde, base) {
           char == EOF || char == '/' || char == '?' || char == '#' ||
           (char == '\\' && isSpecial(url))
         ) {
-          if (seenAt && buffer == '') return INVALId_AUTHORITY;
+          if (seenAt && buffer == '') return INVALID_AUTHORITY;
           pointer -= arrayFrom(buffer).length + 1;
           buffer = '';
           state = HOST;
@@ -6210,27 +6210,27 @@ var parseURL = function (url, input, stateOverrIde, base) {
 
       case HOST:
       case HOSTNAME:
-        if (stateOverrIde && url.scheme == 'file') {
+        if (stateOverride && url.scheme == 'file') {
           state = FILE_HOST;
           continue;
         } else if (char == ':' && !seenBracket) {
-          if (buffer == '') return INVALId_HOST;
+          if (buffer == '') return INVALID_HOST;
           failure = parseHost(url, buffer);
           if (failure) return failure;
           buffer = '';
           state = PORT;
-          if (stateOverrIde == HOSTNAME) return;
+          if (stateOverride == HOSTNAME) return;
         } else if (
           char == EOF || char == '/' || char == '?' || char == '#' ||
           (char == '\\' && isSpecial(url))
         ) {
-          if (isSpecial(url) && buffer == '') return INVALId_HOST;
-          if (stateOverrIde && buffer == '' && (includesCredentials(url) || url.port !== null)) return;
+          if (isSpecial(url) && buffer == '') return INVALID_HOST;
+          if (stateOverride && buffer == '' && (includesCredentials(url) || url.port !== null)) return;
           failure = parseHost(url, buffer);
           if (failure) return failure;
           buffer = '';
           state = PATH_START;
-          if (stateOverrIde) return;
+          if (stateOverride) return;
           continue;
         } else {
           if (char == '[') seenBracket = true;
@@ -6244,18 +6244,18 @@ var parseURL = function (url, input, stateOverrIde, base) {
         } else if (
           char == EOF || char == '/' || char == '?' || char == '#' ||
           (char == '\\' && isSpecial(url)) ||
-          stateOverrIde
+          stateOverride
         ) {
           if (buffer != '') {
             var port = parseInt(buffer, 10);
-            if (port > 0xFFFF) return INVALId_PORT;
+            if (port > 0xFFFF) return INVALID_PORT;
             url.port = (isSpecial(url) && port === specialSchemes[url.scheme]) ? null : port;
             buffer = '';
           }
-          if (stateOverrIde) return;
+          if (stateOverride) return;
           state = PATH_START;
           continue;
-        } else return INVALId_PORT;
+        } else return INVALID_PORT;
         break;
 
       case FILE:
@@ -6305,17 +6305,17 @@ var parseURL = function (url, input, stateOverrIde, base) {
 
       case FILE_HOST:
         if (char == EOF || char == '/' || char == '\\' || char == '?' || char == '#') {
-          if (!stateOverrIde && isWindowsDriveLetter(buffer)) {
+          if (!stateOverride && isWindowsDriveLetter(buffer)) {
             state = PATH;
           } else if (buffer == '') {
             url.host = '';
-            if (stateOverrIde) return;
+            if (stateOverride) return;
             state = PATH_START;
           } else {
             failure = parseHost(url, buffer);
             if (failure) return failure;
             if (url.host == 'localhost') url.host = '';
-            if (stateOverrIde) return;
+            if (stateOverride) return;
             buffer = '';
             state = PATH_START;
           } continue;
@@ -6326,10 +6326,10 @@ var parseURL = function (url, input, stateOverrIde, base) {
         if (isSpecial(url)) {
           state = PATH;
           if (char != '/' && char != '\\') continue;
-        } else if (!stateOverrIde && char == '?') {
+        } else if (!stateOverride && char == '?') {
           url.query = '';
           state = QUERY;
-        } else if (!stateOverrIde && char == '#') {
+        } else if (!stateOverride && char == '#') {
           url.fragment = '';
           state = FRAGMENT;
         } else if (char != EOF) {
@@ -6341,7 +6341,7 @@ var parseURL = function (url, input, stateOverrIde, base) {
         if (
           char == EOF || char == '/' ||
           (char == '\\' && isSpecial(url)) ||
-          (!stateOverrIde && (char == '?' || char == '#'))
+          (!stateOverride && (char == '?' || char == '#'))
         ) {
           if (isDoubleDot(buffer)) {
             shortenURLsPath(url);
@@ -6388,7 +6388,7 @@ var parseURL = function (url, input, stateOverrIde, base) {
         } break;
 
       case QUERY:
-        if (!stateOverrIde && char == '#') {
+        if (!stateOverride && char == '#') {
           url.fragment = '';
           state = FRAGMENT;
         } else if (char != EOF) {
@@ -6697,7 +6697,7 @@ $({ global: true, forced: !USE_NATIVE_URL, sham: !DESCRIPTORS }, {
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.Id needed
+/******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
@@ -6857,7 +6857,7 @@ var web_url = __webpack_require__(285);
 ;// CONCATENATED MODULE: ./src/emitter.js
 
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("InvalId attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, dIdErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { dIdErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (dIdErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -6869,7 +6869,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-// The Emitter class provIdes the ability to call `.on()` on Dropzone to listen
+// The Emitter class provides the ability to call `.on()` on Dropzone to listen
 // to events.
 // It is strongly based on component's emitter class, and I removed the
 // functionality because of the dependency hell with different frameworks.
@@ -6945,8 +6945,8 @@ var Emitter = /*#__PURE__*/function () {
         evt.initCustomEvent(eventName, params.bubbles, params.cancelable, params.detail);
         return evt;
       }
-    } // Remove event listener for given event. If fn is not provIded, all event
-    // listeners for that event will be removed. If neither is provIded, all
+    } // Remove event listener for given event. If fn is not provided, all event
+    // listeners for that event will be removed. If neither is provided, all
     // event listeners will be removed.
 
   }, {
@@ -6990,7 +6990,7 @@ var Emitter = /*#__PURE__*/function () {
 
 ;// CONCATENATED MODULE: ./src/preview-template.html
 // Module
-var code = "<div class=\"dz-preview dz-file-preview\"> <div class=\"dz-image\"><img data-dz-thumbnail/></div> <div class=\"dz-details\"> <div class=\"dz-size\"><span data-dz-size></span></div> <div class=\"dz-filename\"><span data-dz-name></span></div> </div> <div class=\"dz-progress\"> <span class=\"dz-upload\" data-dz-uploadprogress></span> </div> <div class=\"dz-error-message\"><span data-dz-errormessage></span></div> <div class=\"dz-success-mark\"> <svg wIdth=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <title>Check</title> <g stroke=\"none\" stroke-wIdth=\"1\" fill=\"none\" fill-rule=\"evenodd\"> <path d=\"M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\" stroke-opacity=\"0.198794158\" stroke=\"#747474\" fill-opacity=\"0.816519475\" fill=\"#FFFFFF\"></path> </g> </svg> </div> <div class=\"dz-error-mark\"> <svg wIdth=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <title>Error</title> <g stroke=\"none\" stroke-wIdth=\"1\" fill=\"none\" fill-rule=\"evenodd\"> <g stroke=\"#747474\" stroke-opacity=\"0.198794158\" fill=\"#FFFFFF\" fill-opacity=\"0.816519475\"> <path d=\"M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\"></path> </g> </g> </svg> </div> </div> ";
+var code = "<div class=\"dz-preview dz-file-preview\"> <div class=\"dz-image\"><img data-dz-thumbnail/></div> <div class=\"dz-details\"> <div class=\"dz-size\"><span data-dz-size></span></div> <div class=\"dz-filename\"><span data-dz-name></span></div> </div> <div class=\"dz-progress\"> <span class=\"dz-upload\" data-dz-uploadprogress></span> </div> <div class=\"dz-error-message\"><span data-dz-errormessage></span></div> <div class=\"dz-success-mark\"> <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <title>Check</title> <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"> <path d=\"M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\" stroke-opacity=\"0.198794158\" stroke=\"#747474\" fill-opacity=\"0.816519475\" fill=\"#FFFFFF\"></path> </g> </svg> </div> <div class=\"dz-error-mark\"> <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <title>Error</title> <g stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\"> <g stroke=\"#747474\" stroke-opacity=\"0.198794158\" fill=\"#FFFFFF\" fill-opacity=\"0.816519475\"> <path d=\"M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\"></path> </g> </g> </svg> </div> </div> ";
 // Exports
 /* harmony default export */ var preview_template = (code);
 ;// CONCATENATED MODULE: ./src/options.js
@@ -6999,7 +6999,7 @@ var code = "<div class=\"dz-preview dz-file-preview\"> <div class=\"dz-image\"><
 
 
 
-function options_createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = options_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("InvalId attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, dIdErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { dIdErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (dIdErr) throw err; } } }; }
+function options_createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = options_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function options_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return options_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return options_arrayLikeToArray(o, minLen); }
 
@@ -7011,13 +7011,13 @@ var defaultOptions = {
   /**
    * Has to be specified on elements other than form (or when the form
    * doesn't have an `action` attribute). You can also
-   * provIde a function that will be called with `files` and
+   * provide a function that will be called with `files` and
    * must return the url (since `v3.12.0`)
    */
   url: null,
 
   /**
-   * Can be changed to `"put"` if necessary. You can also provIde a function
+   * Can be changed to `"put"` if necessary. You can also provide a function
    * that will be called with `files` and must return the method (since `v3.12.0`).
    */
   method: "post",
@@ -7069,7 +7069,7 @@ var defaultOptions = {
   chunkSize: 2000000,
 
   /**
-   * If `true`, the indivIdual chunks of a file are being uploaded simultaneously.
+   * If `true`, the individual chunks of a file are being uploaded simultaneously.
    */
   parallelChunkUploads: false,
 
@@ -7108,48 +7108,48 @@ var defaultOptions = {
   /**
    * If `null`, the ratio of the image will be used to calculate it.
    */
-  thumbnailWIdth: 120,
+  thumbnailWidth: 120,
 
   /**
-   * The same as `thumbnailWIdth`. If both are null, images will not be resized.
+   * The same as `thumbnailWidth`. If both are null, images will not be resized.
    */
   thumbnailHeight: 120,
 
   /**
-   * How the images should be scaled down in case both, `thumbnailWIdth` and `thumbnailHeight` are provIded.
+   * How the images should be scaled down in case both, `thumbnailWidth` and `thumbnailHeight` are provided.
    * Can be either `contain` or `crop`.
    */
   thumbnailMethod: "crop",
 
   /**
    * If set, images will be resized to these dimensions before being **uploaded**.
-   * If only one, `resizeWIdth` **or** `resizeHeight` is provIded, the original aspect
+   * If only one, `resizeWidth` **or** `resizeHeight` is provided, the original aspect
    * ratio of the file will be preserved.
    *
    * The `options.transformFile` function uses these options, so if the `transformFile` function
-   * is overrIdden, these options don't do anything.
+   * is overridden, these options don't do anything.
    */
-  resizeWIdth: null,
+  resizeWidth: null,
 
   /**
-   * See `resizeWIdth`.
+   * See `resizeWidth`.
    */
   resizeHeight: null,
 
   /**
    * The mime type of the resized image (before it gets uploaded to the server).
    * If `null` the original mime type will be used. To force jpeg, for example, use `image/jpeg`.
-   * See `resizeWIdth` for more information.
+   * See `resizeWidth` for more information.
    */
   resizeMimeType: null,
 
   /**
-   * The quality of the resized images. See `resizeWIdth`.
+   * The quality of the resized images. See `resizeWidth`.
    */
   resizeQuality: 0.8,
 
   /**
-   * How the images should be scaled down in case both, `resizeWIdth` and `resizeHeight` are provIded.
+   * How the images should be scaled down in case both, `resizeWidth` and `resizeHeight` are provided.
    * Can be either `contain` or `crop`.
    */
   resizeMethod: "contain",
@@ -7159,14 +7159,14 @@ var defaultOptions = {
    * change this to 1024 if you would rather display kibibytes, mebibytes,
    * etc... 1024 is technically incorrect, because `1024 bytes` are `1 kibibyte`
    * not `1 kilobyte`. You can change this to `1024` if you don't care about
-   * valIdity.
+   * validity.
    */
   filesizeBase: 1000,
 
   /**
    * If not `null` defines how many files this Dropzone handles. If it exceeds,
    * the event `maxfilesexceeded` will be called. The dropzone element gets the
-   * class `dz-max-files-reached` accordingly so you can provIde visual
+   * class `dz-max-files-reached` accordingly so you can provide visual
    * feedback.
    */
   maxFiles: null,
@@ -7188,9 +7188,9 @@ var defaultOptions = {
   clickable: true,
 
   /**
-   * Whether hIdden files in directories should be ignored.
+   * Whether hidden files in directories should be ignored.
    */
-  ignoreHIddenFiles: true,
+  ignoreHiddenFiles: true,
 
   /**
    * The default implementation of `accept` checks the file's mime type or
@@ -7201,7 +7201,7 @@ var defaultOptions = {
    *
    * If the Dropzone is `clickable` this option will also be used as
    * [`accept`](https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept)
-   * parameter on the hIdden file input as well.
+   * parameter on the hidden file input as well.
    */
   acceptedFiles: null,
 
@@ -7250,21 +7250,21 @@ var defaultOptions = {
   disablePreviews: false,
 
   /**
-   * This is the element the hIdden input field (which is used when clicking on the
+   * This is the element the hidden input field (which is used when clicking on the
    * dropzone to trigger file selection) will be appended to. This might
    * be important in case you use frameworks to switch the content of your page.
    *
    * Can be a selector string, or an element directly.
    */
-  hIddenInputContainer: "body",
+  hiddenInputContainer: "body",
 
   /**
    * If null, no capture type will be specified
    * If camera, mobile devices will skip the file selection and choose camera
    * If microphone, mobile devices will skip the file selection and choose the microphone
-   * If camcorder, mobile devices will skip the file selection and choose the camera in vIdeo mode
+   * If camcorder, mobile devices will skip the file selection and choose the camera in video mode
    * On apple devices multiple must be set to false.  AcceptedFiles may need to
-   * be set to an appropriate mime type (e.g. "image/*", "audio/*", or "vIdeo/*").
+   * be set to an appropriate mime type (e.g. "image/*", "audio/*", or "video/*").
    */
   capture: null,
 
@@ -7300,7 +7300,7 @@ var defaultOptions = {
 
   /**
    * The text that will be added before the fallback form.
-   * If you provIde a  fallback element yourself, or if this option is `null` this will
+   * If you provide a  fallback element yourself, or if this option is `null` this will
    * be ignored.
    */
   dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
@@ -7314,10 +7314,10 @@ var defaultOptions = {
   /**
    * If the file doesn't match the file type.
    */
-  dictInvalIdFileType: "You can't upload files of this type.",
+  dictInvalidFileType: "You can't upload files of this type.",
 
   /**
-   * If the server response was invalId.
+   * If the server response was invalid.
    * `{{statusCode}}` will be replaced with the servers status code.
    */
   dictResponseError: "Server responded with {{statusCode}} code.",
@@ -7379,12 +7379,12 @@ var defaultOptions = {
    * The default implementation does nothing for normal uploads, but adds relevant information for
    * chunked uploads.
    *
-   * This is the same as adding hIdden input fields in the form element.
+   * This is the same as adding hidden input fields in the form element.
    */
   params: function params(files, xhr, chunk) {
     if (chunk) {
       return {
-        dzuuId: chunk.file.upload.uuId,
+        dzuuid: chunk.file.upload.uuid,
         dzchunkindex: chunk.index,
         dztotalfilesize: chunk.file.size,
         dzchunksize: this.options.chunkSize,
@@ -7468,63 +7468,63 @@ var defaultOptions = {
   /**
    * Gets called to calculate the thumbnail dimensions.
    *
-   * It gets `file`, `wIdth` and `height` (both may be `null`) as parameters and must return an object containing:
+   * It gets `file`, `width` and `height` (both may be `null`) as parameters and must return an object containing:
    *
-   *  - `srcWIdth` & `srcHeight` (required)
-   *  - `trgWIdth` & `trgHeight` (required)
+   *  - `srcWidth` & `srcHeight` (required)
+   *  - `trgWidth` & `trgHeight` (required)
    *  - `srcX` & `srcY` (optional, default `0`)
    *  - `trgX` & `trgY` (optional, default `0`)
    *
    * Those values are going to be used by `ctx.drawImage()`.
    */
-  resize: function resize(file, wIdth, height, resizeMethod) {
+  resize: function resize(file, width, height, resizeMethod) {
     var info = {
       srcX: 0,
       srcY: 0,
-      srcWIdth: file.wIdth,
+      srcWidth: file.width,
       srcHeight: file.height
     };
-    var srcRatio = file.wIdth / file.height; // Automatically calculate dimensions if not specified
+    var srcRatio = file.width / file.height; // Automatically calculate dimensions if not specified
 
-    if (wIdth == null && height == null) {
-      wIdth = info.srcWIdth;
+    if (width == null && height == null) {
+      width = info.srcWidth;
       height = info.srcHeight;
-    } else if (wIdth == null) {
-      wIdth = height * srcRatio;
+    } else if (width == null) {
+      width = height * srcRatio;
     } else if (height == null) {
-      height = wIdth / srcRatio;
+      height = width / srcRatio;
     } // Make sure images aren't upscaled
 
 
-    wIdth = Math.min(wIdth, info.srcWIdth);
+    width = Math.min(width, info.srcWidth);
     height = Math.min(height, info.srcHeight);
-    var trgRatio = wIdth / height;
+    var trgRatio = width / height;
 
-    if (info.srcWIdth > wIdth || info.srcHeight > height) {
+    if (info.srcWidth > width || info.srcHeight > height) {
       // Image is bigger and needs rescaling
       if (resizeMethod === "crop") {
         if (srcRatio > trgRatio) {
           info.srcHeight = file.height;
-          info.srcWIdth = info.srcHeight * trgRatio;
+          info.srcWidth = info.srcHeight * trgRatio;
         } else {
-          info.srcWIdth = file.wIdth;
-          info.srcHeight = info.srcWIdth / trgRatio;
+          info.srcWidth = file.width;
+          info.srcHeight = info.srcWidth / trgRatio;
         }
       } else if (resizeMethod === "contain") {
         // Method 'contain'
         if (srcRatio > trgRatio) {
-          height = wIdth / srcRatio;
+          height = width / srcRatio;
         } else {
-          wIdth = height * srcRatio;
+          width = height * srcRatio;
         }
       } else {
         throw new Error("Unknown resizeMethod '".concat(resizeMethod, "'"));
       }
     }
 
-    info.srcX = (file.wIdth - info.srcWIdth) / 2;
+    info.srcX = (file.width - info.srcWidth) / 2;
     info.srcY = (file.height - info.srcHeight) / 2;
-    info.trgWIdth = wIdth;
+    info.trgWidth = width;
     info.trgHeight = height;
     return info;
   },
@@ -7532,15 +7532,15 @@ var defaultOptions = {
   /**
    * Can be used to transform the file (for example, resize an image if necessary).
    *
-   * The default implementation uses `resizeWIdth` and `resizeHeight` (if provIded) and resizes
+   * The default implementation uses `resizeWidth` and `resizeHeight` (if provided) and resizes
    * images according to those dimensions.
    *
    * Gets the `file` as the first parameter, and a `done()` function as the second, that needs
    * to be invoked with the file when the transformation is done.
    */
   transformFile: function transformFile(file, done) {
-    if ((this.options.resizeWIdth || this.options.resizeHeight) && file.type.match(/image.*/)) {
-      return this.resizeImage(file, this.options.resizeWIdth, this.options.resizeHeight, this.options.resizeMethod, done);
+    if ((this.options.resizeWidth || this.options.resizeHeight) && file.type.match(/image.*/)) {
+      return this.resizeImage(file, this.options.resizeWidth, this.options.resizeHeight, this.options.resizeMethod, done);
     } else {
       return done(file);
     }
@@ -7549,11 +7549,11 @@ var defaultOptions = {
   /**
    * A string that contains the template used for each dropped
    * file. Change it to fulfill your needs but make sure to properly
-   * provIde all elements.
+   * provide all elements.
    *
-   * If you want to use an actual HTML element instead of provIding a String
-   * as a config option, you could create a div with the Id `tpl`,
-   * put the template insIde it and provIde the element like this:
+   * If you want to use an actual HTML element instead of providing a String
+   * as a config option, you could create a div with the id `tpl`,
+   * put the template inside it and provide the element like this:
    *
    *     document
    *       .querySelector('#tpl')
@@ -7759,7 +7759,7 @@ var defaultOptions = {
       try {
         for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
           var node = _step7.value;
-          node.nodeName === "PROGRESS" ? node.value = progress : node.style.wIdth = "".concat(progress, "%");
+          node.nodeName === "PROGRESS" ? node.value = progress : node.style.width = "".concat(progress, "%");
         }
       } catch (err) {
         _iterator7.e(err);
@@ -7856,7 +7856,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
 
-function dropzone_createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = dropzone_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("InvalId attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, dIdErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { dIdErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (dIdErr) throw err; } } }; }
+function dropzone_createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = dropzone_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function dropzone_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return dropzone_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return dropzone_arrayLikeToArray(o, minLen); }
 
@@ -7910,7 +7910,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
 
     if (!_this.element || _this.element.nodeType == null) {
-      throw new Error("InvalId dropzone element.");
+      throw new Error("Invalid dropzone element.");
     }
 
     if (_this.element.dropzone) {
@@ -7918,7 +7918,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     } // Now add this dropzone to the instances.
 
 
-    Dropzone.instances.push(_assertThisInitialized(_this)); // Put the dropzone insIde the element itself.
+    Dropzone.instances.push(_assertThisInitialized(_this)); // Put the dropzone inside the element itself.
 
     _this.element.dropzone = _assertThisInitialized(_this);
     var elementOptions = (left = Dropzone.optionsForElement(_this.element)) != null ? left : {};
@@ -7935,11 +7935,11 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     }
 
     if (!_this.options.url) {
-      throw new Error("No URL provIded.");
+      throw new Error("No URL provided.");
     }
 
     if (_this.options.acceptedFiles && _this.options.acceptedMimeTypes) {
-      throw new Error("You can't provIde both 'acceptedFiles' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated.");
+      throw new Error("You can't provide both 'acceptedFiles' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated.");
     }
 
     if (_this.options.uploadMultiple && _this.options.chunking) {
@@ -8046,7 +8046,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         return file;
       });
     } // The function that gets called when Dropzone is initialized. You
-    // can (and should) setup event listeners insIde this function.
+    // can (and should) setup event listeners inside this function.
 
   }, {
     key: "init",
@@ -8063,44 +8063,44 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       }
 
       if (this.clickableElements.length) {
-        var setupHIddenFileInput = function setupHIddenFileInput() {
-          if (_this2.hIddenFileInput) {
-            _this2.hIddenFileInput.parentNode.removeChild(_this2.hIddenFileInput);
+        var setupHiddenFileInput = function setupHiddenFileInput() {
+          if (_this2.hiddenFileInput) {
+            _this2.hiddenFileInput.parentNode.removeChild(_this2.hiddenFileInput);
           }
 
-          _this2.hIddenFileInput = document.createElement("input");
+          _this2.hiddenFileInput = document.createElement("input");
 
-          _this2.hIddenFileInput.setAttribute("type", "file");
+          _this2.hiddenFileInput.setAttribute("type", "file");
 
           if (_this2.options.maxFiles === null || _this2.options.maxFiles > 1) {
-            _this2.hIddenFileInput.setAttribute("multiple", "multiple");
+            _this2.hiddenFileInput.setAttribute("multiple", "multiple");
           }
 
-          _this2.hIddenFileInput.className = "dz-hIdden-input";
+          _this2.hiddenFileInput.className = "dz-hidden-input";
 
           if (_this2.options.acceptedFiles !== null) {
-            _this2.hIddenFileInput.setAttribute("accept", _this2.options.acceptedFiles);
+            _this2.hiddenFileInput.setAttribute("accept", _this2.options.acceptedFiles);
           }
 
           if (_this2.options.capture !== null) {
-            _this2.hIddenFileInput.setAttribute("capture", _this2.options.capture);
+            _this2.hiddenFileInput.setAttribute("capture", _this2.options.capture);
           } // Making sure that no one can "tab" into this field.
 
 
-          _this2.hIddenFileInput.setAttribute("tabindex", "-1"); // Not setting `display="none"` because some browsers don't accept clicks
+          _this2.hiddenFileInput.setAttribute("tabindex", "-1"); // Not setting `display="none"` because some browsers don't accept clicks
           // on elements that aren't displayed.
 
 
-          _this2.hIddenFileInput.style.visibility = "hIdden";
-          _this2.hIddenFileInput.style.position = "absolute";
-          _this2.hIddenFileInput.style.top = "0";
-          _this2.hIddenFileInput.style.left = "0";
-          _this2.hIddenFileInput.style.height = "0";
-          _this2.hIddenFileInput.style.wIdth = "0";
-          Dropzone.getElement(_this2.options.hIddenInputContainer, "hIddenInputContainer").appendChild(_this2.hIddenFileInput);
+          _this2.hiddenFileInput.style.visibility = "hidden";
+          _this2.hiddenFileInput.style.position = "absolute";
+          _this2.hiddenFileInput.style.top = "0";
+          _this2.hiddenFileInput.style.left = "0";
+          _this2.hiddenFileInput.style.height = "0";
+          _this2.hiddenFileInput.style.width = "0";
+          Dropzone.getElement(_this2.options.hiddenInputContainer, "hiddenInputContainer").appendChild(_this2.hiddenFileInput);
 
-          _this2.hIddenFileInput.addEventListener("change", function () {
-            var files = _this2.hIddenFileInput.files;
+          _this2.hiddenFileInput.addEventListener("change", function () {
+            var files = _this2.hiddenFileInput.files;
 
             if (files.length) {
               var _iterator = dropzone_createForOfIteratorHelper(files, true),
@@ -8121,11 +8121,11 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
             _this2.emit("addedfiles", files);
 
-            setupHIddenFileInput();
+            setupHiddenFileInput();
           });
         };
 
-        setupHIddenFileInput();
+        setupHiddenFileInput();
       }
 
       this.URL = window.URL !== null ? window.URL : window.webkitURL; // Setup all event listeners on the Dropzone object itself.
@@ -8239,8 +8239,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           events: {
             click: function click(evt) {
               // Only the actual dropzone or the message element should trigger file selection
-              if (clickableElement !== _this2.element || evt.target === _this2.element || Dropzone.elementInsIde(evt.target, _this2.element.querySelector(".dz-message"))) {
-                _this2.hIddenFileInput.click(); // Forward the click
+              if (clickableElement !== _this2.element || evt.target === _this2.element || Dropzone.elementInside(evt.target, _this2.element.querySelector(".dz-message"))) {
+                _this2.hiddenFileInput.click(); // Forward the click
 
               }
 
@@ -8259,9 +8259,9 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       this.disable();
       this.removeAllFiles(true);
 
-      if (this.hIddenFileInput != null ? this.hIddenFileInput.parentNode : undefined) {
-        this.hIddenFileInput.parentNode.removeChild(this.hIddenFileInput);
-        this.hIddenFileInput = null;
+      if (this.hiddenFileInput != null ? this.hiddenFileInput.parentNode : undefined) {
+        this.hiddenFileInput.parentNode.removeChild(this.hiddenFileInput);
+        this.hiddenFileInput = null;
       }
 
       delete this.element.dropzone;
@@ -8321,7 +8321,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       return this.options.renameFile(file);
     } // Returns a form that can be used as fallback if the browser does not support DragnDrop
     //
-    // If the dropzone is already a form, only the input field and button are returned. Otherwise a complete form element is provIded.
+    // If the dropzone is already a form, only the input field and button are returned. Otherwise a complete form element is provided.
     // This code has to pass in IE7 :(
 
   }, {
@@ -8620,7 +8620,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
                 if (entry.isFile) {
                   entry.file(function (file) {
-                    if (_this5.options.ignoreHIddenFiles && file.name.substring(0, 1) === ".") {
+                    if (_this5.options.ignoreHiddenFiles && file.name.substring(0, 1) === ".") {
                       return;
                     }
 
@@ -8650,7 +8650,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       return readEntries();
     } // If `done()` is called without argument the file is accepted
     // If you call it with an error message, the file is rejected
-    // (This allows for asynchronous valIdation)
+    // (This allows for asynchronous validation)
     //
     // This function checks the filesize, and if the file.type passes the
     // `acceptedFiles` check.
@@ -8660,8 +8660,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     value: function accept(file, done) {
       if (this.options.maxFilesize && file.size > this.options.maxFilesize * 1024 * 1024) {
         done(this.options.dictFileTooBig.replace("{{filesize}}", Math.round(file.size / 1024 / 10.24) / 100).replace("{{maxFilesize}}", this.options.maxFilesize));
-      } else if (!Dropzone.isValIdFile(file, this.options.acceptedFiles)) {
-        done(this.options.dictInvalIdFileType);
+      } else if (!Dropzone.isValidFile(file, this.options.acceptedFiles)) {
+        done(this.options.dictInvalidFileType);
       } else if (this.options.maxFiles != null && this.getAcceptedFiles().length >= this.options.maxFiles) {
         done(this.options.dictMaxFilesExceeded.replace("{{maxFiles}}", this.options.maxFiles));
         this.emit("maxfilesexceeded", file);
@@ -8675,7 +8675,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       var _this6 = this;
 
       file.upload = {
-        uuId: Dropzone.uuIdv4(),
+        uuid: Dropzone.uuidv4(),
         progress: 0,
         // Setting the total upload size to file.size for the beginning
         // It's actual different than the size to be transmitted.
@@ -8773,7 +8773,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
       var file = this._thumbnailQueue.shift();
 
-      return this.createThumbnail(file, this.options.thumbnailWIdth, this.options.thumbnailHeight, this.options.thumbnailMethod, true, function (dataUrl) {
+      return this.createThumbnail(file, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.thumbnailMethod, true, function (dataUrl) {
         _this9.emit("thumbnail", file, dataUrl);
 
         _this9._processingThumbnail = false;
@@ -8823,15 +8823,15 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
       return null;
     } // Resizes an image before it gets sent to the server. This function is the default behavior of
-    // `options.transformFile` if `resizeWIdth` or `resizeHeight` are set. The callback is invoked with
+    // `options.transformFile` if `resizeWidth` or `resizeHeight` are set. The callback is invoked with
     // the resized blob.
 
   }, {
     key: "resizeImage",
-    value: function resizeImage(file, wIdth, height, resizeMethod, callback) {
+    value: function resizeImage(file, width, height, resizeMethod, callback) {
       var _this10 = this;
 
-      return this.createThumbnail(file, wIdth, height, resizeMethod, true, function (dataUrl, canvas) {
+      return this.createThumbnail(file, width, height, resizeMethod, true, function (dataUrl, canvas) {
         if (canvas == null) {
           // The image has not been resized
           return callback(file);
@@ -8855,7 +8855,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     }
   }, {
     key: "createThumbnail",
-    value: function createThumbnail(file, wIdth, height, resizeMethod, fixOrientation, callback) {
+    value: function createThumbnail(file, width, height, resizeMethod, fixOrientation, callback) {
       var _this11 = this;
 
       var fileReader = new FileReader();
@@ -8871,7 +8871,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           return;
         }
 
-        _this11.createThumbnailFromUrl(file, wIdth, height, resizeMethod, fixOrientation, callback);
+        _this11.createThumbnailFromUrl(file, width, height, resizeMethod, fixOrientation, callback);
       };
 
       fileReader.readAsDataURL(file);
@@ -8902,12 +8902,12 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         };
 
         mockFile.dataURL = imageUrl;
-        this.createThumbnailFromUrl(mockFile, this.options.thumbnailWIdth, this.options.thumbnailHeight, this.options.thumbnailMethod, this.options.fixOrientation, onDone, crossOrigin);
+        this.createThumbnailFromUrl(mockFile, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.thumbnailMethod, this.options.fixOrientation, onDone, crossOrigin);
       }
     }
   }, {
     key: "createThumbnailFromUrl",
-    value: function createThumbnailFromUrl(file, wIdth, height, resizeMethod, fixOrientation, callback, crossOrigin) {
+    value: function createThumbnailFromUrl(file, width, height, resizeMethod, fixOrientation, callback, crossOrigin) {
       var _this13 = this;
 
       // Not using `new Image` here because of a bug in latest Chrome versions.
@@ -8935,31 +8935,31 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         }
 
         return loadExif(function (orientation) {
-          file.wIdth = img.wIdth;
+          file.width = img.width;
           file.height = img.height;
 
-          var resizeInfo = _this13.options.resize.call(_this13, file, wIdth, height, resizeMethod);
+          var resizeInfo = _this13.options.resize.call(_this13, file, width, height, resizeMethod);
 
           var canvas = document.createElement("canvas");
           var ctx = canvas.getContext("2d");
-          canvas.wIdth = resizeInfo.trgWIdth;
+          canvas.width = resizeInfo.trgWidth;
           canvas.height = resizeInfo.trgHeight;
 
           if (orientation > 4) {
-            canvas.wIdth = resizeInfo.trgHeight;
-            canvas.height = resizeInfo.trgWIdth;
+            canvas.width = resizeInfo.trgHeight;
+            canvas.height = resizeInfo.trgWidth;
           }
 
           switch (orientation) {
             case 2:
               // horizontal flip
-              ctx.translate(canvas.wIdth, 0);
+              ctx.translate(canvas.width, 0);
               ctx.scale(-1, 1);
               break;
 
             case 3:
               // 180° rotate left
-              ctx.translate(canvas.wIdth, canvas.height);
+              ctx.translate(canvas.width, canvas.height);
               ctx.rotate(Math.PI);
               break;
 
@@ -8978,13 +8978,13 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             case 6:
               // 90° rotate right
               ctx.rotate(0.5 * Math.PI);
-              ctx.translate(0, -canvas.wIdth);
+              ctx.translate(0, -canvas.width);
               break;
 
             case 7:
               // horizontal flip + 90 rotate right
               ctx.rotate(0.5 * Math.PI);
-              ctx.translate(canvas.height, -canvas.wIdth);
+              ctx.translate(canvas.height, -canvas.width);
               ctx.scale(-1, 1);
               break;
 
@@ -8996,7 +8996,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           } // This is a bugfix for iOS' scaling bug.
 
 
-          drawImageIOSFix(ctx, img, resizeInfo.srcX != null ? resizeInfo.srcX : 0, resizeInfo.srcY != null ? resizeInfo.srcY : 0, resizeInfo.srcWIdth, resizeInfo.srcHeight, resizeInfo.trgX != null ? resizeInfo.trgX : 0, resizeInfo.trgY != null ? resizeInfo.trgY : 0, resizeInfo.trgWIdth, resizeInfo.trgHeight);
+          drawImageIOSFix(ctx, img, resizeInfo.srcX != null ? resizeInfo.srcX : 0, resizeInfo.srcY != null ? resizeInfo.srcY : 0, resizeInfo.srcWidth, resizeInfo.srcHeight, resizeInfo.trgX != null ? resizeInfo.trgX : 0, resizeInfo.trgY != null ? resizeInfo.trgY : 0, resizeInfo.trgWidth, resizeInfo.trgHeight);
           var thumbnail = canvas.toDataURL("image/png");
 
           if (callback != null) {
@@ -9276,7 +9276,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       }
     } // This function actually uploads the file(s) to the server.
     // If dataBlocks contains the actual data to upload (meaning, that this could either be transformed
-    // files, or indivIdual chunks for chunked upload).
+    // files, or individual chunks for chunked upload).
 
   }, {
     key: "_uploadData",
@@ -9365,7 +9365,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           if (Array.isArray(value)) {
             // The additional parameter contains an array,
             // so lets iterate over it to attach each value
-            // indivIdually.
+            // individually.
             for (var i = 0; i < value.length; i++) {
               formData.append(key, value[i]);
             }
@@ -9476,7 +9476,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         }
       }
     } // Invoked when there is new progress information about given files.
-    // If e is not provIded, it is assumed that the upload is finished.
+    // If e is not provided, it is assumed that the upload is finished.
 
   }, {
     key: "_updateFilesUploadProgress",
@@ -9531,7 +9531,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           // No event, so we're at 100%
           chunk.progress = 100;
           chunk.bytesSent = chunk.total;
-        } // Now tally the *file* upload progress from its indivIdual chunks
+        } // Now tally the *file* upload progress from its individual chunks
 
 
         _file2.upload.progress = 0;
@@ -9544,7 +9544,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             _file2.upload.total += _file2.upload.chunks[i].total;
             _file2.upload.bytesSent += _file2.upload.chunks[i].bytesSent;
           }
-        } // Since the process is a percentage, we need to divIde by the amount of
+        } // Since the process is a percentage, we need to divide by the amount of
         // chunks we've used.
 
 
@@ -9573,7 +9573,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             response = JSON.parse(response);
           } catch (error) {
             e = error;
-            response = "InvalId JSON response from server.";
+            response = "Invalid JSON response from server.";
           }
         }
       }
@@ -9621,7 +9621,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
 
       xhr.send(formData);
     } // Called internally when processing is finished.
-    // IndivIdual callbacks have to be called in the appropriate sections.
+    // Individual callbacks have to be called in the appropriate sections.
 
   }, {
     key: "_finished",
@@ -9651,7 +9651,7 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
         return this.processQueue();
       }
     } // Called internally when processing is finished.
-    // IndivIdual callbacks have to be called in the appropriate sections.
+    // Individual callbacks have to be called in the appropriate sections.
 
   }, {
     key: "_errorProcessing",
@@ -9716,8 +9716,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       return target;
     }
   }, {
-    key: "uuIdv4",
-    value: function uuIdv4() {
+    key: "uuidv4",
+    value: function uuidv4() {
       return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
         var r = Math.random() * 16 | 0,
             v = c === "x" ? r : r & 0x3 | 0x8;
@@ -9744,14 +9744,14 @@ Dropzone.version = "5.9.3"; // This is a map of options for your different dropz
 //
 // And in html:
 //
-//     <form action="/upload" Id="my-dropzone-element-Id" class="dropzone"></form>
+//     <form action="/upload" id="my-dropzone-element-id" class="dropzone"></form>
 
 Dropzone.options = {}; // Returns the options for an element or undefined if none available.
 
 Dropzone.optionsForElement = function (element) {
   // Get the `Dropzone.options.elementId` for this element if it exists
-  if (element.getAttribute("Id")) {
-    return Dropzone.options[camelize(element.getAttribute("Id"))];
+  if (element.getAttribute("id")) {
+    return Dropzone.options[camelize(element.getAttribute("id"))];
   } else {
     return undefined;
   }
@@ -9934,10 +9934,10 @@ Dropzone.createElement = function (string) {
   var div = document.createElement("div");
   div.innerHTML = string;
   return div.childNodes[0];
-}; // Tests if given element is insIde (or simply is) the container
+}; // Tests if given element is inside (or simply is) the container
 
 
-Dropzone.elementInsIde = function (element, container) {
+Dropzone.elementInside = function (element, container) {
   if (element === container) {
     return true;
   } // Coffeescript doesn't support do/while loops
@@ -9962,7 +9962,7 @@ Dropzone.getElement = function (el, name) {
   }
 
   if (element == null) {
-    throw new Error("InvalId `".concat(name, "` option provIded. Please provIde a CSS selector or a plain HTML element."));
+    throw new Error("Invalid `".concat(name, "` option provided. Please provide a CSS selector or a plain HTML element."));
   }
 
   return element;
@@ -10012,7 +10012,7 @@ Dropzone.getElements = function (els, name) {
   }
 
   if (elements == null || !elements.length) {
-    throw new Error("InvalId `".concat(name, "` option provIded. Please provIde a CSS selector, a plain HTML element or a list of those."));
+    throw new Error("Invalid `".concat(name, "` option provided. Please provide a CSS selector, a plain HTML element or a list of those."));
   }
 
   return elements;
@@ -10028,12 +10028,12 @@ Dropzone.confirm = function (question, accepted, rejected) {
   } else if (rejected != null) {
     return rejected();
   }
-}; // ValIdates the mime type like this:
+}; // Validates the mime type like this:
 //
 // https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept
 
 
-Dropzone.isValIdFile = function (file, acceptedFiles) {
+Dropzone.isValidFile = function (file, acceptedFiles) {
   if (!acceptedFiles) {
     return true;
   } // If there are no accepted mime types, it's OK
@@ -10048,20 +10048,20 @@ Dropzone.isValIdFile = function (file, acceptedFiles) {
 
   try {
     for (_iterator25.s(); !(_step25 = _iterator25.n()).done;) {
-      var valIdType = _step25.value;
-      valIdType = valIdType.trim();
+      var validType = _step25.value;
+      validType = validType.trim();
 
-      if (valIdType.charAt(0) === ".") {
-        if (file.name.toLowerCase().indexOf(valIdType.toLowerCase(), file.name.length - valIdType.length) !== -1) {
+      if (validType.charAt(0) === ".") {
+        if (file.name.toLowerCase().indexOf(validType.toLowerCase(), file.name.length - validType.length) !== -1) {
           return true;
         }
-      } else if (/\/\*$/.test(valIdType)) {
+      } else if (/\/\*$/.test(validType)) {
         // This is something like a image/* mime type
-        if (baseMimeType === valIdType.replace(/\/.*$/, "")) {
+        if (baseMimeType === validType.replace(/\/.*$/, "")) {
           return true;
         }
       } else {
-        if (mimeType === valIdType) {
+        if (mimeType === validType) {
           return true;
         }
       }
@@ -10108,10 +10108,10 @@ Dropzone.SUCCESS = "success";
 // This is a bug in iOS6 devices. This function from https://github.com/stomita/ios-imagefile-megapixel
 
 var detectVerticalSquash = function detectVerticalSquash(img) {
-  var iw = img.naturalWIdth;
+  var iw = img.naturalWidth;
   var ih = img.naturalHeight;
   var canvas = document.createElement("canvas");
-  canvas.wIdth = 1;
+  canvas.width = 1;
   canvas.height = ih;
   var ctx = canvas.getContext("2d");
   ctx.drawImage(img, 0, 0);
@@ -10302,7 +10302,7 @@ var ExifRestore = /*#__PURE__*/function () {
       var base64test = /[^A-Za-z0-9\+\/\=]/g;
 
       if (base64test.exec(input)) {
-        console.warn("There were invalId base64 characters in the input text.\nValId base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\nExpect errors in decoding.");
+        console.warn("There were invalid base64 characters in the input text.\nValid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\nExpect errors in decoding.");
       }
 
       input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");

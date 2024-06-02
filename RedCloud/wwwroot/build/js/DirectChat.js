@@ -19,7 +19,7 @@ const JQUERY_NO_CONFLICT = $.fn[NAME]
 
 const EVENT_TOGGLED = `toggled${EVENT_KEY}`
 
-const SELECTOR_DATA_TOGGLE = '[data-wIdget="chat-pane-toggle"]'
+const SELECTOR_DATA_TOGGLE = '[data-widget="chat-pane-toggle"]'
 const SELECTOR_DIRECT_CHAT = '.direct-chat'
 
 const CLASS_NAME_DIRECT_CHAT_OPEN = 'direct-chat-contacts-open'

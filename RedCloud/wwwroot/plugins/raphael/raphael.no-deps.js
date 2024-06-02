@@ -68,7 +68,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	};
 /******/
 /******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module Id, require it
+/******/ 	// mode & 1: value is a module id, require it
 /******/ 	// mode & 2: merge all properties of value into the ns
 /******/ 	// mode & 4: return value when already ns object
 /******/ 	// mode & 8|1: behave like require
@@ -139,25 +139,25 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      * from this instance will be bound to this canvas.
      > Parameters
      **
-     - container (HTMLElement|string) DOM element or its Id which is going to be a parent for drawing surface
-     - wIdth (number)
+     - container (HTMLElement|string) DOM element or its ID which is going to be a parent for drawing surface
+     - width (number)
      - height (number)
      - callback (function) #optional callback function which is going to be executed in the context of newly created paper
      * or
      - x (number)
      - y (number)
-     - wIdth (number)
+     - width (number)
      - height (number)
      - callback (function) #optional callback function which is going to be executed in the context of newly created paper
      * or
-     - all (array) (first 3 or 4 elements in the array are equal to [containerId, wIdth, height] or [x, y, wIdth, height]. The rest are element descriptions in format {type: type, <attributes>}). See @Paper.add.
+     - all (array) (first 3 or 4 elements in the array are equal to [containerID, width, height] or [x, y, width, height]. The rest are element descriptions in format {type: type, <attributes>}). See @Paper.add.
      - callback (function) #optional callback function which is going to be executed in the context of newly created paper
      * or
      - onReadyCallback (function) function that is going to be called on DOM ready event. You can also subscribe to this event via Eve’s “DOMLoad” event. In this case method returns `undefined`.
      = (object) @Paper
      > Usage
      | // Each of the following examples create a canvas
-     | // that is 320px wIde by 200px high.
+     | // that is 320px wide by 200px high.
      | // Canvas is created at the viewport’s 10,50 coordinate.
      | var paper = Raphael(10, 50, 320, 200);
      | // Canvas is created at the top left corner of the #notepad element
@@ -170,7 +170,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      |     type: "rect",
      |     x: 10,
      |     y: 10,
-     |     wIdth: 25,
+     |     width: 25,
      |     height: 25,
      |     stroke: "#f00"
      | }, {
@@ -319,12 +319,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             "stroke-linejoin": "butt",
             "stroke-miterlimit": 0,
             "stroke-opacity": 1,
-            "stroke-wIdth": 1,
+            "stroke-width": 1,
             target: "_blank",
-            "text-anchor": "mIddle",
+            "text-anchor": "middle",
             title: "Raphael",
             transform: "",
-            wIdth: 0,
+            width: 0,
             x: 0,
             y: 0,
             "class": ""
@@ -345,9 +345,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             ry: nu,
             stroke: "colour",
             "stroke-opacity": nu,
-            "stroke-wIdth": nu,
+            "stroke-width": nu,
             transform: "transform",
-            wIdth: nu,
+            width: nu,
             x: nu,
             y: nu
         },
@@ -396,19 +396,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             },
             rect: function (el) {
                 var a = el.attrs;
-                return rectPath(a.x, a.y, a.wIdth, a.height, a.r);
+                return rectPath(a.x, a.y, a.width, a.height, a.r);
             },
             image: function (el) {
                 var a = el.attrs;
-                return rectPath(a.x, a.y, a.wIdth, a.height);
+                return rectPath(a.x, a.y, a.width, a.height);
             },
             text: function (el) {
                 var bbox = el._getBBox();
-                return rectPath(bbox.x, bbox.y, bbox.wIdth, bbox.height);
+                return rectPath(bbox.x, bbox.y, bbox.width, bbox.height);
             },
             set : function(el) {
                 var bbox = el._getBBox();
-                return rectPath(bbox.x, bbox.y, bbox.wIdth, bbox.height);
+                return rectPath(bbox.x, bbox.y, bbox.width, bbox.height);
             }
         },
         /*\
@@ -499,7 +499,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      | paper.mystuff.star();
     \*/
     R.fn = paperproto = Paper.prototype = R.prototype;
-    R._Id = 0;
+    R._id = 0;
     /*\
      * Raphael.is
      [ method ]
@@ -590,9 +590,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      * Raphael.snapTo
      [ method ]
      **
-     * Snaps given value to given grId.
+     * Snaps given value to given grid.
      > Parameters
-     - values (array|number) given array of values or step of the grId
+     - values (array|number) given array of values or step of the grid
      - value (number) value to adjust
      - tolerance (number) #optional tolerance for snapping. Default is `10`.
      = (number) adjusted value.
@@ -618,14 +618,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     };
 
     /*\
-     * Raphael.createUUId
+     * Raphael.createUUID
      [ method ]
      **
-     * Returns RFC4122, version 4 Id
+     * Returns RFC4122, version 4 ID
     \*/
-    var createUUId = R.createUUId = (function (uuIdRegEx, uuIdReplacer) {
+    var createUUID = R.createUUID = (function (uuidRegEx, uuidReplacer) {
         return function () {
-            return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(uuIdRegEx, uuIdReplacer).toUpperCase();
+            return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(uuidRegEx, uuidReplacer).toUpperCase();
         };
     })(/[xy]/g, function (c) {
         var r = math.random() * 16 | 0,
@@ -1405,24 +1405,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             y: bbox.min.y,
             x2: bbox.max.x,
             y2: bbox.max.y,
-            wIdth: bbox.max.x - bbox.min.x,
+            width: bbox.max.x - bbox.min.x,
             height: bbox.max.y - bbox.min.y
         };
     };
     /*\
-     * Raphael.isPointInsIdeBBox
+     * Raphael.isPointInsideBBox
      [ method ]
      **
      * Utility method
      **
-     * Returns `true` if given point is insIde bounding boxes.
+     * Returns `true` if given point is inside bounding boxes.
      > Parameters
      - bbox (string) bounding box
      - x (string) x coordinate of the point
      - y (string) y coordinate of the point
-     = (boolean) `true` if point insIde
+     = (boolean) `true` if point inside
     \*/
-    R.isPointInsIdeBBox = function (bbox, x, y) {
+    R.isPointInsideBBox = function (bbox, x, y) {
         return x >= bbox.x && x <= bbox.x2 && y >= bbox.y && y <= bbox.y2;
     };
     /*\
@@ -1438,7 +1438,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      = (boolean) `true` if they intersect
     \*/
     R.isBBoxIntersect = function (bbox1, bbox2) {
-        var i = R.isPointInsIdeBBox;
+        var i = R.isPointInsideBBox;
         return i(bbox2, bbox1.x, bbox1.y)
             || i(bbox2, bbox1.x2, bbox1.y)
             || i(bbox2, bbox1.x, bbox1.y2)
@@ -1670,21 +1670,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         return res;
     }
     /*\
-     * Raphael.isPointInsIdePath
+     * Raphael.isPointInsidePath
      [ method ]
      **
      * Utility method
      **
-     * Returns `true` if given point is insIde a given closed path.
+     * Returns `true` if given point is inside a given closed path.
      > Parameters
      - path (string) path string
      - x (number) x of the point
      - y (number) y of the point
-     = (boolean) true, if point is insIde the path
+     = (boolean) true, if point is inside the path
     \*/
-    R.isPointInsIdePath = function (path, x, y) {
+    R.isPointInsidePath = function (path, x, y) {
         var bbox = R.pathBBox(path);
-        return R.isPointInsIdeBBox(bbox, x, y) &&
+        return R.isPointInsideBBox(bbox, x, y) &&
                interPathHelper(path, [["M", x, y], ["H", bbox.x2 + 10]], 1) % 2 == 1;
     };
     R._removedFactory = function (methodname) {
@@ -1707,7 +1707,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      o     y: (number) y coordinate of the left top point of the box
      o     x2: (number) x coordinate of the right bottom point of the box
      o     y2: (number) y coordinate of the right bottom point of the box
-     o     wIdth: (number) wIdth of the box
+     o     width: (number) width of the box
      o     height: (number) height of the box
      o     cx: (number) x coordinate of the center of the box
      o     cy: (number) y coordinate of the center of the box
@@ -1719,7 +1719,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return clone(pth.bbox);
         }
         if (!path) {
-            return {x: 0, y: 0, wIdth: 0, height: 0, x2: 0, y2: 0};
+            return {x: 0, y: 0, width: 0, height: 0, x2: 0, y2: 0};
         }
         path = path2curve(path);
         var x = 0,
@@ -1746,16 +1746,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             ymin = mmin[apply](0, Y),
             xmax = mmax[apply](0, X),
             ymax = mmax[apply](0, Y),
-            wIdth = xmax - xmin,
+            width = xmax - xmin,
             height = ymax - ymin,
                 bb = {
                 x: xmin,
                 y: ymin,
                 x2: xmax,
                 y2: ymax,
-                wIdth: wIdth,
+                width: width,
                 height: height,
-                cx: xmin + wIdth / 2,
+                cx: xmin + width / 2,
                 cy: ymin + height / 2
             };
         pth.bbox = clone(bb);
@@ -2396,7 +2396,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     } else if (command == "r") {
                         if (tlen == 2) {
                             bb = bb || el.getBBox(1);
-                            m.rotate(t[1], bb.x + bb.wIdth / 2, bb.y + bb.height / 2);
+                            m.rotate(t[1], bb.x + bb.width / 2, bb.y + bb.height / 2);
                             deg += t[1];
                         } else if (tlen == 4) {
                             if (absolute) {
@@ -2411,7 +2411,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     } else if (command == "s") {
                         if (tlen == 2 || tlen == 3) {
                             bb = bb || el.getBBox(1);
-                            m.scale(t[1], t[tlen - 1], bb.x + bb.wIdth / 2, bb.y + bb.height / 2);
+                            m.scale(t[1], t[tlen - 1], bb.x + bb.width / 2, bb.y + bb.height / 2);
                             sx *= t[1];
                             sy *= t[tlen - 1];
                         } else if (tlen == 5) {
@@ -2513,13 +2513,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             if (y == null) {
                 return {
                     container: container,
-                    wIdth: container.style.pixelWIdth || container.offsetWIdth,
+                    width: container.style.pixelWidth || container.offsetWidth,
                     height: container.style.pixelHeight || container.offsetHeight
                 };
             } else {
                 return {
                     container: container,
-                    wIdth: y,
+                    width: y,
                     height: w
                 };
             }
@@ -2528,7 +2528,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             container: 1,
             x: x,
             y: y,
-            wIdth: w,
+            width: w,
             height: h
         };
     };
@@ -2740,7 +2740,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 [this.get(0), this.get(2), this.get(1), this.get(3), 0, 0].join();
         };
         matrixproto.toFilter = function () {
-            return "progId:DXImageTransform.Microsoft.Matrix(M11=" + this.get(0) +
+            return "progid:DXImageTransform.Microsoft.Matrix(M11=" + this.get(0) +
                 ", M12=" + this.get(2) + ", M21=" + this.get(1) + ", M22=" + this.get(3) +
                 ", Dx=" + this.get(4) + ", Dy=" + this.get(5) + ", sizingmethod='auto expand')";
         };
@@ -2921,7 +2921,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     touch;
                 while (i--) {
                     touch = e.touches[i];
-                    if (touch.Identifier == dragi.el._drag.Id) {
+                    if (touch.identifier == dragi.el._drag.id) {
                         x = touch.clientX;
                         y = touch.clientY;
                         (e.originalEvent ? e.originalEvent : e).preventDefault();
@@ -2941,10 +2941,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             o = dragi.el.paper.getElementByPoint(x, y);
             node.style.display = display;
             g.win.opera && (next ? parent.insertBefore(node, next) : parent.appendChild(node));
-            o && eve("raphael.drag.over." + dragi.el.Id, dragi.el, o);
+            o && eve("raphael.drag.over." + dragi.el.id, dragi.el, o);
             x += scrollX;
             y += scrollY;
-            eve("raphael.drag.move." + dragi.el.Id, dragi.move_scope || dragi.el, x - dragi.el._drag.x, y - dragi.el._drag.y, x, y, e);
+            eve("raphael.drag.move." + dragi.el.id, dragi.move_scope || dragi.el, x - dragi.el._drag.x, y - dragi.el._drag.y, x, y, e);
         }
     },
     dragUp = function (e) {
@@ -2954,7 +2954,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         while (i--) {
             dragi = drag[i];
             dragi.el._drag = {};
-            eve("raphael.drag.end." + dragi.el.Id, dragi.end_scope || dragi.start_scope || dragi.move_scope || dragi.el, e);
+            eve("raphael.drag.end." + dragi.el.id, dragi.end_scope || dragi.start_scope || dragi.move_scope || dragi.el, e);
         }
         drag = [];
     },
@@ -3231,7 +3231,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      | }
     \*/
     elproto.data = function (key, value) {
-        var data = eldata[this.Id] = eldata[this.Id] || {};
+        var data = eldata[this.id] = eldata[this.id] || {};
         if (arguments.length == 0) {
             return data;
         }
@@ -3242,11 +3242,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 }
                 return this;
             }
-            eve("raphael.data.get." + this.Id, this, data[key], key);
+            eve("raphael.data.get." + this.id, this, data[key], key);
             return data[key];
         }
         data[key] = value;
-        eve("raphael.data.set." + this.Id, this, value, key);
+        eve("raphael.data.set." + this.id, this, value, key);
         return this;
     };
     /*\
@@ -3254,16 +3254,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      [ method ]
      **
      * Removes value associated with an element by given key.
-     * If key is not provIded, removes all the data of the element.
+     * If key is not provided, removes all the data of the element.
      > Parameters
      - key (string) #optional key
      = (object) @Element
     \*/
     elproto.removeData = function (key) {
         if (key == null) {
-            delete eldata[this.Id];
+            delete eldata[this.id];
         } else {
-            eldata[this.Id] && delete eldata[this.Id][key];
+            eldata[this.id] && delete eldata[this.id][key];
         }
         return this;
     };
@@ -3275,7 +3275,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      = (object) data
     \*/
     elproto.getData = function () {
-        return clone(eldata[this.Id] || {});
+        return clone(eldata[this.id] || {});
     };
     /*\
      * Element.hover
@@ -3318,9 +3318,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      - mcontext (object) #optional context for moving handler
      - scontext (object) #optional context for drag start handler
      - econtext (object) #optional context for drag end handler
-     * Additionally following `drag` events will be triggered: `drag.start.<Id>` on start,
-     * `drag.end.<Id>` on end and `drag.move.<Id>` on every move. When element will be dragged over another element
-     * `drag.over.<Id>` will be fired as well.
+     * Additionally following `drag` events will be triggered: `drag.start.<id>` on start,
+     * `drag.end.<id>` on end and `drag.move.<id>` on every move. When element will be dragged over another element
+     * `drag.over.<id>` will be fired as well.
      *
      * Start event and start handler will be called in specified context or in context of the element with following parameters:
      o x (number) x position of the mouse
@@ -3343,13 +3343,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 y = e.clientY,
                 scrollY = g.doc.documentElement.scrollTop || g.doc.body.scrollTop,
                 scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft;
-            this._drag.Id = e.Identifier;
+            this._drag.id = e.identifier;
             if (supportsTouch && e.touches) {
                 var i = e.touches.length, touch;
                 while (i--) {
                     touch = e.touches[i];
-                    this._drag.Id = touch.Identifier;
-                    if (touch.Identifier == this._drag.Id) {
+                    this._drag.id = touch.identifier;
+                    if (touch.identifier == this._drag.id) {
                         x = touch.clientX;
                         y = touch.clientY;
                         break;
@@ -3360,10 +3360,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             this._drag.y = y + scrollY;
             !drag.length && R.mousemove(dragMove).mouseup(dragUp);
             drag.push({el: this, move_scope: move_scope, start_scope: start_scope, end_scope: end_scope});
-            onstart && eve.on("raphael.drag.start." + this.Id, onstart);
-            onmove && eve.on("raphael.drag.move." + this.Id, onmove);
-            onend && eve.on("raphael.drag.end." + this.Id, onend);
-            eve("raphael.drag.start." + this.Id, start_scope || move_scope || this, this._drag.x, this._drag.y, e);
+            onstart && eve.on("raphael.drag.start." + this.id, onstart);
+            onmove && eve.on("raphael.drag.move." + this.id, onmove);
+            onend && eve.on("raphael.drag.end." + this.id, onend);
+            eve("raphael.drag.start." + this.id, start_scope || move_scope || this, this._drag.x, this._drag.y, e);
         }
         this._drag = {};
         draggable.push({el: this, start: start});
@@ -3374,12 +3374,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      * Element.onDragOver
      [ method ]
      **
-     * Shortcut for assigning event handler for `drag.over.<Id>` event, where Id is Id of the element (see @Element.Id).
+     * Shortcut for assigning event handler for `drag.over.<id>` event, where id is id of the element (see @Element.id).
      > Parameters
      - f (function) handler for event, first argument would be the element you are dragging over
     \*/
     elproto.onDragOver = function (f) {
-        f ? eve.on("raphael.drag.over." + this.Id, f) : eve.unbind("raphael.drag.over." + this.Id);
+        f ? eve.on("raphael.drag.over." + this.id, f) : eve.unbind("raphael.drag.over." + this.id);
     };
     /*\
      * Element.undrag
@@ -3392,7 +3392,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         while (i--) if (draggable[i].el == this) {
             this.unmousedown(draggable[i].start);
             draggable.splice(i, 1);
-            eve.unbind("raphael.drag.*." + this.Id);
+            eve.unbind("raphael.drag.*." + this.id);
         }
         !draggable.length && R.unmousemove(dragMove).unmouseup(dragUp);
         drag = [];
@@ -3428,7 +3428,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      **
      - x (number) x coordinate of the top left corner
      - y (number) y coordinate of the top left corner
-     - wIdth (number) wIdth
+     - width (number) width
      - height (number) height
      - r (number) #optional radius for rounded corners, default is 0
      = (object) Raphaël element object with type “rect”
@@ -3515,7 +3515,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      - src (string) URI of the source image
      - x (number) x coordinate position
      - y (number) y coordinate position
-     - wIdth (number) wIdth of the image
+     - width (number) width of the image
      - height (number) height of the image
      = (object) Raphaël element object with type “image”
      **
@@ -3614,7 +3614,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     paperproto.getSize = function () {
         var container = this.canvas.parentNode;
         return {
-            wIdth: container.offsetWIdth,
+            width: container.offsetWidth,
             height: container.offsetHeight
                 };
         };
@@ -3626,11 +3626,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      **
      > Parameters
      **
-     - wIdth (number) new wIdth of the canvas
+     - width (number) new width of the canvas
      - height (number) new height of the canvas
     \*/
-    paperproto.setSize = function (wIdth, height) {
-        return R._engine.setSize.call(this, wIdth, height);
+    paperproto.setSize = function (width, height) {
+        return R._engine.setSize.call(this, width, height);
     };
     /*\
      * Paper.setViewBox
@@ -3643,7 +3643,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      **
      - x (number) new x position, default is `0`
      - y (number) new y position, default is `0`
-     - w (number) new wIdth of the canvas
+     - w (number) new width of the canvas
      - h (number) new height of the canvas
      - fit (boolean) `true` if you want graphics to fit into new boundary box
     \*/
@@ -3706,7 +3706,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 sr = svg.createSVGRect();
             sr.x = x - so.x;
             sr.y = y - so.y;
-            sr.wIdth = sr.height = 1;
+            sr.width = sr.height = 1;
             var hits = svg.getIntersectionList(sr, null);
             if (hits.length) {
                 target = hits[hits.length - 1];
@@ -3719,7 +3719,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             target = target.parentNode;
         }
         target == paper.canvas.parentNode && (target = svg);
-        target = target && target.raphael ? paper.getById(target.raphaelId) : null;
+        target = target && target.raphael ? paper.getById(target.raphaelid) : null;
         return target;
     };
 
@@ -3748,17 +3748,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      * Paper.getById
      [ method ]
      **
-     * Returns you element by its internal Id.
+     * Returns you element by its internal ID.
      **
      > Parameters
      **
-     - Id (number) Id
+     - id (number) id
      = (object) Raphaël element object
     \*/
-    paperproto.getById = function (Id) {
+    paperproto.getById = function (id) {
         var bot = this.bottom;
         while (bot) {
-            if (bot.Id == Id) {
+            if (bot.id == id) {
                 return bot;
             }
             bot = bot.next;
@@ -3797,7 +3797,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      * Paper.getElementsByPoint
      [ method ]
      **
-     * Returns set of elements that have common point insIde
+     * Returns set of elements that have common point inside
      **
      > Parameters
      **
@@ -3808,7 +3808,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     paperproto.getElementsByPoint = function (x, y) {
         var set = this.set();
         this.forEach(function (el) {
-            if (el.isPointInsIde(x, y)) {
+            if (el.isPointInside(x, y)) {
                 set.push(el);
             }
         });
@@ -3818,26 +3818,26 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         return this.x + S + this.y;
     }
     function x_y_w_h() {
-        return this.x + S + this.y + S + this.wIdth + " \xd7 " + this.height;
+        return this.x + S + this.y + S + this.width + " \xd7 " + this.height;
     }
     /*\
-     * Element.isPointInsIde
+     * Element.isPointInside
      [ method ]
      **
-     * Determine if given point is insIde this element’s shape
+     * Determine if given point is inside this element’s shape
      **
      > Parameters
      **
      - x (number) x coordinate of the point
      - y (number) y coordinate of the point
-     = (boolean) `true` if point insIde the shape
+     = (boolean) `true` if point inside the shape
     \*/
-    elproto.isPointInsIde = function (x, y) {
+    elproto.isPointInside = function (x, y) {
         var rp = this.realPath = getPath[this.type](this);
         if (this.attr('transform') && this.attr('transform').length) {
             rp = R.transformPath(rp, this.attr('transform'));
         }
-        return R.isPointInsIdePath(rp, x, y);
+        return R.isPointInsidePath(rp, x, y);
     };
     /*\
      * Element.getBBox
@@ -3854,7 +3854,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      o     y: (number) top left corner y
      o     x2: (number) bottom right corner x
      o     y2: (number) bottom right corner y
-     o     wIdth: (number) wIdth
+     o     width: (number) width
      o     height: (number) height
      o }
     \*/
@@ -3910,7 +3910,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      **
      - glow (object) #optional parameters object with all properties optional:
      o {
-     o     wIdth (number) size of the glow, default is `10`
+     o     width (number) size of the glow, default is `10`
      o     fill (boolean) will it be filled, default is `false`
      o     opacity (number) opacity, default is `0.5`
      o     offsetx (number) horizontal offset, default is `0`
@@ -3925,14 +3925,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         }
         glow = glow || {};
         var s = {
-            wIdth: (glow.wIdth || 10) + (+this.attr("stroke-wIdth") || 1),
+            width: (glow.width || 10) + (+this.attr("stroke-width") || 1),
             fill: glow.fill || false,
             opacity: glow.opacity == null ? .5 : glow.opacity,
             offsetx: glow.offsetx || 0,
             offsety: glow.offsety || 0,
             color: glow.color || "#000"
         },
-            c = s.wIdth / 2,
+            c = s.width / 2,
             r = this.paper,
             out = r.set(),
             path = this.realPath || getPath[this.type](this);
@@ -3943,7 +3943,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 fill: s.fill ? s.color : "none",
                 "stroke-linejoin": "round",
                 "stroke-linecap": "round",
-                "stroke-wIdth": +(s.wIdth / c * i).toFixed(3),
+                "stroke-width": +(s.width / c * i).toFixed(3),
                 opacity: +(s.opacity / c).toFixed(3)
             }));
         }
@@ -4325,16 +4325,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                         set[attr] = now;
                     }
                     that.attr(set);
-                    (function (Id, that, anim) {
+                    (function (id, that, anim) {
                         setTimeout(function () {
-                            eve("raphael.anim.frame." + Id, that, anim);
+                            eve("raphael.anim.frame." + id, that, anim);
                         });
-                    })(that.Id, that, e.anim);
+                    })(that.id, that, e.anim);
                 } else {
                     (function(f, el, a) {
                         setTimeout(function() {
-                            eve("raphael.anim.frame." + el.Id, el, a);
-                            eve("raphael.anim.finish." + el.Id, el, a);
+                            eve("raphael.anim.frame." + el.id, el, a);
+                            eve("raphael.anim.finish." + el.id, el, a);
                             R.is(f, "function") && f.call(el);
                         });
                     })(e.callback, that, e.anim);
@@ -4453,7 +4453,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         return solve(t, 1 / (200 * duration));
     }
     elproto.onAnimation = function (f) {
-        f ? eve.on("raphael.anim.frame." + this.Id, f) : eve.unbind("raphael.anim.frame." + this.Id);
+        f ? eve.on("raphael.anim.frame." + this.id, f) : eve.unbind("raphael.anim.frame." + this.id);
         return this;
     };
     function Animation(anim, ms) {
@@ -4527,7 +4527,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         if (status) {
             for (i = 0, ii = animationElements.length; i < ii; i++) {
                 var e = animationElements[i];
-                if (e.el.Id == element.Id && e.anim == anim) {
+                if (e.el.id == element.id && e.anim == anim) {
                     if (e.percent != percent) {
                         animationElements.splice(i, 1);
                         isInAnimSet = 1;
@@ -4715,7 +4715,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             isInAnim.initstatus = status;
             isInAnim.start = new Date - isInAnim.ms * status;
         }
-        eve("raphael.anim.start." + element.Id, element, anim);
+        eve("raphael.anim.start." + element.id, element, anim);
     }
     /*\
      * Raphael.animation
@@ -4813,7 +4813,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      = (object) original element if `value` is specified
      * Note, that during animation following events are triggered:
      *
-     * On each animation frame event `anim.frame.<Id>`, on start `anim.start.<Id>` and on end `anim.finish.<Id>`.
+     * On each animation frame event `anim.frame.<id>`, on start `anim.start.<id>` and on end `anim.finish.<id>`.
     \*/
     elproto.setTime = function (anim, value) {
         if (anim && value != null) {
@@ -4854,7 +4854,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             len = animationElements.length;
             for (; i < len; i++) {
                 e = animationElements[i];
-                if (e.el.Id == this.Id && (!anim || e.anim == anim)) {
+                if (e.el.id == this.id && (!anim || e.anim == anim)) {
                     if (anim) {
                         return e.status;
                     }
@@ -4883,8 +4883,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      = (object) original element
     \*/
     elproto.pause = function (anim) {
-        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.Id == this.Id && (!anim || animationElements[i].anim == anim)) {
-            if (eve("raphael.anim.pause." + this.Id, this, animationElements[i].anim) !== false) {
+        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
+            if (eve("raphael.anim.pause." + this.id, this, animationElements[i].anim) !== false) {
                 animationElements[i].paused = true;
             }
         }
@@ -4903,9 +4903,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      = (object) original element
     \*/
     elproto.resume = function (anim) {
-        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.Id == this.Id && (!anim || animationElements[i].anim == anim)) {
+        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
             var e = animationElements[i];
-            if (eve("raphael.anim.resume." + this.Id, this, e.anim) !== false) {
+            if (eve("raphael.anim.resume." + this.id, this, e.anim) !== false) {
                 delete e.paused;
                 this.status(e.anim, e.status);
             }
@@ -4925,8 +4925,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      = (object) original element
     \*/
     elproto.stop = function (anim) {
-        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.Id == this.Id && (!anim || animationElements[i].anim == anim)) {
-            if (eve("raphael.anim.stop." + this.Id, this, animationElements[i].anim) !== false) {
+        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
+            if (eve("raphael.anim.stop." + this.id, this, animationElements[i].anim) !== false) {
                 animationElements.splice(i--, 1);
             }
         }
@@ -5138,7 +5138,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             var box = this.items[i].getBBox();
             x.push(box.x);
             y.push(box.y);
-            x2.push(box.x + box.wIdth);
+            x2.push(box.x + box.width);
             y2.push(box.y + box.height);
         }
         x = mmin[apply](0, x);
@@ -5150,7 +5150,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             y: y,
             x2: x2,
             y2: y2,
-            wIdth: x2 - x,
+            width: x2 - x,
             height: y2 - y
         };
     };
@@ -5180,26 +5180,26 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
 
     /*\
-     * Set.isPointInsIde
+     * Set.isPointInside
      [ method ]
      **
-     * Determine if given point is insIde this set’s elements
+     * Determine if given point is inside this set’s elements
      **
      > Parameters
      **
      - x (number) x coordinate of the point
      - y (number) y coordinate of the point
-     = (boolean) `true` if point is insIde any of the set's elements
+     = (boolean) `true` if point is inside any of the set's elements
      \*/
-    setproto.isPointInsIde = function (x, y) {
-        var isPointInsIde = false;
+    setproto.isPointInside = function (x, y) {
+        var isPointInside = false;
         this.forEach(function (el) {
-            if (el.isPointInsIde(x, y)) {
-                isPointInsIde = true;
+            if (el.isPointInside(x, y)) {
+                isPointInside = true;
                 return false; // stop loop
             }
         });
-        return isPointInsIde;
+        return isPointInside;
     };
 
     /*\
@@ -5314,7 +5314,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      - string (string) text to print
      - font (object) font object, see @Paper.getFont
      - size (number) #optional size of the font, default is `16`
-     - origin (string) #optional could be `"baseline"` or `"mIddle"`, default is `"mIddle"`
+     - origin (string) #optional could be `"baseline"` or `"middle"`, default is `"middle"`
      - letter_spacing (number) #optional number in range `-1..1`, default is `0`
      - line_spacing (number) #optional number in range `1..3`, default is `1`
      = (object) resulting path element, which consist of all letters
@@ -5322,7 +5322,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      | var txt = r.print(10, 50, "print", r.getFont("Museo"), 30).attr({fill: "#fff"});
     \*/
     paperproto.print = function (x, y, string, font, size, origin, letter_spacing, line_spacing) {
-        origin = origin || "mIddle"; // baseline|mIddle
+        origin = origin || "middle"; // baseline|middle
         letter_spacing = mmax(mmin(letter_spacing || 0, 1), -1);
         line_spacing = mmax(mmin(line_spacing || 1, 3), 1);
         var letters = Str(string)[split](E),
@@ -5383,7 +5383,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      |         type: "rect",
      |         x: 10,
      |         y: 10,
-     |         wIdth: 10,
+     |         width: 10,
      |         height: 10,
      |         fill: "#fc0"
      |     }
@@ -5417,10 +5417,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      > Usage
      | var x = 10,
      |     y = 20,
-     |     wIdth = 40,
+     |     width = 40,
      |     height = 50;
      | // this will draw a rectangular shape equivalent to "M10,20h40v50h-40z"
-     | paper.path(Raphael.format("M{0},{1}h{2}v{3}h{4}z", x, y, wIdth, height, -wIdth));
+     | paper.path(Raphael.format("M{0},{1}h{2}v{3}h{4}z", x, y, width, height, -width));
     \*/
     R.format = function (token, params) {
         var args = R.is(params, array) ? [0][concat](params) : arguments;
@@ -5442,13 +5442,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      = (string) formated string
      > Usage
      | // this will draw a rectangular shape equivalent to "M10,20h40v50h-40z"
-     | paper.path(Raphael.fullfill("M{x},{y}h{dim.wIdth}v{dim.height}h{dim['negative wIdth']}z", {
+     | paper.path(Raphael.fullfill("M{x},{y}h{dim.width}v{dim.height}h{dim['negative width']}z", {
      |     x: 10,
      |     y: 20,
      |     dim: {
-     |         wIdth: 40,
+     |         width: 40,
      |         height: 50,
-     |         "negative wIdth": -40
+     |         "negative width": -40
      |     }
      | }));
     \*/
@@ -5605,12 +5605,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     },
     addGradientFill = function (element, gradient) {
         var type = "linear",
-            Id = element.Id + gradient,
+            id = element.id + gradient,
             fx = .5, fy = .5,
             o = element.node,
             SVG = element.paper,
             s = o.style,
-            el = R._g.doc.getElementById(Id);
+            el = R._g.doc.getElementById(id);
         if (!el) {
             gradient = Str(gradient).replace(R._radial_gradient, function (all, _fx, _fy) {
                 type = "radial";
@@ -5649,15 +5649,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             if (!dots) {
                 return null;
             }
-            Id = Id.replace(/[\(\)\s,\xb0#]/g, "_");
+            id = id.replace(/[\(\)\s,\xb0#]/g, "_");
 
-            if (element.gradient && Id != element.gradient.Id) {
+            if (element.gradient && id != element.gradient.id) {
                 SVG.defs.removeChild(element.gradient);
                 delete element.gradient;
             }
 
             if (!element.gradient) {
-                el = $(type + "Gradient", {Id: Id});
+                el = $(type + "Gradient", {id: id});
                 element.gradient = el;
                 $(el, type == "radial" ? {
                     fx: fx,
@@ -5680,7 +5680,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             }
         }
         $(o, {
-            fill: fillurl(Id),
+            fill: fillurl(id),
             opacity: 1,
             "fill-opacity": 1
         });
@@ -5693,9 +5693,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
       var mode = document.documentMode;
       return mode && (mode === 9 || mode === 10);
     },
-    fillurl = function (Id) {
+    fillurl = function (id) {
       if (isIE9or10()) {
-          return "url('#" + Id + "')";
+          return "url('#" + id + "')";
       }
       var location = document.location;
       var locationString = (
@@ -5704,7 +5704,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
           location.pathname +
           location.search
       );
-      return "url('" + locationString + "#" + Id + "')";
+      return "url('" + locationString + "#" + id + "')";
     },
     updatePosition = function (o) {
         var bbox = o.getBBox(1);
@@ -5717,7 +5717,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 se = isEnd ? "end" : "start",
                 node = o.node,
                 attrs = o.attrs,
-                stroke = attrs["stroke-wIdth"],
+                stroke = attrs["stroke-width"],
                 i = values.length,
                 type = "classic",
                 from,
@@ -5738,7 +5738,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     case "none":
                         type = values[i];
                         break;
-                    case "wIde": h = 5; break;
+                    case "wide": h = 5; break;
                     case "narrow": h = 2; break;
                     case "long": w = 5; break;
                     case "short": w = 2; break;
@@ -5774,12 +5774,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             }
             if (type != "none") {
                 var pathId = "raphael-marker-" + type,
-                    markerId = "raphael-marker-" + se + type + w + h + "-obj" + o.Id;
+                    markerId = "raphael-marker-" + se + type + w + h + "-obj" + o.id;
                 if (!R._g.doc.getElementById(pathId)) {
                     p.defs.appendChild($($("path"), {
                         "stroke-linecap": "round",
                         d: markers[type],
-                        Id: pathId
+                        id: pathId
                     }));
                     markerCounter[pathId] = 1;
                 } else {
@@ -5789,9 +5789,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     use;
                 if (!marker) {
                     marker = $($("marker"), {
-                        Id: markerId,
+                        id: markerId,
                         markerHeight: h,
-                        markerWIdth: w,
+                        markerWidth: w,
                         orient: "auto",
                         refX: refX,
                         refY: h / 2
@@ -5799,7 +5799,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     use = $($("use"), {
                         "xlink:href": "#" + pathId,
                         transform: (isEnd ? "rotate(180 " + w / 2 + " " + h / 2 + ") " : E) + "scale(" + w / t + "," + h / t + ")",
-                        "stroke-wIdth": (1 / ((w / t + h / t) / 2)).toFixed(4)
+                        "stroke-width": (1 / ((w / t + h / t) / 2)).toFixed(4)
                     });
                     marker.appendChild(use);
                     p.defs.appendChild(marker);
@@ -5864,12 +5864,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     addDashes = function (o, value, params) {
         value = dasharray[Str(value).toLowerCase()];
         if (value) {
-            var wIdth = o.attrs["stroke-wIdth"] || "1",
-                butt = {round: wIdth, square: wIdth, butt: 0}[o.attrs["stroke-linecap"] || params["stroke-linecap"]] || 0,
+            var width = o.attrs["stroke-width"] || "1",
+                butt = {round: width, square: width, butt: 0}[o.attrs["stroke-linecap"] || params["stroke-linecap"]] || 0,
                 dashes = [],
                 i = value.length;
             while (i--) {
-                dashes[i] = value[i] * wIdth + ((i % 2) ? 1 : -1) * butt;
+                dashes[i] = value[i] * width + ((i % 2) ? 1 : -1) * butt;
             }
             $(o.node, {"stroke-dasharray": dashes.join(",")});
         }
@@ -5881,7 +5881,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         var node = o.node,
             attrs = o.attrs,
             vis = node.style.visibility;
-        node.style.visibility = "hIdden";
+        node.style.visibility = "hidden";
         for (var att in params) {
             if (params[has](att)) {
                 if (!R._availableAttrs[has](att)) {
@@ -5939,16 +5939,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             o.clip && o.clip.parentNode.parentNode.removeChild(o.clip.parentNode);
                             var el = $("clipPath"),
                                 rc = $("rect");
-                            el.Id = R.createUUId();
+                            el.id = R.createUUID();
                             $(rc, {
                                 x: rect[0],
                                 y: rect[1],
-                                wIdth: rect[2],
+                                width: rect[2],
                                 height: rect[3]
                             });
                             el.appendChild(rc);
                             o.paper.defs.appendChild(el);
-                            $(node, {"clip-path": "url(#" + el.Id + ")"});
+                            $(node, {"clip-path": "url(#" + el.id + ")"});
                             o.clip = rc;
                         }
                         if (!value) {
@@ -5971,7 +5971,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             }
                         }
                         break;
-                    case "wIdth":
+                    case "width":
                         node.setAttribute(att, value);
                         o._.dirty = 1;
                         if (attrs.fx) {
@@ -5982,7 +5982,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                         }
                     case "x":
                         if (attrs.fx) {
-                            value = -attrs.x - (attrs.wIdth || 0);
+                            value = -attrs.x - (attrs.width || 0);
                         }
                     case "rx":
                         if (att == "rx" && o.type == "rect") {
@@ -6028,7 +6028,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             node.setAttributeNS(xlink, "href", value);
                         }
                         break;
-                    case "stroke-wIdth":
+                    case "stroke-width":
                         if (o._.sx != 1 || o._.sy != 1) {
                             value /= mmax(abs(o._.sx), abs(o._.sy)) || 1;
                         }
@@ -6049,21 +6049,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                         if (isURL) {
                             el = $("pattern");
                             var ig = $("image");
-                            el.Id = R.createUUId();
-                            $(el, {x: 0, y: 0, patternUnits: "userSpaceOnUse", height: 1, wIdth: 1});
+                            el.id = R.createUUID();
+                            $(el, {x: 0, y: 0, patternUnits: "userSpaceOnUse", height: 1, width: 1});
                             $(ig, {x: 0, y: 0, "xlink:href": isURL[1]});
                             el.appendChild(ig);
 
                             (function (el) {
                                 R._preload(isURL[1], function () {
-                                    var w = this.offsetWIdth,
+                                    var w = this.offsetWidth,
                                         h = this.offsetHeight;
-                                    $(el, {wIdth: w, height: h});
-                                    $(ig, {wIdth: w, height: h});
+                                    $(el, {width: w, height: h});
+                                    $(ig, {width: w, height: h});
                                 });
                             })(el);
                             o.paper.defs.appendChild(el);
-                            $(node, {fill: "url(#" + el.Id + ")"});
+                            $(node, {fill: "url(#" + el.id + ")"});
                             o.pattern = el;
                             o.pattern && updatePosition(o);
                             break;
@@ -6210,20 +6210,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         \*/
         node.raphael = true;
         /*\
-         * Element.Id
+         * Element.id
          [ property (number) ]
          **
-         * Unique Id of the element. Especially useful when you want to listen to events of the element,
-         * because all events are fired in format `<module>.<action>.<Id>`. Also useful for @Paper.getById method.
+         * Unique id of the element. Especially useful when you want to listen to events of the element,
+         * because all events are fired in format `<module>.<action>.<id>`. Also useful for @Paper.getById method.
         \*/
-        this.Id = guId();
-        node.raphaelId = this.Id;
+        this.id = guid();
+        node.raphaelid = this.id;
 
         /**
-        * Method that returns a 5 letter/digit Id, enough for 36^5 = 60466176 elements
-        * @returns {string} Id
+        * Method that returns a 5 letter/digit id, enough for 36^5 = 60466176 elements
+        * @returns {string} id
         */
-        function guId() {
+        function guid() {
             return ("0000" + (Math.random()*Math.pow(36,5) << 0).toString(36)).slice(-5);
         }
 
@@ -6314,7 +6314,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         (cy == null) && (cx = cy);
         if (cx == null || cy == null) {
             var bbox = this.getBBox(1);
-            cx = bbox.x + bbox.wIdth / 2;
+            cx = bbox.x + bbox.width / 2;
             cy = bbox.y + bbox.height / 2;
         }
         this.transform(this._.transform.concat([["r", deg, cx, cy]]));
@@ -6351,7 +6351,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         if (cx == null || cy == null) {
             var bbox = this.getBBox(1);
         }
-        cx = cx == null ? bbox.x + bbox.wIdth / 2 : cx;
+        cx = cx == null ? bbox.x + bbox.width / 2 : cx;
         cy = cy == null ? bbox.y + bbox.height / 2 : cy;
         this.transform(this._.transform.concat([["s", sx, sy, cx, cy]]));
         return this;
@@ -6429,20 +6429,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         this.node && $(this.node, {transform: this.matrix});
 
         if (_.sx != 1 || _.sy != 1) {
-            var sw = this.attrs[has]("stroke-wIdth") ? this.attrs["stroke-wIdth"] : 1;
-            this.attr({"stroke-wIdth": sw});
+            var sw = this.attrs[has]("stroke-width") ? this.attrs["stroke-width"] : 1;
+            this.attr({"stroke-width": sw});
         }
 
         return this;
     };
     /*\
-     * Element.hIde
+     * Element.hide
      [ method ]
      **
      * Makes element invisible. See @Element.show.
      = (object) @Element
     \*/
-    elproto.hIde = function () {
+    elproto.hide = function () {
         if(!this.removed) this.node.style.display = "none";
         return this;
     };
@@ -6450,7 +6450,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      * Element.show
      [ method ]
      **
-     * Makes element visible. See @Element.hIde.
+     * Makes element visible. See @Element.hide.
      = (object) @Element
     \*/
     elproto.show = function () {
@@ -6470,7 +6470,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         }
         var paper = this.paper;
         paper.__set__ && paper.__set__.exclude(this);
-        eve.unbind("raphael.*.*." + this.Id);
+        eve.unbind("raphael.*.*." + this.id);
         if (this.gradient) {
             paper.defs.removeChild(this.gradient);
         }
@@ -6489,9 +6489,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     elproto._getBBox = function () {
         if (this.node.style.display == "none") {
             this.show();
-            var hIde = true;
+            var hide = true;
         }
-        var canvasHIdden = false,
+        var canvasHidden = false,
             containerStyle;
         if (this.paper.canvas.parentElement) {
           containerStyle = this.paper.canvas.parentElement.style;
@@ -6501,7 +6501,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         }
 
         if(containerStyle && containerStyle.display == "none") {
-          canvasHIdden = true;
+          canvasHidden = true;
           containerStyle.display = "";
         }
         var bbox = {};
@@ -6512,16 +6512,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             bbox = {
                 x: this.node.clientLeft,
                 y: this.node.clientTop,
-                wIdth: this.node.clientWIdth,
+                width: this.node.clientWidth,
                 height: this.node.clientHeight
             }
         } finally {
             bbox = bbox || {};
-            if(canvasHIdden){
+            if(canvasHidden){
               containerStyle.display = "none";
             }
         }
-        hIde && this.hIde();
+        hide && this.hide();
         return bbox;
     };
     /*\
@@ -6544,8 +6544,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      = (object) object of attributes if nothing is passed in.
      > Possible parameters
      # <p>Please refer to the <a href="http://www.w3.org/TR/SVG/" title="The W3C Recommendation for the SVG language describes these properties in detail.">SVG specification</a> for an explanation of these parameters.</p>
-     o arrow-end (string) arrowhead on the end of the path. The format for string is `<type>[-<wIdth>[-<length>]]`. Possible types: `classic`, `block`, `open`, `oval`, `diamond`, `none`, wIdth: `wIde`, `narrow`, `medium`, length: `long`, `short`, `mIdium`.
-     o clip-rect (string) comma or space separated values: x, y, wIdth and height
+     o arrow-end (string) arrowhead on the end of the path. The format for string is `<type>[-<width>[-<length>]]`. Possible types: `classic`, `block`, `open`, `oval`, `diamond`, `none`, width: `wide`, `narrow`, `medium`, length: `long`, `short`, `midium`.
+     o clip-rect (string) comma or space separated values: x, y, width and height
      o cursor (string) CSS type of the cursor
      o cx (number) the x-axis coordinate of the center of the circle, or ellipse
      o cy (number) the y-axis coordinate of the center of the circle, or ellipse
@@ -6569,13 +6569,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      o stroke-linejoin (string) [“`bevel`”, “`round`”, “`miter`”]
      o stroke-miterlimit (number)
      o stroke-opacity (number)
-     o stroke-wIdth (number) stroke wIdth in pixels, default is '1'
+     o stroke-width (number) stroke width in pixels, default is '1'
      o target (string) used with href
      o text (string) contents of the text element. Use `\n` for multiline text
-     o text-anchor (string) [“`start`”, “`mIddle`”, “`end`”], default is “`mIddle`”
+     o text-anchor (string) [“`start`”, “`middle`”, “`end`”], default is “`middle`”
      o title (string) will create tooltip with a given text
      o transform (string) see @Element.transform
-     o wIdth (number)
+     o width (number)
      o x (number)
      o y (number)
      > Gradients
@@ -6653,7 +6653,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             params = name;
         }
         for (var key in params) {
-            eve("raphael.attr." + key + "." + this.Id, this, params[key]);
+            eve("raphael.attr." + key + "." + this.id, this, params[key]);
         }
         for (key in this.paper.customAttributes) if (this.paper.customAttributes[has](key) && params[has](key) && R.is(this.paper.customAttributes[key], "function")) {
             var par = this.paper.customAttributes[key].apply(this, [].concat(params[key]));
@@ -6747,12 +6747,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             var fltr = $("filter"),
                 blur = $("feGaussianBlur");
             t.attrs.blur = size;
-            fltr.Id = R.createUUId();
+            fltr.id = R.createUUID();
             $(blur, {stdDeviation: +size || 1.5});
             fltr.appendChild(blur);
             t.paper.defs.appendChild(fltr);
             t._blur = fltr;
-            $(t.node, {filter: "url(#" + fltr.Id + ")"});
+            $(t.node, {filter: "url(#" + fltr.id + ")"});
         } else {
             if (t._blur) {
                 t._blur.parentNode.removeChild(t._blur);
@@ -6776,7 +6776,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         var el = $("rect");
         svg.canvas && svg.canvas.appendChild(el);
         var res = new Element(el, svg);
-        res.attrs = {x: x, y: y, wIdth: w, height: h, rx: r || 0, ry: r || 0, fill: "none", stroke: "#000"};
+        res.attrs = {x: x, y: y, width: w, height: h, rx: r || 0, ry: r || 0, fill: "none", stroke: "#000"};
         res.type = "rect";
         $(el, res.attrs);
         return res;
@@ -6792,11 +6792,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     };
     R._engine.image = function (svg, src, x, y, w, h) {
         var el = $("image");
-        $(el, {x: x, y: y, wIdth: w, height: h, preserveAspectRatio: "none"});
+        $(el, {x: x, y: y, width: w, height: h, preserveAspectRatio: "none"});
         el.setAttributeNS(xlink, "href", src);
         svg.canvas && svg.canvas.appendChild(el);
         var res = new Element(el, svg);
-        res.attrs = {x: x, y: y, wIdth: w, height: h, src: src};
+        res.attrs = {x: x, y: y, width: w, height: h, src: src};
         res.type = "image";
         return res;
     };
@@ -6807,7 +6807,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         res.attrs = {
             x: x,
             y: y,
-            "text-anchor": "mIddle",
+            "text-anchor": "middle",
             text: text,
             "font-family": R._availableAttrs["font-family"],
             "font-size": R._availableAttrs["font-size"],
@@ -6818,10 +6818,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         setFillAndStroke(res, res.attrs);
         return res;
     };
-    R._engine.setSize = function (wIdth, height) {
-        this.wIdth = wIdth || this.wIdth;
+    R._engine.setSize = function (width, height) {
+        this.width = width || this.width;
         this.height = height || this.height;
-        this.canvas.setAttribute("wIdth", this.wIdth);
+        this.canvas.setAttribute("width", this.width);
         this.canvas.setAttribute("height", this.height);
         if (this._viewBox) {
             this.setViewBox.apply(this, this._viewBox);
@@ -6836,19 +6836,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         }
         var x = con.x,
             y = con.y,
-            wIdth = con.wIdth,
+            width = con.width,
             height = con.height,
             cnvs = $("svg"),
-            css = "overflow:hIdden;",
+            css = "overflow:hidden;",
             isFloating;
         x = x || 0;
         y = y || 0;
-        wIdth = wIdth || 512;
+        width = width || 512;
         height = height || 342;
         $(cnvs, {
             height: height,
             version: 1.1,
-            wIdth: wIdth,
+            width: width,
             xmlns: "http://www.w3.org/2000/svg",
             "xmlns:xlink": "http://www.w3.org/1999/xlink"
         });
@@ -6865,7 +6865,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             }
         }
         container = new R._Paper;
-        container.wIdth = wIdth;
+        container.width = width;
         container.height = height;
         container.canvas = cnvs;
         container.clear();
@@ -6877,9 +6877,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     R._engine.setViewBox = function (x, y, w, h, fit) {
         eve("raphael.setViewBox", this, this._viewBox, [x, y, w, h, fit]);
         var paperSize = this.getSize(),
-            size = mmax(w / paperSize.wIdth, h / paperSize.height),
+            size = mmax(w / paperSize.width, h / paperSize.height),
             top = this.top,
-            aspectRatio = fit ? "xMIdYMId meet" : "xMinYMin",
+            aspectRatio = fit ? "xMidYMid meet" : "xMinYMin",
             vb,
             sw;
         if (x == null) {
@@ -6887,7 +6887,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 size = 1;
             }
             delete this._vbSize;
-            vb = "0 0 " + this.wIdth + S + this.height;
+            vb = "0 0 " + this.width + S + this.height;
         } else {
             this._vbSize = size;
             vb = x + S + y + S + w + S + h;
@@ -6897,8 +6897,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             preserveAspectRatio: aspectRatio
         });
         while (size && top) {
-            sw = "stroke-wIdth" in top.attrs ? top.attrs["stroke-wIdth"] : 1;
-            top.attr({"stroke-wIdth": sw});
+            sw = "stroke-width" in top.attrs ? top.attrs["stroke-width"] : 1;
+            top.attr({"stroke-width": sw});
             top._.dirty = 1;
             top._.dirtyT = 1;
             top = top.prev;
@@ -7008,14 +7008,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         fillString = "fill",
         separator = /[, ]+/,
         eve = R.eve,
-        ms = " progId:DXImageTransform.Microsoft",
+        ms = " progid:DXImageTransform.Microsoft",
         S = " ",
         E = "",
         map = {M: "m", L: "l", C: "c", Z: "x", m: "t", l: "r", c: "v", z: "x"},
         bites = /([clmz]),?([^clmz]*)/gi,
-        blurregexp = / progId:\S+Blur\([^\)]+\)/g,
+        blurregexp = / progid:\S+Blur\([^\)]+\)/g,
         val = /-?[^,\s-]+/g,
-        cssDot = "position:absolute;left:0;top:0;wIdth:1px;height:1px;behavior:url(#default#VML)",
+        cssDot = "position:absolute;left:0;top:0;width:1px;height:1px;behavior:url(#default#VML)",
         zoom = 21600,
         pathTypes = {path: 1, rect: 1, image: 1},
         ovalTypes = {circle: 1, ellipse: 1},
@@ -7072,7 +7072,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 dxdy,
                 kx = zoom / sx,
                 ky = zoom / sy;
-            s.visibility = "hIdden";
+            s.visibility = "hidden";
             if (!sx || !sy) {
                 return;
             }
@@ -7122,7 +7122,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 case "none":
                     type = values[i];
                     break;
-                case "wIde":
+                case "wide":
                 case "narrow": h = values[i]; break;
                 case "long":
                 case "short": w = values[i]; break;
@@ -7131,7 +7131,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         var stroke = o.node.getElementsByTagName("stroke")[0];
         stroke[se + "arrow"] = type;
         stroke[se + "arrowlength"] = w;
-        stroke[se + "arrowwIdth"] = h;
+        stroke[se + "arrowwidth"] = h;
     },
     setFillAndStroke = function (o, params) {
         // o.paper.canvas.style.display = "none";
@@ -7140,7 +7140,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             a = o.attrs,
             s = node.style,
             xy,
-            newpath = pathTypes[o.type] && (params.x != a.x || params.y != a.y || params.wIdth != a.wIdth || params.height != a.height || params.cx != a.cx || params.cy != a.cy || params.rx != a.rx || params.ry != a.ry || params.r != a.r),
+            newpath = pathTypes[o.type] && (params.x != a.x || params.y != a.y || params.width != a.width || params.height != a.height || params.cx != a.cx || params.cy != a.cy || params.rx != a.rx || params.ry != a.ry || params.r != a.r),
             isOval = ovalTypes[o.type] && (a.cx != params.cx || a.cy != params.cy || a.r != params.r || a.rx != params.rx || a.ry != params.ry),
             res = o;
 
@@ -7162,7 +7162,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             o._.dirty = 1;
             if (o.type == "image") {
                 o._.fillpos = [a.x, a.y];
-                o._.fillsize = [a.wIdth, a.height];
+                o._.fillsize = [a.width, a.height];
                 setCoords(o, 1, 1, 0, 0, 0);
             }
         }
@@ -7187,7 +7187,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     dstyle.position = "absolute";
                     dstyle.top = 0;
                     dstyle.left = 0;
-                    dstyle.wIdth = o.paper.wIdth + "px";
+                    dstyle.width = o.paper.width + "px";
                     dstyle.height = o.paper.height + "px";
                     node.parentNode.insertBefore(div, node);
                     div.appendChild(node);
@@ -7216,7 +7216,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             params.fill != null ||
             params.src != null ||
             params.stroke != null ||
-            params["stroke-wIdth"] != null ||
+            params["stroke-width"] != null ||
             params["stroke-opacity"] != null ||
             params["fill-opacity"] != null ||
             params["stroke-dasharray"] != null ||
@@ -7246,12 +7246,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     o._.fillpos = [bbox.x, bbox.y];
 
                     R._preload(isURL[1], function () {
-                        o._.fillsize = [this.offsetWIdth, this.offsetHeight];
+                        o._.fillsize = [this.offsetWidth, this.offsetHeight];
                     });
                 } else {
                     fill.color = R.getRGB(params.fill).hex;
                     fill.src = E;
-                    fill.type = "solId";
+                    fill.type = "solid";
                     if (R.getRGB(params.fill).error && (res.type in {circle: 1, ellipse: 1} || Str(params.fill).charAt() != "r") && addGradientFill(res, params.fill, fill)) {
                         a.fill = "none";
                         a.gradient = params.fill;
@@ -7272,7 +7272,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             newstroke = false;
             !stroke && (newstroke = stroke = createNode("stroke"));
             if ((params.stroke && params.stroke != "none") ||
-                params["stroke-wIdth"] ||
+                params["stroke-width"] ||
                 params["stroke-opacity"] != null ||
                 params["stroke-dasharray"] ||
                 params["stroke-miterlimit"] ||
@@ -7280,15 +7280,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 params["stroke-linecap"]) {
                 stroke.on = true;
             }
-            (params.stroke == "none" || params.stroke === null || stroke.on == null || params.stroke == 0 || params["stroke-wIdth"] == 0) && (stroke.on = false);
+            (params.stroke == "none" || params.stroke === null || stroke.on == null || params.stroke == 0 || params["stroke-width"] == 0) && (stroke.on = false);
             var strokeColor = R.getRGB(params.stroke);
             stroke.on && params.stroke && (stroke.color = strokeColor.hex);
             opacity = ((+a["stroke-opacity"] + 1 || 2) - 1) * ((+a.opacity + 1 || 2) - 1) * ((+strokeColor.o + 1 || 2) - 1);
-            var wIdth = (toFloat(params["stroke-wIdth"]) || 1) * .75;
+            var width = (toFloat(params["stroke-width"]) || 1) * .75;
             opacity = mmin(mmax(opacity, 0), 1);
-            params["stroke-wIdth"] == null && (wIdth = a["stroke-wIdth"]);
-            params["stroke-wIdth"] && (stroke.weight = wIdth);
-            wIdth && wIdth < 1 && (opacity *= wIdth) && (stroke.weight = 1);
+            params["stroke-width"] == null && (width = a["stroke-width"]);
+            params["stroke-width"] && (stroke.weight = width);
+            width && width < 1 && (opacity *= width) && (stroke.weight = 1);
             stroke.opacity = opacity;
 
             params["stroke-linejoin"] && (stroke.joinstyle = params["stroke-linejoin"] || "miter");
@@ -7418,8 +7418,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     Element = function (node, vml) {
         this[0] = this.node = node;
         node.raphael = true;
-        this.Id = R._oId++;
-        node.raphaelId = this.Id;
+        this.id = R._oid++;
+        node.raphaelid = this.id;
         this.X = 0;
         this.Y = 0;
         this.attrs = {};
@@ -7506,7 +7506,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         (cy == null) && (cx = cy);
         if (cx == null || cy == null) {
             var bbox = this.getBBox(1);
-            cx = bbox.x + bbox.wIdth / 2;
+            cx = bbox.x + bbox.width / 2;
             cy = bbox.y + bbox.height / 2;
         }
         this._.dirtyT = 1;
@@ -7548,14 +7548,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         if (cx == null || cy == null) {
             var bbox = this.getBBox(1);
         }
-        cx = cx == null ? bbox.x + bbox.wIdth / 2 : cx;
+        cx = cx == null ? bbox.x + bbox.width / 2 : cx;
         cy = cy == null ? bbox.y + bbox.height / 2 : cy;
 
         this.transform(this._.transform.concat([["s", sx, sy, cx, cy]]));
         this._.dirtyT = 1;
         return this;
     };
-    elproto.hIde = function () {
+    elproto.hide = function () {
         !this.removed && (this.node.style.display = "none");
         return this;
     };
@@ -7575,9 +7575,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         c.x *= z;
         c.y = b.y - this.paper._viewBoxShift.dy;
         c.y *= z;
-        c.wIdth  = b.wIdth  * z;
+        c.width  = b.width  * z;
         c.height = b.height * z;
-        c.x2 = c.x + c.wIdth;
+        c.x2 = c.x + c.width;
         c.y2 = c.y + c.height;
         return c;
       }
@@ -7590,7 +7590,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         return {
             x: this.X + (this.bbx || 0) - this.W / 2,
             y: this.Y - this.H,
-            wIdth: this.W,
+            width: this.W,
             height: this.H
         };
     };
@@ -7599,7 +7599,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return;
         }
         this.paper.__set__ && this.paper.__set__.exclude(this);
-        R.eve.unbind("raphael.*.*." + this.Id);
+        R.eve.unbind("raphael.*.*." + this.id);
         R._tear(this, this.paper);
         this.node.parentNode.removeChild(this.node);
         this.shape && this.shape.parentNode.removeChild(this.shape);
@@ -7653,7 +7653,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         }
         value == null && R.is(name, "object") && (params = name);
         for (var key in params) {
-            eve("raphael.attr." + key + "." + this.Id, this, params[key]);
+            eve("raphael.attr." + key + "." + this.id, this, params[key]);
         }
         if (params) {
             for (key in this.paper.customAttributes) if (this.paper.customAttributes[has](key) && params[has](key) && R.is(this.paper.customAttributes[key], "function")) {
@@ -7755,7 +7755,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             a = res.attrs;
         res.X = a.x = x;
         res.Y = a.y = y;
-        res.W = a.wIdth = w;
+        res.W = a.width = w;
         res.H = a.height = h;
         a.r = r;
         a.path = path;
@@ -7801,7 +7801,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         a.src = src;
         res.X = a.x = x;
         res.Y = a.y = y;
-        res.W = a.wIdth = w;
+        res.W = a.width = w;
         res.H = a.height = h;
         a.path = path;
         res.type = "image";
@@ -7856,15 +7856,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         p.transform(E);
         return p;
     };
-    R._engine.setSize = function (wIdth, height) {
+    R._engine.setSize = function (width, height) {
         var cs = this.canvas.style;
-        this.wIdth = wIdth;
+        this.width = width;
         this.height = height;
-        wIdth == +wIdth && (wIdth += "px");
+        width == +width && (width += "px");
         height == +height && (height += "px");
-        cs.wIdth = wIdth;
+        cs.width = width;
         cs.height = height;
-        cs.clip = "rect(0 " + wIdth + " " + height + " 0)";
+        cs.clip = "rect(0 " + width + " " + height + " 0)";
         if (this._viewBox) {
             R._engine.setViewBox.apply(this, this._viewBox);
         }
@@ -7873,14 +7873,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     R._engine.setViewBox = function (x, y, w, h, fit) {
         R.eve("raphael.setViewBox", this, this._viewBox, [x, y, w, h, fit]);
         var paperSize = this.getSize(),
-            wIdth = paperSize.wIdth,
+            width = paperSize.width,
             height = paperSize.height,
             H, W;
         if (fit) {
             H = height / h;
-            W = wIdth / w;
-            if (w * H < wIdth) {
-                x -= (wIdth - w * H) / 2 / H;
+            W = width / w;
+            if (w * H < width) {
+                x -= (width - w * H) / 2 / H;
             }
             if (h * W < height) {
                 y -= (height - h * W) / 2 / W;
@@ -7924,7 +7924,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             container = con.container,
             height = con.height,
             s,
-            wIdth = con.wIdth,
+            width = con.width,
             x = con.x,
             y = con.y;
         if (!container) {
@@ -7935,18 +7935,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             cs = c.style;
         x = x || 0;
         y = y || 0;
-        wIdth = wIdth || 512;
+        width = width || 512;
         height = height || 342;
-        res.wIdth = wIdth;
+        res.width = width;
         res.height = height;
-        wIdth == +wIdth && (wIdth += "px");
+        width == +width && (width += "px");
         height == +height && (height += "px");
         res.coordsize = zoom * 1e3 + S + zoom * 1e3;
         res.coordorigin = "0 0";
         res.span = R._g.doc.createElement("span");
         res.span.style.cssText = "position:absolute;left:-9999em;top:-9999em;padding:0;margin:0;line-height:1;";
         c.appendChild(res.span);
-        cs.cssText = R.format("top:0;left:0;wIdth:{0};height:{1};display:inline-block;position:relative;clip:rect(0 {0} {1} 0);overflow:hIdden", wIdth, height);
+        cs.cssText = R.format("top:0;left:0;width:{0};height:{1};display:inline-block;position:relative;clip:rect(0 {0} {1} 0);overflow:hidden", width, height);
         if (container == 1) {
             R._g.doc.body.appendChild(c);
             cs.left = x + "px";

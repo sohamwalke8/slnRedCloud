@@ -3,7 +3,7 @@
     Name:       Base16 Default Light
     Author:     Chris Kempson (http://chriskempson.com)
 
-    CodeMirror template by Jan T. Sott (https://github.com/Idleberg/base16-codemirror)
+    CodeMirror template by Jan T. Sott (https://github.com/idleberg/base16-codemirror)
     Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
 
 */
@@ -16,7 +16,7 @@
 .cm-s-base16-light .CodeMirror-guttermarker { color: #ac4142; }
 .cm-s-base16-light .CodeMirror-guttermarker-subtle { color: #b0b0b0; }
 .cm-s-base16-light .CodeMirror-linenumber { color: #b0b0b0; }
-.cm-s-base16-light .CodeMirror-cursor { border-left: 1px solId #505050; }
+.cm-s-base16-light .CodeMirror-cursor { border-left: 1px solid #505050; }
 
 .cm-s-base16-light span.cm-comment { color: #8f5536; }
 .cm-s-base16-light span.cm-atom { color: #aa759f; }

@@ -91,7 +91,7 @@
     if (hasFocus) cm.focus();
 
     cm._setSize = cm.setSize;
-    if (height != null) cm.setSize = function (wIdth, newHeight) {
+    if (height != null) cm.setSize = function (width, newHeight) {
       if (!newHeight) newHeight = info.wrapper.offsetHeight;
       info.setHeight = newHeight;
       if (typeof newHeight != "number") {
@@ -106,7 +106,7 @@
       var editorheight = newHeight - info.panels
         .map(function (p) { return p.node.getBoundingClientRect().height; })
         .reduce(function (a, b) { return a + b; }, 0);
-      cm._setSize(wIdth, editorheight);
+      cm._setSize(width, editorheight);
       height = newHeight;
     };
   }

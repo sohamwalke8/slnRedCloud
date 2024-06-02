@@ -36,7 +36,7 @@
     'colorbar', 'colorize_sample', 'colormap_applicable',
     'colormap_gradient', 'colormap_rotation', 'colortable',
     'comfit', 'command_line_args', 'common', 'compile_opt', 'complex',
-    'complexarr', 'complexround', 'compute_mesh_normals', 'cond', 'congrId',
+    'complexarr', 'complexround', 'compute_mesh_normals', 'cond', 'congrid',
     'conj', 'constrained_min', 'contour', 'contour', 'convert_coord',
     'convol', 'convol_fft', 'coord2to3', 'copy_lun', 'correlate',
     'cos', 'cosh', 'cpu', 'cramer', 'createboxplotdata',
@@ -45,10 +45,10 @@
     'cvttobm', 'cw_animate', 'cw_animate_getp', 'cw_animate_load',
     'cw_animate_run', 'cw_arcball', 'cw_bgroup', 'cw_clr_index',
     'cw_colorsel', 'cw_defroi', 'cw_field', 'cw_filesel', 'cw_form',
-    'cw_fslIder', 'cw_light_editor', 'cw_light_editor_get',
+    'cw_fslider', 'cw_light_editor', 'cw_light_editor_get',
     'cw_light_editor_set', 'cw_orient', 'cw_palette_editor',
     'cw_palette_editor_get', 'cw_palette_editor_set', 'cw_pdmenu',
-    'cw_rgbslIder', 'cw_tmpl', 'cw_zoom', 'db_exists',
+    'cw_rgbslider', 'cw_tmpl', 'cw_zoom', 'db_exists',
     'dblarr', 'dcindgen', 'dcomplex', 'dcomplexarr', 'define_key',
     'define_msgblk', 'define_msgblk_from_file', 'defroi', 'defsysv',
     'delvar', 'dendro_plot', 'dendrogram', 'deriv', 'derivsig',
@@ -78,19 +78,19 @@
     'gaussian_function', 'gaussint', 'get_drive_list', 'get_dxf_objects',
     'get_kbrd', 'get_login_info',
     'get_lun', 'get_screen_size', 'getenv', 'getwindows', 'greg2jul',
-    'grib', 'grId_input', 'grId_tps', 'grId3', 'grIddata',
+    'grib', 'grid_input', 'grid_tps', 'grid3', 'griddata',
     'gs_iter', 'h_eq_ct', 'h_eq_int', 'hanning', 'hash',
     'hdf', 'hdf5', 'heap_free', 'heap_gc', 'heap_nosave',
     'heap_refcount', 'heap_save', 'help', 'hilbert', 'hist_2d',
     'hist_equal', 'histogram', 'hls', 'hough', 'hqr',
     'hsv', 'i18n_multibytetoutf8',
-    'i18n_multibytetowIdechar', 'i18n_utf8tomultibyte',
-    'i18n_wIdechartomultibyte',
-    'ibeta', 'icontour', 'iconvertcoord', 'Idelete', 'Identity',
-    'Idl_base64', 'Idl_container', 'Idl_valIdname',
-    'Idlexbr_assistant', 'Idlitsys_createtool',
-    'Idlunit', 'iellipse', 'igamma', 'igetcurrent', 'igetdata',
-    'igetId', 'igetproperty', 'iimage', 'image', 'image_cont',
+    'i18n_multibytetowidechar', 'i18n_utf8tomultibyte',
+    'i18n_widechartomultibyte',
+    'ibeta', 'icontour', 'iconvertcoord', 'idelete', 'identity',
+    'idl_base64', 'idl_container', 'idl_validname',
+    'idlexbr_assistant', 'idlitsys_createtool',
+    'idlunit', 'iellipse', 'igamma', 'igetcurrent', 'igetdata',
+    'igetid', 'igetproperty', 'iimage', 'image', 'image_cont',
     'image_statistics', 'image_threshold', 'imaginary', 'imap', 'indgen',
     'int_2d', 'int_3d', 'int_tabulated', 'intarr', 'interpol',
     'interpolate', 'interval_volume', 'invert', 'ioctl', 'iopen',
@@ -105,7 +105,7 @@
     'la_elmhes', 'la_gm_linear_model', 'la_hqr', 'la_invert',
     'la_least_square_equality', 'la_least_squares', 'la_linear_equation',
     'la_ludc', 'la_lumprove', 'la_lusol',
-    'la_svd', 'la_trIdc', 'la_trimprove', 'la_triql', 'la_trired',
+    'la_svd', 'la_tridc', 'la_trimprove', 'la_triql', 'la_trired',
     'la_trisol', 'label_date', 'label_region', 'ladfit', 'laguerre',
     'lambda', 'lambdap', 'lambertw', 'laplacian', 'least_squares_filter',
     'leefilt', 'legend', 'legendre', 'linbcg', 'lindgen',
@@ -114,23 +114,23 @@
     'logical_and', 'logical_or', 'logical_true', 'lon64arr', 'lonarr',
     'long', 'long64', 'lsode', 'lu_complex', 'ludc',
     'lumprove', 'lusol', 'm_correlate', 'machar', 'make_array',
-    'make_dll', 'make_rt', 'map', 'mapcontinents', 'mapgrId',
-    'map_2points', 'map_continents', 'map_grId', 'map_image', 'map_patch',
+    'make_dll', 'make_rt', 'map', 'mapcontinents', 'mapgrid',
+    'map_2points', 'map_continents', 'map_grid', 'map_image', 'map_patch',
     'map_proj_forward', 'map_proj_image', 'map_proj_info',
     'map_proj_init', 'map_proj_inverse',
     'map_set', 'matrix_multiply', 'matrix_power', 'max', 'md_test',
     'mean', 'meanabsdev', 'mean_filter', 'median', 'memory',
-    'mesh_clip', 'mesh_decimate', 'mesh_issolId',
+    'mesh_clip', 'mesh_decimate', 'mesh_issolid',
     'mesh_merge', 'mesh_numtriangles',
     'mesh_obj', 'mesh_smooth', 'mesh_surfacearea',
-    'mesh_valIdate', 'mesh_volume',
+    'mesh_validate', 'mesh_volume',
     'message', 'min', 'min_curve_surf', 'mk_html_help', 'modifyct',
     'moment', 'morph_close', 'morph_distance',
     'morph_gradient', 'morph_hitormiss',
     'morph_open', 'morph_thin', 'morph_tophat', 'multi', 'n_elements',
     'n_params', 'n_tags', 'ncdf', 'newton', 'noise_hurl',
     'noise_pick', 'noise_scatter', 'noise_slur', 'norm', 'obj_class',
-    'obj_destroy', 'obj_hasmethod', 'obj_isa', 'obj_new', 'obj_valId',
+    'obj_destroy', 'obj_hasmethod', 'obj_isa', 'obj_new', 'obj_valid',
     'objarr', 'on_error', 'on_ioerror', 'online_help', 'openr',
     'openu', 'openw', 'oplot', 'oploterr', 'orderedhash',
     'p_correlate', 'parse_url', 'particle_trace', 'path_cache', 'path_sep',
@@ -142,18 +142,18 @@
     'pref_commit', 'pref_get', 'pref_set', 'prewitt', 'primes',
     'print', 'printf', 'printd', 'pro', 'product',
     'profile', 'profiler', 'profiles', 'project_vol', 'ps_show_fonts',
-    'psafm', 'pseudo', 'ptr_free', 'ptr_new', 'ptr_valId',
-    'ptrarr', 'pushd', 'qgrId3', 'qhull', 'qromb',
+    'psafm', 'pseudo', 'ptr_free', 'ptr_new', 'ptr_valid',
+    'ptrarr', 'pushd', 'qgrid3', 'qhull', 'qromb',
     'qromo', 'qsimp', 'query_*', 'query_ascii', 'query_bmp',
     'query_csv', 'query_dicom', 'query_gif', 'query_image', 'query_jpeg',
-    'query_jpeg2000', 'query_mrsId', 'query_pict', 'query_png', 'query_ppm',
-    'query_srf', 'query_tiff', 'query_vIdeo', 'query_wav', 'r_correlate',
+    'query_jpeg2000', 'query_mrsid', 'query_pict', 'query_png', 'query_ppm',
+    'query_srf', 'query_tiff', 'query_video', 'query_wav', 'r_correlate',
     'r_test', 'radon', 'randomn', 'randomu', 'ranks',
     'rdpix', 'read', 'readf', 'read_ascii', 'read_binary',
     'read_bmp', 'read_csv', 'read_dicom', 'read_gif', 'read_image',
-    'read_interfile', 'read_jpeg', 'read_jpeg2000', 'read_mrsId', 'read_pict',
+    'read_interfile', 'read_jpeg', 'read_jpeg2000', 'read_mrsid', 'read_pict',
     'read_png', 'read_ppm', 'read_spr', 'read_srf', 'read_sylk',
-    'read_tiff', 'read_vIdeo', 'read_wav', 'read_wave', 'read_x11_bitmap',
+    'read_tiff', 'read_video', 'read_wav', 'read_wave', 'read_x11_bitmap',
     'read_xwd', 'reads', 'readu', 'real_part', 'rebin',
     'recall_commands', 'recon3', 'reduce_colors', 'reform', 'region_grow',
     'register_cursor', 'regress', 'replicate',
@@ -169,15 +169,15 @@
     'shade_surf_irr', 'shade_volume', 'shift', 'shift_diff', 'shmdebug',
     'shmmap', 'shmunmap', 'shmvar', 'show3', 'showfont',
     'signum', 'simplex', 'sin', 'sindgen', 'sinh',
-    'size', 'skewness', 'skip_lun', 'slicer3', 'slIde_image',
+    'size', 'skewness', 'skip_lun', 'slicer3', 'slide_image',
     'smooth', 'sobel', 'socket', 'sort', 'spawn',
     'sph_4pnt', 'sph_scat', 'spher_harm', 'spl_init', 'spl_interp',
     'spline', 'spline_p', 'sprsab', 'sprsax', 'sprsin',
     'sprstp', 'sqrt', 'standardize', 'stddev', 'stop',
     'strarr', 'strcmp', 'strcompress', 'streamline', 'streamline',
     'stregex', 'stretch', 'string', 'strjoin', 'strlen',
-    'strlowcase', 'strmatch', 'strmessage', 'strmId', 'strpos',
-    'strput', 'strsplit', 'strtrim', 'struct_assign', 'struct_hIde',
+    'strlowcase', 'strmatch', 'strmessage', 'strmid', 'strpos',
+    'strput', 'strsplit', 'strtrim', 'struct_assign', 'struct_hide',
     'strupcase', 'surface', 'surface', 'surfr', 'svdc',
     'svdfit', 'svsol', 'swap_endian', 'swap_endian_inplace', 'symbol',
     'systime', 't_cvf', 't_pdf', 't3d', 'tag_names',
@@ -186,7 +186,7 @@
     'thread', 'threed', 'tic', 'time_test2', 'timegen',
     'timer', 'timestamp', 'timestamptovalues', 'tm_test', 'toc',
     'total', 'trace', 'transpose', 'tri_surf', 'triangulate',
-    'trigrId', 'triql', 'trired', 'trisol', 'truncate_lun',
+    'trigrid', 'triql', 'trired', 'trisol', 'truncate_lun',
     'ts_coef', 'ts_diff', 'ts_fcast', 'ts_smooth', 'tv',
     'tvcrs', 'tvlct', 'tvrd', 'tvscl', 'typename',
     'uindgen', 'uint', 'uintarr', 'ul64indgen', 'ulindgen',
@@ -194,19 +194,19 @@
     'unsharp_mask', 'usersym', 'value_locate', 'variance', 'vector',
     'vector_field', 'vel', 'velovect', 'vert_t3d', 'voigt',
     'volume', 'voronoi', 'voxel_proj', 'wait', 'warp_tri',
-    'watershed', 'wdelete', 'wf_draw', 'where', 'wIdget_base',
-    'wIdget_button', 'wIdget_combobox', 'wIdget_control',
-    'wIdget_displaycontextmenu', 'wIdget_draw',
-    'wIdget_droplist', 'wIdget_event', 'wIdget_info',
-    'wIdget_label', 'wIdget_list',
-    'wIdget_propertysheet', 'wIdget_slIder', 'wIdget_tab',
-    'wIdget_table', 'wIdget_text',
-    'wIdget_tree', 'wIdget_tree_move', 'wIdget_window',
+    'watershed', 'wdelete', 'wf_draw', 'where', 'widget_base',
+    'widget_button', 'widget_combobox', 'widget_control',
+    'widget_displaycontextmenu', 'widget_draw',
+    'widget_droplist', 'widget_event', 'widget_info',
+    'widget_label', 'widget_list',
+    'widget_propertysheet', 'widget_slider', 'widget_tab',
+    'widget_table', 'widget_text',
+    'widget_tree', 'widget_tree_move', 'widget_window',
     'wiener_filter', 'window',
     'window', 'write_bmp', 'write_csv', 'write_gif', 'write_image',
     'write_jpeg', 'write_jpeg2000', 'write_nrif', 'write_pict', 'write_png',
     'write_ppm', 'write_spr', 'write_srf', 'write_sylk', 'write_tiff',
-    'write_vIdeo', 'write_wav', 'write_wave', 'writeu', 'wset',
+    'write_video', 'write_wav', 'write_wave', 'writeu', 'wset',
     'wshow', 'wtn', 'wv_applet', 'wv_cwt', 'wv_cw_wavelet',
     'wv_denoise', 'wv_dwt', 'wv_fn_coiflet',
     'wv_fn_daubechies', 'wv_fn_gaussian',
@@ -234,9 +234,9 @@
   ];
   var keywords = wordRegexp(keywordArray);
 
-  CodeMirror.registerHelper("hintWords", "Idl", builtinArray.concat(keywordArray));
+  CodeMirror.registerHelper("hintWords", "idl", builtinArray.concat(keywordArray));
 
-  var Identifiers = new RegExp('^[_a-z\xa1-\uffff][_a-z0-9\xa1-\uffff]*', 'i');
+  var identifiers = new RegExp('^[_a-z\xa1-\uffff][_a-z0-9\xa1-\uffff]*', 'i');
 
   var singleOperators = /[+\-*&=<>\/@#~$]/;
   var boolOperators = new RegExp('(and|or|eq|lt|le|gt|ge|ne|not)', 'i');
@@ -268,7 +268,7 @@
     // Handle words
     if (stream.match(keywords)) { return 'keyword'; }
     if (stream.match(builtins)) { return 'builtin'; }
-    if (stream.match(Identifiers)) { return 'variable'; }
+    if (stream.match(identifiers)) { return 'variable'; }
 
     if (stream.match(singleOperators) || stream.match(boolOperators)) {
       return 'operator'; }
@@ -278,7 +278,7 @@
     return null;
   };
 
-  CodeMirror.defineMode('Idl', function() {
+  CodeMirror.defineMode('idl', function() {
     return {
       token: function(stream) {
         return tokenBase(stream);
@@ -286,5 +286,5 @@
     };
   });
 
-  CodeMirror.defineMIME('text/x-Idl', 'Idl');
+  CodeMirror.defineMIME('text/x-idl', 'idl');
 });

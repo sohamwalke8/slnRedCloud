@@ -77,7 +77,7 @@ var _saveAs = (function(view) {
 	}
 	var
 		  doc = view.document
-		  // only get URL when necessary in case Blob.js hasn't overrIdden it yet
+		  // only get URL when necessary in case Blob.js hasn't overridden it yet
 		, get_URL = function() {
 			return view.URL || view.webkitURL || view;
 		}
@@ -89,7 +89,7 @@ var _saveAs = (function(view) {
 		}
 		, is_safari = /constructor/i.test(view.HTMLElement) || view.safari
 		, is_chrome_ios =/CriOS\/[\d]+/.test(navigator.userAgent)
-		, throw_outsIde = function(ex) {
+		, throw_outside = function(ex) {
 			(view.setImmediate || view.setTimeout)(function() {
 				throw ex;
 			}, 0);
@@ -116,7 +116,7 @@ var _saveAs = (function(view) {
 					try {
 						listener.call(filesaver, event || filesaver);
 					} catch (ex) {
-						throw_outsIde(ex);
+						throw_outside(ex);
 					}
 				}
 			}
@@ -168,7 +168,7 @@ var _saveAs = (function(view) {
 					} else {
 						var opened = view.open(object_url, "_blank");
 						if (!opened) {
-							// Apple does not allow window.open, see https://developer.apple.com/library/safari/documentation/Tools/Conceptual/SafariExtensionGuIde/WorkingwithWindowsandTabs/WorkingwithWindowsandTabs.html
+							// Apple does not allow window.open, see https://developer.apple.com/library/safari/documentation/Tools/Conceptual/SafariExtensionGuide/WorkingwithWindowsandTabs/WorkingwithWindowsandTabs.html
 							view.location.href = object_url;
 						}
 					}
@@ -483,12 +483,12 @@ function _createNode( doc, nodeName, opts ) {
 }
 
 /**
- * Get the wIdth for an Excel column based on the contents of that column
+ * Get the width for an Excel column based on the contents of that column
  * @param  {object} data Data for export
  * @param  {int}    col  Column index
- * @return {int}         Column wIdth
+ * @return {int}         Column width
  */
-function _excelColWIdth( data, col ) {
+function _excelColWidth( data, col ) {
 	var max = data.header[col].length;
 	var len, lineSplit, str;
 
@@ -502,7 +502,7 @@ function _excelColWIdth( data, col ) {
 			point.toString() :
 			'';
 
-		// If there is a newline character, workout the wIdth of the column
+		// If there is a newline character, workout the width of the column
 		// based on the longest line in the string
 		if ( str.indexOf('\n') !== -1 ) {
 			lineSplit = str.split('\n');
@@ -520,7 +520,7 @@ function _excelColWIdth( data, col ) {
 			max = len;
 		}
 
-		// Max wIdth rather than having potentially massive column wIdths
+		// Max width rather than having potentially massive column widths
 		if ( max > 40 ) {
 			return 54; // 40 * 1.35
 		}
@@ -528,7 +528,7 @@ function _excelColWIdth( data, col ) {
 
 	max *= 1.35;
 
-	// And a min wIdth
+	// And a min width
 	return max > 6 ? max : 6;
 }
 
@@ -553,9 +553,9 @@ var excelStrings = {
 			'<Default Extension="xml" ContentType="application/xml" />'+
 			'<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml" />'+
 			'<Default Extension="jpeg" ContentType="image/jpeg" />'+
-			'<OverrIde PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml" />'+
-			'<OverrIde PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml" />'+
-			'<OverrIde PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml" />'+
+			'<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml" />'+
+			'<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml" />'+
+			'<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml" />'+
 		'</Types>',
 
 	"xl/workbook.xml":
@@ -564,10 +564,10 @@ var excelStrings = {
 			'<fileVersion appName="xl" lastEdited="5" lowestEdited="5" rupBuild="24816"/>'+
 			'<workbookPr showInkAnnotation="0" autoCompressPictures="0"/>'+
 			'<bookViews>'+
-				'<workbookView xWindow="0" yWindow="0" windowWIdth="25600" windowHeight="19020" tabRatio="500"/>'+
+				'<workbookView xWindow="0" yWindow="0" windowWidth="25600" windowHeight="19020" tabRatio="500"/>'+
 			'</bookViews>'+
 			'<sheets>'+
-				'<sheet name="Sheet1" sheetId="1" r:Id="rId1"/>'+
+				'<sheet name="Sheet1" sheetId="1" r:id="rId1"/>'+
 			'</sheets>'+
 			'<definedNames/>'+
 		'</workbook>',
@@ -621,28 +621,28 @@ var excelStrings = {
 					'<patternFill patternType="none" />'+
 				'</fill>'+
 				'<fill>'+ // Excel appears to use this as a dotted background regardless of values but
-					'<patternFill patternType="none" />'+ // to be valId to the schema, use a patternFill
+					'<patternFill patternType="none" />'+ // to be valid to the schema, use a patternFill
 				'</fill>'+
 				'<fill>'+
-					'<patternFill patternType="solId">'+
+					'<patternFill patternType="solid">'+
 						'<fgColor rgb="FFD9D9D9" />'+
 						'<bgColor indexed="64" />'+
 					'</patternFill>'+
 				'</fill>'+
 				'<fill>'+
-					'<patternFill patternType="solId">'+
+					'<patternFill patternType="solid">'+
 						'<fgColor rgb="FFD99795" />'+
 						'<bgColor indexed="64" />'+
 					'</patternFill>'+
 				'</fill>'+
 				'<fill>'+
-					'<patternFill patternType="solId">'+
+					'<patternFill patternType="solid">'+
 						'<fgColor rgb="ffc6efce" />'+
 						'<bgColor indexed="64" />'+
 					'</patternFill>'+
 				'</fill>'+
 				'<fill>'+
-					'<patternFill patternType="solId">'+
+					'<patternFill patternType="solid">'+
 						'<fgColor rgb="ffc6cfef" />'+
 						'<bgColor indexed="64" />'+
 					'</patternFill>'+
@@ -810,11 +810,11 @@ DataTable.ext.buttons.copyHtml5 = {
 		var info = dt.buttons.exportInfo( config );
 		var newline = _newLine(config);
 		var output = exportData.str;
-		var hIddenDiv = $('<div/>')
+		var hiddenDiv = $('<div/>')
 			.css( {
 				height: 1,
-				wIdth: 1,
-				overflow: 'hIdden',
+				width: 1,
+				overflow: 'hidden',
 				position: 'fixed',
 				top: 0,
 				left: 0
@@ -838,17 +838,17 @@ DataTable.ext.buttons.copyHtml5 = {
 
 		var textarea = $('<textarea readonly/>')
 			.val( output )
-			.appendTo( hIddenDiv );
+			.appendTo( hiddenDiv );
 
 		// For browsers that support the copy execCommand, try to use it
 		if ( document.queryCommandSupported('copy') ) {
-			hIddenDiv.appendTo( dt.table().container() );
+			hiddenDiv.appendTo( dt.table().container() );
 			textarea[0].focus();
 			textarea[0].select();
 
 			try {
 				var successful = document.execCommand( 'copy' );
-				hIddenDiv.remove();
+				hiddenDiv.remove();
 
 				if (successful) {
 					dt.buttons.info(
@@ -872,7 +872,7 @@ DataTable.ext.buttons.copyHtml5 = {
 				'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>'+
 				'To cancel, click this message or press escape.' )+'</span>'
 			)
-			.append( hIddenDiv );
+			.append( hiddenDiv );
 
 		dt.buttons.info( dt.i18n( 'buttons.copyTitle', 'Copy to clipboard' ), message, 0 );
 
@@ -881,7 +881,7 @@ DataTable.ext.buttons.copyHtml5 = {
 		textarea[0].focus();
 		textarea[0].select();
 
-		// Event to hIde the message when the user is done
+		// Event to hide the message when the user is done
 		var container = $(message).closest('.dt-button-info');
 		var close = function () {
 			container.off( 'click.buttons-copy' );
@@ -1071,7 +1071,7 @@ DataTable.ext.buttons.excelHtml5 = {
 				for ( var j=0, jen=_excelSpecials.length ; j<jen ; j++ ) {
 					var special = _excelSpecials[j];
 
-					// TODO Need to provIde the ability for the specials to say
+					// TODO Need to provide the ability for the specials to say
 					// if they are returning a string, since at the moment it is
 					// assumed to be a number
 					if ( row[i].match && ! row[i].match(/^0\d+/) && row[i].match( special.match ) ) {
@@ -1201,7 +1201,7 @@ DataTable.ext.buttons.excelHtml5 = {
 			mergeCells( rowPos, data.header.length-1 );
 		}
 
-		// Set column wIdths
+		// Set column widths
 		var cols = _createNode( rels, 'cols' );
 		$('worksheet', rels).prepend( cols );
 
@@ -1210,8 +1210,8 @@ DataTable.ext.buttons.excelHtml5 = {
 				attr: {
 					min: i+1,
 					max: i+1,
-					wIdth: _excelColWIdth( data, i ),
-					customWIdth: 1
+					width: _excelColWidth( data, i ),
+					customWidth: 1
 				}
 			} ) );
 		}
@@ -1233,7 +1233,7 @@ DataTable.ext.buttons.excelHtml5 = {
 				attr: {
 					name: '_xlnm._FilterDatabase',
 					localSheetId: '0',
-					hIdden: 1
+					hidden: 1
 				},
 				text: _sheetname(config)+'!$A$'+dataStartRow+':'+createCellPos(data.header.length-1)+dataEndRow
 			} ) );

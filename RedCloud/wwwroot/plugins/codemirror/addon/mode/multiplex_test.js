@@ -28,10 +28,10 @@
   }
 
   MT(
-    "stexInsIdeMarkdown",
+    "stexInsideMarkdown",
     "[strong **Equation:**] [delim&delim-open $][inner&tag \\pi][delim&delim-close $]");
 
-  CodeMirror.defineMode("Identical_delim_multiplex", function() {
+  CodeMirror.defineMode("identical_delim_multiplex", function() {
     return CodeMirror.multiplexingMode(CodeMirror.getMode({indentUnit: 2}, "javascript"), {
       open: "#",
       close: "#",
@@ -41,9 +41,9 @@
     });
   });
 
-  var mode2 = CodeMirror.getMode({}, "Identical_delim_multiplex");
+  var mode2 = CodeMirror.getMode({}, "identical_delim_multiplex");
 
-  test.mode("Identical_delimiters_with_parseDelimiters", mode2, [
+  test.mode("identical_delimiters_with_parseDelimiters", mode2, [
     "[keyword let] [def x] [operator =] [q #foo][q&em *bar*][q #];"
   ], "multiplexing")
 })();

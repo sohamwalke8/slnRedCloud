@@ -77,11 +77,11 @@
             LLL: 'YYYY. MMMM D. H:mm',
             LLLL: 'YYYY. MMMM D., dddd H:mm',
         },
-        merIdiemParse: /de|du/i,
+        meridiemParse: /de|du/i,
         isPM: function (input) {
             return input.charAt(1).toLowerCase() === 'u';
         },
-        merIdiem: function (hours, minutes, isLower) {
+        meridiem: function (hours, minutes, isLower) {
             if (hours < 12) {
                 return isLower === true ? 'de' : 'DE';
             } else {

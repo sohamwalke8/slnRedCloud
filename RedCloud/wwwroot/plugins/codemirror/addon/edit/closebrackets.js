@@ -126,7 +126,7 @@
 
     var triples = getOption(conf, "triples");
 
-    var Identical = pairs.charAt(pos + 1) == ch;
+    var identical = pairs.charAt(pos + 1) == ch;
     var ranges = cm.listSelections();
     var opening = pos % 2 == 0;
 
@@ -136,18 +136,18 @@
       var next = cm.getRange(cur, Pos(cur.line, cur.ch + 1));
       if (opening && !range.empty()) {
         curType = "surround";
-      } else if ((Identical || !opening) && next == ch) {
-        if (Identical && stringStartsAfter(cm, cur))
+      } else if ((identical || !opening) && next == ch) {
+        if (identical && stringStartsAfter(cm, cur))
           curType = "both";
         else if (triples.indexOf(ch) >= 0 && cm.getRange(cur, Pos(cur.line, cur.ch + 3)) == ch + ch + ch)
           curType = "skipThree";
         else
           curType = "skip";
-      } else if (Identical && cur.ch > 1 && triples.indexOf(ch) >= 0 &&
+      } else if (identical && cur.ch > 1 && triples.indexOf(ch) >= 0 &&
                  cm.getRange(Pos(cur.line, cur.ch - 2), cur) == ch + ch) {
         if (cur.ch > 2 && /\bstring/.test(cm.getTokenTypeAt(Pos(cur.line, cur.ch - 2)))) return CodeMirror.Pass;
         curType = "addFour";
-      } else if (Identical) {
+      } else if (identical) {
         var prev = cur.ch == 0 ? " " : cm.getRange(Pos(cur.line, cur.ch - 1), cur)
         if (!CodeMirror.isWordChar(next) && prev != ch && !CodeMirror.isWordChar(prev)) curType = "both";
         else return CodeMirror.Pass;

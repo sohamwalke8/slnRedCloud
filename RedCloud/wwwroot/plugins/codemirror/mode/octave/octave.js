@@ -22,7 +22,7 @@ CodeMirror.defineMode("octave", function() {
   var doubleDelimiters = new RegExp("^((!=)|(\\+=)|(\\-=)|(\\*=)|(/=)|(&=)|(\\|=)|(\\^=))");
   var tripleDelimiters = new RegExp("^((>>=)|(<<=))");
   var expressionEnd = new RegExp("^[\\]\\)]");
-  var Identifiers = new RegExp("^[_A-Za-z\xa1-\uffff][_A-Za-z0-9\xa1-\uffff]*");
+  var identifiers = new RegExp("^[_A-Za-z\xa1-\uffff][_A-Za-z0-9\xa1-\uffff]*");
 
   var builtins = wordRegexp([
     'error', 'eval', 'function', 'abs', 'acos', 'atan', 'asin', 'cos',
@@ -30,7 +30,7 @@ CodeMirror.defineMode("octave", function() {
     'sqrt', 'tan', 'reshape', 'break', 'zeros', 'default', 'margin', 'round', 'ones',
     'rand', 'syn', 'ceil', 'floor', 'size', 'clear', 'zeros', 'eye', 'mean', 'std', 'cov',
     'det', 'eig', 'inv', 'norm', 'rank', 'trace', 'expm', 'logm', 'sqrtm', 'linspace', 'plot',
-    'title', 'xlabel', 'ylabel', 'legend', 'text', 'grId', 'meshgrId', 'mesh', 'num2str',
+    'title', 'xlabel', 'ylabel', 'legend', 'text', 'grid', 'meshgrid', 'mesh', 'num2str',
     'fft', 'ifft', 'arrayfun', 'cellfun', 'input', 'fliplr', 'flipud', 'ismember'
   ]);
 
@@ -96,7 +96,7 @@ CodeMirror.defineMode("octave", function() {
     // Handle words
     if (stream.match(keywords)) { return 'keyword'; } ;
     if (stream.match(builtins)) { return 'builtin'; } ;
-    if (stream.match(Identifiers)) { return 'variable'; } ;
+    if (stream.match(identifiers)) { return 'variable'; } ;
 
     if (stream.match(singleOperators) || stream.match(doubleOperators)) { return 'operator'; };
     if (stream.match(singleDelimiters) || stream.match(doubleDelimiters) || stream.match(tripleDelimiters)) { return null; };

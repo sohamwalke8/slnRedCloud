@@ -24,7 +24,7 @@
 
 
 .cm-s-moxer .CodeMirror-cursor {
-  border-left: 1px solId #FFCC00;
+  border-left: 1px solid #FFCC00;
 }
 
 .cm-s-moxer div.CodeMirror-selected {

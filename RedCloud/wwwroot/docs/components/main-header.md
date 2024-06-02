@@ -4,7 +4,7 @@ title: Main Header Component
 ---
 
 > ##### Reminder!
-> AdminLTE uses all of Bootstrap 4 components. It's a good start to review the [Bootstrap documentation](https://getbootstrap.com/) to get an Idea of the various components that this documentation __does not__ cover.
+> AdminLTE uses all of Bootstrap 4 components. It's a good start to review the [Bootstrap documentation](https://getbootstrap.com/) to get an idea of the various components that this documentation __does not__ cover.
 {: .quote-orange .mt-0}
 
 
@@ -12,14 +12,14 @@ title: Main Header Component
 > If you go through the example pages and would like to copy a component, right-click on the component and choose "inspect element" to get to the HTML quicker than scanning the HTML page.
 {: .quote-info}
 
-The main header contains the navbar. Construction of the navbar differs slightly from Bootstrap because it has components that Bootstrap doesn't provIde. The navbar can be constructed in two ways. This is an example for the normal navbar and next we will provIde an example for the top nav layout with a logo too.
+The main header contains the navbar. Construction of the navbar differs slightly from Bootstrap because it has components that Bootstrap doesn't provide. The navbar can be constructed in two ways. This is an example for the normal navbar and next we will provide an example for the top nav layout with a logo too.
 
 
 <nav class="navbar navbar-expand navbar-white navbar-light ml-0">
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" data-wIdget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="index3.html" class="nav-link">Home</a>
@@ -28,13 +28,13 @@ The main header contains the navbar. Construction of the navbar differs slightly
       <a href="#" class="nav-link">Contact</a>
     </li>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" Id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Help
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="#">FAQ</a>
         <a class="dropdown-item" href="#">Support</a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#">Contact</a>
       </div>
     </li>
@@ -76,7 +76,7 @@ The main header contains the navbar. Construction of the navbar differs slightly
           </div>
           <!-- Message End -->
         </a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
           <!-- Message Start -->
           <div class="media">
@@ -92,7 +92,7 @@ The main header contains the navbar. Construction of the navbar differs slightly
           </div>
           <!-- Message End -->
         </a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
           <!-- Message Start -->
           <div class="media">
@@ -108,7 +108,7 @@ The main header contains the navbar. Construction of the navbar differs slightly
           </div>
           <!-- Message End -->
         </a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
       </div>
     </li>
@@ -120,27 +120,27 @@ The main header contains the navbar. Construction of the navbar differs slightly
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <span class="dropdown-header">15 Notifications</span>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
           <i class="fas fa-envelope mr-2"></i> 4 new messages
           <span class="float-right text-muted text-sm">3 mins</span>
         </a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
           <i class="fas fa-users mr-2"></i> 8 friend requests
           <span class="float-right text-muted text-sm">12 hours</span>
         </a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
           <i class="fas fa-file mr-2"></i> 3 new reports
           <span class="float-right text-muted text-sm">2 days</span>
         </a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-wIdget="control-sIdebar" data-slIde="true" href="#" role="button"><i
+      <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
           class="fas fa-th-large"></i></a>
     </li>
   </ul>
@@ -152,7 +152,7 @@ The main header contains the navbar. Construction of the navbar differs slightly
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" data-wIdget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="index3.html" class="nav-link">Home</a>
@@ -161,13 +161,13 @@ The main header contains the navbar. Construction of the navbar differs slightly
       <a href="#" class="nav-link">Contact</a>
     </li>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" Id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Help
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
         <a class="dropdown-item" href="#">FAQ</a>
         <a class="dropdown-item" href="#">Support</a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#">Contact</a>
       </div>
     </li>
@@ -209,7 +209,7 @@ The main header contains the navbar. Construction of the navbar differs slightly
           </div>
           <!-- Message End -->
         </a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
           <!-- Message Start -->
           <div class="media">
@@ -225,7 +225,7 @@ The main header contains the navbar. Construction of the navbar differs slightly
           </div>
           <!-- Message End -->
         </a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
           <!-- Message Start -->
           <div class="media">
@@ -241,7 +241,7 @@ The main header contains the navbar. Construction of the navbar differs slightly
           </div>
           <!-- Message End -->
         </a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
       </div>
     </li>
@@ -253,27 +253,27 @@ The main header contains the navbar. Construction of the navbar differs slightly
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <span class="dropdown-header">15 Notifications</span>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
           <i class="fas fa-envelope mr-2"></i> 4 new messages
           <span class="float-right text-muted text-sm">3 mins</span>
         </a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
           <i class="fas fa-users mr-2"></i> 8 friend requests
           <span class="float-right text-muted text-sm">12 hours</span>
         </a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
           <i class="fas fa-file mr-2"></i> 3 new reports
           <span class="float-right text-muted text-sm">2 days</span>
         </a>
-        <div class="dropdown-divIder"></div>
+        <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-wIdget="control-sIdebar" data-slIde="true" href="#" role="button"><i
+      <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
           class="fas fa-th-large"></i></a>
     </li>
   </ul>
@@ -310,13 +310,13 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
         <a href="#" class="nav-link">Contact</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" Id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Help
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
           <a class="dropdown-item" href="#">FAQ</a>
           <a class="dropdown-item" href="#">Support</a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Contact</a>
         </div>
       </li>
@@ -356,7 +356,7 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
             </div>
             <!-- Message End -->
           </a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
@@ -372,7 +372,7 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
             </div>
             <!-- Message End -->
           </a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
@@ -388,7 +388,7 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
             </div>
             <!-- Message End -->
           </a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
       </li>
@@ -400,27 +400,27 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-header">15 Notifications</span>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <i class="fas fa-envelope mr-2"></i> 4 new messages
             <span class="float-right text-muted text-sm">3 mins</span>
           </a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <i class="fas fa-users mr-2"></i> 8 friend requests
             <span class="float-right text-muted text-sm">12 hours</span>
           </a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <i class="fas fa-file mr-2"></i> 3 new reports
             <span class="float-right text-muted text-sm">2 days</span>
           </a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-wIdget="control-sIdebar" data-slIde="true" href="#" role="button"><i
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
             class="fas fa-th-large"></i></a>
       </li>
     </ul>
@@ -447,13 +447,13 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
         <a href="#" class="nav-link">Contact</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" Id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Help
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
           <a class="dropdown-item" href="#">FAQ</a>
           <a class="dropdown-item" href="#">Support</a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Contact</a>
         </div>
       </li>
@@ -493,7 +493,7 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
             </div>
             <!-- Message End -->
           </a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
@@ -509,7 +509,7 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
             </div>
             <!-- Message End -->
           </a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
@@ -525,7 +525,7 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
             </div>
             <!-- Message End -->
           </a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
       </li>
@@ -537,27 +537,27 @@ Top navbar example can be found in this [demo page](https://adminlte.io/themes/d
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-header">15 Notifications</span>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <i class="fas fa-envelope mr-2"></i> 4 new messages
             <span class="float-right text-muted text-sm">3 mins</span>
           </a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <i class="fas fa-users mr-2"></i> 8 friend requests
             <span class="float-right text-muted text-sm">12 hours</span>
           </a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <i class="fas fa-file mr-2"></i> 3 new reports
             <span class="float-right text-muted text-sm">2 days</span>
           </a>
-          <div class="dropdown-divIder"></div>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-wIdget="control-sIdebar" data-slIde="true" href="#" role="button"><i
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
             class="fas fa-th-large"></i></a>
       </li>
     </ul>

@@ -1,7 +1,7 @@
-(function(jsGrId) {
+(function(jsGrid) {
 
-    jsGrId.locales.ru = {
-        grId: {
+    jsGrid.locales.ru = {
+        grid: {
             noDataContent: "Данных не найдено",
             deleteConfirm: "Вы действительно хотите удалить запись?",
             pagerFormat: "Страницы: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} из {pageCount}",
@@ -10,7 +10,7 @@
             pageFirstText: "<<",
             pageLastText: ">>",
             loadMessage: "Пожалуйста, подождите...",
-            invalIdMessage: "Введены неверные данные!"
+            invalidMessage: "Введены неверные данные!"
         },
 
         loadIndicator: {
@@ -31,7 +31,7 @@
             }
         },
 
-        valIdators: {
+        validators: {
             required: { message: "Поле обязательно для заполения" },
             rangeLength: { message: "Длинна введенного значения вне допустимого диапазона" },
             minLength: { message: "Введенное значение слишком короткое" },
@@ -43,5 +43,5 @@
         }
     };
 
-}(jsGrId, jQuery));
+}(jsGrid, jQuery));
 

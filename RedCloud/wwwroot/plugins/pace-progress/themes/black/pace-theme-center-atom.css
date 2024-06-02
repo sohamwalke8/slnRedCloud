@@ -1,4 +1,4 @@
-/* This is a compiled file, to make changes persist, consIder editing under the templates directory */
+/* This is a compiled file, to make changes persist, consider editing under the templates directory */
 .pace.pace-inactive {
   display: none;
 }
@@ -14,7 +14,7 @@
   z-index: 2000;
   position: fixed;
   height: 60px;
-  wIdth: 100px;
+  width: 100px;
   margin: auto;
   top: 0;
   left: 0;
@@ -26,7 +26,7 @@
   z-index: 2000;
   position: absolute;
   height: 60px;
-  wIdth: 100px;
+  width: 100px;
 
   -webkit-transform: translate3d(0, 0, 0) !important;
   -ms-transform: translate3d(0, 0, 0) !important;
@@ -44,7 +44,7 @@
   font-weight: 100;
   line-height: 1;
   padding: 20% 0 7px;
-  wIdth: 50%;
+  width: 50%;
   height: 40%;
   margin: 10px 0 0 30px;
   display: block;
@@ -58,7 +58,7 @@
   z-index: 2000;
   position: absolute;
   height: 60px;
-  wIdth: 100px;
+  width: 100px;
 
   display: block;
   -webkit-animation: pace-theme-center-atom-spin 2s linear infinite;
@@ -69,26 +69,26 @@
 
 .pace .pace-activity {
   border-radius: 50%;
-  border: 5px solId #000000;
+  border: 5px solid #000000;
   content: ' ';
   display: block;
   position: absolute;
   top: 0;
   left: 0;
   height: 60px;
-  wIdth: 100px;
+  width: 100px;
 }
 
 .pace .pace-activity:after {
   border-radius: 50%;
-  border: 5px solId #000000;
+  border: 5px solid #000000;
   content: ' ';
   display: block;
   position: absolute;
   top: -5px;
   left: -5px;
   height: 60px;
-  wIdth: 100px;
+  width: 100px;
 
   -webkit-transform: rotate(60deg);
   -moz-transform: rotate(60deg);
@@ -98,14 +98,14 @@
 
 .pace .pace-activity:before {
   border-radius: 50%;
-  border: 5px solId #000000;
+  border: 5px solid #000000;
   content: ' ';
   display: block;
   position: absolute;
   top: -5px;
   left: -5px;
   height: 60px;
-  wIdth: 100px;
+  width: 100px;
 
   -webkit-transform: rotate(120deg);
   -moz-transform: rotate(120deg);

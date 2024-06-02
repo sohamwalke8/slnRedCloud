@@ -78,7 +78,7 @@ CodeMirror.defineMode("perl",function(){
                 'and'                           :   4,
                 'or'                            :   4,
                 'xor'                           :   4,
-                                                //      PERL predefined variables (I know, what this is a paranoId Idea, but may be needed for people, who learn PERL, and for me as well, ...and may be for you?;)
+                                                //      PERL predefined variables (I know, what this is a paranoid idea, but may be needed for people, who learn PERL, and for me as well, ...and may be for you?;)
                 'BEGIN'                         :   [5,1],
                 'END'                           :   [5,1],
                 'PRINT'                         :   [5,1],
@@ -102,25 +102,25 @@ CodeMirror.defineMode("perl",function(){
                 '@_'                            :    5,
                 '$LIST_SEPARATOR'               :    5,
                 '$"'                            :    5,
-                '$PROCESS_Id'                   :    5,
-                '$PId'                          :    5,
+                '$PROCESS_ID'                   :    5,
+                '$PID'                          :    5,
                 '$$'                            :    5,
-                '$REAL_GROUP_Id'                :    5,
-                '$GId'                          :    5,
+                '$REAL_GROUP_ID'                :    5,
+                '$GID'                          :    5,
                 '$('                            :    5,
-                '$EFFECTIVE_GROUP_Id'           :    5,
-                '$EGId'                         :    5,
+                '$EFFECTIVE_GROUP_ID'           :    5,
+                '$EGID'                         :    5,
                 '$)'                            :    5,
                 '$PROGRAM_NAME'                 :    5,
                 '$0'                            :    5,
                 '$SUBSCRIPT_SEPARATOR'          :    5,
                 '$SUBSEP'                       :    5,
                 '$;'                            :    5,
-                '$REAL_USER_Id'                 :    5,
-                '$UId'                          :    5,
+                '$REAL_USER_ID'                 :    5,
+                '$UID'                          :    5,
                 '$<'                            :    5,
-                '$EFFECTIVE_USER_Id'            :    5,
-                '$EUId'                         :    5,
+                '$EFFECTIVE_USER_ID'            :    5,
+                '$EUID'                         :    5,
                 '$>'                            :    5,
                 '$a'                            :    5,
                 '$b'                            :    5,
@@ -306,7 +306,7 @@ CodeMirror.defineMode("perl",function(){
                 formline                        :1,     // - internal function used for formats
                 getc                            :1,     // - get the next character from the filehandle
                 getgrent                        :1,     // - get next group record
-                getgrgId                        :1,     // - get group record given group user Id
+                getgrgid                        :1,     // - get group record given group user ID
                 getgrnam                        :1,     // - get group record given group name
                 gethostbyaddr                   :1,     // - get host record given its address
                 gethostbyname                   :1,     // - get host record given name
@@ -317,14 +317,14 @@ CodeMirror.defineMode("perl",function(){
                 getnetent                       :1,     // - get next networks record
                 getpeername                     :1,     // - find the other end of a socket connection
                 getpgrp                         :1,     // - get process group
-                getppId                         :1,     // - get parent process Id
+                getppid                         :1,     // - get parent process ID
                 getpriority                     :1,     // - get current nice value
                 getprotobyname                  :1,     // - get protocol record given name
                 getprotobynumber                :1,     // - get protocol record numeric protocol
                 getprotoent                     :1,     // - get next protocols record
                 getpwent                        :1,     // - get next passwd record
                 getpwnam                        :1,     // - get passwd record given user login name
-                getpwuId                        :1,     // - get passwd record given user Id
+                getpwuid                        :1,     // - get passwd record given user ID
                 getservbyname                   :1,     // - get services record given its name
                 getservbyport                   :1,     // - get services record given numeric port
                 getservent                      :1,     // - get next services record
@@ -423,7 +423,7 @@ CodeMirror.defineMode("perl",function(){
                 setsockopt                      :1,     // - set some socket options
                 shift                           :1,     // - remove the first element of an array, and return it
                 shmctl                          :1,     // - SysV shared memory operations
-                shmget                          :1,     // - get SysV shared memory segment Identifier
+                shmget                          :1,     // - get SysV shared memory segment identifier
                 shmread                         :1,     // - read SysV shared memory
                 shmwrite                        :1,     // - write SysV shared memory
                 shutdown                        :1,     // - close down just half of a socket connection
@@ -470,7 +470,7 @@ CodeMirror.defineMode("perl",function(){
                 values                          :1,     // - return a list of the values in a hash
                 vec                             :1,     // - test or set particular bits in a string
                 wait                            :1,     // - wait for any child process to die
-                waitpId                         :1,     // - wait for a particular child process to die
+                waitpid                         :1,     // - wait for a particular child process to die
                 wantarray                       :1,     // - get void vs scalar vs list context of current subroutine call
                 warn                            :1,     // - print debugging info
                 when                            :1,     //
