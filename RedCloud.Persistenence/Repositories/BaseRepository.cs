@@ -19,7 +19,8 @@ namespace RedCloud.Persistenence.Repositories
         private readonly ILogger _logger;
         public BaseRepository(ApplicationDbContext dbContext, ILogger<T> logger)
         {
-            _dbContext = dbContext; logger = logger;
+            _dbContext = dbContext; 
+            logger = logger;
         }
 
         public virtual async Task<T> GetByIdAsync(int id)
@@ -104,6 +105,23 @@ namespace RedCloud.Persistenence.Repositories
             return await query.ToListAsync();
         }
 
+        //Eager Loading of Related Data   ---------------------------
+        public async Task<T> GetByIdAsyncInculde(int id)
+        {
+            var query = _dbContext.Set<T>().AsQueryable();
+
+            var navigationProperties = _dbContext.Model.FindEntityType(typeof(T)).GetNavigations();
+
+            foreach (var navigationProperty in navigationProperties)
+            {
+                query = query.Include(navigationProperty.Name);
+            }
+
+            return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, "OrgID") == id);
+        }
+
+
+        
     }
 
 }

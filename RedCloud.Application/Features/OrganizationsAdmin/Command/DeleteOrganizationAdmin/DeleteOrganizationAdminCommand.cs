@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCloud.Application.Features.ReSellerAdmin.Command.BlockReSellerAdmin
+namespace RedCloud.Application.Features.OrganizationsAdmin.Command.DeleteOrganizationAdmin
 {
-
-    public class BlockReSellerAdminCommand : IRequest<Unit>
+    public class DeleteOrganizationAdminCommand:IRequest<Unit>
     {
         public int Id { get; set; }
     }
-} 
+    
+}

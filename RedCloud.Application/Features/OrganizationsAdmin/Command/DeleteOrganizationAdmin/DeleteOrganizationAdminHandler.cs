@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using RedCloud.Application.Contract.Persistence;
-using RedCloud.Application.Features.ReSellerAdmin.QueryHandler.GetAllResellerAdmin;
 using RedCloud.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,24 +9,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCloud.Application.Features.ReSellerAdmin.Command.DeleteReSellerAdmin
+namespace RedCloud.Application.Features.OrganizationsAdmin.Command.DeleteOrganizationAdmin
 {
-    public class DeleteReSellerAdminCommandHandler : IRequestHandler<DeleteReSellerAdminCommand, Unit>
+    public class DeleteOrganizationAdminHandler:IRequestHandler<DeleteOrganizationAdminCommand, Unit>
     {
 
-        private readonly ILogger<DeleteReSellerAdminCommandHandler> _logger;
-        private readonly IAsyncRepository<ResellerAdmin> _asyncRepository;
+        private readonly ILogger<DeleteOrganizationAdminHandler> _logger;
+        private readonly IAsyncRepository<OrganizationAdmin> _asyncRepository;
         private readonly IMapper _mapper;
 
-
-        public DeleteReSellerAdminCommandHandler(IMapper mapper, ILogger<DeleteReSellerAdminCommandHandler> logger, IAsyncRepository<ResellerAdmin> asyncRepository)
+        public DeleteOrganizationAdminHandler(ILogger<DeleteOrganizationAdminHandler> logger, IAsyncRepository<OrganizationAdmin> asyncRepository, IMapper mapper)
         {
+            _logger = logger;
             _asyncRepository = asyncRepository;
             _mapper = mapper;
-            _logger = logger;
         }
 
-        public async Task<Unit> Handle(DeleteReSellerAdminCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteOrganizationAdminCommand request, CancellationToken cancellationToken)
         {
             var id = request.Id;
 
@@ -38,10 +36,9 @@ namespace RedCloud.Application.Features.ReSellerAdmin.Command.DeleteReSellerAdmi
                 throw new Exception();
             }
             AdminToDelete.IsActive = false;
+            AdminToDelete.IsDeleted = true;
             await _asyncRepository.UpdateAsync(AdminToDelete);
             return Unit.Value;
         }
-
-        
     }
 }

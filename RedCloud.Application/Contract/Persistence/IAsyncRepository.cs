@@ -10,6 +10,10 @@ namespace RedCloud.Application.Contract.Persistence
     public interface IAsyncRepository<T> where T : class
     {
         Task<T> GetByIdAsync(int id);
+
+        //Eager Loading of Related Data   ---------------------------
+        Task<T> GetByIdAsyncInculde(int id);
+
         Task<IReadOnlyList<T>> ListAllAsync();
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);

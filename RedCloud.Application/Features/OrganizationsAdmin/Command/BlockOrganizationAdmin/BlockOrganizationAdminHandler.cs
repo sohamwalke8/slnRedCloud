@@ -9,24 +9,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCloud.Application.Features.ReSellerAdmin.Command.BlockReSellerAdmin
+namespace RedCloud.Application.Features.OrganizationsAdmin.Command.BlockOrganizationAdmin
 {
-    public class BlockReSellerAdminCommandHandler : IRequestHandler<BlockReSellerAdminCommand, Unit>
+    public class BlockOrganizationAdminHandler : IRequestHandler<BlockOrganizationAdminCommand, Unit>
     {
-
-        private readonly ILogger<BlockReSellerAdminCommandHandler> _logger;
-        private readonly IAsyncRepository<ResellerAdmin> _asyncRepository;
+        private readonly ILogger<BlockOrganizationAdminHandler> _logger;
+        private readonly IAsyncRepository<OrganizationAdmin> _asyncRepository;
         private readonly IMapper _mapper;
 
-
-        public BlockReSellerAdminCommandHandler(IMapper mapper, ILogger<BlockReSellerAdminCommandHandler> logger, IAsyncRepository<ResellerAdmin> asyncRepository)
+        public BlockOrganizationAdminHandler(IAsyncRepository<OrganizationAdmin> asyncRepository, 
+            ILogger<BlockOrganizationAdminHandler> logger, IMapper mapper)
         {
             _asyncRepository = asyncRepository;
-            _mapper = mapper;
             _logger = logger;
+            _mapper = mapper;
         }
 
-        public async Task<Unit> Handle(BlockReSellerAdminCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(BlockOrganizationAdminCommand request, CancellationToken cancellationToken)
         {
             var id = request.Id;
 
@@ -41,4 +40,5 @@ namespace RedCloud.Application.Features.ReSellerAdmin.Command.BlockReSellerAdmin
             return Unit.Value;
         }
     }
-}
+ }
+
