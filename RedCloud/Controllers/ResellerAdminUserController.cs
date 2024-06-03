@@ -219,8 +219,8 @@ namespace RedCloud.Controllers
         {
             try
             {
-                //var response = await _reSellerAdminService.GetResellerAdminById(id)
-                ;
+                //var response = await _reSellerAdminService.GetResellerAdminById(id);
+                
 
                 //response.IsActive = false;
                 var response = await _adminreseller.Block(id)

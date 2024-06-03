@@ -36,6 +36,8 @@ namespace RedCloud.Application.Profiles
             CreateMap<Country, CountryListVM>().ReverseMap();
             CreateMap<CityListVM, City>().ReverseMap();
             //
+           // CreateMap<ResellerAdminUser,ReSellerAdmindto>().ReverseMap();
+            //
 
             CreateMap<CreateOrganizationAdminCommand, OrganizationAdmin>();
             CreateMap<UpdateOrganizationAdminCommand, OrganizationAdmin>();

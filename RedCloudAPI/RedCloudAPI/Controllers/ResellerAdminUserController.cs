@@ -89,7 +89,7 @@ namespace RedCloudAPI.Controllers
 
         //    return Ok(dto);
         //}
-        [HttpGet("disha{id:int}", Name = "GetResellerAdminById")]
+        [HttpGet("{Id:int}", Name = "GetResellerAdminById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Response<ReSellerAdmindto>>> GetResellerAdminById(int Id)

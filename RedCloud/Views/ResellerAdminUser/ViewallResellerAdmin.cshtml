@@ -265,7 +265,7 @@
                                     <td>@admins.CompanySupportEmail</td>
                                     <td>@((bool)admins.IsActive ? "Active" : "Not Active")</td>
                                     <td>
-                                        <a asp-action="GetResellerByID" asp-controller="ReSellerAdmin" asp-route-id="@admins.ResellerAdminUserId">
+                                        <a asp-action="GetResellerByID" asp-controller="ResellerAdminUser" asp-route-id="@admins.ResellerAdminUserId">
                                             <i class="fa-solid fa-eye" style="color: #050505;"></i>
 
                                         </a>
@@ -328,13 +328,13 @@
 
     <script>
         $(document).ready(function () {
-            // var table = $('#dataTable').DataTable({
+            // var table = $('#datatable').datatable({
             //     paging: true,
             //     searching: true
             // });
 
-            // // Add export buttons
-            // new $.fn.dataTable.Buttons(table, {
+            // // add export buttons
+            // new $.fn.datatable.buttons(table, {
             //     buttons: [
             //         'csv', 'excel'
             //     ]
@@ -370,7 +370,7 @@
                 var id = $(this).attr('data-id');
                 $('#deleteConfirmationModal').modal('hide');
                 // Call delete method using AJAX
-                $.get('/ReSellerAdmin/SoftDeleteResellerAdmin/' + id)
+                $.get('/ResellerAdminUser/SoftDeleteResellerAdmin/' + id)
                     .done(function (data) {
                         // Handle success
                         alert(data);
