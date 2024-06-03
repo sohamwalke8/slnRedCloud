@@ -1,14 +1,15 @@
-﻿using RedCloud.Domain.Entities;
-using RedCloud.ModelVM;
+﻿using RedCloud.ModelVM;
 
 namespace RedCloud.Interface
 {
+
     public interface IOrganizationAdminService
     {
-        Task<int> CreateOrganizationAdmin(OrganizationAdminVM organizationAdmin);
+        Task<IEnumerable<AllOrganizationAdminVM>> GetAllOrganizationAdmin();
+        Task SoftDeleteOrganizationAdmin(int id);
+        Task<AllOrganizationAdminVM> GetOrganizationAdminDetailesById(int id);
+        Task<AllOrganizationAdminVM> BlockOrganizationAdmin(int Id);
 
-        Task EditOrganizationAdmin(OrganizationAdminVM organizationAdmin);
-
-        Task<OrganizationAdminVM> GetOrganizationAdminById (int eventId);
     }
+
 }

@@ -25,7 +25,7 @@
                     <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
                         <thead>
                             <tr>
-                                <th >Id</th>
+                                <th>Id</th>
                                 <th>Organization Name</th>
                                 <th>EIN</th>
                                 <th>Email</th>
@@ -51,7 +51,7 @@
                                     </td>
                                     <td>@((bool)item.IsActive ? "Active" : "Not Active")</td>
                                     <td>
-                                        <a asp-action="GetOrganizationAdminById" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID" class="mr-2">
+                                        <a asp-action="ViewOrganizationDetails" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID" class="mr-2">
                                             <i class="fa-solid fa-eye" style="color: #050505;"></i>
                                         </a>
 
@@ -156,7 +156,7 @@
                 var id = $(this).attr('data-id');
                 $('#deleteConfirmationModal').modal('hide');
                 // Call delete method using AJAX
-                $.get('/OrganizationAdminController/SoftDeleteOrganizationAdmin/' + id)
+                $.get('/OrganizationAdmin/SoftDelete/' + id)
                     .done(function (data) {
                         // Handle success
                         alert(data);

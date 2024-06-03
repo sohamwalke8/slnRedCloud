@@ -1,17 +1,7 @@
 ﻿namespace RedCloud.ModelVM
 {
-    public class AllOrganizationAdminVM
+    public class OrganizationAdminDetailsVM
     {
-
-        //public int OrgID { get; set; }
-        //public string OrgName { get; set; }
-
-        //public string EIN { get; set; }
-
-        //public string OrgAdminEmail { get; set; }
-
-        //public bool IsActive { get; set; }
-
         public int OrgID { get; set; }
         public string OrgName { get; set; }
 
@@ -33,8 +23,6 @@
         public string EIN { get; set; }
 
         public string CompanyURL { get; set; }
-
-        public bool IsActive { get; set; }
 
 
     }

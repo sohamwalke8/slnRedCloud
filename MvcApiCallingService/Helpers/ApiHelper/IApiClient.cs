@@ -22,5 +22,9 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         Task<Response<List<T>>> GetListByIdAsync(string apiUrl);
 
         Task<Response<T>> PutAsync<TEntity>(string apiUrl, TEntity entity);
+
+        //for Particular Block
+        Task<Response<T>> PutAsyncc<TEntity>(string apiUrl, TEntity entity);
+
     }
 }

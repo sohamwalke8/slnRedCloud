@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
+
 using RedCloud.Application.Features.CountryFolder.Query.GetCountryList;
 using RedCloud.Application.Features.CountryFolder.Query.GetCityList;
 using RedCloud.Models;
@@ -21,7 +21,7 @@ namespace RedCloud.Application.profile
         public MappingProfile()
         {   
             CreateMap<OrganizationAdmin, OrganizationAdminVM>().ReverseMap();
-            CreateMap<OrganizationAdmin,OrganizationAdminDetailsVM > ().ReverseMap();
+            //CreateMap<OrganizationAdmin,OrganizationAdminDetailsVM > ().ReverseMap();
             CreateMap<OrganizationAdmin,GetAllOrganizationAdminVM>().ReverseMap();
             CreateMap<Country, CountryListVM>().ReverseMap();
             CreateMap<State, StateVM>().ReverseMap();
