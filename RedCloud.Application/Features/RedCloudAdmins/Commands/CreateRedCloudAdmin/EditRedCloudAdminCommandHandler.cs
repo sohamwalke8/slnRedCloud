@@ -25,15 +25,16 @@ namespace RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAd
         public async Task<Response<Unit>> Handle(EditRedCloudAdminCommand request, CancellationToken cancellationToken)
         {
             var userObj = await _repository.GetByIdAsync(request.RedCloudAdminUserId);
-            var adminuser = _mapper.Map<RedCloudAdmin>(request);
 
+            // Update properties of the existing entity
+            _mapper.Map(request, userObj);
 
+            userObj.LastModifiedDate = DateTime.UtcNow;
+            userObj.LastModifiedBy = null;
+            // The Password is already set in userObj, no need to reassign
 
-            adminuser.LastModifiedDate = DateTime.UtcNow;
-            adminuser.LastModifiedBy = null;
-            adminuser.Password = userObj.Password;
+            await _repository.UpdateAsync(userObj);
 
-            await _repository.UpdateAsync(adminuser);
             var response = new Response<Unit>("Updated Successfully");
             return response;
         }

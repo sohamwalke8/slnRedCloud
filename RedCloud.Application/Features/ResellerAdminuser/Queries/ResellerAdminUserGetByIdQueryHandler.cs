@@ -47,7 +47,7 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
                 ZipCode = admin.ZipCode,
                 CompanyURL = admin.CompanyURL,
                 CompanySupportEmail = admin.CompanySupportEmail,
-                RedCloudAdmin = admin.RedCloudAdmin,
+              //  RedCloudAdmin = admin.RedCloudAdmin,
                 Password = admin.Password
 
             };
