@@ -25,6 +25,71 @@ namespace RedCloud.Controllers
             _stateService = stateService;
             _cityService = cityService;
         }
+
+
+
+        public async Task<IActionResult> ViewOrganizationAdmin()
+        {
+            var model = new List<AllOrganizationAdminVM>
+            {
+                new AllOrganizationAdminVM
+                {
+                    OrgID = 1,
+                    OrgName = "Sample Organization 1",
+                    EIN = "12-3456789",
+                    OrgAdminEmail = "admin1@sample.org",
+                    IsActive = true
+                },
+                new AllOrganizationAdminVM
+                {
+                    OrgID = 2,
+                    OrgName = "Sample Organization 2",
+                    EIN = "98-7654321",
+                    OrgAdminEmail = "admin2@sample.org",
+                    IsActive = false
+                },
+                 new AllOrganizationAdminVM
+                {
+                     OrgID = 3,
+                    OrgName = "Sample Organization 3",
+                    EIN = "98-7654321",
+                    OrgAdminEmail = "admin2@sample.org",
+                    IsActive = false
+                 }
+            };
+            return View(model);
+        }
+
+
+        public async Task<IActionResult> ViewOrganizationDetails()
+        {
+            //var dummyData = new OrganizationAdmin
+            //{
+            //    OrgID = 1,
+            //    OrgName = "Sample Organization",
+            //    EIN = "123456789",
+            //    OrgAdminName = "John Doe",
+            //    OrgAdminEmail = "john.doe@example.com",
+            //    OrgAdminMobNo = "123-456-7890",
+            //    AddressLineOne = "123 Main St",
+            //    AddressLineTwo = "Suite 400",
+            //    ZipCode = 12345,
+            //    OrgURL = "http://www.sampleorg.com",
+            //    IsActive = true,
+            //    Country = new Country { CountryId = 1, Name = "USA" },
+            //    State = new State { StateId = 1, Name = "California" },
+            //    City = new City { CityId = 1, Name = "Los Angeles" },
+            //    CountryId = 1,
+            //    StateId = 1,
+            //    CityId = 1
+            //};
+
+            //return View(dummyData);
+            return View();
+        }
+
+
+
         public async Task<IActionResult> AddOrganizationAdmin()
         {
             //ViewBag.ResellerList = (await _reSellerAdminService.GetallResellerAdmin()).Select(r => r.ResellerName).ToList();

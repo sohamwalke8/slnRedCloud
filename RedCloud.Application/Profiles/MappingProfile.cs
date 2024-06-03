@@ -5,6 +5,7 @@ using RedCloud.Application.Features.Cities.Queries;
 using RedCloud.Application.Features.Countries;
 using RedCloud.Application.Features.Events.Queries.GetEventDetail;
 using RedCloud.Application.Features.OrganizationAdmins.Commands;
+using RedCloud.Application.Features.OrganizationAdmins.Queries;
 using RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAdmin;
 using RedCloud.Application.Features.ResellerAdminuser.Commands;
 using RedCloud.Application.Features.ResellerAdminuser.Queries;
@@ -22,6 +23,10 @@ namespace RedCloud.Application.Profiles
     {
         public MappingProfile()
         {
+            //Aakash
+            CreateMap<OrganizationAdmin, OrganizationAdminVM>().ReverseMap();
+            CreateMap<OrganizationAdminDetailsVM, OrganizationAdmin>().ReverseMap();
+
             CreateMap<RedCloudAdmin, RedCloudAdminVM>();
             CreateMap<CreateRedCloudAdminCommand, RedCloudAdmin>();
             CreateMap<EditRedCloudAdminCommand, RedCloudAdmin>().ReverseMap();
