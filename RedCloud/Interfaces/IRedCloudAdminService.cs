@@ -11,5 +11,9 @@ namespace RedCloud.Interfaces
 
         Task<RedCloudAdminVM> GetAdminUserById(int Id);
         Task<IEnumerable<RedCloudAdminVM>> GetallRedCloudAdminUser();
+
+        Task SoftDeleteRedCloudAdmin(int id);
+
+        Task<RedCloudAdminVM> Block(int Id);
     }
 }

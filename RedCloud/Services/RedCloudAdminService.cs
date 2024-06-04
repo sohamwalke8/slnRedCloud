@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MvcApiCallingService.Helpers.ApiHelper;
 using RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAdmin;
+using RedCloud.Application.Features.ResellerAdminuser.Queries;
 using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
 
@@ -65,5 +66,27 @@ namespace RedCloud.Services
                                                                                       // _logger.LogInformation("GetAllRedCloudAdmin Service conpleted");
             return reSelleradmin.Data;
         }
+
+        public async Task SoftDeleteRedCloudAdmin(int id)
+        {
+            _logger.LogInformation($"Soft delete initiated for ResellerAdmin with ID: {id}");
+
+            await _client.DeleteAsync($"RedCloudAdmin/{id}");
+
+            _logger.LogInformation($"Soft delete completed for ResellerAdmin with ID: {id}");
+        }
+
+        public async Task<RedCloudAdminVM> Block(int Id)
+        {
+            var apiUrl = $"RedCloudAdmin/{Id}";
+            var response = await _client.GetByIdAsync(apiUrl);
+            var data = response.Data;
+            data.IsActive = false;
+            var updated = await _client.PutAsyncc(apiUrl, data);
+            return updated.Data;
+
+        }
+
+
     }
 }

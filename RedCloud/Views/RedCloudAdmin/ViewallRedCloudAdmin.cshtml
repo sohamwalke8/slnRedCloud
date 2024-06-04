@@ -1,0 +1,159 @@
+﻿    @model IEnumerable<RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAdmin.RedCloudAdminVM>
+
+
+@{
+    ViewData["Title"] = "Index";
+    //Layout = null;
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Red Cloud Admin</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="dt-search"> <a asp-action="" asp-controller=""></a><button type="button" class="btn btn-primary">Add ReSeller</button></div>
+                    <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
+                        <thead>
+                            <tr>
+                                
+                                <th>Admin First Name</th>
+                                <th>Admin Last Name</th>
+                                <th> Email </th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var admins in Model)
+                            {
+                                <tr>
+                                   
+                                    <td>@admins.FirstName</td>
+                                    <td>@admins.LastName</td>
+                                    <td>@admins.MobileNumber</td>
+                                    <td>@((bool)admins.IsActive ? "Active" : "Not Active")</td>
+                                    <td>
+                                        <a asp-action="GetRedCloudAdminByID" asp-controller="RedCloudAdmin" asp-route-id="@admins.RedCloudAdminUserId">
+                                            <i class="fa-solid fa-eye" style="color: #050505;"></i>
+
+                                        </a>
+
+                                        <a asp-action="DeleteRedCloudAdmin" asp-controller="RedCloudAdmin"><i class="fa-regular fa-pen-to-square" style="color: #131111;"></i></a>
+                                        <a class="delete-btn" data-id="@admins.RedCloudAdminUserId" data-name="@admins.FirstName" href="#"><i class="fa-solid fa-trash" style="color: #cb1010;"></i></a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" id="cancelBtn" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete <span id="deleteItemName"></span>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.jsscript>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+
+    @*     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script> *@
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#dataTable').DataTable({
+                paging: true,
+                searching: true
+            });
+
+            // Add export buttons
+            new $.fn.dataTable.Buttons(table, {
+                buttons: [
+                    'csv', 'excel'
+                ]
+            });
+
+            
+
+            // Display export buttons
+            table.buttons().container().appendTo('#dataTable_wrapper .col-md-6:eq(0)');
+
+            // Event listeners for delete functionality
+            $('.delete-btn').on('click', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                $('#deleteItemName').text(name);
+                $('#confirmDeleteBtn').attr('data-id', id);
+                $('#deleteConfirmationModal').modal('show');
+            });
+
+            $('#cancelBtn').on('click', function (e) {
+                $('#deleteConfirmationModal').modal('hide');
+            });
+
+            $('#confirmDeleteBtn').on('click', function () {
+                var id = $(this).attr('data-id');
+                $('#deleteConfirmationModal').modal('hide');
+                // Call delete method using AJAX
+                $.get('/RedCloudAdmin/DeleteRedCloudAdmin/' + id)
+                    .done(function (data) {
+                        // Handle success
+                        alert(data);
+                        // Optionally, you can reload the page or update the table
+                        location.reload();
+                    })
+                    .fail(function (xhr, status, error) {
+                        // Handle errors
+                        alert('Error: ' + xhr.responseText);
+                    });
+            });
+        });
+    </script>
+
+}
+
+

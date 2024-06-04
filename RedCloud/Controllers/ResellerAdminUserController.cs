@@ -202,8 +202,7 @@ namespace RedCloud.Controllers
         {
             try
             {
-                await _adminreseller.SoftDeleteResellerAdmin(id)
-  ;
+                await _adminreseller.SoftDeleteResellerAdmin(id);
                 return Ok($"ResellerAdmin with ID {id} has been soft deleted.");
             }
             catch (Exception ex)
