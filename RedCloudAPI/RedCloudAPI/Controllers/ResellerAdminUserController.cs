@@ -42,27 +42,27 @@ namespace RedCloudAPI.Controllers
             return Ok(response);
         }
 
-        [HttpPut("UpdateResellerAdmin")]
-        public async Task<ActionResult> Update([FromBody] UpdateResellerAdminUserCommand updateResellerAdmin)
-        {
-            var response = await _mediator.Send(updateResellerAdmin);
-            return Ok(response);
-        }
+        //[HttpPut("UpdateResellerAdmin")]
+        //public async Task<ActionResult> Update([FromBody] UpdateResellerAdminUserCommand updateResellerAdmin)
+        //{
+        //    var response = await _mediator.Send(updateResellerAdmin);
+        //    return Ok(response);
+        //}
 
-        [HttpGet("{id}")]
+        //[HttpGet("{id}")]
 
-        public async Task<ActionResult> FetchResellerAdminUserById(int id)//changes the code
-        {
+        //public async Task<ActionResult> FetchResellerAdminUserById(int id)//changes the code
+        //{
 
-            //_logger.LogInformation($"GetResellerAdminById Initiated for ID: {id}");
-            var dto = await _mediator.Send(new ResellerAdminUserGetByIdQuery() { Id = id});
-            if (dto == null)
-            {
-                return NotFound();
-            }
+        //    //_logger.LogInformation($"GetResellerAdminById Initiated for ID: {id}");
+        //    var dto = await _mediator.Send(new ResellerAdminUserGetByIdQuery() { Id = id});
+        //    if (dto == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(dto);
-        }
+        //    return Ok(dto);
+        //}
 
         [HttpDelete("{id}", Name = "DeleteResellerAdmin")]
         public async Task<ActionResult> DeleteResellerAdmin(int id)
