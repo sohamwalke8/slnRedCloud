@@ -242,7 +242,7 @@
             <div class="row">
 
                 <div class="col-sm-12">
-                    <div class="dt-search"> <a asp-action="" asp-controller=""></a><button type="button" class="btn btn-primary">Add ReSeller</button></div>
+                    <div class="dt-search"> <a asp-action="AddReseller" asp-controller="ResellerAdminUser" class="btn-primary btn">Add Reseller</a></div>
                     <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
                         <thead>
                             <tr>
@@ -270,7 +270,7 @@
 
                                         </a>
 
-                                        <a asp-action="" asp-controller=""><i class="fa-regular fa-pen-to-square" style="color: #131111;"></i></a>
+                                        <a asp-action="UpdateResellerAdminUser" asp-controller="ResellerAdminUser" asp-route-id="@admins.ResellerAdminUserId"><i class="fa-regular fa-pen-to-square" style="color: #131111;"></i></a>
                                         <a class="delete-btn" data-id="@admins.ResellerAdminUserId" data-name="@admins.ResellerName" href="#"><i class="fa-solid fa-trash" style="color: #cb1010;"></i></a>
                                     </td>
 

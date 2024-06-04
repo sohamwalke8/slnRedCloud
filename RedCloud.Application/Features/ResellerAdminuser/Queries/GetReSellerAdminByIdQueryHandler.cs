@@ -42,6 +42,8 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
                 CountryName = admin.Country.Name,
                 StateName = admin.State.Name,
                 CityName = admin.City.Name,
+                Password=admin.Password,
+                
             };
 
 
