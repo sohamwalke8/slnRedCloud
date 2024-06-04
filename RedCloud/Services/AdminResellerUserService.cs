@@ -49,14 +49,14 @@ namespace RedCloud.Services
         public async Task<ResellerAdminUserVM> GetResellerAdminUserById(int eventId)
         {
             // _logger.LogInformation("GetEventById Service initiated");
-            var Events = await _client.GetByIdAsync("ResellerAdminUser/" + eventId);
+            var Events = await _client.GetByIdAsync("ResellerAdmin/" + eventId);
             //_logger.LogInformation("GetEventById Service conpleted");
             return Events.Data;
         }
 
         public async Task UpdateAdminResellerUser(ResellerAdminUser ResellerAdminUser)
         {
-          await   _client.PutAsync("ResellerAdminUser/UpdateResellerAdmin", ResellerAdminUser);//
+          await   _client.PutAsync("ResellerAdmin/UpdateResellerAdmin", ResellerAdminUser);//
             //return users.Data;
         }
 
