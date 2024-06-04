@@ -24,7 +24,7 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
         public string StateName { get; set; } // Assuming you want the name of the state
         public string CityName { get; set; } // Assuming you want the name of the city
         public bool IsDeleted { get; set; }
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         
     }
