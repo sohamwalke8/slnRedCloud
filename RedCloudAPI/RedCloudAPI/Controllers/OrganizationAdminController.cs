@@ -5,6 +5,7 @@ using RedCloud.Application.Features.OrganizationAdmins.Commands;
 using RedCloud.Application.Features.OrganizationAdmins.Queries;
 using RedCloud.Application.Features.ResellerAdminuser.Queries;
 
+
 namespace RedCloudAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -28,24 +29,23 @@ namespace RedCloudAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAllOrganizationAdminList()
         {
-            _logger.LogInformation("GetAllOrganizationAdminList Initiated");
+            //_logger.LogInformation("GetAllOrganizationAdminList Initiated");
             var data = await _mediator.Send(new GetAllOrganizationAdminQuery());
             return Ok(data);
         }
 
 
-        [HttpGet("{id:int}", Name = "GetResellerAdminById")]
+        [HttpGet("{id}", Name = "GetOrganizationAdminDetailsById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Response<OrganizationAdmin>>> Get(int id)
+        public async Task<ActionResult> GetOrganizationAdminDetailsById(int id)
         {
-            _logger.LogInformation("GetResellerAdminById initiated");
-            var result = await _mediator.Send(new GetReSellerAdminByIdQuery(id));
+            //_logger.LogInformation("GetOrgaAdminById initiated");
+            var result = await _mediator.Send(new GetOrganizationAdminDetailsQuery(id));
             if (result.Data == null)
             {
                 return NotFound(result);
             }
-
             return Ok(result);
         }
 
@@ -54,7 +54,7 @@ namespace RedCloudAPI.Controllers
         [HttpDelete("{id}", Name = "DeleteOrganizationAdmin")]
         public async Task<ActionResult> DeleteOrganizationAdmin(int id)
         {
-            _logger.LogInformation("DeleteOrganizationAdmin Initiated");
+            // _logger.LogInformation("DeleteOrganizationAdmin Initiated");
             var deletereselleradmin = new DeleteOrganizationAdminCommand() { Id = id };
             await _mediator.Send(deletereselleradmin);
 
@@ -62,13 +62,12 @@ namespace RedCloudAPI.Controllers
         }
 
 
-
-        [HttpPut("{id}", Name = "BlockReSeller")]
+        [HttpPut("{id}", Name = "BlockOrganizationAdmin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> BlockOrganizationAdmin(int id)
         {
-            _logger.LogInformation("BlockReSeller Initiated");
+            //_logger.LogInformation("BlockReSeller Initiated");
             var blockeselleradmin = new BlockOrganizationAdminCommand() { Id = id };
             await _mediator.Send(blockeselleradmin);
 

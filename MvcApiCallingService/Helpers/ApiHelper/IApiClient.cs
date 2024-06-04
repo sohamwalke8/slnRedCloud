@@ -23,6 +23,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         //Task<T> PostAuthAsync<TEntity>(string apiUrl, TEntity entity);
         Task<Response<T>> PutAsync<TEntity>(string apiUrl, TEntity entity);
         Task<string> DeleteAsync(string apiUrl);
+
         Task<Response<T>> PutAsyncc<TEntity>(string apiUrl, TEntity entity);
 
 
