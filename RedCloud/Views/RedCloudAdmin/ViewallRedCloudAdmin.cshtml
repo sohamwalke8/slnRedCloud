@@ -6,6 +6,12 @@
     //Layout = null;
 }
 
+<style>
+    .dataTables_wrapper .top {
+        margin-top: 0;
+    }
+
+</style>
 
 <div class="card">
     <div class="card-header">
@@ -18,7 +24,7 @@
             <div class="row">
 
                 <div class="col-sm-12">
-                    <div class="dt-search"> <a asp-action="" asp-controller=""></a><button type="button" class="btn btn-primary">Add ReSeller</button></div>
+                    <div class="dt-search searchbar"> <a asp-action="" asp-controller="" class="btn btn-primary">Add RedCloud Admin</a></div>
                     <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
                         <thead>
                             <tr>
@@ -87,7 +93,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.dataTables.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.jsscript>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
@@ -106,20 +112,28 @@
         $(document).ready(function () {
             var table = $('#dataTable').DataTable({
                 paging: true,
-                searching: true
+                searching: true,
+                dom: '<"top text-center"Bf>rt<"bottom text-center"lp>',
+                // Add the buttons to the DOM
+                buttons: [
+                    'excel' // Add the Excel export button
+                ]
+               
             });
 
-            // Add export buttons
-            new $.fn.dataTable.Buttons(table, {
-                buttons: [
-                    'csv', 'excel'
-                ]
-            });
+
+
+            // //Add export buttons
+            // new $.fn.dataTable.Buttons(table, {
+            //     buttons: [
+            //         'csv', 'excel'
+            //     ]
+            // });
 
             
 
-            // Display export buttons
-            table.buttons().container().appendTo('#dataTable_wrapper .col-md-6:eq(0)');
+            // // Display export buttons
+            // table.buttons().container().appendTo('#dataTable_wrapper .col-md-6:eq(0)');
 
             // Event listeners for delete functionality
             $('.delete-btn').on('click', function (e) {
