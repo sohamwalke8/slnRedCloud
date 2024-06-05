@@ -42,6 +42,10 @@ namespace RedCloud.Persistenence
         public DbSet<OrganizationAdmin> OrganizationAdmins { get; set;}
 
 
+        public DbSet<Rate> Rates { get; set; }
+        public DbSet<GetRate> GetRates { get; set; }
+
+
 
 
         //        private readonly ILoggedInUserService _loggedInUserService;

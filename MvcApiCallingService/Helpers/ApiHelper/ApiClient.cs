@@ -54,6 +54,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
 
         public async Task<Response<T>> GetByIdAsync(string apiUrl)
         {
+           // apiUrl = _httpClient.BaseAddress + apiUrl;
             HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
             return await ValIdateResponse(responseMessage);
         }
@@ -93,33 +94,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
             return default;
         }
 
-        // Below Code Original
-
-        /*
-        public async Task<T?> PostAuthAsync<TEntity>(string apiUrl, TEntity entity)
-        {
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
-            try
-            {
-
-
-                // Below Code Original
-
-                HttpResponseMessage responseMessage = await _httpClient.PostAsync(apiUrl, stringContent);
-                if (responseMessage.IsSuccessStatusCode)
-                    return JsonConvert.DeserializeObject<T>(await responseMessage.Content.ReadAsStringAsync());
-
-
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine(ex.Message);
-                throw new AuthenticationException($"{ex.Message}");
-            }
-
-            return default;
-        }
-        */
+       
         public async Task<Response<T>> PutAsync<TEntity>(string apiUrl, TEntity entity)
         {
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");

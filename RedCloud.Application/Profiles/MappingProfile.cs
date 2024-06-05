@@ -5,6 +5,7 @@ using RedCloud.Application.Features.Cities.Queries;
 using RedCloud.Application.Features.Countries;
 using RedCloud.Application.Features.Events.Queries.GetEventDetail;
 using RedCloud.Application.Features.OrganizationAdmins.Commands;
+using RedCloud.Application.Features.Rates.Queries;
 using RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAdmin;
 using RedCloud.Application.Features.ResellerAdminuser.Commands;
 using RedCloud.Application.Features.ResellerAdminuser.Queries;
@@ -26,9 +27,14 @@ namespace RedCloud.Application.Profiles
             CreateMap<CreateRedCloudAdminCommand, RedCloudAdmin>();
             CreateMap<EditRedCloudAdminCommand, RedCloudAdmin>().ReverseMap();
 
+
+
             CreateMap<CreateResellerAdminUserCommand, ResellerAdminUser>();
             CreateMap<UpdateResellerAdminUserCommand, ResellerAdminUser>();
             CreateMap<ResellerAdminUserVM, ResellerAdminUser>().ReverseMap();
+            CreateMap<Rate, RateDetailVM>();
+            CreateMap<GetAllRatesQuery, GetRate>();
+            CreateMap<GetRateByIdQuery, Rate>();
 
 
             //disha
