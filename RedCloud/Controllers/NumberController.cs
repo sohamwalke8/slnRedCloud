@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using RedCloud.Application.Features.AssignmentType;
 using RedCloud.Application.Features.ResellerAdminuser.Queries;
 using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
@@ -16,16 +17,18 @@ namespace RedCloud.Controllers
         private readonly ICarrier<CarrierVM> _carrier;
         private readonly IType<TypesVM> _type;
         private readonly INumberService<NumberVM> _numberService;
+        private readonly IAssignmentType<AssignmentTypeVM> _assignmentType;
       
         
 
-        public NumberController(IDropDownService<CountryVM> dropDownService, IStateService<StateVM> stateService, ICarrier<CarrierVM> carrier, IType<TypesVM> type, INumberService<NumberVM> numberService)
+        public NumberController(IDropDownService<CountryVM> dropDownService, IStateService<StateVM> stateService, ICarrier<CarrierVM> carrier, IType<TypesVM> type, INumberService<NumberVM> numberService, IAssignmentType<AssignmentTypeVM> assignmentType)
         {
             _dropDownService = dropDownService;
             _stateService = stateService;
             _carrier = carrier;
             _type = type;
             _numberService = numberService;
+            _assignmentType = assignmentType;
             
             
         }
