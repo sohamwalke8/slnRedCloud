@@ -25,7 +25,7 @@ namespace RedCloud.Application.Profiles
         {
             //Aakash
             CreateMap<OrganizationAdmin, OrganizationAdminVM>().ReverseMap();
-            CreateMap<OrganizationAdminDetailsVM, OrganizationAdmin>().ReverseMap();
+            CreateMap<OrganizationAdmin, GetAllOrganizationAdminVM>().ReverseMap();
 
             CreateMap<RedCloudAdmin, RedCloudAdminVM>();
             CreateMap<CreateRedCloudAdminCommand, RedCloudAdmin>();

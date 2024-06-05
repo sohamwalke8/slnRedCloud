@@ -10,7 +10,7 @@ namespace RedCloud.Services
         private readonly IApiClient<AllOrganizationAdminVM> _clientTwo;
         public readonly ILogger<OrganizationAdminService> _logger;
 
-        
+
         public OrganizationAdminService(IApiClient<OrganizationAdminVM> client, IApiClient<AllOrganizationAdminVM> clientTwo, ILogger<OrganizationAdminService> logger)
         {
             _client = client;
@@ -23,7 +23,7 @@ namespace RedCloud.Services
         public async Task<IEnumerable<AllOrganizationAdminVM>> GetAllOrganizationAdmin()
         {
             // _logger.LogInformation("GetAllOrganizationAdmin Service initiated");
-            var OrganizationAdmin = await _clientTwo.GetAllAsync("OrganizationAdmin/all");
+            var OrganizationAdmin = await _clientTwo.GetAllAsync("OrganizationAdmin/GetAll");
             //_logger.LogInformation("GetAllCategories Service conpleted");
             return OrganizationAdmin.Data;
         }
@@ -32,7 +32,7 @@ namespace RedCloud.Services
         public async Task<AllOrganizationAdminVM> GetOrganizationAdminDetailesById(int id)
         {
             //_logger.LogInformation($"GetOrganizationAdminDetailesById Service initiated for ID: {id}");
-            var apiUrl = $"OrganizationAdmin/{id}";     //apiurl=>controllername/id
+            var apiUrl = $"OrganizationAdmin/GetDetailsById/{id}";     //apiurl=>controllername/id
             var response = await _clientTwo.GetByIdAsync(apiUrl);
             // _logger.LogInformation($"GetResellerAdminById Service completed for ID: {id}");
             return response.Data;
@@ -41,12 +41,21 @@ namespace RedCloud.Services
 
         public async Task<AllOrganizationAdminVM> BlockOrganizationAdmin(int Id)
         {
-            var apiUrl = $"OrganizationAdmin/{Id}";
-            var response = await _clientTwo.GetByIdAsync(apiUrl);
-            var data = response.Data;
-            data.IsActive = false;
-            var updated = await _clientTwo.PutAsyncc(apiUrl, data);
-            return updated.Data;
+            try
+            {
+                var apiUrl = $"OrganizationAdmin/GetDetailsById/{Id}";
+                var response = await _clientTwo.GetByIdAsync(apiUrl);
+                var data = response.Data;
+                data.IsActive = false;
+                apiUrl = $"OrganizationAdmin/Block/{Id}";
+                var updated = await _clientTwo.PutAsyncc(apiUrl, data);
+                return updated.Data;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
 
@@ -55,7 +64,7 @@ namespace RedCloud.Services
         {
             // _logger.LogInformation($"Soft delete initiated for ResellerAdmin with ID: {id}");
 
-            await _clientTwo.DeleteAsync($"OrganizationAdmin/{id}");
+            await _clientTwo.DeleteAsync($"OrganizationAdmin/Delete/{id}");
 
             //_logger.LogInformation($"Soft delete completed for ResellerAdmin with ID: {id}");
         }

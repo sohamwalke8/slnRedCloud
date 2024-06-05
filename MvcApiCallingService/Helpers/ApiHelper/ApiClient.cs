@@ -54,8 +54,16 @@ namespace MvcApiCallingService.Helpers.ApiHelper
 
         public async Task<Response<T>> GetByIdAsync(string apiUrl)
         {
-            HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
-            return await ValIdateResponse(responseMessage);
+            try
+            {
+                HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
+                return await ValIdateResponse(responseMessage);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public async Task<Response<int>> PostAsync<TEntity>(string apiUrl, TEntity entity)

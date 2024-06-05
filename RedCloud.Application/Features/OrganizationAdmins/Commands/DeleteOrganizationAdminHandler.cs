@@ -12,24 +12,23 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.OrganizationAdmins.Commands
 {
-    public class DeleteOrganizationAdminHandler : IRequestHandler<DeleteReSellerAdminCommand, Unit>
+    public class DeleteOrganizationAdminHandler : IRequestHandler<DeleteOrganizationAdminCommand, Unit>
     {
 
-        private readonly ILogger<DeleteReSellerAdminCommandHandler> _logger;
+        private readonly ILogger<DeleteOrganizationAdminHandler> _logger;
         private readonly IAsyncRepository<OrganizationAdmin> _asyncRepository;
         private readonly IMapper _mapper;
 
-        public DeleteOrganizationAdminHandler(ILogger<DeleteReSellerAdminCommandHandler> logger, IAsyncRepository<OrganizationAdmin> asyncRepository, IMapper mapper)
+        public DeleteOrganizationAdminHandler(ILogger<DeleteOrganizationAdminHandler> logger, IAsyncRepository<OrganizationAdmin> asyncRepository, IMapper mapper)
         {
             _logger = logger;
             _asyncRepository = asyncRepository;
             _mapper = mapper;
         }
 
-        public async Task<Unit> Handle(DeleteReSellerAdminCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteOrganizationAdminCommand request, CancellationToken cancellationToken)
         {
             var id = request.Id;
-
             var AdminToDelete = await _asyncRepository.GetByIdAsync(id);
             if (AdminToDelete == null)
             {

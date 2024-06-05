@@ -30,7 +30,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
 
             var model = new OrganizationAdminDetailsVM()
             {
-                Id = admin.OrgID,
+                OrgID = admin.OrgID,
                 OrgName = admin.OrgName,
                 OrgAdminName = admin.OrgAdminName,
                 OrgAdminEmail = admin.OrgAdminEmail,

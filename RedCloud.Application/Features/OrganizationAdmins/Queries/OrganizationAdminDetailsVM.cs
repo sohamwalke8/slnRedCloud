@@ -8,7 +8,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
 {
     public class OrganizationAdminDetailsVM
     {
-        public int Id { get; set; }
+        public int OrgID { get; set; }
         public string OrgName { get; set; }
 
         public string OrgAdminName { get; set; } // Assuming you want the name of the organization admin
