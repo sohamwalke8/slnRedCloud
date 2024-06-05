@@ -30,4 +30,9 @@
     <ProjectReference Include="..\RedCloud.Domain\RedCloud.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Carrierss\Comand\" />
+    <Folder Include="Features\Numbers\Queries\" />
+  </ItemGroup>
+
 </Project>

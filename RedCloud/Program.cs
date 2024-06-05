@@ -30,6 +30,10 @@ builder.Services.AddScoped(typeof(IDropDownService<CountryVM>), typeof(DropDownS
 builder.Services.AddScoped(typeof(IStateService<StateVM>), typeof(StateService<StateVM>));
 builder.Services.AddScoped(typeof(ICityService<CityVM>), typeof(CityService<CityVM>));
 builder.Services.AddScoped<IOrganizationAdminService, OrganizationAdminService>();
+builder.Services.AddScoped(typeof(INumberService<NumberVM>), typeof(NumberService<NumberVM>));
+builder.Services.AddScoped(typeof(ICarrier<CarrierVM>), typeof(CarrierService<CarrierVM>));
+builder.Services.AddScoped(typeof(IType<TypesVM>), typeof(TypeService<TypesVM>));
+
 
 //logger setup
 Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();

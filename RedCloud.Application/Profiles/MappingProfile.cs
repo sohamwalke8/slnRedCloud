@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
+using RedCloud.Application.Features.Carrierss;
 using RedCloud.Application.Features.Categories.Commands.CreateCateogry;
 using RedCloud.Application.Features.Categories.Commands.StoredProcedure;
 using RedCloud.Application.Features.Cities.Queries;
 using RedCloud.Application.Features.Countries;
 using RedCloud.Application.Features.Events.Queries.GetEventDetail;
+using RedCloud.Application.Features.Numbers.Commands;
 using RedCloud.Application.Features.OrganizationAdmins.Commands;
 using RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAdmin;
 using RedCloud.Application.Features.ResellerAdminuser.Commands;
 using RedCloud.Application.Features.ResellerAdminuser.Queries;
+using RedCloud.Application.Features.Types;
 using RedCloud.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -41,6 +44,12 @@ namespace RedCloud.Application.Profiles
 
             CreateMap<CreateOrganizationAdminCommand, OrganizationAdmin>();
             CreateMap<UpdateOrganizationAdminCommand, OrganizationAdmin>();
+
+            //For Numbers
+            CreateMap<AddNumberCommand, Domain.Entities.Number>();
+            CreateMap<Types, TypesVM>();
+            CreateMap<Carrier, CarrierVM>();
+
         }
     }
 

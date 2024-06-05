@@ -41,8 +41,15 @@ namespace RedCloud.Persistenence
 
         public DbSet<OrganizationAdmin> OrganizationAdmins { get; set;}
 
+        public DbSet<AssignmentType> AssignmentTypes { get; set; }
+
+        public DbSet<Types> Type { get; set; }
+
+        public DbSet<Carrier> Carrier { get; set; } 
+        public DbSet<Number> Numbers { get; set; }   
 
 
+        
 
         //        private readonly ILoggedInUserService _loggedInUserService;
         //        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ILoggedInUserService loggedInUserService)
