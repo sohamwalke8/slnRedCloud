@@ -17,6 +17,8 @@ namespace RedCloud.Controllers
             _adminUserService = adminUserService;
             _logger = logger;
         }
+
+        [HttpGet("AddAdminUser")]
         public IActionResult AddAdmin()
         {
             return View();
@@ -40,7 +42,7 @@ namespace RedCloud.Controllers
                 };
 
                 var response = await _adminUserService.CreateAdminUser(adminUser);
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewallRedCloudAdmin");
             }
             return View(request);
         }

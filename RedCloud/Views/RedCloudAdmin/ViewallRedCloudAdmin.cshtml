@@ -24,7 +24,7 @@
             <div class="row">
 
                 <div class="col-sm-12">
-                    <div class="dt-search searchbar"> <a asp-action="" asp-controller="" class="btn btn-primary">Add RedCloud Admin</a></div>
+                    <div class="dt-search searchbar"> <a asp-action="AddAdmin" asp-controller="RedCloudAdmin"  class="btn btn-primary">Add RedCloud Admin</a></div>
                   
 
                     <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
@@ -46,7 +46,7 @@
                                    
                                     <td>@admins.FirstName</td>
                                     <td>@admins.LastName</td>
-                                    <td>@admins.MobileNumber</td>
+                                    <td>@admins.Email</td>
                                     <td>@((bool)admins.IsActive ? "Active" : "Not Active")</td>
                                     <td>
                                         <a asp-action="GetRedCloudAdminByID" asp-controller="RedCloudAdmin" asp-route-id="@admins.RedCloudAdminUserId">
@@ -54,7 +54,7 @@
 
                                         </a>
 
-                                        <a asp-action="DeleteRedCloudAdmin" asp-controller="RedCloudAdmin"><i class="fa-regular fa-pen-to-square" style="color: #131111;"></i></a>
+                                        <a asp-action="EditAdmin" asp-controller="RedCloudAdmin" asp-route-id="@admins.RedCloudAdminUserId"><i class="fa-regular fa-pen-to-square" style="color: #131111;"></i></a>
                                         <a class="delete-btn" data-id="@admins.RedCloudAdminUserId" data-name="@admins.FirstName" href="#"><i class="fa-solid fa-trash" style="color: #cb1010;"></i></a>
                                     </td>
 
@@ -173,7 +173,7 @@
                 $.get('/RedCloudAdmin/DeleteRedCloudAdmin/' + id)
                     .done(function (data) {
                         // Handle success
-                        alert(data);
+                        alert('Deleted Successfully');
                         // Optionally, you can reload the page or update the table
                         location.reload();
                     })

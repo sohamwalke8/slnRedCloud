@@ -9,7 +9,7 @@
 @* @using RedCloud.Application.Features.ResellerAdminuser.Queries; *@
 
 
-{
+
 
 <div class="container">
     <h2 class="text-center">@ViewData["Title"]</h2>
@@ -17,11 +17,11 @@
     <div class="header-section">
         <div class="logo-text">
             <img src="https://files.axshare.com/gsc/5886BD/e2/ee/cb/e2eecb648f19481093d6b12d28c3beb3/images/view_user_details/u27.svg?pageId=45d84280-2bba-453f-a23a-42e8aeab14be" alt="ReSeller Admin Logo">
-            <p><strong> View ReSeller Details </strong></p>
+            <p><strong> RedCloud Admin Details </strong></p>
         </div>
         <div class="buttons">
-            <a href="@Url.Action("Edit", new { id = Model.RedCloudAdminUserId })" class="btn btn-primary"><i class="fa-solid fa-pen-to-square" style="color: #74C0FC;"></i></a>
-            <a href="@Url.Action("ViewReSellerAdmin")" class="btn btn-secondary"><i class="fa-solid fa-circle-left"></i></a>
+            <a href="@Url.Action("EditAdmin", new { id = Model.RedCloudAdminUserId })" class="btn btn-primary"><i class="fa-solid fa-pen-to-square" style="color: #74C0FC;"></i></a>
+            <a href="@Url.Action("ViewallRedCloudAdmin")" class="btn btn-secondary"><i class="fa-solid fa-circle-left"></i></a>
         </div>
     </div>
 
@@ -42,7 +42,7 @@
                 <div class="text-center">
                     <!-- Trigger the confirmation modal -->
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">Block</button>
-                    <a href="@Url.Action("Index")" class="btn btn-primary">Cancel</a>
+                    <a href="@Url.Action("ViewallRedCloudAdmin")" class="btn btn-primary">Cancel</a>
                 </div>
 
             </div>
