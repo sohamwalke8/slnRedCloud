@@ -55,7 +55,9 @@ namespace RedCloud.Domain.Entities
 
         public City City { get; set; }
 
+        public int? NumberId { get; set; }
 
+        public Number? Number { get; set; }
 
 
 
