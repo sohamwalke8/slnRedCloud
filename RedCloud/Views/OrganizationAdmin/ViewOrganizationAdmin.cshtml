@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <p>
-                        <a class="btn btn-primary" asp-action=""
+                        <a class="btn btn-primary" asp-action="AddOrganizationAdmin" asp-controller="OrganizationAdmin"
                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                             Add Organization
                         </a>
@@ -67,7 +67,7 @@
                                             <i class="fa-solid fa-eye" style="color: #050505;"></i>
                                         </a>
 
-                                        <a asp-action="" asp-controller="" class="mr-2">
+                                        <a asp-action="UpdateOrganizationAdmin" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID" class="mr-2">
                                             <i class="fa-regular fa-pen-to-square" style="color: #131111;"></i>
                                         </a>
 

@@ -49,10 +49,5 @@ namespace RedCloud.Domain.Entities
         public City City { get; set; }
 
 
-
-
-
-
-
     }
 }
