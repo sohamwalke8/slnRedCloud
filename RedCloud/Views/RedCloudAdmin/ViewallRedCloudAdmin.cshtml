@@ -25,6 +25,8 @@
 
                 <div class="col-sm-12">
                     <div class="dt-search searchbar"> <a asp-action="" asp-controller="" class="btn btn-primary">Add RedCloud Admin</a></div>
+                  
+
                     <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
                         <thead>
                             <tr>
@@ -97,6 +99,8 @@
     <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+   
+
 
     @*     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
@@ -113,26 +117,39 @@
             var table = $('#dataTable').DataTable({
                 paging: true,
                 searching: true,
-                dom: '<"top text-center"Bf>rt<"bottom text-center"lp>',
-                // Add the buttons to the DOM
-                buttons: [
-                    'excel' // Add the Excel export button
-                ]
+               
+
+               // dom: '<Bf>rt<lp>',
+         
+               //  // Add the buttons to the DOM
+               //  buttons: [
+               //      'excel' // Add the Excel export button
+               //  ]
                
             });
+     
 
 
 
-            // //Add export buttons
+
+            //Add export buttons
             // new $.fn.dataTable.Buttons(table, {
             //     buttons: [
-            //         'csv', 'excel'
+            //         {
+            //             extend: 'csv',
+            //             text: 'Export CSV'
+            //         },
+            //         {
+            //             extend: 'excel',
+            //             text: 'Export Excel'
+            //         }
             //     ]
+
             // });
 
             
 
-            // // Display export buttons
+            // Display export buttons
             // table.buttons().container().appendTo('#dataTable_wrapper .col-md-6:eq(0)');
 
             // Event listeners for delete functionality
