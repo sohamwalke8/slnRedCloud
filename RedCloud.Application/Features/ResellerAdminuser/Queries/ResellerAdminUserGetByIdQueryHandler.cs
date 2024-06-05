@@ -40,14 +40,14 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
                 EIN = admin.EIN,
                 AddressLine1 = admin.AddressLine1,
                 AddressLine2 = admin.AddressLine2,
-
+                
                 CityId = admin.CityId,
                 StateId = admin.StateId,
                 CountryId = admin.CountryId,
                 ZipCode = admin.ZipCode,
                 CompanyURL = admin.CompanyURL,
                 CompanySupportEmail = admin.CompanySupportEmail,
-              //  RedCloudAdmin = admin.RedCloudAdmin,
+                RedCloudAdmin = admin.RedCloudAdmin,
                 Password = admin.Password
 
             };
