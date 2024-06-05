@@ -30,7 +30,7 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
 
             var model = new ReSellerAdmindto()
             {
-                ResellerAdminUserId = admin.ResellerAdminUserId,
+                ResellerAdminUserId = admin.ResellerAdminUserId, 
                 ResellerName = admin.ResellerName,
                 EIN = admin.EIN,
                 AddressLine1 = admin.AddressLine1,
@@ -42,6 +42,8 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
                 CountryName = admin.Country.Name,
                 StateName = admin.State.Name,
                 CityName = admin.City.Name,
+                Password=admin.Password,
+                
             };
 
 

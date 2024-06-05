@@ -40,7 +40,7 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
                 EIN = admin.EIN,
                 AddressLine1 = admin.AddressLine1,
                 AddressLine2 = admin.AddressLine2,
-
+                
                 CityId = admin.CityId,
                 StateId = admin.StateId,
                 CountryId = admin.CountryId,
