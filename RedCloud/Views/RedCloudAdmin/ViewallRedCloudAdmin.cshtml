@@ -206,6 +206,7 @@
                         <p>Are you sure you want to delete <span id="deleteItemName"></span>?</p>
                     </div>
                     <div class="modal-footer">
+                        <button id="cancelBtnToast" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
                     </div>
                 </div>
@@ -224,6 +225,10 @@
     <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+    <script type="text/javascript" src="http://127.0.0.1:8000/back/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+   
 
     <script>
         $(document).ready(function () {
@@ -266,6 +271,10 @@
                 $('#deleteConfirmationModal').modal('hide');
             });
 
+            $('#cancelBtnToast').on('click', function (e) {
+                $('#deleteConfirmationModal').modal('hide');
+            });
+
             $('#confirmDeleteBtn').on('click', function () {
                 var id = $(this).attr('data-id');
                 $('#deleteConfirmationModal').modal('hide');
@@ -274,6 +283,7 @@
                     .done(function (data) {
                         // Handle success
                         alert('Deleted Successfully');
+                        
                         // Optionally, you can reload the page or update the table
                         location.reload();
                     })
