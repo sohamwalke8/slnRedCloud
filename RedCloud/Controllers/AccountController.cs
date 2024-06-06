@@ -63,7 +63,8 @@ namespace RedCloud.Controllers
                 if (result.Data.Roles != null)
                 {
                     // Set session data
-                    var roles = result.Data.Roles.Select(r => new {
+                    var roles = result.Data.Roles.Select(r => new
+                    {
                         RoleName = r.RoleName.Trim(),
                         // Include other properties if needed
                     });
@@ -131,7 +132,7 @@ namespace RedCloud.Controllers
 
                 if (IsUserExist == null)
                 {
-                   // _logger.LogWarning($"Rate with ID: {id} not found");
+                    // _logger.LogWarning($"Rate with ID: {id} not found");
                     return NotFound();
                 }
                 else
@@ -142,7 +143,7 @@ namespace RedCloud.Controllers
                         Subject = "Forget Password",
                         //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetPassword"
                         //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetPassword/{data[0].userId}"
-                       Body = $"This Forget email password please click  https://localhost:7206/Account/ResetUserPassword/{IsUserExist.UserId}"
+                        Body = $"This Forget email password please click  https://localhost:7206/Account/ResetUserPassword/{IsUserExist.UserId}"
                     };
                     await _mailService.SendEmailAsync(mailRequest);
                     //var responses = await _accountService.ForgetUserPasswordService(model);
@@ -167,19 +168,15 @@ namespace RedCloud.Controllers
 
             if (ModelState.IsValid)
             {
-               var response = await _accountService.ForgetUserPasswordService(model);
-
-               if (response.Succeeded == false)
-                {
-                    
-                    return View();
-                }                
-                else
-                {
-                    TempData["SuccessMessage"] = "Password Reset successfully!l";
-                }
-            
+                var response = await _accountService.ForgetUserPasswordService(model);
+                TempData["SuccessMessage"] = "Password Reset successfully!l";
             }
+            else
+            {
+                TempData["ErrorMessage"] = "Please try again!";
+            }
+
+
 
             //var apiUrl = $"https://localhost:7193/api/Account/ResetPassword";
 
@@ -204,7 +201,7 @@ namespace RedCloud.Controllers
             //        return View();
             //    }
             //}
-            TempData["ErrorMessage"] = "Please try again!";
+            
             return View();
         }
 
