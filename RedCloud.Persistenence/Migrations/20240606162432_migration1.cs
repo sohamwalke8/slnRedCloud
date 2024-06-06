@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RedCloud.Persistenence.Migrations
 {
     /// <inheritdoc />
-    public partial class demo : Migration
+    public partial class migration1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,6 +22,19 @@ namespace RedCloud.Persistenence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AssignmentTypes", x => x.AssignmentTypeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Campaigns",
+                columns: table => new
+                {
+                    CampaignId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Campaigns", x => x.CampaignId);
                 });
 
             migrationBuilder.CreateTable(
@@ -117,7 +130,7 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.CountryId,
                         principalTable: "Countries",
                         principalColumn: "CountryId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -142,13 +155,13 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.RoleId,
                         principalTable: "Role",
                         principalColumn: "RoleId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_RoleMapper_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -168,62 +181,7 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.StateId,
                         principalTable: "States",
                         principalColumn: "StateId",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Numbers",
-                columns: table => new
-                {
-                    NumberId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TypesId = table.Column<int>(type: "int", nullable: false),
-                    StateId = table.Column<int>(type: "int", nullable: false),
-                    AssignmentTypeId = table.Column<int>(type: "int", nullable: true),
-                    CarrierId = table.Column<int>(type: "int", nullable: true),
-                    CountryId = table.Column<int>(type: "int", nullable: false),
-                    LATA = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RateCenter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<int>(type: "int", nullable: true),
-                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Numbers", x => x.NumberId);
-                    table.ForeignKey(
-                        name: "FK_Numbers_AssignmentTypes_AssignmentTypeId",
-                        column: x => x.AssignmentTypeId,
-                        principalTable: "AssignmentTypes",
-                        principalColumn: "AssignmentTypeId");
-                    table.ForeignKey(
-                        name: "FK_Numbers_Carrier_CarrierId",
-                        column: x => x.CarrierId,
-                        principalTable: "Carrier",
-                        principalColumn: "CarrierId");
-                    table.ForeignKey(
-                        name: "FK_Numbers_Countries_CountryId",
-                        column: x => x.CountryId,
-                        principalTable: "Countries",
-                        principalColumn: "CountryId",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Numbers_States_StateId",
-                        column: x => x.StateId,
-                        principalTable: "States",
-                        principalColumn: "StateId",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Numbers_Type_TypesId",
-                        column: x => x.TypesId,
-                        principalTable: "Type",
-                        principalColumn: "TypesId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -246,7 +204,6 @@ namespace RedCloud.Persistenence.Migrations
                     CountryId = table.Column<int>(type: "int", nullable: false),
                     StateId = table.Column<int>(type: "int", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: true),
-                    NumberId = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedBy = table.Column<int>(type: "int", nullable: true),
@@ -267,11 +224,6 @@ namespace RedCloud.Persistenence.Migrations
                         principalTable: "Countries",
                         principalColumn: "CountryId",
                         onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_OrganizationAdmins_Numbers_NumberId",
-                        column: x => x.NumberId,
-                        principalTable: "Numbers",
-                        principalColumn: "NumberId");
                     table.ForeignKey(
                         name: "FK_OrganizationAdmins_States_StateId",
                         column: x => x.StateId,
@@ -299,7 +251,6 @@ namespace RedCloud.Persistenence.Migrations
                     CountryId = table.Column<int>(type: "int", nullable: false),
                     StateId = table.Column<int>(type: "int", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
-                    NumberId = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedBy = table.Column<int>(type: "int", nullable: true),
@@ -322,16 +273,83 @@ namespace RedCloud.Persistenence.Migrations
                         principalColumn: "CountryId",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_ResellerAdminUsers_Numbers_NumberId",
-                        column: x => x.NumberId,
-                        principalTable: "Numbers",
-                        principalColumn: "NumberId");
-                    table.ForeignKey(
                         name: "FK_ResellerAdminUsers_States_StateId",
                         column: x => x.StateId,
                         principalTable: "States",
                         principalColumn: "StateId",
                         onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Numbers",
+                columns: table => new
+                {
+                    NumberId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrganizationAdminID = table.Column<int>(type: "int", nullable: false),
+                    ResellerAdminUserId = table.Column<int>(type: "int", nullable: false),
+                    TypesId = table.Column<int>(type: "int", nullable: true),
+                    StateId = table.Column<int>(type: "int", nullable: true),
+                    AssignmentTypeId = table.Column<int>(type: "int", nullable: true),
+                    CarrierId = table.Column<int>(type: "int", nullable: true),
+                    CountryId = table.Column<int>(type: "int", nullable: true),
+                    LATA = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RateCenter = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EndDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CampaignId = table.Column<int>(type: "int", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Numbers", x => x.NumberId);
+                    table.ForeignKey(
+                        name: "FK_Numbers_AssignmentTypes_AssignmentTypeId",
+                        column: x => x.AssignmentTypeId,
+                        principalTable: "AssignmentTypes",
+                        principalColumn: "AssignmentTypeId");
+                    table.ForeignKey(
+                        name: "FK_Numbers_Campaigns_CampaignId",
+                        column: x => x.CampaignId,
+                        principalTable: "Campaigns",
+                        principalColumn: "CampaignId");
+                    table.ForeignKey(
+                        name: "FK_Numbers_Carrier_CarrierId",
+                        column: x => x.CarrierId,
+                        principalTable: "Carrier",
+                        principalColumn: "CarrierId");
+                    table.ForeignKey(
+                        name: "FK_Numbers_Countries_CountryId",
+                        column: x => x.CountryId,
+                        principalTable: "Countries",
+                        principalColumn: "CountryId");
+                    table.ForeignKey(
+                        name: "FK_Numbers_OrganizationAdmins_OrganizationAdminID",
+                        column: x => x.OrganizationAdminID,
+                        principalTable: "OrganizationAdmins",
+                        principalColumn: "OrgID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Numbers_ResellerAdminUsers_ResellerAdminUserId",
+                        column: x => x.ResellerAdminUserId,
+                        principalTable: "ResellerAdminUsers",
+                        principalColumn: "ResellerAdminUserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Numbers_States_StateId",
+                        column: x => x.StateId,
+                        principalTable: "States",
+                        principalColumn: "StateId");
+                    table.ForeignKey(
+                        name: "FK_Numbers_Type_TypesId",
+                        column: x => x.TypesId,
+                        principalTable: "Type",
+                        principalColumn: "TypesId");
                 });
 
             migrationBuilder.CreateTable(
@@ -349,13 +367,13 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.OrganizationAdminsOrgID,
                         principalTable: "OrganizationAdmins",
                         principalColumn: "OrgID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrganizationAdminResellerAdminUser_ResellerAdminUsers_ResellerAdminUsersResellerAdminUserId",
                         column: x => x.ResellerAdminUsersResellerAdminUserId,
                         principalTable: "ResellerAdminUsers",
                         principalColumn: "ResellerAdminUserId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -398,6 +416,11 @@ namespace RedCloud.Persistenence.Migrations
                 column: "AssignmentTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Numbers_CampaignId",
+                table: "Numbers",
+                column: "CampaignId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Numbers_CarrierId",
                 table: "Numbers",
                 column: "CarrierId");
@@ -406,6 +429,16 @@ namespace RedCloud.Persistenence.Migrations
                 name: "IX_Numbers_CountryId",
                 table: "Numbers",
                 column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Numbers_OrganizationAdminID",
+                table: "Numbers",
+                column: "OrganizationAdminID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Numbers_ResellerAdminUserId",
+                table: "Numbers",
+                column: "ResellerAdminUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Numbers_StateId",
@@ -433,11 +466,6 @@ namespace RedCloud.Persistenence.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrganizationAdmins_NumberId",
-                table: "OrganizationAdmins",
-                column: "NumberId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_OrganizationAdmins_StateId",
                 table: "OrganizationAdmins",
                 column: "StateId");
@@ -456,11 +484,6 @@ namespace RedCloud.Persistenence.Migrations
                 name: "IX_ResellerAdminUsers_CountryId",
                 table: "ResellerAdminUsers",
                 column: "CountryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ResellerAdminUsers_NumberId",
-                table: "ResellerAdminUsers",
-                column: "NumberId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ResellerAdminUsers_StateId",
@@ -487,6 +510,9 @@ namespace RedCloud.Persistenence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Numbers");
+
+            migrationBuilder.DropTable(
                 name: "OrganizationAdminResellerAdminUser");
 
             migrationBuilder.DropTable(
@@ -494,6 +520,18 @@ namespace RedCloud.Persistenence.Migrations
 
             migrationBuilder.DropTable(
                 name: "RoleMapper");
+
+            migrationBuilder.DropTable(
+                name: "AssignmentTypes");
+
+            migrationBuilder.DropTable(
+                name: "Campaigns");
+
+            migrationBuilder.DropTable(
+                name: "Carrier");
+
+            migrationBuilder.DropTable(
+                name: "Type");
 
             migrationBuilder.DropTable(
                 name: "OrganizationAdmins");
@@ -511,19 +549,7 @@ namespace RedCloud.Persistenence.Migrations
                 name: "Cities");
 
             migrationBuilder.DropTable(
-                name: "Numbers");
-
-            migrationBuilder.DropTable(
-                name: "AssignmentTypes");
-
-            migrationBuilder.DropTable(
-                name: "Carrier");
-
-            migrationBuilder.DropTable(
                 name: "States");
-
-            migrationBuilder.DropTable(
-                name: "Type");
 
             migrationBuilder.DropTable(
                 name: "Countries");

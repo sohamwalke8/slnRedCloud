@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using RedCloud.Application.Features.AssignmentType;
+using RedCloud.Application.Features.Campaign;
 using RedCloud.Application.Features.Carrierss;
 using RedCloud.Application.Features.Categories.Commands.CreateCateogry;
 using RedCloud.Application.Features.Categories.Commands.StoredProcedure;
@@ -51,6 +52,11 @@ namespace RedCloud.Application.Profiles
             CreateMap<Types, TypesVM>();
             CreateMap<Carrier, CarrierVM>();
             CreateMap<AssignmentType, AssignmentTypeVM>();
+            CreateMap<Domain.Entities.Number,AssignNumberViewModel>();
+            CreateMap<AssignNumberCommand, Domain.Entities.Number>();
+            CreateMap<Campaign, CampaignVM>();
+
+
 
         }
     }

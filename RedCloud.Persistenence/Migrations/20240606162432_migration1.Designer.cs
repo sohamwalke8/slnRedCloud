@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RedCloud.Persistenence;
 
@@ -11,9 +12,11 @@ using RedCloud.Persistenence;
 namespace RedCloud.Persistenence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240606162432_migration1")]
+    partial class migration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,7 +170,7 @@ namespace RedCloud.Persistenence.Migrations
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("OrganizationAdminID")
+                    b.Property<int>("OrganizationAdminID")
                         .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")
@@ -176,7 +179,7 @@ namespace RedCloud.Persistenence.Migrations
                     b.Property<string>("RateCenter")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ResellerAdminUserId")
+                    b.Property<int>("ResellerAdminUserId")
                         .HasColumnType("int");
 
                     b.Property<string>("StartDate")
@@ -620,11 +623,15 @@ namespace RedCloud.Persistenence.Migrations
 
                     b.HasOne("RedCloud.Domain.Entities.OrganizationAdmin", "OrganizationAdmin")
                         .WithMany("Numbers")
-                        .HasForeignKey("OrganizationAdminID");
+                        .HasForeignKey("OrganizationAdminID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("RedCloud.Domain.Entities.ResellerAdminUser", "ResellerAdminUsers")
                         .WithMany("Numbers")
-                        .HasForeignKey("ResellerAdminUserId");
+                        .HasForeignKey("ResellerAdminUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("RedCloud.Domain.Entities.State", "State")
                         .WithMany()
@@ -666,7 +673,7 @@ namespace RedCloud.Persistenence.Migrations
                     b.HasOne("RedCloud.Domain.Entities.State", "State")
                         .WithMany()
                         .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("City");

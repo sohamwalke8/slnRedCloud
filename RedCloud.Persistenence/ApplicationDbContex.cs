@@ -22,6 +22,11 @@ namespace RedCloud.Persistenence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //use this to configure the model
+            modelBuilder.Entity<OrganizationAdmin>()
+               .HasOne(oa => oa.State)
+               .WithMany()
+               .HasForeignKey(oa => oa.StateId)
+               .OnDelete(DeleteBehavior.Restrict); // Specify NO ACTION on delete
         }
 
         public DbSet<Role> Role { get; set; }
@@ -39,17 +44,20 @@ namespace RedCloud.Persistenence
 
         public DbSet<City> Cities { get; set; }
 
-        public DbSet<OrganizationAdmin> OrganizationAdmins { get; set;}
+        public DbSet<OrganizationAdmin> OrganizationAdmins { get; set; }
 
         public DbSet<AssignmentType> AssignmentTypes { get; set; }
 
         public DbSet<Types> Type { get; set; }
 
-        public DbSet<Carrier> Carrier { get; set; } 
+        public DbSet<Carrier> Carrier { get; set; }
         public DbSet<Number> Numbers { get; set; }   
+        public DbSet<Campaign> Campaigns { get; set; }
 
 
-        
+     
+
+
 
         //        private readonly ILoggedInUserService _loggedInUserService;
         //        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ILoggedInUserService loggedInUserService)

@@ -13,27 +13,36 @@ namespace RedCloud.Domain.Entities
     {
         [Key]
         public int NumberId { get; set; }
-        public string PhoneNumber { get; set; }
-        public virtual List<ResellerAdminUser> ResellerAdminUsers { get; set; } = new List<ResellerAdminUser>();
-        public virtual List<OrganizationAdmin> OrganizationAdmin { get; set; } = new List<OrganizationAdmin>();
-     
-        public int TypesId { get; set; }
-        public Types Types { get; set; }
-        public int StateId { get; set; }
-        public State State { get; set; }
+        public string? PhoneNumber { get; set; }
+       // public virtual List<ResellerAdminUser> reselleradminusers { get; set; } = new List<ResellerAdminUser>();
+       // public virtual List<OrganizationAdmin> organizationadmin { get; set; } = new List<OrganizationAdmin>();
+        public OrganizationAdmin? OrganizationAdmin { get; set; }
+
+        public int? OrganizationAdminID { get; set; }    
+//public int OrgID { get; set; }
+        public ResellerAdminUser? ResellerAdminUsers { get; set; }
+
+        public int? ResellerAdminUserId { get; set; }
+        public int? TypesId { get; set; }
+        public Types? Types { get; set; }
+        public int? StateId { get; set; }
+        public State? State { get; set; }
         public int? AssignmentTypeId { get; set; }
         public AssignmentType? AssignmentType { get; set; }
         public int? CarrierId { get; set; }
         public Carrier? Carrier { get; set; }
 
-        public Country Country { get; set; }
+        public Country? Country { get; set; }
 
-        public int CountryId { get; set; }
-        public string LATA { get; set; }    
-        public string RateCenter { get; set; }
+        public int? CountryId { get; set; }
+        public string? LATA { get; set; }    
+        public string? RateCenter { get; set; }
 
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public string? StartDate { get; set; }
+        public string? EndDate { get; set; }
+
+        public int? CampaignId { get; set; }
+        public Campaign? Campaign { get; set; }
 
     }
 }
