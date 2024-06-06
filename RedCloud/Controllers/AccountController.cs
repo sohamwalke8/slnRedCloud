@@ -1,18 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper.Internal;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using Newtonsoft.Json;
+using RedCloud.Application.Contract.Infrastructure;
 using RedCloud.Application.Features.Account.Queries.LoginQuery;
+using RedCloud.Domain.Common;
 using RedCloud.Interfaces;
+using RedCloud.Models.Email;
+using RedCloud.ViewModel;
+using System.Net.Http;
+using System.Text;
 
 namespace RedCloud.Controllers
 {
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
+        private readonly IMailService _mailService;
 
-
-        public AccountController(IAccountService accountService)
+        public AccountController(IAccountService accountService, IMailService mailService)
         {
             _accountService = accountService;
+            _mailService = mailService;
         }
 
         // Action method to display the login page
@@ -101,7 +111,102 @@ namespace RedCloud.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        //ForgetUserPasswordVM
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgetPassword(ForgetUserPasswordVM model)
+        {
+            if (string.IsNullOrEmpty(model.Email))
+            {
+                ModelState.AddModelError("Email", "Email is required.");
+                return View();
+            }
+            else
+            {
+                var IsUserExist = await _accountService.CheckUserExistByEmail(model.Email);
 
+
+                if (IsUserExist == null)
+                {
+                   // _logger.LogWarning($"Rate with ID: {id} not found");
+                    return NotFound();
+                }
+                else
+                {
+                    MailRequest mailRequest = new MailRequest()
+                    {
+                        ToEmail = model.Email,
+                        Subject = "Forget Password",
+                        //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetPassword"
+                        //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetPassword/{data[0].userId}"
+                       Body = $"This Forget email password please click  https://localhost:7206/Account/ResetUserPassword/{IsUserExist.UserId}"
+                    };
+                    await _mailService.SendEmailAsync(mailRequest);
+                    //var responses = await _accountService.ForgetUserPasswordService(model);
+
+                    // Return to the same view with a success message
+                    TempData["SuccessMessage"] = "Email sent successfully! Please check on mail";
+
+                }
+
+            }
+            return View();
+        }
+        public async Task<IActionResult> ResetUserPassword(int Id)
+        {
+            ViewBag.UserId = Id;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetUserPassword(ResetUserPasswordVM model)
+        {
+
+            if (ModelState.IsValid)
+            {
+               var response = await _accountService.ForgetUserPasswordService(model);
+
+               if (response.Succeeded == false)
+                {
+                    
+                    return View();
+                }                
+                else
+                {
+                    TempData["SuccessMessage"] = "Password Reset successfully!l";
+                }
+            
+            }
+
+            //var apiUrl = $"https://localhost:7193/api/Account/ResetPassword";
+
+            //using (HttpClient client = new HttpClient())
+            //{
+            //    // Serialize the model object to JSON
+            //    string jsonModel = JsonConvert.SerializeObject(model);
+
+            //    StringContent content = new StringContent(jsonModel, Encoding.UTF8, "application/json");
+
+            //    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        // Handle successful API response
+            //        return RedirectToAction("Login", "Account"); // Redirect to another action (optional)
+            //    }
+            //    else
+            //    {
+            //        // Handle API call failures
+            //        ModelState.AddModelError("", $"API call failed with status code: {response.StatusCode}");
+            //        return View();
+            //    }
+            //}
+            TempData["ErrorMessage"] = "Please try again!";
+            return View();
+        }
 
         //[HttpPost]
         //public async Task<IActionResult> LoginAsync(Login login)
@@ -131,9 +236,6 @@ namespace RedCloud.Controllers
         //        return View();
         //    }
         //}
-        public IActionResult Index()
-        {
-            return View();
-        }
+
     }
 }

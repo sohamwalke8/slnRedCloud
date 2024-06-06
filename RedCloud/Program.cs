@@ -1,5 +1,6 @@
 using MvcApiCallingService.Helpers.ApiHelper;
 using RedCloud.Interfaces;
+using RedCloud.Models.Email;
 using RedCloud.Services;
 using RedCloud.ViewModel;
 using Serilog;
@@ -30,6 +31,9 @@ builder.Services.AddScoped(typeof(IDropDownService<CountryVM>), typeof(DropDownS
 builder.Services.AddScoped(typeof(IStateService<StateVM>), typeof(StateService<StateVM>));
 builder.Services.AddScoped(typeof(ICityService<CityVM>), typeof(CityService<CityVM>));
 builder.Services.AddScoped<IOrganizationAdminService, OrganizationAdminService>();
+
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings")); // Add by Aditya
+builder.Services.AddTransient<IMailService, MailService>(); // Add by Aditya
 
 //logger setup
 Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();

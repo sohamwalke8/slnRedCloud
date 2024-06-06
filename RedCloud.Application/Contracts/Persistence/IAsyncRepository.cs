@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,10 @@ namespace RedCloud.Application.Contract.Persistence
 
         Task<T> GetByIdAsync(int Id);
         Task<T> GetByIdAsyncInculde(int id);
+
+        Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName, SqlParameter[] parameters = null);
+
+        Task<int> StoredProcedureCommandAsync(string storedProcedureName, SqlParameter[] parameters = null);
+
     }
 }
