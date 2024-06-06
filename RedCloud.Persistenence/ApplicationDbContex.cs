@@ -39,7 +39,12 @@ namespace RedCloud.Persistenence
 
         public DbSet<City> Cities { get; set; }
 
-        public DbSet<OrganizationAdmin> OrganizationAdmins { get; set;}
+        // Added for campaingn table 
+        public DbSet<Campaign> Campaign { get; set; }
+
+        public DbSet<OrganizationAdmin> OrganizationAdmins { get; set; }
+
+
 
 
 

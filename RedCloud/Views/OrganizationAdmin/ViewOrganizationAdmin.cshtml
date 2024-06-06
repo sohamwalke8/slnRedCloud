@@ -1,116 +1,218 @@
 ﻿@model IEnumerable<RedCloud.ViewModel.AllOrganizationAdminVM>
 
 @{
-    ViewData["Title"] = "ViewOrganizationAdmin";
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <style>
+    .dataTables_wrapper .top {
+        margin-top: 0;
+    }
 
     #dataTable {
         width: 100% !important;
     }
-
-    .display-none {
-        display: none;
-    }
-
-    /* .dt-search, .dt-info, .dt-paging */
 
     .dt-search {
         float: right;
         margin-bottom: 2px;
     }
 
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        background-color: transparent;
+    }
+
+        .table th,
+        .table td {
+            padding: 1rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .table tbody + tbody {
+            border-top: 2px solid #dee2e6;
+        }
+
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #dee2e6;
+        }
+
+        .table-bordered thead th,
+        .table-bordered thead td {
+            border-bottom-width: 2px;
+        }
+
+    .status-active {
+        color: white;
+        background-color: green;
+        padding: 0.2rem 0.5rem;
+        border-radius: 0.25rem;
+    }
+
+    .status-inactive {
+        color: white;
+        background-color: red;
+        padding: 0.2rem 0.5rem;
+        border-radius: 0.25rem;
+    }
+
+    .btn-action {
+        margin-right: 0.5rem;
+    }
+
+    / Custom CSS for DataTables Buttons /
+    .dt-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 0.25rem;
+        padding: 0.5rem 1rem;
+        margin: 0.2rem;
+        font-size: 0.875rem;
+        cursor: pointer;
+    }
+
+    .dt-button:hover {
+        background-color: #0056b3;
+    }
+
+    / Custom CSS for DataTables Pagination /
+    .dataTables_paginate .paginate_button {
+        background-color: #007bff;
+        color: white !important;
+        border: none;
+        border-radius: 0.25rem;
+        padding: 0.5rem 1rem;
+        margin: 0.2rem;
+        font-size: 0.875rem;
+        cursor: pointer;
+    }
+
+    .dataTables_paginate .paginate_button:hover {
+        background-color: #0056b3;
+    }
+
+    .dataTables_paginate .paginate_button.current {
+        background-color: #0056b3;
+        color: white !important;
+    }
+
+    / Custom CSS for Entries Dropdown /
+    .dataTables_length select {
+        border: 1px solid #007bff;
+        border-radius: 0.25rem;
+        padding: 0.25rem;
+        margin: 0.2rem;
+    }
 </style>
 
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title">Manage Organization </h3>
-    </div>
-    <!-- /.card-header -->
+<form method="post" id="user-query-form" action="/OrganizationAdmin/AddOrganizationAdmin" novalidate="novalidate">
     <div class="card-body">
-        <div id="dataTable_wrapper tabel table-resposnive" class="dataTables_wrapper dt-bootstrap4">
-            <div class="row">
-                <div class="col-sm-12">
-                    <p>
-                        <a class="btn btn-primary" asp-action="AddOrganizationAdmin" asp-controller="OrganizationAdmin"
-                           style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                            Add Organization
-                        </a>
-                        @*  <a asp-action="">Create New</a> *@
 
-                    </p>
-                    <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
-                        <thead>
-                            <tr>
-                                @* <th class="display-none">Id</th> *@
-                                <th>Organization Name</th>
-                                <th>EIN</th>
-                                <th>Email</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    @* <td>@Html.DisplayFor(modelItem => item.OrgID)</td> *@
-                                    @* <td class="display-none">@item.OrgID</td>  *@
-                                    <td>@Html.DisplayFor(modelItem => item.OrgName)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.EIN)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.OrgAdminEmail)</td>
-                                    <td>@((bool)item.IsActive ? "Active" : "Not Active")</td>
-                                    <td>
-                                        <a asp-action="ViewOrganizationDetails" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID" class="mr-2">
-                                            <i class="fa-solid fa-eye" style="color: #050505;"></i>
-                                        </a>
+        <div class="card">
+            <div class="card-header" style="background-color:#007BFF">
+                <h3 class="card-title" style="color:white; font-weight:bold;font-size:23px;">Manage Organization</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>
+                                <a class="btn btn-primary" asp-action="AddOrganizationAdmin" asp-controller="OrganizationAdmin"
+                                   style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; float:right; margin-bottom:10px">
+                                    Add Organization Admin
+                                </a>
+                            </p>
+                            <label for="entriesPerPage">
+                                Show Entries
+                                <select id="entriesPerPage" class="custom-select custom-select-sm form-control form-control-sm">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </label>
+                            <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
+                                <thead>
+                                    <tr>
+                                        <th>Organization Name</th>
+                                        <th>EIN</th>
+                                        <th>Email</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.OrgName)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.EIN)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.OrgAdminEmail)</td>
+                                            <td>
+                                                <span class="@(item.IsActive ? "status-active" : "status-inactive")">
+                                                    @((bool)item.IsActive ? "Active" : "Not Active")
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a asp-action="ViewOrganizationDetails" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID" class="btn-action">
+                                                    <i class="fa-solid fa-eye" style="color: #050505;"></i>
+                                                </a>
 
-                                        <a asp-action="UpdateOrganizationAdmin" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID" class="mr-2">
-                                            <i class="fa-regular fa-pen-to-square" style="color: #131111;"></i>
-                                        </a>
+                                                <a asp-action="UpdateOrganizationAdmin" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID" class="btn-action">
+                                                    <i class="fa-regular fa-pen-to-square" style="color: #131111;"></i>
+                                                </a>
 
-                                        <a class="delete-btn" data-id="@item.OrgID" data-name="@item.OrgName" href="#">
-                                            <i class="fa-solid fa-trash" style="color: #cb1010;"></i>
-                                        </a>
+                                                <a class="delete-btn btn-action" data-id="@item.OrgID" data-name="@item.OrgName" href="#">
+                                                    <i class="fa-solid fa-trash" style="color: #cb1010;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
 
-                                        @*                                         <a asp-action="GetOrganizationAdminById" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID">
-                                    <i class="fa-solid fa-eye" style="color: #050505;"></i></a>
-
-                                    <a asp-action="" asp-controller=""><i class="fa-regular fa-pen-to-square" style="color: #131111;"></i></a>
-                                    <a class="delete-btn" data-id="@item.OrgID" data-name="@item.OrgName" href="#"><i class="fa-solid fa-trash" style="color: #cb1010;"></i></a>
-                                    *@
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" id="cancelBtn" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete <span id="deleteItemName"></span>?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /.card-body -->
-</div>
-
-<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
-                <button type="button" class="close" data-dismiss="modal" id="cancelBtn" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete <span id="deleteItemName"></span>?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
-            </div>
-        </div>
-    </div>
-</div>
+</form>
 
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -130,8 +232,23 @@
                 searching: true,
                 dom: 'Bfrtip',
                 buttons: [
-                    'excelHtml5'
+                    {
+                        extend: 'csvHtml5',
+                        text: 'Export CSV',
+                        className: 'dt-button'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Export Excel',
+                        className: 'dt-button'
+                    },
+                   
                 ]
+            });
+
+            $('#entriesPerPage').change(function () {
+                var length = $(this).val();
+                table.page.len(length).draw();
             });
 
             // Event listeners for delete functionality
@@ -167,3 +284,5 @@
         });
     </script>
 }
+
+        

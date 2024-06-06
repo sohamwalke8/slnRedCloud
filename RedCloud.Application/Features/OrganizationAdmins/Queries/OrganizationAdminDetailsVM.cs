@@ -30,6 +30,8 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
 
         public string CompanyURL { get; set; }
 
+        public bool IsActive { get; set; } 
+
 
     }
 }

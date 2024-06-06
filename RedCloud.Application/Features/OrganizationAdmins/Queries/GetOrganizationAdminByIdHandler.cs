@@ -42,7 +42,8 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
                 CityName = admin.City.Name,
                 ZipCode = admin.ZipCode,
                 EIN = admin.EIN,
-                CompanyURL = admin.OrgURL
+                CompanyURL = admin.OrgURL,
+                IsActive = admin.IsActive
             };
 
             return new Response<OrganizationAdminDetailsVM>(model);

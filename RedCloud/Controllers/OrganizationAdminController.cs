@@ -58,7 +58,7 @@ namespace RedCloud.Controllers
             try
             {
                 await _organizationAdminService.SoftDeleteOrganizationAdmin(id);
-                return Ok($"OrganizationDetails with ID {id} has been soft deleted.");
+                return Ok($"OrganizationDetails has been soft deleted.");
             }
             catch (Exception ex)
             {
