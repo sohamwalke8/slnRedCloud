@@ -1,52 +1,93 @@
 ﻿@model RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAdmin.RedCloudAdminVM;
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
     Layout = "_Layout";
 }
 
-@* @using RedCloud.Application.Features.ResellerAdminuser.Queries; *@
+<!-- Add this style block or include it in your site's CSS file -->
+<style>
+    .admin-details {
+        margin-bottom: 30px;
+        margin-top:20px;/* Add some space between sections */
+    }
 
+    .card-custom {
+        background-color: #f8f9fa; /* Light gray background */
+        border-radius: 10px;
+        margin-top: 20px;
+        margin-left:120px;
+        width:900px;
+        
+       
+    }
 
+    .card-header-custom {
+        background-color: #007BFF; /* Dark background for header */
+        color: #fff;
+        border-radius: 10px 10px 0 0;
+        padding: 10px 20px;
+    }
 
+        .card-header-custom .logo-text {
+            display: flex;
+            align-items: center;
+        }
 
-<div class="container">
-    <h2 class="text-center">@ViewData["Title"]</h2>
+            .card-header-custom .logo-text img {
+                width: 50px;
+                margin-right: 10px;
+            }
 
-    <div class="header-section">
-        <div class="logo-text">
-            <img src="https://files.axshare.com/gsc/5886BD/e2/ee/cb/e2eecb648f19481093d6b12d28c3beb3/images/view_user_details/u27.svg?pageId=45d84280-2bba-453f-a23a-42e8aeab14be" alt="ReSeller Admin Logo">
-            <p><strong> RedCloud Admin Details </strong></p>
+        .card-header-custom .buttons {
+            margin-left: auto;
+        }
+
+            .card-header-custom .buttons a {
+                color: #fff;
+                margin-left: 10px;
+            }
+</style>
+
+<div class="container mt-5" style="align-content:center">
+    <div class="card card-custom">
+        <div class="card-header card-header-custom d-flex justify-content-between align-items-center">
+            <div class="logo-text">
+                <img src="https://files.axshare.com/gsc/5886BD/e2/ee/cb/e2eecb648f19481093d6b12d28c3beb3/images/view_user_details/u27.svg?pageId=45d84280-2bba-453f-a23a-42e8aeab14be" alt="ReSeller Admin Logo">
+                <strong>RedCloud Admin Details</strong>
+            </div>
+            <div class="buttons">
+                <a href="@Url.Action("EditAdmin", new { id = Model.RedCloudAdminUserId })" class="btn btn-outline-light">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+                <a href="@Url.Action("ViewallRedCloudAdmin")" class="btn btn-outline-light">
+                    <i class="fa-solid fa-circle-left"></i>
+                </a>
+            </div>
         </div>
-        <div class="buttons">
-            <a href="@Url.Action("EditAdmin", new { id = Model.RedCloudAdminUserId })" class="btn btn-primary"><i class="fa-solid fa-pen-to-square" style="color: #74C0FC;"></i></a>
-            <a href="@Url.Action("ViewallRedCloudAdmin")" class="btn btn-secondary"><i class="fa-solid fa-circle-left"></i></a>
-        </div>
-    </div>
-
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="custom-border">
-                <div class="row">
-                    <div class="col-md-6">
-                        @Html.HiddenFor(x => x.RedCloudAdminUserId)
+        <div class="card-body">
+            <div class="row" style="margin-left:20px">
+                <div class="col-md-6">
+                    @Html.HiddenFor(x => x.RedCloudAdminUserId)
+                    <div class="admin-details">
                         <p><strong>Admin First Name:</strong> @Html.DisplayFor(model => model.FirstName)</p>
                         <p><strong>Admin Last Name:</strong> @Html.DisplayFor(model => model.LastName)</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="admin-details">
                         <p><strong>Admin Email Address:</strong> @Html.DisplayFor(model => model.Email)</p>
                         <p><strong>Admin Mobile No:</strong> @Html.DisplayFor(model => model.MobileNumber)</p>
-
                     </div>
-
                 </div>
-                <div class="text-center">
-                    <!-- Trigger the confirmation modal -->
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">Block</button>
-                    <a href="@Url.Action("ViewallRedCloudAdmin")" class="btn btn-primary">Cancel</a>
-                </div>
-
             </div>
 
+            <div class="text-center mt-4">
+                @if (Model.IsActive)
+                {
+                    <!-- Trigger the confirmation modal -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">Block</button>
+                }
+                <a href="@Url.Action("ViewallRedCloudAdmin")" class="btn btn-primary">Cancel</a>
+            </div>
         </div>
     </div>
 </div>
@@ -67,26 +108,15 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-danger" id="confirmBlock">OK</button>
-
             </div>
-
-
         </div>
     </div>
 </div>
-
-        </div>
-        </div>
-    </div>
-</div>
-
 
 @section Scripts {
     <script>
         $(document).ready(function () {
             $('#confirmBlock').click(function () {
-                debugger
-                // Get the ID of the item to be blocked
                 var itemId = '@Model.RedCloudAdminUserId';
 
                 $.ajax({
@@ -98,15 +128,10 @@
                         window.location.href = '@Url.Action("ViewallRedCloudAdmin", "RedCloudAdmin")';
                     },
                     error: function () {
-
+                        // Handle error
                     }
                 });
             });
         });
     </script>
 }
-
-
-
-
-
