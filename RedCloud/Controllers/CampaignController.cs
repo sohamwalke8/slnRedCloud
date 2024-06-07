@@ -8,5 +8,12 @@ namespace RedCloud.Controllers
         {
             return View();
         }
+
+
+        [HttpGet]
+        public IActionResult AddCampaign()
+        {
+            return View();
+        }
     }
 }
