@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedCloud.Application.Features.ResellerAdminuser.Commands
+namespace RedCloud.Application.Features.RedCloudAdmins.Commands
 {
-    public class DeleteReSellerAdminCommand : IRequest<Unit>
+    public class DeleteRedCloudAdminCommand : IRequest<Unit>
     {
         public int Id { get; set; }
     }
 }
-

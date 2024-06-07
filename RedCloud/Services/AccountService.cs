@@ -2,7 +2,9 @@
 using MvcApiCallingService.Models.Responses;
 using RedCloud.Application.Features.Account.Queries.LoginQuery;
 using RedCloud.Domain.Common;
+using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
+using RedCloud.ViewModel;
 
 namespace RedCloud.Services
 {
@@ -11,12 +13,16 @@ namespace RedCloud.Services
         private readonly IApiClient<UserVM> _apiClientLogin;
         //private readonly IApiClient<Register> _apiClientRegister;
         private readonly ILogger<AccountService> _logger;
+        private readonly IApiClient<ForgetUserPasswordVM> _apiClientForget;
+        private readonly IApiClient<User> _apiClientUserForget;
 
 
-        public AccountService(IApiClient<UserVM> apiClientLogin, ILogger<AccountService> logger)
+        public AccountService(IApiClient<UserVM> apiClientLogin, ILogger<AccountService> logger, IApiClient<ForgetUserPasswordVM> apiClientForget, IApiClient<User> apiClientUserForget)
         {
             _apiClientLogin = apiClientLogin;
             _logger = logger;
+            _apiClientForget = apiClientForget;
+            _apiClientUserForget = apiClientUserForget;
             //_apiClientRegister = apiClientRegister;
         }
 
@@ -34,6 +40,29 @@ namespace RedCloud.Services
             _logger.LogInformation("LoginAccount Service conpleted");
             return response;
         }
+
+        public async Task<Response<ResetUserPasswordVM>> ForgetUserPasswordService(ResetUserPasswordVM model)
+        {
+            _logger.LogInformation("LoginAccount Service initiated");
+            var response = await _apiClientLogin.PostAuthAsync("Account/ResetUserPassword", model);
+            if (response == null)
+            {
+                _logger.LogInformation("LoginAccount Service completed with failure");
+                return new Response<ResetUserPasswordVM>(null, "InvalId login credentials");
+            }
+
+            _logger.LogInformation("LoginAccount Service conpleted");
+            return new Response<ResetUserPasswordVM>("ForgetUserPassword credentials");
+            //return response;
+        }
+
+        public async Task<User> CheckUserExistByEmail(string email)
+        {
+            var rate = await _apiClientUserForget.GetByIdAsync("Account/CheckUserExistByEmail/" + email);
+            return rate.Data;
+        }
+
+       
 
 
         //public async Task<Register> Register(Register register)

@@ -41,6 +41,8 @@ namespace RedCloud.Persistenence
 
         public DbSet<OrganizationAdmin> OrganizationAdmins { get; set;}
 
+        
+
 
         public DbSet<Campaign> Campaigns { get; set; }
 
