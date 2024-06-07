@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using RedCloud.Application.Contract.Persistence;
+using RedCloud.Application.Helper;
 using RedCloud.Application.Responses;
 using RedCloud.Domain.Entities;
 using System;
@@ -29,7 +30,13 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Commands
         {
             request.Password = GenerateRandomPassword();//create for random passaword generation new adition
 
+           
+            var encryptedPassword = EncryptionDecryption.EncryptString(request.Password);
+
             var AdminRese = _mapper.Map<ResellerAdminUser>(request);
+            AdminRese.Password = encryptedPassword;
+
+            //var AdminRese = _mapper.Map<ResellerAdminUser>(request);
 
 
             //  ResellerName = request.ResellerName,
