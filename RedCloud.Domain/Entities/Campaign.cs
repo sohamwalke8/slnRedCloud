@@ -10,7 +10,7 @@ namespace RedCloud.Domain.Entities
     public class Campaign: AuditableEntity
     {
         public int CampaignId { get; set; }
-
+    
         public int OrgID { get; set; }
 
         public OrganizationAdmin OrganizationAdmin { get; set; }
@@ -23,7 +23,7 @@ namespace RedCloud.Domain.Entities
 
         public string UniversalEIN { get; set; }
 
-        public int BrandId { get; set; }
+        public int BrandId { get; set; }        
 
         public  Status IdentityStatus { get; set; }
 

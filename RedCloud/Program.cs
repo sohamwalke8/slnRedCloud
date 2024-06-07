@@ -32,6 +32,8 @@ builder.Services.AddScoped(typeof(IStateService<StateVM>), typeof(StateService<S
 builder.Services.AddScoped(typeof(ICityService<CityVM>), typeof(CityService<CityVM>));
 builder.Services.AddScoped<IOrganizationAdminService, OrganizationAdminService>();
 
+builder.Services.AddScoped<ICampaignService, CampaignService>();
+
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings")); // Add by Aditya
 builder.Services.AddTransient<IMailService, MailService>(); // Add by Aditya
 

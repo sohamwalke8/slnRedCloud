@@ -33,7 +33,7 @@ namespace RedCloud.Persistenence
         public DbSet<RedCloudAdmin> RedCloudAdmins { get; set; }
 
         public DbSet<ResellerAdminUser> ResellerAdminUsers { get; set; }
-        public DbSet<Country> Countries { get; set; }
+        public DbSet<Country> Countries { get; set; }   
 
         public DbSet<State> States { get; set; }
 
@@ -47,6 +47,9 @@ namespace RedCloud.Persistenence
 
 
         
+
+
+        public DbSet<Campaign> Campaigns { get; set; }
 
 
 

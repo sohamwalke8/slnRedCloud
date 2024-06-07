@@ -10,7 +10,9 @@ namespace RedCloud.Application.Responses
     {
         public Response()
         {
+            
         }
+
         public Response(T data, string message = null)
         {
             Succeeded = true;
