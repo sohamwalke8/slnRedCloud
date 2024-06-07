@@ -53,22 +53,23 @@ namespace RedCloudAPI.Controllers
             return Ok(dto);
         }
 
-        [HttpPut]
+        [HttpPut("UpdateNumbers/{id}")]
 
         public async Task<ActionResult> GetNumberById(int id,AssignNumberCommand command )//changes the code
         {
-
-           
-            //var dto = await _mediator.Send(new AssignNumberQuery() { NumberId = id });
-            //if (dto == null)
-            //{
-            //    return NotFound();
-            //}
             var response = await _mediator.Send(command);
 
             return Ok(response);
         }
-        
-
+        [HttpGet("Viewassignednumber/{id}")]
+        public async Task<ActionResult> ViewassignedNumber(int id )
+        {
+            var assignednumber = await _mediator.Send(new ViewAssignedNumberQuery() { Id = id });
+            if(assignednumber == null)
+            {
+                return NotFound();
+            }
+            return Ok(assignednumber);
+        }
     }
 }

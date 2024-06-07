@@ -38,9 +38,10 @@ namespace RedCloud.Services
             return Events.Data;
         }
 
-        public async Task UpdateNumber(AssignNumberViewModel assignNumberViewModel)
+        public async Task UpdateNumber(AssignNumberViewModel assignNumberViewModel )
         {
-            await _client.PutAsync("/Number?id", assignNumberViewModel);
+            var id = assignNumberViewModel.NumberId;
+            await _client.PutAsync($"Number/UpdateNumbers/{id}", assignNumberViewModel);
             //return users.Data;
         }
     }

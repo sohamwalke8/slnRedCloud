@@ -31,7 +31,7 @@ namespace RedCloud.Application.Features.Numbers.Commands
             model.EndDate = request.EndDate;
             model.AssignmentTypeId = request.AssignmentTypeId;  
             model.ResellerAdminUserId = request.ResellerAdminUserId;    
-            model.OrganizationAdminID = request.OrganizationAdminId;                
+            model.OrganizationAdminID = request.OrgID;                
             model.CampaignId = request.CampaignId;
              await _asyncRepository.UpdateAsync(model);
             var response = new Response<Unit>( "Number Assigned successfully");

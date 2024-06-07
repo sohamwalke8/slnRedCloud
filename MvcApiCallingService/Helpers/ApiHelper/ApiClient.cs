@@ -122,9 +122,19 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         */
         public async Task<Response<T>> PutAsync<TEntity>(string apiUrl, TEntity entity)
         {
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
-            HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
-            return await ValIdateResponse(responseMessage);
+            try
+            {
+                //var id = entity.NumberId;
+                StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
+                HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
+                return await ValIdateResponse(responseMessage);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
         }
 
         public async Task<string> DeleteAsync(string apiUrl)

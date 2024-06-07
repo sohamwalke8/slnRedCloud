@@ -1,4 +1,6 @@
 using MvcApiCallingService.Helpers.ApiHelper;
+using RedCloud.Application.Features.AssignmentType;
+using RedCloud.Application.Features.Campaign;
 using RedCloud.Interfaces;
 using RedCloud.Services;
 using RedCloud.ViewModel;
@@ -33,6 +35,11 @@ builder.Services.AddScoped<IOrganizationAdminService, OrganizationAdminService>(
 builder.Services.AddScoped(typeof(INumberService<NumberVM>), typeof(NumberService<NumberVM>));
 builder.Services.AddScoped(typeof(ICarrier<CarrierVM>), typeof(CarrierService<CarrierVM>));
 builder.Services.AddScoped(typeof(IType<TypesVM>), typeof(TypeService<TypesVM>));
+builder.Services.AddScoped(typeof(IAssignmentType<AssignmentTypeVM>), typeof(AssignmentType<AssignmentTypeVM>));
+builder.Services.AddScoped(typeof(ICampaign<CampaignVM>), typeof(Campaign<CampaignVM>));
+
+
+
 
 
 //logger setup
