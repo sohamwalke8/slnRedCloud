@@ -126,6 +126,7 @@ namespace RedCloud.Persistenence.Repositories
 
         //    return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == id);
         //}
+        //Eager Loading of Related Data   ---------------------------
 
         public async Task<T> GetByIdAsyncInculde(int id)
         {

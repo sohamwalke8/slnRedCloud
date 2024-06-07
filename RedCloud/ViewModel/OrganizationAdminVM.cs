@@ -11,6 +11,7 @@ namespace RedCloud.ViewModel
         public string OrgName { get; set; }
 
         [Required(ErrorMessage = "Please Enter EIN Number")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Please enter only numbers")]
         public string EIN { get; set; }
 
 

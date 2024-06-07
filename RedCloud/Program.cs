@@ -1,5 +1,6 @@
 using MvcApiCallingService.Helpers.ApiHelper;
 using RedCloud.Interfaces;
+using RedCloud.Models.Email;
 using RedCloud.Services;
 using RedCloud.ViewModel;
 using Serilog;
@@ -33,6 +34,9 @@ builder.Services.AddScoped<IOrganizationAdminService, OrganizationAdminService>(
 builder.Services.AddScoped<IRate, RateServices>();
 
 
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings")); // Add by Aditya
+builder.Services.AddTransient<IMailService, MailService>(); // Add by Aditya
+
 //logger setup
 Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
 builder.Host.UseSerilog(((ctx, lc) => lc
@@ -60,7 +64,12 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    //pattern: "{controller=Home}/{action=Index}/{Id?}");
-    pattern: "{controller=Account}/{action=Login}/{Id?}");
+        //pattern: "{controller=Home}/{action=Index}/{Id?}");
+        //pattern: "{controller=Account}/{action=Login}/{Id?}");
+        //aakash
+        //pattern: "{controller=OrganizationAdmin}/{action=ViewOrganizationAdmin}/{id?}");
+        pattern: "{controller=Campaign}/{action=Index}/{id?}");
+
+
 
 app.Run();

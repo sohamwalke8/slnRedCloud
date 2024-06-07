@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MvcApiCallingService.Models.Responses;
 using Newtonsoft.Json;
-using RedCloud.Application.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,9 +54,16 @@ namespace MvcApiCallingService.Helpers.ApiHelper
 
         public async Task<Response<T>> GetByIdAsync(string apiUrl)
         {
-           // apiUrl = _httpClient.BaseAddress + apiUrl;
-            HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
-            return await ValIdateResponse(responseMessage);
+            try
+            {
+                HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
+                return await ValIdateResponse(responseMessage);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public async Task<Response<int>> PostAsync<TEntity>(string apiUrl, TEntity entity)
@@ -95,7 +101,33 @@ namespace MvcApiCallingService.Helpers.ApiHelper
             return default;
         }
 
-       
+        // Below Code Original
+
+        /*
+        public async Task<T?> PostAuthAsync<TEntity>(string apiUrl, TEntity entity)
+        {
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
+            try
+            {
+
+
+                // Below Code Original
+
+                HttpResponseMessage responseMessage = await _httpClient.PostAsync(apiUrl, stringContent);
+                if (responseMessage.IsSuccessStatusCode)
+                    return JsonConvert.DeserializeObject<T>(await responseMessage.Content.ReadAsStringAsync());
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                throw new AuthenticationException($"{ex.Message}");
+            }
+
+            return default;
+        }
+        */
         public async Task<Response<T>> PutAsync<TEntity>(string apiUrl, TEntity entity)
         {
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
@@ -140,14 +172,5 @@ namespace MvcApiCallingService.Helpers.ApiHelper
             HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
             return await ValIdateResponse(responseMessage);
         }
-
-        //public async Task<Response<T>> EncryptGetByIdAsync(string encryptedId)//Atharva
-        //{
-        //    //string encryptedId = EncryptionDecryption.EncryptString(id);
-        //    string apiUrl = $"{typeof(T).Name}/{encryptedId}";
-        //    HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
-        //    return await ValIdateResponse(responseMessage);
-        //}
-
     }
 }

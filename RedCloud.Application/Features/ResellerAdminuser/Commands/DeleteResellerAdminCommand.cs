@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.ResellerAdminuser.Commands
 {
-   public class DeleteReSellerAdminCommand : IRequest<Unit>
-        {
-            public int Id { get; set; }
-        }
+    public class DeleteReSellerAdminCommand : IRequest<Unit>
+    {
+        public int Id { get; set; }
     }
+}
 

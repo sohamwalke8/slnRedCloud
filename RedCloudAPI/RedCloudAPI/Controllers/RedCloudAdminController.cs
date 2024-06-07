@@ -1,8 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RedCloud.Application.Features.RedCloudAdmins.Commands;
 using RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAdmin;
 using RedCloud.Application.Features.RedCloudAdmins.Queries;
+using RedCloud.Application.Features.ResellerAdminuser.Commands;
+using static RedCloud.Application.Features.ResellerAdminuser.Commands.BlockResellerAdminCommand;
 
 namespace RedCloudAPI.Controllers
 {
@@ -71,6 +74,29 @@ namespace RedCloudAPI.Controllers
                 _logger.LogError(ex, "Error fetching admin user by Id");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
             }
+        }
+
+        [HttpDelete("{id}", Name = "DeleteRedCloudAdmin")]
+        public async Task<ActionResult> DeleteRedCloudAdmin(int id)
+        {
+            _logger.LogInformation("DeleteRedCloudAdmin Initiated");
+            var deleteredcloudadmin = new DeleteRedCloudAdminCommand() { Id = id };
+            await _mediator.Send(deleteredcloudadmin);
+
+            return Ok("ReSeller Admin Deleted SuccessFully");
+        }
+
+        ///
+        [HttpPut("{id}", Name = "BlockRedCloudAdmin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> BlockRedCloudAdmin(int id)
+        {
+            _logger.LogInformation("BlockReSeller Initiated");
+            var blockeselleradmin = new BlockRedCloudAdminCommand() { Id = id };
+            await _mediator.Send(blockeselleradmin);
+
+            return Ok("ReSeller Admin Blocked SuccessFully");
         }
 
     }
