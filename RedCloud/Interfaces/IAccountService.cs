@@ -2,6 +2,8 @@
 using MvcApiCallingService.Models.Responses;
 using RedCloud.Application.Features.Account.Queries.LoginQuery;
 using RedCloud.Domain.Common;
+using RedCloud.Domain.Entities;
+using RedCloud.ViewModel;
 
 namespace RedCloud.Interfaces
 {
@@ -13,6 +15,8 @@ namespace RedCloud.Interfaces
         //Task<LoginResponse> Login(Login login);
         //Task<Register> Register(Register register);
 
+        Task<Response<ResetUserPasswordVM>> ForgetUserPasswordService(ResetUserPasswordVM model);
+        Task<User> CheckUserExistByEmail(string email);
 
     }
 }

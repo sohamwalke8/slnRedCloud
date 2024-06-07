@@ -17,6 +17,8 @@ namespace RedCloud.Controllers
             _adminUserService = adminUserService;
             _logger = logger;
         }
+
+        [HttpGet("AddAdminUser")]
         public IActionResult AddAdmin()
         {
             return View();
@@ -40,7 +42,7 @@ namespace RedCloud.Controllers
                 };
 
                 var response = await _adminUserService.CreateAdminUser(adminUser);
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewallRedCloudAdmin");
             }
             return View(request);
         }
@@ -74,5 +76,67 @@ namespace RedCloud.Controllers
             }
             return View(request);
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ViewallRedCloudAdmin()
+        {
+            //_logger.LogInformation("ViewResellerAdmin Action initiated");
+            var response = await _adminUserService.GetallRedCloudAdminUser();
+            //_logger.LogInformation("ViewResellerAdmin Action completed");
+            return View(response);
+        }
+
+        public async Task<IActionResult> GetRedCloudAdminByID(int id)
+        {
+            _logger.LogInformation($"Fetching ResellerAdmin with ID: {id}");
+            var response = await _adminUserService.GetAdminUserById(id)
+  ;
+
+            if (response == null)
+            {
+                _logger.LogWarning($"ResellerAdmin with ID: {id} not found");
+                return NotFound();
+            }
+
+            return View(response);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteRedCloudAdmin(int id)
+        {
+            try
+            {
+                await _adminUserService.SoftDeleteRedCloudAdmin(id);
+                return Ok($"ResellerAdmin with ID {id} has been soft deleted.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occurred while soft deleting ResellerAdmin with ID {id}: {ex.Message}");
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Block(int id)
+        {
+            try
+            {
+                //var response = await _reSellerAdminService.GetResellerAdminById(id)
+                ;
+
+                //response.IsActive = false;
+                var response = await _adminUserService.Block(id)
+    ;
+                return View(response);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "An error occurred while blocking the reseller." });
+            }
+        }
+
     }
 }
