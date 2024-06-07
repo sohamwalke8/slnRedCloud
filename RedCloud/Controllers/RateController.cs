@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RedCloud.Application.Helper;
 using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
 
@@ -25,11 +26,11 @@ namespace RedCloud.Controllers
         }
 
         public async Task<IActionResult> GetRateByID(int id)
-        
-         {
+
+        {
             _logger.LogInformation($"Fetching Rate with ID: {id}");
             var response = await _rate.GetRateId(id);
-  
+
 
             if (response == null)
             {
@@ -39,8 +40,31 @@ namespace RedCloud.Controllers
 
             return View(response);
         }
+        //[HttpGet]
+        //public async Task<IActionResult> GetRateByID(string encryptedId)
+        //{
+        //    try
+        //    {
+        //        var response = await _rate.GetRateByEncryptedId(encryptedId);
 
-        
+        //        if (response == null)
+        //        {
+        //            _logger.LogWarning($"Rate with ID: {encryptedId} not found");
+        //            return NotFound();
+        //        }
+
+        //        return View(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Error fetching rate: {ex.Message}");
+        //        return StatusCode(500, "Internal server error");
+        //    }
+        //}
+
+
+
+
         public async Task<IActionResult> DeleteRate(int id)
         {
             _logger.LogInformation($"Fetching Rate with ID: {id}");
@@ -55,6 +79,10 @@ namespace RedCloud.Controllers
 
             return RedirectToAction("ViewallRates");
         }
+
+
+       
+
     }
 
 

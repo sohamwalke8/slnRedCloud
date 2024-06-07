@@ -25,6 +25,8 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         Task<string> DeleteAsync(string apiUrl);
         Task<Response<T>> PutAsyncc<TEntity>(string apiUrl, TEntity entity);
 
+       // Task<Response<T>> EncryptGetByIdAsync(string id);//Atharva
+
 
 
 

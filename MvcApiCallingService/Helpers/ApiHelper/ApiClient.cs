@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MvcApiCallingService.Models.Responses;
 using Newtonsoft.Json;
+using RedCloud.Application.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -139,5 +140,14 @@ namespace MvcApiCallingService.Helpers.ApiHelper
             HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
             return await ValIdateResponse(responseMessage);
         }
+
+        //public async Task<Response<T>> EncryptGetByIdAsync(string encryptedId)//Atharva
+        //{
+        //    //string encryptedId = EncryptionDecryption.EncryptString(id);
+        //    string apiUrl = $"{typeof(T).Name}/{encryptedId}";
+        //    HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
+        //    return await ValIdateResponse(responseMessage);
+        //}
+
     }
 }
