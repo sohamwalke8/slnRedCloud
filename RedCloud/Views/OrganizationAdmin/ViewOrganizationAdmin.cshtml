@@ -211,11 +211,40 @@
                 </div>
             </div>
         </div>
+
+        <!-- For Toster Body -->
+
+        <div class="toast-container position-fixed bottom-0 start-0 p-6">
+            <div class="toast" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-body">
+                    <div class="d-flex gap-4">
+                        <span><i class="fa-solid fa-circle-check fa-lg icon-success"></i></span>
+                        <div class="d-flex flex-column flex-grow-1 gap-2">
+                            <div class="d-flex align-items-center">
+                                <span class="fw-semibold">#1 Your changes were saved</span>
+                                <button type="button" class="btn-close btn-close-sm ms-auto" data-bs-dismiss="toast"
+                                        aria-label="Close"></button>
+                            </div>
+                            <span>I will auto dismiss after 8 seconds.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
     </div>
 </form>
 
-@section Scripts {
+   @section Scripts {
+    <!-- Include necessary libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Toastr CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <!-- DataTables CSS and JS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
@@ -227,6 +256,7 @@
 
     <script>
         $(document).ready(function () {
+            // Initialize DataTable
             var table = $('#dataTable').DataTable({
                 paging: true,
                 searching: true,
@@ -241,15 +271,34 @@
                         extend: 'excelHtml5',
                         text: 'Export Excel',
                         className: 'dt-button'
-                    },
-                   
+                    }
                 ]
             });
 
+            // Change entries per page
             $('#entriesPerPage').change(function () {
                 var length = $(this).val();
                 table.page.len(length).draw();
             });
+
+            // Set up Toastr options
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "1000",
+                "hideDuration": "1000",
+                "timeOut": "1200",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
 
             // Event listeners for delete functionality
             $('.delete-btn').on('click', function (e) {
@@ -268,21 +317,58 @@
             $('#confirmDeleteBtn').on('click', function () {
                 var id = $(this).attr('data-id');
                 $('#deleteConfirmationModal').modal('hide');
+
                 // Call delete method using AJAX
-                $.get('/OrganizationAdmin/SoftDelete/' + id)
-                    .done(function (data) {
+                $.ajax({
+                    url: '/OrganizationAdmin/SoftDelete/' + id,
+                    type: 'GET',
+                    success: function (data) {
                         // Handle success
-                        alert(data);
+                        toastr.success('Successfully deleted the item.', 'Success');
                         // Optionally, you can reload the page or update the table
-                        location.reload();
-                    })
-                    .fail(function (xhr, status, error) {
+
+                        setTimeout(function () {
+                            window.location.href = '@Url.Action("ViewOrganizationAdmin", "OrganizationAdmin")';
+                        }, 1000);
+
+                        // setTimeout(function () {
+                        //     location.reload();
+                        // }, 1000);
+                    },
+                    error: function (xhr, status, error) {
                         // Handle errors
-                        alert('Error: ' + xhr.responseText);
-                    });
+                        toastr.error('Error: ' + xhr.responseText, 'Deletion Failed');
+                    }
+                });
+
             });
+
         });
     </script>
 }
+@* 
+<script type="text/javascript">
+    // Define the redirection function
+    function redirectToOrganizationAdmin() {
+        window.location.href = '@Url.Action("ViewOrganizationAdmin", "OrganizationAdmin")';
+    }
 
-        
+    // AJAX method for soft deletion
+    function deleteItem(id) {
+        $.ajax({
+            url: '/OrganizationAdmin/SoftDelete/' + id,
+            type: 'GET',
+            success: function (data) {
+                // Handle success
+                toastr.success('Successfully deleted the item.', 'Success');
+
+                // Call the redirect function after a success message is shown
+                redirectToOrganizationAdmin();
+            },
+            error: function (xhr, status, error) {
+                // Handle errors
+                toastr.error('Error: ' + xhr.responseText, 'Deletion Failed');
+            }
+        });
+    }
+</script> *@
