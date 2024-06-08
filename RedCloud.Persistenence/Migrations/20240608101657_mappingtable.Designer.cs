@@ -12,8 +12,8 @@ using RedCloud.Persistenence;
 namespace RedCloud.Persistenence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240603101258_firstt")]
-    partial class firstt
+    [Migration("20240608101657_mappingtable")]
+    partial class mappingtable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,19 +25,98 @@ namespace RedCloud.Persistenence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("OrganizationAdminResellerAdminUser", b =>
+            modelBuilder.Entity("RedCloud.Domain.Entities.Campaign", b =>
                 {
-                    b.Property<int>("OrganizationAdminsOrgID")
+                    b.Property<int>("CampaignId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ResellerAdminUsersResellerAdminUserId")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CampaignId"));
+
+                    b.Property<int>("BrandId")
                         .HasColumnType("int");
 
-                    b.HasKey("OrganizationAdminsOrgID", "ResellerAdminUsersResellerAdminUserId");
+                    b.Property<DateOnly?>("BrandRegistrationDate")
+                        .HasColumnType("date");
 
-                    b.HasIndex("ResellerAdminUsersResellerAdminUserId");
+                    b.Property<string>("BrandRelationship")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("OrganizationAdminResellerAdminUser");
+                    b.Property<string>("CampaignDescriptionOne")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CampaignDescriptionTwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CampaignIdOne")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CampaignIdTwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdentityStatus")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("LastModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrgID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrganizationAdminOrgID")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("RegistrationDateOne")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly?>("RegistrationDateTwo")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly>("RenewalDateOne")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly?>("RenewalDateTwo")
+                        .HasColumnType("date");
+
+                    b.Property<int>("ResellerAdminUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UniversalEIN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UseCaseOne")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UseCaseTwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CampaignId");
+
+                    b.HasIndex("OrganizationAdminOrgID");
+
+                    b.HasIndex("ResellerAdminUserId");
+
+                    b.ToTable("Campaign");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.City", b =>
@@ -162,6 +241,83 @@ namespace RedCloud.Persistenence.Migrations
                     b.HasIndex("StateId");
 
                     b.ToTable("OrganizationAdmins");
+                });
+
+            modelBuilder.Entity("RedCloud.Domain.Entities.OrganizationResellerMapping", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrganizationAdminId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResellerAdminId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResellerAdminUserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrganizationAdminId");
+
+                    b.HasIndex("ResellerAdminUserId");
+
+                    b.ToTable("OrganizationResellerMapping");
+                });
+
+            modelBuilder.Entity("RedCloud.Domain.Entities.OrganizationUser", b =>
+                {
+                    b.Property<int>("OrganizationUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrganizationUserId"));
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("LastModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrganizationAdminOrgID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrganizationID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OrganizationUserEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrganizationUserFirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrganizationUserLastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("OrganizationUserId");
+
+                    b.HasIndex("OrganizationAdminOrgID");
+
+                    b.ToTable("OrganizationUsers");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.RedCloudAdmin", b =>
@@ -427,19 +583,23 @@ namespace RedCloud.Persistenence.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("OrganizationAdminResellerAdminUser", b =>
+            modelBuilder.Entity("RedCloud.Domain.Entities.Campaign", b =>
                 {
-                    b.HasOne("RedCloud.Domain.Entities.OrganizationAdmin", null)
+                    b.HasOne("RedCloud.Domain.Entities.OrganizationAdmin", "OrganizationAdmin")
                         .WithMany()
-                        .HasForeignKey("OrganizationAdminsOrgID")
+                        .HasForeignKey("OrganizationAdminOrgID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RedCloud.Domain.Entities.ResellerAdminUser", null)
+                    b.HasOne("RedCloud.Domain.Entities.ResellerAdminUser", "ResellerAdminUser")
                         .WithMany()
-                        .HasForeignKey("ResellerAdminUsersResellerAdminUserId")
+                        .HasForeignKey("ResellerAdminUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("OrganizationAdmin");
+
+                    b.Navigation("ResellerAdminUser");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.City", b =>
@@ -476,6 +636,36 @@ namespace RedCloud.Persistenence.Migrations
                     b.Navigation("Country");
 
                     b.Navigation("State");
+                });
+
+            modelBuilder.Entity("RedCloud.Domain.Entities.OrganizationResellerMapping", b =>
+                {
+                    b.HasOne("RedCloud.Domain.Entities.OrganizationAdmin", "OrganizationAdmin")
+                        .WithMany("OrganizationResellerMapping")
+                        .HasForeignKey("OrganizationAdminId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RedCloud.Domain.Entities.ResellerAdminUser", "ResellerAdminUser")
+                        .WithMany("OrganizationResellerMapping")
+                        .HasForeignKey("ResellerAdminUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OrganizationAdmin");
+
+                    b.Navigation("ResellerAdminUser");
+                });
+
+            modelBuilder.Entity("RedCloud.Domain.Entities.OrganizationUser", b =>
+                {
+                    b.HasOne("RedCloud.Domain.Entities.OrganizationAdmin", "OrganizationAdmin")
+                        .WithMany("OrganizationUsers")
+                        .HasForeignKey("OrganizationAdminOrgID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OrganizationAdmin");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.RedCloudAdmin", b =>
@@ -549,8 +739,17 @@ namespace RedCloud.Persistenence.Migrations
                     b.Navigation("States");
                 });
 
+            modelBuilder.Entity("RedCloud.Domain.Entities.OrganizationAdmin", b =>
+                {
+                    b.Navigation("OrganizationResellerMapping");
+
+                    b.Navigation("OrganizationUsers");
+                });
+
             modelBuilder.Entity("RedCloud.Domain.Entities.ResellerAdminUser", b =>
                 {
+                    b.Navigation("OrganizationResellerMapping");
+
                     b.Navigation("RedCloudAdmins");
                 });
 

@@ -49,7 +49,7 @@ namespace RedCloud.ViewModel
 
 
         [Required(ErrorMessage = "Please Select Reseller Name")]
-        public string ResellerName { get; set; } = "Test";
+        public string ResellerName { get; set; } 
 
 
         [Required(ErrorMessage = "Please Select Reseller Name")]
@@ -63,6 +63,9 @@ namespace RedCloud.ViewModel
 
         [Required(ErrorMessage = "Please Select Reseller Name")]
         public int? CityId { get; set; }
+
+        // Other properties...
+        public List<int> ResellerIds { get; set; } // Note this change
 
 
 

@@ -105,6 +105,8 @@ namespace RedCloud.Controllers
 
             //_logger.LogInformation("CreateCategory Action initiated");
             return RedirectToAction("ViewOrganizationAdmin");
+
+            return RedirectToAction("AddOrganizationAdmin", request);
         }
 
         public async Task<IActionResult> UpdateOrganizationAdmin(int Id)

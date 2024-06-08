@@ -118,18 +118,38 @@
                                         <input asp-for="OrgURL" class="form-control" id="OrgURL" placeholder="Enter organization URL" required>
                                         <span asp-validation-for="OrgURL" class="text-danger"></span>
                                     </div>
-
+                                    
                                     <div class="form-group">
 
-                                        <label for="ResellerName">Reseller Name</label>
+                                    <label for="ResellerName">Reseller Name</label>
 
-                                        <select asp-for="ResellerId" class="form-control" asp-items="@ViewBag.ResellerList" required>
-                                            <option value="">Select Reseller</option>
-                                        </select>
-                                        <span asp-validation-for="ResellerId" class="text-danger"></span>
+                                    <select asp-for="ResellerId" class="form-control" asp-items="@ViewBag.ResellerList" required>
+                                    <option value="">Select Reseller</option>
+                                    </select>
+                                    <span asp-validation-for="ResellerId" class="text-danger"></span>
 
 
                                     </div>
+
+                               @*      <div class="modal-box">
+                                         <div class="sd-multiSelect form-group"> 
+                                            <label for="current-job-role">Multi Select</label>
+                                            <select multiple id="current-job-role" class="sd-CustomSelect">
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                                <option value="4">Option 4</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                                <option value="4">Option 4</option>
+                                            </select>
+                                         </div> 
+                                    </div> *@
+
+
+                                 
+
+
                                 </div>
                             </div>
                         </div>
@@ -143,7 +163,7 @@
                 <!-- /.card-body -->
             </div>
         </div>
-        </div>
+    </div>
 
 
 
@@ -153,8 +173,12 @@
 
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://bsite.net/savrajdutta/cdn/multi-select.js">
+
+        <partial name="_ValidationScriptsPartial" />
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
 
@@ -203,6 +227,13 @@
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////
+
+        // $(".sd-CustomSelect").multipleSelect({
+        //     selectAll: false,
+        //     onOptgroupClick: function (view) {
+        //         $(view).parents("label").addClass("selected-optgroup");
+        //     }
+        // });
 
 
 

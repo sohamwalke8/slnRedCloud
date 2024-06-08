@@ -35,7 +35,7 @@ namespace RedCloud.Domain.Entities
 
         public bool IsActive { get; set; } = true;
 
-        public virtual List<ResellerAdminUser> ResellerAdminUsers { get; set; } = new List<ResellerAdminUser>();
+        public virtual List<OrganizationResellerMapping> OrganizationResellerMapping { get; set; } = new List<OrganizationResellerMapping>();
 
         public virtual ICollection<OrganizationUser> OrganizationUsers { get; set; } = new List<OrganizationUser>();
 

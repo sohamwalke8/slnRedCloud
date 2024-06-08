@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using RedCloud.Application.Responses;
+using RedCloud.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -56,7 +57,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Commands
 
         public int? CityId { get; set; }
 
-
+        //public List<ResellerAdminUser> resellerAdminUsers { get; set; }
 
 
 

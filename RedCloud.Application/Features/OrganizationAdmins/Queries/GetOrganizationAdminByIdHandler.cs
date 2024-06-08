@@ -13,10 +13,12 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
     public class GetOrganizationAdminByIdHandler : IRequestHandler<GetOrganizationAdminDetailsQuery, Response<OrganizationAdminDetailsVM>>
     {
         private readonly IAsyncRepository<OrganizationAdmin> _asyncRepository;
+        private readonly IAsyncRepository<OrganizationResellerMapping> _asyncRepositoryMapping;
 
-        public GetOrganizationAdminByIdHandler(IAsyncRepository<OrganizationAdmin> asyncRepository)
+        public GetOrganizationAdminByIdHandler(IAsyncRepository<OrganizationAdmin> asyncRepository, IAsyncRepository<OrganizationResellerMapping> asyncRepositoryMapping)
         {
             _asyncRepository = asyncRepository;
+            _asyncRepositoryMapping = asyncRepositoryMapping;
         }
 
         public async Task<Response<OrganizationAdminDetailsVM>> Handle(GetOrganizationAdminDetailsQuery request, CancellationToken cancellationToken)
@@ -27,7 +29,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
             {
                 return new Response<OrganizationAdminDetailsVM>("Organization Admin not found");
             }
-
+            var reseller = (await _asyncRepositoryMapping.ListAllAsync()).FirstOrDefault(x => x.OrganizationAdminId == request.Id);
             var model = new OrganizationAdminDetailsVM()
             {
                 OrgID = admin.OrgID,
@@ -43,7 +45,8 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
                 ZipCode = admin.ZipCode,
                 EIN = admin.EIN,
                 CompanyURL = admin.OrgURL,
-                IsActive = admin.IsActive
+                IsActive = admin.IsActive,
+                ResellerId = reseller.ResellerAdminUserId
             };
 
             return new Response<OrganizationAdminDetailsVM>(model);
