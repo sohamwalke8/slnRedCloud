@@ -37,6 +37,9 @@ namespace RedCloud.Domain.Entities
 
         public virtual List<ResellerAdminUser> ResellerAdminUsers { get; set; } = new List<ResellerAdminUser>();
 
+        public virtual ICollection<OrganizationUser> OrganizationUsers { get; set; } = new List<OrganizationUser>();
+
+
         public int CountryId { get; set; }
 
         public Country Country { get; set; }
