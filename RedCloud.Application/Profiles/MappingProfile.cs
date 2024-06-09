@@ -8,6 +8,7 @@ using RedCloud.Application.Features.Cities.Queries;
 using RedCloud.Application.Features.Countries;
 using RedCloud.Application.Features.Events.Queries.GetEventDetail;
 using RedCloud.Application.Features.Numbers.Commands;
+using RedCloud.Application.Features.Numbers.Queries;
 using RedCloud.Application.Features.OrganizationAdmins.Commands;
 using RedCloud.Application.Features.OrganizationAdmins.Queries;
 using RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAdmin;
@@ -57,7 +58,7 @@ namespace RedCloud.Application.Profiles
             CreateMap<Domain.Entities.Number,AssignNumberViewModel>();
             CreateMap<AssignNumberCommand, Domain.Entities.Number>();
             CreateMap<Campaign, CampaignVM>();
-
+            CreateMap<ViewAssignedNumberVM, AssignNumberViewModel>();
 
 
         }

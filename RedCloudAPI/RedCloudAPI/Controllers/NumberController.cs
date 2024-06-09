@@ -61,6 +61,8 @@ namespace RedCloudAPI.Controllers
 
             return Ok(response);
         }
+
+
         [HttpGet("Viewassignednumber/{id}")]
         public async Task<ActionResult> ViewassignedNumber(int id )
         {
@@ -70,6 +72,18 @@ namespace RedCloudAPI.Controllers
                 return NotFound();
             }
             return Ok(assignednumber);
+        }
+
+
+
+       
+
+
+        [HttpPut("UpdateAssignedNumber")]
+        public async Task<ActionResult> Update([FromBody] UpdateAssignedNumberCommand update)
+        {
+            var response = await _mediator.Send(update);
+            return Ok(response);
         }
     }
 }

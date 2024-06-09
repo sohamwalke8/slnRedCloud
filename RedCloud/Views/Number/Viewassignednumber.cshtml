@@ -1,0 +1,106 @@
+﻿@model RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM
+
+@{
+   // ViewData["Title"] = "Viewassignednumber";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Viewassignednumber</h4>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Assigned Number</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .centered-form {
+            position: relative; /* Set to relative to contain the absolute positioned child */
+            margin: 5%;
+            width: 90%;
+            border: 1px solid blue;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 255, 0.1);
+        }
+
+        .button-container {
+            position: absolute;
+            top: -50px; /* Adjust the top value to move the buttons outside of the border */
+            right: 20px; /* Adjust the right value to position the buttons to the right */
+        }
+
+        .btn {
+            margin-left: 20px;
+        }
+
+            .btn:first-child {
+                margin-left: -134px;
+            }
+    </style>
+</head>
+<body>
+    <div class="centered-form">
+        <div class="button-container">
+            <a href="@Url.Action("Index","YourControllerName" )" class="btn btn-primary">Back</a>
+            <a href="@Url.Action("Edit", "YourControllerName", new { id = Model.NumberId })" class="btn btn-secondary">Update</a>
+
+        </div>
+    <div class="container form-container">
+       
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">Country</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.CountryName)</dd>
+                        <dt class="col-sm-4">Number</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.PhoneNumber)</dd>
+                        <dt class="col-sm-4">Type</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.TypeName)</dd>
+                        <dt class="col-sm-4">LATA</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.LATA)</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">Carrier</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.CarrierName)</dd>
+                        <dt class="col-sm-4">Rate Center</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.RateCenter)</dd>
+                        <dt class="col-sm-4">State</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.StateName)</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">Reseller</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.ResellerName)</dd>
+                        <dt class="col-sm-4">Organization</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.OrgName)</dd>
+                        <dt class="col-sm-4">Assignment Type</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.AssignmentTypeName)</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">Campaign ID</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.CampaignId)</dd>
+                        <dt class="col-sm-4">Start Date</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.StartDate)</dd>
+                        <dt class="col-sm-4">End Date</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.EndDate)</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

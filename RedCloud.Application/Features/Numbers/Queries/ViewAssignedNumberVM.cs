@@ -11,11 +11,15 @@ namespace RedCloud.Application.Features.Numbers.Queries
         public int NumberId { get; set; }
         public string PhoneNumber { get; set; }
         public string RateCenter { get; set; }
+        public int? TypesId { get; set; }
         public string TypeName { get; set; }
         public string CountryName { get; set; }
+        public int CountryId { get; set; }
         public string LATA { get; set; }
+        public int? StateId { get; set; }
         public string StateName { get; set; }
         public string CarrierName { get; set; }
+        public int? CarrierId { get; set; }
 
         //editable-prop
         public int? ResellerAdminUserId { get; set; }

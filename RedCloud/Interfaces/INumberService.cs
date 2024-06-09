@@ -1,4 +1,5 @@
 ﻿using RedCloud.Application.Features.Numbers.Commands;
+using RedCloud.Application.Features.Numbers.Queries;
 using RedCloud.ViewModel;
 
 namespace RedCloud.Interfaces
@@ -10,5 +11,10 @@ namespace RedCloud.Interfaces
         Task<AssignNumberViewModel> GetNumberById(int eventId);
 
         Task UpdateNumber(AssignNumberViewModel assignNumberViewModel);
+
+        Task<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM> GetAssignedNumberById(int eventId);
+
+
+        Task UpdateAssignedNumber(RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM assignNumberViewModel);
     }
 }

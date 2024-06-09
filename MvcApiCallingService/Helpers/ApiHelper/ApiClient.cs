@@ -124,7 +124,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         {
             try
             {
-                //var id = entity.NumberId;
+                //change by aditya mishra 
                 StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
                 HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
                 return await ValIdateResponse(responseMessage);
