@@ -85,5 +85,16 @@ namespace RedCloudAPI.Controllers
             var response = await _mediator.Send(update);
             return Ok(response);
         }
+
+
+        [HttpGet("all", Name = "Getallnumbers")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> GetAllResellerAdminList()
+        {
+           // _logger.LogInformation("GetAllResellerAdmin Initiated");
+            var dtos = await _mediator.Send(new GetallNumberQuery());
+            return Ok(dtos);
+        }
+
     }
 }

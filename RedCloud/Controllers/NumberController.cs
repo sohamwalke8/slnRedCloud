@@ -94,7 +94,7 @@ namespace RedCloud.Controllers
         [HttpPost]
         public async Task<IActionResult> AssignNumber(AssignNumberViewModel request)
         {
-            var response = _numberService.UpdateNumber(request);
+            var response =   _numberService.UpdateNumber(request);
             return RedirectToAction("AddNumber");
         }
 
@@ -114,12 +114,12 @@ namespace RedCloud.Controllers
         {
 
 
-            var response = await _numberServiceVM.GetAssignedNumberById(Id);
+            var response = await _numberServiceVM.GetAssignedNumberById(Id);//changed numberServiceVM to numberservice
             var carrierlist = await _carrier.GetAllCarriersList();
             ViewBag.AdminList = new SelectList(carrierlist, "CarrierId", "CarrierName");
             var countries = await _dropDownService.GetAllCountryList();
             ViewBag.Country = countries;
-            ViewBag.State = await _stateService.GetStatesByCountryId(response.CountryId);
+           ViewBag.State = await _stateService.GetStatesByCountryId(response.CountryId??0);
             var typelist = await _type.GetAllTypesList();
             ViewBag.Typelist = new SelectList(typelist, "TypesId", "TypesName");
             var resellerList = await _adminResellerUser.GetallResellerAdmin();
@@ -140,10 +140,20 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> UpdateAssignedNumber(RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM request)
         {
             // _logger.LogInformation("CreateCategory Action initiated");
-            var response = _numberServiceVM.UpdateAssignedNumber(request);
+            var response =   _numberServiceVM.UpdateAssignedNumber(request);
 
             return RedirectToAction("UpdateAssignedNumber");
         }
 
+
+
+        [HttpGet]
+        public async Task<IActionResult> Viewallnumberslist()
+        {
+            //_logger.LogInformation("ViewResellerAdmin Action initiated");
+            var response = await _numberServiceVM.Getallnumberslist();
+            //_logger.LogInformation("ViewResellerAdmin Action completed");
+            return View(response);
+        }
     }
 }

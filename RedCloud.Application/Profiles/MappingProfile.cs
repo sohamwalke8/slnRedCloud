@@ -59,6 +59,7 @@ namespace RedCloud.Application.Profiles
             CreateMap<AssignNumberCommand, Domain.Entities.Number>();
             CreateMap<Campaign, CampaignVM>();
             CreateMap<ViewAssignedNumberVM, AssignNumberViewModel>();
+            CreateMap< RedCloud.Domain.Entities.Number,RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM>();
 
 
         }

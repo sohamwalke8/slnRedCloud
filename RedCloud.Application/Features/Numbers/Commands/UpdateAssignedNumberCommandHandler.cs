@@ -32,20 +32,21 @@ namespace RedCloud.Application.Features.Numbers.Commands
         {
             var model = await _repository.GetByIdAsync(request.NumberId);
             model.NumberId = request.NumberId;
-            model.PhoneNumber = request.PhoneNumber;
+            //model.PhoneNumber = request.PhoneNumber;
             model.OrganizationAdminID = request.OrgID;
             model.ResellerAdminUserId = request.ResellerAdminUserId;
             model.AssignmentTypeId = request.AssignmentTypeId;
             model.CampaignId = request.CampaignId;
             model.StartDate = request.StartDate;
             model.EndDate = request.EndDate;
-            model.AssignmentTypeId = request.AssignmentTypeId;
-            model.StateId = request.StateId;
-            model.RateCenter = request.RateCenter;
-            model.CountryId = request.CountryId;
-            model.TypesId = request.TypeId;
-            model.LATA = request.LATA;
-            model.CarrierId = request.CarrierId;
+           // model.AssignmentTypeId = request.AssignmentTypeId;
+           // model.StateId = request.StateId;
+            //model.RateCenter = request.RateCenter;
+            //model.CountryId = request.CountryId;
+            //model.TypesId = request.TypeId;
+            //model.LATA = request.LATA;
+            //model.CarrierId = request.CarrierId;
+            //model.State=request.StateName;
             await _repository.UpdateAsync(model);
 
             var response = new Response<Unit>("Updated Successfully");

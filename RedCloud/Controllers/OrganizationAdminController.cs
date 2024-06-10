@@ -70,7 +70,7 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> UpdateOrganizationAdmin(OrganizationAdminVM request)
         {
             // _logger.LogInformation("CreateCategory Action initiated");
-            var response = _organizationAdminService.EditOrganizationAdmin(request);
+            var response =  _organizationAdminService.EditOrganizationAdmin(request);
 
             //_logger.LogInformation("CreateCategory Action initiated");
             return RedirectToAction("UpdateOrganizationAdmin");
