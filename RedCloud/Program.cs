@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.DataProtection;
 using MvcApiCallingService.Helpers.ApiHelper;
 using RedCloud.Interfaces;
 using RedCloud.Models.Email;
@@ -34,6 +35,8 @@ builder.Services.AddScoped<IOrganizationAdminService, OrganizationAdminService>(
 
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings")); // Add by Aditya
 builder.Services.AddTransient<IMailService, MailService>(); // Add by Aditya
+
+builder.Services.AddScoped<IEncryptionService, EncryptionService>();
 
 //logger setup
 Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
