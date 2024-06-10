@@ -16,6 +16,7 @@ using RedCloud.Application.Features.ResellerAdminuser.Commands;
 using RedCloud.Application.Features.ResellerAdminuser.Queries;
 using RedCloud.Application.Features.Types;
 using RedCloud.Domain.Entities;
+using RedCloud.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace RedCloud.Application.Profiles
             CreateMap<Country, CountryListVM>().ReverseMap();
             CreateMap<CityListVM, City>().ReverseMap();
             //
-           // CreateMap<ResellerAdminUser,ReSellerAdmindto>().ReverseMap();
+            // CreateMap<ResellerAdminUser,ReSellerAdmindto>().ReverseMap();
             //
 
             CreateMap<CreateOrganizationAdminCommand, OrganizationAdmin>();
@@ -55,14 +56,19 @@ namespace RedCloud.Application.Profiles
             CreateMap<Types, TypesVM>();
             CreateMap<Carrier, CarrierVM>();
             CreateMap<AssignmentType, AssignmentTypeVM>();
-            CreateMap<Domain.Entities.Number,AssignNumberViewModel>();
+            CreateMap<Domain.Entities.Number, AssignNumberViewModel>();
             CreateMap<AssignNumberCommand, Domain.Entities.Number>();
             CreateMap<Campaign, CampaignVM>();
             CreateMap<ViewAssignedNumberVM, AssignNumberViewModel>();
-            CreateMap< RedCloud.Domain.Entities.Number,RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM>();
+            CreateMap<RedCloud.Domain.Entities.Number, RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM>();
+            //CreateMap<RedCloud.Domain.Entities.Number, NumberlistVM>();
+
+            CreateMap<RedCloud.Domain.Entities.Number, NumberlistVM>()
+            .ForMember(dest => dest.CarrierName, opt => opt.MapFrom(src => src.Carrier.CarrierName))
+            .ForMember(dest => dest.OrgName, opt => opt.MapFrom(src => src.OrganizationAdmin.OrgName));
 
 
         }
-    }
 
+    }
 }

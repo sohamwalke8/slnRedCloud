@@ -14,7 +14,7 @@ namespace RedCloud.Application.Features.Numbers.Queries
         public int? TypesId { get; set; }
         public string TypeName { get; set; }
         public string CountryName { get; set; }
-       public int? CountryId { get; set; }
+        public int? CountryId { get; set; }
         public string LATA { get; set; }
         public int? StateId { get; set; }
         public string StateName { get; set; }

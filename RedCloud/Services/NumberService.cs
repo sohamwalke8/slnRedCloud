@@ -15,12 +15,12 @@ namespace RedCloud.Services
 
         private readonly IApiClient<NumberVM> _client;
         private readonly IApiClient<AssignNumberViewModel> _clientassign;
-        private readonly IApiClient<ViewAssignedNumberVM> _viewassign;
+        private readonly IApiClient<NumberlistVM> _viewassign;
         private readonly IApiClient<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM> _assign;
         public readonly ILogger<NumberService<T>> _logger;
 
 
-        public NumberService(IApiClient<NumberVM> client, IApiClient<ViewAssignedNumberVM> viewassign, ILogger<NumberService<T>> logger, IApiClient<AssignNumberViewModel> clientassign, IApiClient<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM> assign)
+        public NumberService(IApiClient<NumberVM> client, IApiClient<NumberlistVM> viewassign, ILogger<NumberService<T>> logger, IApiClient<AssignNumberViewModel> clientassign, IApiClient<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM> assign)
         {
             _client = client;
             _logger = logger;
@@ -65,9 +65,9 @@ namespace RedCloud.Services
             //return users.Data;
         }
 
-        public async Task<IEnumerable<ViewAssignedNumberVM>> Getallnumberslist()
+        public async Task<IEnumerable<NumberlistVM>> Getallnumberslist()
         {
-            var reSelleradmin = await _viewassign.GetAllAsync("/Number/all");
+            var reSelleradmin = await _viewassign.GetAllAsync("Number/all");
             return reSelleradmin.Data;
         }
     }

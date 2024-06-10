@@ -26,12 +26,12 @@ namespace RedCloud.Controllers
         private readonly IOrganizationAdminService _organizationAdminService;//take getall from aakash 
         private readonly ICampaign<CampaignVM> _campaign;
         private readonly INumberService<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM> _numberServiceVM;
-       // private readonly IMapper _mapper;
+        // private readonly IMapper _mapper;
+        private readonly INumberService<NumberlistVM> _numberService2;
 
 
-        
         public NumberController(IDropDownService<CountryVM> dropDownService, 
-        INumberService<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM> numberServiceVM, IOrganizationAdminService organizationAdminService,ICampaign<CampaignVM> campaign, IAdminResellerUser adminResellerUser, IStateService<StateVM> stateService, ICarrier<CarrierVM> carrier, IType<TypesVM> type, INumberService<NumberVM> numberService, IAssignmentType<AssignmentTypeVM> assignmentType)
+        INumberService<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM> numberServiceVM, IOrganizationAdminService organizationAdminService,ICampaign<CampaignVM> campaign, IAdminResellerUser adminResellerUser, IStateService<StateVM> stateService, ICarrier<CarrierVM> carrier, IType<TypesVM> type, INumberService<NumberVM> numberService, IAssignmentType<AssignmentTypeVM> assignmentType, INumberService<NumberlistVM> numberService2)
         {
             _dropDownService = dropDownService;
             _stateService = stateService;
@@ -43,6 +43,7 @@ namespace RedCloud.Controllers
             _organizationAdminService = organizationAdminService;
             _campaign = campaign;
             _numberServiceVM = numberServiceVM;
+            _numberService2 = numberService2;
            
 
         }
@@ -140,12 +141,17 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> UpdateAssignedNumber(RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM request)
         {
             // _logger.LogInformation("CreateCategory Action initiated");
-            var response =   _numberServiceVM.UpdateAssignedNumber(request);
+            var response =   _numberService2.UpdateAssignedNumber(request);
 
             return RedirectToAction("UpdateAssignedNumber");
         }
 
-
+        [HttpGet]
+        public async Task<IActionResult> GetNumberById(int id)
+        {
+            var response = await _numberServiceVM.GetAssignedNumberById(id);
+            return View(response);
+        }
 
         [HttpGet]
         public async Task<IActionResult> Viewallnumberslist()

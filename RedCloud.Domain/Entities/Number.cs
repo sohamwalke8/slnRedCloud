@@ -43,6 +43,9 @@ namespace RedCloud.Domain.Entities
 
         public int? CampaignId { get; set; }
         public Campaign? Campaign { get; set; }
+        public Status? Status { get; set; }
+
+        public bool? IsActive { get; set; }
 
     }
 }

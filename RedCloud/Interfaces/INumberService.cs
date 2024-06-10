@@ -15,7 +15,7 @@ namespace RedCloud.Interfaces
 
 
 
-        Task<IEnumerable<ViewAssignedNumberVM>> Getallnumberslist();
+        Task<IEnumerable<NumberlistVM>> Getallnumberslist();
 
         Task<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM> GetAssignedNumberById(int eventId);
 

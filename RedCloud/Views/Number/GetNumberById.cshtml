@@ -1,0 +1,74 @@
+﻿@model RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM
+
+@{
+    ViewData["Title"] = "GetNumberById";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetNumberById</h1>
+
+<div>
+    <h4>ViewAssignedNumberVM</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumberId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumberId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RateCenter)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RateCenter)
+        </dd>
+     
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TypeName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TypeName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CountryName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CountryName)
+        </dd>
+       
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LATA)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LATA)
+        </dd>
+       
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StateName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StateName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CarrierName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CarrierName)
+        </dd>
+       
+      
+       
+       
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

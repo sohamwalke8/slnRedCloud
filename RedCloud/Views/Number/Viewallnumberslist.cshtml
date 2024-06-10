@@ -6,7 +6,7 @@
 
 <h1>Viewallnumberslist</h1>
 
-@model IEnumerable<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM>
+@model IEnumerable<RedCloud.ViewModel.NumberlistVM>
 
 @{
     ViewData["Title"] = "Index";
@@ -158,10 +158,11 @@
                             <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
                                 <thead>
                                     <tr>
-                                        <th>Organization Name</th>
-                                        <th>EIN</th>
-                                        <th>Email</th>
-                                        <th>Status</th>
+                                        <th>NumberId</th>
+                                        <th>Number</th>
+                                        <th>Carrier</th>
+                                        <th>Organization</th>
+                                        <th>Type</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -169,9 +170,14 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.NumberId)</td>
+                                            <td>
+                                                <a href="@Url.Action("GetNumberById", "Number", new { id = item.NumberId })">
+                                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                                </a>
+                                            </td>
+                                            <td>@Html.DisplayFor(modelItem => item.CarrierName)</td>
                                             <td>@Html.DisplayFor(modelItem => item.OrgName)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.EIN)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.OrgAdminEmail)</td>
                                             <td>
                                                 <span class="@(item.IsActive ? "status-active" : "status-inactive")">
                                                     @((bool)item.IsActive ? "Active" : "Not Active")
