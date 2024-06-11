@@ -1,6 +1,4 @@
 ﻿using MvcApiCallingService.Helpers.ApiHelper;
-using RedCloud.Application.Features.ResellerAdminuser.Queries;
-using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
 using RedCloud.ViewModel;
 
@@ -12,21 +10,41 @@ namespace RedCloud.Services
         public readonly ILogger<CampaignService> _logger;//add service name
         //private readonly IApiClient<RedCloudAdmin> _adminuser;
         private readonly IApiClient<CampaignVM> _campaign;
+        private readonly IApiClient<CampaignDetailsVM> _campaignTwo;
 
 
-        public CampaignService(ILogger<CampaignService> logger, IApiClient<CampaignVM> campaign, IApiClient<CampaignVM> client)//first one is entity and is service
+
+        public CampaignService(ILogger<CampaignService> logger, IApiClient<CampaignVM> campaign, IApiClient<CampaignVM> client, IApiClient<CampaignDetailsVM> campaignTwo)//first one is entity and is service
         {
              _client = client;
             _logger = logger;
             // _adminuser = adminuser;
             _campaign = campaign;
-            _client = client;
+            _campaignTwo = campaignTwo;
+
+        }
+
+        //Aakash
+        public async Task<int> CreateCampaign(CampaignVM campaign)
+        {
+           // _logger.LogInformation("Addcampaign Service initiated");
+            var result = await _campaign.PostAsync("Campaign/AddCampaign", campaign);
+           // _logger.LogInformation("Addcampaign Service completed");
+            return result.Data;
         }
 
 
+        public async Task<CampaignDetailsVM> GetCampaign(int id)
+        {
+           // _logger.LogInformation("GetCampaign Service completed");
+            var apiUrl = $"Campaign/GetCampaignById/{id}";                       //apiurl=>controllername/id
+            var campaignData = await _campaignTwo.GetByIdAsync(apiUrl);
+            //_logger.LogInformation("GetCampaign Service completed");
+            return campaignData.Data;
+        }
 
 
-
+        //End 
         public async Task<IEnumerable<CampaignVM>> GetallCampaign()//change  dto
         {
             _logger.LogInformation("GetAllCategories Service initiated");

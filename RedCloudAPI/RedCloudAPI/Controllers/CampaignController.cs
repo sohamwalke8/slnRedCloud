@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RedCloud.Application.Features.Campaigns;
+using RedCloud.Application.Features.Campaigns.Commands;
 using RedCloud.Application.Features.Campaigns.Queries;
 using RedCloud.Application.Features.RedCloudAdmins.Queries;
 using RedCloud.Application.Features.ResellerAdminuser.Commands;
@@ -22,10 +23,56 @@ namespace RedCloudAPI.Controllers
             _logger = logger;
         }
 
+        [HttpPost("AddCampaign")]
+        public async Task<ActionResult> Create([FromBody] CreateCampaignCommand createCampaignCommand)
+        {
+            var response = await _mediator.Send(createCampaignCommand);
+            return Ok(response);
+        }
+
+
+        [HttpGet("GetCampaignById/{id}")]
+        public async Task<ActionResult> GetCampaignById(int id)
+        {
+            var campaignDetails = await _mediator.Send(new GetCampaignByIdQuery(id));
+            if(campaignDetails.Data == null)
+            {
+                return NotFound(campaignDetails);
+            }
+            return Ok(campaignDetails);
+        }
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //Soham
 
 
         [HttpGet("all")]
@@ -54,6 +101,8 @@ namespace RedCloudAPI.Controllers
 
             return Ok("Campaign Deleted SuccessFully");
         }
+
+
 
     }
 }

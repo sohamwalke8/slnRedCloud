@@ -36,7 +36,7 @@ namespace RedCloud.Application.Features.Campaigns
                 //throw new NotFoundException(nameof(ReSellerAdmin),id);
                 throw new Exception();
             }
-            CampaignToDelete.IsActive = false;
+           // CampaignToDelete.IsActive = false;
             CampaignToDelete.IsDeleted = true;
             await _asyncRepository.UpdateAsync(CampaignToDelete);
             return Unit.Value;

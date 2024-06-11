@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using RedCloud.Models;
 using System.Diagnostics;
+using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 
 namespace RedCloud.Controllers
 {
+    [AdminAuthorizationFilter]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -12,6 +14,8 @@ namespace RedCloud.Controllers
         {
             _logger = logger;
         }
+
+        [AdminAuthorizationFilter]
 
         public IActionResult Index()
         {

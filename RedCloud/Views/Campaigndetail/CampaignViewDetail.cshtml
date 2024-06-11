@@ -134,8 +134,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="dt-search">
-                                <a asp-action="CampaignViewDetail" asp-controller="Campaigndetail"></a>
-                                <button type="button" class="btn btn-primary">Add Campaign</button>
+                                <a type="button" class="btn btn-primary" asp-action="Index" asp-controller="Campaign">Add Campaign </a>
+                                
                             </div>
 
                             <label for="entriesPerPage">
@@ -168,17 +168,15 @@
                                             <td>@admins.UniversalEIN</td>
                                             <td>@admins.BrandId</td>
                                             <td>
-                                                <span class="@(admins.IsActive ? "status-active" : "status-inactive")">
-                                                    @((bool)admins.IsActive ? "Active" : "Not Active")
-                                                </span>
+                                                @admins.IdentityStatus
                                             </td>
                                             <td>
-                                                <a asp-action="" asp-controller="" asp-route-id="@admins.CampaignId" class="btn-action">
+                                                <a asp-action="ViewCampaignById" asp-controller="Campaign" asp-route-id="@admins.CampaignId" class="btn-action">
                                                     <i class="fa-solid fa-eye" style="color: #050505;"></i>
                                                 </a>
-                                                <a asp-action="" asp-controller="" class="btn-action">
+                                                @*<a asp-action="" asp-controller="" class="btn-action">
                                                     <i class="fa-regular fa-pen-to-square" style="color: #131111;"></i>
-                                                </a>
+                                                </a>*@
                                                 <a class="delete-btn btn-action" data-id="@admins.CampaignId" data-name="@admins.CompanyName">
                                                     <i class="fa-solid fa-trash" style="color: #cb1010;"></i>
                                                 </a>

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RedCloud.Application.Features.Campaigns.Commands;
 using RedCloud.Application.Features.Campaigns.Queries;
 using RedCloud.Application.Features.Categories.Commands.CreateCateogry;
 using RedCloud.Application.Features.Categories.Commands.StoredProcedure;
@@ -48,7 +49,15 @@ namespace RedCloud.Application.Profiles
             CreateMap<CreateOrganizationAdminCommand, OrganizationAdmin>();
             CreateMap<UpdateOrganizationAdminCommand, OrganizationAdmin>();
 
+            CreateMap<GetAllCampaignQueries, CampaignVM>().ReverseMap();
+
             CreateMap<Campaign, CampaignVM>().ReverseMap();
+
+            //A.G
+            CreateMap<CreateCampaignCommand, Campaign>().ReverseMap();
+
+
+
 
         }
     }

@@ -1,5 +1,4 @@
 ﻿using RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAdmin;
-using RedCloud.Application.Features.ResellerAdminuser.Queries;
 using RedCloud.ViewModel;
 
 namespace RedCloud.Interfaces
@@ -11,6 +10,11 @@ namespace RedCloud.Interfaces
 
 
         Task SoftDeleteCampaign(int id);
+
+        //Added by ~A.G
+        Task<int> CreateCampaign(CampaignVM campaign);
+
+        Task<CampaignDetailsVM> GetCampaign(int id);
 
 
     }

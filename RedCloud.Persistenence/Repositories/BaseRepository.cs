@@ -112,37 +112,34 @@ namespace RedCloud.Persistenence.Repositories
             return parameterNames;
         }
 
-        //Eager Loading of Related Data   ---------------------------
-        //public async Task<T> GetByIdAsyncInculde(int id)
-        //{
-        //    var query = _dbContext.Set<T>().AsQueryable();
-
-        //    var navigationProperties = _dbContext.Model.FindEntityType(typeof(T)).GetNavigations();
-
-        //    foreach (var navigationProperty in navigationProperties)
-        //    {
-        //        query = query.Include(navigationProperty.Name);
-        //    }
-
-        //    return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == id);
-        //}
+        
         //Eager Loading of Related Data   ---------------------------
 
         public async Task<T> GetByIdAsyncInculde(int id)
         {
-            var query = _dbContext.Set<T>().AsQueryable();
-
-            var entityType = _dbContext.Model.FindEntityType(typeof(T));
-            var primaryKeyProperty = entityType.FindPrimaryKey().Properties.First().Name;
-
-            var navigationProperties = entityType.GetNavigations();
-
-            foreach (var navigationProperty in navigationProperties)
+            try
             {
-                query = query.Include(navigationProperty.Name);
+                var query = _dbContext.Set<T>().AsQueryable();
+
+                var entityType = _dbContext.Model.FindEntityType(typeof(T));
+                var primaryKeyProperty = entityType.FindPrimaryKey().Properties.First().Name;
+
+                var navigationProperties = entityType.GetNavigations();
+
+                foreach (var navigationProperty in navigationProperties)
+                {
+                    query = query.Include(navigationProperty.Name);
+                }
+
+                return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, primaryKeyProperty) == id);
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
-            return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, primaryKeyProperty) == id);
         }
+
     }
 }

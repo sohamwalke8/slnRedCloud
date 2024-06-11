@@ -32,11 +32,19 @@ namespace RedCloud.Application.Features.Campaigns.Queries
 
         public async Task<Response<IEnumerable<CampaignVM>>> Handle(GetAllCampaignQueries request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Handle Initiated");
-            var allReSellerAdmin = (await _asyncRepository.ListAllAsync()).Where(x => x.IsDeleted == false);
-            var resellerAdmin = _mapper.Map<IEnumerable<CampaignVM>>(allReSellerAdmin);
-            _logger.LogInformation("Hanlde Completed");
-            return new Response<IEnumerable<CampaignVM>>(resellerAdmin, "success");
+            try
+            {
+                _logger.LogInformation("Handle Initiated");
+                var allCampaign = (await _asyncRepository.ListAllAsync()).Where(x => x.IsDeleted == false);
+                var allCAmp = _mapper.Map<IEnumerable<CampaignVM>>(allCampaign);
+                _logger.LogInformation("Hanlde Completed");
+                return new Response<IEnumerable<CampaignVM>>(allCAmp, "success");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
 

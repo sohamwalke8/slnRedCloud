@@ -54,7 +54,7 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseSerilogRequestLogging();
 app.UseSession();
-
+builder.Services.AddDistributedMemoryCache();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -65,10 +65,10 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
         //pattern: "{controller=Home}/{action=Index}/{Id?}");
-        //pattern: "{controller=Account}/{action=Login}/{Id?}");
+         pattern: "{controller=Account}/{action=Login}/{Id?}");
         //aakash
         //pattern: "{controller=OrganizationAdmin}/{action=ViewOrganizationAdmin}/{id?}");
-        pattern: "{controller=Campaign}/{action=Index}/{id?}");
+        //pattern: "{controller=Campaign}/{action=Index}/{id?}");
 
 
 
