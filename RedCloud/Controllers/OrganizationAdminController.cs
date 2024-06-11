@@ -134,7 +134,7 @@ namespace RedCloud.Controllers
             var response = _organizationAdminService.EditOrganizationAdmin(request);
 
             //_logger.LogInformation("CreateCategory Action initiated");
-            return RedirectToAction("UpdateOrganizationAdmin");
+            return RedirectToAction("ViewOrganizationAdmin");
         }
 
 
