@@ -16,15 +16,18 @@ namespace RedCloud.Domain.Entities
 
         public string OrganizationUserLastName { get; set;}
 
-        public string OrganizationUserEmail { get; set;}
+        public string OrganizationUserEmail { get; set; }
 
-        public bool IsActive {  get; set; }
+        public string? OrganizationUserPassword { get; set; }
 
-        public int OrganizationID { get; set; }
+        public bool IsActive {  get; set; } = true;
 
-        public virtual OrganizationAdmin OrganizationAdmin {  get; set; }
+        public int OrganizationAdminId { get; set; }
 
-        
+        public OrganizationAdmin OrganizationAdmin { get; set; }
+
+
+
 
 
 

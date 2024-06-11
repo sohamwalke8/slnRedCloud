@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RedCloud.Persistenence.Migrations
 {
     /// <inheritdoc />
-    public partial class mappingtable : Migration
+    public partial class apicreation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -177,7 +177,7 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.StateId,
                         principalTable: "States",
                         principalColumn: "StateId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -237,9 +237,9 @@ namespace RedCloud.Persistenence.Migrations
                     OrganizationUserFirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrganizationUserLastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrganizationUserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrganizationUserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    OrganizationID = table.Column<int>(type: "int", nullable: false),
-                    OrganizationAdminOrgID = table.Column<int>(type: "int", nullable: false),
+                    OrganizationAdminId = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedBy = table.Column<int>(type: "int", nullable: true),
@@ -250,8 +250,8 @@ namespace RedCloud.Persistenence.Migrations
                 {
                     table.PrimaryKey("PK_OrganizationUsers", x => x.OrganizationUserId);
                     table.ForeignKey(
-                        name: "FK_OrganizationUsers_OrganizationAdmins_OrganizationAdminOrgID",
-                        column: x => x.OrganizationAdminOrgID,
+                        name: "FK_OrganizationUsers_OrganizationAdmins_OrganizationAdminId",
+                        column: x => x.OrganizationAdminId,
                         principalTable: "OrganizationAdmins",
                         principalColumn: "OrgID",
                         onDelete: ReferentialAction.NoAction);
@@ -312,7 +312,6 @@ namespace RedCloud.Persistenence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrganizationAdminId = table.Column<int>(type: "int", nullable: false),
-                    ResellerAdminId = table.Column<int>(type: "int", nullable: false),
                     ResellerAdminUserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -402,9 +401,9 @@ namespace RedCloud.Persistenence.Migrations
                 column: "ResellerAdminUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrganizationUsers_OrganizationAdminOrgID",
+                name: "IX_OrganizationUsers_OrganizationAdminId",
                 table: "OrganizationUsers",
-                column: "OrganizationAdminOrgID");
+                column: "OrganizationAdminId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RedCloudAdmins_ResellerAdminUserId",

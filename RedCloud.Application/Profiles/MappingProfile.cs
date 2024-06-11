@@ -6,6 +6,8 @@ using RedCloud.Application.Features.Countries;
 using RedCloud.Application.Features.Events.Queries.GetEventDetail;
 using RedCloud.Application.Features.OrganizationAdmins.Commands;
 using RedCloud.Application.Features.OrganizationAdmins.Queries;
+using RedCloud.Application.Features.OrganizationUsers.Commands;
+using RedCloud.Application.Features.OrganizationUsers.Queries;
 using RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAdmin;
 using RedCloud.Application.Features.ResellerAdminuser.Commands;
 using RedCloud.Application.Features.ResellerAdminuser.Queries;
@@ -46,6 +48,13 @@ namespace RedCloud.Application.Profiles
 
             CreateMap<CreateOrganizationAdminCommand, OrganizationAdmin>();
             CreateMap<UpdateOrganizationAdminCommand, OrganizationAdmin>();
+
+            
+            CreateMap<OrganizationUser, GetAllOrganizationUserVM>().ReverseMap();
+            //CreateMap<OrganizationUser, CreateOrganizationUserCommand>().ReverseMap();
+            CreateMap<CreateOrganizationUserCommand,OrganizationUser>().ReverseMap();
+            CreateMap<UpdateOrganizationUserCommand, OrganizationUser>().ReverseMap();
+
         }
     }
 

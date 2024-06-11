@@ -289,10 +289,7 @@ namespace RedCloud.Persistenence.Migrations
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("OrganizationAdminOrgID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrganizationID")
+                    b.Property<int>("OrganizationAdminId")
                         .HasColumnType("int");
 
                     b.Property<string>("OrganizationUserEmail")
@@ -307,9 +304,12 @@ namespace RedCloud.Persistenence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OrganizationUserPassword")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("OrganizationUserId");
 
-                    b.HasIndex("OrganizationAdminOrgID");
+                    b.HasIndex("OrganizationAdminId");
 
                     b.ToTable("OrganizationUsers");
                 });
@@ -655,7 +655,7 @@ namespace RedCloud.Persistenence.Migrations
                 {
                     b.HasOne("RedCloud.Domain.Entities.OrganizationAdmin", "OrganizationAdmin")
                         .WithMany("OrganizationUsers")
-                        .HasForeignKey("OrganizationAdminOrgID")
+                        .HasForeignKey("OrganizationAdminId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
