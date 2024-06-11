@@ -96,5 +96,16 @@ namespace RedCloudAPI.Controllers
             return Ok(dtos);
         }
 
+
+
+        [HttpPut("UpdateStatus/{id}")]
+        public async Task<ActionResult> GetNumberByIdforprogress(int id, AddProgressCommand command)//changes the code
+        {
+            var response = await _mediator.Send(command);
+
+            return Ok(response);
+        }
+
+
     }
 }

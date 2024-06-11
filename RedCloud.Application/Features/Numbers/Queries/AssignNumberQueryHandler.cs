@@ -45,6 +45,7 @@ namespace RedCloud.Application.Features.Numbers.Queries
                 LATA = number.LATA,
                 StateName = number.State.Name,
                 CarrierName = number.Carrier.CarrierName,
+                Status=number.Status,
 
             };
 

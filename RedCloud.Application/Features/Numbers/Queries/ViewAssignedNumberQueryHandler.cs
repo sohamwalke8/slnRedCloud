@@ -55,6 +55,7 @@ namespace RedCloud.Application.Features.Numbers.Queries
                 CampaignId = number.CampaignId,
                 StartDate = number.StartDate,
                 EndDate = number.EndDate,
+                Status=number.Status,
 
             };
 

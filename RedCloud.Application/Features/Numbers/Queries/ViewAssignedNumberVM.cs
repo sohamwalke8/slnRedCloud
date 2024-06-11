@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RedCloud.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace RedCloud.Application.Features.Numbers.Queries
         public string StateName { get; set; }
         public string CarrierName { get; set; }
         public int? CarrierId { get; set; }
+        public Status? Status { get; set; }
 
         //editable-prop
         public int? ResellerAdminUserId { get; set; }

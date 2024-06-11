@@ -30,8 +30,8 @@ namespace RedCloud.Controllers
         private readonly INumberService<NumberlistVM> _numberService2;
 
 
-        public NumberController(IDropDownService<CountryVM> dropDownService, 
-        INumberService<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM> numberServiceVM, IOrganizationAdminService organizationAdminService,ICampaign<CampaignVM> campaign, IAdminResellerUser adminResellerUser, IStateService<StateVM> stateService, ICarrier<CarrierVM> carrier, IType<TypesVM> type, INumberService<NumberVM> numberService, IAssignmentType<AssignmentTypeVM> assignmentType, INumberService<NumberlistVM> numberService2)
+        public NumberController(IDropDownService<CountryVM> dropDownService,
+        INumberService<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM> numberServiceVM, IOrganizationAdminService organizationAdminService, ICampaign<CampaignVM> campaign, IAdminResellerUser adminResellerUser, IStateService<StateVM> stateService, ICarrier<CarrierVM> carrier, IType<TypesVM> type, INumberService<NumberVM> numberService, IAssignmentType<AssignmentTypeVM> assignmentType, INumberService<NumberlistVM> numberService2)
         {
             _dropDownService = dropDownService;
             _stateService = stateService;
@@ -44,7 +44,7 @@ namespace RedCloud.Controllers
             _campaign = campaign;
             _numberServiceVM = numberServiceVM;
             _numberService2 = numberService2;
-           
+
 
         }
 
@@ -95,7 +95,7 @@ namespace RedCloud.Controllers
         [HttpPost]
         public async Task<IActionResult> AssignNumber(AssignNumberViewModel request)
         {
-            var response =   _numberService.UpdateNumber(request);
+            var response = _numberService.UpdateNumber(request);
             return RedirectToAction("AddNumber");
         }
 
@@ -104,9 +104,9 @@ namespace RedCloud.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Viewassignednumber (int id)
+        public async Task<IActionResult> Viewassignednumber(int id)
         {
-            var response=await _numberServiceVM.GetAssignedNumberById(id);
+            var response = await _numberServiceVM.GetAssignedNumberById(id);
             return View(response);
         }
 
@@ -120,7 +120,7 @@ namespace RedCloud.Controllers
             ViewBag.AdminList = new SelectList(carrierlist, "CarrierId", "CarrierName");
             var countries = await _dropDownService.GetAllCountryList();
             ViewBag.Country = countries;
-           ViewBag.State = await _stateService.GetStatesByCountryId(response.CountryId??0);
+            ViewBag.State = await _stateService.GetStatesByCountryId(response.CountryId ?? 0);
             var typelist = await _type.GetAllTypesList();
             ViewBag.Typelist = new SelectList(typelist, "TypesId", "TypesName");
             var resellerList = await _adminResellerUser.GetallResellerAdmin();
@@ -141,7 +141,7 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> UpdateAssignedNumber(RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM request)
         {
             // _logger.LogInformation("CreateCategory Action initiated");
-            var response =   _numberService2.UpdateAssignedNumber(request);
+            var response = _numberService2.UpdateAssignedNumber(request);
 
             return RedirectToAction("UpdateAssignedNumber");
         }
@@ -160,6 +160,41 @@ namespace RedCloud.Controllers
             var response = await _numberServiceVM.Getallnumberslist();
             //_logger.LogInformation("ViewResellerAdmin Action completed");
             return View(response);
+        }
+
+
+        public async Task<IActionResult> UpdateProgress(int Id)
+
+        {
+            var response = await _numberServiceVM.GetNumberById(Id);
+
+            var number = new NumberlistVM()
+            {
+                NumberId= Id,
+                Status= response.Status ?? Status.InProgress,
+            };
+
+            //return View(response);
+            return PartialView("_UpdateProgressModal", number); // Return a partial view for the modal content
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateProgress(NumberlistVM number)
+        {
+
+
+            //var response =  _numberService2.UpdateProgress(number);
+            //return RedirectToAction("GetNumberById");
+            var response = _numberService2.UpdateProgress(number);
+
+            if (response.IsCompletedSuccessfully)
+            {
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { success = false, errorMessages = "Failed to update status." });
+            }
         }
     }
 }

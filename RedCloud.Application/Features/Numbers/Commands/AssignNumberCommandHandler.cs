@@ -33,6 +33,7 @@ namespace RedCloud.Application.Features.Numbers.Commands
             model.ResellerAdminUserId = request.ResellerAdminUserId;    
             model.OrganizationAdminID = request.OrgID;                
             model.CampaignId = request.CampaignId;
+           // model.Status = request.Status;
              await _asyncRepository.UpdateAsync(model);
             var response = new Response<Unit>( "Number Assigned successfully");
             return response;

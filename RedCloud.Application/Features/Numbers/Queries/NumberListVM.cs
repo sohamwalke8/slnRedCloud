@@ -8,7 +8,7 @@ namespace RedCloud.ViewModel
             //[Required(ErrorMessage = "Phone number is required")]
             //[Phone(ErrorMessage = "Invalid phone number format")]
 
-        public int NumberId { get; set; }
+            public int NumberId { get; set; }
             public string PhoneNumber { get; set; }
             // [Required(ErrorMessage = "CarrierName is required")]
             public string CarrierName { get; set; }

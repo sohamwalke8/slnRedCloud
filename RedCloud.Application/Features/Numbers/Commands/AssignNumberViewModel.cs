@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using RedCloud.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace RedCloud.Application.Features.Numbers.Commands
         public string StateName { get; set; }
         public int? StateId { get; set; }
 
-      
+      public Status? Status { get; set; }
        public string CarrierName { get; set; }
 
         public int? CarrierId { get; set; }

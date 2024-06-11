@@ -70,5 +70,11 @@ namespace RedCloud.Services
             var reSelleradmin = await _viewassign.GetAllAsync("Number/all");
             return reSelleradmin.Data;
         }
+
+        public async Task UpdateProgress(NumberlistVM numberlistVM)
+        {
+            var id=numberlistVM.NumberId;
+            var users =await  _client.PutAsync($"Number/UpdateStatus/{id}", numberlistVM);
+        }
     }
 }

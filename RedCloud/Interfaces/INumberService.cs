@@ -21,5 +21,7 @@ namespace RedCloud.Interfaces
 
 
        Task UpdateAssignedNumber(RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM assignNumberViewModel);
+
+        Task UpdateProgress(NumberlistVM numberlistVM); 
     }
 }

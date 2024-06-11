@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RedCloud.Application.Responses;
+using RedCloud.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace RedCloud.Application.Features.Numbers.Commands
 
          public int? CampaignId { get; set; }  
        
+        public Status? Status { get; set; }
 
         public string? StartDate { get; set; }
 

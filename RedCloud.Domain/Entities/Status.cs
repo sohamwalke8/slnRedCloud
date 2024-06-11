@@ -8,8 +8,8 @@ namespace RedCloud.Domain.Entities
 {
     public  enum  Status
     {
-        InProgress,
-        Approved,
-        Rejected
+        InProgress,//0 bydefault
+        Approved,//1
+        Rejected//2
     }
 }
