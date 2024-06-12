@@ -24,7 +24,7 @@ namespace RedCloud.Services
         {
             try
             {
-                var apiUrl = $"OrganizationUser/Block/{Id}";
+                var apiUrl = $"OrganizationUser/GetDetailsById/{Id}";
                 var response = await _client.GetByIdAsync(apiUrl);
                 var data = response.Data;
                 data.IsActive = false;

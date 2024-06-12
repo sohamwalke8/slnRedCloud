@@ -25,7 +25,7 @@ namespace RedCloud.Application.Features.OrganizationUsers.Commands
 
         public string OrganizationUserEmail { get; set; }
 
-        public string OrganizationUserPassword { get; set; }
+        public string? OrganizationUserPassword { get; set; }
 
         public bool IsActive { get; set; } = true;
 

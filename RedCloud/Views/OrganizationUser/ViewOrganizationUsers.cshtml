@@ -133,9 +133,9 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <p>
-                                <a class="btn btn-primary" asp-action="AddOrganizationAdmin" asp-controller="OrganizationAdmin"
+                                <a class="btn btn-primary" asp-action="AddOrganizationUser" asp-controller="OrganizationUser"
                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; float:right; margin-bottom:10px">
-                                    Add Organization Admin
+                                    Add Organization User
                                 </a>
                             </p>
                             <label for="entriesPerPage">
@@ -173,11 +173,11 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <a asp-action="ViewOrganizationUsers" asp-controller="OrganizationUser" asp-route-id="@item.OrganizationUserId" class="btn-action">
+                                                <a asp-action="ViewOrganizationUserDetails" asp-controller="OrganizationUser" asp-route-id="@item.OrganizationUserId" class="btn-action">
                                                     <i class="fa-solid fa-eye" style="color: #050505;"></i>
                                                 </a>
 
-                                                <a asp-action="ViewOrganizationUsers" asp-controller="OrganizationUser" asp-route-id="@item.OrganizationUserId" class="btn-action">
+                                                <a asp-action="UpdateOrganizationUser" asp-controller="OrganizationUser" asp-route-id="@item.OrganizationUserId" class="btn-action">
                                                     <i class="fa-regular fa-pen-to-square" style="color: #131111;"></i>
                                                 </a>
 

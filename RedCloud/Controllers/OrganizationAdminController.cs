@@ -29,6 +29,7 @@ namespace RedCloud.Controllers
         // AAKASh
 
         [HttpGet]
+       // [Route("ViewDetails")]
         public async Task<IActionResult> ViewOrganizationAdmin()
         {
             //_logger.LogInformation("ViewOrganizationAdmin Action initiated");
@@ -37,7 +38,7 @@ namespace RedCloud.Controllers
             return View(model);
         }
 
-
+        //[Route("ViewDetailsOrg")]
         public async Task<IActionResult> ViewOrganizationDetails(int id)
         {
             

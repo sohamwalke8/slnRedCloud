@@ -82,7 +82,7 @@ namespace RedCloud.Controllers
             var response = await _organizationUserService.CreateOrganizationUser(request);
 
             //_logger.LogInformation("CreateCategory Action initiated");
-            return RedirectToAction("ViewOrganizationAdmin");
+            return RedirectToAction("ViewOrganizationUsers");
 
             
         }
@@ -102,7 +102,7 @@ namespace RedCloud.Controllers
             var response = _organizationUserService.EditOrganizationUser(request);
 
             //_logger.LogInformation("CreateCategory Action initiated");
-            return RedirectToAction("ViewOrganizationAdmin");
+            return RedirectToAction("ViewOrganizationUsers");
         }
 
 

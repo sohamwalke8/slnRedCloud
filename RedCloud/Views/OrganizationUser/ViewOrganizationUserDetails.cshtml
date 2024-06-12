@@ -1,4 +1,4 @@
-﻿@model RedCloud.ViewModel.AllOrganizationAdminVM
+﻿@model RedCloud.ViewModel.OrganizationUserVM
 
 @{
     Layout = "_Layout";
@@ -50,13 +50,11 @@
         <div class="card-header card-header-custom d-flex justify-content-between align-items-center">
             <div class="logo-text">
                 <img src="https://files.axshare.com/gsc/5886BD/e2/ee/cb/e2eecb648f19481093d6b12d28c3beb3/images/view_user_details/u27.svg?pageId=45d84280-2bba-453f-a23a-42e8aeab14be" alt="Organization Admin Logo">
-                <strong>View Organization Details</strong>
+                <strong>View Organization User Details</strong>
             </div>
             <div class="buttons">
-                <a href="@Url.Action("ViewOrganizationUsers","OrganizationUser" , new { id = Model.OrgID })" class="btn btn-primary" style="background-color:#74746c">
-                   View Users 
-                </a>
-                <a href="@Url.Action("UpdateOrganizationAdmin", new { id = Model.OrgID })" class="btn btn-outline-light">
+               
+                <a href="@Url.Action("UpdateOrganizationAdmin", new { id = Model.OrganizationUserId })" class="btn btn-outline-light">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
                 <a href="@Url.Action("ViewOrganizationAdmin", "OrganizationAdmin")" class="btn btn-outline-light">
@@ -67,27 +65,16 @@
         <div class="card-body">
             <div class="row" style="margin-left:20px">
                 <div class="col-md-6">
-                    @Html.HiddenFor(x => x.OrgID)
+                    @Html.HiddenFor(x => x.OrganizationUserId)
+                    @Html.HiddenFor(x => x.OrganizationAdminId)
                     <div class="admin-details">
-                        <p><strong>Organization Name:</strong> @Html.DisplayFor(model => model.OrgName)</p>
-                        <p><strong>Organization Admin Name:</strong> @Html.DisplayFor(model => model.OrgAdminName)</p>
-                        <p><strong>Organization Admin Email:</strong> @Html.DisplayFor(model => model.OrgAdminEmail)</p>
-                        <p><strong>Admin Mobile Number:</strong> @Html.DisplayFor(model => model.OrgAdminMobNo)</p>
-                        <p><strong>Address Line 1:</strong> @Html.DisplayFor(model => model.AddressLineOne)</p>
-                        <p><strong>Address Line 2:</strong> @Html.DisplayFor(model => model.AddressLineTwo)</p>
+                        <p><strong>Organization Name:</strong> @Html.DisplayFor(model => model.OrganizationUserFirstName)</p>
+                        <p><strong>Organization Admin Name:</strong> @Html.DisplayFor(model => model.OrganizationUserLastName)</p>
+                        <p><strong>Organization Admin Email:</strong> @Html.DisplayFor(model => model.OrganizationUserEmail)</p>
+                       
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="admin-details">
-                        <p><strong>Country:</strong> @Html.DisplayFor(model => model.CountryName)</p>
-                        <p><strong>State:</strong> @Html.DisplayFor(model => model.StateName)</p>
-                        <p><strong>City:</strong> @Html.DisplayFor(model => model.CityName)</p>
-                        <p><strong>Zip Code:</strong> @Html.DisplayFor(model => model.ZipCode)</p>
-                        <p><strong>Organization Email:</strong> @Html.DisplayFor(model => model.OrgAdminEmail)</p>
-                        <p><strong>Organization URL:</strong> @Html.DisplayFor(model => model.CompanyURL)</p>
-                        <p><strong>EIN:</strong> @Html.DisplayFor(model => model.EIN)</p>
-                    </div>
-                </div>
+            
             </div>
 
             <div class="text-center mt-4">
@@ -96,7 +83,7 @@
                     <!-- Trigger the confirmation modal -->
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">Block</button>
                 }
-                <a href="@Url.Action("ViewOrganizationAdmin", "OrganizationAdmin")" class="btn btn-primary">Cancel</a>
+                <a href="@Url.Action("ViewOrganizationUsers", "OrganizationUser")" class="btn btn-primary">Cancel</a>
             </div>
         </div>
     </div>
@@ -127,13 +114,13 @@
     <script>
         $(document).ready(function () {
             $('#confirmBlock').click(function () {
-                var itemId = '@Model.OrgID';
+                var itemId = '@Model.OrganizationUserId';
                 $.ajax({
-                    url: '@Url.Action("Block", "OrganizationAdmin")',
+                    url: '@Url.Action("Block", "OrganizationUser")',
                     type: 'PUT',
                     data: { id: itemId },
                     success: function (result) {
-                        window.location.href = '@Url.Action("ViewOrganizationAdmin", "OrganizationAdmin")';
+                        window.location.href = '@Url.Action("ViewOrganizationUsers", "OrganizationUser")';
                     },
                     error: function () {
                         // Handle error
