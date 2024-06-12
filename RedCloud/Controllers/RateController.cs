@@ -1,7 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using RedCloud.Application.Features.Rates.Commands;
+using RedCloud.Application.Features.Rates.Queries;
 using RedCloud.Application.Helper;
 using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
+using RedCloud.ViewModel;
 
 namespace RedCloud.Controllers
 {
@@ -9,11 +15,17 @@ namespace RedCloud.Controllers
     {
         private readonly ILogger<RateController> _logger;
         private readonly IRate _rate;
+        private readonly IAdminResellerUser _adminreseller;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public RateController(ILogger<RateController> logger, IRate rate)
+
+
+        public RateController(ILogger<RateController> logger, IRate rate, IAdminResellerUser adminreseller, IHttpContextAccessor httpContextAccessor)
         {
             _rate = rate;
             _logger = logger;
+            _adminreseller = adminreseller;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -81,10 +93,119 @@ namespace RedCloud.Controllers
         }
 
 
-       
+        //[HttpGet]
+        //public IActionResult AddRate()
+        //{
+        //    return View();
+        //}
 
+        [HttpGet]
+        public async Task<IActionResult> AddRate()
+        {
+
+            var resellers = await _rate.GetResellersAsync();
+
+
+            ViewBag.Resellers = new SelectList(resellers, "ResellerAdminUserId", "ResellerName");
+
+            return View();
+        }
+
+
+
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddRate(Rate rate)
+        {
+
+            var result = await _rate.AddRate(rate);
+
+              return RedirectToAction("ViewallRates");
+
+
+            return View(rate);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateRate(int id)
+        {
+            _logger.LogInformation($"Fetching Rate with ID: {id}");
+            var response = await _rate.GetRateId(id);
+
+            if (response == null)
+            {
+                _logger.LogWarning($"Rate with ID: {id} not found");
+                return NotFound();
+            }
+
+            var resellers = await _rate.GetResellersAsync();
+            ViewBag.Resellers = new SelectList(resellers, "ResellerAdminUserId", "ResellerName");
+            return View(response);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateRate(UpdateRateVm model)
+        
+        
+        {
+           
+
+
+            var updateRateCommand = new UpdateRateCommand
+            {
+                RateId = model.RateId,
+                //ResellerName = model.ResellerName,
+                ResellerAdminUserId = model.ResellerAdminUserId,
+                MonthlyNumber = model.MonthlyNumber,
+                Users = model.Users,
+                InboundSMS = model.InboundSMS,
+                OutboundSMS = model.OutboundSMS,
+                InboundMMS = model.InboundMMS,
+                OutboundMMS = model.OutboundMMS,
+                Type = model.Type
+               
+            };
+            
+
+                try
+                {
+                    var response = await _rate.UpdateRate(updateRateCommand);
+                    if (response)
+                    {
+                        return RedirectToAction("ViewallRates");
+                    }
+
+                   
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError($"Error updating rate: {ex.Message}");
+                    ModelState.AddModelError("", "Internal server error");
+                }
+
+                var resellersList = await _rate.GetResellersAsync();
+                ViewBag.Resellers = new SelectList(resellersList, "ResellerAdminUserId", "ResellerName");
+            return RedirectToAction("ViewallRates");
+        }
+
+        }
     }
 
 
 
-}
+
+
+
+
+
+
+
+
+
+
+
+

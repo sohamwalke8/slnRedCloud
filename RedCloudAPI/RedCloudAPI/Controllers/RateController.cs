@@ -114,6 +114,7 @@ namespace RedCloudAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateRateCommand createRateCommand)
         {
+            
             try
             {
                 if (createRateCommand == null)
@@ -126,10 +127,22 @@ namespace RedCloudAPI.Controllers
             }
             catch (Exception ex)
             {
+                
+                var errorResponse = new
+                {
+                    Message = "Internal server error",
+                    Error = ex.Message,
+                    StackTrace = ex.StackTrace
+                };
 
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, errorResponse);
             }
+
+
+
+
         }
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateRateCommand updateRateCommand)
@@ -149,6 +162,7 @@ namespace RedCloudAPI.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
 
     }
 }

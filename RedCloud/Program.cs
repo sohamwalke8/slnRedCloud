@@ -32,6 +32,8 @@ builder.Services.AddScoped(typeof(IStateService<StateVM>), typeof(StateService<S
 builder.Services.AddScoped(typeof(ICityService<CityVM>), typeof(CityService<CityVM>));
 builder.Services.AddScoped<IOrganizationAdminService, OrganizationAdminService>();
 builder.Services.AddScoped<IRate, RateServices>();
+builder.Services.AddHttpContextAccessor();
+
 
 
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings")); // Add by Aditya
@@ -65,10 +67,10 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
         //pattern: "{controller=Home}/{action=Index}/{Id?}");
-        //pattern: "{controller=Account}/{action=Login}/{Id?}");
+        pattern: "{controller=Account}/{action=Login}/{Id?}");
         //aakash
         //pattern: "{controller=OrganizationAdmin}/{action=ViewOrganizationAdmin}/{id?}");
-        pattern: "{controller=Campaign}/{action=Index}/{id?}");
+        //pattern: "{controller=Campaign}/{action=Index}/{id?}");
 
 
 

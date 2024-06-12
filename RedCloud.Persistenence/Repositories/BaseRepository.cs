@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Client;
 using RedCloud.Application.Contract.Persistence;
 using System;
 using System.Collections.Generic;
@@ -100,6 +101,7 @@ namespace RedCloud.Persistenence.Repositories
         {
             var parameterNames = GetParameterNames(parameters);
             return await _dbContext.Database.ExecuteSqlRawAsync(string.Format("{0} {1}", storedProcedureName, string.Join(",", parameterNames)), parameters);
+            
         }
 
         private string[] GetParameterNames(SqlParameter[] parameters)

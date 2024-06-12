@@ -12,6 +12,8 @@ namespace RedCloud.Application.Features.Rates.Commands
     {
         public int RateId { get; set; }
         public int ResellerAdminUserId { get; set; }
+
+        //public string ResellerName { get; set; }
         public string Type { get; set; } = "Postpaid/Unlimited";
         public int InboundSMS { get; set; }
         public int OutboundSMS { get; set; }

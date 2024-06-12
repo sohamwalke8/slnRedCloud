@@ -29,6 +29,7 @@ namespace RedCloud.Application.Features.Rates.Commands
             var parameters = new[]
             {
                 new SqlParameter("@RateId", request.RateId),
+
                 new SqlParameter("@ResellerAdminUserId", request.ResellerAdminUserId),
                 new SqlParameter("@Type", request.Type),
                 new SqlParameter("@InboundSMS", request.InboundSMS),

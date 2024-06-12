@@ -1,6 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
 using MvcApiCallingService.Helpers.ApiHelper;
 using Newtonsoft.Json;
+using RedCloud.Application.Features.Rates.Commands;
 using RedCloud.Application.Features.Rates.Queries;
 using RedCloud.Application.Features.ResellerAdminuser.Queries;
 using RedCloud.Application.Helper;
@@ -15,12 +18,14 @@ namespace RedCloud.Services
         private readonly IApiClient<Rate> _rate;
         private readonly IApiClient<GetRate> _rateuser;
         private readonly IApiClient<RateDetailVM> _client;
+        private readonly IApiClient<ReSellerAdmindto> _resellerApiClient;
 
-        public RateServices(IApiClient<Rate> rate, IApiClient<GetRate> rateuser, IApiClient<RateDetailVM> client)
+        public RateServices(IApiClient<Rate> rate, IApiClient<GetRate> rateuser, IApiClient<RateDetailVM> client, IApiClient<ReSellerAdmindto> resellerApiClient)
         {
             _client = client;
             _rate = rate;
             _rateuser = rateuser;
+            _resellerApiClient = resellerApiClient;
         }
         public async Task<IEnumerable<GetRate>> GetallRate()
         {
@@ -63,8 +68,64 @@ namespace RedCloud.Services
             var response = await _rate.DeleteAsync("Rate/" + id);
             return !string.IsNullOrEmpty(response);
         }
+
+
+        public async Task<bool> AddRate(Rate rate)
+        {
+            var response = await _rate.PostAsync("Rate", rate);
+            return response.Data > 0;
+        }
+
+        public async Task<IEnumerable<ReSellerAdmindto>> GetResellersAsync()
+        {
+            try
+            {
+                var response = await _resellerApiClient.GetAllAsync("ResellerAdminUser/all");
+
+                if (response.Succeeded)
+                {
+                    var resellers = response.Data.Select(r => new ReSellerAdmindto
+                    {
+                        ResellerAdminUserId = r.ResellerAdminUserId,
+                        ResellerName = r.ResellerName,
+                        
+                    });
+
+                    return resellers;
+                }
+                else
+                {
+                   
+                    return Enumerable.Empty<ReSellerAdmindto>();
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                return Enumerable.Empty<ReSellerAdmindto>();
+            }
+        }
+
+
+
+        public async Task<bool> UpdateRate(UpdateRateCommand updateRateCommand)
+        {
+            var response = await _rate.PutAsync("Rate/" + updateRateCommand.RateId, updateRateCommand);
+            return response.Succeeded;
+        }
+
+
+
+
+
     }
 
 
-
 }
+    
+
+
+
+
+
+
