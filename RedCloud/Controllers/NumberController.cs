@@ -163,38 +163,55 @@ namespace RedCloud.Controllers
         }
 
 
-        public async Task<IActionResult> UpdateProgress(int Id)
 
+
+        public async Task<IActionResult> UpdateProgress(int Id)
         {
             var response = await _numberServiceVM.GetNumberById(Id);
 
             var number = new NumberlistVM()
             {
-                NumberId= Id,
-                Status= response.Status ?? Status.InProgress,
+                NumberId = Id,
+                Status = response.Status ?? Status.InProgress,
             };
+            return View(response);
 
-            //return View(response);
-            return PartialView("_UpdateProgressModal", number); // Return a partial view for the modal content
         }
 
         [HttpPost]
         public async Task<IActionResult> UpdateProgress(NumberlistVM number)
+
         {
-
-
-            //var response =  _numberService2.UpdateProgress(number);
-            //return RedirectToAction("GetNumberById");
             var response = _numberService2.UpdateProgress(number);
+            return RedirectToAction("GetNumberById");
 
-            if (response.IsCompletedSuccessfully)
-            {
-                return Json(new { success = true });
-            }
-            else
-            {
-                return Json(new { success = false, errorMessages = "Failed to update status." });
-            }
         }
+
+
+        //public async Task<IActionResult> UpdateProgressnew(int id)
+        //{
+        //    var response = await _numberServiceVM.GetNumberById(id);
+        //    var model = new NumberlistVM()
+        //    {
+        //        NumberId = id,
+        //        Status = response.Status ?? Status.InProgress,
+        //    };
+        //    return PartialView("_UpdateProgressPartial", model); // Return a partial view
+        //}
+
+        //[HttpPost]
+        //public async Task<IActionResult> UpdateProgressnew(NumberlistVM number)
+        //{
+        //    var response =  _numberService2.UpdateProgress(number);
+        //    if (response.IsCompleted)
+        //    {
+        //        return Json(new { success = true });
+        //    }
+        //    else
+        //    {
+        //        return Json(new { success = false});
+        //    }
+        //}
+
     }
 }
