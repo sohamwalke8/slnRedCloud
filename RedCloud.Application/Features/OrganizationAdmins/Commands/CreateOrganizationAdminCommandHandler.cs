@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using RedCloud.Application.Contract.Persistence;
+using RedCloud.Application.Helper;
 using RedCloud.Application.Responses;
 using RedCloud.Domain.Entities;
 using System;
@@ -46,7 +47,14 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Commands
             //    ResellerID = request.ResellerId
             //};
             //var map = await _asyncRepositoryMapper.AddAsync(mapping);
+            
+            var encryptedPassword = EncryptionDecryption.EncryptString(request.OrgAdminPassword);
+
             var org = _mapper.Map<OrganizationAdmin>(request);
+            org.OrgAdminPassword = encryptedPassword;
+
+            //var org = _mapper.Map<OrganizationAdmin>(request);
+
             org.CreatedBy = 1;
             org.CreatedDate = DateTime.Now;
             org.IsDeleted = false;
