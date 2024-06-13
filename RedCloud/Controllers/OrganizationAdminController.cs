@@ -121,7 +121,7 @@ namespace RedCloud.Controllers
 
             var response = await _organizationAdminService.GetOrganizationAdminById(Id);
             var countries = await _dropDownService.GetAllCountryList();
-            ViewBag.Country = countries;
+            ViewBag.Country = countries; 
             ViewBag.State = await _stateService.GetStatesByCountryId(response.CountryId);
             ViewBag.City = await _cityService.GetCityByStateId(response.StateId);
 

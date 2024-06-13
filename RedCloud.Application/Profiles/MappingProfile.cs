@@ -13,6 +13,8 @@ using RedCloud.Application.Features.OrganizationUsers.Queries;
 using RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAdmin;
 using RedCloud.Application.Features.ResellerAdminuser.Commands;
 using RedCloud.Application.Features.ResellerAdminuser.Queries;
+using RedCloud.Application.Features.ResellerUsers.Command;
+using RedCloud.Application.Features.ResellerUsers.Queries;
 using RedCloud.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -68,6 +70,11 @@ namespace RedCloud.Application.Profiles
             CreateMap<CreateOrganizationUserCommand,OrganizationUser>().ReverseMap();
             CreateMap<UpdateOrganizationUserCommand, OrganizationUser>().ReverseMap();
 
+
+
+            CreateMap<CreateResellerUserCommand, ResellerUser>().ReverseMap();
+            CreateMap<ResellerUserVM, ResellerUser>().ReverseMap();
+            CreateMap<UpdateResellerUserCommand, ResellerUser>().ReverseMap();
         }
     }
 

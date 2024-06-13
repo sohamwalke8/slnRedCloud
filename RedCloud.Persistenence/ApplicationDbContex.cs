@@ -43,6 +43,7 @@ namespace RedCloud.Persistenence
 
         public DbSet<OrganizationUser> OrganizationUsers { get; set; }
         public DbSet<OrganizationResellerMapping> OrganizationResellerMapping { get; set; }
+        public DbSet<ResellerUser> ResellerUsers { get; set; }
 
 
 
