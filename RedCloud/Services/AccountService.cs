@@ -62,7 +62,9 @@ namespace RedCloud.Services
             return rate.Data;
         }
 
-       
+
+
+
 
 
         //public async Task<Register> Register(Register register)

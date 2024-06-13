@@ -63,5 +63,12 @@ namespace RedCloudAPI.Controllers
             return Ok(response);
         }
         //Add by Aditya End
+
+        public async Task<ActionResult> ResellerAdminLogin(LoginForResellerQuery loginQuery)
+        {
+            var response = "value ";
+            return Ok(response);
+        }
+
     }
 }
