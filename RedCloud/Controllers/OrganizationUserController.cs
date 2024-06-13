@@ -111,11 +111,22 @@ namespace RedCloud.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateOrganizationUser(OrganizationUserVM request)
         {
-            // _logger.LogInformation("CreateCategory Action initiated");
-            var response = _organizationUserService.EditOrganizationUser(request);
-            var Id = request.OrganizationAdminId;
-            //_logger.LogInformation("CreateCategory Action initiated");
-            return RedirectToAction("ViewOrganizationUsers", new { id = Id });
+            //// _logger.LogInformation("CreateCategory Action initiated");
+            //var response = _organizationUserService.EditOrganizationUser(request);
+            //var Id = request.OrganizationAdminId;
+            ////_logger.LogInformation("CreateCategory Action initiated");
+            //return RedirectToAction("ViewOrganizationUsers", new { id = Id });
+            try
+            {
+                await _organizationUserService.EditOrganizationUser(request);
+                var id = request.OrganizationAdminId;
+                return RedirectToAction("ViewOrganizationUsers", new { id });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while updating the OrganizationUser");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
 

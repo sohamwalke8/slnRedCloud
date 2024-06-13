@@ -125,7 +125,7 @@
 
         <div class="card">
             <div class="card-header" style="background-color:#007BFF">
-                <h3 class="card-title" style="color:white; font-weight:bold;font-size:23px;">Manage Organization</h3>
+                <h3 class="card-title" style="color:white; font-weight:bold;font-size:23px;">Manage Organization Users</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -152,7 +152,7 @@
                             <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
                                 <thead>
                                     <tr>
-                                        <th>Organization ID</th>
+                                        @* <th>Organization ID</th> *@
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Email</th>
@@ -166,7 +166,7 @@
                                         <tr>
                                             
                                                 
-                                            <td>@Html.DisplayFor(modelItem => item.OrganizationUserId)</td>
+                                            @* <td>@Html.DisplayFor(modelItem => item.OrganizationUserId)</td> *@
                                             <td>@Html.DisplayFor(modelItem => item.OrganizationUserFirstName)</td>
                                             <td>@Html.DisplayFor(modelItem => item.OrganizationUserLastName)</td>
                                             <td>@Html.DisplayFor(modelItem => item.OrganizationUserEmail)</td>

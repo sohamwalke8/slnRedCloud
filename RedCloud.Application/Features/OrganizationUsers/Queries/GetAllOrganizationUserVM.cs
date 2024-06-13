@@ -11,15 +11,15 @@ namespace RedCloud.Application.Features.OrganizationUsers.Queries
     {
         public int OrganizationUserId { get; set; }
 
-        [Required(ErrorMessage = "First name is required.")]
-        [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
+        //[Required(ErrorMessage = "First name is required.")]
+        //[StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
         public string OrganizationUserFirstName { get; set; }
 
-        [Required(ErrorMessage = "Last name is required.")]
-        [StringLength(50, ErrorMessage = "Last name cannot be longer than 50 characters.")]
+        //[Required(ErrorMessage = "Last name is required.")]
+        //[StringLength(50, ErrorMessage = "Last name cannot be longer than 50 characters.")]
         public string OrganizationUserLastName { get; set; }
 
-        [Required(ErrorMessage = "Email is required.")]
+       // [Required(ErrorMessage = "Email is required.")]
 
         public string OrganizationUserEmail { get; set; }
 
