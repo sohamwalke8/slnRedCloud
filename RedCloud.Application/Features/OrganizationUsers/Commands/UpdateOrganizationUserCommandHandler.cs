@@ -29,7 +29,7 @@ namespace RedCloud.Application.Features.OrganizationUsers.Commands
 
             // Update properties of the existing entity
             _mapper.Map(request, updateOrganizationUser);
-
+            updateOrganizationUser.IsActive = request.IsActive;
             updateOrganizationUser.LastModifiedDate = DateTime.Now;
             updateOrganizationUser.LastModifiedBy = null;
             // The Password is already set in userObj, no need to reassign

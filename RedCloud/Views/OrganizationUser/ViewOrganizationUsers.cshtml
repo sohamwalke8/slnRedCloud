@@ -119,8 +119,8 @@
         margin: 0.2rem;
     }
 </style>
-
-<form method="post" id="user-query-form" asp-action="ViewOrganizationUsers" asp-controller="OrganizationUser">
+<body>
+<form method="post" id="user-query-form" asp-action="ViewOrganizationUsers" asp-controller="OrganizationUser"> 
     <div class="card-body">
 
         <div class="card">
@@ -130,10 +130,12 @@
             <!-- /.card-header -->
             <div class="card-body">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    
+
                     <div class="row">
                         <div class="col-sm-12">
                             <p>
-                                <a class="btn btn-primary" asp-action="AddOrganizationUser" asp-controller="OrganizationUser"
+                                <a class="btn btn-primary" asp-action="AddOrganizationUser" asp-controller="OrganizationUser" 
                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; float:right; margin-bottom:10px">
                                     Add Organization User
                                 </a>
@@ -162,6 +164,8 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
+                                            
+                                                
                                             <td>@Html.DisplayFor(modelItem => item.OrganizationUserId)</td>
                                             <td>@Html.DisplayFor(modelItem => item.OrganizationUserFirstName)</td>
                                             <td>@Html.DisplayFor(modelItem => item.OrganizationUserLastName)</td>
@@ -218,7 +222,7 @@
     </div>
 
 </form>
-
+</body>
 @section Scripts {
     <!-- Include necessary libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -20,6 +20,8 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
+                                    <input type="hidden" asp-for="OrganizationAdminId" value="@Model.OrganizationAdminId"/>
+
                                     <div class="form-group">
                                         <label for="OrganizationUserFirstName">First Name</label>
                                         <input asp-for="OrganizationUserFirstName" class="form-control" id="OrgName" placeholder="Enter organization name">
@@ -41,7 +43,7 @@
 
                                     @* <input type="password" asp-for="OrganizationUserPassword" value="abcd" hidden /> *@
 
-                                    <input type="number" asp-for="OrganizationAdminId" value="1" hidden />
+                                    
 
                                     
                               

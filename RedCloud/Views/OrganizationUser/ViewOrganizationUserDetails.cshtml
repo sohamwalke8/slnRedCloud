@@ -54,10 +54,10 @@
             </div>
             <div class="buttons">
                
-                <a href="@Url.Action("UpdateOrganizationAdmin", new { id = Model.OrganizationUserId })" class="btn btn-outline-light">
+                <a href="@Url.Action("UpdateOrganizationUser", new { id = Model.OrganizationUserId })" class="btn btn-outline-light">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <a href="@Url.Action("ViewOrganizationAdmin", "OrganizationAdmin")" class="btn btn-outline-light">
+                <a href="@Url.Action("ViewOrganizationUsers", "OrganizationUser",new { id = Model.OrganizationAdminId })" class="btn btn-outline-light">
                     <i class="fa-solid fa-circle-left"></i>
                 </a>
             </div>
@@ -83,7 +83,7 @@
                     <!-- Trigger the confirmation modal -->
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">Block</button>
                 }
-                <a href="@Url.Action("ViewOrganizationUsers", "OrganizationUser")" class="btn btn-primary">Cancel</a>
+                <a href="@Url.Action("ViewOrganizationUsers", "OrganizationUser", new { id = Model.OrganizationAdminId })" class="btn btn-primary">Cancel</a>
             </div>
         </div>
     </div>
@@ -115,12 +115,13 @@
         $(document).ready(function () {
             $('#confirmBlock').click(function () {
                 var itemId = '@Model.OrganizationUserId';
+                var orgId = '@Model.OrganizationAdminId';
                 $.ajax({
                     url: '@Url.Action("Block", "OrganizationUser")',
                     type: 'PUT',
                     data: { id: itemId },
                     success: function (result) {
-                        window.location.href = '@Url.Action("ViewOrganizationUsers", "OrganizationUser")';
+                        window.location.href = '@Url.Action("ViewOrganizationUsers", "OrganizationUser")' + '?id=' + orgId;
                     },
                     error: function () {
                         // Handle error

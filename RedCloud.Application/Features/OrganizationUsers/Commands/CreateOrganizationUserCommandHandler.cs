@@ -34,6 +34,7 @@ namespace RedCloud.Application.Features.OrganizationUsers.Commands
             organizationUser.IsDeleted = false;
             organizationUser.CreatedDate = DateTime.UtcNow;
             organizationUser.CreatedBy = null;
+            organizationUser.IsActive = true;
 
 
 

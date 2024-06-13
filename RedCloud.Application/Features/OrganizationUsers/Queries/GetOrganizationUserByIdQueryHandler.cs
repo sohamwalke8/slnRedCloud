@@ -37,7 +37,8 @@ namespace RedCloud.Application.Features.OrganizationUsers.Queries
                OrganizationUserFirstName = admin.OrganizationUserFirstName,
                OrganizationUserLastName = admin.OrganizationUserLastName,
                OrganizationUserEmail = admin.OrganizationUserEmail,
-               OrganizationAdminId = admin.OrganizationAdminId
+               OrganizationAdminId = admin.OrganizationAdminId,
+               IsActive = admin.IsActive,
                
 
             };
