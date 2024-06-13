@@ -120,6 +120,19 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> AddRate(Rate rate)
         {
 
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId == null)
+            {
+
+                return RedirectToAction("Login", "Account");
+            }
+
+            rate.CreatedBy = userId;
+            rate.CreatedDate = DateTime.Now;
+
+
+
             var result = await _rate.AddRate(rate);
 
               return RedirectToAction("ViewallRates");

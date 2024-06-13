@@ -45,7 +45,7 @@ namespace RedCloud.Application.Features.Rates.Commands
             new SqlParameter("@OutboundMMS", SqlDbType.Int) { Value = request.OutboundMMS },
             new SqlParameter("@MonthlyNumber", SqlDbType.Int) { Value = request.MonthlyNumber },
             new SqlParameter("@Users", SqlDbType.Int) { Value = request.Users },
-            new SqlParameter("@CreatedBy", SqlDbType.Int) { Value = 0 }, 
+            new SqlParameter("@CreatedBy", SqlDbType.Int) { Value = request.CreatedBy },
             new SqlParameter("@LastModifiedBy", SqlDbType.Int) { Value = 0}, 
             new SqlParameter("@IsDeleted", SqlDbType.Bit) { Value = false }
         };

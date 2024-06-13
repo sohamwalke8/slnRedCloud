@@ -20,6 +20,8 @@ namespace RedCloud.Application.Features.Rates.Commands
         public int OutboundMMS { get; set; }
         public int MonthlyNumber { get; set; }
         public int Users { get; set; }
+
+        public int CreatedBy { get; set; }
        
     }
 
