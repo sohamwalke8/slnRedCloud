@@ -44,6 +44,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         }
 
         public async Task<Response<IEnumerable<T>>> GetAllAsync(string apiUrl)
+        
         {
             HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
 
