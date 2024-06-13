@@ -4,7 +4,7 @@
    // ViewData["Title"] = "Viewassignednumber";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@* 
 <h4>Viewassignednumber</h4>
 
 
@@ -102,5 +102,100 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>
+</html> *@
 
+
+
+<style>
+    .admin-details {
+        margin-bottom: 30px;
+        margin-top: 20px; /* Add some space between sections */
+    }
+
+    .card-custom {
+        background-color: #f8f9fa; /* Light gray background */
+        border-radius: 10px;
+        margin-top: 20px;
+        margin-left: 120px;
+        width: 900px;
+    }
+
+    .card-header-custom {
+        background-color: #007BFF; /* Dark background for header */
+        color: #fff;
+        border-radius: 10px 10px 0 0;
+        padding: 10px 20px;
+    }
+
+        .card-header-custom .logo-text {
+            display: flex;
+            align-items: center;
+        }
+
+            .card-header-custom .logo-text img {
+                width: 50px;
+                margin-right: 10px;
+            }
+
+        .card-header-custom .buttons {
+            margin-left: auto;
+        }
+
+            .card-header-custom .buttons a {
+                color: #fff;
+                margin-left: 10px;
+            }
+
+</style>
+
+<div class="container mt-5" style="align-content:center">
+    <div class="card card-custom">
+        <div class="card-header card-header-custom d-flex justify-content-between align-items-center">
+            <div class="logo-text">
+                <h1 class=" ml-2"> <i class="fa-solid fa-phone"></i></h1>  
+                <h5 class=" ml-4">View Assigned Number</h5>
+            </div>
+            <div class="buttons">
+               
+                <a href="@Url.Action("Viewallnumberslist", "Number")" class="btn btn-outline-light">
+                 <h4> <i class="fa-solid fa-circle-left"></i></h4>
+                </a>
+               
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row" style="margin-left:20px">
+
+
+                <div class="col-md-6">
+                    @Html.HiddenFor(x => x.NumberId)
+                    <p><strong> PhoneNumber:</strong> @Html.DisplayFor(model => model.CountryName)</p>
+                    <p><strong>RateCenter:</strong> @Html.DisplayFor(model => model.PhoneNumber)</p>
+                    <p><strong>Type:</strong> @Html.DisplayFor(model => model.TypeName)</p>
+                    <p><strong>Carrier:</strong> @Html.DisplayFor(model => model.LATA)</p>
+                    <p><strong>State:</strong> @Html.DisplayFor(model => model.CarrierName)</p>
+                    <p><strong>LATA:</strong> @Html.DisplayFor(model => model.RateCenter)</p>
+                    <p><strong>Country:</strong> @Html.DisplayFor(model => model.StateName)</p>
+
+                </div>
+                <div class="col-md-6">
+                    
+                    <p><strong>ResellerName:</strong> @Html.DisplayFor(model => model.ResellerName)</p>
+                    <p><strong>OrgName:</strong> @Html.DisplayFor(model => model.OrgName)</p>
+                    <p><strong>Assignment:</strong> @Html.DisplayFor(model => model.AssignmentTypeName)</p>
+                    <p><strong>CampaignId:</strong> @Html.DisplayFor(model => model.CampaignId)</p>
+                    <p><strong>StartDate:</strong> @Html.DisplayFor(model => model.StartDate)</p>
+                    <p><strong>EndDate:</strong> @Html.DisplayFor(model => model.EndDate)</p>
+
+
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Include jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>

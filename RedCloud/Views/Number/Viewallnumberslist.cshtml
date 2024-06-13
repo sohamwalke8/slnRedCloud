@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Viewallnumberslist</h1>
+@* <h1>Viewallnumberslist</h1> *@
 
 @model IEnumerable<RedCloud.ViewModel.NumberlistVM>
 
@@ -128,12 +128,12 @@
     }
 </style>
 
-<form method="post" id="user-query-form" action="/OrganizationAdmin/AddOrganizationAdmin" novalidate="novalidate">
+<form method="post" id="user-query-form" action="/Number/AddNumber" novalidate="novalidate">
     <div class="card-body">
 
         <div class="card">
             <div class="card-header" style="background-color:#007BFF">
-                <h3 class="card-title" style="color:white; font-weight:bold;font-size:23px;">Manage Organization</h3>
+                <h3 class="card-title" style="color:white; font-weight:bold;font-size:23px;">Manage Number</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -141,9 +141,9 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <p>
-                                <a class="btn btn-primary" asp-action="AddOrganizationAdmin" asp-controller="OrganizationAdmin"
+                                <a class="btn btn-primary" asp-action="AddNumber" asp-controller="Number"
                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; float:right; margin-bottom:10px">
-                                    Add Organization Admin
+                                    Add Number 
                                 </a>
                             </p>
                             <label for="entriesPerPage">
@@ -184,16 +184,16 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <a asp-action="ViewOrganizationDetails" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID" class="btn-action">
+                                                <a asp-action="Viewassignednumber" asp-controller="Number" asp-route-id="@item.NumberId" class="btn-action">
                                                     <i class="fa-solid fa-eye" style="color: #050505;"></i>
                                                 </a>
 
-                                                <a asp-action="UpdateOrganizationAdmin" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID" class="btn-action">
+                                                <a asp-action="UpdateAssignedNumber" asp-controller="Number" asp-route-id="@item.NumberId" class="btn-action">
                                                     <i class="fa-regular fa-pen-to-square" style="color: #131111;"></i>
                                                 </a>
 
-                                                <a class="delete-btn btn-action" data-id="@item.OrgID" data-name="@item.OrgName" href="#">
-                                                    <i class="fa-solid fa-trash" style="color: #cb1010;"></i>
+                                                <a asp-action="AssignNumber" asp-controller="Number" asp-route-id="@item.NumberId" class="btn-action">
+                                                    <i class="fa-solid fa-square-share-nodes"></i>
                                                 </a>
                                             </td>
                                         </tr>
