@@ -1,4 +1,5 @@
-﻿using RedCloud.Domain.Common;
+﻿using RedCloud.Application.Features.ResellerAdminuser.Queries;
+using RedCloud.Domain.Common;
 using RedCloud.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,8 @@ namespace RedCloud.Application.Contracts.Persistence
     public interface IAccountRepository
     {
         Task<UserVM> Get(string Email, string Password);
-        Task<ResellerAdminUser> Get(string Email, string Password);
+        Task<UserVM> GetResellerAdmin(string Email, string Password);
 
-        Task
+ 
     }
 }

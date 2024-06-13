@@ -29,9 +29,6 @@ namespace RedCloud.Controllers
             _cityService = cityService;
             _redcloudAdminService = redCloudAdmin;
 
-
-
-
         }
 
 

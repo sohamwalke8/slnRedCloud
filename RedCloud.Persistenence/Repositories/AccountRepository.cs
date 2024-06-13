@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using RedCloud.Application.Contracts.Persistence;
+using RedCloud.Application.Features.ResellerAdminuser.Queries;
 using RedCloud.Domain.Common;
 using RedCloud.Domain.Entities;
 using System;
@@ -54,6 +55,32 @@ namespace RedCloud.Persistenence.Repositories
             }
             throw new UnauthorizedAccessException();
 
+        }
+
+        public Task<UserVM> GetResellerAdmin(string Email, string Password)
+        {
+            var resellerAdmin = _dbContex.ResellerAdminUsers.Where(x => x.CompanySupportEmail == Email && x.Password == Password).FirstOrDefault();
+            if (resellerAdmin != null)
+            {
+                 var roles = new List<Role>{
+                    new Role
+                    {
+                        RoleName = "Reseller Admin",
+                        RoleId = 4
+                    }
+                 };
+                var loginDetailes = new UserVM
+                {
+                    UserId = resellerAdmin.ResellerAdminUserId,
+                    Email = resellerAdmin.CompanySupportEmail,
+                    Password = resellerAdmin.Password,
+                    Roles = roles,
+                };
+
+                return Task.FromResult(loginDetailes);
+
+            }
+            throw new UnauthorizedAccessException();
         }
     }
 }

@@ -31,10 +31,16 @@ namespace RedCloud.Services
         {
             //_logger.LogInformation("LoginAccount Service initiated");
             var response = await _apiClientLogin.PostAuthAsync("Account/Login", login);
-            if (response == null)
+            if (response.Data == null)
             {
+                var responseTwo = await _apiClientLogin.PostAuthAsync("Account/ResellerAdminLogin", login);
+                if(responseTwo == null)
+                {
+                    return new Response<UserVM>(null, "InvalId login credentials");
+
+                }
                 //_logger.LogInformation("LoginAccount Service completed with failure");
-                return new Response<UserVM>(null, "InvalId login credentials");
+                return responseTwo;
             }
 
             _logger.LogInformation("LoginAccount Service conpleted");

@@ -64,9 +64,10 @@ namespace RedCloudAPI.Controllers
         }
         //Add by Aditya End
 
-        public async Task<ActionResult> ResellerAdminLogin(LoginForResellerQuery loginQuery)
+        [HttpPost("ResellerAdminLogin")]
+        public async Task<ActionResult> ResellerAdminLogin([FromBody] LoginForResellerQuery loginQuery)
         {
-            var response = "value ";
+            var response = await _mediator.Send(loginQuery);
             return Ok(response);
         }
 
