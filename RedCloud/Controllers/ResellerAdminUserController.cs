@@ -96,7 +96,7 @@ namespace RedCloud.Controllers
             var response = _adminreseller.UpdateAdminResellerUser(request);
 
             //_logger.LogInformation("CreateCategory Action initiated");
-            return RedirectToAction("UpdateResellerAdmin");
+            return RedirectToAction("ViewallResellerAdmin");
         }
 
 

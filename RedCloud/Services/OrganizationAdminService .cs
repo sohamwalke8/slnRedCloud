@@ -81,7 +81,7 @@ namespace RedCloud.Services
         public async Task EditOrganizationAdmin(OrganizationAdminVM organizationAdmin)
         {
 
-            var users = _client.PutAsync("OrganizationAdmin/UpdateOrganizationAdmin", organizationAdmin);
+            var users = await _client.PutAsync("OrganizationAdmin/UpdateOrganizationAdmin", organizationAdmin);
             //return users.Data;
 
         }

@@ -8,8 +8,8 @@ using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 namespace RedCloud.Controllers
 {
 
-    [NoCache]
-    [AdminAuthorizationFilter]
+    //[NoCache]
+    //[AdminAuthorizationFilter]
     public class OrganizationAdminController : Controller
     {
         private readonly IOrganizationAdminService _organizationAdminService;
@@ -136,11 +136,19 @@ namespace RedCloud.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateOrganizationAdmin(OrganizationAdminVM request)
         {
-            // _logger.LogInformation("CreateCategory Action initiated");
-            var response = _organizationAdminService.EditOrganizationAdmin(request);
+            try
+            {
+                // _logger.LogInformation("CreateCategory Action initiated");
+                var response = _organizationAdminService.EditOrganizationAdmin(request);
 
-            //_logger.LogInformation("CreateCategory Action initiated");
-            return RedirectToAction("ViewOrganizationAdmin");
+                //_logger.LogInformation("CreateCategory Action initiated");
+                return RedirectToAction("ViewOrganizationAdmin");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
 

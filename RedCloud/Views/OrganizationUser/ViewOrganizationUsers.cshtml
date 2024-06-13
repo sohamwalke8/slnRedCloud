@@ -135,10 +135,13 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <p>
+
                                 <a class="btn btn-primary" asp-action="AddOrganizationUser" asp-controller="OrganizationUser" 
                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; float:right; margin-bottom:10px">
                                     Add Organization User
                                 </a>
+                                    <a href="@Url.Action("ViewOrganizationAdmin", "OrganizationAdmin")" class="btn btn-secondary float-right" style="margin-right:5px">Back To AdminList</a>
+
                             </p>
                             <label for="entriesPerPage">
                                 Show Entries
