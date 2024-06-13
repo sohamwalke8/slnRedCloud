@@ -58,3 +58,55 @@
     <!-- Bootstrap JS -->
 
 </body>
+
+
+@section Scripts {
+    <partial name="_ValIdationScriptsPartial" />
+    <script>
+
+        $(document).ready(function () {
+            $('#countryDropDown').change(function () {
+                var countryId = $('#countryDropDown').val();
+
+
+                $.ajax({
+                    url: '@Url.Action("GetStateByCountryId", "Dropdown")',
+                    data: { countryId: countryId },
+                    type: 'GET',
+                    success: function (data) {
+                        $('#states').empty();
+                        $('#cityDropdown').empty();
+                        $('#cityDropdown').append("<option>Select a city</option>");
+
+                        $('#states').append(data);
+                    }
+                });
+            });
+
+
+
+        });
+
+        function getallCitys() {
+            alert("METHOD CALLED")
+            var stateId = $('#stateDropDown').val();
+
+
+            $.ajax({
+
+                url: '@Url.Action("GetCityByStateId", "Dropdown")',
+                data: { stateId: stateId },
+                type: 'GET',
+                success: function (data) {
+                    $('#cities').empty();
+                    $('#cities').append(data);
+
+                }
+            });
+        }
+
+
+
+
+    </script>
+}
