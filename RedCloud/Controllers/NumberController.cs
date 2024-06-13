@@ -213,5 +213,78 @@ namespace RedCloud.Controllers
         //    }
         //}
 
+
+//        [HttpPost]
+//        [RequestSizeLimit(10000000)] // Limit to 10 MB
+//        public async Task<IActionResult> SingleFileUpload(IFormFile SingleFile)
+//        {
+//            if (SingleFile == null || SingleFile.Length == 0)
+//            {
+//                ModelState.AddModelError("", "File not selected");
+//                return View("Index");
+//            }
+//            var permittedExtensions = new[] { ".jpg", ".png", ".gif" };
+//            var extension = Path.GetExtension(SingleFile.FileName).ToLowerInvariant();
+//            if (string.IsNullOrEmpty(extension) || !permittedExtensions.Contains(extension))
+//            {
+//                ModelState.AddModelError("", "Invalid file type.");
+//            }
+//            // Optional: Validate MIME type as well
+//            var mimeType = SingleFile.ContentType;
+//            var permittedMimeTypes = new[] { "image/jpeg", "image/png", "image/gif" };
+//            if (!permittedMimeTypes.Contains(mimeType))
+//            {
+//                ModelState.AddModelError("", "Invalid MIME type.");
+//            }
+//            if (ModelState.IsValid)
+//            {
+//                //Creating a unique File Name
+//                var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(SingleFile.FileName);
+//                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", uniqueFileName);
+//                //Using Buffering
+//                //using (var stream = System.IO.File.Create(filePath))
+//                //{
+//                //    // The file is saved in a buffer before being processed
+//                //    await SingleFile.CopyToAsync(stream);
+//                //}
+//                //Using Streaming
+//                using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+//                {
+//                    //This will save to Local folder
+//                    await SingleFile.CopyToAsync(stream);
+//                }
+//                // Create an instance of FileModel
+//                var fileModel = new Number
+//                {
+//                    FileName = uniqueFileName,
+//                    Length = SingleFile.Length,
+//                    ContentType = mimeType,
+//                    Data = ConvertToByteArray(filePath)
+//                };
+//                // Save to database
+//                EFCoreDbContext _context = new EFCoreDbContext();
+//                _context.Files.Add(fileModel);
+//                await _context.SaveChangesAsync();
+//                // Process the file here (e.g., save to the database, storage, etc.)
+//                return View("UploadSuccess");
+//            }
+//            return View("Index");
+//        }
+//        //This method will convert the uploaded file into byte array
+//        private byte[] ConvertToByteArray(string filePath)
+//        {
+//            byte[] fileData;
+//            //Create a File Stream Object to read the data
+//            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+//            {
+//                using (BinaryReader reader = new BinaryReader(fs))
+//                {
+//                    fileData = reader.ReadBytes((int)fs.Length);
+//                }
+//            }
+//            return fileData;
+//        }
+//    }
+//}
     }
 }
