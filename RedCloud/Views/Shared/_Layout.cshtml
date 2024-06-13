@@ -2,9 +2,6 @@
 @using Newtonsoft.Json
 @using RedCloud.Domain.Entities
 
-
-
-
 @{
     var userRolesString = ViewContext.HttpContext.Session.GetString("UserRoles");
     List<Role> userRoles = new List<Role>();
@@ -96,12 +93,17 @@
                         {
                             <option value="@role.RoleName" id="roleButton-@role.RoleId" class="dropdown-item">@role.RoleName</option>
                         }
-                        <option class="dropdown-item" href="#">Sign out</option>
+                        @* <option class="dropdown-item" href="#">Sign out</option> *@
                     }
                 </select>
                 <li class="nav-item">
                     <a class="nav-link" href="#" role="button">
                         <i class="fa-solid fa-user"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Logout" asp-controller="Account" role="button" title="sign-out">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -126,20 +128,20 @@
             </a>
 
             <div id="addPartialView">
-                @Html.Partial("_SubAdmin")
-                @if (ViewContext.HttpContext.Session.GetString("Role") == "SubAdminAdministrartor")
+                
+                @if (ViewContext.HttpContext.Session.GetString("Role") == "Sub Admin Administrartor")
                 {
-                    
+                    @Html.Partial("_SubAdmin")
                 }                                                                                                                                                      <!-- /.sidebar for Admin  -->
-                @if (ViewContext.HttpContext.Session.GetString("Role") == "ResellerAdmin")
+                @if (ViewContext.HttpContext.Session.GetString("Role") == "Reseller Admin")
                 {
                     @Html.Partial("_ResellerAdmin")
                 }
-                @if (ViewContext.HttpContext.Session.GetString("Role") == "OrganizationAdmin")
+                @if (ViewContext.HttpContext.Session.GetString("Role") == "Organization Admin")
                 {
                     @Html.Partial("_OrganizationAdmin")
                 }
-                @if (ViewContext.HttpContext.Session.GetString("Role") == "MessagingUsers")
+                @if (ViewContext.HttpContext.Session.GetString("Role") == "Messaging Users")
                 {
                     @Html.Partial("_MessagingUsers")
                 }                                                                                                                        <!-- /.sidebar for Messaging Users  -->
@@ -222,7 +224,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

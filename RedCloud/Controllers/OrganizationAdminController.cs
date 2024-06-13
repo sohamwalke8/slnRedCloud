@@ -1,10 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using RedCloud.Custom_Action_Filter;
 using RedCloud.Interfaces;
 using RedCloud.ViewModel;
+using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 
 namespace RedCloud.Controllers
 {
+
+    [NoCache]
+    [AdminAuthorizationFilter]
     public class OrganizationAdminController : Controller
     {
         private readonly IOrganizationAdminService _organizationAdminService;

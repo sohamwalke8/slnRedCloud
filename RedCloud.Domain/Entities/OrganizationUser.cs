@@ -30,6 +30,6 @@ namespace RedCloud.Domain.Entities
 
 
 
-
+       
     }
 }

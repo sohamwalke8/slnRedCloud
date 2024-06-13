@@ -33,6 +33,8 @@ builder.Services.AddScoped(typeof(ICityService<CityVM>), typeof(CityService<City
 builder.Services.AddScoped<IOrganizationAdminService, OrganizationAdminService>();
 builder.Services.AddScoped<IOrganizationUserService, OrganizationUserService>();
 
+builder.Services.AddScoped<ICampaignService, CampaignService>();
+
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings")); // Add by Aditya
 builder.Services.AddTransient<IMailService, MailService>(); // Add by Aditya
 
@@ -53,7 +55,7 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseSerilogRequestLogging();
 app.UseSession();
-
+builder.Services.AddDistributedMemoryCache();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -64,10 +66,10 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
         //pattern: "{controller=Home}/{action=Index}/{Id?}");
-        //pattern: "{controller=Account}/{action=Login}/{Id?}");
+         pattern: "{controller=Account}/{action=Login}/{Id?}");
         //aakash
         //pattern: "{controller=OrganizationAdmin}/{action=ViewOrganizationAdmin}/{id?}");
-        pattern: "{controller=Campaign}/{action=Index}/{id?}");
+        //pattern: "{controller=Campaign}/{action=Index}/{id?}");
 
 
 

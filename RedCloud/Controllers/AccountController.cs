@@ -1,10 +1,12 @@
 ﻿using AutoMapper.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using Newtonsoft.Json;
 using RedCloud.Application.Contract.Infrastructure;
 using RedCloud.Application.Features.Account.Queries.LoginQuery;
+using RedCloud.Custom_Action_Filter;
 using RedCloud.Domain.Common;
 using RedCloud.Interfaces;
 using RedCloud.Models.Email;
@@ -14,18 +16,24 @@ using System.Text;
 
 namespace RedCloud.Controllers
 {
+
+    [NoCache]
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
         private readonly IMailService _mailService;
+        private readonly IDistributedCache _distributedCache;
 
-        public AccountController(IAccountService accountService, IMailService mailService)
+        public AccountController(IAccountService accountService, IMailService mailService, IDistributedCache distributedCache)
         {
             _accountService = accountService;
             _mailService = mailService;
+            _distributedCache = distributedCache;
         }
 
+
         // Action method to display the login page
+        
         [HttpGet]
         public IActionResult Login()
         {
@@ -68,7 +76,9 @@ namespace RedCloud.Controllers
                         // Include other properties if needed
                     });
                     HttpContext.Session.SetString("Email", result.Data.Email);
+                    HttpContext.Session.SetInt32("UserId", result.Data.UserId);
                     HttpContext.Session.SetString("UserRoles", JsonConvert.SerializeObject(roles));
+
 
                     var RoleName = result.Data.Roles[0].RoleName;
 
@@ -91,19 +101,19 @@ namespace RedCloud.Controllers
 
             ViewBag.role = HttpContext.Session.GetString("Role");
 
-            if (HttpContext.Session.GetString("Role") == "SubAdminAdministrartor")
+            if (HttpContext.Session.GetString("Role") == "Sub Admin Administrartor")
             {
                 return PartialView("_SubAdmin", ViewBag.role);
             }
-            else if (HttpContext.Session.GetString("Role") == "ResellerAdmin")
+            else if (HttpContext.Session.GetString("Role") == "Reseller Admin")
             {
                 return PartialView("_ResellerAdmin", ViewBag.role);
             }
-            else if (HttpContext.Session.GetString("Role") == "OrganizationAdmin")
+            else if (HttpContext.Session.GetString("Role") == "Organization Admin")
             {
                 return PartialView("_OrganizationAdmin", ViewBag.role);
             }
-            else if (HttpContext.Session.GetString("Role") == "MessagingUsers")
+            else if (HttpContext.Session.GetString("Role") == "Messaging Users")
             {
                 return PartialView("_MessagingUsers", ViewBag.role);
             }
@@ -208,34 +218,30 @@ namespace RedCloud.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> LoginAsync(Login login)
-        //{
+        //[NoCache]
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            // Clear all session data
+            HttpContext.Session.Clear();
 
-        //    if (ModelState.IsValid)
-        //    {
+            // Remove specific session items if still present (though Clear() should have removed them)
+            HttpContext.Session.Remove("UserName");
+            HttpContext.Session.Remove("UserRoles");
+            HttpContext.Session.Remove("UserId");
+            HttpContext.Session.Remove("Email");
 
-        //        //LoginResponse loginResponse = await _service.Login(login);
-        //        //if (loginResponse.UserName != null)
-        //        {
-        //            //HttpContext.Session.SetString("UserName", loginResponse.UserName);
-        //            //_notyf.Success("Logged In Successfully");
+            // Setting no-cache headers to ensure the browser does not cache the pages
+            Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+            Response.Headers["Pragma"] = "no-cache";
+            Response.Headers["Expires"] = "0";
 
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        else
-        //        {
-
-        //            //_notyf.Error(loginResponse.Message);
-        //            return View();
-        //        }
-
-        //    }
-        //    else
-        //    {
-        //        return View();
-        //    }
-        //}
+            // Redirect to the Login action of the Account controller          
+           // return RedirectToAction("Login", "Account");
+            return RedirectToActionPermanent("Login", "Account");
+            
+            
+        }
 
     }
 }

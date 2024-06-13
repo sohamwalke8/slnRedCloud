@@ -17,6 +17,7 @@ namespace RedCloud.Application.Contract.Persistence
         Task<IReadOnlyList<T>> GetPagedReponseAsync(int page, int size);
 
         Task<T> GetByIdAsync(int Id);
+
         Task<T> GetByIdAsyncInculde(int id);
 
         Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName, SqlParameter[] parameters = null);
