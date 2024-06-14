@@ -143,8 +143,7 @@ namespace RedCloud.Persistenence.Repositories
 
         }
 
-         
-        
+
         public async Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName)// Atharva
         {
             //var parameterNames = GetParameterNames(parameters);
