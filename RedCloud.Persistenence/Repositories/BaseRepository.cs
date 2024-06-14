@@ -143,8 +143,8 @@ namespace RedCloud.Persistenence.Repositories
 
         }
 
-            return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, primaryKeyProperty) == id);
-        }
+         
+        
         public async Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName)// Atharva
         {
             //var parameterNames = GetParameterNames(parameters);
