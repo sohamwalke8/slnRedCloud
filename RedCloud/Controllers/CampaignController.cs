@@ -43,7 +43,7 @@ namespace RedCloud.Controllers
             //_logger.LogInformation($"Fetching ViewCampaignById with ID: {id}");
             var response = await _campaignService.GetCampaign(id);
             if (response == null)
-            {
+    {
                 //_logger.LogWarning($"ViewCampaignById with ID: {id} not found");
                 return NotFound();
             }

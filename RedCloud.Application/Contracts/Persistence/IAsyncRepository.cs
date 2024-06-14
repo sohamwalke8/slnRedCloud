@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,5 +29,6 @@ namespace RedCloud.Application.Contract.Persistence
         Task<int> StoredProcedureCommandAsync(string storedProcedureName, SqlParameter[] parameters = null);//Atharva
 
       
+        Task<List<T>> GetAllIncludeAsync();
     }
 }

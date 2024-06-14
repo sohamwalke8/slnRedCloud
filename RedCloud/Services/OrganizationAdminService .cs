@@ -94,5 +94,13 @@ namespace RedCloud.Services
             return Events.Data;
         }
 
+        public async  Task<IEnumerable<OrganizationAdminVM>> GetAllOrganizationAdmin()
+        {
+            // _logger.LogInformation("GetAllOrganizationAdmin Service initiated");
+            var OrganizationAdmin = await _client.GetAllAsync("OrganizationAdmin/GetAll");
+            //_logger.LogInformation("GetAllCategories Service conpleted");
+            return OrganizationAdmin.Data;
+        }
     }
-}
+    }
+

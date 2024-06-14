@@ -55,6 +55,10 @@ namespace RedCloud.Domain.Entities
         public int CityId { get; set; }
 
         public City? City { get; set; }
+        //public int? NumberId { get; set; }
+        //public Number? Number { get; set; }
+
+        public virtual ICollection<Number> Numbers { get; set; } = new List<Number>();
 
         //public int? ResellerUserId { get; set; }
 

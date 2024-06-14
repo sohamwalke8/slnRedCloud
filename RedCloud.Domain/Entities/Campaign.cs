@@ -9,8 +9,10 @@ namespace RedCloud.Domain.Entities
 {
     public class Campaign: AuditableEntity
     {
-        public int CampaignId { get; set; }
-    
+
+        
+            public int CampaignId { get; set; }
+
         public int OrganizationUserId { get; set; }
 
         public OrganizationUser OrganizationUser { get; set; }
@@ -26,6 +28,13 @@ namespace RedCloud.Domain.Entities
         public int BrandId { get; set; }        
 
         public  string IdentityStatus { get; set; }
+
+        
+
+        public virtual List<Number> Numbers { get; set; } = new List<Number>();
+
+
+
 
         public string? BrandRelationship { get; set; }
 
@@ -50,6 +59,8 @@ namespace RedCloud.Domain.Entities
     }
 
 
-    
+
+    }
 
 }
+

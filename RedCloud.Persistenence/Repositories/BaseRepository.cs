@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,6 +48,32 @@ namespace RedCloud.Persistenence.Repositories
             _logger.LogInformation("ListAllAsync Initiated");
             return await _dbContext.Set<T>().ToListAsync();
         }
+
+
+
+        public async Task<List<T>> GetAllIncludeAsync()
+        {
+            try
+            {
+                var query = _dbContext.Set<T>().AsQueryable();
+
+                var entityType = _dbContext.Model.FindEntityType(typeof(T));
+                var navigationProperties = entityType.GetNavigations();
+
+                foreach (var navigationProperty in navigationProperties)
+                {
+                    query = query.Include(navigationProperty.Name);
+                }
+
+                return await query.ToListAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
 
         public async virtual Task<IReadOnlyList<T>> GetPagedReponseAsync(int page, int size)
         {
