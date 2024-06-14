@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RedCloud.Persistenence.Migrations
 {
     /// <inheritdoc />
-    public partial class ganpatibappamorya : Migration
+    public partial class migrationOne : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -328,7 +328,7 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.OrganizationAdminId,
                         principalTable: "OrganizationAdmins",
                         principalColumn: "OrgID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.    NoAction);
                     table.ForeignKey(
                         name: "FK_OrganizationResellerMapping_ResellerAdminUsers_ResellerAdminUserId",
                         column: x => x.ResellerAdminUserId,
@@ -470,7 +470,7 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.ResellerUserId,
                         principalTable: "ResellerUsers",
                         principalColumn: "ResellerUserId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.NoAction    );
                 });
 
             migrationBuilder.CreateTable(

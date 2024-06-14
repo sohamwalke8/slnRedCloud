@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RedCloud.Interfaces;
 using RedCloud.Services;
 using RedCloud.ViewModel;
@@ -8,17 +9,26 @@ namespace RedCloud.Controllers
     public class CampaignController : Controller
     {
         private readonly ICampaignService _campaignService;
+        private readonly IOrganizationUserService _organizationUserService ;
+        private readonly IResellerUserService _ResellerUserService;
+
         private readonly ILogger<CampaignController> _logger;
 
-        public CampaignController(ICampaignService campaignService, ILogger<CampaignController> logger)
+        public CampaignController(ICampaignService campaignService, ILogger<CampaignController> logger, IOrganizationUserService organizationUserService, IResellerUserService resellerUserService)
         {
             _campaignService = campaignService;
             _logger = logger;
-
+            _organizationUserService = organizationUserService;
+            _ResellerUserService = resellerUserService;
+            
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var organizationUserList = await _organizationUserService.GetAllOrganizationUser();
+            ViewBag.OrganizationUserList = new SelectList(organizationUserList, "OrganizationUserId", "OrganizationUserFirstName") ;
+            var resellerUserListr  = await _ResellerUserService.GetAllResellerUser();
+            ViewBag.ResellerUserList = new SelectList(resellerUserListr, "ResellerUserId", "FirstName");
             return View();
         }
 
@@ -32,7 +42,7 @@ namespace RedCloud.Controllers
             var response = await _campaignService.CreateCampaign(model);
 
             //_logger.LogInformation("CreateCampaign Action completed");
-            return RedirectToAction("Index");
+            return RedirectToAction("CampaignViewDetail","Campaigndetail");
 
         }
 
