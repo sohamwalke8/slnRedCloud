@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RedCloud.Persistenence;
 
@@ -11,9 +12,11 @@ using RedCloud.Persistenence;
 namespace RedCloud.Persistenence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240613063253_ResellerAssignCredit")]
+    partial class ResellerAssignCredit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,28 +77,6 @@ namespace RedCloud.Persistenence.Migrations
                     b.HasKey("CountryId");
 
                     b.ToTable("Countries");
-                });
-
-            modelBuilder.Entity("RedCloud.Domain.Entities.CreditsType", b =>
-                {
-                    b.Property<int>("TypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TypeId"));
-
-                    b.Property<int?>("RateAssignCreditId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TypeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TypeId");
-
-                    b.HasIndex("RateAssignCreditId");
-
-                    b.ToTable("CreditsType");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.OrganizationAdmin", b =>
@@ -165,9 +146,6 @@ namespace RedCloud.Persistenence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RateAssignCreditId")
-                        .HasColumnType("int");
-
                     b.Property<int>("StateId")
                         .HasColumnType("int");
 
@@ -181,54 +159,9 @@ namespace RedCloud.Persistenence.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.HasIndex("RateAssignCreditId");
-
                     b.HasIndex("StateId");
 
                     b.ToTable("OrganizationAdmins");
-                });
-
-            modelBuilder.Entity("RedCloud.Domain.Entities.RateAssignCredit", b =>
-                {
-                    b.Property<int>("RateAssignCreditId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RateAssignCreditId"));
-
-                    b.Property<string>("InboundMMS")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InboundSMS")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MonthlyNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrgID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OutboundMMS")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OutboundSMS")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Users")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RateAssignCreditId");
-
-                    b.ToTable("RateAssignCredit");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.RedCloudAdmin", b =>
@@ -520,13 +453,6 @@ namespace RedCloud.Persistenence.Migrations
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("RedCloud.Domain.Entities.CreditsType", b =>
-                {
-                    b.HasOne("RedCloud.Domain.Entities.RateAssignCredit", null)
-                        .WithMany("CreditsType")
-                        .HasForeignKey("RateAssignCreditId");
-                });
-
             modelBuilder.Entity("RedCloud.Domain.Entities.OrganizationAdmin", b =>
                 {
                     b.HasOne("RedCloud.Domain.Entities.City", "City")
@@ -538,10 +464,6 @@ namespace RedCloud.Persistenence.Migrations
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("RedCloud.Domain.Entities.RateAssignCredit", null)
-                        .WithMany("OrganizationAdmin")
-                        .HasForeignKey("RateAssignCreditId");
 
                     b.HasOne("RedCloud.Domain.Entities.State", "State")
                         .WithMany()
@@ -625,13 +547,6 @@ namespace RedCloud.Persistenence.Migrations
             modelBuilder.Entity("RedCloud.Domain.Entities.Country", b =>
                 {
                     b.Navigation("States");
-                });
-
-            modelBuilder.Entity("RedCloud.Domain.Entities.RateAssignCredit", b =>
-                {
-                    b.Navigation("CreditsType");
-
-                    b.Navigation("OrganizationAdmin");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.ResellerAdminUser", b =>
