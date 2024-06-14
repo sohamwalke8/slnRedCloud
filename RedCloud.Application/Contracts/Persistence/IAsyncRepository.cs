@@ -20,8 +20,10 @@ namespace RedCloud.Application.Contract.Persistence
         Task<T> GetByIdAsyncInculde(int id);
 
         Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName, SqlParameter[] parameters = null);
+        Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName);
 
-        Task<int> StoredProcedureCommandAsync(string storedProcedureName, SqlParameter[] parameters = null);
+
+		Task<int> StoredProcedureCommandAsync(string storedProcedureName, SqlParameter[] parameters = null);
 
     }
 }

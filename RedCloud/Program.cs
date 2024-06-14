@@ -37,6 +37,7 @@ builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailS
 builder.Services.AddTransient<IMailService, MailService>(); // Add by Aditya
 
 builder.Services.AddScoped<IEncryptionService, EncryptionService>();
+builder.Services.AddScoped<IResellerAssignCreditService, ResellerAssignCreditService>();
 
 //logger setup
 Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
