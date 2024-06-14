@@ -115,14 +115,14 @@ namespace RedCloudAPI.Controllers
             return Ok(dto);
         }
 
-        [HttpGet("GetAll")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> GetAllOrganizationAdminList()
-        {
-            //_logger.LogInformation("GetAllOrganizationAdminList Initiated");
-            var data = await _mediator.Send(new GetAllOrganizationAdminQuery());
-            return Ok(data);
-        }
+        //[HttpGet("GetAll")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //public async Task<ActionResult> GetAllOrganizationAdminList()
+        //{
+        //    //_logger.LogInformation("GetAllOrganizationAdminList Initiated");
+        //    var data = await _mediator.Send(new GetAllOrganizationAdminQuery());
+        //    return Ok(data);
+        //}
     }
 }
 

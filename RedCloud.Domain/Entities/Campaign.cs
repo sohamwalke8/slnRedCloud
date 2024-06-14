@@ -62,5 +62,5 @@ namespace RedCloud.Domain.Entities
 
     }
 
-}
+
 

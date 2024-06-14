@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RedCloud.Application.Features.AssignmentType;
-using RedCloud.Application.Features.Campaign;
+//using RedCloud.Application.Features.Campaign;
 using RedCloud.Application.Features.Numbers.Commands;
 using RedCloud.Application.Features.Numbers.Queries;
 using RedCloud.Application.Features.ResellerAdminuser.Queries;
@@ -11,6 +11,7 @@ using RedCloud.Interfaces;
 using RedCloud.Services;
 using RedCloud.ViewModel;
 using System.ComponentModel.Design;
+//using CampaignVM = RedCloud.Application.Features.Campaign.CampaignVM;
 
 namespace RedCloud.Controllers
 {
@@ -63,7 +64,7 @@ namespace RedCloud.Controllers
             var typelist = await _type.GetAllTypesList();
             ViewBag.Typelist = new SelectList(typelist, "TypesId", "TypesName");
 
-            return View(new NumberVM());
+            return View();
         }
 
         [HttpPost]
@@ -86,7 +87,7 @@ namespace RedCloud.Controllers
             ViewBag.Campaignlist = new SelectList(campaignlist, "CampaignId", "CampaignId");
             var assignmenttype = await _assignmentType.Getallassignments();
             ViewBag.Assignmenttype = new SelectList(assignmenttype, "AssignmentTypeId", "AssignmentTypeName");
-            var orgadmin = await _organizationAdminService.GetAllOrganizationAdmin();
+            var orgadmin = await _organizationAdminService.GetAllOrganizationAdmins();
             ViewBag.Orgadmin = new SelectList(orgadmin, "OrgID", "OrgName");
 
             return View(response);
@@ -129,7 +130,7 @@ namespace RedCloud.Controllers
             ViewBag.Campaignlist = new SelectList(campaignlist, "CampaignId", "CampaignId");
             var assignmenttype = await _assignmentType.Getallassignments();
             ViewBag.Assignmenttype = new SelectList(assignmenttype, "AssignmentTypeId", "AssignmentTypeName");
-            var orgadmin = await _organizationAdminService.GetAllOrganizationAdmin();
+            var orgadmin = await _organizationAdminService.GetAllOrganizationAdmins();
             ViewBag.Orgadmin = new SelectList(orgadmin, "OrgID", "OrgName");
 
             return View(response);

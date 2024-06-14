@@ -38,7 +38,7 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> ViewOrganizationAdmin()
         {
             //_logger.LogInformation("ViewOrganizationAdmin Action initiated");
-            var model = await _organizationAdminService.GetAllOrganizationAdmin();
+            var model = await _organizationAdminService.GetAllOrganizationAdmins();
             //_logger.LogInformation("ViewOrganizationAdmin Action completed");
             return View(model);
         }

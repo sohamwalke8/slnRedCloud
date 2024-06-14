@@ -2,7 +2,7 @@
 using RedCloud.Application.Features.Campaigns.Commands;
 using RedCloud.Application.Features.Campaigns.Queries;
 using RedCloud.Application.Features.AssignmentType;
-using RedCloud.Application.Features.Campaign;
+//using RedCloud.Application.Features.Campaign;
 using RedCloud.Application.Features.Carrierss;
 using RedCloud.Application.Features.Categories.Commands.CreateCateogry;
 using RedCloud.Application.Features.Categories.Commands.StoredProcedure;
@@ -83,9 +83,7 @@ namespace RedCloud.Application.Profiles
             CreateMap<CreateResellerUserCommand, ResellerUser>().ReverseMap();
             CreateMap<ResellerUserVM, ResellerUser>().ReverseMap();
             CreateMap<UpdateResellerUserCommand, ResellerUser>().ReverseMap();
-        }
-    }
-            CreateMap<OrganizationAdmin, GetAllOrganizationAdminVM>();
+        CreateMap<OrganizationAdmin, GetAllOrganizationAdminVM>();
 
             //For Numbers
             CreateMap<AddNumberCommand, Domain.Entities.Number>();

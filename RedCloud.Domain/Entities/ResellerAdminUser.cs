@@ -37,13 +37,13 @@ namespace RedCloud.Domain.Entities
 
         //public virtual OrganizationAdmin? OrganizationAdmins { get; set; }
 
-        public virtual ICollection<RedCloudAdmin> RedCloudAdmins { get; set; } = new List<RedCloudAdmin>();
+        public virtual ICollection<RedCloudAdmin>? RedCloudAdmins { get; set; } = new List<RedCloudAdmin>();
 
 
-            public virtual List<OrganizationResellerMapping> OrganizationResellerMapping { get; set; } = new List<OrganizationResellerMapping>();
+            public virtual List<OrganizationResellerMapping>? OrganizationResellerMapping { get; set; } = new List<OrganizationResellerMapping>();
 
 
-        public virtual List<ResellerUser> ResellerUser { get; set; } = new List<ResellerUser>();
+        public virtual List<ResellerUser>? ResellerUser { get; set; } = new List<ResellerUser>();
 
         public int CountryId { get; set; }
 
@@ -58,7 +58,7 @@ namespace RedCloud.Domain.Entities
         //public int? NumberId { get; set; }
         //public Number? Number { get; set; }
 
-        public virtual ICollection<Number> Numbers { get; set; } = new List<Number>();
+        public virtual ICollection<Number>? Numbers { get; set; } = new List<Number>();
 
         //public int? ResellerUserId { get; set; }
 

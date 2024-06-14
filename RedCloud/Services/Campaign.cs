@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MvcApiCallingService.Helpers.ApiHelper;
-using RedCloud.Application.Features.Campaign;
+using RedCloud.Application.Features.Campaigns.Queries;
+
+//using RedCloud.Application.Features.Campaign;
 using RedCloud.Interfaces;
 
 namespace RedCloud.Services

@@ -63,6 +63,8 @@ namespace RedCloud.ViewModel
 
         [Required(ErrorMessage = "Please Select Reseller Name")]
         public int? CityId { get; set; }
+        public bool IsActive { get; set; }
+
 
         // Other properties...
         public List<int> ResellerIds { get; set; } // Note this change

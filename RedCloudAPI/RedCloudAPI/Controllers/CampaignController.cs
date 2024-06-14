@@ -6,7 +6,7 @@ using RedCloud.Application.Features.Campaigns.Commands;
 using RedCloud.Application.Features.Campaigns.Queries;
 using RedCloud.Application.Features.RedCloudAdmins.Queries;
 using RedCloud.Application.Features.ResellerAdminuser.Commands;
-using RedCloud.Application.Features.Campaign;
+//using RedCloud.Application.Features.Campaign;
 using RedCloud.Application.Features.Carrierss.Queries;
 
 namespace RedCloudAPI.Controllers
@@ -19,9 +19,9 @@ namespace RedCloudAPI.Controllers
 
         private readonly IMediator _mediator;
         private readonly ILogger _logger;
-        public CampaignController(IMediator mediator, ILogger<RedCloudAdminController> logger)
-        private readonly ILogger<CampaignController> _logger;
-        public CampaignController(IMediator mediator, ILogger<CampaignController> logger)
+        //public CampaignController(IMediator mediator, ILogger<RedCloudAdminController> logger)
+       // private readonly ILogger<CampaignController> _logger;
+        public CampaignController(IMediator mediator, ILogger<CampaignController> loggerr, ILogger<RedCloudAdminController> logger)
         {
             _mediator = mediator;
             _logger = logger;
@@ -98,19 +98,29 @@ namespace RedCloudAPI.Controllers
 
         [HttpDelete("{id}", Name = "DeleteCampaigns")]
         public async Task<ActionResult> DeleteCampain(int id)
-        [HttpGet("all", Name = "Getallcampaign")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> Getallcampaign()
         {
             _logger.LogInformation("DeleteResellerAdmin Initiated");
             var campaign = new DeleteCampaignByIdCommand() { CampaignId = id };
             await _mediator.Send(campaign);
 
             return Ok("Campaign Deleted SuccessFully");
-            _logger.LogInformation("Getallcampaign Initiated");
-            var dtos = await _mediator.Send(new GetallCampaignCommand());
-            return Ok(dtos);
         }
+
+
+
+
+
+
+
+        //[HttpGet("all", Name = "Getallcampaign")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //public async Task<ActionResult> Getallcampaign()
+        //{
+           
+        //    _logger.LogInformation("Getallcampaign Initiated");
+        //    var dtos = await _mediator.Send(new GetallCampaignCommand());
+        //    return Ok(dtos);
+        //}
 
 
 

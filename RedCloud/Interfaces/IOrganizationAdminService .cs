@@ -19,6 +19,6 @@ namespace RedCloud.Interfaces
         Task EditOrganizationAdmin(OrganizationAdminVM organizationAdmin);
 
         Task<OrganizationAdminVM> GetOrganizationAdminById(int eventId);
-        Task<IEnumerable<OrganizationAdminVM>> GetAllOrganizationAdmin();
+        Task<IEnumerable<OrganizationAdminVM>> GetAllOrganizationAdmins();
     }
 }

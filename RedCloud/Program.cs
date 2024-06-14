@@ -1,7 +1,7 @@
 using AutoMapper;
 using MvcApiCallingService.Helpers.ApiHelper;
 using RedCloud.Application.Features.AssignmentType;
-using RedCloud.Application.Features.Campaign;
+//using RedCloud.Application.Features.Campaign;
 using RedCloud.Application.Features.Numbers.Queries;
 using RedCloud.Interfaces;
 using RedCloud.Models.Email;

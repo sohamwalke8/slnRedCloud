@@ -22,7 +22,7 @@ namespace RedCloud.Domain.Entities
 
         public int ? ResellerAdminUserId { get; set; }
 
-        public virtual ResellerAdminUser ResellerAdminUser { get; set; }
+        public virtual ResellerAdminUser? ResellerAdminUser { get; set; }
 
         public bool IsActive { get; set; } = true;
     }

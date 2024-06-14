@@ -12,7 +12,7 @@ namespace RedCloud.Domain.Entities
         [Key]
         public int CarrierId { get; set; }
         public string CarrierName { get; set; }
-        public virtual ICollection<Number> Numbers { get; set; } = new List<Number>();
+        public virtual ICollection<Number>?Numbers { get; set; } = new List<Number>();
 
     }
 }
