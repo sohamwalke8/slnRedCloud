@@ -22,8 +22,8 @@ namespace RedCloud.ViewModel
         public string MonthlyNumber { get; set;}
         [Required(ErrorMessage = "Please Enter Users")]
         public string Users { get; set;}
-        public List<OrganizationAdmin> OrganizationAdmin { get; set; }
-        public List<CreditsType> CreditsType { get; set; }
+        public List<OrganizationAdmin>? OrganizationAdmin { get; set; }
+        public List<CreditsType>? CreditsType { get; set; }
 
     }
 }
