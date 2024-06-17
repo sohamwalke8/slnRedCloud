@@ -11,6 +11,7 @@ namespace RedCloud.ViewModel
         public string OrgName { get; set; }
 
         [Required(ErrorMessage = "Please Enter EIN Number")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Please enter only numbers")]
         public string EIN { get; set; }
 
 
@@ -48,7 +49,7 @@ namespace RedCloud.ViewModel
 
 
         [Required(ErrorMessage = "Please Select Reseller Name")]
-        public string ResellerName { get; set; } = "Test";
+        public string ResellerName { get; set; } 
 
 
         [Required(ErrorMessage = "Please Select Reseller Name")]
@@ -62,6 +63,11 @@ namespace RedCloud.ViewModel
 
         [Required(ErrorMessage = "Please Select Reseller Name")]
         public int? CityId { get; set; }
+        public bool IsActive { get; set; }
+
+
+        // Other properties...
+        public List<int> ResellerIds { get; set; } // Note this change
 
 
 

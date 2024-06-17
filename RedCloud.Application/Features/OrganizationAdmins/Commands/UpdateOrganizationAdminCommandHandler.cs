@@ -16,12 +16,15 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Commands
 
         private readonly IAsyncRepository<OrganizationAdmin> _repository;
         private readonly IMapper _mapper;
+        private readonly IAsyncRepository<OrganizationResellerMapping> _asyncRepositoryMapping;
 
 
-        public UpdateOrganizationAdminCommandHandler(IAsyncRepository<OrganizationAdmin> repository, IMapper mapper)
+
+        public UpdateOrganizationAdminCommandHandler(IAsyncRepository<OrganizationAdmin> repository, IMapper mapper, IAsyncRepository<OrganizationResellerMapping> asyncRepositoryMapping)
         {
             _repository = repository;
             _mapper = mapper;
+            _asyncRepositoryMapping = asyncRepositoryMapping;
         }
 
         private string GenerateRandomPassword()
@@ -38,12 +41,17 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Commands
         {
 
             var model = await _repository.GetByIdAsync(request.OrgID);
+            var reseller = (await _asyncRepositoryMapping.ListAllAsync()).FirstOrDefault(x => x.OrganizationAdminId == request.OrgID);
+            reseller.ResellerAdminUserId = request.ResellerId;
             request.OrgAdminPassword = model.OrgAdminPassword;
+            model.IsActive = request.IsActive;
             _mapper.Map(request, model, typeof(UpdateOrganizationAdminCommand), typeof(OrganizationAdmin));
 
             model.LastModifiedBy = 1;
             model.LastModifiedDate = DateTime.Now;
             await _repository.UpdateAsync(model);
+
+            await _asyncRepositoryMapping.UpdateAsync(reseller);
             var response = new Response<Unit>("Inserted successfully");
             return response;
         }

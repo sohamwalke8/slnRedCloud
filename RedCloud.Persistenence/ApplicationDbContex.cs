@@ -22,6 +22,11 @@ namespace RedCloud.Persistenence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //use this to configure the model
+            modelBuilder.Entity<OrganizationAdmin>()
+               .HasOne(oa => oa.State)
+               .WithMany()
+               .HasForeignKey(oa => oa.StateId)
+               .OnDelete(DeleteBehavior.Restrict); // Specify NO ACTION on delete
         }
 
         public DbSet<Role> Role { get; set; }
@@ -39,12 +44,33 @@ namespace RedCloud.Persistenence
 
         public DbSet<City> Cities { get; set; }
 
-        public DbSet<OrganizationAdmin> OrganizationAdmins { get; set;}
+        public DbSet<OrganizationAdmin> OrganizationAdmins { get; set; }
+
+        public DbSet<AssignmentType> AssignmentTypes { get; set; }
+
+        public DbSet<Types> Type { get; set; }
+
+        public DbSet<Carrier> Carrier { get; set; }
+        public DbSet<Number> Numbers { get; set; }   
+        public DbSet<Campaign> Campaigns { get; set; }
+
+
+     
+        
+
+        public DbSet<OrganizationUser> OrganizationUsers { get; set; }
+        public DbSet<OrganizationResellerMapping> OrganizationResellerMapping { get; set; }
+        public DbSet<ResellerUser> ResellerUsers { get; set; }
+
 
         public DbSet<CreditsType> CreditsType { get; set; }
         public DbSet<RateAssignCredit> RateAssignCredit { get; set; }
 
 
+        public DbSet<Rate> Rates { get; set; }
+        public DbSet<GetRate> GetRates { get; set; }
+
+
 
 
         //        private readonly ILoggedInUserService _loggedInUserService;
@@ -254,67 +280,9 @@ namespace RedCloud.Persistenence
         //                Type = Message.MessageType.Error
         //            });
 
-        //            modelBuilder.Entity<Message>().HasData(new Message
-        //            {
-        //                MessageId = Guid.Parse("{FAFE649A-3E2A-4153-8FD8-9DCD0B87E6D8}"),
-        //                Code = "3",
-        //                MessageContent = "An event with the same name and date already exists.",
-        //                Language = "en",
-        //                Type = Message.MessageType.Error
-        //            });
-        //        }
-
-        //        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
-        //        {
-        //            foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
-        //            {
-        //                switch (entry.State)
-        //                {
-        //                    case EntityState.Added:
-        //                        entry.Entity.CreatedDate = DateTime.UtcNow;
-        //                        entry.Entity.CreatedBy = _loggedInUserService.UserId;
-        //                        break;
-        //                    case EntityState.Modified:
-        //                        entry.Entity.LastModifiedDate = DateTime.UtcNow;
-        //                        entry.Entity.LastModifiedBy = _loggedInUserService.UserId;
-        //                        break;
-        //                }
-        //            }
-        //            return base.SaveChangesAsync(cancellationToken);
-        //        }
-
-        //        public void BeginTransaction()
-        //        {
-        //            _transaction = Database.BeginTransaction();
-        //        }
-
-        //        public void Commit()
-        //        {
-        //            try
-        //            {
-        //                SaveChangesAsync();
-        //                _transaction.Commit();
-        //            }
-        //            finally
-        //            {
-        //                _transaction.Dispose();
-        //            }
-        //        }
-
-        //        public void Rollback()
-        //        {
-        //            _transaction.Rollback();
-        //            _transaction.Dispose();
-        //        }
-        //    }
 
 
-        //    https://gillcleerenpluralsight.blob.core.windows.net
 
-        //https://gillcleerenpluralsight.blob.core.windows.net
-        // [ExcludeFromCodeCoverage]
-        //    public class ApplicationDbContext : DbContext
-        //    {
         //        private readonly ILoggedInUserService _loggedInUserService;
         //        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ILoggedInUserService loggedInUserService)
         //            : base(options)
@@ -504,76 +472,11 @@ namespace RedCloud.Persistenence
         //                .Property(s => s.Type)
         //                .HasConversion<string>();
 
-        //            modelBuilder.Entity<Message>().HasData(new Message
-        //            {
-        //                MessageId = Guid.Parse("{253C75D5-32AF-4DBF-AB63-1AF449BDE7BD}"),
-        //                Code = "1",
-        //                MessageContent = "{PropertyName} is required.",
-        //                Language = "en",
-        //                Type = Message.MessageType.Error
-        //            });
 
-        //            modelBuilder.Entity<Message>().HasData(new Message
-        //            {
-        //                MessageId = Guid.Parse("{ED0CC6B6-11F4-4512-A441-625941917502}"),
-        //                Code = "2",
-        //                MessageContent = "{PropertyName} must not exceed {MaxLength} characters.",
-        //                Language = "en",
-        //                Type = Message.MessageType.Error
-        //            });
 
-        //            modelBuilder.Entity<Message>().HasData(new Message
-        //            {
-        //                MessageId = Guid.Parse("{FAFE649A-3E2A-4153-8FD8-9DCD0B87E6D8}"),
-        //                Code = "3",
-        //                MessageContent = "An event with the same name and date already exists.",
-        //                Language = "en",
-        //                Type = Message.MessageType.Error
-        //            });
-        //        }
 
-        //        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
-        //        {
-        //            foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
-        //            {
-        //                switch (entry.State)
-        //                {
-        //                    case EntityState.Added:
-        //                        entry.Entity.CreatedDate = DateTime.UtcNow;
-        //                        entry.Entity.CreatedBy = _loggedInUserService.UserId;
-        //                        break;
-        //                    case EntityState.Modified:
-        //                        entry.Entity.LastModifiedDate = DateTime.UtcNow;
-        //                        entry.Entity.LastModifiedBy = _loggedInUserService.UserId;
-        //                        break;
-        //                }
-        //            }
-        //            return base.SaveChangesAsync(cancellationToken);
-        //        }
 
-        //        public void BeginTransaction()
-        //        {
-        //            _transaction = Database.BeginTransaction();
-        //        }
 
-        //        public void Commit()
-        //        {
-        //            try
-        //            {
-        //                SaveChangesAsync();
-        //                _transaction.Commit();
-        //            }
-        //            finally
-        //            {
-        //                _transaction.Dispose();
-        //            }
-        //        }
-
-        //        public void Rollback()
-        //        {
-        //            _transaction.Rollback();
-        //            _transaction.Dispose();
-        //        }
-        //    }
+        
     }
 }

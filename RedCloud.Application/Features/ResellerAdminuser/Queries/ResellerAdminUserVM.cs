@@ -53,6 +53,11 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Queries
 
         public int ResellerAdminId { get; set; }
 
+       //DISHA FOR NUMBERS
+       //public int? OrgID { get; set; }
+
+        //public string? OrgName { get; set; }
+
 
     }
 }

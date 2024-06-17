@@ -54,5 +54,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Commands
 
         public int? CityId { get; set; }
 
+       
+
     }
 }

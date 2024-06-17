@@ -29,8 +29,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddPersistenceServices(Configuration);
 
 builder.Services.AddApplicationServices();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

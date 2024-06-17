@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,13 +18,17 @@ namespace RedCloud.Application.Contract.Persistence
         Task<IReadOnlyList<T>> GetPagedReponseAsync(int page, int size);
 
         Task<T> GetByIdAsync(int Id);
+
         Task<T> GetByIdAsyncInculde(int id);
 
-        Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName, SqlParameter[] parameters = null);
-        Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName);
+        Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName, SqlParameter[] parameters = null);//Atharva
+        Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName);//Atharva
 
 
-		Task<int> StoredProcedureCommandAsync(string storedProcedureName, SqlParameter[] parameters = null);
+        //For Insert, Update, Delete Operations
+        Task<int> StoredProcedureCommandAsync(string storedProcedureName, SqlParameter[] parameters = null);//Atharva
 
+      
+        Task<List<T>> GetAllIncludeAsync();
     }
 }

@@ -57,7 +57,7 @@ namespace RedCloud.Controllers
             var response = await _adminreseller.CreateAdminResellerUserAsync(Model);//name of service and service method
 
             //_logger.LogInformation("CreateCategory Action initiated");
-            return RedirectToAction("Index");
+            return RedirectToAction("ViewallResellerAdmin");
         }
 
 
@@ -96,7 +96,7 @@ namespace RedCloud.Controllers
             var response = _adminreseller.UpdateAdminResellerUser(request);
 
             //_logger.LogInformation("CreateCategory Action initiated");
-            return RedirectToAction("UpdateResellerAdmin");
+            return RedirectToAction("ViewallResellerAdmin");
         }
 
 

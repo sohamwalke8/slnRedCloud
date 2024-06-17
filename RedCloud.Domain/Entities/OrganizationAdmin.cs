@@ -28,13 +28,6 @@ namespace RedCloud.Domain.Entities
 
         public string AddressLineTwo { get; set; }
 
-        //public string Country { get; set; }
-
-        //public string City {  get; set; }
-
-        //public string State {  get; set; }
-
-        //public string Country { get; set; }
 
         public string ZipCode { get; set; }
 
@@ -42,7 +35,10 @@ namespace RedCloud.Domain.Entities
 
         public bool IsActive { get; set; } = true;
 
-        public virtual List<ResellerAdminUser> ResellerAdminUsers { get; set; } = new List<ResellerAdminUser>();
+        public virtual List<OrganizationResellerMapping> OrganizationResellerMapping { get; set; } = new List<OrganizationResellerMapping>();
+
+        public virtual ICollection<OrganizationUser> OrganizationUsers { get; set; } = new List<OrganizationUser>();
+
 
         public int CountryId { get; set; }
 
@@ -55,8 +51,11 @@ namespace RedCloud.Domain.Entities
 
         public City City { get; set; }
 
+        //public int? NumberId { get; set; }
 
+        //public Number? number { get; set; }
 
+        public virtual List<Number> Numbers { get; set; } = new List<Number>();
 
 
 
