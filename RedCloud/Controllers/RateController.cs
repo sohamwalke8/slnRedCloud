@@ -30,7 +30,7 @@ namespace RedCloud.Controllers
 
         [HttpGet]
         public async Task<IActionResult> ViewallRates()
-        {
+         {
 
             var response = await _rate.GetallRate();
 

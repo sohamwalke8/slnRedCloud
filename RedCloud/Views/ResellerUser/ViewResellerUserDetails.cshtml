@@ -51,7 +51,7 @@
         <div class="card-header card-header-custom d-flex justify-content-between align-items-center">
             <div class="logo-text">
                 <img src="https://files.axshare.com/gsc/5886BD/e2/ee/cb/e2eecb648f19481093d6b12d28c3beb3/images/view_user_details/u27.svg?pageId=45d84280-2bba-453f-a23a-42e8aeab14be" alt="Organization Admin Logo">
-                <strong>View Organization User Details</strong>
+                <strong>View Reseller User Details</strong>
             </div>
             <div class="buttons">
 
@@ -85,7 +85,7 @@
                     <!-- Trigger the confirmation modal -->
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">Block</button>
                 }
-                <a href="@Url.Action("ViewResellerUsers", "ResellerUser")" class="btn btn-primary">Cancel</a>
+                <a href="@Url.Action("ViewResellerUsers", "ResellerUser", new { id = Model.ResellerAdminUserId })" class="btn btn-primary">Cancel</a>
             </div>
         </div>
     </div>

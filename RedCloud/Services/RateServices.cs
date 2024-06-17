@@ -88,20 +88,20 @@ namespace RedCloud.Services
                     {
                         ResellerAdminUserId = r.ResellerAdminUserId,
                         ResellerName = r.ResellerName,
-                        
+
                     });
 
                     return resellers;
                 }
                 else
                 {
-                   
+
                     return Enumerable.Empty<ReSellerAdmindto>();
                 }
             }
             catch (Exception ex)
             {
-                
+
                 return Enumerable.Empty<ReSellerAdmindto>();
             }
         }

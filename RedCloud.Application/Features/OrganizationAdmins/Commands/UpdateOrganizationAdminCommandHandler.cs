@@ -44,6 +44,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Commands
             var reseller = (await _asyncRepositoryMapping.ListAllAsync()).FirstOrDefault(x => x.OrganizationAdminId == request.OrgID);
             reseller.ResellerAdminUserId = request.ResellerId;
             request.OrgAdminPassword = model.OrgAdminPassword;
+            model.IsActive = request.IsActive;
             _mapper.Map(request, model, typeof(UpdateOrganizationAdminCommand), typeof(OrganizationAdmin));
 
             model.LastModifiedBy = 1;

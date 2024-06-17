@@ -57,6 +57,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Commands
             org.CreatedBy = 1;
             org.CreatedDate = DateTime.Now;
             org.IsDeleted = false;
+            org.IsActive = true;
             var result = await _asyncRepository.AddAsync(org);
             var mapping = new OrganizationResellerMapping()
             {
