@@ -97,7 +97,7 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> AssignNumber(AssignNumberViewModel request)
         {
             var response = _numberService.UpdateNumber(request);
-            return RedirectToAction("AddNumber");
+            return RedirectToAction("Viewallnumberslist");
         }
 
 
@@ -144,7 +144,7 @@ namespace RedCloud.Controllers
             // _logger.LogInformation("CreateCategory Action initiated");
             var response = _numberService2.UpdateAssignedNumber(request);
 
-            return RedirectToAction("UpdateAssignedNumber");
+            return RedirectToAction("Viewallnumberslist");
         }
 
         [HttpGet]

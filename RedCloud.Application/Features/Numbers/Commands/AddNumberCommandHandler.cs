@@ -29,6 +29,7 @@ namespace RedCloud.Application.Features.Numbers.Commands
             number.CreatedBy = 1;
             number.CreatedDate = DateTime.Now;
             number.IsDeleted=false;
+            number.IsActive=true;
             var result=await _asyncRepository.AddAsync(number);
             var response=new Response<int>(result.NumberId,"Inserted successfully");
             return response;
