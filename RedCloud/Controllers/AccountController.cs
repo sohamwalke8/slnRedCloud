@@ -79,6 +79,7 @@ namespace RedCloud.Controllers
                     HttpContext.Session.SetString("Email", result.Data.Email);
                     HttpContext.Session.SetInt32("UserId", result.Data.UserId);
                     HttpContext.Session.SetString("UserRoles", JsonConvert.SerializeObject(roles));
+                    HttpContext.Session.SetInt32("UserId", result.Data.UserId);
 
 
                     var RoleName = result.Data.Roles[0].RoleName;

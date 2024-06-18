@@ -8,6 +8,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
 {
     public class GetAllOrganizationAdminVM
     {
+
         public int OrgID { get; set; }
 
         public string OrgName { get; set; }

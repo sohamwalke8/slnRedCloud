@@ -31,6 +31,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddPersistenceServices(Configuration);
 
 builder.Services.AddApplicationServices();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
