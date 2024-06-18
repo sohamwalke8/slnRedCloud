@@ -45,6 +45,42 @@
     <!-- Toastr CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 
+    <style>
+        /* CSS */
+        .button-35 {
+            /* align-items: center;
+             background-color: #fff; 
+            border-radius: 12px;
+                    box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px; */
+            box-sizing: border-box;
+            color: #121212;
+            cursor: pointer;
+            display: inline-flex;
+            flex: 1 1 auto;
+            /*
+            font-family: Inter,sans-serif;
+            font-size: 1.2rem;
+            justify-content: center;
+            line-height: 1;
+            margin: 0;
+            outline: none;
+            padding: 1rem 1.2rem;
+            text-align: center;
+            text-decoration: none;
+                    transition: box-shadow .2s,-webkit-box-shadow .2s;*/
+             white-space: nowrap;
+            font-weight: 700;
+            border: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+            .button-35:hover {
+                box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+            }
+    </style>
+
 
 </head>
 <body>
@@ -101,11 +137,16 @@
                         <i class="fa-solid fa-user"></i>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item button-35">
+                    <a class="nav-link" asp-action="Logout" asp-controller="Account" role="button">
+                        Sign Out <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </a>
+                </li>
+                @* <li class="nav-item">
                     <a class="nav-link" asp-action="Logout" asp-controller="Account" role="button" title="sign-out">
                         <i class="fa fa-sign-out" aria-hidden="true"></i>
                     </a>
-                </li>
+                </li> *@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>

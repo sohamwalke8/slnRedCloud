@@ -52,6 +52,8 @@ namespace RedCloud.Controllers
         {
             // _logger.LogInformation("CreateCategory Action initiated");
             var response = await _adminreseller.CreateAdminResellerUserAsync(Model);//name of service and service method
+            //var reselerData = await _adminreseller.GetResellerAdminUserById(response.);
+
 
             //_logger.LogInformation("CreateCategory Action initiated");
             return RedirectToAction("ViewallResellerAdmin");
@@ -68,10 +70,8 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> UpdateResellerAdminUser(int Id)
         {
 
-            //var response = await _organizationAdminService.GetOrganizationAdminById(Id)
-            ;
-            var response = await _adminreseller.GetResellerAdminUserById(Id)
-       ;
+            //var response = await _organizationAdminService.GetOrganizationAdminById(Id);
+            var response = await _adminreseller.GetResellerAdminUserById(Id);
             var countries = await _dropDownService.GetAllCountryList();
             ViewBag.Country = countries;
             ViewBag.State = await _stateService.GetStatesByCountryId(response.CountryId);

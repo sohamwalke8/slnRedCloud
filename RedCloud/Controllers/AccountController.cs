@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pag
 using Newtonsoft.Json;
 using RedCloud.Application.Contract.Infrastructure;
 using RedCloud.Application.Features.Account.Queries.LoginQuery;
+using RedCloud.Application.Helper;
 using RedCloud.Custom_Action_Filter;
 using RedCloud.Domain.Common;
 using RedCloud.Interfaces;
@@ -47,11 +48,11 @@ namespace RedCloud.Controllers
             if (ModelState.IsValid)
             {
 
-                //to convert the plain text into encrypted password 
+                //to convert the plain text into encrypted password
                 //LoginVM loginData = new LoginVM()
                 //{
                 //    Email = model.Email,
-                //    Password = EncryptionDecryption.EncryptString(model.Password)
+                //    Password = EncryptionDecryption.DecryptString(model.Password)
                 //};
 
 
