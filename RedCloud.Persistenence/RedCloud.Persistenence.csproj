@@ -9,6 +9,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20240614115306_migrationOne.cs" />
     <Compile Remove="Migrations\20240614115306_migrationOne.Designer.cs" />
+    <Compile Remove="Migrations\20240617064822_LiveserverMigration.cs" />
+    <Compile Remove="Migrations\20240617064822_LiveserverMigration.Designer.cs" />
     <Compile Remove="Migrations\ApplicationDbContextModelSnapshot.cs" />
   </ItemGroup>
 

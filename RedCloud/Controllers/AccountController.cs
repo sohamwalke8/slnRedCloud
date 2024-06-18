@@ -29,7 +29,7 @@ namespace RedCloud.Controllers
         private readonly IEncryptionService _encryptionService;
         private readonly IDistributedCache _distributedCache;
 
-        public AccountController(IAccountService accountService, IMailService mailService, IEncryptionService encryptionService)
+        public AccountController(IAccountService accountService, IMailService mailService, IEncryptionService encryptionService, IDistributedCache distributedCache)
         {
             _accountService = accountService;
             _mailService = mailService;
