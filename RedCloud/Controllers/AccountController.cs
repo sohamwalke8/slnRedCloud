@@ -10,6 +10,7 @@ using RedCloud.Application.Features.Account.Queries.LoginQuery;
 using RedCloud.Application.Helper;
 using RedCloud.Custom_Action_Filter;
 using RedCloud.Domain.Common;
+using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
 using RedCloud.Models.Email;
 using RedCloud.ViewModel;
@@ -25,12 +26,14 @@ namespace RedCloud.Controllers
         private readonly IAccountService _accountService;
         private readonly IMailService _mailService;
         private readonly IDistributedCache _distributedCache;
+        private readonly IEncryptionService _encryptionService;
 
-        public AccountController(IAccountService accountService, IMailService mailService, IDistributedCache distributedCache)
+        public AccountController(IAccountService accountService, IMailService mailService, IDistributedCache distributedCache, IEncryptionService encryptionService)
         {
             _accountService = accountService;
             _mailService = mailService;
             _distributedCache = distributedCache;
+            _encryptionService = encryptionService;
         }
 
 
@@ -144,18 +147,24 @@ namespace RedCloud.Controllers
 
                 if (IsUserExist == null)
                 {
-                   // _logger.LogWarning($"Rate with ID: {id} not found");
-                    return NotFound();
+                    ModelState.AddModelError("Email", "Please enter valid Email");
+                    return View();
                 }
                 else
                 {
+                    int originalValue = IsUserExist.UserId;
+                    string encryptedValue = _encryptionService.EncryptValue(originalValue);
+
                     MailRequest mailRequest = new MailRequest()
                     {
                         ToEmail = model.Email,
                         Subject = "Forget Password",
                         //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetPassword"
                         //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetPassword/{data[0].userId}"
-                       Body = $"This Forget email password please click  https://localhost:7206/Account/ResetUserPassword/{IsUserExist.UserId}"
+                        //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetUserPassword/{IsUserExist.UserId}"
+                        //Body = $"This Forget email password please click  {EncrptedUrl}"
+                        //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetUserPassword/{EncrptedUrl}"
+                        Body = $"This Forget email password please click  https://localhost:7206/Account/ResetUserPassword/?strUserId={encryptedValue}"
                     };
                     await _mailService.SendEmailAsync(mailRequest);
                     //var responses = await _accountService.ForgetUserPasswordService(model);
@@ -168,6 +177,30 @@ namespace RedCloud.Controllers
             }
             return View();
         }
+        public async Task<IActionResult> ResetUserPassword(string strUserId)
+        {
+            int UserId = _encryptionService.DecryptValue(strUserId);
+            ViewBag.UserId = UserId;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetUserPassword(ResetUserPasswordVM model)
+        {
+            ViewBag.UserId = model.UserId;
+            if (ModelState.IsValid)
+            {
+                model.Password = EncryptionDecryption.EncryptString(model.Password);
+                var response = await _accountService.ForgetUserPasswordService(model);
+                TempData["SuccessMessage"] = "Password Reset successfully!l";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Please try again!";
+            }
+            return View();
+        }
+        /*
         public async Task<IActionResult> ResetUserPassword(int Id)
         {
             ViewBag.UserId = Id;
@@ -220,7 +253,7 @@ namespace RedCloud.Controllers
             TempData["ErrorMessage"] = "Please try again!";
             return View();
         }
-
+        */
         //[NoCache]
         [HttpGet]
         public ActionResult Logout()

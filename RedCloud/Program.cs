@@ -57,6 +57,7 @@ builder.Services.AddScoped<ICampaignService, CampaignService>();
 
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings")); // Add by Aditya
 builder.Services.AddTransient<IMailService, MailService>(); // Add by Aditya
+builder.Services.AddScoped<IEncryptionService, EncryptionService>(); // Add by Aditya
 //logger setup
 Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
 builder.Host.UseSerilog(((ctx, lc) => lc
