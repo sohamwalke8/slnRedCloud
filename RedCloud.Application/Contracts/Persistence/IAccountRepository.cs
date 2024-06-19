@@ -12,7 +12,12 @@ namespace RedCloud.Application.Contracts.Persistence
     public interface IAccountRepository
     {
         Task<UserVM> Get(string Email, string Password);
+
         Task<UserVM> GetResellerAdmin(string Email, string Password);
+
+        Task<UserVM> GetOrganizationAdmin(string Email, string Password);
+
+
 
  
     }

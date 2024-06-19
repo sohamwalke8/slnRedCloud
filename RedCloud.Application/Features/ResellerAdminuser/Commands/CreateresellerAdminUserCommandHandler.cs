@@ -49,8 +49,6 @@ namespace RedCloud.Application.Features.ResellerAdminuser.Commands
             AdminRese.CreatedDate = DateTime.Now;
             AdminRese.IsDeleted = false;
 
-
-
             var result = await _repository.AddAsync(AdminRese);
 
             //Sending email notification to admin address

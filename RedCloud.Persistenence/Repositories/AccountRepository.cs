@@ -66,7 +66,7 @@ namespace RedCloud.Persistenence.Repositories
                     new Role
                     {
                         RoleName = "Reseller Admin",
-                        RoleId = 4
+                        RoleId = 2
                     }
                  };
                 var loginDetailes = new UserVM
@@ -74,6 +74,33 @@ namespace RedCloud.Persistenence.Repositories
                     UserId = resellerAdmin.ResellerAdminUserId,
                     Email = resellerAdmin.CompanySupportEmail,
                     Password = resellerAdmin.Password,
+                    Roles = roles,
+                };
+
+                return Task.FromResult(loginDetailes);
+
+            }
+            throw new UnauthorizedAccessException();
+        }
+
+
+        public Task<UserVM> GetOrganizationAdmin(string Email, string Password)
+        {
+            var OrganizationAdmin = _dbContex.OrganizationAdmins.Where(x => x.OrgAdminEmail == Email && x.OrgAdminPassword == Password).FirstOrDefault();
+            if (OrganizationAdmin != null)
+            {
+                var roles = new List<Role>{
+                    new Role
+                    {
+                        RoleName = "Organization Admin",
+                        RoleId = 3
+                    }
+                 };
+                var loginDetailes = new UserVM
+                {
+                    UserId = OrganizationAdmin.OrgID,
+                    Email = OrganizationAdmin.OrgAdminEmail,
+                    Password = OrganizationAdmin.OrgAdminPassword,
                     Roles = roles,
                 };
 

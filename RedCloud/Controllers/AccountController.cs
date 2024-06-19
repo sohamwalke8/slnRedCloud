@@ -1,5 +1,6 @@
 ﻿using AutoMapper.Internal;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
@@ -103,7 +104,7 @@ namespace RedCloud.Controllers
 
             ViewBag.role = HttpContext.Session.GetString("Role");
 
-            if (HttpContext.Session.GetString("Role") == "Sub Admin Administrartor")
+            if (HttpContext.Session.GetString("Role") == "Sub Admin Administrator")
             {
                 return PartialView("_SubAdmin", ViewBag.role);
             }
@@ -120,7 +121,7 @@ namespace RedCloud.Controllers
                 return PartialView("_MessagingUsers", ViewBag.role);
             }
 
-            return RedirectToAction("Index", "Home");
+           return RedirectToAction("Index", "Home");
         }
 
         //ForgetUserPasswordVM

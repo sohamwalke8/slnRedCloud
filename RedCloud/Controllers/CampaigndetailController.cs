@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RedCloud.Custom_Action_Filter;
 using RedCloud.Interfaces;
 using RedCloud.Services;
 using RedCloud.ViewModel;
+using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 
 namespace RedCloud.Controllers
 {
+    [NoCache]
+    [AdminAuthorizationFilter]
     public class CampaigndetailController : Controller
     {
 

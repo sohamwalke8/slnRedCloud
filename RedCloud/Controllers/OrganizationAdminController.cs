@@ -8,8 +8,8 @@ using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 namespace RedCloud.Controllers
 {
 
-    //[NoCache]
-    //[AdminAuthorizationFilter]
+    [NoCache]
+    [AdminAuthorizationFilter]
     public class OrganizationAdminController : Controller
     {
         private readonly IOrganizationAdminService _organizationAdminService;

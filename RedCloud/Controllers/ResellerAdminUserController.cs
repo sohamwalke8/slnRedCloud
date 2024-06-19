@@ -1,14 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RedCloud.Application.Features.ResellerAdminuser.Queries;
+using RedCloud.Application.Helper;
+using RedCloud.Custom_Action_Filter;
 using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
+using RedCloud.Models.Email;
 using RedCloud.ViewModel;
+using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 
 namespace RedCloud.Controllers
 {
+    [NoCache]
+    [AdminAuthorizationFilter]
     public class ResellerAdminUserController : Controller
     {
+
+        private readonly IMailService _mailService;
         private readonly IAdminResellerUser _adminreseller;
         private readonly ILogger<ResellerAdminUserController> _logger;
         private readonly IDropDownService<CountryVM> _dropDownService;
@@ -20,7 +28,7 @@ namespace RedCloud.Controllers
 
 
         public ResellerAdminUserController(IAdminResellerUser adminreseller, ILogger<ResellerAdminUserController> logger, IDropDownService<CountryVM> dropDownService, 
-            IStateService<StateVM> stateService, ICityService<CityVM> cityService, IRedCloudAdminService redCloudAdmin)
+            IStateService<StateVM> stateService, ICityService<CityVM> cityService, IRedCloudAdminService redCloudAdmin, IMailService mailService)
         {
             _adminreseller = adminreseller;
             _logger = logger;
@@ -28,6 +36,7 @@ namespace RedCloud.Controllers
             _stateService = stateService;
             _cityService = cityService;
             _redcloudAdminService = redCloudAdmin;
+            _mailService = mailService;
 
         }
 
@@ -52,7 +61,22 @@ namespace RedCloud.Controllers
         {
             // _logger.LogInformation("CreateCategory Action initiated");
             var response = await _adminreseller.CreateAdminResellerUserAsync(Model);//name of service and service method
-            //var reselerData = await _adminreseller.GetResellerAdminUserById(response.);
+
+            var reselerData = await _adminreseller.GetResellerAdminUserById(response);
+            var decryPass = EncryptionDecryption.DecryptString(reselerData.Password);
+
+            MailRequest mailRequest = new MailRequest()
+            {
+                ToEmail = reselerData.CompanySupportEmail,
+                //ToEmail = "guptaaakash333@gmail.com",
+                Subject = "Your Password Is",
+
+                //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetUserPassword/{IsUserExist.UserId}"
+                Body = $"This is Your System Generated password : {decryPass}"
+                //Body = $"This is Your System Generated password : 12345"
+            };
+            await _mailService.SendEmailAsync(mailRequest);
+            //var responses = await _accountService.ForgetUserPasswordService(model);
 
 
             //_logger.LogInformation("CreateCategory Action initiated");

@@ -13,7 +13,7 @@ IConfiguration Configuration = builder.Configuration;
 
 builder.Services.AddControllersWithViews();
 //builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("RedCloudPortal")));
-builder.Services.AddInfrastructureServices(Configuration);
+//builder.Services.AddInfrastructureServices(Configuration);
 
 //SERILOG IMPLEMENTATION
 
