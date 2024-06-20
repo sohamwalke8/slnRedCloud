@@ -30,6 +30,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using RedCloud.Application.Features.ResellerReport.Queries;
 
 namespace RedCloud.Application.Profiles
 {
@@ -84,6 +85,7 @@ namespace RedCloud.Application.Profiles
             CreateMap<ResellerUserVM, ResellerUser>().ReverseMap();
             CreateMap<UpdateResellerUserCommand, ResellerUser>().ReverseMap();
         CreateMap<OrganizationAdmin, GetAllOrganizationAdminVM>();
+            CreateMap<TotalReport, TotalReportVM>();
 
             //For Numbers
             CreateMap<AddNumberCommand, Domain.Entities.Number>();
@@ -96,6 +98,7 @@ namespace RedCloud.Application.Profiles
             CreateMap<ViewAssignedNumberVM, AssignNumberViewModel>();
             CreateMap<RedCloud.Domain.Entities.Number, RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM>();
             //CreateMap<RedCloud.Domain.Entities.Number, NumberlistVM>();
+            CreateMap<ResellerInboundMessagesReport, OrganizationReportVM>();
 
             CreateMap<RedCloud.Domain.Entities.Number, NumberlistVM>()
             .ForMember(dest => dest.CarrierName, opt => opt.MapFrom(src => src.Carrier.CarrierName))

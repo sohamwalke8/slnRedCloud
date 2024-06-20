@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RedCloud.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Domain.Entities
 {
-    public class RateAssignCredit
+    public class RateAssignCredit : AuditableEntity
     {
         [Key]
         public int RateAssignCreditId { get; set; }
@@ -19,7 +20,7 @@ namespace RedCloud.Domain.Entities
         public string OutboundMMS { get; set; }
         public string MonthlyNumber { get; set; }
         public string Users { get; set; }
-        public List<OrganizationAdmin>? OrganizationAdmin { get; set; }
-        public List<CreditsType>? CreditsType { get; set; }
+        //public List<OrganizationAdmin>? OrganizationAdmin { get; set; }
+        //public List<CreditsType>? CreditsType { get; set; }
     }
 }

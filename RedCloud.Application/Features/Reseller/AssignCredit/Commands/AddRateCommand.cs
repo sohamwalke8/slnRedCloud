@@ -19,5 +19,17 @@ namespace RedCloud.Application.Features.Reseller.AssignCredit.Commands
         public string OutboundMMS { get; set; }
         public string MonthlyNumber { get; set; }
         public string Users { get; set; }
+
+        //public string? CreatedBy { get; set; }
+
+        //public string? CreatedDate { get; set; }
+
+        //public string? IsDeleted { get; set; }
+
+        //public string? LastModifiedBy { get; set; }
+
+        //public string? LastModifiedDate { get; set; }
+
+
     }
 }

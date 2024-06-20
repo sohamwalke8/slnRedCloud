@@ -175,13 +175,15 @@ namespace RedCloud.Persistenence.Repositories
         }
 
 
-        public async Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName)// Atharva
-        {
-            //var parameterNames = GetParameterNames(parameters);
-            return await _dbContext.Set<T>().FromSqlRaw(string.Format("{0}", storedProcedureName)).ToListAsync();
-        }
+        //public async Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName)// Atharva
+        //{
+        //    //var parameterNames = GetParameterNames(parameters);
+        //    return await _dbContext.Set<T>().FromSqlRaw(string.Format("{0}", storedProcedureName)).ToListAsync();
+        //}
 
         
-
     }
+
+
 }
+

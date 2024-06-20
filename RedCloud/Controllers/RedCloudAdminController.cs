@@ -72,7 +72,7 @@ namespace RedCloud.Controllers
                 };
 
                 await _adminUserService.EditAdminUser(adminUser);
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewallRedCloudAdmin");
             }
             return View(request);
         }

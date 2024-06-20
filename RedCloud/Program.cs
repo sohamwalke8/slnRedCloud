@@ -61,6 +61,7 @@ builder.Services.AddTransient<IMailService, MailService>(); // Add by Aditya
 
 builder.Services.AddScoped<IEncryptionService, EncryptionService>();
 builder.Services.AddScoped<IResellerAssignCreditService, ResellerAssignCreditService>();
+builder.Services.AddScoped<IReport, ReportService>();
 
 //logger setup
 Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();

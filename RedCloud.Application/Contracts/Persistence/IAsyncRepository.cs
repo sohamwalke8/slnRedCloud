@@ -30,5 +30,7 @@ namespace RedCloud.Application.Contract.Persistence
 
       
         Task<List<T>> GetAllIncludeAsync();
+
+        
     }
 }

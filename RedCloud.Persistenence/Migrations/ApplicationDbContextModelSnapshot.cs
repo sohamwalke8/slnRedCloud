@@ -195,16 +195,11 @@ namespace RedCloud.Persistenence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TypeId"));
 
-                    b.Property<int?>("RateAssignCreditId")
-                        .HasColumnType("int");
-
                     b.Property<string>("TypeName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TypeId");
-
-                    b.HasIndex("RateAssignCreditId");
 
                     b.ToTable("CreditsType");
                 });
@@ -388,9 +383,6 @@ namespace RedCloud.Persistenence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RateAssignCreditId")
-                        .HasColumnType("int");
-
                     b.Property<int>("StateId")
                         .HasColumnType("int");
 
@@ -403,8 +395,6 @@ namespace RedCloud.Persistenence.Migrations
                     b.HasIndex("CityId");
 
                     b.HasIndex("CountryId");
-
-                    b.HasIndex("RateAssignCreditId");
 
                     b.HasIndex("StateId");
 
@@ -552,6 +542,12 @@ namespace RedCloud.Persistenence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RateAssignCreditId"));
 
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("InboundMMS")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -559,6 +555,15 @@ namespace RedCloud.Persistenence.Migrations
                     b.Property<string>("InboundSMS")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("LastModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("MonthlyNumber")
                         .IsRequired()
@@ -948,13 +953,6 @@ namespace RedCloud.Persistenence.Migrations
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("RedCloud.Domain.Entities.CreditsType", b =>
-                {
-                    b.HasOne("RedCloud.Domain.Entities.RateAssignCredit", null)
-                        .WithMany("CreditsType")
-                        .HasForeignKey("RateAssignCreditId");
-                });
-
             modelBuilder.Entity("RedCloud.Domain.Entities.Number", b =>
                 {
                     b.HasOne("RedCloud.Domain.Entities.AssignmentType", "AssignmentType")
@@ -1017,10 +1015,6 @@ namespace RedCloud.Persistenence.Migrations
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("RedCloud.Domain.Entities.RateAssignCredit", null)
-                        .WithMany("OrganizationAdmin")
-                        .HasForeignKey("RateAssignCreditId");
 
                     b.HasOne("RedCloud.Domain.Entities.State", "State")
                         .WithMany()
@@ -1173,13 +1167,6 @@ namespace RedCloud.Persistenence.Migrations
                     b.Navigation("OrganizationResellerMapping");
 
                     b.Navigation("OrganizationUsers");
-                });
-
-            modelBuilder.Entity("RedCloud.Domain.Entities.RateAssignCredit", b =>
-                {
-                    b.Navigation("CreditsType");
-
-                    b.Navigation("OrganizationAdmin");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.ResellerAdminUser", b =>
