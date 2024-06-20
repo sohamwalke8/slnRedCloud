@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Campaign\**" />
+    <EmbeddedResource Remove="Features\Campaign\**" />
+    <None Remove="Features\Campaign\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
@@ -28,6 +34,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RedCloud.Domain\RedCloud.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\AssignmentType\Commands\" />
+    <Folder Include="Features\Carrierss\Comand\" />
   </ItemGroup>
 
 </Project>

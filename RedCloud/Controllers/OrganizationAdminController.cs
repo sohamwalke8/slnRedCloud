@@ -8,8 +8,8 @@ using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 namespace RedCloud.Controllers
 {
 
-    [NoCache]
-    [AdminAuthorizationFilter]
+    //[NoCache]
+    //[AdminAuthorizationFilter]
     public class OrganizationAdminController : Controller
     {
         private readonly IOrganizationAdminService _organizationAdminService;
@@ -34,15 +34,16 @@ namespace RedCloud.Controllers
         // AAKASh
 
         [HttpGet]
+       // [Route("ViewDetails")]
         public async Task<IActionResult> ViewOrganizationAdmin()
         {
             //_logger.LogInformation("ViewOrganizationAdmin Action initiated");
-            var model = await _organizationAdminService.GetAllOrganizationAdmin();
+            var model = await _organizationAdminService.GetAllOrganizationAdmins();
             //_logger.LogInformation("ViewOrganizationAdmin Action completed");
             return View(model);
         }
 
-
+        //[Route("ViewDetailsOrg")]
         public async Task<IActionResult> ViewOrganizationDetails(int id)
         {
             
@@ -110,6 +111,8 @@ namespace RedCloud.Controllers
 
             //_logger.LogInformation("CreateCategory Action initiated");
             return RedirectToAction("ViewOrganizationAdmin");
+
+            return RedirectToAction("AddOrganizationAdmin", request);
         }
 
         public async Task<IActionResult> UpdateOrganizationAdmin(int Id)
@@ -118,7 +121,7 @@ namespace RedCloud.Controllers
 
             var response = await _organizationAdminService.GetOrganizationAdminById(Id);
             var countries = await _dropDownService.GetAllCountryList();
-            ViewBag.Country = countries;
+            ViewBag.Country = countries; 
             ViewBag.State = await _stateService.GetStatesByCountryId(response.CountryId);
             ViewBag.City = await _cityService.GetCityByStateId(response.StateId);
 
@@ -133,11 +136,19 @@ namespace RedCloud.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateOrganizationAdmin(OrganizationAdminVM request)
         {
-            // _logger.LogInformation("CreateCategory Action initiated");
-            var response = _organizationAdminService.EditOrganizationAdmin(request);
+            try
+            {
+                // _logger.LogInformation("CreateCategory Action initiated");
+                var response = _organizationAdminService.EditOrganizationAdmin(request);
 
-            //_logger.LogInformation("CreateCategory Action initiated");
-            return RedirectToAction("UpdateOrganizationAdmin");
+                //_logger.LogInformation("CreateCategory Action initiated");
+                return RedirectToAction("ViewOrganizationAdmin");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
 

@@ -53,6 +53,9 @@
                 <strong>View Organization Details</strong>
             </div>
             <div class="buttons">
+                <a href="@Url.Action("ViewOrganizationUsers","OrganizationUser" , new { id = Model.OrgID })" class="btn btn-primary" style="background-color:#74746c">
+                   View Users 
+                </a>
                 <a href="@Url.Action("UpdateOrganizationAdmin", new { id = Model.OrgID })" class="btn btn-outline-light">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>

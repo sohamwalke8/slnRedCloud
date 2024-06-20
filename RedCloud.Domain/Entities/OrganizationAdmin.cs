@@ -35,7 +35,10 @@ namespace RedCloud.Domain.Entities
 
         public bool IsActive { get; set; } = true;
 
-        public virtual List<ResellerAdminUser> ResellerAdminUsers { get; set; } = new List<ResellerAdminUser>();
+        public virtual List<OrganizationResellerMapping> OrganizationResellerMapping { get; set; } = new List<OrganizationResellerMapping>();
+
+        public virtual ICollection<OrganizationUser> OrganizationUsers { get; set; } = new List<OrganizationUser>();
+
 
         public int CountryId { get; set; }
 
@@ -47,6 +50,14 @@ namespace RedCloud.Domain.Entities
         public int? CityId { get; set; }
 
         public City City { get; set; }
+
+        //public int? NumberId { get; set; }
+
+        //public Number? number { get; set; }
+
+        public virtual List<Number> Numbers { get; set; } = new List<Number>();
+
+
 
 
     }

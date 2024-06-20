@@ -19,6 +19,9 @@
             <p><strong> View ReSeller Details </strong></p>
         </div>
         <div class="buttons">
+            <a href="@Url.Action("ViewResellerUsers","ResellerUser" , new { id = Model.ResellerAdminUserId })" class="btn btn-primary" style="background-color:#74746c">
+                View Users
+            </a>
             <a href="@Url.Action("UpdateResellerAdminUser", new { id = Model.ResellerAdminUserId })" class="btn btn-primary"><i class="fa-solid fa-pen-to-square" style="color: #74C0FC;"></i></a>
             <a href="@Url.Action("ViewallResellerAdmin")" class="btn btn-secondary"><i class="fa-solid fa-circle-left"></i></a>
         </div>
@@ -47,7 +50,7 @@
                 <div class="text-center">
                     <!-- Trigger the confirmation modal -->
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">Block</button>
-                    <a href="@Url.Action("Index")" class="btn btn-primary">Cancel</a>
+                    <a href="@Url.Action("ViewallResellerAdmin")" class="btn btn-primary">Cancel</a>
                 </div>
 
             </div>

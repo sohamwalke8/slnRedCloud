@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RedCloud.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -104,6 +105,10 @@ namespace RedCloud.Application.Features.Campaigns.Queries
         public string? CampaignDescriptionTwo { get; set; }
 
         public int? userID { get; set; }
+
+        public virtual List<Number>? Numbers { get; set; } = new List<Number>();
+
+        public bool? IsDeleted { get; set; } = false;
 
 
 

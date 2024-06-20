@@ -14,13 +14,16 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
     public class OrganizationAdminQueryHandler : IRequestHandler<OrganizationAdminQuery, Response<OrganizationAdminVM>>
     {
         private readonly IAsyncRepository<OrganizationAdmin> _asyncRepository;
+        private readonly IAsyncRepository<OrganizationResellerMapping> _asyncRepositoryMapping;
+
         private readonly IMapper _mapper;
 
 
-        public OrganizationAdminQueryHandler(IAsyncRepository<OrganizationAdmin> asyncRepository, IMapper mapper)
+        public OrganizationAdminQueryHandler(IAsyncRepository<OrganizationAdmin> asyncRepository, IMapper mapper, IAsyncRepository<OrganizationResellerMapping> asyncRepositoryMapping)
         {
             _asyncRepository = asyncRepository;
             _mapper = mapper;
+            _asyncRepositoryMapping = asyncRepositoryMapping;
         }
 
 
@@ -28,7 +31,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
         public async Task<Response<OrganizationAdminVM>> Handle(OrganizationAdminQuery request, CancellationToken cancellationToken)
         {
             var admin = await _asyncRepository.GetByIdAsync(request.Id);
-
+            var reseller = (await _asyncRepositoryMapping.ListAllAsync()).FirstOrDefault(x => x.OrganizationAdminId == request.Id);
             if (admin == null)
             {
                 return null;
@@ -50,6 +53,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
                 AddressLineOne = admin.AddressLineOne,
                 AddressLineTwo = admin.AddressLineTwo,
                 OrgURL = admin.OrgURL,
+                ResellerId = reseller.ResellerAdminUserId,
 
             };
 

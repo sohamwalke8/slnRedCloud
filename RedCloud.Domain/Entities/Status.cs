@@ -7,19 +7,10 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Domain.Entities
 {
-    public enum Status
+    public  enum  Status
     {
-        [Description("Active")]
-        Verified,
-
-        [Description("Inactive")]
-        Inactive,
-
-        [Description("Pending")]
-        InProgress
-
-        //Verified,
-        //Inactive,
-        //InProgress
+        InProgress,//0 bydefault
+        Approved,//1
+        Rejected//2
     }
 }

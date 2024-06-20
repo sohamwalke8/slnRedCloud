@@ -81,7 +81,7 @@ namespace RedCloud.Services
         public async Task EditOrganizationAdmin(OrganizationAdminVM organizationAdmin)
         {
 
-            var users = _client.PutAsync("OrganizationAdmin/UpdateOrganizationAdmin", organizationAdmin);
+            var users = await _client.PutAsync("OrganizationAdmin/UpdateOrganizationAdmin", organizationAdmin);
             //return users.Data;
 
         }
@@ -94,5 +94,13 @@ namespace RedCloud.Services
             return Events.Data;
         }
 
+        public async  Task<IEnumerable<OrganizationAdminVM>> GetAllOrganizationAdmins()
+        {
+            // _logger.LogInformation("GetAllOrganizationAdmin Service initiated");
+            var OrganizationAdmin = await _client.GetAllAsync("OrganizationAdmin/GetAll");
+            //_logger.LogInformation("GetAllCategories Service conpleted");
+            return OrganizationAdmin.Data;
+        }
     }
-}
+    }
+

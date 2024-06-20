@@ -1,4 +1,9 @@
+using AutoMapper;
+using Microsoft.AspNetCore.DataProtection;
 using MvcApiCallingService.Helpers.ApiHelper;
+using RedCloud.Application.Features.AssignmentType;
+//using RedCloud.Application.Features.Campaign;
+using RedCloud.Application.Features.Numbers.Queries;
 using RedCloud.Interfaces;
 using RedCloud.Models.Email;
 using RedCloud.Services;
@@ -31,11 +36,31 @@ builder.Services.AddScoped(typeof(IDropDownService<CountryVM>), typeof(DropDownS
 builder.Services.AddScoped(typeof(IStateService<StateVM>), typeof(StateService<StateVM>));
 builder.Services.AddScoped(typeof(ICityService<CityVM>), typeof(CityService<CityVM>));
 builder.Services.AddScoped<IOrganizationAdminService, OrganizationAdminService>();
+builder.Services.AddScoped(typeof(INumberService<NumberVM>), typeof(NumberService<NumberVM>));
+builder.Services.AddScoped(typeof(ICarrier<CarrierVM>), typeof(CarrierService<CarrierVM>));
+builder.Services.AddScoped(typeof(IType<TypesVM>), typeof(TypeService<TypesVM>));
+builder.Services.AddScoped(typeof(IAssignmentType<AssignmentTypeVM>), typeof(AssignmentType<AssignmentTypeVM>));
+builder.Services.AddScoped(typeof(ICampaign<CampaignVM>), typeof(Campaign<CampaignVM>));
+builder.Services.AddScoped(typeof(INumberService<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM>), typeof(NumberService<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM>));
+builder.Services.AddScoped(typeof(INumberService<NumberlistVM>), typeof(NumberService<NumberlistVM>));
+
+
+
+
+builder.Services.AddScoped<IRate, RateServices>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IResellerUserService, ResellerUserService>();
+builder.Services.AddScoped<IOrganizationUserService, OrganizationUserService>();
 
 builder.Services.AddScoped<ICampaignService, CampaignService>();
 
+
+
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings")); // Add by Aditya
 builder.Services.AddTransient<IMailService, MailService>(); // Add by Aditya
+
+builder.Services.AddScoped<IEncryptionService, EncryptionService>();
+builder.Services.AddScoped<IResellerAssignCreditService, ResellerAssignCreditService>();
 
 //logger setup
 Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();

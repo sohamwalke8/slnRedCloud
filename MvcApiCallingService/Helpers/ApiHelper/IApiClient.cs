@@ -26,6 +26,8 @@ namespace MvcApiCallingService.Helpers.ApiHelper
 
         Task<Response<T>> PutAsyncc<TEntity>(string apiUrl, TEntity entity);
 
+       // Task<Response<T>> EncryptGetByIdAsync(string id);//Atharva
+
 
 
 

@@ -3,15 +3,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Newtonsoft.Json;
 using RedCloud.Application.Contract.Infrastructure;
 using RedCloud.Application.Features.Account.Queries.LoginQuery;
+using RedCloud.Application.Helper;
 using RedCloud.Custom_Action_Filter;
 using RedCloud.Domain.Common;
 using RedCloud.Interfaces;
 using RedCloud.Models.Email;
+using RedCloud.Services;
 using RedCloud.ViewModel;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace RedCloud.Controllers
@@ -22,12 +26,14 @@ namespace RedCloud.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly IMailService _mailService;
+        private readonly IEncryptionService _encryptionService;
         private readonly IDistributedCache _distributedCache;
 
-        public AccountController(IAccountService accountService, IMailService mailService, IDistributedCache distributedCache)
+        public AccountController(IAccountService accountService, IMailService mailService, IEncryptionService encryptionService, IDistributedCache distributedCache)
         {
             _accountService = accountService;
             _mailService = mailService;
+            _encryptionService = encryptionService;
             _distributedCache = distributedCache;
         }
 
@@ -71,13 +77,15 @@ namespace RedCloud.Controllers
                 if (result.Data.Roles != null)
                 {
                     // Set session data
-                    var roles = result.Data.Roles.Select(r => new {
+                    var roles = result.Data.Roles.Select(r => new
+                    {
                         RoleName = r.RoleName.Trim(),
                         // Include other properties if needed
                     });
                     HttpContext.Session.SetString("Email", result.Data.Email);
                     HttpContext.Session.SetInt32("UserId", result.Data.UserId);
                     HttpContext.Session.SetString("UserRoles", JsonConvert.SerializeObject(roles));
+                    HttpContext.Session.SetInt32("UserId", result.Data.UserId);
 
 
                     var RoleName = result.Data.Roles[0].RoleName;
@@ -138,85 +146,81 @@ namespace RedCloud.Controllers
             {
                 var IsUserExist = await _accountService.CheckUserExistByEmail(model.Email);
 
-
                 if (IsUserExist == null)
                 {
-                   // _logger.LogWarning($"Rate with ID: {id} not found");
+                    // _logger.LogWarning($"Rate with ID: {id} not found");
                     return NotFound();
                 }
                 else
                 {
+                    int originalValue = IsUserExist.UserId;
+                    string encryptedValue = _encryptionService.EncryptValue(originalValue);
+
                     MailRequest mailRequest = new MailRequest()
                     {
                         ToEmail = model.Email,
                         Subject = "Forget Password",
                         //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetPassword"
                         //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetPassword/{data[0].userId}"
-                       Body = $"This Forget email password please click  https://localhost:7206/Account/ResetUserPassword/{IsUserExist.UserId}"
+                        //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetUserPassword/{IsUserExist.UserId}"
+                        //Body = $"This Forget email password please click  {EncrptedUrl}"
+                        //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetUserPassword/{EncrptedUrl}"
+                        Body = $"This Forget email password please click  https://localhost:7206/Account/ResetUserPassword/?strUserId={encryptedValue}"
                     };
                     await _mailService.SendEmailAsync(mailRequest);
                     //var responses = await _accountService.ForgetUserPasswordService(model);
 
                     // Return to the same view with a success message
                     TempData["SuccessMessage"] = "Email sent successfully! Please check on mail";
-
                 }
-
             }
             return View();
         }
-        public async Task<IActionResult> ResetUserPassword(int Id)
+        public async Task<IActionResult> ResetUserPassword(string strUserId)
         {
-            ViewBag.UserId = Id;
+            int UserId = _encryptionService.DecryptValue(strUserId);
+            ViewBag.UserId = UserId;
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> ResetUserPassword(ResetUserPasswordVM model)
+        {      
+            if (ModelState.IsValid)
+            {
+                model.Password = EncryptionDecryption.EncryptString(model.Password);
+                var response = await _accountService.ForgetUserPasswordService(model);
+                TempData["SuccessMessage"] = "Password Reset successfully!l";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Please try again!";
+            }
+            return View();
+        }
+
+        /*
+        [HttpPost]
+        public async Task<IActionResult> LoginAsync(Login login)
         {
 
             if (ModelState.IsValid)
             {
-               var response = await _accountService.ForgetUserPasswordService(model);
 
-               if (response.Succeeded == false)
+                //LoginResponse loginResponse = await _service.Login(login);
+                //if (loginResponse.UserName != null)
                 {
-                    
-                    return View();
-                }                
+                    //HttpContext.Session.SetString("UserName", loginResponse.UserName);
+                    //_notyf.Success("Logged In Successfully");
+
+                    return RedirectToAction("Index", "Home");
+                }
                 else
                 {
-                    TempData["SuccessMessage"] = "Password Reset successfully!l";
+
+                    //_notyf.Error(loginResponse.Message);
+                    return View();
                 }
-            
-            }
-
-            //var apiUrl = $"https://localhost:7193/api/Account/ResetPassword";
-
-            //using (HttpClient client = new HttpClient())
-            //{
-            //    // Serialize the model object to JSON
-            //    string jsonModel = JsonConvert.SerializeObject(model);
-
-            //    StringContent content = new StringContent(jsonModel, Encoding.UTF8, "application/json");
-
-            //    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-
-            //    if (response.IsSuccessStatusCode)
-            //    {
-            //        // Handle successful API response
-            //        return RedirectToAction("Login", "Account"); // Redirect to another action (optional)
-            //    }
-            //    else
-            //    {
-            //        // Handle API call failures
-            //        ModelState.AddModelError("", $"API call failed with status code: {response.StatusCode}");
-            //        return View();
-            //    }
-            //}
-            TempData["ErrorMessage"] = "Please try again!";
-            return View();
-        }
 
         //[NoCache]
         [HttpGet]
@@ -243,5 +247,13 @@ namespace RedCloud.Controllers
             
         }
 
+    }
+            }
+            else
+            {
+                return View();
+            }
+        }
+        */
     }
 }
