@@ -12,7 +12,7 @@ using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 namespace RedCloud.Controllers
 {
     [NoCache]
-    [AdminAuthorizationFilter]
+    [ResellerAuthorizationFilter]
     public class ResellerAdminUserController : Controller
     {
 
@@ -72,7 +72,7 @@ namespace RedCloud.Controllers
                 Subject = "Your Password Is",
 
                 //Body = $"This Forget email password please click  https://localhost:7206/Account/ResetUserPassword/{IsUserExist.UserId}"
-                Body = $"This is Your System Generated password : {decryPass}"
+                Body = $"Your Login Email is :{reselerData.CompanySupportEmail}, This is Your System Generated password : {decryPass}"
                 //Body = $"This is Your System Generated password : 12345"
             };
             await _mailService.SendEmailAsync(mailRequest);

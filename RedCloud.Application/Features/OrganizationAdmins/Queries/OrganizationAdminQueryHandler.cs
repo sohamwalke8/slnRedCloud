@@ -44,7 +44,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
                 OrgAdminName = admin.OrgAdminName,
                 OrgAdminEmail = admin.OrgAdminEmail,
                 EIN = admin.EIN,
-                //OrgAdminPassword = admin.OrgAdminPassword,
+                OrgAdminPassword = admin.OrgAdminPassword,
                 CountryId = admin.CountryId,
                 CityId = admin.CityId,
                 StateId = admin.StateId,

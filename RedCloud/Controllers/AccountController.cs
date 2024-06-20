@@ -20,7 +20,7 @@ using System.Text;
 namespace RedCloud.Controllers
 {
 
-    [NoCache]
+    //[NoCache]
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
@@ -67,6 +67,7 @@ namespace RedCloud.Controllers
 
                 //correct code below 
                 var result = await _accountService.Login(model);
+
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError(string.Empty, "InvalId login attempt.");

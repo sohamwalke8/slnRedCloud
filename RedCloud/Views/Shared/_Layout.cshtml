@@ -128,8 +128,11 @@
                     {
                         @foreach (var role in userRoles)
                         {
-                            <option value="@role.RoleName" id="roleButton-@role.RoleId" class="dropdown-item">@role.RoleName</option>
-                        }
+                             <option value="@role.RoleName" id="roleButton-@role.RoleId" class="dropdown-item">@role.RoleName</option>
+@*                              <option value="@role.RoleName" id="roleButton-@role.RoleId" selected="@ViewContext.HttpContext.Session.GetString("Role")" class="dropdown-item">@role.RoleName</option>
+ *@                    
+@*                             <option value="@role.RoleName" id="roleButton-@role.RoleId" selected="@ViewBag.role" class="dropdown-item">@role.RoleName</option>
+ *@                        }
                         @* <option class="dropdown-item" href="#">Sign out</option> *@
                     }
                 </select>

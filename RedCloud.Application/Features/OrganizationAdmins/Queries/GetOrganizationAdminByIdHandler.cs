@@ -46,7 +46,8 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
                 EIN = admin.EIN,
                 CompanyURL = admin.OrgURL,
                 IsActive = admin.IsActive,
-                ResellerId = reseller.ResellerAdminUserId
+                ResellerId = reseller.ResellerAdminUserId,
+                OrgAdminPassword = admin.OrgAdminPassword,
             };
 
             return new Response<OrganizationAdminDetailsVM>(model);

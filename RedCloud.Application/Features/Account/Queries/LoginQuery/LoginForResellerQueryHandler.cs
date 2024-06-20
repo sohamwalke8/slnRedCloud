@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using RedCloud.Application.Contracts.Persistence;
 using RedCloud.Application.Features.ResellerAdminuser.Queries;
+using RedCloud.Application.Helper;
 using RedCloud.Application.Responses;
 using RedCloud.Domain.Common;
 using RedCloud.Domain.Entities;
@@ -32,7 +33,9 @@ namespace RedCloud.Application.Features.Account.Queries.LoginQuery
         {
             try
             {
-                var user = await _accountRepository.GetResellerAdmin(request.Email, request.Password);
+                var Encryptedpass = EncryptionDecryption.EncryptString(request.Password);
+
+                var user = await _accountRepository.GetResellerAdmin(request.Email, Encryptedpass);
 
                 if (user == null)
                 {
