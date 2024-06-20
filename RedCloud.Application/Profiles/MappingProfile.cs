@@ -30,6 +30,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using RedCloud.Application.Features.Templates.Command;
+using RedCloud.Application.Features.Templates.Queries;
 
 namespace RedCloud.Application.Profiles
 {
@@ -100,6 +102,12 @@ namespace RedCloud.Application.Profiles
             CreateMap<RedCloud.Domain.Entities.Number, NumberlistVM>()
             .ForMember(dest => dest.CarrierName, opt => opt.MapFrom(src => src.Carrier.CarrierName))
             .ForMember(dest => dest.OrgName, opt => opt.MapFrom(src => src.OrganizationAdmin.OrgName));
+
+
+            CreateMap<CreateTemplateCommand,Template>().ReverseMap();
+            CreateMap<UpdateTemplateCommand,Template>().ReverseMap();
+            CreateMap<Template, GetTemplateVM>().ReverseMap();
+
 
 
         }

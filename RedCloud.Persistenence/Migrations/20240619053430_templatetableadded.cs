@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RedCloud.Persistenence.Migrations
 {
     /// <inheritdoc />
-    public partial class migrationOne : Migration
+    public partial class templatetableadded : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -81,6 +81,28 @@ namespace RedCloud.Persistenence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Role", x => x.RoleId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Templates",
+                columns: table => new
+                {
+                    TemplateId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TemplateName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MessageType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TemplatePersonalization = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MessageBody = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TemplateURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Templates", x => x.TemplateId);
                 });
 
             migrationBuilder.CreateTable(
@@ -328,7 +350,7 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.OrganizationAdminId,
                         principalTable: "OrganizationAdmins",
                         principalColumn: "OrgID",
-                        onDelete: ReferentialAction.    NoAction);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_OrganizationResellerMapping_ResellerAdminUsers_ResellerAdminUserId",
                         column: x => x.ResellerAdminUserId,
@@ -470,7 +492,7 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.ResellerUserId,
                         principalTable: "ResellerUsers",
                         principalColumn: "ResellerUserId",
-                        onDelete: ReferentialAction.NoAction    );
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -696,6 +718,9 @@ namespace RedCloud.Persistenence.Migrations
 
             migrationBuilder.DropTable(
                 name: "RoleMapper");
+
+            migrationBuilder.DropTable(
+                name: "Templates");
 
             migrationBuilder.DropTable(
                 name: "AssignmentTypes");

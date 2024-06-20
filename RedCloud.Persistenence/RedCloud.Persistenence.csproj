@@ -6,12 +6,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Migrations\20240614115306_migrationOne.cs" />
-    <Compile Remove="Migrations\20240614115306_migrationOne.Designer.cs" />
-    <Compile Remove="Migrations\ApplicationDbContextModelSnapshot.cs" />
-  </ItemGroup>
-
   <!--<ItemGroup>
     <Compile Remove="Migrations\**" />
     <EmbeddedResource Remove="Migrations\**" />
@@ -41,10 +35,6 @@
   <ItemGroup>
     <ProjectReference Include="..\RedCloud.Application\RedCloud.Application.csproj" />
     <ProjectReference Include="..\RedCloud.Domain\RedCloud.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

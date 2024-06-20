@@ -54,9 +54,10 @@ namespace RedCloud.Persistenence
         public DbSet<Number> Numbers { get; set; }   
         public DbSet<Campaign> Campaigns { get; set; }
 
+        public DbSet<Template> Templates { get; set; }
 
-     
-        
+
+
 
         public DbSet<OrganizationUser> OrganizationUsers { get; set; }
         public DbSet<OrganizationResellerMapping> OrganizationResellerMapping { get; set; }
