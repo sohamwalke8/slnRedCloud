@@ -1,166 +1,14 @@
-﻿
-
-
-    @model IEnumerable<RedCloud.Application.Features.ResellerAdminuser.Queries.ReSellerAdmindto>
-
-
+﻿@model IEnumerable<RedCloud.Application.Features.ResellerAdminuser.Queries.ReSellerAdmindto>
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-
-
-
-@* <div class="card">
-    <div class="card-header">
-        <h3 class="card-title">Admin Reseller</h3>
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-
-            <div class="row">
-
-                <div class="col-sm-12">
-                    <div class="dt-search"> <a asp-action="AddReseller" asp-controller="ResellerAdminUser" class="btn-primary btn">Add Reseller</a></div>
-                    <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
-                        <thead>
-                            <tr>
-                                <th hidden>Id</th>
-                                <th>CompanyName</th>
-                                <th>EIN</th>
-                                <th>Email</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            @foreach (var admins in Model)
-                            {
-                                <tr>
-                                    <td hidden>@admins.ResellerAdminUserId</td>
-                                    <td>@admins.ResellerName</td>
-                                    <td>@admins.EIN</td>
-                                    <td>@admins.CompanySupportEmail</td>
-                                    <td>@((bool)admins.IsActive ? "Active" : "Not Active")</td>
-                                    <td>
-                                        <a asp-action="GetResellerByID" asp-controller="ResellerAdminUser" asp-route-id="@admins.ResellerAdminUserId">
-                                            <i class="fa-solid fa-eye" style="color: #050505;"></i>
-
-                                        </a>
-
-                                        <a asp-action="UpdateResellerAdminUser" asp-controller="ResellerAdminUser" asp-route-id="@admins.ResellerAdminUserId"><i class="fa-regular fa-pen-to-square" style="color: #131111;"></i></a>
-                                        <a class="delete-btn" data-id="@admins.ResellerAdminUserId" data-name="@admins.ResellerName" href="#"><i class="fa-solid fa-trash" style="color: #cb1010;"></i></a>
-                                    </td>
-
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-   
-</div> *@
-
-@* <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
-                <button type="button" class="close" data-dismiss="modal" id="cancelBtn" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete <span id="deleteItemName"></span>?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
-            </div>
-        </div>
-    </div>
-</div> *@
-
-@* section Scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.dataTables.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.jsscript>
-    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
-
-   
-
-
-
-    <script>
-        $(document).ready(function () {
-          
-
-            new DataTable('#dataTable', {
-                layout: {
-                    topStart: {
-                        buttons: [ 'excelHtml5'/*  'csvHtml5', 'pdfHtml5' */]
-
-                    }
-                }
-            });
-
-          
-            $('.delete-btn').on('click', function (e) {
-                e.preventDefault();
-                var id = $(this).data('id');
-                var name = $(this).data('name');
-                $('#deleteItemName').text(name);
-                $('#confirmDeleteBtn').attr('data-id', id);
-                $('#deleteConfirmationModal').modal('show');
-            });
-
-            $('#cancelBtn').on('click', function (e) {
-                $('#deleteConfirmationModal').modal('hide');
-            });
-
-            $('#confirmDeleteBtn').on('click', function () {
-                var id = $(this).attr('data-id');
-                $('#deleteConfirmationModal').modal('hide');
-                // Call delete method using AJAX
-                $.get('/ResellerAdminUser/SoftDeleteResellerAdmin/' + id)
-                    .done(function (data) {
-                        // Handle success
-                        alert(data);
-                        // Optionally, you can reload the page or update the table
-                        location.reload();
-                    })
-                    .fail(function (xhr, status, error) {
-                        // Handle errors
-                        alert('Error: ' + xhr.responseText);
-                    });
-            });
-        });
-    </script>
-
-}
-
-
-
- *@
-
-
-
 
 <style>
-    / Add your custom CSS here /
-
-
+    a {
+        text-decoration: none;
+    }
     .dataTables_wrapper .top {
         margin-top: 0;
     }
@@ -285,11 +133,12 @@
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="dt-search">
-                                <a type="button" class="btn btn-primary" asp-action="AddReseller" asp-controller="ResellerAdminUser">Add ResellerAdmin</a>
-
-                            </div>
-
+                            <p>
+                                <a class="btn btn-primary" asp-action="AddReseller" asp-controller="ResellerAdminUser"
+                                   style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; float:right; margin-bottom:10px">
+                                    Add ResellerAdmin
+                                </a>
+                            </p>
                             <label for="entriesPerPage">
                                 Show Entries
                                 <select id="entriesPerPage" class="custom-select custom-select-sm form-control form-control-sm">
@@ -299,12 +148,11 @@
                                     <option value="100">100</option>
                                 </select>
                             </label>
-
                             <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
                                 <thead>
                                     <tr>
                                         <th hidden>Id</th>
-                                        <th>CompanyName</th>
+                                        <th>Company Name</th>
                                         <th>EIN</th>
                                         <th>Email</th>
                                         <th>Status</th>
@@ -312,28 +160,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var admins in Model)
+                                    @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td hidden>@admins.ResellerAdminUserId</td>
-                                            <td>@admins.ResellerName</td>
-                                            <td>@admins.EIN</td>
-                                            <td>@admins.CompanySupportEmail</td>
+                                            <td hidden>@Html.DisplayFor(modelItem => item.ResellerAdminUserId)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.ResellerName)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.EIN)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.CompanySupportEmail)</td>
                                             <td>
-                                                @((bool)admins.IsActive ? "Active" : "Not Active")
+                                                <span class="@(item.IsActive ? "status-active" : "status-inactive")">
+                                                    @((bool)item.IsActive ? "Active" : "Not Active")
+                                                </span>
                                             </td>
                                             <td>
-                                                <a asp-action="GetResellerByID" asp-controller="ReSellerAdminUser" asp-route-id="@admins.ResellerAdminUserId" class="btn-action">
+                                                <a asp-action="GetResellerByID" asp-controller="ReSellerAdminUser" asp-route-id="@item.ResellerAdminUserId" class="btn-action">
                                                     <i class="fa-solid fa-eye" style="color: #050505;"></i>
                                                 </a>
-                                                <a asp-action="UpdateResellerAdminUser" asp-controller="ResellerAdminUser" asp-route-id="@admins.ResellerAdminUserId" class="btn-action">
-                                            <i class="fa-regular fa-pen-to-square" style="color: #131111;"></i>
-                                            </a>
-                                                <a class="delete-btn btn-action" data-id="@admins.ResellerAdminUserId" data-name="@admins.ResellerName">
+
+                                                <a asp-action="UpdateResellerAdminUser" asp-controller="ResellerAdminUser" asp-route-id="@item.ResellerAdminUserId" class="btn-action">
+                                                    <i class="fa-regular fa-pen-to-square" style="color: #131111;"></i>
+                                                </a>
+
+                                                <a class="delete-btn btn-action" data-id="@item.ResellerAdminUserId" data-name="@item.ResellerName" href="#">
                                                     <i class="fa-solid fa-trash" style="color: #cb1010;"></i>
                                                 </a>
                                             </td>
-
                                         </tr>
                                     }
                                 </tbody>
@@ -346,14 +197,12 @@
     </div>
 </form>
 
-
-
 <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
-                <button type="button" class="close" data-dismiss="modal" id="cancelBtn" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" id="cancelBtn2" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -362,27 +211,32 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+                <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
             </div>
         </div>
     </div>
 </div>
 
-
 @section Scripts {
+    <!-- Include necessary libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    <!-- Toastr CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <!-- DataTables CSS and JS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 
-
+    <!-- Bootstrap JS for Modal functionality -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function () {
             toastr.options = {
@@ -447,62 +301,24 @@
                 $.get('/ResellerAdminUser/SoftDeleteResellerAdmin/' + id)
                     .done(function (data) {
                         // Handle success
-                        alert(data);
+                        toastr.success('Successfully deleted the item.', 'Success');
                         // Optionally, you can reload the page or update the table
-                        location.reload();
+                        setTimeout(function () {
+                            window.location.href = '@Url.Action("ViewallResellerAdmin", "ResellerAdminUser")';
+                        }, 1000);
                     })
                     .fail(function (xhr, status, error) {
                         // Handle errors
                         alert('Error: ' + xhr.responseText);
                     });
             });
-        
+
         });
     </script>
 }
 
 
 
-
-@* $('#entriesPerPage').on('change', function () {
-                var newLength = $(this).val();
-                table.page.len(newLength).draw();
-            });
-
-            $('.delete-btn').on('click', function (e) {
-                e.preventDefault();
-                var id = $(this).data('id');
-                var name = $(this).data('name');
-                $('#deleteItemName').text(name);
-                $('#confirmDeleteBtn').attr('data-id', id);
-                $('#deleteConfirmationModal').modal('show');
-            });
-
-            $('#cancelBtn').on('click', function (e) {
-                $('#deleteConfirmationModal').modal('hide');
-            });
-            $('#cancelBtnToast').on('click', function (e) {
-                $('#deleteConfirmationModal').modal('hide');
-            });
-
-            $('#confirmDeleteBtn').on('click', function () {
-                var id = $(this).attr('data-id');
-                $('#deleteConfirmationModal').modal('hide');
-                $.get('/Campaigndetail/SoftDeleteCampaign/' + id)
-                    .done(function (data) {
-                        toastr.success('Deleted Successfully');
-                        //location.reload();
-                        setTimeout(function () {
-                            location.reload();
-                        }, 2000);
-                    })
-                    .fail(function (xhr, status, error) {
-                        console.error(xhr, status, error);
-                        toastr.error('Error: ' + xhr.responseText);
-                    });
-            });
-        });
- *@
 
 
 
@@ -522,17 +338,5 @@
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 

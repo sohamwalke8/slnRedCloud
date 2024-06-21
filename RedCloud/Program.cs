@@ -58,6 +58,7 @@ builder.Services.AddScoped<ICampaignService, CampaignService>();
 
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings")); // Add by Aditya
 builder.Services.AddTransient<IMailService, MailService>(); // Add by Aditya
+builder.Services.AddScoped<IEncryptionService, EncryptionService>(); // Add by Aditya
 
 builder.Services.AddScoped<IEncryptionService, EncryptionService>();
 builder.Services.AddScoped<IResellerAssignCreditService, ResellerAssignCreditService>();

@@ -1,4 +1,5 @@
-﻿using MvcApiCallingService.Helpers.ApiHelper;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using MvcApiCallingService.Helpers.ApiHelper;
 using MvcApiCallingService.Models.Responses;
 using RedCloud.Application.Features.Account.Queries.LoginQuery;
 using RedCloud.Domain.Common;
@@ -31,14 +32,42 @@ namespace RedCloud.Services
         {
             //_logger.LogInformation("LoginAccount Service initiated");
             var response = await _apiClientLogin.PostAuthAsync("Account/Login", login);
-            if (response == null)
+            var responseTwo = await _apiClientLogin.PostAuthAsync("Account/ResellerAdminLogin", login);
+            var responsethree = await _apiClientLogin.PostAuthAsync("Account/OrganizationAdminLogin", login);
+
+            if(response.Data != null)
             {
-                //_logger.LogInformation("LoginAccount Service completed with failure");
-                return new Response<UserVM>(null, "InvalId login credentials");
+                //_logger.LogInformation("LoginAccount Service conpleted");
+                return response;
+            }
+            else if(responseTwo.Data != null)
+            {
+                return responseTwo;
+            }
+            else if (responsethree.Data != null)
+            {
+                return responsethree;
+            }
+            else
+            {
+                //return new Response<UserVM>(null, "InvalId login credentials");
+                return new Response<UserVM>("InvalId login credentials");
             }
 
-            _logger.LogInformation("LoginAccount Service conpleted");
-            return response;
+            //if (response.Data == null)
+            //{
+            //    var responseTwo = await _apiClientLogin.PostAuthAsync("Account/ResellerAdminLogin", login);
+            //    if(responseTwo == null)
+            //    {
+            //        return new Response<UserVM>(null, "InvalId login credentials");
+
+            //    }
+            //    //_logger.LogInformation("LoginAccount Service completed with failure");
+            //    return responseTwo;
+            //}
+
+            //_logger.LogInformation("LoginAccount Service conpleted");
+            //return response;
         }
 
         public async Task<Response<ResetUserPasswordVM>> ForgetUserPasswordService(ResetUserPasswordVM model)
@@ -62,7 +91,9 @@ namespace RedCloud.Services
             return rate.Data;
         }
 
-       
+
+
+
 
 
         //public async Task<Register> Register(Register register)

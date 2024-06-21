@@ -6,6 +6,9 @@
 }
 
 <style>
+    a{
+        text-decoration:none;
+    }
     .dataTables_wrapper .top {
         margin-top: 0;
     }
@@ -240,6 +243,7 @@
 
     <script>
         $(document).ready(function () {
+
             // Initialize DataTable
             var table = $('#dataTable').DataTable({
                 paging: true,
@@ -334,29 +338,4 @@
         });
     </script>
 }
-@*
-<script type="text/javascript">
-    // Define the redirection function
-    function redirectToOrganizationAdmin() {
-        window.location.href = '@Url.Action("ViewOrganizationAdmin", "OrganizationAdmin")';
-    }
 
-    // AJAX method for soft deletion
-    function deleteItem(id) {
-        $.ajax({
-            url: '/OrganizationAdmin/SoftDelete/' + id,
-            type: 'GET',
-            success: function (data) {
-                // Handle success
-                toastr.success('Successfully deleted the item.', 'Success');
-
-                // Call the redirect function after a success message is shown
-                redirectToOrganizationAdmin();
-            },
-            error: function (xhr, status, error) {
-                // Handle errors
-                toastr.error('Error: ' + xhr.responseText, 'Deletion Failed');
-            }
-        });
-    }
-</script> *@

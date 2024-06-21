@@ -1,5 +1,6 @@
 ﻿using AutoMapper.Internal;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
@@ -10,6 +11,7 @@ using RedCloud.Application.Features.Account.Queries.LoginQuery;
 using RedCloud.Application.Helper;
 using RedCloud.Custom_Action_Filter;
 using RedCloud.Domain.Common;
+using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
 using RedCloud.Models.Email;
 using RedCloud.Services;
@@ -21,20 +23,22 @@ using System.Text;
 namespace RedCloud.Controllers
 {
 
-    [NoCache]
+    //[NoCache]
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
         private readonly IMailService _mailService;
         private readonly IEncryptionService _encryptionService;
         private readonly IDistributedCache _distributedCache;
+        private readonly IEncryptionService _encryptionService;
 
-        public AccountController(IAccountService accountService, IMailService mailService, IEncryptionService encryptionService, IDistributedCache distributedCache)
+        public AccountController(IAccountService accountService, IMailService mailService, IDistributedCache distributedCache, IEncryptionService encryptionService)
         {
             _accountService = accountService;
             _mailService = mailService;
             _encryptionService = encryptionService;
             _distributedCache = distributedCache;
+            _encryptionService = encryptionService;
         }
 
 
@@ -53,11 +57,11 @@ namespace RedCloud.Controllers
             if (ModelState.IsValid)
             {
 
-                //to convert the plain text into encrypted password 
+                //to convert the plain text into encrypted password
                 //LoginVM loginData = new LoginVM()
                 //{
                 //    Email = model.Email,
-                //    Password = EncryptionDecryption.EncryptString(model.Password)
+                //    Password = EncryptionDecryption.DecryptString(model.Password)
                 //};
 
 
@@ -68,6 +72,7 @@ namespace RedCloud.Controllers
 
                 //correct code below 
                 var result = await _accountService.Login(model);
+
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError(string.Empty, "InvalId login attempt.");
@@ -109,7 +114,7 @@ namespace RedCloud.Controllers
 
             ViewBag.role = HttpContext.Session.GetString("Role");
 
-            if (HttpContext.Session.GetString("Role") == "Sub Admin Administrartor")
+            if (HttpContext.Session.GetString("Role") == "Sub Admin Administrator")
             {
                 return PartialView("_SubAdmin", ViewBag.role);
             }
@@ -126,7 +131,7 @@ namespace RedCloud.Controllers
                 return PartialView("_MessagingUsers", ViewBag.role);
             }
 
-            return RedirectToAction("Index", "Home");
+           return RedirectToAction("Index", "Home");
         }
 
         //ForgetUserPasswordVM
@@ -148,8 +153,8 @@ namespace RedCloud.Controllers
 
                 if (IsUserExist == null)
                 {
-                    // _logger.LogWarning($"Rate with ID: {id} not found");
-                    return NotFound();
+                    ModelState.AddModelError("Email", "Please enter valid Email");
+                    return View();
                 }
                 else
                 {
@@ -177,6 +182,30 @@ namespace RedCloud.Controllers
             return View();
         }
         public async Task<IActionResult> ResetUserPassword(string strUserId)
+        {
+            int UserId = _encryptionService.DecryptValue(strUserId);
+            ViewBag.UserId = UserId;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetUserPassword(ResetUserPasswordVM model)
+        {
+            ViewBag.UserId = model.UserId;
+            if (ModelState.IsValid)
+            {
+                model.Password = EncryptionDecryption.EncryptString(model.Password);
+                var response = await _accountService.ForgetUserPasswordService(model);
+                TempData["SuccessMessage"] = "Password Reset successfully!l";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Please try again!";
+            }
+            return View();
+        }
+        /*
+        public async Task<IActionResult> ResetUserPassword(int Id)
         {
             int UserId = _encryptionService.DecryptValue(strUserId);
             ViewBag.UserId = UserId;
@@ -218,10 +247,22 @@ namespace RedCloud.Controllers
                 else
                 {
 
-                    //_notyf.Error(loginResponse.Message);
-                    return View();
-                }
-
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        // Handle successful API response
+            //        return RedirectToAction("Login", "Account"); // Redirect to another action (optional)
+            //    }
+            //    else
+            //    {
+            //        // Handle API call failures
+            //        ModelState.AddModelError("", $"API call failed with status code: {response.StatusCode}");
+            //        return View();
+            //    }
+            //}
+            TempData["ErrorMessage"] = "Please try again!";
+            return View();
+        }
+        */
         //[NoCache]
         [HttpGet]
         public ActionResult Logout()
