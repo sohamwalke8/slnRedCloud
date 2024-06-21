@@ -164,15 +164,15 @@
                                             
                                         
                                             <td>
-                                                <a asp-action="ViewTemplateDetails" asp-controller="Template" asp-route-id="@item.TemplateId" class="btn-action">
+                                                <a asp-action="ViewTemplateDetails" asp-controller="Template" asp-route-id="@item.TemplateId" class="btn-action" style="text-decoration:none">
                                                     <i class="fa-solid fa-eye" style="color: #050505;"></i>
                                                 </a>
 
-                                                <a asp-action="UpdateTemplate" asp-controller="Template" asp-route-id="@item.TemplateId" class="btn-action">
+                                                <a asp-action="UpdateTemplate" asp-controller="Template" asp-route-id="@item.TemplateId" class="btn-action" style="text-decoration:none">
                                                     <i class="fa-regular fa-pen-to-square" style="color: #131111;"></i>
                                                 </a>
 
-                                                <a class="delete-btn btn-action" data-id="@item.TemplateId" data-name="@item.TemplateName" href="#">
+                                                <a class="delete-btn btn-action" data-id="@item.TemplateId" data-name="@item.TemplateName" style="text-decoration:none">
                                                     <i class="fa-solid fa-trash" style="color: #cb1010;"></i>
                                                 </a>
                                             </td>
@@ -311,7 +311,7 @@
                     type: 'GET',
                     success: function (data) {
                         // Handle success
-                        toastr.success('Successfully deleted the item.', 'Success');
+                        toastr.success('Successfully deleted.', 'Success');
                         // Optionally, you can reload the page or update the table
 
                         setTimeout(function () {

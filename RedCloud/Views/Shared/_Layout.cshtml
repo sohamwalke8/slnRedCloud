@@ -129,10 +129,10 @@
             </a>
 
             <div id="addPartialView">
-                
+                @Html.Partial("_SubAdmin")
                 @if (ViewContext.HttpContext.Session.GetString("Role") == "Sub Admin Administrartor")
                 {
-                    @Html.Partial("_SubAdmin")
+                   
                 }                                                                                                                                                      <!-- /.sidebar for Admin  -->
                 @if (ViewContext.HttpContext.Session.GetString("Role") == "Reseller Admin")
                 {
