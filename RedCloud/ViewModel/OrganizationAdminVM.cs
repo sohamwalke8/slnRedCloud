@@ -24,7 +24,7 @@ namespace RedCloud.ViewModel
 
 
         //[Required(ErrorMessage = "Please Enter Valid Details")]
-        //public string? OrgAdminPassword { get; set; }
+        public string? OrgAdminPassword { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone Number")]

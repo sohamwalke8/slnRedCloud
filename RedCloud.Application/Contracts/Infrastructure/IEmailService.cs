@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Contract.Infrastructure
 {
-    public interface IEmailService
+   public interface IEmailService
     {
-        //Task<bool> SendEmail(Email email);
+        Task<bool> SendEmail(Email email);
     }
 }
 
