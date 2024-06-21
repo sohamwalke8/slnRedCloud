@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RedCloud.Interfaces;
+using RedCloud.Models;
 using RedCloud.ViewModel;
 
 namespace RedCloud.Controllers
@@ -32,30 +33,52 @@ namespace RedCloud.Controllers
             return View(response);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> ViewFullOrgReport()
-        //{
-        //    var r = await _report.GetTotalReportCount();
-        //    var response = await _report.GetFullResellerInboundMessagesReport();
-
-        //    return View(response);
-        //    return View(r);
-        //}
+       
 
         [HttpGet]
         public async Task<IActionResult> ViewFullOrgReport()
         {
-            var totalReports = await _report.GetTotalReportCount();
-            var resellerInboundMessagesReports = await _report.GetFullResellerInboundMessagesReport();
-
-            var model = new FullOrgReportVM
+            try
             {
-                ResellerInboundMessagesReports = resellerInboundMessagesReports,
-                TotalReports = totalReports
-            };
+                var totalReports = await _report.GetTotalReportCount();
+                var resellerInboundMessagesReports = await _report.GetFullResellerInboundMessagesReport();
 
-            return View(model);
+                // Check data here
+                if (totalReports == null || !totalReports.Any())
+                {
+                    throw new Exception("Total reports data is empty.");
+                }
+
+                if (resellerInboundMessagesReports == null || !resellerInboundMessagesReports.Any())
+                {
+                    throw new Exception("Reseller inbound messages reports data is empty.");
+                }
+
+                var model = resellerInboundMessagesReports.Select(report => new FullOrgReportVM
+                {
+                    OrgName = report.OrgName,
+                    OrgAdminMobNo = report.OrgAdminMobNo,
+                    CreatedDate = report.CreatedDate,
+                    Type = report.Type,
+                    Status = report.Status,
+                    TotalUsers = totalReports.FirstOrDefault()?.TotalUsers ?? 0, // Assuming TotalUsers is part of TotalReport
+                    TotalNumbers = totalReports.FirstOrDefault()?.TotalNumbers ?? 0, // Assuming TotalNumbers is part of TotalReport
+                    TotalInboundSMS = totalReports.FirstOrDefault()?.TotalInboundSMS ?? 0, // Assuming TotalInboundSMS is part of TotalReport
+                    TotalOutboundSMS = totalReports.FirstOrDefault()?.TotalOutboundSMS ?? 0, // Assuming TotalOutboundSMS is part of TotalReport
+                    TotalInboundMMS = totalReports.FirstOrDefault()?.TotalInboundMMS ?? 0, // Assuming TotalInboundMMS is part of TotalReport
+                    TotalOutboundMMS = totalReports.FirstOrDefault()?.TotalOutboundMMS ?? 0 // Assuming TotalOutboundMMS is part of TotalReport
+                }).ToList();
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View(ex);
+
+            }
         }
+
+
 
     }
 }
