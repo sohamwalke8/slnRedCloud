@@ -19,7 +19,11 @@ namespace RedCloud.Domain.Entities
         public string OutboundMMS { get; set; }
         public string MonthlyNumber { get; set; }
         public string Users { get; set; }
-        public List<OrganizationAdmin>? OrganizationAdmin { get; set; }
-        public List<CreditsType>? CreditsType { get; set; }
+
+        public virtual OrganizationAdmin OrganizationAdmin { get; set; }
+        public virtual CreditsType CreditsType { get; set; }
+
+        //public List<OrganizationAdmin>? OrganizationAdmin { get; set; }
+        //public List<CreditsType>? CreditsType { get; set; }
     }
 }
