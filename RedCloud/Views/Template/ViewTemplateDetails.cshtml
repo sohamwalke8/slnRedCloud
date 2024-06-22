@@ -129,10 +129,20 @@
                 $('#deleteConfirmationModal').modal('show');
             });
 
+            $('#cancelBtn').on('click', function (e) {
+                $('#deleteConfirmationModal').modal('hide');
+            });
+
+            $('#cancelBtn2').on('click', function (e) {
+                $('#deleteConfirmationModal').modal('hide');
+            });
+
             $('#confirmDeleteBtn').on('click', function () {
                 var id = $(this).attr('data-id');
                 console.log('Confirm delete button clicked, id:', id);
                 $('#deleteConfirmationModal').modal('hide');
+
+            
 
                 // Call delete method using AJAX
                 $.ajax({

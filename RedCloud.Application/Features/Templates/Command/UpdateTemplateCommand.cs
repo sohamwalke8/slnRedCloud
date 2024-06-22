@@ -21,5 +21,7 @@ namespace RedCloud.Application.Features.Templates.Command
         public string MessageBody { get; set; }
 
         public string TemplateURL { get; set; }
+
+        public int SessionId { get; set; }
     }
 }

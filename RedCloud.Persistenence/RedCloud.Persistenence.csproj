@@ -6,6 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20240621112017_init.cs" />
+    <Compile Remove="Migrations\20240621112017_init.Designer.cs" />
+  </ItemGroup>
+
   <!--<ItemGroup>
     <Compile Remove="Migrations\**" />
     <EmbeddedResource Remove="Migrations\**" />

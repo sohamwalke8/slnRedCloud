@@ -28,7 +28,7 @@ namespace RedCloud.Application.Features.Templates.Command
 
             template.IsDeleted = false;
             template.CreatedDate = DateTime.Now;
-            template.CreatedBy = null;
+            template.CreatedBy = request.SessionId;
             
             var result = await _repository.AddAsync(template);
             var response = new Response<int>(result.TemplateId, "Inserted successfully");

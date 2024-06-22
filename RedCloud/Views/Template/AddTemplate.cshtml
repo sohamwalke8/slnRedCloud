@@ -51,6 +51,7 @@
 
             <form id="templateForm" asp-action="AddTemplate" asp-asp-controller="Template" method="post">
                 <div class="card-body form-container">
+                    <input type="hidden" asp-for="@Model.SessionId"/>
                     <div class="form-group spaced">
                         <label for="TemplateName" class="required">Template Name</label>
                         <input asp-for="TemplateName" class="form-control" />

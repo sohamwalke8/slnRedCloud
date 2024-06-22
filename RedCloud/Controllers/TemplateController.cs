@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using RedCloud.Interfaces;
 using RedCloud.Services;
 using RedCloud.ViewModel;
+using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 
 namespace RedCloud.Controllers
 {
+    [AdminAuthorizationFilter]
     public class TemplateController : Controller
     {
         private readonly ITemplateService _templateService;
@@ -52,9 +54,12 @@ namespace RedCloud.Controllers
 
         public async Task<IActionResult> AddTemplate()
         {
-            
-           
-            return View(new TemplateVM());
+           var sessionId = HttpContext.Session.GetInt32("UserId");
+            var model = new TemplateVM
+            {
+                SessionId = (int)sessionId
+            };
+            return View(model);
 
 
             //ViewBag.ResellerList = (await _reSellerAdminService.GetallResellerAdmin()).Select(r => r.ResellerName).ToList();
@@ -68,7 +73,7 @@ namespace RedCloud.Controllers
         {
             // _logger.LogInformation("CreateCategory Action initiated");
 
-
+            
             var response = await _templateService.CreateTemplate(request);
 
             //_logger.LogInformation("CreateCategory Action initiated");
@@ -82,6 +87,8 @@ namespace RedCloud.Controllers
         public async Task<IActionResult> UpdateTemplate(int Id)
         {
 
+            
+            ViewBag.ID = HttpContext.Session.GetInt32("UserId");
             var response = await _templateService.GetTemplateById(Id);
             return View(response);
         }

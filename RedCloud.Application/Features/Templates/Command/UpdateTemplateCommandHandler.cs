@@ -33,7 +33,7 @@ namespace RedCloud.Application.Features.Templates.Command
            
             _mapper.Map(request, model, typeof(UpdateTemplateCommand), typeof(Template));
 
-            model.LastModifiedBy = 1;
+            model.LastModifiedBy = request.SessionId;
             model.LastModifiedDate = DateTime.Now;
             await _repository.UpdateAsync(model);
 

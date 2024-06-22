@@ -49,8 +49,10 @@
                 <h3 class="card-title">Admin User Form</h3>
             </div>
 
-            <form id="templateForm" asp-action="UpdateTemplate" asp-asp-controller="Template" method="post">
+            <form id="templateForm" asp-action="UpdateTemplate" asp-controller="Template"  method="post">
                 <div class="card-body form-container">
+                    <input type="hidden" asp-for="TemplateId" asp-route-id="@Model.TemplateId" />
+                    <input type="hidden" asp-for="SessionId" value="@ViewBag.ID" />
                     <div class="form-group spaced">
                         <label for="TemplateName" class="required">Template Name</label>
                         <input asp-for="TemplateName" class="form-control" />

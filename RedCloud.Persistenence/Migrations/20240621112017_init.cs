@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RedCloud.Persistenence.Migrations
 {
     /// <inheritdoc />
-    public partial class templatetableadded : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -84,28 +84,6 @@ namespace RedCloud.Persistenence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Templates",
-                columns: table => new
-                {
-                    TemplateId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TemplateName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MessageType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TemplatePersonalization = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MessageBody = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TemplateURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<int>(type: "int", nullable: true),
-                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Templates", x => x.TemplateId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Type",
                 columns: table => new
                 {
@@ -154,7 +132,7 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.CountryId,
                         principalTable: "Countries",
                         principalColumn: "CountryId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -179,13 +157,13 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.RoleId,
                         principalTable: "Role",
                         principalColumn: "RoleId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_RoleMapper_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -205,7 +183,7 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.StateId,
                         principalTable: "States",
                         principalColumn: "StateId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -247,7 +225,7 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.CountryId,
                         principalTable: "Countries",
                         principalColumn: "CountryId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrganizationAdmins_States_StateId",
                         column: x => x.StateId,
@@ -289,19 +267,19 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.CityId,
                         principalTable: "Cities",
                         principalColumn: "CityId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ResellerAdminUsers_Countries_CountryId",
                         column: x => x.CountryId,
                         principalTable: "Countries",
                         principalColumn: "CountryId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ResellerAdminUsers_States_StateId",
                         column: x => x.StateId,
                         principalTable: "States",
                         principalColumn: "StateId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -330,7 +308,7 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.OrganizationAdminId,
                         principalTable: "OrganizationAdmins",
                         principalColumn: "OrgID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -350,13 +328,13 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.OrganizationAdminId,
                         principalTable: "OrganizationAdmins",
                         principalColumn: "OrgID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrganizationResellerMapping_ResellerAdminUsers_ResellerAdminUserId",
                         column: x => x.ResellerAdminUserId,
                         principalTable: "ResellerAdminUsers",
                         principalColumn: "ResellerAdminUserId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -388,7 +366,7 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.ResellerAdminUserId,
                         principalTable: "ResellerAdminUsers",
                         principalColumn: "ResellerAdminUserId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -486,13 +464,13 @@ namespace RedCloud.Persistenence.Migrations
                         column: x => x.OrganizationUserId,
                         principalTable: "OrganizationUsers",
                         principalColumn: "OrganizationUserId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Campaigns_ResellerUsers_ResellerUserId",
                         column: x => x.ResellerUserId,
                         principalTable: "ResellerUsers",
                         principalColumn: "ResellerUserId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -718,9 +696,6 @@ namespace RedCloud.Persistenence.Migrations
 
             migrationBuilder.DropTable(
                 name: "RoleMapper");
-
-            migrationBuilder.DropTable(
-                name: "Templates");
 
             migrationBuilder.DropTable(
                 name: "AssignmentTypes");

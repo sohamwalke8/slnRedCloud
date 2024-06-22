@@ -19,5 +19,7 @@ namespace RedCloud.Application.Features.Templates.Queries
         public string MessageBody { get; set; }
 
         public string TemplateURL { get; set; }
+
+        public int SessionId { get; set; }
     }
 }

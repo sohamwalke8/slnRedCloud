@@ -12,8 +12,8 @@ using RedCloud.Persistenence;
 namespace RedCloud.Persistenence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240619053430_templatetableadded")]
-    partial class templatetableadded
+    [Migration("20240621112105_addtemplate")]
+    partial class addtemplate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
