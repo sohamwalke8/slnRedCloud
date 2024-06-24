@@ -21,8 +21,9 @@ namespace RedCloud.ViewModel
 
         public string MessageBody { get; set; }
 
-        [Required(ErrorMessage = "Please enter valid URL")]
-        [RegularExpression(@"^(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}\.com\/?$", ErrorMessage = "Please Enter Valid Details")]
+
+        [Required(ErrorMessage = "Company URL is required")]
+        [Url(ErrorMessage = "Please enter a valId URL")]
         public string TemplateURL { get; set; }
 
         public int SessionId {  get; set; }

@@ -118,6 +118,15 @@
         padding: 0.25rem;
         margin: 0.2rem;
     }
+
+    th.no-sort {
+        pointer-events: none;
+    }
+
+        th.no-sort .sorting, th.no-sort .sorting_asc, th.no-sort .sorting_desc {
+            display: none !important;
+        }
+
 </style>
 
 <form method="post" id="user-query-form" action="/Template/AddTemplate" novalidate="novalidate">
@@ -152,7 +161,7 @@
                                     <tr>
                                         <th>Template Name</th>
                                         <th>Message Type</th>
-                                        <th>Action</th>
+                                        <th class="no-sort">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -161,8 +170,8 @@
                                         <tr>
                                             <td>@Html.DisplayFor(modelItem => item.TemplateName)</td>
                                             <td>@Html.DisplayFor(modelItem => item.MessageType)</td>
-                                            
-                                        
+
+
                                             <td>
                                                 <a asp-action="ViewTemplateDetails" asp-controller="Template" asp-route-id="@item.TemplateId" class="btn-action" style="text-decoration:none">
                                                     <i class="fa-solid fa-eye" style="color: #050505;"></i>
@@ -255,6 +264,10 @@
                         text: 'Export Pdf',
                         className: 'dt-button'
                     }
+
+                ],
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false }
                 ]
             });
 
@@ -305,7 +318,7 @@
                 var id = $(this).attr('data-id');
                 $('#deleteConfirmationModal').modal('hide');
 
-                
+
                 $.ajax({
                     url: '/Template/SoftDeleteTemplate/' + id,
                     type: 'GET',
