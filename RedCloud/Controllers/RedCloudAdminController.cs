@@ -1,11 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RedCloud.Application.Features.RedCloudAdmins.Commands.CreateRedCloudAdmin;
+using RedCloud.Custom_Action_Filter;
 using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
 using RedCloud.Services;
+using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 
 namespace RedCloud.Controllers
 {
+    [NoCache]
+    [AdminAuthorizationFilter]
     public class RedCloudAdminController : Controller
     {
 

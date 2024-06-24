@@ -5,12 +5,16 @@ using Microsoft.EntityFrameworkCore;
 using RedCloud.Application.Features.Rates.Commands;
 using RedCloud.Application.Features.Rates.Queries;
 using RedCloud.Application.Helper;
+using RedCloud.Custom_Action_Filter;
 using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
 using RedCloud.ViewModel;
+using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 
 namespace RedCloud.Controllers
 {
+    [NoCache]
+    [AdminAuthorizationFilter]
     public class RateController : Controller
     {
         private readonly ILogger<RateController> _logger;

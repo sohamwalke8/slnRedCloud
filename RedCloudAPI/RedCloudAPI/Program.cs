@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RedCloud.Application;
+using RedCloud.Infrastructure;
 using RedCloud.Persistenence;
 using Serilog;
 
@@ -12,7 +13,7 @@ IConfiguration Configuration = builder.Configuration;
 
 builder.Services.AddControllersWithViews();
 //builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("RedCloudPortal")));
-
+//builder.Services.AddInfrastructureServices(Configuration);
 
 //SERILOG IMPLEMENTATION
 
@@ -26,6 +27,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
+//builder.Services.AddInfrastructureServices(Configuration);
 builder.Services.AddPersistenceServices(Configuration);
 
 builder.Services.AddApplicationServices();

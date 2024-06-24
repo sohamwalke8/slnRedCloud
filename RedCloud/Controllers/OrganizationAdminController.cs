@@ -1,17 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using RedCloud.Application.Helper;
 using RedCloud.Custom_Action_Filter;
 using RedCloud.Interfaces;
+using RedCloud.Models.Email;
 using RedCloud.ViewModel;
 using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 
 namespace RedCloud.Controllers
 {
 
-    //[NoCache]
-    //[AdminAuthorizationFilter]
+    [NoCache]
+    [AdminAuthorizationFilter]
     public class OrganizationAdminController : Controller
     {
+        private readonly IMailService _mailService;
         private readonly IOrganizationAdminService _organizationAdminService;
         private readonly IAdminResellerUser _reSellerAdminService;
         private readonly ILogger<OrganizationAdminController> _logger;
@@ -21,7 +24,7 @@ namespace RedCloud.Controllers
 
 
         public OrganizationAdminController(IOrganizationAdminService organizationAdminService, ILogger<OrganizationAdminController> logger,
-            IAdminResellerUser reSellerAdminService, IDropDownService<CountryVM> dropDownService, IStateService<StateVM> stateService, ICityService<CityVM> cityService)
+            IAdminResellerUser reSellerAdminService, IDropDownService<CountryVM> dropDownService, IStateService<StateVM> stateService, ICityService<CityVM> cityService, IMailService mailService)
         {
             _organizationAdminService = organizationAdminService;
             _reSellerAdminService = reSellerAdminService;
@@ -29,6 +32,7 @@ namespace RedCloud.Controllers
             _dropDownService = dropDownService;
             _stateService = stateService;
             _cityService = cityService;
+            _mailService = mailService;
         }
 
         // AAKASh
@@ -109,10 +113,25 @@ namespace RedCloud.Controllers
 
             var response = await _organizationAdminService.CreateOrganizationAdmin(request);
 
+            var organizationAdmin = await _organizationAdminService.GetOrganizationAdminById(response);
+
+            var decryPass = EncryptionDecryption.DecryptString(organizationAdmin.OrgAdminPassword);
+
+            MailRequest mailRequest = new MailRequest()
+            {
+                ToEmail = organizationAdmin.OrgAdminEmail,
+                //ToEmail = "guptaaakash333@gmail.com",
+                Subject = "Your Password Is",
+                Body = $"Your Login Email is :{organizationAdmin.OrgAdminEmail}, This is Your System Generated password : {decryPass}"
+                //Body = $"This is Your System Generated password : 12345"
+            };
+            await _mailService.SendEmailAsync(mailRequest);
+
+
             //_logger.LogInformation("CreateCategory Action initiated");
             return RedirectToAction("ViewOrganizationAdmin");
 
-            return RedirectToAction("AddOrganizationAdmin", request);
+            //return RedirectToAction("AddOrganizationAdmin", request);
         }
 
         public async Task<IActionResult> UpdateOrganizationAdmin(int Id)

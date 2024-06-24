@@ -63,5 +63,21 @@ namespace RedCloudAPI.Controllers
             return Ok(response);
         }
         //Add by Aditya End
+
+
+        [HttpPost("ResellerAdminLogin")]
+        public async Task<ActionResult> ResellerAdminLogin([FromBody] LoginForResellerQuery loginQuery)
+        {
+            var response = await _mediator.Send(loginQuery);
+            return Ok(response);
+        }
+
+        [HttpPost("OrganizationAdminLogin")]
+        public async Task<ActionResult> OrganizationAdminLogin([FromBody] LoginForOrganizationQuery loginQuery)
+        {
+            var response = await _mediator.Send(loginQuery);
+            return Ok(response);
+        }
+
     }
 }

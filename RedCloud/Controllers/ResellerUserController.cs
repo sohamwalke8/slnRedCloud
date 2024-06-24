@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RedCloud.Custom_Action_Filter;
 using RedCloud.Interfaces;
 using RedCloud.ViewModel;
+using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 
 namespace RedCloud.Controllers
 {
+    [NoCache]
+    [AdminAuthorizationFilter]
     public class ResellerUserController : Controller
     {
         private readonly IResellerUserService _ResellerUserService;
@@ -66,7 +70,7 @@ namespace RedCloud.Controllers
 
 
         // ---------------------------------------------------------------------------------
-
+        [AdminAuthorizationFilter]
         public async Task<IActionResult> AddResellerUser()
         {
             //ViewBag.ResellerList = (await _reSellerAdminService.GetallResellerAdmin()).Select(r => r.ResellerName).ToList();
