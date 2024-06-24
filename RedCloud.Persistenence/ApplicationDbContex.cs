@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RedCloud.Application.Contract;
+using RedCloud.Application.Features.Reseller.AssignCredit.Queries;
 using RedCloud.Domain.Entities;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -70,16 +71,9 @@ namespace RedCloud.Persistenence
         public DbSet<Rate> Rates { get; set; }
         public DbSet<GetRate> GetRates { get; set; }
 
+        public DbSet<GetAllAssignCredit> GetAllAssignCredit { get; set; }
+        public DbSet<AssignCreditDetailsVM> AssignCreditDetailsVM { get; set; }
 
 
-
-        
-
-
-
-
-
-
-        
     }
 }

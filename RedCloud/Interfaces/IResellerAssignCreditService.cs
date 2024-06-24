@@ -10,5 +10,6 @@ namespace RedCloud.Interfaces
 		Task<int> AddRate(RateAssignCreditVM model);
 		Task<RateAssignCreditVM> EditRate(RateAssignCreditVM model);
 		Task<RateAssignCreditVM> GetRateById(int Id);
+		Task<IEnumerable<GetAllAssignCredit>> GetAllAssignCredit();
     }
 }

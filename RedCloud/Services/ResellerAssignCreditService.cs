@@ -11,14 +11,25 @@ namespace RedCloud.Services
 		private readonly IApiClient<OrganizationAdmin> _apiClientOrganizationAdmin;
 		private readonly IApiClient<CreditsType> _apiClientCreditsType;
 		private readonly IApiClient<RateAssignCreditVM> _apiClientRateAssignCredit;
+		private readonly IApiClient<GetAllAssignCredit> _apiClientGetAllAssignCredit;
 
-        public ResellerAssignCreditService(IApiClient<OrganizationAdmin> apiClientOrganizationAdmin, IApiClient<CreditsType> apiClientCreditsType, IApiClient<RateAssignCreditVM> apiClientRateAssignCredit)
+        public ResellerAssignCreditService(IApiClient<OrganizationAdmin> apiClientOrganizationAdmin, IApiClient<CreditsType> apiClientCreditsType, IApiClient<RateAssignCreditVM> apiClientRateAssignCredit, IApiClient<GetAllAssignCredit> apiClientGetAllAssignCredit)
         {
             _apiClientOrganizationAdmin = apiClientOrganizationAdmin;
             _apiClientCreditsType = apiClientCreditsType;
 			_apiClientRateAssignCredit = apiClientRateAssignCredit;
+            _apiClientGetAllAssignCredit = apiClientGetAllAssignCredit;
         }
-		public async Task<IEnumerable<OrganizationAdmin>> GetOrganizationAdminList()
+
+        public async Task<IEnumerable<GetAllAssignCredit>> GetAllAssignCredit()
+        {
+            //_logger.LogInformation("GetAllCountry Service initiated");
+            var result = await _apiClientGetAllAssignCredit.GetAllAsync("ResellerAssignCredit/GetAllAssignCredit");
+            //_logger.LogInformation("GetAllCountry Service conpleted");
+            return result.Data;
+        }
+
+        public async Task<IEnumerable<OrganizationAdmin>> GetOrganizationAdminList()
 		{
 			//_logger.LogInformation("GetAllCountry Service initiated");
 			var result = await _apiClientOrganizationAdmin.GetAllAsync("ResellerAssignCredit/GetOrganizationList");

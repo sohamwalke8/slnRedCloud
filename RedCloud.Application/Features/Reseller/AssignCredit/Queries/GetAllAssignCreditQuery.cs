@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.Reseller.AssignCredit.Queries
 {
-	public class GetOrganizationQuery : IRequest<Response<IEnumerable<OrganizationAdmin>>>
-	{
+    public class GetAllAssignCreditQuery: IRequest<Response<IEnumerable<GetAllAssignCredit>>>
+    {
 
-	}
+    }
 }
