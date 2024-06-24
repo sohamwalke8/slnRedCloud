@@ -31,6 +31,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using RedCloud.Application.Features.ResellerReport.Queries;
+using RedCloud.Application.Features.AdminReport.Queries;
 
 namespace RedCloud.Application.Profiles
 {
@@ -86,6 +87,7 @@ namespace RedCloud.Application.Profiles
             CreateMap<UpdateResellerUserCommand, ResellerUser>().ReverseMap();
         CreateMap<OrganizationAdmin, GetAllOrganizationAdminVM>();
             CreateMap<TotalReport, TotalReportVM>();
+            CreateMap<AdminCount, TotalReportVMs>();
 
             //For Numbers
             CreateMap<AddNumberCommand, Domain.Entities.Number>();
@@ -99,6 +101,7 @@ namespace RedCloud.Application.Profiles
             CreateMap<RedCloud.Domain.Entities.Number, RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM>();
             //CreateMap<RedCloud.Domain.Entities.Number, NumberlistVM>();
             CreateMap<ResellerInboundMessagesReport, OrganizationReportVM>();
+            CreateMap<AdminInboundMessageReport,ResellerReportVM>();
 
             CreateMap<RedCloud.Domain.Entities.Number, NumberlistVM>()
             .ForMember(dest => dest.CarrierName, opt => opt.MapFrom(src => src.Carrier.CarrierName))

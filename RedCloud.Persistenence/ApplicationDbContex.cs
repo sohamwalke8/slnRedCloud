@@ -28,6 +28,8 @@ namespace RedCloud.Persistenence
                .HasForeignKey(oa => oa.StateId)
                .OnDelete(DeleteBehavior.Restrict); // Specify NO ACTION on delete
             modelBuilder.Entity<TotalReport>().HasNoKey();//new
+            modelBuilder.Entity<AdminInboundMessageReport>().HasNoKey();
+            modelBuilder.Entity<AdminCount>().HasNoKey();
 
             modelBuilder.Entity<ResellerInboundMessagesReport>().HasNoKey();//new
 
@@ -79,6 +81,11 @@ namespace RedCloud.Persistenence
         public DbSet<ResellerInboundMessagesReport> ResellerInboundMessagesReports { get; set; }//Fake Entity
 
         public DbSet<TotalReport> TotalReports { get; set; }//Fake Entity
+
+        public DbSet<AdminInboundMessageReport> AdminInboundMessageReports { get; set; }//Fake Entity
+
+        public DbSet<AdminCount> AdminCounts { get; set; }//Fake Entity
+
 
 
 
