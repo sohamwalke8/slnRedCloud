@@ -11,6 +11,14 @@
         color: white;
     }
 
+    th.no-sort {
+        pointer-events: none;
+    }
+
+        th.no-sort .sorting, th.no-sort .sorting_asc, th.no-sort .sorting_desc {
+            display: none !important;
+        }
+
     .card-title {
         margin: 0;
     }
@@ -77,7 +85,7 @@
                                 <th>Reseller Name</th>
                                 <th>Monthly Number</th>
                                 <th>Users</th>
-                                <th>Actions</th>
+                                <th class="no-sort">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -141,7 +149,9 @@
         $(document).ready(function () {
             $('#rateTable').DataTable({
                 searching: true,
-                paging: true
+                paging: true, columnDefs: [
+                    { targets: 'no-sort', orderable: false }
+                ],
             });
 
             var deleteUrl = "";

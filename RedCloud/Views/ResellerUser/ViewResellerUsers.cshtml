@@ -121,6 +121,14 @@
         padding: 0.25rem;
         margin: 0.2rem;
     }
+
+    th.no-sort {
+        pointer-events: none;
+    }
+
+        th.no-sort .sorting, th.no-sort .sorting_asc, th.no-sort .sorting_desc {
+            display: none !important;
+        }
 </style>
 
 <form method="post" id="user-query-form" asp-action="ViewResellerUsers" asp-controller="ResellerUser">
@@ -155,19 +163,19 @@
                             <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
                                 <thead>
                                     <tr>
-                                        <th>ResellerUser ID</th>
+@*                                         <th>ResellerUser ID</th> *@
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Email</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th class ="no-sort">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>@Html.DisplayFor(modelItem => item.ResellerUserId)</td>
+@*                                             <td>@Html.DisplayFor(modelItem => item.ResellerUserId)</td> *@
                                             <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
                                             <td>@Html.DisplayFor(modelItem => item.LastName)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Email)</td>
@@ -262,6 +270,9 @@
                         text: 'Export Excel',
                         className: 'dt-button'
                     }
+                ],
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false }
                 ]
             });
 
