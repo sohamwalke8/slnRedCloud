@@ -32,7 +32,12 @@ namespace RedCloud.Application.Features.Reseller.AssignCredit.Commands
                 new SqlParameter("@InboundMMS", request.InboundMMS),
                 new SqlParameter("@OutboundMMS", request.OutboundMMS),
                 new SqlParameter("@MonthlyNumber", request.MonthlyNumber),
-                new SqlParameter("@Users", request.Users)
+                new SqlParameter("@Users", request.Users)//,
+                //new SqlParameter("@CreatedBy", request.CreatedBy),
+                //new SqlParameter("@CreatedDate", request.CreatedDate),
+                //new SqlParameter("@IsDeleted", request.IsDeleted),
+                //new SqlParameter("@LastModifiedBy", request.LastModifiedBy),
+                //new SqlParameter("@LastModifiedDate",request.LastModifiedDate)
             };
 
             try

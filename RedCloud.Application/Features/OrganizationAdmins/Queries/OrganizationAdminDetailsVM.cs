@@ -33,6 +33,8 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
         public bool IsActive { get; set; } 
         public int ResellerId { get; set; }
 
+        public string OrgAdminPassword { get; set; }
+
 
     }
 }

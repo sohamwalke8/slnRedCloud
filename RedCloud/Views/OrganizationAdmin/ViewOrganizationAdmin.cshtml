@@ -6,6 +6,9 @@
 }
 
 <style>
+    a{
+        text-decoration:none;
+    }
     .dataTables_wrapper .top {
         margin-top: 0;
     }
@@ -118,6 +121,14 @@
         padding: 0.25rem;
         margin: 0.2rem;
     }
+
+    th.no-sort {
+        pointer-events: none;
+    }
+
+        th.no-sort .sorting, th.no-sort .sorting_asc, th.no-sort .sorting_desc {
+            display: none !important;
+        }
 </style>
 
 <form method="post" id="user-query-form" action="/OrganizationAdmin/AddOrganizationAdmin" novalidate="novalidate">
@@ -154,7 +165,7 @@
                                         <th>EIN</th>
                                         <th>Email</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th class="no-sort">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -240,6 +251,7 @@
 
     <script>
         $(document).ready(function () {
+
             // Initialize DataTable
             var table = $('#dataTable').DataTable({
                 paging: true,
@@ -256,6 +268,9 @@
                         text: 'Export Excel',
                         className: 'dt-button'
                     }
+                ],
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false }
                 ]
             });
 
@@ -334,29 +349,4 @@
         });
     </script>
 }
-@*
-<script type="text/javascript">
-    // Define the redirection function
-    function redirectToOrganizationAdmin() {
-        window.location.href = '@Url.Action("ViewOrganizationAdmin", "OrganizationAdmin")';
-    }
 
-    // AJAX method for soft deletion
-    function deleteItem(id) {
-        $.ajax({
-            url: '/OrganizationAdmin/SoftDelete/' + id,
-            type: 'GET',
-            success: function (data) {
-                // Handle success
-                toastr.success('Successfully deleted the item.', 'Success');
-
-                // Call the redirect function after a success message is shown
-                redirectToOrganizationAdmin();
-            },
-            error: function (xhr, status, error) {
-                // Handle errors
-                toastr.error('Error: ' + xhr.responseText, 'Deletion Failed');
-            }
-        });
-    }
-</script> *@

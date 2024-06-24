@@ -20,10 +20,10 @@
 </style>
 
 <div class="container-fluId d-flex justify-content-center align-items-center" style="height: 100vh">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="mb-3">
-            <a asp-action="Index" asp-controller="RedCloudAdmin" class="btn btn-secondary">Back</a>
-            <a asp-action="AssignReseller" asp-controller="RedCloudAdmin" class="btn btn-warning">Assign Reseller</a>
+            @* <a asp-action="ViewallRedCloudAdmin" asp-controller="RedCloudAdmin" class="btn btn-secondary">Back</a> *@
+            @* <a asp-action="AssignReseller" asp-controller="RedCloudAdmin" class="btn btn-warning">Assign Reseller</a> *@
 
         </div>
         <div class="card card-primary">
@@ -66,7 +66,7 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="#" class="btn btn-secondary">Cancel</a>
+                    <a asp-action="ViewallRedCloudAdmin" asp-controller="RedCloudAdmin" class="btn btn-secondary">Cancel</a>
                 </div>
             </form>
         </div>

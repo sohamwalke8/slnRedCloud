@@ -25,10 +25,6 @@ namespace RedCloud.Services
         }
 
 
-
-
-
-
         public async  Task<int> CreateAdminResellerUserAsync(ResellerAdminUser ResellerAdminUser)
         {
             //_logger.LogInformation("CreateCategory Service initiated");

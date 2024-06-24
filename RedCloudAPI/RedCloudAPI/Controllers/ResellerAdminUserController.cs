@@ -39,6 +39,7 @@ namespace RedCloudAPI.Controllers
         public async Task<ActionResult> Create([FromBody] CreateResellerAdminUserCommand CreateResellerAdminCommand)
         {
             var response = await _mediator.Send(CreateResellerAdminCommand);
+
             return Ok(response);
         }
 
@@ -89,12 +90,13 @@ namespace RedCloudAPI.Controllers
 
         //    return Ok(dto);
         //}
+
         [HttpGet("{Id:int}", Name = "GetResellerAdminById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Response<ReSellerAdmindto>>> GetResellerAdminById(int Id)
         {
-            _logger.LogInformation("GetResellerAdminById initiated");
+            //_logger.LogInformation("GetResellerAdminById initiated");
             var result = await _mediator.Send(new GetReSellerAdminByIdQuery(Id));
 
             if (result.Data == null)
@@ -110,7 +112,7 @@ namespace RedCloudAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> BlockReSeller(int id)
         {
-            _logger.LogInformation("BlockReSeller Initiated");
+            //_logger.LogInformation("BlockReSeller Initiated");
             var blockeselleradmin = new BlockReSellerAdminCommand() { Id = id };
             await _mediator.Send(blockeselleradmin);
 
