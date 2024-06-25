@@ -80,9 +80,9 @@ namespace RedCloudAPI.Controllers
             var assignCredit = await _mediator.Send(new GetAssignCreditByIdQuery { GetRateAssignCreditId = Id });
             if (assignCredit.Data != null)
             {
-                return NotFound(assignCredit);
+                return Ok(assignCredit);
             }
-            return Ok(assignCredit);    
+              return NotFound(assignCredit);
         }
 
         [HttpPut("EditRate")]

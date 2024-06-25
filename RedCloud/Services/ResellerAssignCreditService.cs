@@ -1,4 +1,5 @@
 ﻿using MvcApiCallingService.Helpers.ApiHelper;
+using RedCloud.Application.Features.Reseller.AssignCredit.Queries;
 using RedCloud.Domain.Common;
 using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
@@ -12,13 +13,15 @@ namespace RedCloud.Services
 		private readonly IApiClient<CreditsType> _apiClientCreditsType;
 		private readonly IApiClient<RateAssignCreditVM> _apiClientRateAssignCredit;
 		private readonly IApiClient<GetAllAssignCredit> _apiClientGetAllAssignCredit;
+		private readonly IApiClient<AssignCreditDetailsVM> _apiClientGetAllAssignCreditDetails;
 
-        public ResellerAssignCreditService(IApiClient<OrganizationAdmin> apiClientOrganizationAdmin, IApiClient<CreditsType> apiClientCreditsType, IApiClient<RateAssignCreditVM> apiClientRateAssignCredit, IApiClient<GetAllAssignCredit> apiClientGetAllAssignCredit)
+        public ResellerAssignCreditService(IApiClient<OrganizationAdmin> apiClientOrganizationAdmin, IApiClient<CreditsType> apiClientCreditsType, IApiClient<RateAssignCreditVM> apiClientRateAssignCredit, IApiClient<GetAllAssignCredit> apiClientGetAllAssignCredit, IApiClient<AssignCreditDetailsVM> apiClientGetAllAssignCreditDetails)
         {
             _apiClientOrganizationAdmin = apiClientOrganizationAdmin;
             _apiClientCreditsType = apiClientCreditsType;
 			_apiClientRateAssignCredit = apiClientRateAssignCredit;
             _apiClientGetAllAssignCredit = apiClientGetAllAssignCredit;
+            _apiClientGetAllAssignCreditDetails = apiClientGetAllAssignCreditDetails;
         }
 
         public async Task<IEnumerable<GetAllAssignCredit>> GetAllAssignCredit()
@@ -58,6 +61,13 @@ namespace RedCloud.Services
         {
             var users = await _apiClientRateAssignCredit.PutAsync("ResellerAssignCredit/EditRate", model);
             return users.Data;
+        }
+
+        public async Task<AssignCreditDetailsVM> GetAssignCreditDetails(int id)
+        {
+            var apiUrl = $"ResellerAssignCredit/GetAssignCreditById/{id}";
+            var userData = await _apiClientGetAllAssignCreditDetails.GetByIdAsync(apiUrl);
+            return userData.Data;
         }
     }
 }

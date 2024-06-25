@@ -1,4 +1,5 @@
-﻿using RedCloud.Domain.Entities;
+﻿using RedCloud.Application.Features.Reseller.AssignCredit.Queries;
+using RedCloud.Domain.Entities;
 using RedCloud.ViewModel;
 
 namespace RedCloud.Interfaces
@@ -11,5 +12,7 @@ namespace RedCloud.Interfaces
 		Task<RateAssignCreditVM> EditRate(RateAssignCreditVM model);
 		Task<RateAssignCreditVM> GetRateById(int Id);
 		Task<IEnumerable<GetAllAssignCredit>> GetAllAssignCredit();
+
+		Task<AssignCreditDetailsVM> GetAssignCreditDetails(int id);
     }
 }
