@@ -43,6 +43,7 @@ namespace RedCloud.Services
         {
             try
             {
+                    
                 var apiUrl = $"OrganizationAdmin/GetDetailsById/{Id}";
                 var response = await _clientTwo.GetByIdAsync(apiUrl);
                 var data = response.Data;

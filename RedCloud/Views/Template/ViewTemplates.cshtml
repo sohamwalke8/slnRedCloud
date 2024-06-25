@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RedCloud.ViewModel.OrganizationAdminVM>
+﻿@model IEnumerable<RedCloud.ViewModel.TemplateVM>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,9 +6,6 @@
 }
 
 <style>
-    a{
-        text-decoration:none;
-    }
     .dataTables_wrapper .top {
         margin-top: 0;
     }
@@ -121,14 +118,23 @@
         padding: 0.25rem;
         margin: 0.2rem;
     }
+
+    th.no-sort {
+        pointer-events: none;
+    }
+
+        th.no-sort .sorting, th.no-sort .sorting_asc, th.no-sort .sorting_desc {
+            display: none !important;
+        }
+
 </style>
 
-<form method="post" id="user-query-form" action="/OrganizationAdmin/AddOrganizationAdmin" novalidate="novalidate">
+<form method="post" id="user-query-form" action="/Template/AddTemplate" novalidate="novalidate">
     <div class="card-body">
 
         <div class="card">
             <div class="card-header" style="background-color:#007BFF">
-                <h3 class="card-title" style="color:white; font-weight:bold;font-size:23px;">Manage Organization</h3>
+                <h3 class="card-title" style="color:white; font-weight:bold;font-size:23px;">Manage Templates</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -136,9 +142,9 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <p>
-                                <a class="btn btn-primary" asp-action="AddOrganizationAdmin" asp-controller="OrganizationAdmin"
+                                <a class="btn btn-primary" asp-action="AddTemplate" asp-controller="Template"
                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; float:right; margin-bottom:10px">
-                                    Add Organization Admin
+                                    Add Template
                                 </a>
                             </p>
                             <label for="entriesPerPage">
@@ -153,35 +159,29 @@
                             <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
                                 <thead>
                                     <tr>
-                                        <th>Organization Name</th>
-                                        <th>EIN</th>
-                                        <th>Email</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Template Name</th>
+                                        <th>Message Type</th>
+                                        <th class="no-sort">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>@Html.DisplayFor(modelItem => item.OrgName)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.EIN)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.OrgAdminEmail)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.TemplateName)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.MessageType)</td>
+
+
                                             <td>
-                                                <span class="@(item.IsActive ? "status-active" : "status-inactive")">
-                                                    @((bool)item.IsActive ? "Active" : "Not Active")
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <a asp-action="ViewOrganizationDetails" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID" class="btn-action" style="text-decoration:none">
+                                                <a asp-action="ViewTemplateDetails" asp-controller="Template" asp-route-id="@item.TemplateId" class="btn-action" style="text-decoration:none">
                                                     <i class="fa-solid fa-eye" style="color: #050505;"></i>
                                                 </a>
 
-                                                <a asp-action="UpdateOrganizationAdmin" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID" class="btn-action" style="text-decoration:none">
+                                                <a asp-action="UpdateTemplate" asp-controller="Template" asp-route-id="@item.TemplateId" class="btn-action" style="text-decoration:none">
                                                     <i class="fa-regular fa-pen-to-square" style="color: #131111;"></i>
                                                 </a>
 
-                                                <a class="delete-btn btn-action" data-id="@item.OrgID" data-name="@item.OrgName" href="#"  style="text-decoration:none">
+                                                <a class="delete-btn btn-action" data-id="@item.TemplateId" data-name="@item.TemplateName" style="text-decoration:none">
                                                     <i class="fa-solid fa-trash" style="color: #cb1010;"></i>
                                                 </a>
                                             </td>
@@ -243,7 +243,6 @@
 
     <script>
         $(document).ready(function () {
-
             // Initialize DataTable
             var table = $('#dataTable').DataTable({
                 paging: true,
@@ -265,6 +264,10 @@
                         text: 'Export Pdf',
                         className: 'dt-button'
                     }
+
+                ],
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false }
                 ]
             });
 
@@ -315,17 +318,17 @@
                 var id = $(this).attr('data-id');
                 $('#deleteConfirmationModal').modal('hide');
 
-                // Call delete method using AJAX
+
                 $.ajax({
-                    url: '/OrganizationAdmin/SoftDelete/' + id,
+                    url: '/Template/SoftDeleteTemplate/' + id,
                     type: 'GET',
                     success: function (data) {
                         // Handle success
-                        toastr.success('Successfully deleted the item.', 'Success');
+                        toastr.success('Successfully deleted.', 'Success');
                         // Optionally, you can reload the page or update the table
 
                         setTimeout(function () {
-                            window.location.href = '@Url.Action("ViewOrganizationAdmin", "OrganizationAdmin")';
+                            window.location.href = '@Url.Action("ViewTemplates", "Template")';
                         }, 1000);
 
                         // setTimeout(function () {
@@ -343,4 +346,29 @@
         });
     </script>
 }
+@*
+<script type="text/javascript">
+    // Define the redirection function
+    function redirectToOrganizationAdmin() {
+        window.location.href = '@Url.Action("ViewOrganizationAdmin", "OrganizationAdmin")';
+    }
 
+    // AJAX method for soft deletion
+    function deleteItem(id) {
+        $.ajax({
+            url: '/OrganizationAdmin/SoftDelete/' + id,
+            type: 'GET',
+            success: function (data) {
+                // Handle success
+                toastr.success('Successfully deleted the item.', 'Success');
+
+                // Call the redirect function after a success message is shown
+                redirectToOrganizationAdmin();
+            },
+            error: function (xhr, status, error) {
+                // Handle errors
+                toastr.error('Error: ' + xhr.responseText, 'Deletion Failed');
+            }
+        });
+    }
+</script> *@

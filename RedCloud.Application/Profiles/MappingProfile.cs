@@ -31,6 +31,8 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using RedCloud.Application.Features.Reseller.AssignCredit.Queries;
+using RedCloud.Application.Features.Templates.Command;
+using RedCloud.Application.Features.Templates.Queries;
 
 namespace RedCloud.Application.Profiles
 {
@@ -103,6 +105,12 @@ namespace RedCloud.Application.Profiles
             .ForMember(dest => dest.OrgName, opt => opt.MapFrom(src => src.OrganizationAdmin.OrgName));
 
             //CreateMap<AssignCreditDetailsVM, AssignCreditDetailsVM>().ReverseMap();
+
+
+            CreateMap<CreateTemplateCommand,Template>().ReverseMap();
+            CreateMap<UpdateTemplateCommand,Template>().ReverseMap();
+            CreateMap<Template, GetTemplateVM>().ReverseMap();
+
 
 
         }

@@ -52,9 +52,10 @@ namespace RedCloud.Persistenence
         public DbSet<Types> Type { get; set; }
 
         public DbSet<Carrier> Carrier { get; set; }
-        public DbSet<Number> Numbers { get; set; }
+        public DbSet<Number> Numbers { get; set; }   
         public DbSet<Campaign> Campaigns { get; set; }
 
+        public DbSet<Template> Templates { get; set; }
 
 
 
