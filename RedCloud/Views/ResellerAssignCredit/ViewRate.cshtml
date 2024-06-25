@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RedCloud.ViewModel.OrganizationAdminVM>
+﻿@model IEnumerable<RedCloud.ViewModel.AllOrganizationAdminVM>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,9 +6,6 @@
 }
 
 <style>
-    a{
-        text-decoration:none;
-    }
     .dataTables_wrapper .top {
         margin-top: 0;
     }
@@ -121,14 +118,6 @@
         padding: 0.25rem;
         margin: 0.2rem;
     }
-
-    th.no-sort {
-        pointer-events: none;
-    }
-
-        th.no-sort .sorting, th.no-sort .sorting_asc, th.no-sort .sorting_desc {
-            display: none !important;
-        }
 </style>
 
 <form method="post" id="user-query-form" action="/OrganizationAdmin/AddOrganizationAdmin" novalidate="novalidate">
@@ -161,11 +150,10 @@
                             <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="dataTable_info">
                                 <thead>
                                     <tr>
-                                        <th>Organization Name</th>
-                                        <th>EIN</th>
-                                        <th>Email</th>
-                                        <th>Status</th>
-                                        <th class="no-sort">Action</th>
+                                        <th>Organization </th>
+                                        <th>Purchased credits</th>
+                                        <th>Type</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -175,22 +163,24 @@
                                             <td>@Html.DisplayFor(modelItem => item.OrgName)</td>
                                             <td>@Html.DisplayFor(modelItem => item.EIN)</td>
                                             <td>@Html.DisplayFor(modelItem => item.OrgAdminEmail)</td>
-                                            <td>
+                                            @* <td>
                                                 <span class="@(item.IsActive ? "status-active" : "status-inactive")">
                                                     @((bool)item.IsActive ? "Active" : "Not Active")
                                                 </span>
-                                            </td>
+                                            </td> *@
                                             <td>
-                                                <a asp-action="ViewOrganizationDetails" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID" class="btn-action" style="text-decoration:none">
+                                                <a asp-action="" asp-controller="" asp-route-id="@item.OrgID" class="btn-action">
                                                     <i class="fa-solid fa-eye" style="color: #050505;"></i>
                                                 </a>
 
-                                                <a asp-action="UpdateOrganizationAdmin" asp-controller="OrganizationAdmin" asp-route-id="@item.OrgID" class="btn-action" style="text-decoration:none">
+                                                <a asp-action="" asp-controller="" asp-route-id="@item.OrgID" class="btn-action">
                                                     <i class="fa-regular fa-pen-to-square" style="color: #131111;"></i>
                                                 </a>
-
-                                                <a class="delete-btn btn-action" data-id="@item.OrgID" data-name="@item.OrgName" href="#"  style="text-decoration:none">
-                                                    <i class="fa-solid fa-trash" style="color: #cb1010;"></i>
+                                                <a asp-action="" asp-controller="" asp-route-id="@item.OrgID" class="delete-btn btn-action" data-id="@item.OrgID" >
+                                                    <i class="fa-solid fa-circle-notch" style="color: #cb1010;></i>
+                                                </a>
+                                                <a  class="delete-btn btn-action" data-id="@item.OrgID" data-name="@item.OrgName" >
+                                                    <i class="fa-solid fa-dollar-sign"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -205,7 +195,7 @@
         </div>
 
 
-        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+       @*  <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -224,7 +214,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> *@
     </div>
 
 </form>
@@ -251,7 +241,6 @@
 
     <script>
         $(document).ready(function () {
-
             // Initialize DataTable
             var table = $('#dataTable').DataTable({
                 paging: true,
@@ -267,15 +256,7 @@
                         extend: 'excelHtml5',
                         text: 'Export Excel',
                         className: 'dt-button'
-                    },
-                    {
-                        extend: 'pdf',
-                        text: 'Export Pdf',
-                        className: 'dt-button'
                     }
-                ],
-                columnDefs: [
-                    { targets: 'no-sort', orderable: false }
                 ]
             });
 
@@ -304,27 +285,27 @@
                 "hideMethod": "fadeOut"
             };
 
-            // Event listeners for delete functionality
-            $('.delete-btn').on('click', function (e) {
-                e.preventDefault();
-                var id = $(this).data('id');
-                var name = $(this).data('name');
-                $('#deleteItemName').text(name);
-                $('#confirmDeleteBtn').attr('data-id', id);
-                $('#deleteConfirmationModal').modal('show');
-            });
+            // // Event listeners for delete functionality
+            // $('.delete-btn').on('click', function (e) {
+            //     e.preventDefault();
+            //     var id = $(this).data('id');
+            //     var name = $(this).data('name');
+            //     $('#deleteItemName').text(name);
+            //     $('#confirmDeleteBtn').attr('data-id', id);
+            //     $('#deleteConfirmationModal').modal('show');
+            // });
 
-            $('#cancelBtn').on('click', function (e) {
-                $('#deleteConfirmationModal').modal('hide');
-            });
+            // $('#cancelBtn').on('click', function (e) {
+            //     $('#deleteConfirmationModal').modal('hide');
+            // });
 
-            $('#cancelBtn2').on('click', function (e) {
-                $('#deleteConfirmationModal').modal('hide');
-            });
+            // $('#cancelBtn2').on('click', function (e) {
+            //     $('#deleteConfirmationModal').modal('hide');
+            // });
 
-            $('#confirmDeleteBtn').on('click', function () {
-                var id = $(this).attr('data-id');
-                $('#deleteConfirmationModal').modal('hide');
+            // $('#confirmDeleteBtn').on('click', function () {
+            //     var id = $(this).attr('data-id');
+            //     $('#deleteConfirmationModal').modal('hide');
 
                 // Call delete method using AJAX
                 $.ajax({
@@ -335,9 +316,9 @@
                         toastr.success('Successfully deleted the item.', 'Success');
                         // Optionally, you can reload the page or update the table
 
-                        setTimeout(function () {
-                            window.location.href = '@Url.Action("ViewOrganizationAdmin", "OrganizationAdmin")';
-                        }, 1000);
+                        // setTimeout(function () {
+                        //     window.location.href = '@Url.Action("ViewOrganizationAdmin", "OrganizationAdmin")';
+                        // }, 1000);
 
                         // setTimeout(function () {
                         //     location.reload();

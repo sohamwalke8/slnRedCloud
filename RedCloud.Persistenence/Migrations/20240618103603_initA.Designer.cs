@@ -12,8 +12,13 @@ using RedCloud.Persistenence;
 namespace RedCloud.Persistenence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
+<<<<<<<< HEAD:RedCloud.Persistenence/Migrations/20240618103603_initA.Designer.cs
     [Migration("20240618103603_initA")]
     partial class initA
+========
+    [Migration("20240621113038_Second")]
+    partial class Second
+>>>>>>>> dev:RedCloud.Persistenence/Migrations/20240621113038_Second.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

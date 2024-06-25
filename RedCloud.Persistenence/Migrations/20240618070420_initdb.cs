@@ -6,7 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RedCloud.Persistenence.Migrations
 {
     /// <inheritdoc />
+<<<<<<<< HEAD:RedCloud.Persistenence/Migrations/20240618070420_initdb.cs
     public partial class initdb : Migration
+========
+    public partial class InitFirst : Migration
+>>>>>>>> dev:RedCloud.Persistenence/Migrations/20240621093005_Init-First.cs
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,6 +55,19 @@ namespace RedCloud.Persistenence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CreditsType",
+                columns: table => new
+                {
+                    TypeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CreditsType", x => x.TypeId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GetRates",
                 columns: table => new
                 {
@@ -63,26 +80,6 @@ namespace RedCloud.Persistenence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_GetRates", x => x.GetRateId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RateAssignCredit",
-                columns: table => new
-                {
-                    RateAssignCreditId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrgID = table.Column<int>(type: "int", nullable: false),
-                    TypeId = table.Column<int>(type: "int", nullable: false),
-                    InboundSMS = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OutboundSMS = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InboundMMS = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OutboundMMS = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MonthlyNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Users = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RateAssignCredit", x => x.RateAssignCreditId);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,25 +153,6 @@ namespace RedCloud.Persistenence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CreditsType",
-                columns: table => new
-                {
-                    TypeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TypeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RateAssignCreditId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CreditsType", x => x.TypeId);
-                    table.ForeignKey(
-                        name: "FK_CreditsType_RateAssignCredit_RateAssignCreditId",
-                        column: x => x.RateAssignCreditId,
-                        principalTable: "RateAssignCredit",
-                        principalColumn: "RateAssignCreditId");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "RoleMapper",
                 columns: table => new
                 {
@@ -245,7 +223,10 @@ namespace RedCloud.Persistenence.Migrations
                     CountryId = table.Column<int>(type: "int", nullable: false),
                     StateId = table.Column<int>(type: "int", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: true),
+<<<<<<<< HEAD:RedCloud.Persistenence/Migrations/20240618070420_initdb.cs
                     
+========
+>>>>>>>> dev:RedCloud.Persistenence/Migrations/20240621093005_Init-First.cs
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedBy = table.Column<int>(type: "int", nullable: true),
@@ -266,7 +247,10 @@ namespace RedCloud.Persistenence.Migrations
                         principalTable: "Countries",
                         principalColumn: "CountryId",
                         onDelete: ReferentialAction.NoAction);
+<<<<<<<< HEAD:RedCloud.Persistenence/Migrations/20240618070420_initdb.cs
                     
+========
+>>>>>>>> dev:RedCloud.Persistenence/Migrations/20240621093005_Init-First.cs
                     table.ForeignKey(
                         name: "FK_OrganizationAdmins_States_StateId",
                         column: x => x.StateId,
@@ -347,6 +331,40 @@ namespace RedCloud.Persistenence.Migrations
                     table.ForeignKey(
                         name: "FK_OrganizationUsers_OrganizationAdmins_OrganizationAdminId",
                         column: x => x.OrganizationAdminId,
+                        principalTable: "OrganizationAdmins",
+                        principalColumn: "OrgID",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RateAssignCredit",
+                columns: table => new
+                {
+                    RateAssignCreditId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrgID = table.Column<int>(type: "int", nullable: false),
+                    TypeId = table.Column<int>(type: "int", nullable: false),
+                    InboundSMS = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OutboundSMS = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InboundMMS = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OutboundMMS = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MonthlyNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Users = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrganizationAdminOrgID = table.Column<int>(type: "int", nullable: false),
+                    CreditsTypeTypeId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RateAssignCredit", x => x.RateAssignCreditId);
+                    table.ForeignKey(
+                        name: "FK_RateAssignCredit_CreditsType_CreditsTypeTypeId",
+                        column: x => x.CreditsTypeTypeId,
+                        principalTable: "CreditsType",
+                        principalColumn: "TypeId",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_RateAssignCredit_OrganizationAdmins_OrganizationAdminOrgID",
+                        column: x => x.OrganizationAdminOrgID,
                         principalTable: "OrganizationAdmins",
                         principalColumn: "OrgID",
                         onDelete: ReferentialAction.NoAction);
@@ -602,11 +620,6 @@ namespace RedCloud.Persistenence.Migrations
                 column: "StateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CreditsType_RateAssignCreditId",
-                table: "CreditsType",
-                column: "RateAssignCreditId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Numbers_AssignmentTypeId",
                 table: "Numbers",
                 column: "AssignmentTypeId");
@@ -657,11 +670,6 @@ namespace RedCloud.Persistenence.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrganizationAdmins_RateAssignCreditId",
-                table: "OrganizationAdmins",
-                column: "RateAssignCreditId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_OrganizationAdmins_StateId",
                 table: "OrganizationAdmins",
                 column: "StateId");
@@ -680,6 +688,16 @@ namespace RedCloud.Persistenence.Migrations
                 name: "IX_OrganizationUsers_OrganizationAdminId",
                 table: "OrganizationUsers",
                 column: "OrganizationAdminId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RateAssignCredit_CreditsTypeTypeId",
+                table: "RateAssignCredit",
+                column: "CreditsTypeTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RateAssignCredit_OrganizationAdminOrgID",
+                table: "RateAssignCredit",
+                column: "OrganizationAdminOrgID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rates_ResellerAdminUserId",
@@ -731,9 +749,6 @@ namespace RedCloud.Persistenence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CreditsType");
-
-            migrationBuilder.DropTable(
                 name: "GetRates");
 
             migrationBuilder.DropTable(
@@ -741,6 +756,9 @@ namespace RedCloud.Persistenence.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrganizationResellerMapping");
+
+            migrationBuilder.DropTable(
+                name: "RateAssignCredit");
 
             migrationBuilder.DropTable(
                 name: "Rates");
@@ -764,6 +782,9 @@ namespace RedCloud.Persistenence.Migrations
                 name: "Type");
 
             migrationBuilder.DropTable(
+                name: "CreditsType");
+
+            migrationBuilder.DropTable(
                 name: "Role");
 
             migrationBuilder.DropTable(
@@ -780,9 +801,6 @@ namespace RedCloud.Persistenence.Migrations
 
             migrationBuilder.DropTable(
                 name: "ResellerAdminUsers");
-
-            migrationBuilder.DropTable(
-                name: "RateAssignCredit");
 
             migrationBuilder.DropTable(
                 name: "Cities");

@@ -43,6 +43,7 @@ builder.Services.AddScoped(typeof(IAssignmentType<AssignmentTypeVM>), typeof(Ass
 builder.Services.AddScoped(typeof(ICampaign<CampaignVM>), typeof(Campaign<CampaignVM>));
 builder.Services.AddScoped(typeof(INumberService<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM>), typeof(NumberService<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM>));
 builder.Services.AddScoped(typeof(INumberService<NumberlistVM>), typeof(NumberService<NumberlistVM>));
+builder.Services.AddScoped<ITemplateService, TemplateService>();
 
 
 
@@ -58,6 +59,7 @@ builder.Services.AddScoped<ICampaignService, CampaignService>();
 
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings")); // Add by Aditya
 builder.Services.AddTransient<IMailService, MailService>(); // Add by Aditya
+builder.Services.AddScoped<IEncryptionService, EncryptionService>(); // Add by Aditya
 
 builder.Services.AddScoped<IEncryptionService, EncryptionService>();
 builder.Services.AddScoped<IResellerAssignCreditService, ResellerAssignCreditService>();

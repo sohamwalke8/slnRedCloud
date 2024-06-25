@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using RedCloud.Application.Features.Campaigns.Queries;
 using RedCloud.Application.Responses;
-using RedCloud.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace RedCloud.Application.Features.Reseller.AssignCredit.Queries
 {
-	public class GetOrganizationQuery : IRequest<Response<IEnumerable<OrganizationAdmin>>>
-	{
-
-	}
+    public class GetAssignCreditByIdQuery: IRequest<Response<AssignCreditDetailsVM>>
+    {
+        public int GetRateAssignCreditId { get; set; }
+    }
 }

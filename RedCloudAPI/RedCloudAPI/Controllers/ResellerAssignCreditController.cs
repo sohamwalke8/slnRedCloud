@@ -18,6 +18,15 @@ namespace RedCloudAPI.Controllers
         {
             _mediator = mediator;
         }
+
+        [HttpGet("GetAllAssignCredit")]
+        public async Task<IActionResult> GetAllAssignCreditList()
+        {
+            var response = await _mediator.Send(new GetAllAssignCreditQuery());
+            return Ok(response);
+        }
+
+
         [HttpGet("GetOrganizationList")]
 		public async Task<IActionResult> GetOrganizationList()
 		{
@@ -41,9 +50,9 @@ namespace RedCloudAPI.Controllers
             return Ok(response);
         }
 
-		[HttpGet("GetRateById/{Id}")]
-		public async Task<IActionResult> GetRateById(int Id)
-		{
+        [HttpGet("GetRateById/{Id}")]
+        public async Task<IActionResult> GetRateById(int Id)
+        {
             try
             {
                 var response = await _mediator.Send(new GetRateByIdQuery { RateAssignCreditId = Id });
@@ -63,6 +72,19 @@ namespace RedCloudAPI.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
+
+        [HttpGet("GetAssignCreditById/{Id}")]
+        public async Task<IActionResult> GetAssignCreditById(int Id)
+        {
+            var assignCredit = await _mediator.Send(new GetAssignCreditByIdQuery { GetRateAssignCreditId = Id });
+            if (assignCredit.Data != null)
+            {
+                return Ok(assignCredit);
+            }
+              return NotFound(assignCredit);
+        }
+
         [HttpPut("EditRate")]
         public async Task<ActionResult> Update([FromBody] EditRateCommand model)
         {

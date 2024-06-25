@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Utilities.Collections;
 using RedCloud.Interfaces;
 using RedCloud.ViewModel;
 
@@ -11,8 +12,21 @@ namespace RedCloud.Controllers
         {
             _resellerAssignCreditService = resellerAssignCreditService;
         }
-        public IActionResult ListRate()
+      
+        public async Task<IActionResult> AssignCreditDetailsById(int id)
         {
+            if (id != null || id != 0)
+            {
+                var response = await _resellerAssignCreditService.GetAssignCreditDetails(id);
+                return View(response);
+            }
+            return View();
+
+        }
+        public async Task<IActionResult> ListRate()
+        {
+            var ListRate = await _resellerAssignCreditService.GetAllAssignCredit();
+            ViewBag.listRate = ListRate;
             return View();
         }
         public async Task<IActionResult> AddRate()

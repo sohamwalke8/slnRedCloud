@@ -33,7 +33,6 @@ namespace RedCloud.Controllers
             _accountService = accountService;
             _mailService = mailService;
             _distributedCache = distributedCache;
-            _encryptionService = encryptionService;
         }
 
 
@@ -223,8 +222,13 @@ namespace RedCloud.Controllers
                 }                
                 else
                 {
-                    TempData["SuccessMessage"] = "Password Reset successfully!l";
+
+                    //_notyf.Error(loginResponse.Message);
+                    return View();
                 }
+<<<<<<<<< Temporary merge branch 1
+
+=========
             
             }
 
@@ -281,5 +285,12 @@ namespace RedCloud.Controllers
         }
 
     }
+            }
+            else
+            {
+                return View();
+            }
+        }
+        */
+    }
 }
- 
