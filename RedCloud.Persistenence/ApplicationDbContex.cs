@@ -55,6 +55,7 @@ namespace RedCloud.Persistenence
         public DbSet<Campaign> Campaigns { get; set; }
 
         public DbSet<Template> Templates { get; set; }
+        public DbSet<MessagingUser> MessagingUsers { get; set; }
 
 
 

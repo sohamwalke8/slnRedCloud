@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="bin\**" />
     <Compile Remove="Features\Campaign\**" />
+    <EmbeddedResource Remove="bin\**" />
     <EmbeddedResource Remove="Features\Campaign\**" />
+    <None Remove="bin\**" />
     <None Remove="Features\Campaign\**" />
   </ItemGroup>
 
