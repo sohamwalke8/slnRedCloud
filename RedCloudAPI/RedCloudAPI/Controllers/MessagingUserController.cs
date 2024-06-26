@@ -1,0 +1,68 @@
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using RedCloud.Application.Features.MessagingUsers.Commands;
+using RedCloud.Application.Features.MessagingUsers.Queries;
+using RedCloud.Application.Features.OrganizationAdmins.Queries;
+using RedCloud.Application.Features.OrganizationUsers.Commands;
+using RedCloud.Application.Features.OrganizationUsers.Queries;
+
+namespace RedCloudAPI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class MessagingUserController : ControllerBase
+    {
+
+
+        private readonly IMediator _mediator;
+        private readonly ILogger<MessagingUserController> _logger;
+
+        public MessagingUserController(IMediator mediator, ILogger<MessagingUserController> logger)
+        {
+            _mediator = mediator;
+            _logger = logger;
+        }
+
+
+        
+        [HttpGet("GetAll")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> GetAllMessagingUserList()
+        {
+            //_logger.LogInformation("GetAllOrganizationAdminList Initiated");
+            var data = await _mediator.Send(new GetAllMessagingUserQuery());
+            return Ok(data);
+        }
+
+        [HttpPut("Block/{id}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> BlockMessagingUser(int id)
+        {
+            //_logger.LogInformation("BlockReSeller Initiated");
+            var blockOrganizationuser = new BlockMessagingUserCommand() { Id = id };
+            await _mediator.Send(blockOrganizationuser);
+            if (blockOrganizationuser == null)
+            {
+                return NotFound("");
+            }
+            return Ok("Messaging User Blocked SuccessFully");
+        }
+
+        [HttpGet("GetDetailsById/{id}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> GetMessagingUserById(int id)
+        {
+            //_logger.LogInformation("GetOrgaAdminById initiated");
+            var result = await _mediator.Send(new GetMessagingUserByIdQuery(id));
+            if (result.Data == null)
+            {
+                return NotFound(result);
+            }
+            return Ok(result);
+        }
+
+    }
+}

@@ -44,6 +44,7 @@ builder.Services.AddScoped(typeof(ICampaign<CampaignVM>), typeof(Campaign<Campai
 builder.Services.AddScoped(typeof(INumberService<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM>), typeof(NumberService<RedCloud.Application.Features.Numbers.Queries.ViewAssignedNumberVM>));
 builder.Services.AddScoped(typeof(INumberService<NumberlistVM>), typeof(NumberService<NumberlistVM>));
 builder.Services.AddScoped<ITemplateService, TemplateService>();
+builder.Services.AddScoped<IMessagingUserService, MessagingUserService>();
 
 
 

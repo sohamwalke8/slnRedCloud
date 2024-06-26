@@ -35,6 +35,7 @@ using RedCloud.Application.Features.AdminReport.Queries;
 using RedCloud.Application.Features.Reseller.AssignCredit.Queries;
 using RedCloud.Application.Features.Templates.Command;
 using RedCloud.Application.Features.Templates.Queries;
+using RedCloud.Application.Features.MessagingUsers.Queries;
 
 namespace RedCloud.Application.Profiles
 {
@@ -72,6 +73,9 @@ namespace RedCloud.Application.Profiles
 
             //A.G
             CreateMap<CreateCampaignCommand, Campaign>().ReverseMap();
+
+
+            CreateMap<MessagingUser, MessagingUserVM>().ReverseMap();
 
 
 

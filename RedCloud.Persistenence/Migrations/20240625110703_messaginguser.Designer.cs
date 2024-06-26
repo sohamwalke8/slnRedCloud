@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RedCloud.Persistenence;
 
@@ -11,9 +12,11 @@ using RedCloud.Persistenence;
 namespace RedCloud.Persistenence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240625110703_messaginguser")]
+    partial class messaginguser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,23 +190,6 @@ namespace RedCloud.Persistenence.Migrations
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("RedCloud.Domain.Entities.CreditsType", b =>
-                {
-                    b.Property<int>("TypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TypeId"));
-
-                    b.Property<string>("TypeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TypeId");
-
-                    b.ToTable("CreditsType");
-                });
-
             modelBuilder.Entity("RedCloud.Domain.Entities.GetRate", b =>
                 {
                     b.Property<int>("GetRateId")
@@ -244,9 +230,6 @@ namespace RedCloud.Persistenence.Migrations
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -584,64 +567,6 @@ namespace RedCloud.Persistenence.Migrations
                     b.ToTable("Rates");
                 });
 
-            modelBuilder.Entity("RedCloud.Domain.Entities.RateAssignCredit", b =>
-                {
-                    b.Property<int>("RateAssignCreditId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RateAssignCreditId"));
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("InboundMMS")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InboundSMS")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("LastModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MonthlyNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrgID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OutboundMMS")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OutboundSMS")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Users")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RateAssignCreditId");
-
-                    b.ToTable("RateAssignCredit");
-                });
-
             modelBuilder.Entity("RedCloud.Domain.Entities.RedCloudAdmin", b =>
                 {
                     b.Property<int>("RedCloudAdminUserId")
@@ -918,6 +843,54 @@ namespace RedCloud.Persistenence.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("States");
+                });
+
+            modelBuilder.Entity("RedCloud.Domain.Entities.Template", b =>
+                {
+                    b.Property<int>("TemplateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TemplateId"));
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("LastModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MessageBody")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MessageType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TemplateName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TemplatePersonalization")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TemplateURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TemplateId");
+
+                    b.ToTable("Templates");
                 });
 
             modelBuilder.Entity("RedCloud.Domain.Entities.Types", b =>
