@@ -95,6 +95,8 @@ namespace RedCloud.Persistenence
         public DbSet<GetAllAssignCredit> GetAllAssignCredit { get; set; }
         public DbSet<AssignCreditDetailsVM> AssignCreditDetailsVM { get; set; }
 
+        
+
 
     }
 }
