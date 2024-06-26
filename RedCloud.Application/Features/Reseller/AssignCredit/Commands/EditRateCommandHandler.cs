@@ -37,7 +37,7 @@ namespace RedCloud.Application.Features.Reseller.AssignCredit.Commands
 
             try
             {
-                var Res = await _repository.StoredProcedureCommandAsync("usp_UpdateOrganizationRate", parameters);
+                var Res = await _repository.StoredProcedureCommandAsync("usp_ResellerCreditUpdateRate", parameters);
 
                 if (Res == null)
                 {

@@ -76,7 +76,8 @@ namespace RedCloud.Controllers
                 if (result.Data.Roles != null)
                 {
                     // Set session data
-                    var roles = result.Data.Roles.Select(r => new {
+                    var roles = result.Data.Roles.Select(r => new
+                    {
                         RoleName = r.RoleName.Trim(),
                         // Include other properties if needed
                     });
@@ -285,12 +286,5 @@ namespace RedCloud.Controllers
         }
 
     }
-            }
-            else
-            {
-                return View();
-            }
-        }
-        */
-    }
+
 }

@@ -19,7 +19,7 @@ namespace RedCloud.Application.Features.Reseller.AssignCredit.Queries
         }
 		public async Task<Response<IEnumerable<CreditsType>>> Handle(GetTypeQuery request, CancellationToken cancellationToken)
 		{
-			var Res = (await _repository.StoredProcedureQueryAsync("usp_GetType")).ToList();
+			var Res = (await _repository.StoredProcedureQueryAsync("usp_GetTypeList")).ToList();
 			return new Response<IEnumerable<CreditsType>>(Res, "success");
 		}
 	}
