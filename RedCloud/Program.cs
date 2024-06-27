@@ -65,7 +65,12 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    //pattern: "{controller=Home}/{action=Index}/{Id?}");
-    pattern: "{controller=Account}/{action=Login}/{Id?}");
+        //pattern: "{controller=Home}/{action=Index}/{Id?}");
+        //pattern: "{controller=Account}/{action=Login}/{Id?}");
+        //aakash
+        //pattern: "{controller=OrganizationAdmin}/{action=ViewOrganizationAdmin}/{id?}");
+        pattern: "{controller=Campaign}/{action=Index}/{id?}");
+
+
 
 app.Run();
