@@ -44,6 +44,7 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         }
 
         public async Task<Response<IEnumerable<T>>> GetAllAsync(string apiUrl)
+        
         {
             HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
 
@@ -54,8 +55,16 @@ namespace MvcApiCallingService.Helpers.ApiHelper
 
         public async Task<Response<T>> GetByIdAsync(string apiUrl)
         {
-            HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
-            return await ValIdateResponse(responseMessage);
+            try
+            {
+                HttpResponseMessage responseMessage = await _httpClient.GetAsync(apiUrl);
+                return await ValIdateResponse(responseMessage);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public async Task<Response<int>> PostAsync<TEntity>(string apiUrl, TEntity entity)
@@ -122,9 +131,19 @@ namespace MvcApiCallingService.Helpers.ApiHelper
         */
         public async Task<Response<T>> PutAsync<TEntity>(string apiUrl, TEntity entity)
         {
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
-            HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
-            return await ValIdateResponse(responseMessage);
+            try
+            {
+                //change by aditya mishra 
+                StringContent stringContent = new StringContent(JsonConvert.SerializeObject(entity), System.Text.Encoding.UTF8, "application/json");
+                HttpResponseMessage responseMessage = await _httpClient.PutAsync(apiUrl, stringContent);
+                return await ValIdateResponse(responseMessage);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
         }
 
         public async Task<string> DeleteAsync(string apiUrl)

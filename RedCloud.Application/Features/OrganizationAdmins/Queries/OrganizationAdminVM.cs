@@ -16,6 +16,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
         public string OrgName { get; set; }
 
         [Required(ErrorMessage = "Please Enter EIN Number")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Please enter only numbers")]
         public string EIN { get; set; }
 
 
@@ -28,7 +29,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
 
 
         //[Required(ErrorMessage = "Please Enter Valid Details")]
-        //public string? OrgAdminPassword { get; set; }
+        public string? OrgAdminPassword { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone Number")]

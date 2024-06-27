@@ -1,11 +1,13 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Client;
 using RedCloud.Application.Contract.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,6 +48,32 @@ namespace RedCloud.Persistenence.Repositories
             _logger.LogInformation("ListAllAsync Initiated");
             return await _dbContext.Set<T>().ToListAsync();
         }
+
+
+
+        public async Task<List<T>> GetAllIncludeAsync()
+        {
+            try
+            {
+                var query = _dbContext.Set<T>().AsQueryable();
+
+                var entityType = _dbContext.Model.FindEntityType(typeof(T));
+                var navigationProperties = entityType.GetNavigations();
+
+                foreach (var navigationProperty in navigationProperties)
+                {
+                    query = query.Include(navigationProperty.Name);
+                }
+
+                return await query.ToListAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
 
         public async virtual Task<IReadOnlyList<T>> GetPagedReponseAsync(int page, int size)
         {
@@ -94,12 +122,17 @@ namespace RedCloud.Persistenence.Repositories
             var parameterNames = GetParameterNames(parameters);
             return await _dbContext.Set<T>().FromSqlRaw(string.Format("{0} {1}", storedProcedureName, string.Join(",", parameterNames)), parameters).ToListAsync();
         }
+		public async Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName)
+		{
+			return await _dbContext.Set<T>().FromSqlRaw(string.Format("{0}", storedProcedureName)).ToListAsync();
+		}
 
-        //For Insert, Update, Delete Operations
-        public async Task<int> StoredProcedureCommandAsync(string storedProcedureName, SqlParameter[] parameters = null)
+		//For Insert, Update, Delete Operations
+		public async Task<int> StoredProcedureCommandAsync(string storedProcedureName, SqlParameter[] parameters = null)
         {
             var parameterNames = GetParameterNames(parameters);
             return await _dbContext.Database.ExecuteSqlRawAsync(string.Format("{0} {1}", storedProcedureName, string.Join(",", parameterNames)), parameters);
+            
         }
 
         private string[] GetParameterNames(SqlParameter[] parameters)
@@ -112,36 +145,45 @@ namespace RedCloud.Persistenence.Repositories
             return parameterNames;
         }
 
+        
         //Eager Loading of Related Data   ---------------------------
-        //public async Task<T> GetByIdAsyncInculde(int id)
-        //{
-        //    var query = _dbContext.Set<T>().AsQueryable();
-
-        //    var navigationProperties = _dbContext.Model.FindEntityType(typeof(T)).GetNavigations();
-
-        //    foreach (var navigationProperty in navigationProperties)
-        //    {
-        //        query = query.Include(navigationProperty.Name);
-        //    }
-
-        //    return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == id);
-        //}
 
         public async Task<T> GetByIdAsyncInculde(int id)
         {
-            var query = _dbContext.Set<T>().AsQueryable();
-
-            var entityType = _dbContext.Model.FindEntityType(typeof(T));
-            var primaryKeyProperty = entityType.FindPrimaryKey().Properties.First().Name;
-
-            var navigationProperties = entityType.GetNavigations();
-
-            foreach (var navigationProperty in navigationProperties)
+            try
             {
-                query = query.Include(navigationProperty.Name);
+                var query = _dbContext.Set<T>().AsQueryable();
+
+                var entityType = _dbContext.Model.FindEntityType(typeof(T));
+                var primaryKeyProperty = entityType.FindPrimaryKey().Properties.First().Name;
+
+                var navigationProperties = entityType.GetNavigations();
+
+                foreach (var navigationProperty in navigationProperties)
+                {
+                    query = query.Include(navigationProperty.Name);
+                }
+
+                return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, primaryKeyProperty) == id);
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
-            return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, primaryKeyProperty) == id);
         }
+
+
+        //public async Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName)// Atharva
+        //{
+        //    //var parameterNames = GetParameterNames(parameters);
+        //    return await _dbContext.Set<T>().FromSqlRaw(string.Format("{0}", storedProcedureName)).ToListAsync();
+        //}
+
+        
     }
+
+
 }
+

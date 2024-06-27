@@ -26,40 +26,46 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="#" class="nav-link ">
+                        <a asp-action="ViewallRedCloudAdmin" asp-controller="RedCloudAdmin" class="nav-link ">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Manage Red Cloud Admin</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a asp-action="ViewallResellerAdmin" asp-controller="ResellerAdminUser" class="nav-link ">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Manage Reseller</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a asp-action="ViewOrganizationAdmin" asp-controller="OrganizationAdmin" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Manage Organization</p>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="nav-item" style="border-bottom:2px solid white">
+            @* <li class="nav-item" style="border-bottom:2px solid white">
                 <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Rate</p>
+                </a>
+            </li> *@
+            <li class="nav-item" style="border-bottom:2px solid white">
+                <a asp-controller="Rate" asp-action="ViewAllRates" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Manage Rate</p>
                 </a>
             </li>
             <li class="nav-item" style="border-bottom:2px solid white">
-                <a href="#" class="nav-link">
+                <a asp-controller="Number" asp-action="Viewallnumberslist" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Manage Mobile Number</p>
                 </a>
             </li>
 
             <li class="nav-item" style="border-bottom:2px solid white">
-                <a href="#" class="nav-link">
+                <a asp-controller="Campaigndetail" asp-action="CampaignViewDetail" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Campaign Registry Management</p>
                 </a>
@@ -72,7 +78,7 @@
                 </a>
             </li>
             <li class="nav-item" style="border-bottom:2px solid white">
-                <a href="#" class="nav-link">
+                 <a asp-controller="AdminReportDashboard" asp-action="Index" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Reports</p>
                 </a>
