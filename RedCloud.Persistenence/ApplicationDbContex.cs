@@ -28,6 +28,8 @@ namespace RedCloud.Persistenence
                .WithMany()
                .HasForeignKey(oa => oa.StateId)
                .OnDelete(DeleteBehavior.Restrict); // Specify NO ACTION on delete
+
+            modelBuilder.Entity<GetRatedUsage>().HasNoKey();
         }
 
         public DbSet<Role> Role { get; set; }
@@ -73,7 +75,14 @@ namespace RedCloud.Persistenence
         public DbSet<GetRate> GetRates { get; set; }
 
         public DbSet<GetAllAssignCredit> GetAllAssignCredit { get; set; }
+
+
+        // fake Entities
         public DbSet<AssignCreditDetailsVM> AssignCreditDetailsVM { get; set; }
+        public DbSet<GetRatedUsage> GetRatedUsage { get; set; }
+        public DbSet<getRatedUsageList> getRatedUsageList { get; set; }
+
+
 
 
     }

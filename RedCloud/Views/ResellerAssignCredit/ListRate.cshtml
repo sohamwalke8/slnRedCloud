@@ -189,17 +189,17 @@
                                                 <a asp-action="EditRate" asp-controller="ResellerAssignCredit" asp-route-id=" @item.RateAssignCreditId" class="btn-action">
                                                     <i class="fa-regular fa-pen-to-square" style="color: #131111;"></i>
                                                 </a>
-                                                <a asp-action="" asp-controller="" asp-route-id="@item.RateAssignCreditId" class="delete-btn btn-action" data-id="@item.RateAssignCreditId">
+                                                <a asp-action="GetRatedUsageById" asp-controller="ResellerAssignCredit" asp-route-id="@item.RateAssignCreditId" class="delete-btn btn-action" data-id="@item.RateAssignCreditId">
                                                     <i class="fa-solid fa-circle-notch" style="color: #FF8C00;"></i>
                                                 </a>
 
-                                                <a class="delete-btn btn-action" data-id="@item.RateAssignCreditId" data-name="@item.GetAllAssignCreditName" >
+                                                @* <a class="delete-btn btn-action" data-id="@item.RateAssignCreditId" data-name="@item.GetAllAssignCreditName" >
                                                     <i class="fa-solid fa-trash" style="color: #cb1010;"></i>
-                                                </a>
-
-                                                @* <a class="delete-btn btn-action" data-id=" @item.RateAssignCreditId" data-name="@item.RateAssignCreditId">
-                                                    <i class="fa-solid fa-dollar-sign"></i>
                                                 </a> *@
+
+                                                <a class="delete-btn btn-action" data-id=" @item.RateAssignCreditId" data-name="@item.RateAssignCreditId">
+                                                    <i class="fa-solid fa-dollar-sign"></i>
+                                                </a>
                                             </td> 
                                         </tr>
                                     }
