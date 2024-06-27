@@ -6,6 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20240625110703_messaginguser.cs" />
+    <Compile Remove="Migrations\20240625110703_messaginguser.Designer.cs" />
+    <Compile Remove="Migrations\20240625120739_messaginguser1.cs" />
+    <Compile Remove="Migrations\20240625120739_messaginguser1.Designer.cs" />
+  </ItemGroup>
+
   <!--<ItemGroup>
     <Compile Remove="Migrations\**" />
     <EmbeddedResource Remove="Migrations\**" />

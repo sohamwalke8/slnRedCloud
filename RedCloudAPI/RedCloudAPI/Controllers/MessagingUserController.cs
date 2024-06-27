@@ -6,6 +6,7 @@ using RedCloud.Application.Features.MessagingUsers.Queries;
 using RedCloud.Application.Features.OrganizationAdmins.Queries;
 using RedCloud.Application.Features.OrganizationUsers.Commands;
 using RedCloud.Application.Features.OrganizationUsers.Queries;
+using RedCloud.Application.Features.Rates.Commands;
 
 namespace RedCloudAPI.Controllers
 {
@@ -25,7 +26,7 @@ namespace RedCloudAPI.Controllers
         }
 
 
-        
+
         [HttpGet("GetAll")]
         //[ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAllMessagingUserList()
@@ -64,5 +65,34 @@ namespace RedCloudAPI.Controllers
             return Ok(result);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] AddMessagingUserQuery addmessaginguserquery)
+        {
+
+            try
+            {
+                if (addmessaginguserquery == null)
+                {
+                    return BadRequest("Invalid request body");
+                }
+
+                var response = await _mediator.Send(addmessaginguserquery);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+
+                var errorResponse = new
+                {
+                    Message = "Internal server error",
+                    Error = ex.Message,
+                    StackTrace = ex.StackTrace
+                };
+
+                return StatusCode(500, errorResponse);
+            }
+
+
+        }
     }
 }

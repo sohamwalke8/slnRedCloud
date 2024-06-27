@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
 using RedCloud.Services;
 
@@ -64,6 +66,23 @@ namespace RedCloud.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> AddMessagingUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddMessagingUser(MessagingUser messaginguser)
+        {
+            var result = await _messagingUserService.AddMessagingUser(messaginguser);
+
+            return RedirectToAction("Index");
+            
+            return View(messaginguser);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MvcApiCallingService.Helpers.ApiHelper;
+using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
 using RedCloud.ViewModel;
 
@@ -59,6 +60,13 @@ namespace RedCloud.Services
                 throw;
             }
         }
+
+        public async Task<bool> AddMessagingUser(MessagingUser messaginguser)
+        {
+            var response = await _clientTwo.PostAsync("MessagingUser", messaginguser);
+            return response.Data > 0;
+        }
+
 
     }
 }
