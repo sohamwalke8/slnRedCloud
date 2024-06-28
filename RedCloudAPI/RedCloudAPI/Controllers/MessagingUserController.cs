@@ -94,5 +94,31 @@ namespace RedCloudAPI.Controllers
 
 
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateMessagingUserQuery updatemessaginguserquery)
+        {
+            try
+            {
+                if (updatemessaginguserquery == null || id != updatemessaginguserquery.MessagingUserId)
+                {
+                    return BadRequest("Invalid request body");
+                }
+
+                var response = await _mediator.Send(updatemessaginguserquery);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var errorResponse = new
+                {
+                    Message = "Internal server error",
+                    Error = ex.Message,
+                    StackTrace = ex.StackTrace
+                };
+
+                return StatusCode(500, errorResponse);
+            }
+        }
     }
 }

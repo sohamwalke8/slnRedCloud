@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using RedCloud.Application.Features.MessagingUsers.Commands;
 using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
 using RedCloud.Services;
+using RedCloud.ViewModel;
 
 namespace RedCloud.Controllers
 {
@@ -80,9 +82,29 @@ namespace RedCloud.Controllers
         {
             var result = await _messagingUserService.AddMessagingUser(messaginguser);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ViewMessagingUsers");
             
             return View(messaginguser);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> EditMessagingUser(int Id)
+        {
+            var response = await _messagingUserService.GetMessagingUserById(Id);
+            return View(response);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditMessagingUser(UpdateMessagingUserQuery updatemessaginguserquery)
+        {
+            if (ModelState.IsValid)
+            {
+                
+                var resposne = await _messagingUserService.UpdateMessagingUser(updatemessaginguserquery) ;
+            }
+            return RedirectToAction("ViewMessagingUsers");
         }
     }
 }

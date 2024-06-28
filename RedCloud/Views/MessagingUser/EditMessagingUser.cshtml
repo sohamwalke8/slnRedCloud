@@ -1,7 +1,7 @@
 ﻿@model RedCloud.ViewModel.MessagingUsersVM
 
 @{
-    ViewData["Title"] = "Add Messaging User";
+    ViewData["Title"] = "Edit Messaging User";
     Layout = "_Layout";
 }
 
@@ -25,20 +25,25 @@
     .form-check-label {
         margin-left: 10px;
     }
+
+    .display_none{
+        display:none;
+    }
 </style>
 
 <div class="container-fluid d-flex justify-content-center align-items-center vh-100" style="background-color:white">
     <div class="col-md-12">
         <div class="card card-primary">
             <div class="card-header bg-primary">
-                <h3 class="card-title">Add Messaging User</h3>
+                <h3 class="card-title">Edit Messaging User</h3>
             </div>
             <div class="mandatory-message">
                 * marked fields are mandatory.
             </div>
-            <form asp-action="AddMessagingUser" method="post">
+            <form asp-action="EditMessagingUser" method="post">
                 <div class="card-body">
                     <div class="row">
+                        <input  type="hidden" asp-for="MessagingUserId" />
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label asp-for="MessagingUserFirstName" class="control-label required"></label>
@@ -82,7 +87,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Add Messaging User</button>
+                    <button type="submit" class="btn btn-primary">Edit Messaging User</button>
                     <button type="button" class="btn btn-secondary" onclick="window.location.href='@Url.Action("Index", "MessagingUser")'">Cancel</button>
                 </div>
             </form>

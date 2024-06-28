@@ -1,4 +1,6 @@
 ﻿using MvcApiCallingService.Helpers.ApiHelper;
+using RedCloud.Application.Features.MessagingUsers.Commands;
+using RedCloud.Application.Features.Rates.Commands;
 using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
 using RedCloud.ViewModel;
@@ -10,15 +12,19 @@ namespace RedCloud.Services
 
         private readonly IApiClient<MessagingUsersVM> _client;
         private readonly IApiClient<MessagingUsersVM> _clientTwo;
-        public readonly ILogger<MessagingUserService> _logger;
+        private readonly ILogger<MessagingUserService> _logger;
+        private readonly IApiClient<UpdateMessagingUserQuery> _clientThree;
 
 
-        public MessagingUserService(IApiClient<MessagingUsersVM> client, IApiClient<MessagingUsersVM> clientTwo, ILogger<MessagingUserService> logger)
+
+
+
+        public MessagingUserService(IApiClient<MessagingUsersVM> client, IApiClient<MessagingUsersVM> clientTwo, ILogger<MessagingUserService> logger, IApiClient<UpdateMessagingUserQuery> clientThree)
         {
             _client = client;
             _logger = logger;
             _clientTwo = clientTwo;
-
+            _clientThree = clientThree;
         }
 
         //AAkash
@@ -65,6 +71,12 @@ namespace RedCloud.Services
         {
             var response = await _clientTwo.PostAsync("MessagingUser", messaginguser);
             return response.Data > 0;
+        }
+
+        public async Task<bool> UpdateMessagingUser(UpdateMessagingUserQuery updateMessagingUserQuery)
+        {
+            var response = await _clientThree.PutAsync($"MessagingUser/{updateMessagingUserQuery.MessagingUserId}", updateMessagingUserQuery);
+            return response.Succeeded;
         }
 
 

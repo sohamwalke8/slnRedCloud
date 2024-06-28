@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<RedCloud.ViewModel.MessagingUsersVM>
-
+ 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -124,12 +124,12 @@
     }
 </style>
 
-<form method="post" id="user-query-form" action="/OrganizationAdmin/AddOrganizationAdmin" novalidate="novalidate">
+<form method="post" id="user-query-form" action="/MessagingUser/AddMessagingUser" novalidate="novalidate">
     <div class="card-body">
 
         <div class="card">
             <div class="card-header" style="background-color:#007BFF">
-                <h3 class="card-title" style="color:white; font-weight:bold;font-size:23px;">Manage Organization</h3>
+                <h3 class="card-title" style="color:white; font-weight:bold;font-size:23px;">Manage MessagingUser</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -137,7 +137,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <p>
-                                <a class="btn btn-primary" asp-action="AddOrganizationAdmin" asp-controller="OrganizationAdmin"
+                                <a class="btn btn-primary" asp-action="AddMessagingUser" asp-controller="MessagingUser"
                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; float:right; margin-bottom:10px">
                                     Add Messaging User
                                 </a>
@@ -178,8 +178,10 @@
                                                     <i class="fa-solid fa-eye" style="color: #050505;"></i>
                                                 </a>
 
-                                                <a asp-action="UpdateOrganizationAdmin" asp-controller="OrganizationAdmin" asp-route-id="@item.MessagingUserId" class="btn-action" style="text-decoration:none">
-                                                    <i class="fa-regular fa-pen-to-square" style="color: #131111;"></i>
+                                               
+
+                                                <a href="@Url.Action("EditMessagingUser", "MessagingUser", new { Id = item.MessagingUserId })" class="btn-action" style="text-decoration:none">
+                                                        <i class="fa-regular fa-pen-to-square" style="color: #050505;"></i>
                                                 </a>
 
                                                 @* <a class="delete-btn btn-action" data-id="@item.MessagingUserId" data-name="@item.MessagingUserFirstName" href="#" style="text-decoration:none">
