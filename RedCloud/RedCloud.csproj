@@ -32,4 +32,8 @@
     <ProjectReference Include="..\MvcApiCallingService\MvcApiCallingService.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Log\" />
+  </ItemGroup>
+
 </Project>
