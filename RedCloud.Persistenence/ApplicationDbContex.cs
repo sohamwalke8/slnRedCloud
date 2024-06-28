@@ -31,6 +31,7 @@ namespace RedCloud.Persistenence
             modelBuilder.Entity<TotalReport>().HasNoKey();//new
             modelBuilder.Entity<AdminInboundMessageReport>().HasNoKey();
             modelBuilder.Entity<AdminCount>().HasNoKey();
+            modelBuilder.Entity<GetRatedUsage>().HasNoKey();
 
             modelBuilder.Entity<ResellerInboundMessagesReport>().HasNoKey();//new
 
@@ -93,7 +94,14 @@ namespace RedCloud.Persistenence
 
 
         public DbSet<GetAllAssignCredit> GetAllAssignCredit { get; set; }
+
+
+        // fake Entities
         public DbSet<AssignCreditDetailsVM> AssignCreditDetailsVM { get; set; }
+        public DbSet<GetRatedUsage> GetRatedUsage { get; set; }
+        public DbSet<getRatedUsageList> getRatedUsageList { get; set; }
+
+
 
         
 

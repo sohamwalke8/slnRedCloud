@@ -129,10 +129,8 @@
                         @foreach (var role in userRoles)
                         {
                              <option value="@role.RoleName" id="roleButton-@role.RoleId" class="dropdown-item">@role.RoleName</option>
-@*                              <option value="@role.RoleName" id="roleButton-@role.RoleId" selected="@ViewContext.HttpContext.Session.GetString("Role")" class="dropdown-item">@role.RoleName</option>
- *@                    
-@*                             <option value="@role.RoleName" id="roleButton-@role.RoleId" selected="@ViewBag.role" class="dropdown-item">@role.RoleName</option>
- *@                        }
+                     
+                        }
                         @* <option class="dropdown-item" href="#">Sign out</option> *@
                     }
                 </select>
@@ -213,6 +211,16 @@
     <script src="~/plugins/jquery/jquery.min.js"></script>
 
     <script>
+
+
+        $(document).ready(function () {
+            // On page load, set the selected option based on session data
+            var selectedRole = '@(ViewContext.HttpContext.Session.GetString("Role"))'; // Get role from session
+            if (selectedRole) {
+                $('#roles').val(selectedRole); // Set the selected value in the dropdown
+            }
+        });
+
         function setRole(roleName) {
             debugger
             $.ajax({

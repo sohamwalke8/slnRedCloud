@@ -9,11 +9,11 @@ using RedCloud.Application.Models.Mail;
 
 namespace RedCloudAPI.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class ResellerAssignCreditController : ControllerBase
-	{
-		private readonly IMediator _mediator;
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ResellerAssignCreditController : ControllerBase
+    {
+        private readonly IMediator _mediator;
         public ResellerAssignCreditController(IMediator mediator)
         {
             _mediator = mediator;
@@ -28,21 +28,21 @@ namespace RedCloudAPI.Controllers
 
 
         [HttpGet("GetOrganizationList")]
-		public async Task<IActionResult> GetOrganizationList()
-		{
-			//var query = new GetOrganizationQuery();
-			//var result = await _mediator.Send(query);
+        public async Task<IActionResult> GetOrganizationList()
+        {
+            //var query = new GetOrganizationQuery();
+            //var result = await _mediator.Send(query);
 
-			var response = await _mediator.Send(new GetOrganizationQuery());
-			return Ok(response);
-		}
-		[HttpGet("GetCreditList")]
-		public async Task<IActionResult> GetCreditList()
-		{
-			var query = new GetTypeQuery();
-			var result = await _mediator.Send(query);
-			return Ok(result);
-		}
+            var response = await _mediator.Send(new GetOrganizationQuery());
+            return Ok(response);
+        }
+        [HttpGet("GetCreditList")]
+        public async Task<IActionResult> GetCreditList()
+        {
+            var query = new GetTypeQuery();
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
         [HttpPost("AddRate")]
         public async Task<ActionResult> Create([FromBody] AddRateCommand model)
         {
@@ -74,6 +74,13 @@ namespace RedCloudAPI.Controllers
         }
 
 
+        [HttpPut("EditRate")]
+        public async Task<ActionResult> Update([FromBody] EditRateCommand model)
+        {
+            var response = await _mediator.Send(model);
+            return Ok(response);
+        }
+
         [HttpGet("GetAssignCreditById/{Id}")]
         public async Task<IActionResult> GetAssignCreditById(int Id)
         {
@@ -82,14 +89,24 @@ namespace RedCloudAPI.Controllers
             {
                 return Ok(assignCredit);
             }
-              return NotFound(assignCredit);
+            return NotFound(assignCredit);
         }
 
-        [HttpPut("EditRate")]
-        public async Task<ActionResult> Update([FromBody] EditRateCommand model)
+
+        [HttpGet("GetRatedUsageById/{Id}")]
+        public async Task<IActionResult> GetRatedUsageById(int Id)
         {
-            var response = await _mediator.Send(model);
-            return Ok(response);
+            var assignCredit = await _mediator.Send(new GetRatedUsageByIdQuery { GetRateAssignCreditId = Id });
+            if (assignCredit.Data != null)
+            {
+                return Ok(assignCredit);
+            }
+            return NotFound(assignCredit);
         }
+
+
+
+
+
     }
 }

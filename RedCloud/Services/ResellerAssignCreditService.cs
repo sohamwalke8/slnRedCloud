@@ -14,14 +14,19 @@ namespace RedCloud.Services
 		private readonly IApiClient<RateAssignCreditVM> _apiClientRateAssignCredit;
 		private readonly IApiClient<GetAllAssignCredit> _apiClientGetAllAssignCredit;
 		private readonly IApiClient<AssignCreditDetailsVM> _apiClientGetAllAssignCreditDetails;
+		private readonly IApiClient<GetRatedUsage> _apiClientGetRatedUsageDetails;
 
-        public ResellerAssignCreditService(IApiClient<OrganizationAdmin> apiClientOrganizationAdmin, IApiClient<CreditsType> apiClientCreditsType, IApiClient<RateAssignCreditVM> apiClientRateAssignCredit, IApiClient<GetAllAssignCredit> apiClientGetAllAssignCredit, IApiClient<AssignCreditDetailsVM> apiClientGetAllAssignCreditDetails)
+        public ResellerAssignCreditService(IApiClient<OrganizationAdmin> apiClientOrganizationAdmin, IApiClient<CreditsType> apiClientCreditsType,
+            IApiClient<RateAssignCreditVM> apiClientRateAssignCredit, IApiClient<GetAllAssignCredit> apiClientGetAllAssignCredit,
+            IApiClient<AssignCreditDetailsVM> apiClientGetAllAssignCreditDetails, IApiClient<GetRatedUsage> apiClientGetRatedUsageDetails)
         {
             _apiClientOrganizationAdmin = apiClientOrganizationAdmin;
             _apiClientCreditsType = apiClientCreditsType;
 			_apiClientRateAssignCredit = apiClientRateAssignCredit;
             _apiClientGetAllAssignCredit = apiClientGetAllAssignCredit;
             _apiClientGetAllAssignCreditDetails = apiClientGetAllAssignCreditDetails;
+            _apiClientGetRatedUsageDetails = apiClientGetRatedUsageDetails;
+
         }
 
         public async Task<IEnumerable<GetAllAssignCredit>> GetAllAssignCredit()
@@ -68,6 +73,13 @@ namespace RedCloud.Services
             var apiUrl = $"ResellerAssignCredit/GetAssignCreditById/{id}";
             var userData = await _apiClientGetAllAssignCreditDetails.GetByIdAsync(apiUrl);
             return userData.Data;
+        }
+
+        public async Task<GetRatedUsage> GetRatedUsageDetailsById(int id)
+        {
+            var apiUrl = $"ResellerAssignCredit/GetRatedUsageById/{id}";
+            var UsageData = await _apiClientGetRatedUsageDetails.GetByIdAsync(apiUrl);
+            return UsageData.Data;
         }
     }
 }

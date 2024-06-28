@@ -12,7 +12,17 @@ namespace RedCloud.Controllers
         {
             _resellerAssignCreditService = resellerAssignCreditService;
         }
-      
+ 
+        public async Task<IActionResult> GetRatedUsageById(int id)
+        {
+            if (id != null || id != 0)
+            {
+                var response = await _resellerAssignCreditService.GetRatedUsageDetailsById(id);
+                return View(response);
+            }
+            return View();
+        }
+
         public async Task<IActionResult> AssignCreditDetailsById(int id)
         {
             if (id != null || id != 0)
