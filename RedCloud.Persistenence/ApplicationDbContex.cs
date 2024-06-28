@@ -31,6 +31,7 @@ namespace RedCloud.Persistenence
             modelBuilder.Entity<TotalReport>().HasNoKey();//new
             modelBuilder.Entity<AdminInboundMessageReport>().HasNoKey();
             modelBuilder.Entity<AdminCount>().HasNoKey();
+            modelBuilder.Entity<GetRatedUsage>().HasNoKey();
 
             modelBuilder.Entity<ResellerInboundMessagesReport>().HasNoKey();//new
 
