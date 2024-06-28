@@ -108,7 +108,7 @@ namespace RedCloud.Controllers
         [HttpPost]
         public async Task<IActionResult> AddOrganizationAdmin(OrganizationAdminVM request)
         {
-            // _logger.LogInformation("CreateCategory Action initiated");
+            _logger.LogInformation("Adding Organization initiated");
 
 
             var response = await _organizationAdminService.CreateOrganizationAdmin(request);
@@ -157,10 +157,10 @@ namespace RedCloud.Controllers
         {
             try
             {
-                // _logger.LogInformation("CreateCategory Action initiated");
+                _logger.LogInformation("Update Organization initiated");
                 var response = _organizationAdminService.EditOrganizationAdmin(request);
 
-                //_logger.LogInformation("CreateCategory Action initiated");
+                _logger.LogInformation("UpdateD Organization");
                 return RedirectToAction("ViewOrganizationAdmin");
             }
             catch (Exception)

@@ -54,6 +54,7 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
                 AddressLineTwo = admin.AddressLineTwo,
                 OrgURL = admin.OrgURL,
                 ResellerId = reseller.ResellerAdminUserId,
+                IsActive = admin.IsActive,
 
             };
 

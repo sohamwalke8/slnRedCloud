@@ -51,7 +51,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="hidden" asp-for="OrgID" />
-
+                                        <input type="hidden" asp-for="IsActive" />
+                                        
                                         <label for="OrgName">Organization Name</label>
                                         <input asp-for="OrgName" class="form-control" id="OrgName" placeholder="Enter organization name">
                                         <span asp-validation-for="OrgName" class="text-danger"></span>

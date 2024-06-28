@@ -69,6 +69,9 @@ namespace RedCloud.Application.Features.OrganizationAdmins.Queries
         [Required(ErrorMessage = "Please Select Reseller Name")]
         public int? CityId { get; set; }
 
+        public bool IsActive { get; set; }
+
+
 
 
     }

@@ -14,6 +14,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
+
+
 // Add services to the container.
 IConfiguration Configuration = builder.Configuration;
 
@@ -24,6 +28,7 @@ builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(60);
 });
+
 
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddScoped(typeof(IApiClient<>), typeof(ApiClient<>));
