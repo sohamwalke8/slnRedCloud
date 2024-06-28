@@ -29,7 +29,7 @@ namespace RedCloud.Application.Features.Reseller.AssignCredit.Queries
 
             try
             {
-                var Res = (await _repository.StoredProcedureQueryAsync("usp_GetRateById", parameters)).FirstOrDefault();
+                var Res = (await _repository.StoredProcedureQueryAsync("usp_GetCreditRateById", parameters)).FirstOrDefault();
 
                 //var Res = await _repository.StoredProcedureQueryAsync("usp_GetUserByEmail", parameters);
 

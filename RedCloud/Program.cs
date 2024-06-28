@@ -63,6 +63,8 @@ builder.Services.AddScoped<IEncryptionService, EncryptionService>(); // Add by A
 
 builder.Services.AddScoped<IEncryptionService, EncryptionService>();
 builder.Services.AddScoped<IResellerAssignCreditService, ResellerAssignCreditService>();
+builder.Services.AddScoped<IReport, ReportService>();
+builder.Services.AddScoped<IAdminReport, AdminReportService>();
 
 //logger setup
 Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();

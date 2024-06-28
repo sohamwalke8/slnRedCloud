@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+RedCloud.Persistenence/Migrations/20240621093005_Init-First.cs

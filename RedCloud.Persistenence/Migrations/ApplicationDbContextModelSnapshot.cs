@@ -542,6 +542,12 @@ namespace RedCloud.Persistenence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RateAssignCreditId"));
 
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("InboundMMS")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -549,6 +555,15 @@ namespace RedCloud.Persistenence.Migrations
                     b.Property<string>("InboundSMS")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("LastModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("MonthlyNumber")
                         .IsRequired()

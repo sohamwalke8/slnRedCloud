@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Newtonsoft.Json;
 using RedCloud.Application.Contract.Infrastructure;
 using RedCloud.Application.Features.Account.Queries.LoginQuery;
@@ -14,10 +13,8 @@ using RedCloud.Domain.Common;
 using RedCloud.Domain.Entities;
 using RedCloud.Interfaces;
 using RedCloud.Models.Email;
-using RedCloud.Services;
 using RedCloud.ViewModel;
 using System.Net.Http;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace RedCloud.Controllers
@@ -28,21 +25,19 @@ namespace RedCloud.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly IMailService _mailService;
-        private readonly IEncryptionService _encryptionService;
         private readonly IDistributedCache _distributedCache;
-        
+        private readonly IEncryptionService _encryptionService;
 
         public AccountController(IAccountService accountService, IMailService mailService, IDistributedCache distributedCache, IEncryptionService encryptionService)
         {
             _accountService = accountService;
             _mailService = mailService;
-            _encryptionService = encryptionService;
             _distributedCache = distributedCache;
         }
 
 
         // Action method to display the login page
-        
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -130,7 +125,7 @@ namespace RedCloud.Controllers
                 return PartialView("_MessagingUsers", ViewBag.role);
             }
 
-           return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         //ForgetUserPasswordVM
@@ -149,6 +144,7 @@ namespace RedCloud.Controllers
             else
             {
                 var IsUserExist = await _accountService.CheckUserExistByEmail(model.Email);
+
 
                 if (IsUserExist == null)
                 {
@@ -176,7 +172,9 @@ namespace RedCloud.Controllers
 
                     // Return to the same view with a success message
                     TempData["SuccessMessage"] = "Email sent successfully! Please check on mail";
+
                 }
+
             }
             return View();
         }
@@ -206,45 +204,45 @@ namespace RedCloud.Controllers
         /*
         public async Task<IActionResult> ResetUserPassword(int Id)
         {
-            int UserId = _encryptionService.DecryptValue(strUserId);
-            ViewBag.UserId = UserId;
+            ViewBag.UserId = Id;
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> ResetUserPassword(ResetUserPasswordVM model)
-        {      
-            if (ModelState.IsValid)
-            {
-                model.Password = EncryptionDecryption.EncryptString(model.Password);
-                var response = await _accountService.ForgetUserPasswordService(model);
-                TempData["SuccessMessage"] = "Password Reset successfully!l";
-            }
-            else
-            {
-                TempData["ErrorMessage"] = "Please try again!";
-            }
-            return View();
-        }
-
-        /*
-        [HttpPost]
-        public async Task<IActionResult> LoginAsync(Login login)
         {
 
             if (ModelState.IsValid)
             {
+               var response = await _accountService.ForgetUserPasswordService(model);
 
-                //LoginResponse loginResponse = await _service.Login(login);
-                //if (loginResponse.UserName != null)
+               if (response.Succeeded == false)
                 {
-                    //HttpContext.Session.SetString("UserName", loginResponse.UserName);
-                    //_notyf.Success("Logged In Successfully");
-
-                    return RedirectToAction("Index", "Home");
-                }
+                    
+                    return View();
+                }                
                 else
                 {
+
+                    //_notyf.Error(loginResponse.Message);
+                    return View();
+                }
+<<<<<<<<< Temporary merge branch 1
+
+=========
+            
+            }
+
+            //var apiUrl = $"https://localhost:7193/api/Account/ResetPassword";
+
+            //using (HttpClient client = new HttpClient())
+            //{
+            //    // Serialize the model object to JSON
+            //    string jsonModel = JsonConvert.SerializeObject(model);
+
+            //    StringContent content = new StringContent(jsonModel, Encoding.UTF8, "application/json");
+
+            //    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
 
             //    if (response.IsSuccessStatusCode)
             //    {
@@ -281,13 +279,12 @@ namespace RedCloud.Controllers
             Response.Headers["Expires"] = "0";
 
             // Redirect to the Login action of the Account controller          
-           // return RedirectToAction("Login", "Account");
+            // return RedirectToAction("Login", "Account");
             return RedirectToActionPermanent("Login", "Account");
-            
-            
+
+
         }
 
     }
-         
-    }
 
+}
