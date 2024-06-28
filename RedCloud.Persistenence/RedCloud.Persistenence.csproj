@@ -11,6 +11,7 @@
     <Compile Remove="Migrations\20240625110703_messaginguser.Designer.cs" />
     <Compile Remove="Migrations\20240625120739_messaginguser1.cs" />
     <Compile Remove="Migrations\20240625120739_messaginguser1.Designer.cs" />
+    <Compile Remove="Migrations\20240626125206_test55.cs" />
     <Compile Remove="Migrations\20240626125206_test55.Designer.cs" />
   </ItemGroup>
 
