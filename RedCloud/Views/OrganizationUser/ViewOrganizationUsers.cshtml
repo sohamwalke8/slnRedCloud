@@ -121,6 +121,14 @@
         padding: 0.25rem;
         margin: 0.2rem;
     }
+
+    th.no-sort {
+        pointer-events: none;
+    }
+
+        th.no-sort .sorting, th.no-sort .sorting_asc, th.no-sort .sorting_desc {
+            display: none !important;
+        }
 </style>
 <body>
 <form method="post" id="user-query-form" asp-action="ViewOrganizationUsers" asp-controller="OrganizationUser"> 
@@ -163,7 +171,7 @@
                                         <th>Last Name</th>
                                         <th>Email</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                            <th class="no-sort">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -267,6 +275,9 @@
                         text: 'Export Excel',
                         className: 'dt-button'
                     }
+                ],
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false }
                 ]
             });
 

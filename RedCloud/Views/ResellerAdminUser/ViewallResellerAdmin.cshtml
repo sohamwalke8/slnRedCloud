@@ -121,6 +121,14 @@
         padding: 0.25rem;
         margin: 0.2rem;
     }
+
+    th.no-sort {
+        pointer-events: none;
+    }
+
+        th.no-sort .sorting, th.no-sort .sorting_asc, th.no-sort .sorting_desc {
+            display: none !important;
+        }
 </style>
 
 <form method="post" id="user-query-form" action="" novalidate="novalidate">
@@ -156,7 +164,7 @@
                                         <th>EIN</th>
                                         <th>Email</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th class="no-sort">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -273,7 +281,10 @@
                         className: 'dt-button'
                     }
                 ],
-                pageLength: 10
+                pageLength: 10,
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false }
+                ]
             });
 
             $('#entriesPerPage').on('change', function () {

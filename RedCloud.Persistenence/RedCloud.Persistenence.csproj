@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20240621112017_init.cs" />
-    <Compile Remove="Migrations\20240621112017_init.Designer.cs" />
+    <Compile Remove="Migrations\20240625110703_messaginguser.cs" />
+    <Compile Remove="Migrations\20240625110703_messaginguser.Designer.cs" />
+    <Compile Remove="Migrations\20240625120739_messaginguser1.cs" />
+    <Compile Remove="Migrations\20240625120739_messaginguser1.Designer.cs" />
+    <Compile Remove="Migrations\20240626125206_test55.cs" />
+    <Compile Remove="Migrations\20240626125206_test55.Designer.cs" />
   </ItemGroup>
 
   <!--<ItemGroup>

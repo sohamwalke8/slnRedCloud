@@ -13,6 +13,15 @@
         margin-top: 0;
     }
 
+
+    th.no-sort {
+        pointer-events: none;
+    }
+
+     th.no-sort .sorting, th.no-sort .sorting_asc, th.no-sort .sorting_desc {
+            display: none !important;
+        }
+
     #dataTable {
         width: 100% !important;
     }
@@ -157,7 +166,7 @@
                                         <th>Admin Last Name</th>
                                         <th>Email</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th class="no-sort">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -249,7 +258,7 @@
 
 
 
-    <script>
+     <script>
         $(document).ready(function () {
             toastr.options = {
                 "closeButton": true,
@@ -284,6 +293,9 @@
                         text: 'Export Excel',
                         className: 'dt-button'
                     }
+                ],
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false }
                 ],
                 pageLength: 10 // Default number of entries per page
             });
@@ -335,6 +347,8 @@
                         alert('Error: ' + xhr.responseText);
                     });
             });
-        });
-    </script>
+        }); 
+    </script> 
+   
+
 }

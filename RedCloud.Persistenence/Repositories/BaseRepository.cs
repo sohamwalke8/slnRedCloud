@@ -122,9 +122,13 @@ namespace RedCloud.Persistenence.Repositories
             var parameterNames = GetParameterNames(parameters);
             return await _dbContext.Set<T>().FromSqlRaw(string.Format("{0} {1}", storedProcedureName, string.Join(",", parameterNames)), parameters).ToListAsync();
         }
+		public async Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName)
+		{
+			return await _dbContext.Set<T>().FromSqlRaw(string.Format("{0}", storedProcedureName)).ToListAsync();
+		}
 
-        //For Insert, Update, Delete Operations
-        public async Task<int> StoredProcedureCommandAsync(string storedProcedureName, SqlParameter[] parameters = null)
+		//For Insert, Update, Delete Operations
+		public async Task<int> StoredProcedureCommandAsync(string storedProcedureName, SqlParameter[] parameters = null)
         {
             var parameterNames = GetParameterNames(parameters);
             return await _dbContext.Database.ExecuteSqlRawAsync(string.Format("{0} {1}", storedProcedureName, string.Join(",", parameterNames)), parameters);
@@ -171,13 +175,15 @@ namespace RedCloud.Persistenence.Repositories
         }
 
 
-        public async Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName)// Atharva
-        {
-            //var parameterNames = GetParameterNames(parameters);
-            return await _dbContext.Set<T>().FromSqlRaw(string.Format("{0}", storedProcedureName)).ToListAsync();
-        }
+        //public async Task<IList<T>> StoredProcedureQueryAsync(string storedProcedureName)// Atharva
+        //{
+        //    //var parameterNames = GetParameterNames(parameters);
+        //    return await _dbContext.Set<T>().FromSqlRaw(string.Format("{0}", storedProcedureName)).ToListAsync();
+        //}
 
         
-
     }
+
+
 }
+

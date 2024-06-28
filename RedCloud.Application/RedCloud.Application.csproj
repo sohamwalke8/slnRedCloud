@@ -41,8 +41,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\AdminReport\Command\" />
     <Folder Include="Features\AssignmentType\Commands\" />
     <Folder Include="Features\Carrierss\Comand\" />
+    <Folder Include="Features\ResellerReport\Command\" />
   </ItemGroup>
 
 </Project>

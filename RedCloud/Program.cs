@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.DataProtection;
 using MvcApiCallingService.Helpers.ApiHelper;
 using RedCloud.Application.Features.AssignmentType;
 //using RedCloud.Application.Features.Campaign;
@@ -65,6 +66,12 @@ builder.Services.AddScoped<ICampaignService, CampaignService>();
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings")); // Add by Aditya
 builder.Services.AddTransient<IMailService, MailService>(); // Add by Aditya
 builder.Services.AddScoped<IEncryptionService, EncryptionService>(); // Add by Aditya
+
+builder.Services.AddScoped<IEncryptionService, EncryptionService>();
+builder.Services.AddScoped<IResellerAssignCreditService, ResellerAssignCreditService>();
+builder.Services.AddScoped<IReport, ReportService>();
+builder.Services.AddScoped<IAdminReport, AdminReportService>();
+
 //logger setup
 Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
 builder.Host.UseSerilog(((ctx, lc) => lc

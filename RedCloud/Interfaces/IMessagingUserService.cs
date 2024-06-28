@@ -1,4 +1,6 @@
-﻿using RedCloud.Application.Features.MessagingUsers.Queries;
+﻿using RedCloud.Application.Features.MessagingUsers.Commands;
+using RedCloud.Application.Features.MessagingUsers.Queries;
+using RedCloud.Domain.Entities;
 using RedCloud.ViewModel;
 
 namespace RedCloud.Interfaces
@@ -9,5 +11,9 @@ namespace RedCloud.Interfaces
      
         Task<MessagingUsersVM> GetMessagingUserById(int id);
         Task<MessagingUsersVM> BlockMessagingUser(int Id);
+        Task<bool> AddMessagingUser(MessagingUser messaginguser);
+
+        Task<bool> UpdateMessagingUser(UpdateMessagingUserQuery updatemessaginguserquery);
+
     }
 }
