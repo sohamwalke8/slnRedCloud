@@ -33,11 +33,12 @@ namespace RedCloud.Controllers
             _accountService = accountService;
             _mailService = mailService;
             _distributedCache = distributedCache;
+            _encryptionService = encryptionService;
         }
 
 
         // Action method to display the login page
-
+        
         [HttpGet]
         public IActionResult Login()
         {
@@ -76,8 +77,7 @@ namespace RedCloud.Controllers
                 if (result.Data.Roles != null)
                 {
                     // Set session data
-                    var roles = result.Data.Roles.Select(r => new
-                    {
+                    var roles = result.Data.Roles.Select(r => new {
                         RoleName = r.RoleName.Trim(),
                         // Include other properties if needed
                     });
@@ -125,7 +125,7 @@ namespace RedCloud.Controllers
                 return PartialView("_MessagingUsers", ViewBag.role);
             }
 
-            return RedirectToAction("Index", "Home");
+           return RedirectToAction("Index", "Home");
         }
 
         //ForgetUserPasswordVM
@@ -223,13 +223,8 @@ namespace RedCloud.Controllers
                 }                
                 else
                 {
-
-                    //_notyf.Error(loginResponse.Message);
-                    return View();
+                    TempData["SuccessMessage"] = "Password Reset successfully!l";
                 }
-<<<<<<<<< Temporary merge branch 1
-
-=========
             
             }
 
@@ -279,12 +274,11 @@ namespace RedCloud.Controllers
             Response.Headers["Expires"] = "0";
 
             // Redirect to the Login action of the Account controller          
-            // return RedirectToAction("Login", "Account");
+           // return RedirectToAction("Login", "Account");
             return RedirectToActionPermanent("Login", "Account");
-
-
+            
+            
         }
 
     }
-
 }

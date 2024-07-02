@@ -26,5 +26,4 @@ namespace RedCloud.Services
             return int.Parse(decryptedString); // Parse back to int
         }
     }
-
 }

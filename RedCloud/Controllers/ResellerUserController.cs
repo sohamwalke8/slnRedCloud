@@ -7,7 +7,7 @@ using static RedCloud.Custom_Action_Filter.NoCacheAttribute;
 namespace RedCloud.Controllers
 {
     [NoCache]
-    [AdminAuthorizationFilter]
+    [ResellerAuthorizationFilter]
     public class ResellerUserController : Controller
     {
         private readonly IResellerUserService _ResellerUserService;

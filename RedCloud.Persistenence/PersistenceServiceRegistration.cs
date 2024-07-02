@@ -21,7 +21,6 @@ namespace RedCloud.Persistenence
 
             services.AddScoped(typeof(IAccountRepository), typeof(AccountRepository));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
-            
 
             return services;
         }
