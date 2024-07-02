@@ -45,8 +45,16 @@ namespace RedCloud.Persistenence.Repositories
         }
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
-            _logger.LogInformation("ListAllAsync Initiated");
-            return await _dbContext.Set<T>().ToListAsync();
+            try
+            {
+                _logger.LogInformation("ListAllAsync Initiated");
+                return await _dbContext.Set<T>().ToListAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
 

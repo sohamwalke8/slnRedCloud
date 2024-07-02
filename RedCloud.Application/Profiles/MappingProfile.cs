@@ -37,6 +37,7 @@ using RedCloud.Application.Features.Templates.Command;
 using RedCloud.Application.Features.Templates.Queries;
 using RedCloud.Application.Features.MessagingUsers.Queries;
 using RedCloud.Application.Features.MessagingUsers.Commands;
+using RedCloud.Application.Features.AssignNumberToUser.Commands;
 
 namespace RedCloud.Application.Profiles
 {
@@ -55,6 +56,8 @@ namespace RedCloud.Application.Profiles
             CreateMap<CreateResellerAdminUserCommand, ResellerAdminUser>();
             CreateMap<UpdateResellerAdminUserCommand, ResellerAdminUser>();
             CreateMap<ResellerAdminUserVM, ResellerAdminUser>().ReverseMap();
+
+            CreateMap<UsersNumberMapper, AssignNumberDto>().ReverseMap();
 
 
             //disha

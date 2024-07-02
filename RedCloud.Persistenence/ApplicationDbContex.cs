@@ -32,10 +32,15 @@ namespace RedCloud.Persistenence
             modelBuilder.Entity<AdminInboundMessageReport>().HasNoKey();
             modelBuilder.Entity<AdminCount>().HasNoKey();
             modelBuilder.Entity<GetRatedUsage>().HasNoKey();
+            modelBuilder.Entity<GetAllAssignNumber>().HasNoKey();
 
             modelBuilder.Entity<ResellerInboundMessagesReport>().HasNoKey();//new
 
-
+            //By setting the table to be excluded from migrations,
+            modelBuilder.Entity<AssignCreditDetailsVM>().Metadata.SetIsTableExcludedFromMigrations(true);
+            modelBuilder.Entity<GetRatedUsage>().Metadata.SetIsTableExcludedFromMigrations(true);
+            modelBuilder.Entity<getRatedUsageList>().Metadata.SetIsTableExcludedFromMigrations(true);
+            modelBuilder.Entity<GetAllAssignNumber>().Metadata.SetIsTableExcludedFromMigrations(true);
 
         }
 
@@ -65,7 +70,7 @@ namespace RedCloud.Persistenence
         public DbSet<Campaign> Campaigns { get; set; }
 
         public DbSet<Template> Templates { get; set; }
-        public DbSet<MessagingUser> MessagingUsers { get; set; }
+        public DbSet<MessagingUser> MessagingUser { get; set; }
 
 
 
@@ -95,11 +100,14 @@ namespace RedCloud.Persistenence
 
         public DbSet<GetAllAssignCredit> GetAllAssignCredit { get; set; }
 
+        public DbSet<UsersNumberMapper> UserNumberMapper { get; set; }
+
 
         // fake Entities
         public DbSet<AssignCreditDetailsVM> AssignCreditDetailsVM { get; set; }
         public DbSet<GetRatedUsage> GetRatedUsage { get; set; }
         public DbSet<getRatedUsageList> getRatedUsageList { get; set; }
+        public DbSet<GetAllAssignNumber> getAllAssignNumbers { get; set; }
 
 
 
