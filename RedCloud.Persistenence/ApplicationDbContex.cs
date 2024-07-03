@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using RedCloud.Application.Contract;
 using RedCloud.Domain.Entities;
+using RedCloud.Domain.Enums;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection.Emit;
+using System.Security.AccessControl;
 
 namespace RedCloud.Persistenence
 {
@@ -70,6 +73,74 @@ namespace RedCloud.Persistenence
 
         public DbSet<Rate> Rates { get; set; }
         public DbSet<GetRate> GetRates { get; set; }
+        public DbSet<AuditTable> AuditLog { get; set; }
+        public override int SaveChanges()
+        {
+            BeforeSaveChanges();
+            return base.SaveChanges();
+        }
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        {
+            BeforeSaveChanges();
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+            
+        private void BeforeSaveChanges()
+        {
+            ChangeTracker.DetectChanges();
+            var auditEntries = new List<AuditEntry>();
+
+            foreach (var entry in ChangeTracker.Entries())
+            {
+                if (entry.Entity is AuditTable || entry.State == EntityState.Detached || entry.State == EntityState.Unchanged)
+                    continue;
+
+                var auditEntry = new AuditEntry(entry);
+                auditEntry.TableName = entry.Entity.GetType().Name;
+                auditEntries.Add(auditEntry);
+
+                foreach (var property in entry.Properties)
+                {
+                    string propertyName = property.Metadata.Name;
+
+                    if (property.Metadata.IsPrimaryKey())
+                    {
+                        // Assuming PrimaryKey is an int, cast CurrentValue to int
+                        auditEntry.PrimaryKey = (int)property.CurrentValue;
+                        continue;
+                    }
+
+                    switch (entry.State)
+                    {
+                        case EntityState.Added:
+                            auditEntry.AuditType = AuditType.Create;
+                            auditEntry.NewValues[propertyName] = property.CurrentValue;
+                            auditEntry.UserId = entry.Property("CreatedBy").CurrentValue != null ? (int)entry.Property("CreatedBy").CurrentValue : 0;
+                            break;
+                        case EntityState.Deleted:
+                            auditEntry.AuditType = AuditType.Delete;
+                            auditEntry.OldValues[propertyName] = property.OriginalValue;
+                            auditEntry.UserId = entry.Property("LastModifiedBy").CurrentValue != null ? (int)entry.Property("LastModifiedBy").CurrentValue : 0;
+                            break;
+                        case EntityState.Modified:
+                            if (property.IsModified)
+                            {
+                                auditEntry.ChangedColumns.Add(propertyName);
+                                auditEntry.AuditType = AuditType.Update;
+                                auditEntry.OldValues[propertyName] = property.OriginalValue;
+                                auditEntry.NewValues[propertyName] = property.CurrentValue;
+                                auditEntry.UserId = entry.Property("LastModifiedBy").CurrentValue != null ? (int)entry.Property("LastModifiedBy").CurrentValue : 0;
+                            }
+                            break;
+                    }
+                }
+            }
+
+            foreach (var auditEntry in auditEntries)
+            {
+                AuditLog.Add(auditEntry.ToAudit());
+            }
+        }
 
 
 
@@ -478,6 +549,6 @@ namespace RedCloud.Persistenence
 
 
 
-        
+
     }
 }
